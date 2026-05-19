@@ -128,7 +128,7 @@ stringID_table_t BSETTable[] =
 
 stringID_table_t WPTable[] =
 {
-	{ "NULL", WP_NONE },
+	{ "nullptr", WP_NONE },
 	ENUM2STRING(WP_NONE),
 	// Player weapons
 	ENUM2STRING(WP_SABER),				 // NOTE: lots of code assumes this is the first weapon (... which is crap) so be careful -Ste.
@@ -183,7 +183,7 @@ stringID_table_t eventTable[] =
 
 stringID_table_t DMSTable[] =
 {
-	{ "NULL",-1 },
+	{ "nullptr",-1 },
 	ENUM2STRING(DM_AUTO),	//# let the game determine the dynamic music as normal
 	ENUM2STRING(DM_SILENCE),	//# stop the music
 	ENUM2STRING(DM_EXPLORE),	//# force the exploration music to play
@@ -195,7 +195,7 @@ stringID_table_t DMSTable[] =
 
 stringID_table_t HLTable[] =
 {
-	{ "NULL",-1 },
+	{ "nullptr",-1 },
 	ENUM2STRING(HL_FOOT_RT),
 	ENUM2STRING(HL_FOOT_LT),
 	ENUM2STRING(HL_LEG_RT),
@@ -679,10 +679,10 @@ Q3_GetAnimLower
 */
 static char *Q3_GetAnimLower( gentity_t *ent )
 {
-	if ( ent->client == NULL )
+	if ( ent->client == nullptr )
 	{
 		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_GetAnimLower: attempted to read animation state off non-client!\n" );
-		return NULL;
+		return nullptr;
 	}
 
 	int anim = ent->client->ps.legsAnim;
@@ -697,10 +697,10 @@ Q3_GetAnimUpper
 */
 static char *Q3_GetAnimUpper( gentity_t *ent )
 {
-	if ( ent->client == NULL )
+	if ( ent->client == nullptr )
 	{
 		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_GetAnimUpper: attempted to read animation state off non-client!\n" );
-		return NULL;
+		return nullptr;
 	}
 
 	int anim = ent->client->ps.torsoAnim;
@@ -722,14 +722,14 @@ static char *Q3_GetAnimBoth( gentity_t *ent )
 
 	if ( VALIDSTRING( lowerName ) == false )
 	{
-		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_GetAnimBoth: NULL legs animation string found!\n" );
-		return NULL;
+		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_GetAnimBoth: nullptr legs animation string found!\n" );
+		return nullptr;
 	}
 
 	if ( VALIDSTRING( upperName ) == false )
 	{
-		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_GetAnimBoth: NULL torso animation string found!\n" );
-		return NULL;
+		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_GetAnimBoth: nullptr torso animation string found!\n" );
+		return nullptr;
 	}
 
 	if ( Q_stricmp( lowerName, upperName ) )
@@ -950,8 +950,8 @@ Returns the sequencer of the entity by the given name
 	entitylist_t::iterator		ei;
 	char					temp[1024];
 
-	if ( name == NULL || name[0] == NULL )
-		return NULL;
+	if ( name == nullptr || name[0] == nullptr )
+		return nullptr;
 
 	strncpy( (char *) temp, name, sizeof(temp) );
 	temp[sizeof(temp)-1] = 0;
@@ -959,14 +959,14 @@ Returns the sequencer of the entity by the given name
 	ei = ICARUS_EntList.find( strupr( (char *) temp ) );
 
 	if ( ei == ICARUS_EntList.end() )
-		return NULL;
+		return nullptr;
 
 	ent = &g_entities[(*ei).second];
 
 	return ent;
 	// this now returns the ent instead of the sequencer -- dmv 06/27/01
-//	if (ent == NULL)
-//		return NULL;
+//	if (ent == nullptr)
+//		return nullptr;
 //	return ent->sequencer;
 }*/
 
@@ -998,12 +998,12 @@ static qboolean G_AddSexToPlayerString ( char *string, qboolean qDoBoth )
 	if VALIDSTRING( string ) {
 		if ( g_sex->string[0] == 'f' ) {
 			start = strstr( string, "jaden_male/" );
-			if ( start != NULL ) {
+			if ( start != nullptr ) {
 				strncpy( start, "jaden_fmle", 10 );
 				return qtrue;
 			} else {
 				start = strrchr( string, '/' );		//get the last slash before the wav
-				if (start != NULL) {
+				if (start != nullptr) {
 					if (!strncmp( start, "/mr_", 4) ) {
 						if (qDoBoth) {	//we want to change mr to ms
 							start[2] = 's';	//change mr to ms
@@ -1017,7 +1017,7 @@ static qboolean G_AddSexToPlayerString ( char *string, qboolean qDoBoth )
 		}	//IF Female
 		else {	//i'm male
 			start = strrchr( string, '/' );		//get the last slash before the wav
-			if (start != NULL) {
+			if (start != nullptr) {
 				if (!strncmp( start, "/ms_", 4) ) {
 					return qfalse;	//don't want this one
 				}
@@ -1181,7 +1181,7 @@ Copies origin of found ent into ent running script
 */
 static void Q3_SetCopyOrigin( int entID, const char *name )
 {
-	gentity_t	*found = G_Find( NULL, FOFS(targetname), (char *) name);
+	gentity_t	*found = G_Find( nullptr, FOFS(targetname), (char *) name);
 
 	if(found)
 	{
@@ -1433,7 +1433,7 @@ void Blocked_Mover( gentity_t *ent, gentity_t *other ) {
 	}
 
 	if ( ent->damage ) {
-		G_Damage( other, ent, ent, NULL, NULL, ent->damage, 0, MOD_CRUSH );
+		G_Damage( other, ent, ent, nullptr, nullptr, ent->damage, 0, MOD_CRUSH );
 	}
 }
 
@@ -1615,7 +1615,7 @@ Lerps the origin and angles of an entity to the destination values
 	//SetMoverState( ent, moverState, level.time );
 
 	//Only do the angles if specified
-	if ( angles != NULL )
+	if ( angles != nullptr )
 	{
 		//
 		// Rotation
@@ -1883,19 +1883,19 @@ static qboolean Q3_SetNavGoal( int entID, const char *name )
 		Quake3Game()->DebugPrint( IGameInterface::WL_ERROR, "Q3_SetNavGoal: NPC's (\"%s\") navgoal is freed: \"%s\"\n", name, ent->script_targetname );
 		return qfalse;
 	}
-	if( Q_stricmp( "null", name) == 0
-		|| Q_stricmp( "NULL", name) == 0 )
+	if( Q_stricmp( "nullptr", name) == 0
+		|| Q_stricmp( "nullptr", name) == 0 )
 	{
-		ent->NPC->goalEntity = NULL;
+		ent->NPC->goalEntity = nullptr;
 		Q3_TaskIDComplete( ent, TID_MOVE_NAV );
 		return qfalse;
 	}
 	else
 	{
 		//Get the position of the goal
-		if ( TAG_GetOrigin2( NULL, name, goalPos ) == false )
+		if ( TAG_GetOrigin2( nullptr, name, goalPos ) == false )
 		{
-			gentity_t	*targ = G_Find(NULL, FOFS(targetname), (char*)name);
+			gentity_t	*targ = G_Find(nullptr, FOFS(targetname), (char*)name);
 			if ( !targ )
 			{
 				Quake3Game()->DebugPrint( IGameInterface::WL_ERROR, "Q3_SetNavGoal: can't find NAVGOAL \"%s\"\n", name );
@@ -1910,7 +1910,7 @@ static qboolean Q3_SetNavGoal( int entID, const char *name )
 		}
 		else
 		{
-			int	goalRadius = TAG_GetRadius( NULL, name );
+			int	goalRadius = TAG_GetRadius( nullptr, name );
 			NPC_SetMoveGoal( ent, goalPos, goalRadius, qtrue );
 			//We know we want to clear the lastWaypoint here
 			ent->NPC->goalEntity->lastWaypoint = WAYPOINT_NONE;
@@ -2100,7 +2100,7 @@ static void Q3_SetEnemy( int entID, const char *name )
 		return;
 	}
 
-	if( !Q_stricmp("NONE", name) || !Q_stricmp("NULL", name))
+	if( !Q_stricmp("NONE", name) || !Q_stricmp("nullptr", name))
 	{
 		if(ent->NPC)
 		{
@@ -2108,14 +2108,14 @@ static void Q3_SetEnemy( int entID, const char *name )
 		}
 		else
 		{
-			ent->enemy = NULL;
+			ent->enemy = nullptr;
 		}
 	}
 	else
 	{
-		gentity_t	*enemy = G_Find( NULL, FOFS(targetname), (char *) name);
+		gentity_t	*enemy = G_Find( nullptr, FOFS(targetname), (char *) name);
 
-		if(enemy == NULL)
+		if(enemy == nullptr)
 		{
 			Quake3Game()->DebugPrint( IGameInterface::WL_ERROR, "Q3_SetEnemy: no such enemy: '%s'\n", name );
 			return;
@@ -2164,15 +2164,15 @@ static void Q3_SetLeader( int entID, const char *name )
 		return;
 	}
 
-	if( !Q_stricmp("NONE", name) || !Q_stricmp("NULL", name))
+	if( !Q_stricmp("NONE", name) || !Q_stricmp("nullptr", name))
 	{
-		ent->client->leader = NULL;
+		ent->client->leader = nullptr;
 	}
 	else
 	{
-		gentity_t	*leader = G_Find( NULL, FOFS(targetname), (char *) name);
+		gentity_t	*leader = G_Find( nullptr, FOFS(targetname), (char *) name);
 
-		if(leader == NULL)
+		if(leader == nullptr)
 		{
 			//Quake3Game()->DebugPrint( WL_ERROR,"Q3_SetEnemy: unable to locate enemy: '%s'\n", name );
 			return;
@@ -3003,7 +3003,7 @@ Q3_SetViewTarget
 static void Q3_SetViewTarget (int entID, const char *name)
 {
 	gentity_t	*self  = &g_entities[entID];
-	gentity_t	*viewtarget = G_Find( NULL, FOFS(targetname), (char *) name);
+	gentity_t	*viewtarget = G_Find( nullptr, FOFS(targetname), (char *) name);
 	vec3_t		viewspot, selfspot, viewvec, viewangles;
 
 	if ( !self )
@@ -3019,7 +3019,7 @@ static void Q3_SetViewTarget (int entID, const char *name)
 	}
 
 	//FIXME: Exception handle here
-	if (viewtarget == NULL)
+	if (viewtarget == nullptr)
 	{
 		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_SetViewTarget: can't find ViewTarget: '%s'\n", name );
 		return;
@@ -3063,7 +3063,7 @@ Q3_SetWatchTarget
 static void Q3_SetWatchTarget (int entID, const char *name)
 {
 	gentity_t	*self  = &g_entities[entID];
-	gentity_t	*watchTarget = NULL;
+	gentity_t	*watchTarget = nullptr;
 
 	if ( !self )
 	{
@@ -3077,13 +3077,13 @@ static void Q3_SetWatchTarget (int entID, const char *name)
 		return;
 	}
 
-	if ( Q_stricmp( "NULL", name ) == 0 || Q_stricmp( "NONE", name ) == 0 || ( self->targetname && (Q_stricmp( self->targetname, name ) == 0) ) )
+	if ( Q_stricmp( "nullptr", name ) == 0 || Q_stricmp( "NONE", name ) == 0 || ( self->targetname && (Q_stricmp( self->targetname, name ) == 0) ) )
 	{//clearing watchTarget
-		self->NPC->watchTarget = NULL;
+		self->NPC->watchTarget = nullptr;
 	}
 
-	watchTarget = G_Find( NULL, FOFS(targetname), (char *) name);
-	if ( watchTarget == NULL )
+	watchTarget = G_Find( nullptr, FOFS(targetname), (char *) name);
+	if ( watchTarget == nullptr )
 	{
 		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_SetWatchTarget: can't find WatchTarget: '%s'\n", name );
 		return;
@@ -3097,7 +3097,7 @@ void Q3_SetLoopSound(int entID, const char *name)
 	sfxHandle_t	index;
 	gentity_t	*self  = &g_entities[entID];
 
-	if ( Q_stricmp( "NULL", name ) == 0 || Q_stricmp( "NONE", name )==0)
+	if ( Q_stricmp( "nullptr", name ) == 0 || Q_stricmp( "NONE", name )==0)
 	{
 		self->s.loopSound = 0;
 		return;
@@ -3124,10 +3124,10 @@ void Q3_SetLoopSound(int entID, const char *name)
 
 void Q3_SetICARUSFreeze( int entID, const char *name, qboolean freeze )
 {
-	gentity_t	*self  = G_Find( NULL, FOFS(targetname), name );
+	gentity_t	*self  = G_Find( nullptr, FOFS(targetname), name );
 	if ( !self )
 	{//hmm, targetname failed, try script_targetname?
-		self = G_Find( NULL, FOFS(script_targetname), name );
+		self = G_Find( nullptr, FOFS(script_targetname), name );
 	}
 
 	if ( !self )
@@ -3160,7 +3160,7 @@ extern void G_SetViewEntity( gentity_t *self, gentity_t *viewEntity );
 void Q3_SetViewEntity(int entID, const char *name)
 {
 	gentity_t	*self  = &g_entities[entID];
-	gentity_t	*viewtarget = G_Find( NULL, FOFS(targetname), (char *) name);
+	gentity_t	*viewtarget = G_Find( nullptr, FOFS(targetname), (char *) name);
 
 	if ( entID != 0 )
 	{//only valid on player
@@ -3186,7 +3186,7 @@ void Q3_SetViewEntity(int entID, const char *name)
 		return;
 	}
 
-	if ( viewtarget == NULL )
+	if ( viewtarget == nullptr )
 	{
 		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_SetViewEntity: can't find ViewEntity: '%s'\n", name );
 		return;
@@ -3756,9 +3756,9 @@ static void Q3_SetSquadName (int entID, const char *squadname)
 		return;
 	}
 
-	if(!Q_stricmp("NULL", ((char *)squadname)))
+	if(!Q_stricmp("nullptr", ((char *)squadname)))
 	{
-		self->client->squadname = NULL;
+		self->client->squadname = nullptr;
 	}
 	else
 	{
@@ -3786,9 +3786,9 @@ static void Q3_SetTargetName (int entID, const char *targetname)
 		return;
 	}
 
-	if(!Q_stricmp("NULL", ((char *)targetname)))
+	if(!Q_stricmp("nullptr", ((char *)targetname)))
 	{
-		self->targetname = NULL;
+		self->targetname = nullptr;
 	}
 	else
 	{
@@ -3816,9 +3816,9 @@ static void Q3_SetTarget (int entID, const char *target)
 		return;
 	}
 
-	if(!Q_stricmp("NULL", ((char *)target)))
+	if(!Q_stricmp("nullptr", ((char *)target)))
 	{
-		self->target = NULL;
+		self->target = nullptr;
 	}
 	else
 	{
@@ -3845,9 +3845,9 @@ static void Q3_SetTarget2 (int entID, const char *target2)
 		return;
 	}
 
-	if(!Q_stricmp("NULL", ((char *)target2)))
+	if(!Q_stricmp("nullptr", ((char *)target2)))
 	{
-		self->target2 = NULL;
+		self->target2 = nullptr;
 	}
 	else
 	{
@@ -3879,9 +3879,9 @@ static void Q3_SetRemoveTarget (int entID, const char *target)
 		return;
 	}
 
-	if( !Q_stricmp("NULL", ((char *)target)) )
+	if( !Q_stricmp("nullptr", ((char *)target)) )
 	{
-		self->target3 = NULL;
+		self->target3 = nullptr;
 	}
 	else
 	{
@@ -3909,9 +3909,9 @@ static void Q3_SetPainTarget (int entID, const char *targetname)
 		return;
 	}
 
-	if(Q_stricmp("NULL", ((char *)targetname)) == 0)
+	if(Q_stricmp("nullptr", ((char *)targetname)) == 0)
 	{
-		self->paintarget = NULL;
+		self->paintarget = nullptr;
 	}
 	else
 	{
@@ -4013,7 +4013,7 @@ static void Q3_GiveSecurityKey( int entID, char *keyname )
 		return;
 	}
 
-	if ( !keyname || !keyname[0] || !Q_stricmp( "none", keyname ) || !Q_stricmp( "null", keyname ) )
+	if ( !keyname || !keyname[0] || !Q_stricmp( "none", keyname ) || !Q_stricmp( "nullptr", keyname ) )
 	{//remove the key
 		if ( other->message )
 		{//remove it
@@ -4090,7 +4090,7 @@ void Q3_SetParm (int entID, int parmNum, const char *parmValue)
 	{//Just copy the string
 		//copy only 16 characters
 		strncpy( ent->parms->parm[parmNum], parmValue, sizeof(ent->parms->parm[parmNum]) );
-		//set the last character to null in case we had to truncate their passed string
+		//set the last character to nullptr in case we had to truncate their passed string
 		if ( ent->parms->parm[parmNum][sizeof(ent->parms->parm[parmNum]) - 1] != 0 )
 		{//Tried to set a string that is too long
 			ent->parms->parm[parmNum][sizeof(ent->parms->parm[parmNum]) - 1] = 0;
@@ -4111,7 +4111,7 @@ Sets the capture spot goal of an entity
 static void Q3_SetCaptureGoal( int entID, const char *name )
 {
 	gentity_t	*ent  = &g_entities[entID];
-	gentity_t	*goal = G_Find( NULL, FOFS(targetname), (char *) name);
+	gentity_t	*goal = G_Find( nullptr, FOFS(targetname), (char *) name);
 
 	if ( !ent )
 	{
@@ -4126,7 +4126,7 @@ static void Q3_SetCaptureGoal( int entID, const char *name )
 	}
 
 	//FIXME: Exception handle here
-	if (goal == NULL)
+	if (goal == nullptr)
 	{
 		Quake3Game()->DebugPrint( IGameInterface::WL_ERROR, "Q3_SetCaptureGoal: can't find CaptureGoal target: '%s'\n", name );
 		return;
@@ -4150,7 +4150,7 @@ Q3_SetEvent
 static void Q3_SetEvent( int entID, const char *event_name )
 {
 	gentity_t	*ent  = &g_entities[entID];
-//	gentity_t	*tent  = NULL;
+//	gentity_t	*tent  = nullptr;
 	int			event;
 //	vec3_t		spot;
 
@@ -4208,7 +4208,7 @@ Uses an entity
 
 	if( !target || !target[0] )
 	{
-		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_Use: string is NULL!\n" );
+		Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_Use: string is nullptr!\n" );
 		return;
 	}
 
@@ -4288,21 +4288,21 @@ static qboolean Q3_SetBehaviorSet( int entID, int toSet, const char *scriptname)
 		return qfalse;
 	}
 
-	if(!Q_stricmp("NULL", scriptname))
+	if(!Q_stricmp("nullptr", scriptname))
 	{
-		if ( ent->behaviorSet[bSet] != NULL )
+		if ( ent->behaviorSet[bSet] != nullptr )
 		{
 //			gi.TagFree( ent->behaviorSet[bSet] );
 		}
 
-		ent->behaviorSet[bSet] = NULL;
+		ent->behaviorSet[bSet] = nullptr;
 		//memset( &ent->behaviorSet[bSet], 0, sizeof(ent->behaviorSet[bSet]) );
 	}
 	else
 	{
 		if ( scriptname )
 		{
-			if ( ent->behaviorSet[bSet] != NULL )
+			if ( ent->behaviorSet[bSet] != nullptr )
 			{
 //				gi.TagFree( ent->behaviorSet[bSet] );
 			}
@@ -4777,7 +4777,7 @@ Q3_SetCinematicSkipScript
 static void Q3_SetCinematicSkipScript( char *scriptname )
 {
 
-	if(Q_stricmp("none", scriptname) == 0 || Q_stricmp("NULL", scriptname) == 0)
+	if(Q_stricmp("none", scriptname) == 0 || Q_stricmp("nullptr", scriptname) == 0)
 	{
 		cinematicSkipScript[0] = 0;
 	}
@@ -5955,19 +5955,19 @@ static void Q3_LookTarget( int entID, char *targetName)
 		return;
 	}
 
-	if(Q_stricmp("none", targetName) == 0 || Q_stricmp("NULL", targetName) == 0)
+	if(Q_stricmp("none", targetName) == 0 || Q_stricmp("nullptr", targetName) == 0)
 	{//clearing look target
 		NPC_ClearLookTarget( ent );
 		return;
 	}
 
-	gentity_t	*targ  = G_Find(NULL, FOFS(targetname), targetName);
+	gentity_t	*targ  = G_Find(nullptr, FOFS(targetname), targetName);
 	if(!targ)
 	{
-		targ  = G_Find(NULL, FOFS(script_targetname), targetName);
+		targ  = G_Find(nullptr, FOFS(script_targetname), targetName);
 		if (!targ)
 		{
-			targ  = G_Find(NULL, FOFS(NPC_targetname), targetName);
+			targ  = G_Find(nullptr, FOFS(NPC_targetname), targetName);
 			if (!targ)
 			{
 				Quake3Game()->DebugPrint( IGameInterface::WL_ERROR, "Q3_LookTarget: Can't find ent %s\n", targetName );
@@ -6538,7 +6538,7 @@ Q3_SetCleanDamagingEnts
 */
 static void Q3_SetCleanDamagingEnts( void )
 {
-	gentity_t *ent = NULL;
+	gentity_t *ent = nullptr;
 
 	for ( int i = 0; i < ENTITYNUM_WORLD; i++ )
 	{
@@ -6564,7 +6564,7 @@ static void Q3_SetCleanDamagingEnts( void )
 			else if ( ent->client && ent->client->NPC_class == CLASS_SEEKER )
 			{
 				// they blow up when they run out of ammo, so this may as well just do the same.
-				G_Damage( ent, ent, ent, NULL, NULL, 999, 0, MOD_UNKNOWN );
+				G_Damage( ent, ent, ent, nullptr, nullptr, 999, 0, MOD_UNKNOWN );
 			}
 		}
 	}
@@ -6771,12 +6771,12 @@ static void Q3_RemoveEnt( gentity_t *victim )
 		victim->s.eType = ET_INVISIBLE;
 		victim->contents = 0;
 		victim->health = 0;
-		victim->targetname = NULL;
+		victim->targetname = nullptr;
 
-		if ( victim->NPC && victim->NPC->tempGoal != NULL )
+		if ( victim->NPC && victim->NPC->tempGoal != nullptr )
 		{
 			G_FreeEntity( victim->NPC->tempGoal );
-			victim->NPC->tempGoal = NULL;
+			victim->NPC->tempGoal = nullptr;
 		}
 		if ( victim->client->ps.saberEntityNum != ENTITYNUM_NONE && victim->client->ps.saberEntityNum > 0 )
 		{
@@ -6852,7 +6852,7 @@ Q3_Remove
 static void Q3_Remove( int entID, const char *name )
 {
 	gentity_t *ent = &g_entities[entID];
-	gentity_t	*victim = NULL;
+	gentity_t	*victim = nullptr;
 
 	if( !Q_stricmp( "self", name ) )
 	{
@@ -6876,7 +6876,7 @@ static void Q3_Remove( int entID, const char *name )
 	}
 	else
 	{
-		victim = G_Find( NULL, FOFS(targetname), (char *) name );
+		victim = G_Find( nullptr, FOFS(targetname), (char *) name );
 		if ( !victim )
 		{
 			Quake3Game()->DebugPrint( IGameInterface::WL_WARNING, "Q3_Remove: can't find %s\n", name );
@@ -7439,7 +7439,7 @@ int CQuake3GameInterface::VariableLoad( void )
 }
 
 // Static Singleton Instance.
-CQuake3GameInterface *CQuake3GameInterface::m_pInstance = NULL;
+CQuake3GameInterface *CQuake3GameInterface::m_pInstance = nullptr;
 
 // Destructor.
 IGameInterface::~IGameInterface() {}
@@ -7464,7 +7464,7 @@ void IGameInterface::Destroy()
 	if ( CQuake3GameInterface::m_pInstance )
 	{
 		delete CQuake3GameInterface::m_pInstance;
-		CQuake3GameInterface::m_pInstance = NULL;
+		CQuake3GameInterface::m_pInstance = nullptr;
 	}
 }
 
@@ -7608,7 +7608,7 @@ void CQuake3GameInterface::AssociateEntity( gentity_t *pEntity )
 // Make a valid script name.
 int CQuake3GameInterface::MakeValidScriptName( char **strScriptName )
 {
-	if ( !Q_stricmp( *strScriptName, "NULL" ) || !Q_stricmp( *strScriptName, "default" ) )
+	if ( !Q_stricmp( *strScriptName, "nullptr" ) || !Q_stricmp( *strScriptName, "default" ) )
 		return 0;
 
 	// ensure "scripts" (Q3_SCRIPT_DIR), which will be missing if this was called recursively...
@@ -7633,7 +7633,7 @@ int CQuake3GameInterface::MakeValidScriptName( char **strScriptName )
 int CQuake3GameInterface::RegisterScript( const char *strFileName, void **ppBuf, int &iLength )
 {
 	// If the file name is invalid, leave.
-	if ( !strFileName || strFileName[0] == '\0' || !Q_stricmp( strFileName, "NULL" ) || !Q_stricmp( strFileName, "default" ) )
+	if ( !strFileName || strFileName[0] == '\0' || !Q_stricmp( strFileName, "nullptr" ) || !Q_stricmp( strFileName, "default" ) )
 		return SCRIPT_COULDNOTREGISTER;
 
 	// Ensure "scripts" (Q3_SCRIPT_DIR), which will be missing if this was called recursively...
@@ -7684,7 +7684,7 @@ int CQuake3GameInterface::RegisterScript( const char *strFileName, void **ppBuf,
 
 		gi.FS_FOpenFile( newname, &file, FS_READ );
 
-		if ( file == NULL )
+		if ( file == nullptr )
 		{
 			qbIgnoreFileRead = qtrue;	// warn disk code further down not to try FS_ReadFile()
 		}
@@ -7696,7 +7696,7 @@ int CQuake3GameInterface::RegisterScript( const char *strFileName, void **ppBuf,
 #endif*/
 
 	// Read the Script File into the Buffer.
-	char *pBuf = NULL;
+	char *pBuf = nullptr;
 	iLength = qbIgnoreFileRead ? -1 : gi.FS_ReadFile( newname, (void **) &pBuf );
 
 	if ( iLength <= 0 )
@@ -7737,12 +7737,12 @@ int CQuake3GameInterface::PrecacheEntity( gentity_t *pEntity )
 
 	for ( i = 0; i < NUM_BSETS; i++ )
 	{
-		if ( pEntity->behaviorSet[i] == NULL )
+		if ( pEntity->behaviorSet[i] == nullptr )
 			continue;
 
 		if ( GetIDForString( BSTable, pEntity->behaviorSet[i] ) == -1 )
 		{//not a behavior set
-			char *pBuf = NULL;
+			char *pBuf = nullptr;
 			int iLength = 0;
 
 			// Try to register this script.
@@ -7751,7 +7751,7 @@ int CQuake3GameInterface::PrecacheEntity( gentity_t *pEntity )
 				assert( pBuf );
 				assert( iLength );
 
-				if ( pBuf != NULL && iLength > 0 )
+				if ( pBuf != nullptr && iLength > 0 )
 					// Tell Icarus to precache the script data.
 					IIcarusInterface::GetIcarus()->Precache( pBuf, iLength );
 			}
@@ -7767,7 +7767,7 @@ int CQuake3GameInterface::PrecacheEntity( gentity_t *pEntity )
 // Run the script.
 void CQuake3GameInterface::RunScript( const gentity_t *pEntity, const char *strScriptName )
 {
-	char *pBuf = NULL;
+	char *pBuf = nullptr;
 	int iLength = 0;
 
 	switch( RegisterScript( strScriptName, (void **) &pBuf, iLength ) )
@@ -7797,9 +7797,9 @@ void CQuake3GameInterface::Svcmd( void )
 		g_ICARUSDebug->integer = WL_DEBUG;
 		if ( VALIDSTRING( gi.argv( 2 ) ) )
 		{
-			gentity_t	*ent = G_Find( NULL, FOFS( script_targetname ), gi.argv(2) );
+			gentity_t	*ent = G_Find( nullptr, FOFS( script_targetname ), gi.argv(2) );
 
-			if ( ent == NULL )
+			if ( ent == nullptr )
 			{
 				Com_Printf( "Entity \"%s\" not found!\n", gi.argv(2) );
 				return;
@@ -8095,7 +8095,7 @@ void	CQuake3GameInterface::Lerp2Pos( int taskID, int entID, vec3_t origin, vec3_
 	//SetMoverState( ent, moverState, level.time );
 
 	//Only do the angles if specified
-	if ( angles != NULL )
+	if ( angles != nullptr )
 	{
 		//
 		// Rotation
@@ -8871,7 +8871,7 @@ void	CQuake3GameInterface::Set( int taskID, int entID, const char *type_name, co
 	case SET_TREASONED:
 		DebugPrint( WL_VERBOSE, "SET_TREASONED is disabled, do not use\n" );
 		/*
-		G_TeamRetaliation( NULL, &g_entities[0], qfalse );
+		G_TeamRetaliation( nullptr, &g_entities[0], qfalse );
 		ffireLevel = FFIRE_LEVEL_RETALIATION;
 		*/
 		break;
@@ -9150,7 +9150,7 @@ void	CQuake3GameInterface::Set( int taskID, int entID, const char *type_name, co
 
 	case SET_DAMAGEENTITY:
 		int_data = atoi((char *) data);
-		G_Damage( ent, ent, ent, NULL, NULL, int_data, 0, MOD_UNKNOWN );
+		G_Damage( ent, ent, ent, nullptr, nullptr, int_data, 0, MOD_UNKNOWN );
 		break;
 
 	case SET_SABER_ORIGIN:
@@ -9457,7 +9457,7 @@ extern void LockDoors(gentity_t *const ent);
 	// NOTE: Preconditions for entering a vehicle still exist. This is not assured to work. -Areis
 	case SET_VEHICLE:
 		Use( entID, (char *)data );
-//		G_DriveVehicle( &g_entities[entID], NULL, (char *)data );
+//		G_DriveVehicle( &g_entities[entID], nullptr, (char *)data );
 		break;
 
 	case SET_SECURITY_KEY:
@@ -9629,7 +9629,7 @@ void	CQuake3GameInterface::Use( int entID, const char *name )
 
 	if( !name || !name[0] )
 	{
-		DebugPrint( WL_WARNING, "Use: string is NULL!\n" );
+		DebugPrint( WL_WARNING, "Use: string is nullptr!\n" );
 		return;
 	}
 
@@ -9661,7 +9661,7 @@ void	CQuake3GameInterface::Deactivate( int entID, const char *name )
 void	CQuake3GameInterface::Kill( int entID, const char *name )
 {
 	gentity_t	*ent = &g_entities[entID];
-	gentity_t	*victim = NULL;
+	gentity_t	*victim = nullptr;
 	int			o_health;
 
 	if( !Q_stricmp( name, "self") )
@@ -9674,7 +9674,7 @@ void	CQuake3GameInterface::Kill( int entID, const char *name )
 	}
 	else
 	{
-		victim = G_Find (NULL, FOFS(targetname), (char *) name );
+		victim = G_Find (nullptr, FOFS(targetname), (char *) name );
 	}
 
 	if ( !victim )
@@ -9704,7 +9704,7 @@ void	CQuake3GameInterface::Kill( int entID, const char *name )
 	//G_SetEnemy(victim, ent);
 	if( victim->e_DieFunc != dieF_NULL )	// check can be omitted
 	{
-		GEntity_DieFunc( victim, NULL, NULL, o_health, MOD_UNKNOWN );
+		GEntity_DieFunc( victim, nullptr, nullptr, o_health, MOD_UNKNOWN );
 	}
 }
 
@@ -9712,7 +9712,7 @@ void	CQuake3GameInterface::Kill( int entID, const char *name )
 void	CQuake3GameInterface::Remove( int entID, const char *name )
 {
 	gentity_t *ent = &g_entities[entID];
-	gentity_t	*victim = NULL;
+	gentity_t	*victim = nullptr;
 
 	if( !Q_stricmp( "self", name ) )
 	{
@@ -9736,7 +9736,7 @@ void	CQuake3GameInterface::Remove( int entID, const char *name )
 	}
 	else
 	{
-		victim = G_Find( NULL, FOFS(targetname), (char *) name );
+		victim = G_Find( nullptr, FOFS(targetname), (char *) name );
 		if ( !victim )
 		{
 			DebugPrint( WL_WARNING, "Remove: can't find %s\n", name );
@@ -9896,7 +9896,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 	case SET_PARM14:
 	case SET_PARM15:
 	case SET_PARM16:
-		if (ent->parms == NULL)
+		if (ent->parms == nullptr)
 		{
 			DebugPrint( WL_ERROR, "GET_PARM: %s %s did not have any parms set!\n", ent->classname, ent->targetname );
 			return false;	// would prefer qfalse, but I'm fitting in with what's here <sigh>
@@ -9917,7 +9917,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_XVELOCITY://## %f="0.0" # Velocity along X axis
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_XVELOCITY, %s not a client\n", ent->targetname );
 			return false;
@@ -9926,7 +9926,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_YVELOCITY://## %f="0.0" # Velocity along Y axis
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_YVELOCITY, %s not a client\n", ent->targetname );
 			return false;
@@ -9935,7 +9935,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_ZVELOCITY://## %f="0.0" # Velocity along Z axis
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_ZVELOCITY, %s not a client\n", ent->targetname );
 			return false;
@@ -9948,7 +9948,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_DPITCH://## %f="0.0" # Pitch for NPC to turn to
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_DPITCH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -9957,7 +9957,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_DYAW://## %f="0.0" # Yaw for NPC to turn to
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_DYAW, %s not an NPC\n", ent->targetname );
 			return false;
@@ -9966,7 +9966,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_WIDTH://## %f="0.0" # Width of NPC bounding box
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_WIDTH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -9976,12 +9976,12 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 	case SET_TIMESCALE://## %f="0.0" # Speed-up slow down game (0 - 1.0)
 		*value = g_timescale->value;
 		break;
-	case SET_CAMERA_GROUP_Z_OFS://## %s="NULL" # all ents with this cameraGroup will be focused on
+	case SET_CAMERA_GROUP_Z_OFS://## %s="nullptr" # all ents with this cameraGroup will be focused on
 		return false;
 		break;
 
 	case SET_VISRANGE://## %f="0.0" # How far away NPC can see
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_VISRANGE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -9990,7 +9990,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_EARSHOT://## %f="0.0" # How far an NPC can hear
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_EARSHOT, %s not an NPC\n", ent->targetname );
 			return false;
@@ -9999,7 +9999,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_VIGILANCE://## %f="0.0" # How often to look for enemies (0 - 1.0)
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_VIGILANCE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10036,7 +10036,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->wait;
 		break;
 	case SET_FOLLOWDIST:		//## %f="0.0" # How far away to stay from leader in BS_FOLLOW_LEADER
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_FOLLOWDIST, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10045,7 +10045,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 	//# #sep ints
 	case SET_ANIM_HOLDTIME_LOWER://## %d="0" # Hold lower anim for number of milliseconds
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_ANIM_HOLDTIME_LOWER, %s not a client\n", ent->targetname );
 			return false;
@@ -10053,7 +10053,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->client->ps.legsAnimTimer;
 		break;
 	case SET_ANIM_HOLDTIME_UPPER://## %d="0" # Hold upper anim for number of milliseconds
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_ANIM_HOLDTIME_UPPER, %s not a client\n", ent->targetname );
 			return false;
@@ -10065,7 +10065,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		return false;
 		break;
 	case SET_ARMOR://## %d="0" # Change armor
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_ARMOR, %s not a client\n", ent->targetname );
 			return false;
@@ -10073,7 +10073,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->client->ps.stats[STAT_ARMOR];
 		break;
 	case SET_WALKSPEED://## %d="0" # Change walkSpeed
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_WALKSPEED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10081,7 +10081,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->NPC->stats.walkSpeed;
 		break;
 	case SET_RUNSPEED://## %d="0" # Change runSpeed
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_RUNSPEED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10089,7 +10089,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->NPC->stats.runSpeed;
 		break;
 	case SET_YAWSPEED://## %d="0" # Change yawSpeed
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_YAWSPEED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10097,7 +10097,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->NPC->stats.yawSpeed;
 		break;
 	case SET_AGGRESSION://## %d="0" # Change aggression 1-5
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_AGGRESSION, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10105,7 +10105,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->NPC->stats.aggression;
 		break;
 	case SET_AIM://## %d="0" # Change aim 1-5
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_AIM, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10113,7 +10113,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->NPC->stats.aim;
 		break;
 	case SET_FRICTION://## %d="0" # Change ent's friction - 6 default
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_FRICTION, %s not a client\n", ent->targetname );
 			return false;
@@ -10121,7 +10121,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->client->ps.friction;
 		break;
 	case SET_SHOOTDIST://## %d="0" # How far the ent can shoot - 0 uses weapon
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_SHOOTDIST, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10129,7 +10129,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->NPC->stats.shootDistance;
 		break;
 	case SET_HFOV://## %d="0" # Horizontal field of view
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_HFOV, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10137,7 +10137,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->NPC->stats.hfov;
 		break;
 	case SET_VFOV://## %d="0" # Vertical field of view
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_VFOV, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10148,7 +10148,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->delayScriptTime - level.time;
 		break;
 	case SET_FORWARDMOVE://## %d="0" # NPC move forward -127(back) to 127
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_FORWARDMOVE, %s not a client\n", ent->targetname );
 			return false;
@@ -10156,7 +10156,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = ent->client->forced_forwardmove;
 		break;
 	case SET_RIGHTMOVE://## %d="0" # NPC move right -127(left) to 127
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_RIGHTMOVE, %s not a client\n", ent->targetname );
 			return false;
@@ -10174,7 +10174,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_SHOT_SPACING://## %d="1000" # Time between shots for an NPC - reset to defaults when changes weapon
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_SHOT_SPACING, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10186,7 +10186,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 	//# #sep booleans
 	case SET_IGNOREPAIN://## %t="BOOL_TYPES" # Do not react to pain
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_IGNOREPAIN, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10197,7 +10197,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->svFlags&SVF_IGNORE_ENEMIES);
 		break;
 	case SET_IGNOREALERTS://## Do not get enemy set by allies in area(ambush)
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_IGNOREALERTS, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10212,7 +10212,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->flags&FL_NOTARGET);
 		break;
 	case SET_DONTFIRE://## %t="BOOL_TYPES" # Don't fire your weapon
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_DONTFIRE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10224,7 +10224,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->svFlags&SVF_LOCKEDENEMY);
 		break;
 	case SET_CROUCHED://## %t="BOOL_TYPES" # Force NPC to crouch
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_CROUCHED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10232,7 +10232,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_CROUCHED);
 		break;
 	case SET_WALKING://## %t="BOOL_TYPES" # Force NPC to move at walkSpeed
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_WALKING, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10240,7 +10240,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_WALKING);
 		break;
 	case SET_RUNNING://## %t="BOOL_TYPES" # Force NPC to move at runSpeed
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_RUNNING, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10248,7 +10248,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_RUNNING);
 		break;
 	case SET_CHASE_ENEMIES://## %t="BOOL_TYPES" # NPC will chase after enemies
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_CHASE_ENEMIES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10256,7 +10256,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_CHASE_ENEMIES);
 		break;
 	case SET_LOOK_FOR_ENEMIES://## %t="BOOL_TYPES" # NPC will be on the lookout for enemies
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_LOOK_FOR_ENEMIES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10264,7 +10264,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_LOOK_FOR_ENEMIES);
 		break;
 	case SET_FACE_MOVE_DIR://## %t="BOOL_TYPES" # NPC will face in the direction it's moving
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_FACE_MOVE_DIR, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10272,7 +10272,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_FACE_MOVE_DIR);
 		break;
 	case SET_FORCED_MARCH://## %t="BOOL_TYPES" # Force NPC to move at runSpeed
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_FORCED_MARCH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10283,7 +10283,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->flags&FL_UNDYING);
 		break;
 	case SET_NOAVOID://## %t="BOOL_TYPES" # Will not avoid other NPCs or architecture
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_NOAVOID, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10305,7 +10305,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		return false;
 		break;
 	case SET_SHIELDS://## %t="BOOL_TYPES" # NPC has no shields (Borg do not adapt)
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_SHIELDS, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10313,7 +10313,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->aiFlags&NPCAI_SHIELDS);
 		break;
 	case SET_SABERACTIVE:
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_SABERACTIVE, %s not a client\n", ent->targetname );
 			return false;
@@ -10344,7 +10344,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		}
 		break;
 	case SET_GREET_ALLIES://## %t="BOOL_TYPES" # Makes an NPC greet teammates
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_GREET_ALLIES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10372,7 +10372,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->flags&FL_NO_KNOCKBACK);
 		break;
 	case SET_ALT_FIRE://## %t="BOOL_TYPES" # Force NPC to use altfire when shooting
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_ALT_FIRE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10380,7 +10380,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_ALT_FIRE);
 		break;
 	case SET_NO_RESPONSE://## %t="BOOL_TYPES" # NPCs will do generic responses when this is on (usescripts override generic responses as well)
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_NO_RESPONSE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10394,7 +10394,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = cg.missionStatusShow;
 		break;
 	case SET_NO_COMBAT_TALK://## %t="BOOL_TYPES" # NPCs will not do their combat talking noises when this is on
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_NO_COMBAT_TALK, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10402,7 +10402,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_COMBAT_TALK);
 		break;
 	case SET_NO_ALERT_TALK://## %t="BOOL_TYPES" # NPCs will not do their combat talking noises when this is on
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_NO_ALERT_TALK, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10410,7 +10410,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_ALERT_TALK);
 		break;
 	case SET_USE_CP_NEAREST://## %t="BOOL_TYPES" # NPCs will use their closest combat points, not try and find ones next to the player, or flank player
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_USE_CP_NEAREST, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10418,7 +10418,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_USE_CP_NEAREST);
 		break;
 	case SET_DISMEMBERABLE://## %t="BOOL_TYPES" # NPC will not be affected by force powers
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_DISMEMBERABLE, %s not a client\n", ent->targetname );
 			return false;
@@ -10426,7 +10426,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = !(ent->client->dismembered);
 		break;
 	case SET_NO_FORCE:
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_NO_FORCE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10434,7 +10434,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_FORCE);
 		break;
 	case SET_NO_ACROBATICS:
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_NO_ACROBATICS, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10442,7 +10442,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_ACROBATICS);
 		break;
 	case SET_USE_SUBTITLES:
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_USE_SUBTITLES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10450,7 +10450,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_USE_SUBTITLES);
 		break;
 	case SET_NO_FALLTODEATH://## %t="BOOL_TYPES" # NPC will not be affected by force powers
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_NO_FALLTODEATH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10458,7 +10458,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_FALLTODEATH);
 		break;
 	case SET_MORELIGHT://## %t="BOOL_TYPES" # NPCs will use their closest combat points, not try and find ones next to the player, or flank player
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetFloat: SET_MORELIGHT, %s not an NPC\n", ent->targetname );
 			return false;
@@ -10633,59 +10633,59 @@ int		CQuake3GameInterface::GetString( int entID, const char *name, char **value 
 		break;
 
 	//# #sep Scripts and other file paths
-	case SET_SPAWNSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when spawned //0 - do not change these, these are equal to BSET_SPAWN, etc
+	case SET_SPAWNSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when spawned //0 - do not change these, these are equal to BSET_SPAWN, etc
 		*value = ent->behaviorSet[BSET_SPAWN];
 		break;
-	case SET_USESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when used
+	case SET_USESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when used
 		*value = ent->behaviorSet[BSET_USE];
 		break;
-	case SET_AWAKESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when startled
+	case SET_AWAKESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when startled
 		*value = ent->behaviorSet[BSET_AWAKE];
 		break;
-	case SET_ANGERSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script run when find an enemy for the first time
+	case SET_ANGERSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script run when find an enemy for the first time
 		*value = ent->behaviorSet[BSET_ANGER];
 		break;
-	case SET_ATTACKSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you shoot
+	case SET_ATTACKSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you shoot
 		*value = ent->behaviorSet[BSET_ATTACK];
 		break;
-	case SET_VICTORYSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed someone
+	case SET_VICTORYSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed someone
 		*value = ent->behaviorSet[BSET_VICTORY];
 		break;
-	case SET_LOSTENEMYSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you can't find your enemy
+	case SET_LOSTENEMYSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you can't find your enemy
 		*value = ent->behaviorSet[BSET_LOSTENEMY];
 		break;
-	case SET_PAINSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit
+	case SET_PAINSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit
 		*value = ent->behaviorSet[BSET_PAIN];
 		break;
-	case SET_FLEESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit and low health
+	case SET_FLEESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit and low health
 		*value = ent->behaviorSet[BSET_FLEE];
 		break;
-	case SET_DEATHSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed
+	case SET_DEATHSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed
 		*value = ent->behaviorSet[BSET_DEATH];
 		break;
-	case SET_DELAYEDSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run after a delay
+	case SET_DELAYEDSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run after a delay
 		*value = ent->behaviorSet[BSET_DELAYED];
 		break;
-	case SET_BLOCKEDSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when blocked by teammate
+	case SET_BLOCKEDSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when blocked by teammate
 		*value = ent->behaviorSet[BSET_BLOCKED];
 		break;
-	case SET_FFIRESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player has shot own team repeatedly
+	case SET_FFIRESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player has shot own team repeatedly
 		*value = ent->behaviorSet[BSET_FFIRE];
 		break;
-	case SET_FFDEATHSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player kills a teammate
+	case SET_FFDEATHSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player kills a teammate
 		*value = ent->behaviorSet[BSET_FFDEATH];
 		break;
 
 	//# #sep Standard strings
-	case SET_ENEMY://## %s="NULL" # Set enemy by targetname
-		if ( ent->enemy != NULL )
+	case SET_ENEMY://## %s="nullptr" # Set enemy by targetname
+		if ( ent->enemy != nullptr )
 		{
 			*value = ent->enemy->targetname;
 		}
 		else return false;
 		break;
-	case SET_LEADER://## %s="NULL" # Set for BS_FOLLOW_LEADER
-		if ( ent->client == NULL )
+	case SET_LEADER://## %s="nullptr" # Set for BS_FOLLOW_LEADER
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetString: SET_LEADER, %s not a client\n", ent->targetname );
 			return false;
@@ -10696,36 +10696,36 @@ int		CQuake3GameInterface::GetString( int entID, const char *name, char **value 
 		}
 		else return false;
 		break;
-	case SET_CAPTURE://## %s="NULL" # Set captureGoal by targetname
-		if ( ent->NPC == NULL )
+	case SET_CAPTURE://## %s="nullptr" # Set captureGoal by targetname
+		if ( ent->NPC == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetString: SET_CAPTURE, %s not an NPC\n", ent->targetname );
 			return false;
 		}
-		else if ( ent->NPC->captureGoal != NULL )
+		else if ( ent->NPC->captureGoal != nullptr )
 		{
 			*value = ent->NPC->captureGoal->targetname;
 		}
 		else return false;
 		break;
 
-	case SET_TARGETNAME://## %s="NULL" # Set/change your targetname
+	case SET_TARGETNAME://## %s="nullptr" # Set/change your targetname
 		*value = ent->targetname;
 		break;
-	case SET_PAINTARGET://## %s="NULL" # Set/change what to use when hit
+	case SET_PAINTARGET://## %s="nullptr" # Set/change what to use when hit
 		*value = ent->paintarget;
 		break;
 	case SET_PLAYERMODEL:
 		*value = ent->NPC_type;
 		break;
-	case SET_CAMERA_GROUP://## %s="NULL" # all ents with this cameraGroup will be focused on
+	case SET_CAMERA_GROUP://## %s="nullptr" # all ents with this cameraGroup will be focused on
 		*value = ent->cameraGroup;
 		break;
-	case SET_CAMERA_GROUP_TAG://## %s="NULL" # all ents with this cameraGroup will be focused on
+	case SET_CAMERA_GROUP_TAG://## %s="nullptr" # all ents with this cameraGroup will be focused on
 		return false;
 		break;
-	case SET_LOOK_TARGET://## %s="NULL" # object for NPC to look at
-		if ( ent->client == NULL )
+	case SET_LOOK_TARGET://## %s="nullptr" # object for NPC to look at
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetString: SET_LOOK_TARGET, %s not a client\n", ent->targetname );
 			return false;
@@ -10733,22 +10733,22 @@ int		CQuake3GameInterface::GetString( int entID, const char *name, char **value 
 		else
 		{
 			gentity_t *lookTarg = &g_entities[ent->client->renderInfo.lookTarget];
-			if ( lookTarg != NULL )
+			if ( lookTarg != nullptr )
 			{
 				*value = lookTarg->targetname;
 			}
 			else return false;
 		}
 		break;
-	case SET_TARGET2://## %s="NULL" # Set/change your target2: on NPC's: this fires when they're knocked out by the red hypo
+	case SET_TARGET2://## %s="nullptr" # Set/change your target2: on NPC's: this fires when they're knocked out by the red hypo
 		*value = ent->target2;
 		break;
 
-	case SET_REMOVE_TARGET://## %s="NULL" # Target that is fired when someone completes the BS_REMOVE behaviorState
+	case SET_REMOVE_TARGET://## %s="nullptr" # Target that is fired when someone completes the BS_REMOVE behaviorState
 		*value = ent->target3;
 		break;
 	case SET_WEAPON:
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetString: SET_WEAPON, %s not a client\n", ent->targetname );
 			return false;
@@ -10760,7 +10760,7 @@ int		CQuake3GameInterface::GetString( int entID, const char *name, char **value 
 		break;
 
 	case SET_ITEM:
-		if ( ent->client == NULL )
+		if ( ent->client == nullptr )
 		{
 			DebugPrint( WL_WARNING, "GetString: SET_ITEM, %s not a client\n", ent->targetname );
 			return false;
@@ -10774,15 +10774,15 @@ int		CQuake3GameInterface::GetString( int entID, const char *name, char **value 
 		*value = (char *)GetStringForID( DMSTable, level.dmState );
 		break;
 	//The below cannot be gotten
-	case SET_NAVGOAL://## %s="NULL" # *Move to this navgoal then continue script
+	case SET_NAVGOAL://## %s="nullptr" # *Move to this navgoal then continue script
 		DebugPrint( WL_WARNING, "GetString: SET_NAVGOAL not implemented\n" );
 		return false;
 		break;
-	case SET_VIEWTARGET://## %s="NULL" # Set angles toward ent by targetname
+	case SET_VIEWTARGET://## %s="nullptr" # Set angles toward ent by targetname
 		DebugPrint( WL_WARNING, "GetString: SET_VIEWTARGET not implemented\n" );
 		return false;
 		break;
-	case SET_WATCHTARGET://## %s="NULL" # Set angles toward ent by targetname
+	case SET_WATCHTARGET://## %s="nullptr" # Set angles toward ent by targetname
 		if ( ent && ent->NPC && ent->NPC->watchTarget )
 		{
 			*value = ent->NPC->watchTarget->targetname;
@@ -11136,7 +11136,7 @@ void	CQuake3GameInterface::DeclareVariable( int type, const char *name )
 		break;
 
 	case TK_STRING:
-		m_varStrings[ name ] = "NULL";
+		m_varStrings[ name ] = "nullptr";
 		break;
 
 
@@ -11196,7 +11196,7 @@ int		CQuake3GameInterface::LinkGame( int entID, int icarusID )
 {
 	gentity_t	*pEntity = &g_entities[entID];
 
-	if ( pEntity == NULL )
+	if ( pEntity == nullptr )
 		return false;
 
 	// Set the icarus ID.
@@ -11227,7 +11227,7 @@ int		CQuake3GameInterface::GetByName( const char *name )
 	entitylist_t::iterator		ei;
 	char					temp[1024];
 
-	if ( name == NULL || name[0] == '\0' )
+	if ( name == nullptr || name[0] == '\0' )
 		return -1;
 
 	strncpy( (char *) temp, name, sizeof(temp) );
@@ -11243,8 +11243,8 @@ int		CQuake3GameInterface::GetByName( const char *name )
 	return ent->s.number;
 
 	// this now returns the ent instead of the sequencer -- dmv 06/27/01
-//	if (ent == NULL)
-//		return NULL;
+//	if (ent == nullptr)
+//		return nullptr;
 //	return ent->sequencer;
 }
 
@@ -11283,7 +11283,7 @@ void	CQuake3GameInterface::PrecacheScript( const char *name )
 	// Strip the extension since we want the real name of the script.
 	COM_StripExtension( name, (char *) newname, sizeof(newname) );
 
-	char *pBuf = NULL;
+	char *pBuf = nullptr;
 	int iLength = 0;
 
 	// Try to Register the Script.
@@ -11291,7 +11291,7 @@ void	CQuake3GameInterface::PrecacheScript( const char *name )
 	{
 		// If the script has already been registered (or could not be loaded), leave!
 		case SCRIPT_COULDNOTREGISTER:
-			if ( !Q_stricmp( newname, "NULL" ) || !Q_stricmp( newname, "default" ) )
+			if ( !Q_stricmp( newname, "nullptr" ) || !Q_stricmp( newname, "default" ) )
 			{//these are not real errors, suppress warning
 				return;
 			}
@@ -11359,7 +11359,7 @@ void	CQuake3GameInterface::PrecacheFromSet( const char *setname, const char *fil
 				fileHandle_t file;
 				char	name[MAX_OSPATH];
 
-				if (strstr( filename, "/") == NULL && strstr( filename, "\\") == NULL) {
+				if (strstr( filename, "/") == nullptr && strstr( filename, "\\") == nullptr) {
 					Com_sprintf ( name, sizeof(name), "video/%s", filename );
 				} else {
 					Com_sprintf ( name, sizeof(name), "%s", filename );

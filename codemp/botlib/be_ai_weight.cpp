@@ -169,14 +169,14 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 	fuzzyseperator_t *fs, *lastfs, *firstfs;
 
 	founddefault = qfalse;
-	firstfs = NULL;
-	lastfs = NULL;
-	if (!PC_ExpectTokenString(source, "(")) return NULL;
-	if (!PC_ExpectTokenType(source, TT_NUMBER, TT_INTEGER, &token)) return NULL;
+	firstfs = nullptr;
+	lastfs = nullptr;
+	if (!PC_ExpectTokenString(source, "(")) return nullptr;
+	if (!PC_ExpectTokenType(source, TT_NUMBER, TT_INTEGER, &token)) return nullptr;
 	index = token.intvalue;
-	if (!PC_ExpectTokenString(source, ")")) return NULL;
-	if (!PC_ExpectTokenString(source, "{")) return NULL;
-	if (!PC_ExpectAnyToken(source, &token)) return NULL;
+	if (!PC_ExpectTokenString(source, ")")) return nullptr;
+	if (!PC_ExpectTokenString(source, "{")) return nullptr;
+	if (!PC_ExpectAnyToken(source, &token)) return nullptr;
 	do
 	{
 		def = !strcmp(token.string, "default");
@@ -193,7 +193,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 				{
 					SourceError(source, "switch already has a default");
 					FreeFuzzySeperators_r(firstfs);
-					return NULL;
+					return nullptr;
 				} //end if
 				fs->value = MAX_INVENTORYVALUE;
 				founddefault = qtrue;
@@ -203,14 +203,14 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 				if (!PC_ExpectTokenType(source, TT_NUMBER, TT_INTEGER, &token))
 				{
 					FreeFuzzySeperators_r(firstfs);
-					return NULL;
+					return nullptr;
 				} //end if
 				fs->value = token.intvalue;
 			} //end else
 			if (!PC_ExpectTokenString(source, ":") || !PC_ExpectAnyToken(source, &token))
 			{
 				FreeFuzzySeperators_r(firstfs);
-				return NULL;
+				return nullptr;
 			} //end if
 			newindent = qfalse;
 			if (!strcmp(token.string, "{"))
@@ -219,7 +219,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 				if (!PC_ExpectAnyToken(source, &token))
 				{
 					FreeFuzzySeperators_r(firstfs);
-					return NULL;
+					return nullptr;
 				} //end if
 			} //end if
 			if (!strcmp(token.string, "return"))
@@ -227,7 +227,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 				if (!ReadFuzzyWeight(source, fs))
 				{
 					FreeFuzzySeperators_r(firstfs);
-					return NULL;
+					return nullptr;
 				} //end if
 			} //end if
 			else if (!strcmp(token.string, "switch"))
@@ -236,20 +236,20 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 				if (!fs->child)
 				{
 					FreeFuzzySeperators_r(firstfs);
-					return NULL;
+					return nullptr;
 				} //end if
 			} //end else if
 			else
 			{
 				SourceError(source, "invalid name %s", token.string);
-				return NULL;
+				return nullptr;
 			} //end else
 			if (newindent)
 			{
 				if (!PC_ExpectTokenString(source, "}"))
 				{
 					FreeFuzzySeperators_r(firstfs);
-					return NULL;
+					return nullptr;
 				} //end if
 			} //end if
 		} //end if
@@ -257,12 +257,12 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 		{
 			FreeFuzzySeperators_r(firstfs);
 			SourceError(source, "invalid name %s", token.string);
-			return NULL;
+			return nullptr;
 		} //end else
 		if (!PC_ExpectAnyToken(source, &token))
 		{
 			FreeFuzzySeperators_r(firstfs);
-			return NULL;
+			return nullptr;
 		} //end if
 	} while(strcmp(token.string, "}"));
 	//
@@ -273,8 +273,8 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t *source)
 		fs->index = index;
 		fs->value = MAX_INVENTORYVALUE;
 		fs->weight = 0;
-		fs->next = NULL;
-		fs->child = NULL;
+		fs->next = nullptr;
+		fs->child = nullptr;
 		if (lastfs) lastfs->next = fs;
 		else firstfs = fs;
 		lastfs = fs;
@@ -294,7 +294,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 	token_t token;
 	source_t *source;
 	fuzzyseperator_t *fs;
-	weightconfig_t *config = NULL;
+	weightconfig_t *config = nullptr;
 #ifdef DEBUG
 	int starttime;
 
@@ -325,7 +325,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 		if( avail == -1 )
 		{
 			botimport.Print( PRT_ERROR, "weightFileList was full trying to load %s\n", filename );
-			return NULL;
+			return nullptr;
 		} //end if
 	} //end if
 
@@ -334,7 +334,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 	if (!source)
 	{
 		botimport.Print(PRT_ERROR, "counldn't load %s\n", filename);
-		return NULL;
+		return nullptr;
 	} //end if
 	//
 	config = (weightconfig_t *) GetClearedMemory(sizeof(weightconfig_t));
@@ -354,7 +354,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 			{
 				FreeWeightConfig(config);
 				FreeSource(source);
-				return NULL;
+				return nullptr;
 			} //end if
 			StripDoubleQuotes(token.string);
 			config->weights[config->numweights].name = (char *) GetClearedMemory(strlen(token.string) + 1);
@@ -363,7 +363,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 			{
 				FreeWeightConfig(config);
 				FreeSource(source);
-				return NULL;
+				return nullptr;
 			} //end if
 			newindent = qfalse;
 			if (!strcmp(token.string, "{"))
@@ -373,7 +373,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 				{
 					FreeWeightConfig(config);
 					FreeSource(source);
-					return NULL;
+					return nullptr;
 				} //end if
 			} //end if
 			if (!strcmp(token.string, "switch"))
@@ -383,7 +383,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 				{
 					FreeWeightConfig(config);
 					FreeSource(source);
-					return NULL;
+					return nullptr;
 				} //end if
 				config->weights[config->numweights].firstseperator = fs;
 			} //end if
@@ -392,14 +392,14 @@ weightconfig_t *ReadWeightConfig(char *filename)
 				fs = (fuzzyseperator_t *) GetClearedMemory(sizeof(fuzzyseperator_t));
 				fs->index = 0;
 				fs->value = MAX_INVENTORYVALUE;
-				fs->next = NULL;
-				fs->child = NULL;
+				fs->next = nullptr;
+				fs->child = nullptr;
 				if (!ReadFuzzyWeight(source, fs))
 				{
 					FreeMemory(fs);
 					FreeWeightConfig(config);
 					FreeSource(source);
-					return NULL;
+					return nullptr;
 				} //end if
 				config->weights[config->numweights].firstseperator = fs;
 			} //end else if
@@ -408,7 +408,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 				SourceError(source, "invalid name %s", token.string);
 				FreeWeightConfig(config);
 				FreeSource(source);
-				return NULL;
+				return nullptr;
 			} //end else
 			if (newindent)
 			{
@@ -416,7 +416,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 				{
 					FreeWeightConfig(config);
 					FreeSource(source);
-					return NULL;
+					return nullptr;
 				} //end if
 			} //end if
 			config->numweights++;
@@ -426,7 +426,7 @@ weightconfig_t *ReadWeightConfig(char *filename)
 			SourceError(source, "invalid name %s", token.string);
 			FreeWeightConfig(config);
 			FreeSource(source);
-			return NULL;
+			return nullptr;
 		} //end else
 	} //end while
 	//free the source at the end of a pass
@@ -924,7 +924,7 @@ void BotShutdownWeights(void)
 		if (weightFileList[i])
 		{
 			FreeWeightConfig2(weightFileList[i]);
-			weightFileList[i] = NULL;
+			weightFileList[i] = nullptr;
 		} //end if
 	} //end for
 } //end of the function BotShutdownWeights

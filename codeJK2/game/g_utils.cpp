@@ -244,11 +244,11 @@ void G_SoundOnEnt (gentity_t *ent, soundChannel_t channel, const char *soundPath
 	cgi_S_UpdateEntityPosition( ent->s.number, ent->currentOrigin );
 	if ( cgs.sound_precache[ index ] )
 	{
-		cgi_S_StartSound( NULL, ent->s.number, channel, cgs.sound_precache[ index ] );
+		cgi_S_StartSound( nullptr, ent->s.number, channel, cgs.sound_precache[ index ] );
 	}
 	else
 	{
-		CG_TryPlayCustomSound( NULL, ent->s.number, channel, soundPath, -1 );
+		CG_TryPlayCustomSound( nullptr, ent->s.number, channel, soundPath, -1 );
 	}
 }
 
@@ -261,131 +261,131 @@ void G_SpeechEvent( gentity_t *self, int event )
 	case EV_ANGER1:	//Say when acquire an enemy when didn't have one before
 	case EV_ANGER2:
 	case EV_ANGER3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*anger%i.wav", event - EV_ANGER1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*anger%i.wav", event - EV_ANGER1 + 1), CS_COMBAT );
 		break;
 	case EV_VICTORY1:	//Say when killed an enemy
 	case EV_VICTORY2:
 	case EV_VICTORY3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*victory%i.wav", event - EV_VICTORY1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*victory%i.wav", event - EV_VICTORY1 + 1), CS_COMBAT );
 		break;
 	case EV_CONFUSE1:	//Say when confused
 	case EV_CONFUSE2:
 	case EV_CONFUSE3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*confuse%i.wav", event - EV_CONFUSE1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*confuse%i.wav", event - EV_CONFUSE1 + 1), CS_COMBAT );
 		break;
 	case EV_PUSHED1:	//Say when pushed
 	case EV_PUSHED2:
 	case EV_PUSHED3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*pushed%i.wav", event - EV_PUSHED1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*pushed%i.wav", event - EV_PUSHED1 + 1), CS_COMBAT );
 		break;
 	case EV_CHOKE1:	//Say when choking
 	case EV_CHOKE2:
 	case EV_CHOKE3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*choke%i.wav", event - EV_CHOKE1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*choke%i.wav", event - EV_CHOKE1 + 1), CS_COMBAT );
 		break;
 	case EV_FFWARN:	//Warn ally to stop shooting you
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, "*ffwarn.wav", CS_COMBAT );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, "*ffwarn.wav", CS_COMBAT );
 		break;
 	case EV_FFTURN:	//Turn on ally after being shot by them
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, "*ffturn.wav", CS_COMBAT );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, "*ffturn.wav", CS_COMBAT );
 		break;
 	//extra sounds for ST
 	case EV_CHASE1:
 	case EV_CHASE2:
 	case EV_CHASE3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*chase%i.wav", event - EV_CHASE1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*chase%i.wav", event - EV_CHASE1 + 1), CS_EXTRA );
 		break;
 	case EV_COVER1:
 	case EV_COVER2:
 	case EV_COVER3:
 	case EV_COVER4:
 	case EV_COVER5:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*cover%i.wav", event - EV_COVER1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*cover%i.wav", event - EV_COVER1 + 1), CS_EXTRA );
 		break;
 	case EV_DETECTED1:
 	case EV_DETECTED2:
 	case EV_DETECTED3:
 	case EV_DETECTED4:
 	case EV_DETECTED5:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*detected%i.wav", event - EV_DETECTED1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*detected%i.wav", event - EV_DETECTED1 + 1), CS_EXTRA );
 		break;
 	case EV_GIVEUP1:
 	case EV_GIVEUP2:
 	case EV_GIVEUP3:
 	case EV_GIVEUP4:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*giveup%i.wav", event - EV_GIVEUP1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*giveup%i.wav", event - EV_GIVEUP1 + 1), CS_EXTRA );
 		break;
 	case EV_LOOK1:
 	case EV_LOOK2:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*look%i.wav", event - EV_LOOK1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*look%i.wav", event - EV_LOOK1 + 1), CS_EXTRA );
 		break;
 	case EV_LOST1:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, "*lost1.wav", CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, "*lost1.wav", CS_EXTRA );
 		break;
 	case EV_OUTFLANK1:
 	case EV_OUTFLANK2:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*outflank%i.wav", event - EV_OUTFLANK1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*outflank%i.wav", event - EV_OUTFLANK1 + 1), CS_EXTRA );
 		break;
 	case EV_ESCAPING1:
 	case EV_ESCAPING2:
 	case EV_ESCAPING3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*escaping%i.wav", event - EV_ESCAPING1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*escaping%i.wav", event - EV_ESCAPING1 + 1), CS_EXTRA );
 		break;
 	case EV_SIGHT1:
 	case EV_SIGHT2:
 	case EV_SIGHT3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*sight%i.wav", event - EV_SIGHT1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*sight%i.wav", event - EV_SIGHT1 + 1), CS_EXTRA );
 		break;
 	case EV_SOUND1:
 	case EV_SOUND2:
 	case EV_SOUND3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*sound%i.wav", event - EV_SOUND1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*sound%i.wav", event - EV_SOUND1 + 1), CS_EXTRA );
 		break;
 	case EV_SUSPICIOUS1:
 	case EV_SUSPICIOUS2:
 	case EV_SUSPICIOUS3:
 	case EV_SUSPICIOUS4:
 	case EV_SUSPICIOUS5:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*suspicious%i.wav", event - EV_SUSPICIOUS1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*suspicious%i.wav", event - EV_SUSPICIOUS1 + 1), CS_EXTRA );
 		break;
 	//extra sounds for Jedi
 	case EV_COMBAT1:
 	case EV_COMBAT2:
 	case EV_COMBAT3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*combat%i.wav", event - EV_COMBAT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*combat%i.wav", event - EV_COMBAT1 + 1), CS_JEDI );
 		break;
 	case EV_JDETECTED1:
 	case EV_JDETECTED2:
 	case EV_JDETECTED3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*jdetected%i.wav", event - EV_JDETECTED1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*jdetected%i.wav", event - EV_JDETECTED1 + 1), CS_JEDI );
 		break;
 	case EV_TAUNT1:
 	case EV_TAUNT2:
 	case EV_TAUNT3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*taunt%i.wav", event - EV_TAUNT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*taunt%i.wav", event - EV_TAUNT1 + 1), CS_JEDI );
 		break;
 	case EV_JCHASE1:
 	case EV_JCHASE2:
 	case EV_JCHASE3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*jchase%i.wav", event - EV_JCHASE1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*jchase%i.wav", event - EV_JCHASE1 + 1), CS_JEDI );
 		break;
 	case EV_JLOST1:
 	case EV_JLOST2:
 	case EV_JLOST3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*jlost%i.wav", event - EV_JLOST1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*jlost%i.wav", event - EV_JLOST1 + 1), CS_JEDI );
 		break;
 	case EV_DEFLECT1:
 	case EV_DEFLECT2:
 	case EV_DEFLECT3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*deflect%i.wav", event - EV_DEFLECT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*deflect%i.wav", event - EV_DEFLECT1 + 1), CS_JEDI );
 		break;
 	case EV_GLOAT1:
 	case EV_GLOAT2:
 	case EV_GLOAT3:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, va("*gloat%i.wav", event - EV_GLOAT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, va("*gloat%i.wav", event - EV_GLOAT1 + 1), CS_JEDI );
 		break;
 	case EV_PUSHFAIL:
-		CG_TryPlayCustomSound( NULL, self->s.number, CHAN_VOICE, "*pushfail.wav", CS_JEDI );
+		CG_TryPlayCustomSound( nullptr, self->s.number, CHAN_VOICE, "*pushfail.wav", CS_JEDI );
 		break;
 	}
 }
@@ -400,8 +400,8 @@ G_Find
 Searches all active entities for the next one that holds
 the matching string at fieldofs (use the FOFS() macro) in the structure.
 
-Searches beginning at the entity after from, or the beginning if NULL
-NULL will be returned if the end of the list is reached.
+Searches beginning at the entity after from, or the beginning if nullptr
+nullptr will be returned if the end of the list is reached.
 
 =============
 */
@@ -411,7 +411,7 @@ gentity_t *G_Find (gentity_t *from, int fieldofs, const char *match)
 
 	if(!match || !match[0])
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	if (!from)
@@ -435,7 +435,7 @@ gentity_t *G_Find (gentity_t *from, int fieldofs, const char *match)
 			return from;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 
@@ -517,14 +517,14 @@ Selects a random entity from among the targets
 
 gentity_t *G_PickTarget (char *targetname)
 {
-	gentity_t	*ent = NULL;
+	gentity_t	*ent = nullptr;
 	int		num_choices = 0;
 	gentity_t	*choice[MAXCHOICES];
 
 	if (!targetname)
 	{
-		gi.Printf("G_PickTarget called with NULL targetname\n");
-		return NULL;
+		gi.Printf("G_PickTarget called with nullptr targetname\n");
+		return nullptr;
 	}
 
 	while(1)
@@ -540,7 +540,7 @@ gentity_t *G_PickTarget (char *targetname)
 	if (!num_choices)
 	{
 		gi.Printf("G_PickTarget: target %s not found\n", targetname);
-		return NULL;
+		return nullptr;
 	}
 
 	return choice[rand() % num_choices];
@@ -555,8 +555,8 @@ void G_UseTargets2 (gentity_t *ent, gentity_t *activator, const char *string)
 //
 	if (string)
 	{
-		t = NULL;
-		while ( (t = G_Find (t, FOFS(targetname), (char *) string)) != NULL )
+		t = nullptr;
+		while ( (t = G_Find (t, FOFS(targetname), (char *) string)) != nullptr )
 		{
 			if (t == ent)
 			{
@@ -666,7 +666,7 @@ void G_SetMovedir( vec3_t angles, vec3_t movedir ) {
 	} else if ( VectorCompare (angles, VEC_DOWN) ) {
 		VectorCopy (MOVEDIR_DOWN, movedir);
 	} else {
-		AngleVectors (angles, movedir, NULL, NULL);
+		AngleVectors (angles, movedir, nullptr, nullptr);
 	}
 	VectorClear( angles );
 }
@@ -732,7 +732,7 @@ gentity_t *G_Spawn( void )
 	int			i, force;
 	gentity_t	*e;
 
-	e = NULL;	// shut up warning
+	e = nullptr;	// shut up warning
 	i = 0;		// shut up warning
 	for ( force = 0 ; force < 2 ; force++ )
 	{
@@ -925,7 +925,7 @@ void G_KillBox (gentity_t *ent) {
 		}
 
 		// nail it
-		G_Damage ( hit, ent, ent, NULL, NULL,
+		G_Damage ( hit, ent, ent, nullptr, nullptr,
 			100000, DAMAGE_NO_PROTECTION, MOD_UNKNOWN);
 	}
 
@@ -1117,7 +1117,7 @@ qboolean infront(gentity_t *from, gentity_t *to)
 
 	angles[PITCH] = angles[ROLL] = 0;
 	angles[YAW] = from->s.angles[YAW];
-	AngleVectors(angles, forward, NULL, NULL);
+	AngleVectors(angles, forward, nullptr, nullptr);
 
 	VectorSubtract(to->s.origin, from->s.origin, dir);
 	VectorNormalize(dir);
@@ -1181,8 +1181,8 @@ void Svcmd_Use_f( void )
 
 void G_SetActiveState(char *targetstring, qboolean actState)
 {
-	gentity_t	*target = NULL;
-	while( NULL != (target = G_Find(target, FOFS(targetname), targetstring)) )
+	gentity_t	*target = nullptr;
+	while( nullptr != (target = G_Find(target, FOFS(targetname), targetstring)) )
 	{
 		target->svFlags = actState ? (target->svFlags&~SVF_INACTIVE) : (target->svFlags|SVF_INACTIVE);
 	}
@@ -1282,7 +1282,7 @@ void TryUse( gentity_t *ent )
 	//cg.refdef.vieworg, basically
 	VectorCopy( ent->client->renderInfo.eyePoint, src );
 
-	AngleVectors( ent->client->ps.viewangles, vf, NULL, NULL );//ent->client->renderInfo.eyeAngles was cg.refdef.viewangles, basically
+	AngleVectors( ent->client->ps.viewangles, vf, nullptr, nullptr );//ent->client->renderInfo.eyeAngles was cg.refdef.viewangles, basically
 	//extend to find end of use trace
 	VectorMA( src, USE_DISTANCE, vf, dest );
 
@@ -1319,7 +1319,7 @@ void TryUse( gentity_t *ent )
 	}
 	else if ( target->client
 		&& target->client->ps.pm_type < PM_DEAD
-		&& target->NPC!=NULL
+		&& target->NPC!=nullptr
 		&& target->client->playerTeam
 		&& (target->client->playerTeam == ent->client->playerTeam || target->client->playerTeam == TEAM_NEUTRAL)
 		&& !(target->NPC->scriptFlags&SCF_NO_RESPONSE) )
@@ -1347,8 +1347,8 @@ void G_ChangeMap (const char *mapname, const char *spawntarget, qboolean hub)
 		return;
 	}
 
-	if ( spawntarget == NULL ) {
-		spawntarget = "";	//prevent it from becoming "(null)"
+	if ( spawntarget == nullptr ) {
+		spawntarget = "";	//prevent it from becoming "(nullptr)"
 	}
 	if ( hub == qtrue )
 	{

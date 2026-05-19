@@ -367,7 +367,7 @@ cmd_function_t *Cmd_FindCommand( const char *cmd_name )
 	for( cmd = cmd_functions; cmd; cmd = cmd->next )
 		if( !Q_stricmp( cmd_name, cmd->name ) )
 			return cmd;
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -613,7 +613,7 @@ void	Cmd_AddCommand( const char *cmd_name, xcommand_t function ) {
 	if( Cmd_FindCommand( cmd_name ) )
 	{
 		// allow completion-only commands to be silently doubled
-		if ( function != NULL ) {
+		if ( function != nullptr ) {
 			Com_Printf ("Cmd_AddCommand: %s already defined\n", cmd_name);
 		}
 		return;
@@ -623,7 +623,7 @@ void	Cmd_AddCommand( const char *cmd_name, xcommand_t function ) {
 	cmd = (struct cmd_function_s *)S_Malloc (sizeof(cmd_function_t));
 	cmd->name = CopyString( cmd_name );
 	cmd->function = function;
-	cmd->complete = NULL;
+	cmd->complete = nullptr;
 	cmd->next = cmd_functions;
 	cmd_functions = cmd;
 }
@@ -761,9 +761,9 @@ Cmd_List_f
 */
 void Cmd_List_f (void)
 {
-	cmd_function_t	*cmd = NULL;
+	cmd_function_t	*cmd = nullptr;
 	int				i, j;
-	char			*match = NULL;
+	char			*match = nullptr;
 
 	if ( Cmd_Argc() > 1 ) {
 		match = Cmd_Argv( 1 );

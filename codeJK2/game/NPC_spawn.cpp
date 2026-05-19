@@ -773,7 +773,7 @@ void NPC_Begin (gentity_t *ent)
 	vec3_t	spawn_origin, spawn_angles;
 	gclient_t	*client;
 	usercmd_t	ucmd;
-	gentity_t	*spawnPoint = NULL;
+	gentity_t	*spawnPoint = nullptr;
 
 	memset( &ucmd, 0, sizeof( ucmd ) );
 
@@ -991,7 +991,7 @@ void NPC_Begin (gentity_t *ent)
 //==NPC initialization
 	SetNPCGlobals( ent );
 
-	ent->enemy = NULL;
+	ent->enemy = nullptr;
 	NPCInfo->timeOfDeath = 0;
 	NPCInfo->shotTime = 0;
 	NPC_ClearGoal();
@@ -1095,7 +1095,7 @@ qboolean NPC_StasisSpawn_Go( gentity_t *ent )
 	//Setup an owner pointer if we need it
 	if VALIDSTRING( ent->ownername )
 	{
-		ent->owner = G_Find( NULL, FOFS( targetname ), ent->ownername );
+		ent->owner = G_Find( nullptr, FOFS( targetname ), ent->ownername );
 
 		if ( ( ent->owner ) && ( ent->owner->health <= 0 ) )
 		{//our spawner thing is broken
@@ -1190,7 +1190,7 @@ void NPC_Spawn_Go( gentity_t *ent )
 
 	newent = G_Spawn();
 
-	if ( newent == NULL )
+	if ( newent == nullptr )
 	{
 		gi.Printf ( S_COLOR_RED"ERROR: NPC G_Spawn failed\n" );
 
@@ -1202,7 +1202,7 @@ void NPC_Spawn_Go( gentity_t *ent )
 	newent->fullName = ent->fullName;
 
 	newent->NPC = New_NPC_t();
-	if ( newent->NPC == NULL )
+	if ( newent->NPC == nullptr )
 	{
 		gi.Printf ( S_COLOR_RED"ERROR: NPC G_Alloc NPC failed\n" );
 		goto finish;
@@ -1211,9 +1211,9 @@ void NPC_Spawn_Go( gentity_t *ent )
 
 	newent->NPC->tempGoal = G_Spawn();
 
-	if ( newent->NPC->tempGoal == NULL )
+	if ( newent->NPC->tempGoal == nullptr )
 	{
-		newent->NPC = NULL;
+		newent->NPC = nullptr;
 		goto finish;
 		return;
 	}
@@ -1224,7 +1224,7 @@ void NPC_Spawn_Go( gentity_t *ent )
 
 	newent->client = (gclient_t *)G_Alloc (sizeof(gclient_t));
 
-	if ( newent->client == NULL )
+	if ( newent->client == nullptr )
 	{
 		gi.Printf ( S_COLOR_RED"ERROR: NPC G_Alloc client failed\n" );
 		goto finish;
@@ -1235,7 +1235,7 @@ void NPC_Spawn_Go( gentity_t *ent )
 
 //==NPC_Connect( newent, net_name );===================================
 
-	if ( ent->NPC_type == NULL )
+	if ( ent->NPC_type == nullptr )
 	{
 		ent->NPC_type = "random";
 	}
@@ -1389,7 +1389,7 @@ void NPC_Spawn_Go( gentity_t *ent )
 		{//last guy should fire this target when he dies
 			newent->target = ent->closetarget;
 		}
-		ent->targetname = NULL;
+		ent->targetname = nullptr;
 		//why not remove me...?  Because of all the string pointers?  Just do G_NewStrings?
 		G_FreeEntity( ent );//bye!
 	}
@@ -1415,7 +1415,7 @@ void NPC_StasisSpawnEffect( gentity_t *ent )
 	//Floor or wall?
 	if ( ent->spawnflags & 1 )
 	{
-		AngleVectors( ent->s.angles, forward, NULL, NULL );
+		AngleVectors( ent->s.angles, forward, nullptr, nullptr );
 		VectorMA( ent->currentOrigin,  24, forward, end );
 		VectorMA( ent->currentOrigin, -20, forward, start );
 
@@ -1723,7 +1723,7 @@ void SP_NPC_Kyle( gentity_t *self)
 {
 	self->NPC_type = "Kyle";
 
-	WP_SetSaberModel( NULL, CLASS_KYLE );
+	WP_SetSaberModel( nullptr, CLASS_KYLE );
 
 	SP_NPC_spawner( self );
 }
@@ -1767,7 +1767,7 @@ void SP_NPC_Luke( gentity_t *self)
 {
 	self->NPC_type = "Luke";
 
-	WP_SetSaberModel( NULL, CLASS_LUKE );
+	WP_SetSaberModel( nullptr, CLASS_LUKE );
 
 	SP_NPC_spawner( self );
 }
@@ -1797,7 +1797,7 @@ void SP_NPC_Tavion( gentity_t *self)
 {
 	self->NPC_type = "Tavion";
 
-	WP_SetSaberModel( NULL, CLASS_TAVION );
+	WP_SetSaberModel( nullptr, CLASS_TAVION );
 
 	SP_NPC_spawner( self );
 }
@@ -1851,7 +1851,7 @@ void SP_NPC_Desann( gentity_t *self)
 {
 	self->NPC_type = "Desann";
 
-	WP_SetSaberModel( NULL, CLASS_DESANN );
+	WP_SetSaberModel( nullptr, CLASS_DESANN );
 
 	SP_NPC_spawner( self );
 }
@@ -1925,7 +1925,7 @@ void SP_NPC_Jedi( gentity_t *self)
 		}
 	}
 
-	WP_SetSaberModel( NULL, CLASS_JEDI );
+	WP_SetSaberModel( nullptr, CLASS_JEDI );
 
 	SP_NPC_spawner( self );
 }
@@ -2354,7 +2354,7 @@ void SP_NPC_Reborn( gentity_t *self)
 		}
 	}
 
-	WP_SetSaberModel( NULL, CLASS_REBORN );
+	WP_SetSaberModel( nullptr, CLASS_REBORN );
 	SP_NPC_spawner( self );
 }
 
@@ -2380,7 +2380,7 @@ void SP_NPC_ShadowTrooper( gentity_t *self)
 	}
 
 	NPC_ShadowTrooper_Precache();
-	WP_SetSaberModel( NULL, CLASS_SHADOWTROOPER );
+	WP_SetSaberModel( nullptr, CLASS_SHADOWTROOPER );
 
 	SP_NPC_spawner( self );
 }
@@ -2813,13 +2813,13 @@ static void NPC_Spawn_f(void)
 
 	//Spawn it at spot of first player
 	//FIXME: will gib them!
-	AngleVectors(g_entities[0].client->ps.viewangles, forward, NULL, NULL);
+	AngleVectors(g_entities[0].client->ps.viewangles, forward, nullptr, nullptr);
 	VectorNormalize(forward);
 	VectorMA(g_entities[0].currentOrigin, 64, forward, end);
-	gi.trace(&trace, g_entities[0].currentOrigin, NULL, NULL, end, 0, MASK_SOLID, G2_NOCOLLIDE, 0);
+	gi.trace(&trace, g_entities[0].currentOrigin, nullptr, nullptr, end, 0, MASK_SOLID, G2_NOCOLLIDE, 0);
 	VectorCopy(trace.endpos, end);
 	end[2] -= 24;
-	gi.trace(&trace, trace.endpos, NULL, NULL, end, 0, MASK_SOLID, G2_NOCOLLIDE, 0);
+	gi.trace(&trace, trace.endpos, nullptr, nullptr, end, 0, MASK_SOLID, G2_NOCOLLIDE, 0);
 	VectorCopy(trace.endpos, end);
 	end[2] += 24;
 	G_SetOrigin(NPCspawner, end);
@@ -2871,7 +2871,7 @@ static void NPC_Spawn_f(void)
 	}
 	else if ( !Q_stricmp( "interrogator", NPCspawner->NPC_type))
 	{
-		NPC_Interrogator_Precache(NULL);
+		NPC_Interrogator_Precache(nullptr);
 	}
 	else if ( !Q_stricmp( "probe", NPCspawner->NPC_type))
 	{
@@ -3071,7 +3071,7 @@ void Svcmd_NPC_f( void )
 	else if ( Q_stricmp ( cmd, "score" ) == 0 )
 	{
 		char		*cmd2 = gi.argv(2);
-		gentity_t *ent = NULL;
+		gentity_t *ent = nullptr;
 
 		if ( !cmd2 || !cmd2[0] )
 		{//Show the score for all NPCs
@@ -3088,7 +3088,7 @@ void Svcmd_NPC_f( void )
 		}
 		else
 		{
-			if ( (ent = G_Find( NULL, FOFS(targetname), cmd2 )) != NULL && ent->client )
+			if ( (ent = G_Find( nullptr, FOFS(targetname), cmd2 )) != nullptr && ent->client )
 			{
 				NPC_PrintScore( ent );
 			}

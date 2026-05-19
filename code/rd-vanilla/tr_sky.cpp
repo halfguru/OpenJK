@@ -591,7 +591,7 @@ static void FillCloudBox( const shader_t *shader, int stage )
 				MakeSkyVec( ( s - HALF_SKY_SUBDIVISIONS ) / ( float ) HALF_SKY_SUBDIVISIONS,
 							( t - HALF_SKY_SUBDIVISIONS ) / ( float ) HALF_SKY_SUBDIVISIONS,
 							i,
-							NULL,
+							nullptr,
 							s_skyPoints[t][s] );
 
 				s_skyTexCoords[t][s][0] = s_cloudTexCoords[i][t][s][0];
@@ -658,7 +658,7 @@ void R_InitSkyTexCoords( float heightCloud )
 				MakeSkyVec( ( s - HALF_SKY_SUBDIVISIONS ) / ( float ) HALF_SKY_SUBDIVISIONS,
 							( t - HALF_SKY_SUBDIVISIONS ) / ( float ) HALF_SKY_SUBDIVISIONS,
 							i,
-							NULL,
+							nullptr,
 							skyVec );
 
 				// compute parametric value 'p' that intersects with cloud layer

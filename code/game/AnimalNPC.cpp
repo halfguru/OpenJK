@@ -160,7 +160,7 @@ static void DeathUpdate( Vehicle_t *pVeh )
 				VectorCopy( parent->currentOrigin, bottom );
 				bottom[2] += parent->mins[2] - 32;
 				gi.trace( &trace, parent->currentOrigin, mins, maxs, bottom, parent->s.number, CONTENTS_SOLID );
-				G_RadiusDamage( trace.endpos, NULL, pVeh->m_pVehicleInfo->explosionDamage, pVeh->m_pVehicleInfo->explosionRadius, NULL, MOD_EXPLOSIVE );//FIXME: extern damage and radius or base on fuel
+				G_RadiusDamage( trace.endpos, nullptr, pVeh->m_pVehicleInfo->explosionDamage, pVeh->m_pVehicleInfo->explosionRadius, nullptr, MOD_EXPLOSIVE );//FIXME: extern damage and radius or base on fuel
 			}
 
 			parent->e_ThinkFunc = thinkF_G_FreeEntity;
@@ -366,7 +366,7 @@ static void ProcessOrientCommands( Vehicle_t *pVeh )
 	playerState_t /**parentPS, */*riderPS;
 
 #ifdef _JK2MP
-	bgEntity_t *rider = NULL;
+	bgEntity_t *rider = nullptr;
 	if (parent->s.owner != ENTITYNUM_NONE)
 	{
 		rider = PM_BGEntForNum(parent->s.owner); //&g_entities[parent->r.ownerNum];
@@ -515,12 +515,12 @@ static void AnimalTailSwipe(Vehicle_t* pVeh, gentity_t *parent, gentity_t *pilot
 	// Get the positions of the root of the tail and the tail end of it.
 	trap_G2API_GetBoltMatrix( parent->ghoul2, 0, iRootBone,
 				&boltMatrix, angles, parent->currentOrigin, level.time,
-				NULL, parent->modelScale );
+				nullptr, parent->modelScale );
 	BG_GiveMeVectorFromMatrix( &boltMatrix, ORIGIN, vRoot );
 
 	trap_G2API_GetBoltMatrix( parent->ghoul2, 0, iRootTail,
 				&boltMatrix, angles, parent->currentOrigin, level.time,
-				NULL, parent->modelScale );
+				nullptr, parent->modelScale );
 	BG_GiveMeVectorFromMatrix( &boltMatrix, ORIGIN, vTail );
 #else
 	iRootBone = gi.G2API_GetBoneIndex( &parent->ghoul2[parent->playerModel], "tail_01", qtrue );
@@ -529,12 +529,12 @@ static void AnimalTailSwipe(Vehicle_t* pVeh, gentity_t *parent, gentity_t *pilot
 	// Get the positions of the root of the tail and the tail end of it.
 	gi.G2API_GetBoltMatrix( parent->ghoul2, parent->playerModel, iRootBone,
 				&boltMatrix, angles, parent->currentOrigin, (cg.time?cg.time:level.time),
-				NULL, parent->s.modelScale );
+				nullptr, parent->s.modelScale );
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, vRoot );
 
 	gi.G2API_GetBoltMatrix( parent->ghoul2, parent->playerModel, iRootTail,
 				&boltMatrix, angles, parent->currentOrigin, (cg.time?cg.time:level.time),
-				NULL, parent->s.modelScale );
+				nullptr, parent->s.modelScale );
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, vTail );
 #endif
 
@@ -558,7 +558,7 @@ static void AnimalTailSwipe(Vehicle_t* pVeh, gentity_t *parent, gentity_t *pilot
 			// Add some fudge.
 			angs[YAW] += Q_flrand( 5, 15 );
 			angs[PITCH] = Q_flrand( -20, -10 );
-			AngleVectors( angs, pushDir, NULL, NULL );
+			AngleVectors( angs, pushDir, nullptr, nullptr );
 			// Reverse direction.
 			pushDir[YAW] = -pushDir[YAW];
 
@@ -592,7 +592,7 @@ static void AnimalTailSwipe(Vehicle_t* pVeh, gentity_t *parent, gentity_t *pilot
 #else
 				G_Knockdown( hit, parent, pushDir, 300, qtrue );
 #endif
-				G_Damage( hit, parent, parent, NULL, NULL, iDamage, DAMAGE_NO_KNOCKBACK | DAMAGE_IGNORE_TEAM, MOD_MELEE );
+				G_Damage( hit, parent, parent, nullptr, nullptr, iDamage, DAMAGE_NO_KNOCKBACK | DAMAGE_IGNORE_TEAM, MOD_MELEE );
 				//G_PlayEffect( pVeh->m_pVehicleInfo->explodeFX, parent->currentOrigin );
 			}// Not Dead
 		}// Not Rancor & In USe
@@ -838,7 +838,7 @@ static void AnimateRiders( Vehicle_t *pVeh )
 		{
 			float		bodyCurrent	  = 0.0f;
 			int			bodyEnd		  = 0;
-			if (!!gi.G2API_GetBoneAnimIndex(&pVeh->m_pPilot->ghoul2[pVeh->m_pPilot->playerModel], pVeh->m_pPilot->rootBone, level.time, &bodyCurrent, NULL, &bodyEnd, NULL, NULL, NULL))
+			if (!!gi.G2API_GetBoneAnimIndex(&pVeh->m_pPilot->ghoul2[pVeh->m_pPilot->playerModel], pVeh->m_pPilot->rootBone, level.time, &bodyCurrent, nullptr, &bodyEnd, nullptr, nullptr, nullptr))
 			{
 				if (bodyCurrent<=((float)(bodyEnd)-1.5f))
 				{

@@ -81,7 +81,7 @@ static fielddef_t weaponinfo_fields[] =
 {"reload", WEAPON_OFS(reload), FT_FLOAT},						//time it takes to reload the weapon
 {"spinup", WEAPON_OFS(spinup), FT_FLOAT},						//time it takes before first shot
 {"spindown", WEAPON_OFS(spindown), FT_FLOAT},				//time it takes before weapon stops firing
-{NULL, 0, 0, 0}
+{nullptr, 0, 0, 0}
 };
 
 //projectile definition
@@ -102,7 +102,7 @@ static fielddef_t projectileinfo_fields[] =
 {"bouncefric", PROJECTILE_OFS(bouncefric), FT_FLOAT}, 	//amount the bounce decreases per bounce
 {"bouncestop", PROJECTILE_OFS(bouncestop), FT_FLOAT},		//minimum bounce value before bouncing stops
 //recurive projectile definition??
-{NULL, 0, 0, 0}
+{nullptr, 0, 0, 0}
 };
 
 static structdef_t weaponinfo_struct =
@@ -159,12 +159,12 @@ bot_weaponstate_t *BotWeaponStateFromHandle(int handle)
 	if (handle <= 0 || handle > MAX_CLIENTS)
 	{
 		botimport.Print(PRT_FATAL, "weapon state handle %d out of range\n", handle);
-		return NULL;
+		return nullptr;
 	} //end if
 	if (!botweaponstates[handle])
 	{
 		botimport.Print(PRT_FATAL, "invalid weapon state %d\n", handle);
-		return NULL;
+		return nullptr;
 	} //end if
 	return botweaponstates[handle];
 } //end of the function BotWeaponStateFromHandle
@@ -230,7 +230,7 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 	if (!source)
 	{
 		botimport.Print(PRT_ERROR, "counldn't load %s\n", path);
-		return NULL;
+		return nullptr;
 	} //end if
 	//initialize weapon config
 	wc = (weaponconfig_t *) GetClearedHunkMemory(sizeof(weaponconfig_t) +
@@ -251,14 +251,14 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 			{
 				FreeMemory(wc);
 				FreeSource(source);
-				return NULL;
+				return nullptr;
 			} //end if
 			if (weaponinfo.number < 0 || weaponinfo.number >= max_weaponinfo)
 			{
 				botimport.Print(PRT_ERROR, "weapon info number %d out of range in %s\n", weaponinfo.number, path);
 				FreeMemory(wc);
 				FreeSource(source);
-				return NULL;
+				return nullptr;
 			} //end if
 			Com_Memcpy(&wc->weaponinfo[weaponinfo.number], &weaponinfo, sizeof(weaponinfo_t));
 			wc->weaponinfo[weaponinfo.number].valid = qtrue;
@@ -270,14 +270,14 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 				botimport.Print(PRT_ERROR, "more than %d projectiles defined in %s\n", max_projectileinfo, path);
 				FreeMemory(wc);
 				FreeSource(source);
-				return NULL;
+				return nullptr;
 			} //end if
 			Com_Memset(&wc->projectileinfo[wc->numprojectiles], 0, sizeof(projectileinfo_t));
 			if (!ReadStructure(source, &projectileinfo_struct, (char *) &wc->projectileinfo[wc->numprojectiles]))
 			{
 				FreeMemory(wc);
 				FreeSource(source);
-				return NULL;
+				return nullptr;
 			} //end if
 			wc->numprojectiles++;
 		} //end if
@@ -286,7 +286,7 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 			botimport.Print(PRT_ERROR, "unknown definition %s in %s\n", token.string, path);
 			FreeMemory(wc);
 			FreeSource(source);
-			return NULL;
+			return nullptr;
 		} //end else
 	} //end while
 	FreeSource(source);
@@ -298,13 +298,13 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 		{
 			botimport.Print(PRT_ERROR, "weapon %d has no name in %s\n", i, path);
 			FreeMemory(wc);
-			return NULL;
+			return nullptr;
 		} //end if
 		if (!wc->weaponinfo[i].projectile[0])
 		{
 			botimport.Print(PRT_ERROR, "weapon %s has no projectile in %s\n", wc->weaponinfo[i].name, path);
 			FreeMemory(wc);
-			return NULL;
+			return nullptr;
 		} //end if
 		//find the projectile info and copy it to the weapon info
 		for (j = 0; j < wc->numprojectiles; j++)
@@ -319,7 +319,7 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 		{
 			botimport.Print(PRT_ERROR, "weapon %s uses undefined projectile in %s\n", wc->weaponinfo[i].name, path);
 			FreeMemory(wc);
-			return NULL;
+			return nullptr;
 		} //end if
 	} //end for
 	if (!wc->numweapons) botimport.Print(PRT_WARNING, "no weapon info loaded\n");
@@ -498,7 +498,7 @@ void BotFreeWeaponState(int handle)
 	} //end if
 	BotFreeWeaponWeights(handle);
 	FreeMemory(botweaponstates[handle]);
-	botweaponstates[handle] = NULL;
+	botweaponstates[handle] = nullptr;
 } //end of the function BotFreeWeaponState
 //===========================================================================
 //
@@ -535,7 +535,7 @@ void BotShutdownWeaponAI(void)
 	int i;
 
 	if (weaponconfig) FreeMemory(weaponconfig);
-	weaponconfig = NULL;
+	weaponconfig = nullptr;
 
 	for (i = 1; i <= MAX_CLIENTS; i++)
 	{

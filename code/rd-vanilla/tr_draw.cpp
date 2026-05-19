@@ -216,11 +216,11 @@ static byte *RE_ReSample(byte *pbLoadedPic,			int iLoadedWidth,	int iLoadedHeigh
 						 byte *pbReSampleBuffer,	int *piWidth,		int *piHeight
 						)
 {
-	byte *pbReturn = NULL;
+	byte *pbReturn = nullptr;
 
 	// if not resampling, just return some values and return...
 	//
-	if ( pbReSampleBuffer == NULL || (iLoadedWidth == *piWidth && iLoadedHeight == *piHeight) )
+	if ( pbReSampleBuffer == nullptr || (iLoadedWidth == *piWidth && iLoadedHeight == *piHeight) )
 	{
 		// if not resampling, we're done, just return the loaded size...
 		//
@@ -283,17 +283,17 @@ static byte *RE_ReSample(byte *pbLoadedPic,			int iLoadedWidth,	int iLoadedHeigh
 //	currently it's only used by the server so that savegames can embed a graphic in the auto-save files
 //	(which can't do a screenshot since they're saved out before the level is drawn).
 //
-// by default, the pic will be returned as the original dims, but if pbReSampleBuffer != NULL then it's assumed to
+// by default, the pic will be returned as the original dims, but if pbReSampleBuffer != nullptr then it's assumed to
 //	be a big enough buffer to hold the resampled image, which also means that the width and height params are read as
 //	inputs (as well as still being inherently outputs) and the pic is scaled to that size, and to that buffer.
 //
-// the return value is either NULL, or a pointer to the pixels to use (which may be either the pbReSampleBuffer param,
+// the return value is either nullptr, or a pointer to the pixels to use (which may be either the pbReSampleBuffer param,
 //	or the local ptr below).
 //
 // In either case, you MUST call the free-up function afterwards ( RE_TempRawImage_CleanUp() ) to get rid of any temp
 //	memory after you've finished with the pic.
 //
-// Note: ALWAYS use the return value if != NULL, even if you passed in a declared resample buffer. This is because the
+// Note: ALWAYS use the return value if != nullptr, even if you passed in a declared resample buffer. This is because the
 //	resample will get skipped if the values you want are the same size as the pic that it loaded, so it'll return a
 //	different buffer.
 //
@@ -301,13 +301,13 @@ static byte *RE_ReSample(byte *pbLoadedPic,			int iLoadedWidth,	int iLoadedHeigh
 //
 // (not brilliantly fast, but it's only used for weird stuff anyway)
 //
-byte* pbLoadedPic = NULL;
+byte* pbLoadedPic = nullptr;
 
 byte* RE_TempRawImage_ReadFromFile(const char *psLocalFilename, int *piWidth, int *piHeight, byte *pbReSampleBuffer, qboolean qbVertFlip)
 {
 	RE_TempRawImage_CleanUp();	// jic
 
-	byte *pbReturn = NULL;
+	byte *pbReturn = nullptr;
 
 	if (psLocalFilename && piWidth && piHeight)
 	{
@@ -348,7 +348,7 @@ void RE_TempRawImage_CleanUp(void)
 	if ( pbLoadedPic )
 	{
 		R_Free( pbLoadedPic );
-		pbLoadedPic = NULL;
+		pbLoadedPic = nullptr;
 	}
 }
 
@@ -464,7 +464,7 @@ static void RE_KillDissolve(void)
 	if (Dissolve.pImage)
 	{
 		R_Images_DeleteImage(	Dissolve.pImage );
-								Dissolve.pImage = NULL;
+								Dissolve.pImage = nullptr;
 	}
 }
 // Draw the dissolve pic to the screen, over the top of what's already been rendered.
@@ -861,7 +861,7 @@ qboolean RE_InitDissolve(qboolean bForceCircularExtroWipe)
 			byte *pbReSampleBuffer =	(	iPow2VidWidth == Dissolve.iUploadWidth &&
 											iPow2VidHeight == Dissolve.iUploadHeight
 										)?
-										NULL :
+										nullptr :
 										(byte*) R_Malloc( iPow2VidWidth * iPow2VidHeight * 4, TAG_TEMP_WORKSPACE, qfalse);
 
 			// re-sample screen...

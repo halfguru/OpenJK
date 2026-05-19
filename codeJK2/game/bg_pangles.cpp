@@ -117,7 +117,7 @@ qboolean PM_AdjustAngleForWallRun( gentity_t *ent, usercmd_t *ucmd, qboolean doM
 		trace_t	trace;
 		float	dist, yawAdjust;
 
-		AngleVectors( fwdAngles, NULL, rt, NULL );
+		AngleVectors( fwdAngles, nullptr, rt, nullptr );
 		if ( ent->client->ps.legsAnim == BOTH_WALL_RUN_RIGHT )
 		{
 			dist = 128;
@@ -174,7 +174,7 @@ qboolean PM_AdjustAngleForWallRun( gentity_t *ent, usercmd_t *ucmd, qboolean doM
 					if ( ent->client->ps.legsAnimTimer > 500 )
 					{//not at end of anim yet
 						fwdAngles[YAW] = ent->client->ps.viewangles[YAW];
-						AngleVectors( fwdAngles, fwd, NULL, NULL );
+						AngleVectors( fwdAngles, fwd, nullptr, nullptr );
 						//FIXME: or MA?
 						float speed = 175;
 						if ( ucmd->forwardmove < 0 )
@@ -273,7 +273,7 @@ qboolean PM_AdjustAnglesForSpinningFlip( gentity_t *ent, usercmd_t *ucmd, qboole
 		if ( ent->s.number || !player_locked )
 		{
 			vec3_t pushDir, pushAngles = {0,ent->angle,0};
-			AngleVectors( pushAngles, pushDir, NULL, NULL );
+			AngleVectors( pushAngles, pushDir, nullptr, nullptr );
 			if ( DotProduct( ent->client->ps.velocity, pushDir ) < 100 )
 			{
 				VectorMA( ent->client->ps.velocity, 10, pushDir, ent->client->ps.velocity );
@@ -420,7 +420,7 @@ void PM_UpdateViewAngles( playerState_t *ps, usercmd_t *cmd, gentity_t *gent )
 //	{//can't turn
 //		return;
 //	}
-	if ( ps->eFlags & EF_NPC && gent != NULL && gent->client != NULL )
+	if ( ps->eFlags & EF_NPC && gent != nullptr && gent->client != nullptr )
 	{
 		if(gent->client->renderInfo.renderFlags & RF_LOCKEDANGLE)
 		{
@@ -548,7 +548,7 @@ void PM_UpdateViewAngles( playerState_t *ps, usercmd_t *cmd, gentity_t *gent )
 			start[2] += ps->viewheight;
 			VectorCopy( ps->viewangles, viewangles );
 			viewangles[ROLL] = 0;
-			AngleVectors( ps->viewangles, NULL, right, NULL );
+			AngleVectors( ps->viewangles, nullptr, right, nullptr );
 			VectorNormalize( right );
 			right[2] = (leanofs<0)?0.25:-0.25;
 			VectorMA( start, leanofs, right, end );

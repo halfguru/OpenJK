@@ -150,7 +150,7 @@ int AAS_AlternativeRouteGoals(vec3_t start, int startareanum, vec3_t goal, int g
 		//if the travel time from the start to the area is greater than the shortest goal travel time
 		if (starttime > (float) 1.1 * goaltraveltime) continue;
 		//travel time from the area to the goal area
-		goaltime = AAS_AreaTravelTimeToGoalArea(i, NULL, goalareanum, travelflags);
+		goaltime = AAS_AreaTravelTimeToGoalArea(i, nullptr, goalareanum, travelflags);
 		if (!goaltime) continue;
 		//if the travel time from the area to the goal is greater than the shortest goal travel time
 		if (goaltime > (float) 0.8 * goaltraveltime) continue;
@@ -237,9 +237,9 @@ void AAS_ShutdownAlternativeRouting(void)
 {
 #ifdef ENABLE_ALTROUTING
 	if (midrangeareas) FreeMemory(midrangeareas);
-	midrangeareas = NULL;
+	midrangeareas = nullptr;
 	if (clusterareas) FreeMemory(clusterareas);
-	clusterareas = NULL;
+	clusterareas = nullptr;
 	numclusterareas = 0;
 #endif
 } //end of the function AAS_ShutdownAlternativeRouting

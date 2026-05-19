@@ -208,7 +208,7 @@ void Wampa_Slash( int boltIndex, qboolean backhand )
 			continue;
 		}
 
-		if ( radiusEnts[i]->client == NULL )
+		if ( radiusEnts[i]->client == nullptr )
 		{//must be a client
 			continue;
 		}
@@ -225,7 +225,7 @@ void Wampa_Slash( int boltIndex, qboolean backhand )
 				VectorCopy( NPC->client->ps.viewangles, angs );
 				angs[YAW] += Q_flrand( 25, 50 );
 				angs[PITCH] = Q_flrand( -25, -15 );
-				AngleVectors( angs, pushDir, NULL, NULL );
+				AngleVectors( angs, pushDir, nullptr, nullptr );
 				if ( radiusEnts[i]->client->NPC_class != CLASS_WAMPA
 					&& radiusEnts[i]->client->NPC_class != CLASS_RANCOR
 					&& radiusEnts[i]->client->NPC_class != CLASS_ATST
@@ -271,7 +271,7 @@ void Wampa_Slash( int boltIndex, qboolean backhand )
 				VectorCopy( NPC->client->ps.viewangles, angs );
 				angs[YAW] += Q_flrand( 25, 50 );
 				angs[PITCH] = Q_flrand( -25, -15 );
-				AngleVectors( angs, pushDir, NULL, NULL );
+				AngleVectors( angs, pushDir, nullptr, nullptr );
 				G_Knockdown( radiusEnts[i], NPC, pushDir, 35, qtrue );
 			}
 			G_Sound( radiusEnts[i], G_SoundIndex( "sound/chars/rancor/swipehit.wav" ) );
@@ -294,7 +294,7 @@ void Wampa_Attack( float distance, qboolean doCharge )
 			NPC_SetAnim( NPC, SETANIM_BOTH, BOTH_ATTACK2, SETANIM_FLAG_OVERRIDE | SETANIM_FLAG_HOLD );
 			TIMER_Set( NPC, "attack_dmg", 500 );
 			vec3_t	fwd, yawAng ={0, NPC->client->ps.viewangles[YAW], 0};
-			AngleVectors( yawAng, fwd, NULL, NULL );
+			AngleVectors( yawAng, fwd, nullptr, nullptr );
 			VectorScale( fwd, distance*1.5f, NPC->client->ps.velocity );
 			NPC->client->ps.velocity[2] = 150;
 			NPC->client->ps.groundEntityNum = ENTITYNUM_NONE;
@@ -542,7 +542,7 @@ void Wampa_DropVictim( gentity_t *self )
 		{
 			self->activator->client->ps.eFlags &= ~EF_HELD_BY_WAMPA;
 		}
-		self->activator->activator = NULL;
+		self->activator->activator = nullptr;
 		NPC_SetAnim( self->activator, SETANIM_BOTH, BOTH_RELEASED, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 		self->activator->client->ps.legsAnimTimer += 500;
 		self->activator->client->ps.weaponTime = self->activator->client->ps.torsoAnimTimer = self->activator->client->ps.legsAnimTimer;
@@ -562,11 +562,11 @@ void Wampa_DropVictim( gentity_t *self )
 		{
 			if ( self->enemy == self->activator )
 			{
-				self->enemy = NULL;
+				self->enemy = nullptr;
 			}
 			self->activator->clipmask &= ~CONTENTS_BODY;
 		}
-		self->activator = NULL;
+		self->activator = nullptr;
 	}
 	self->count = 0;//drop him
 }
@@ -661,7 +661,7 @@ qboolean Wampa_TryGrab( void )
 		VectorCopy( NPC->client->ps.viewangles, angs );
 		angs[YAW] += Q_flrand( 25, 50 );
 		angs[PITCH] = Q_flrand( -25, -15 );
-		AngleVectors( angs, pushDir, NULL, NULL );
+		AngleVectors( angs, pushDir, nullptr, nullptr );
 		if ( NPC->enemy->client->NPC_class != CLASS_RANCOR
 			&& NPC->enemy->client->NPC_class != CLASS_ATST
 			&& !(NPC->enemy->flags&FL_NO_KNOCKBACK) )
@@ -715,7 +715,7 @@ void NPC_BSWampa_Default( void )
 			|| !NPC->activator->client )
 		{//wtf?
 			NPC->count = 0;
-			NPC->activator = NULL;
+			NPC->activator = nullptr;
 		}
 		else
 		{
@@ -868,7 +868,7 @@ void NPC_BSWampa_Default( void )
 					TIMER_Remove( NPC, "lookForNewEnemy" );//make them look again right now
 					if ( !NPC->enemy->inuse || level.time - NPC->enemy->s.time > Q_irand( 10000, 15000 ) )
 					{//it's been a while since the enemy died, or enemy is completely gone, get bored with him
-						NPC->enemy = NULL;
+						NPC->enemy = nullptr;
 						Wampa_Patrol();
 						NPC_UpdateAngles( qtrue, qtrue );
 						return;
@@ -877,7 +877,7 @@ void NPC_BSWampa_Default( void )
 				if ( TIMER_Done( NPC, "lookForNewEnemy" ) )
 				{
 					gentity_t *sav_enemy = NPC->enemy;//FIXME: what about NPC->lastEnemy?
-					NPC->enemy = NULL;
+					NPC->enemy = nullptr;
 					gentity_t *newEnemy = NPC_CheckEnemy( (qboolean)(NPCInfo->confusionTime < level.time), qfalse, qfalse );
 					NPC->enemy = sav_enemy;
 					if ( newEnemy && newEnemy != sav_enemy )

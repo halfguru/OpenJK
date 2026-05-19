@@ -103,7 +103,7 @@ func_t	funcs[] = {
 	{"atst_side_main_func",	FX_ATSTSideMainProjectileThink},
 	{"tusk_shot_func",		FX_TuskenShotProjectileThink},
 	{"noghri_shot_func",	FX_NoghriShotProjectileThink},
-	{NULL,					NULL}
+	{nullptr,					nullptr}
 };
 
 //qboolean COM_ParseInt( char **data, int *i );

@@ -101,7 +101,7 @@ void CorpsePhysics( gentity_t *self )
 	if ( self->client->ps.groundEntityNum != ENTITYNUM_NONE && !(self->flags&FL_DISINTEGRATED) )
 	{//on the ground
 		//FIXME: check 4 corners
-		pitch_roll_for_slope( self, NULL );
+		pitch_roll_for_slope( self, nullptr );
 	}
 
 	if ( eventClearTime == level.time + ALERT_CLEAR_TIME )
@@ -388,13 +388,13 @@ void pitch_roll_for_slope( gentity_t *forwhom, vec3_t pass_slope )
 		VectorCopy( pass_slope, slope );
 	}
 
-	AngleVectors( forwhom->currentAngles, ovf, ovr, NULL );
+	AngleVectors( forwhom->currentAngles, ovf, ovr, nullptr );
 
 	vectoangles( slope, new_angles );
 	pitch = new_angles[PITCH] + 90;
 	new_angles[ROLL] = new_angles[PITCH] = 0;
 
-	AngleVectors( new_angles, nvf, NULL, NULL );
+	AngleVectors( new_angles, nvf, nullptr, nullptr );
 
 	mod = DotProduct( nvf, ovr );
 
@@ -442,7 +442,7 @@ void NPC_PostDeathThink( void )
 	{
 		if ( NPC->client->ps.groundEntityNum != ENTITYNUM_NONE && NPC->client->ps.friction == 1.0 )//check avelocity?
 		{
-			pitch_roll_for_slope( NPC, NULL );
+			pitch_roll_for_slope( NPC, nullptr );
 		}
 
 		return;
@@ -452,7 +452,7 @@ void NPC_PostDeathThink( void )
 
 	mostdist = MIN_DROP_DIST;
 
-	AngleVectors( NPC->currentAngles, forward, right, NULL );
+	AngleVectors( NPC->currentAngles, forward, right, nullptr );
 	VectorCopy( NPC->currentOrigin, org );
 	org[2] += NPC->mins[2];
 
@@ -657,7 +657,7 @@ void NPC_PostDeathThink( void )
 	NPC->client->ps.friction = 1.0;
 
 	//VectorClear( NPC->avelocity );
-	pitch_roll_for_slope( NPC, NULL );
+	pitch_roll_for_slope( NPC, nullptr );
 
 	//gi.linkentity (NPC);
 }
@@ -725,7 +725,7 @@ static void DeadThink ( void )
 	//NPC_PostDeathThink();
 
 	/*
-	if ( !NPCInfo->timeOfDeath && NPC->client != NULL && NPCInfo != NULL )
+	if ( !NPCInfo->timeOfDeath && NPC->client != nullptr && NPCInfo != nullptr )
 	{
 		//haven't finished death anim yet and were NOT given a specific amount of time to wait before removal
 		int				legsAnim	= NPC->client->ps.legsAnim;
@@ -836,9 +836,9 @@ void RestoreNPCGlobals()
 //We MUST do this, other funcs were using NPC illegally when "self" wasn't the global NPC
 void ClearNPCGlobals( void )
 {
-	NPC = NULL;
-	NPCInfo = NULL;
-	client = NULL;
+	NPC = nullptr;
+	NPCInfo = nullptr;
+	client = nullptr;
 }
 //===============
 
@@ -854,10 +854,10 @@ void NPC_ShowDebugInfo (void)
 {
 	if ( showBBoxes )
 	{
-		gentity_t	*found = NULL;
+		gentity_t	*found = nullptr;
 		vec3_t		mins, maxs;
 
-		while( (found = G_Find( found, FOFS(classname), "NPC" ) ) != NULL )
+		while( (found = G_Find( found, FOFS(classname), "NPC" ) ) != nullptr )
 		{
 			if ( gi.inPVS( found->currentOrigin, g_entities[0].currentOrigin ) )
 			{
@@ -990,7 +990,7 @@ void NPC_HandleAIFlags (void)
 				{//Did at least one of the things above
 					//Don't greet again for 2 - 4 seconds
 					NPCInfo->greetingDebounceTime = level.time + Q_irand( 2000, 4000 );
-					NPCInfo->greetEnt = NULL;
+					NPCInfo->greetEnt = nullptr;
 				}
 			}
 		}
@@ -1058,7 +1058,7 @@ void NPC_AvoidWallsAndCliffs (void)
 	VectorCopy( NPC->mins, mins );
 	mins[2] += STEPSIZE;
 	angles[YAW] = NPC->client->ps.viewangles[YAW];//Add ucmd.angles[YAW]?
-	AngleVectors( angles, forward, right, NULL );
+	AngleVectors( angles, forward, right, nullptr );
 	fwdDist = ((float)ucmd.forwardmove)/16.0f;
 	rtDist = ((float)ucmd.rightmove)/16.0f;
 	VectorMA( NPC->currentOrigin, fwdDist, forward, testPos );
@@ -1923,7 +1923,7 @@ void NPC_ExecuteBState ( gentity_t *self)//, int msec )
 	}
 
 	// end of thinking cleanup
-	NPCInfo->touchedByPlayer = NULL;
+	NPCInfo->touchedByPlayer = nullptr;
 
 	NPC_CheckPlayerAim();
 	NPC_CheckAllClear();

@@ -52,7 +52,7 @@ IIcarusInterface* IIcarusInterface::GetIcarus(int flavor,bool constructIfNecessa
 		CIcarus::s_flavorsAvailable = IGameInterface::s_IcarusFlavorsNeeded;
 		if (!CIcarus::s_flavorsAvailable)
 		{
-			return NULL;
+			return nullptr;
 		}
 		CIcarus::s_instances = new CIcarus*[CIcarus::s_flavorsAvailable];
 		for (int index = 0; index < CIcarus::s_flavorsAvailable; index++)
@@ -64,7 +64,7 @@ IIcarusInterface* IIcarusInterface::GetIcarus(int flavor,bool constructIfNecessa
 
 	if(flavor >= CIcarus::s_flavorsAvailable || !CIcarus::s_instances )
 	{
-		return NULL;
+		return nullptr;
 	}
 	return CIcarus::s_instances[flavor];
 }
@@ -76,7 +76,7 @@ void IIcarusInterface::DestroyIcarus()
 		delete CIcarus::s_instances[index];
 	}
 	delete[] CIcarus::s_instances;
-	CIcarus::s_instances = NULL;
+	CIcarus::s_instances = nullptr;
 	CIcarus::s_flavorsAvailable = 0;
 }
 
@@ -92,7 +92,7 @@ double CIcarus::ICARUS_VERSION = 1.40;
 
 int CIcarus::s_flavorsAvailable = 0;
 
-CIcarus** CIcarus::s_instances = NULL;
+CIcarus** CIcarus::s_instances = nullptr;
 
 CIcarus::CIcarus(int flavor) :
 	m_flavor(flavor), m_nextSequencerID(0)
@@ -114,7 +114,7 @@ CIcarus::CIcarus(int flavor) :
 
 	m_ulBufferCurPos = 0;
 	m_ulBytesRead = 0;
-	m_byBuffer = NULL;
+	m_byBuffer = nullptr;
 }
 
 CIcarus::~CIcarus()
@@ -294,7 +294,7 @@ CSequence *CIcarus::GetSequence( int id )
 			return (*si);
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void CIcarus::DeleteSequence( CSequence *sequence )
@@ -322,7 +322,7 @@ int CIcarus::AllocateSequences( int numSequences, int *idTable )
 			m_GUID = idTable[i];
 
 		//Allocate the container sequence
-		if ( ( sequence = GetSequence() ) == NULL )
+		if ( ( sequence = GetSequence() ) == nullptr )
 			return false;
 
 		//Override the given GUID with the real one
@@ -422,7 +422,7 @@ CSequencer* CIcarus::FindSequencer(int sequencerID)
 	sequencer_m::iterator mi = m_sequencerMap.find( sequencerID );
 
 	if ( mi == m_sequencerMap.end() )
-		return NULL;
+		return nullptr;
 
 	return (*mi).second;
 }
@@ -451,7 +451,7 @@ int CIcarus::SaveSequenceIDTable()
 	int	*idTable = new int[ numSequences ];
 	int	itr = 0;
 
-	if ( idTable == NULL )
+	if ( idTable == nullptr )
 		return false;
 
 	STL_ITERATE( sqi, m_sequences )
@@ -631,7 +631,7 @@ int CIcarus::LoadSequences()
 
 	int	*idTable = new int[ numSequences ];
 
-	if ( idTable == NULL )
+	if ( idTable == nullptr )
 		return false;
 
 	//Load the sequencer ID table
@@ -645,7 +645,7 @@ int CIcarus::LoadSequences()
 	for ( int i = 0; i < numSequences; i++ )
 	{
 		//Get the proper sequence for this load
-		if ( ( sequence = GetSequence( idTable[i] ) ) == NULL )
+		if ( ( sequence = GetSequence( idTable[i] ) ) == nullptr )
 			return false;
 
 		//Load the sequence
@@ -673,7 +673,7 @@ int CIcarus::LoadSequencers()
 	{
 		//NOTENOTE: The ownerID will be replaced in the loading process
 		int sequencerID = GetIcarusID(-1);
-		if ( ( sequencer = FindSequencer(sequencerID) ) == NULL )
+		if ( ( sequencer = FindSequencer(sequencerID) ) == nullptr )
 			return false;
 
 		if ( sequencer->Load(this, game) == false )
@@ -795,7 +795,7 @@ void CIcarus::DestroyBuffer()
 	if ( m_byBuffer )
 	{
 		IGameInterface::GetGame()->Free( m_byBuffer );
-		m_byBuffer = NULL;
+		m_byBuffer = nullptr;
 	}
 }
 

@@ -355,7 +355,7 @@ int CFxScheduler::RegisterEffect( const char *file, bool bHasCorrectPath /*= fal
 		return 0;
 	}
 
-	// Get the goods and ensure Null termination
+	// Get the goods and ensure nullptr termination
 	theFxHelper.ReadFile( data, len, fh );
 	data[len] = '\0';
 	bufParse = data;
@@ -496,7 +496,7 @@ void CFxScheduler::AddPrimitiveToEffect( SEffectTemplate *fx, CPrimitiveTemplate
 //
 // Input:
 //	pointer to an id that will be filled in,
-//	file name-- should be NULL when requesting a copy
+//	file name-- should be nullptr when requesting a copy
 //
 // Return:
 //	the id of the added effect template
@@ -593,7 +593,7 @@ SEffectTemplate *CFxScheduler::GetEffectCopy( int fxHandle, int *newHandle )
 #endif
 
 	// Copies shouldn't have names, otherwise they could trash our stl map used for getting ID from name
-	SEffectTemplate *copy = GetNewEffectTemplate( newHandle, NULL );
+	SEffectTemplate *copy = GetNewEffectTemplate( newHandle, nullptr );
 
 	if ( copy && *newHandle )
 	{
@@ -625,7 +625,7 @@ CPrimitiveTemplate *CFxScheduler::GetPrimitiveCopy( SEffectTemplate *effectCopy,
 {
 	if ( !effectCopy || !effectCopy->mInUse )
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	for ( int i = 0; i < effectCopy->mPrimitiveCount; i++ )
@@ -638,7 +638,7 @@ CPrimitiveTemplate *CFxScheduler::GetPrimitiveCopy( SEffectTemplate *effectCopy,
 	}
 
 	// bah, no good.
-	return NULL;
+	return nullptr;
 }
 
 
@@ -926,7 +926,7 @@ void CFxScheduler::PlayEffect( int id, vec3_t origin, matrix3_t axis, const int 
 			{
 				SScheduledEffect		*sfx = mScheduledEffectsPool.Alloc();
 
-				if ( sfx == NULL )
+				if ( sfx == nullptr )
 				{
 					Com_Error (ERR_DROP, "ERROR: Failed to allocate EFX from memory pool.");
 					return;
@@ -939,7 +939,7 @@ void CFxScheduler::PlayEffect( int id, vec3_t origin, matrix3_t axis, const int 
 
 				if ( boltInfo == -1 )
 				{
-					sfx->ghoul2 = NULL;
+					sfx->ghoul2 = nullptr;
 					if ( entityNum == -1 )
 					{
 						// we aren't bolting, so make sure the spawn system knows this by putting -1's in these fields
@@ -1212,7 +1212,7 @@ void CFxScheduler::CreateEffect( CPrimitiveTemplate *fx, const vec3_t origin, ma
 	AxisCopy( axis, ax );
 
 	int flags = fx->mFlags;
-	if (ghoul2 != NULL && modelNum>=0 && boltNum>=0)
+	if (ghoul2 != nullptr && modelNum>=0 && boltNum>=0)
 	{//since you passed in these values, mark as relative to use them if it is supported
 		switch( fx->mType )
 		{
@@ -1413,7 +1413,7 @@ void CFxScheduler::CreateEffect( CPrimitiveTemplate *fx, const vec3_t origin, ma
 				}
 			}
 
-			theFxHelper.Trace( tr, org, NULL, NULL, temp, -1, MASK_SOLID );
+			theFxHelper.Trace( tr, org, nullptr, nullptr, temp, -1, MASK_SOLID );
 
 			VectorCopy( tr.endpos, org2 );
 

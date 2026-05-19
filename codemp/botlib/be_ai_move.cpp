@@ -162,7 +162,7 @@ void BotFreeMoveState(int handle)
 		return;
 	} //end if
 	FreeMemory(botmovestates[handle]);
-	botmovestates[handle] = NULL;
+	botmovestates[handle] = nullptr;
 } //end of the function BotFreeMoveState
 //========================================================================
 //
@@ -175,12 +175,12 @@ bot_movestate_t *BotMoveStateFromHandle(int handle)
 	if (handle <= 0 || handle > MAX_CLIENTS)
 	{
 		botimport.Print(PRT_FATAL, "move state handle %d out of range\n", handle);
-		return NULL;
+		return nullptr;
 	} //end if
 	if (!botmovestates[handle])
 	{
 		botimport.Print(PRT_FATAL, "invalid move state %d\n", handle);
-		return NULL;
+		return nullptr;
 	} //end if
 	return botmovestates[handle];
 } //end of the function BotMoveStateFromHandle
@@ -454,7 +454,7 @@ int BotOnMover(vec3_t origin, int entnum, aas_reachability_t *reach)
 
 	modelnum = reach->facenum & 0x0000FFFF;
 	//get some bsp model info
-	AAS_BSPModelMinsMaxsOrigin(modelnum, angles, mins, maxs, NULL);
+	AAS_BSPModelMinsMaxsOrigin(modelnum, angles, mins, maxs, nullptr);
 	//
 	if (!AAS_OriginOfMoverWithModelNum(modelnum, modelorigin))
 	{
@@ -880,7 +880,7 @@ int BotMovementViewTarget(int movestate, bot_goal_t *goal, int travelflags, floa
 		reachnum = BotGetReachabilityToGoal(reach.end, reach.areanum,
 						ms->lastgoalareanum, lastareanum,
 							ms->avoidreach, ms->avoidreachtimes, ms->avoidreachtries,
-									goal, travelflags, NULL, 0, NULL);
+									goal, travelflags, nullptr, 0, nullptr);
 		VectorCopy(reach.end, end);
 		lastareanum = reach.areanum;
 		if (lastareanum == goal->areanum)
@@ -902,7 +902,7 @@ int BotVisible(int ent, vec3_t eye, vec3_t target)
 {
 	bsp_trace_t trace;
 
-	trace = AAS_Trace(eye, NULL, NULL, target, ent, CONTENTS_SOLID|CONTENTS_PLAYERCLIP);
+	trace = AAS_Trace(eye, nullptr, nullptr, target, ent, CONTENTS_SOLID|CONTENTS_PLAYERCLIP);
 	if (trace.fraction >= 1) return qtrue;
 	return qfalse;
 } //end of the function BotVisible
@@ -939,7 +939,7 @@ int BotPredictVisiblePosition(vec3_t origin, int areanum, bot_goal_t *goal, int 
 		reachnum = BotGetReachabilityToGoal(end, areanum,
 						lastgoalareanum, lastareanum,
 							avoidreach, avoidreachtimes, avoidreachtries,
-									goal, travelflags, NULL, 0, NULL);
+									goal, travelflags, nullptr, 0, nullptr);
 		if (!reachnum) return qfalse;
 		AAS_ReachabilityFromNum(reachnum, &reach);
 		//
@@ -2241,7 +2241,7 @@ void BotFuncBobStartEnd(aas_reachability_t *reach, vec3_t start, vec3_t end, vec
 		VectorSet(end, 0, 0, 0);
 		return;
 	} //end if
-	AAS_BSPModelMinsMaxsOrigin(modelnum, angles, mins, maxs, NULL);
+	AAS_BSPModelMinsMaxsOrigin(modelnum, angles, mins, maxs, nullptr);
 	VectorAdd(mins, maxs, mid);
 	VectorScale(mid, 0.5, mid);
 	VectorCopy(mid, start);
@@ -2664,7 +2664,7 @@ bot_moveresult_t BotTravel_Grapple(bot_movestate_t *ms, aas_reachability_t *reac
 #endif //DEBUG_GRAPPLE
 			//check if the grapple missile path is clear
 			VectorAdd(ms->origin, ms->viewoffset, org);
-			trace = AAS_Trace(org, NULL, NULL, reach->end, ms->entitynum, CONTENTS_SOLID);
+			trace = AAS_Trace(org, nullptr, nullptr, reach->end, ms->entitynum, CONTENTS_SOLID);
 			VectorSubtract(reach->end, trace.endpos, dir);
 			if (VectorLength(dir) > 16)
 			{
@@ -3365,7 +3365,7 @@ void BotMoveToGoal(bot_moveresult_t *result, int movestate, bot_goal_t *goal, in
 		//special handling of jump pads when the bot uses a jump pad without knowing it
 		foundjumppad = qfalse;
 		VectorMA(ms->origin, -2 * ms->thinktime, ms->velocity, end);
-		numareas = AAS_TraceAreas(ms->origin, end, areas, NULL, 16);
+		numareas = AAS_TraceAreas(ms->origin, end, areas, nullptr, 16);
 		for (i = numareas-1; i >= 0; i--)
 		{
 			if (AAS_AreaJumpPad(areas[i]))
@@ -3375,7 +3375,7 @@ void BotMoveToGoal(bot_moveresult_t *result, int movestate, bot_goal_t *goal, in
 				lastreachnum = BotGetReachabilityToGoal(end, areas[i],
 							ms->lastgoalareanum, ms->lastareanum,
 							ms->avoidreach, ms->avoidreachtimes, ms->avoidreachtries,
-							goal, TFL_JUMPPAD, ms->avoidspots, ms->numavoidspots, NULL);
+							goal, TFL_JUMPPAD, ms->avoidspots, ms->numavoidspots, nullptr);
 				if (lastreachnum)
 				{
 					ms->lastreachnum = lastreachnum;
@@ -3561,7 +3561,7 @@ void BotShutdownMoveAI(void)
 		if (botmovestates[i])
 		{
 			FreeMemory(botmovestates[i]);
-			botmovestates[i] = NULL;
+			botmovestates[i] = nullptr;
 		} //end if
 	} //end for
 } //end of the function BotShutdownMoveAI

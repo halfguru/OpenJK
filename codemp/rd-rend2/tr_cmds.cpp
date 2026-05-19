@@ -193,7 +193,7 @@ static void *R_GetCommandBufferReserved( int bytes, int reservedBytes ) {
 			ri.Error( ERR_FATAL, "R_GetCommandBuffer: bad size %i", bytes );
 		}
 		// if we run out of room, just start dropping commands
-		return NULL;
+		return nullptr;
 	}
 
 	cmdList->used += bytes;
@@ -332,7 +332,7 @@ void R_EndTimedBlockCmd( qhandle_t timerHandle )
 =============
 RE_SetColor
 
-Passing NULL will set the color to white
+Passing nullptr will set the color to white
 =============
 */
 void	RE_SetColor( const float *rgba ) {
@@ -497,8 +497,8 @@ for each RE_EndFrame
 ====================
 */
 void RE_BeginFrame( stereoFrame_t stereoFrame ) {
-	drawBufferCommand_t	*cmd = NULL;
-	colorMaskCommand_t *colcmd = NULL;
+	drawBufferCommand_t	*cmd = nullptr;
+	colorMaskCommand_t *colcmd = nullptr;
 
 	if ( !tr.registered ) {
 		return;
@@ -523,7 +523,7 @@ void RE_BeginFrame( stereoFrame_t stereoFrame ) {
 				{
 					// This indicates that opengl context was lost, is there a way to recover?
 					qglDeleteSync( sync );
-					thisFrame->sync = NULL;
+					thisFrame->sync = nullptr;
 
 					thisFrame->uboWriteOffset = 0;
 
@@ -542,7 +542,7 @@ void RE_BeginFrame( stereoFrame_t stereoFrame ) {
 			while ( result != GL_ALREADY_SIGNALED && result != GL_CONDITION_SATISFIED );
 		}
 		qglDeleteSync( sync );
-		thisFrame->sync = NULL;
+		thisFrame->sync = nullptr;
 
 		// Perform readback operations
 		if (thisFrame->screenshotReadback.pbo > 0)
@@ -678,7 +678,7 @@ void RE_BeginFrame( stereoFrame_t stereoFrame ) {
 					qglClear(GL_COLOR_BUFFER_BIT);
 				}
 
-				FBO_Bind(NULL);
+				FBO_Bind(nullptr);
 
 				qglDrawBuffer(GL_FRONT);
 				qglClear(GL_COLOR_BUFFER_BIT);

@@ -894,7 +894,7 @@ static void ProjectDlightTexture2( void ) {
 		}
 		qglVertexPointer (3, GL_FLOAT, 16, vertCoordsArray);	// padded for SIMD
 
-		dStage = NULL;
+		dStage = nullptr;
 		if (tess.shader && qglActiveTextureARB)
 		{
 			int i = 0;
@@ -1241,7 +1241,7 @@ static void ProjectDlightTexture( void ) {
 #endif
 
 
-		dStage = NULL;
+		dStage = nullptr;
 		if (tess.shader && qglActiveTextureARB)
 		{
 			int i = 0;
@@ -1804,7 +1804,7 @@ static void RB_IterateStagesGeneric( shaderCommands_t *input )
 #ifndef JK2_MODE
 	bool	UseGLFog = false;
 	bool	FogColorChange = false;
-	fog_t	*fog = NULL;
+	fog_t	*fog = nullptr;
 
 	if (tess.fogNum && tess.shader->fogPass && (tess.fogNum == tr.world->globalFog || tess.fogNum == tr.world->numfogs)
 		&& r_drawfog->value == 2)

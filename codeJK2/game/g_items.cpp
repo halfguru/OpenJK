@@ -521,7 +521,7 @@ void Touch_Item (gentity_t *ent, gentity_t *other, trace_t *trace) {
 	{
 		if ( other->NPC && other->NPC->goalEntity && other->NPC->goalEntity->enemy == ent )
 		{//they were running to pick me up, they did, so clear goal
-			other->NPC->goalEntity = NULL;
+			other->NPC->goalEntity = nullptr;
 			other->NPC->squadState = SQUAD_STAND_AND_SHOOT;
 		}
 	}
@@ -606,7 +606,7 @@ void Touch_Item (gentity_t *ent, gentity_t *other, trace_t *trace) {
 	{//SIGH... with timescale on, you lose events left and right
 extern void CG_ItemPickup( int itemNum, qboolean bHadItem );
 		// but we're SP so we'll cheat
-		cgi_S_StartSound( NULL, other->s.number, CHAN_AUTO,	cgi_S_RegisterSound( ent->item->pickup_sound ) );
+		cgi_S_StartSound( nullptr, other->s.number, CHAN_AUTO,	cgi_S_RegisterSound( ent->item->pickup_sound ) );
 		// show icon and name on status bar
 		CG_ItemPickup( ent->s.modelindex, bHadWeapon );
 	}
@@ -734,7 +734,7 @@ Spawns an item and tosses it forward
 ================
 */
 gentity_t *Drop_Item( gentity_t *ent, gitem_t *item, float angle, qboolean copytarget ) {
-	gentity_t	*dropped = NULL;
+	gentity_t	*dropped = nullptr;
 	vec3_t	velocity;
 	vec3_t	angles;
 
@@ -742,7 +742,7 @@ gentity_t *Drop_Item( gentity_t *ent, gitem_t *item, float angle, qboolean copyt
 	angles[YAW] += angle;
 	angles[PITCH] = 0;	// always forward
 
-	AngleVectors( angles, velocity, NULL, NULL );
+	AngleVectors( angles, velocity, nullptr, nullptr );
 	VectorScale( velocity, 150, velocity );
 	velocity[2] += 200 + Q_flrand(-1.0f, 1.0f) * 50;
 
@@ -752,7 +752,7 @@ gentity_t *Drop_Item( gentity_t *ent, gitem_t *item, float angle, qboolean copyt
 	}
 	else
 	{
-		dropped = LaunchItem( item, ent->s.pos.trBase, velocity, NULL );
+		dropped = LaunchItem( item, ent->s.pos.trBase, velocity, nullptr );
 	}
 
 	dropped->activator = ent;//so we know who we belonged to so they can pick it back up later
@@ -772,7 +772,7 @@ void Use_Item( gentity_t *ent, gentity_t *other, gentity_t *activator )
 {
 	if ( (ent->svFlags&SVF_PLAYER_USABLE) && other && !other->s.number )
 	{//used directly by the player, pick me up
-		GEntity_TouchFunc( ent, other, NULL );
+		GEntity_TouchFunc( ent, other, nullptr );
 	}
 	else
 	{//use me
@@ -962,7 +962,7 @@ The item will be added to the precache list
 */
 void RegisterItem( gitem_t *item ) {
 	if ( !item ) {
-		G_Error( "RegisterItem: NULL" );
+		G_Error( "RegisterItem: nullptr" );
 	}
 	itemRegistered[ item - bg_itemlist ] = '1';
 	gi.SetConfigstring(CS_ITEMS, itemRegistered);	//Write the needed items to a config string

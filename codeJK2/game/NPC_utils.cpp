@@ -871,7 +871,7 @@ extern stringID_table_t BSETTable[];
 qboolean G_ActivateBehavior (gentity_t *self, int bset )
 {
 	bState_t	bSID = (bState_t)-1;
-	char *bs_name = NULL;
+	char *bs_name = nullptr;
 
 	if ( !self )
 	{
@@ -931,7 +931,7 @@ NPC_ValidEnemy
 qboolean NPC_ValidEnemy( gentity_t *ent )
 {
 	//Must be a valid pointer
-	if ( ent == NULL )
+	if ( ent == nullptr )
 		return qfalse;
 
 	//Must not be me
@@ -951,7 +951,7 @@ qboolean NPC_ValidEnemy( gentity_t *ent )
 		return qfalse;
 
 	//Must be an NPC
-	if ( ent->client == NULL )
+	if ( ent->client == nullptr )
 	{
 		if ( ent->svFlags&SVF_NONNPC_ENEMY )
 		{//still potentially valid
@@ -1112,7 +1112,7 @@ gentity_t *NPC_PickEnemyExt( qboolean checkAlerts = qfalse )
 
 			//Don't pay attention to our own alerts
 			if ( event->owner == NPC )
-				return NULL;
+				return nullptr;
 
 			if ( event->level >= AEL_DISCOVERED )
 			{
@@ -1127,7 +1127,7 @@ gentity_t *NPC_PickEnemyExt( qboolean checkAlerts = qfalse )
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -1150,7 +1150,7 @@ NPC_CheckPlayerDistance
 static qboolean NPC_CheckPlayerDistance( void )
 {
 	//Make sure we have an enemy
-	if ( NPC->enemy == NULL )
+	if ( NPC->enemy == nullptr )
 		return qfalse;
 
 	//Only do this for non-players
@@ -1331,10 +1331,10 @@ NPC_FaceEnemy
 
 qboolean NPC_FaceEnemy( qboolean doPitch )
 {
-	if ( NPC == NULL )
+	if ( NPC == nullptr )
 		return qfalse;
 
-	if ( NPC->enemy == NULL )
+	if ( NPC->enemy == nullptr )
 		return qfalse;
 
 	return NPC_FaceEntity( NPC->enemy, doPitch );
@@ -1407,7 +1407,7 @@ qboolean NPC_CheckLookTarget( gentity_t *self )
 	{
 		if ( self->client->renderInfo.lookTarget >= 0 && self->client->renderInfo.lookTarget < ENTITYNUM_WORLD )
 		{//within valid range
-			if ( (&g_entities[self->client->renderInfo.lookTarget] == NULL) || !g_entities[self->client->renderInfo.lookTarget].inuse )
+			if ( (&g_entities[self->client->renderInfo.lookTarget] == nullptr) || !g_entities[self->client->renderInfo.lookTarget].inuse )
 			{//lookTarget not inuse or not valid anymore
 				NPC_ClearLookTarget( self );
 			}
@@ -1443,7 +1443,7 @@ void NPC_CheckCharmed( void )
 		team_t	savTeam = NPC->client->enemyTeam;
 		NPC->client->enemyTeam = NPC->client->playerTeam;
 		NPC->client->playerTeam = savTeam;
-		NPC->client->leader = NULL;
+		NPC->client->leader = nullptr;
 		if ( NPCInfo->tempBehavior == BS_FOLLOW_LEADER )
 		{
 			NPCInfo->tempBehavior = BS_DEFAULT;

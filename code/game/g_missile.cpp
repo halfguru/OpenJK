@@ -439,7 +439,7 @@ void G_BounceMissile( gentity_t *ent, trace_t *trace ) {
 		&& ent->e_ThinkFunc != thinkF_LimbThink )
 	{//not a saber, bouncing thermal or limb
 		//now you can damage the guy you came from
-		ent->owner = NULL;
+		ent->owner = nullptr;
 	}
 }
 
@@ -896,7 +896,7 @@ void G_ExplodeMissile( gentity_t *ent )
 	// splash damage
 	if ( ent->splashDamage )
 	{
-		G_RadiusDamage( ent->currentOrigin, ent->owner, ent->splashDamage, ent->splashRadius, NULL
+		G_RadiusDamage( ent->currentOrigin, ent->owner, ent->splashDamage, ent->splashRadius, nullptr
 			, ent->splashMethodOfDeath );
 	}
 
@@ -916,7 +916,7 @@ void G_RunStuckMissile( gentity_t *ent )
 			if ( (!VectorCompare( vec3_origin, other->s.pos.trDelta ) && other->s.pos.trType != TR_STATIONARY) ||
 				(!VectorCompare( vec3_origin, other->s.apos.trDelta ) && other->s.apos.trType != TR_STATIONARY) )
 			{//thing I stuck to is moving or rotating now, kill me
-				G_Damage( ent, other, other, NULL, NULL, 99999, 0, MOD_CRUSH );
+				G_Damage( ent, other, other, nullptr, nullptr, 99999, 0, MOD_CRUSH );
 				return;
 			}
 		}
@@ -1044,7 +1044,7 @@ void G_RollMissile( gentity_t *ent )
 	vec3_t		endClipVelocity;
 	pml_t		objPML;
 	float		bounceAmt = BUMPCLIP;
-	gentity_t	*hitEnt = NULL;
+	gentity_t	*hitEnt = nullptr;
 
 	memset( &objPML, 0, sizeof( objPML ) );
 
@@ -1299,7 +1299,7 @@ void G_RunMissile( gentity_t *ent )
 			scAngles[YAW] = ent->activator->currentAngles[YAW];
 			gi.G2API_GetBoltMatrix( ent->activator->ghoul2, ent->activator->playerModel, ent->activator->gutBolt,
 					&boltMatrix, scAngles, ent->activator->currentOrigin, (cg.time?cg.time:level.time),
-					NULL, ent->activator->s.modelScale );
+					nullptr, ent->activator->s.modelScale );
 			// Storing ent position, bolt position, and bolt axis
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, ent->currentOrigin );
 			G_SetOrigin( ent, ent->currentOrigin );
@@ -1333,7 +1333,7 @@ void G_RunMissile( gentity_t *ent )
 
 				ent->s.apos.trType = TR_INTERPOLATE;
 				VectorSet( ang, 0, ent->s.apos.trBase[1], 0 );
-				AngleVectors( ang, fwdDir, rtDir, NULL );
+				AngleVectors( ang, fwdDir, rtDir, nullptr );
 				speed = VectorLength( ent->s.pos.trDelta )*4;
 
 				//HMM, this works along an axis-aligned dir, but not along diagonals
@@ -1405,7 +1405,7 @@ void G_RunMissile( gentity_t *ent )
 			{
 				if (trHitLoc==HL_NONE)
 				{
-					G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &trHitLoc, coll.mCollisionPosition, NULL, NULL, ent->methodOfDeath );
+					G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &trHitLoc, coll.mCollisionPosition, nullptr, nullptr, ent->methodOfDeath );
 				}
 
 				break; // NOTE: the way this whole section was working, it would only get inside of this IF once anyway, might as well break out now

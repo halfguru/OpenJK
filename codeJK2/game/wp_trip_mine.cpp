@@ -58,7 +58,7 @@ void touchLaserTrap( gentity_t *ent, gentity_t *other, trace_t *trace )
 
 	// so we can trip it too
 	ent->activator = ent->owner;
-	ent->owner = NULL;
+	ent->owner = nullptr;
 
 	WP_Stick( ent, trace );
 
@@ -220,14 +220,14 @@ void CreateLaserTrap( gentity_t *laserTrap, vec3_t start, gentity_t *owner )
 static void WP_RemoveOldTraps( gentity_t *ent )
 //---------------------------------------------------------
 {
-	gentity_t	*found = NULL;
+	gentity_t	*found = nullptr;
 	int			trapcount = 0, i;
 	int			foundLaserTraps[MAX_GENTITIES] = {ENTITYNUM_NONE};
 	int			trapcount_org, lowestTimeStamp;
 	int			removeMe;
 
 	// see how many there are now
-	while (( found = G_Find( found, FOFS(classname), "tripmine" )) != NULL )
+	while (( found = G_Find( found, FOFS(classname), "tripmine" )) != nullptr )
 	{
 		if ( found->activator != ent ) // activator is really the owner?
 		{
@@ -237,7 +237,7 @@ static void WP_RemoveOldTraps( gentity_t *ent )
 	}
 
 	// now remove first ones we find until there are only 9 left
-	found = NULL;
+	found = nullptr;
 	trapcount_org = trapcount;
 	lowestTimeStamp = level.time;
 
@@ -260,7 +260,7 @@ static void WP_RemoveOldTraps( gentity_t *ent )
 		if ( removeMe != -1 )
 		{
 			//remove it... or blow it?
-			if ( &g_entities[foundLaserTraps[removeMe]] == NULL )
+			if ( &g_entities[foundLaserTraps[removeMe]] == nullptr )
 			{
 				break;
 			}

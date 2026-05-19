@@ -123,7 +123,7 @@ void Con_MessageMode3_f (void)
 {		//target chat
 	if (!cls.cgameStarted)
 	{
-		assert(!"null cgvm");
+		assert(!"nullptr cgvm");
 		return;
 	}
 
@@ -147,7 +147,7 @@ void Con_MessageMode4_f (void)
 {	//attacker
 	if (!cls.cgameStarted)
 	{
-		assert(!"null cgvm");
+		assert(!"nullptr cgvm");
 		return;
 	}
 
@@ -550,7 +550,7 @@ static void Con_Linefeed (qboolean skipnotify)
 
 	// print timestamp on the PREVIOUS line
 	{
-		time_t t = time( NULL );
+		time_t t = time( nullptr );
 		struct tm *tms = localtime( &t );
 		char	timestamp[CON_TIMESTAMP_LEN + 1];
 		const unsigned char color = ColorIndex(COLOR_GREY);
@@ -705,7 +705,7 @@ void Con_DrawInput (void) {
 		SCR_DrawSmallChar( 0, y, CON_SCROLL_L_CHAR );
 
 	int len = Q_PrintStrlen( g_consoleField.buffer );
-	int pos = Q_PrintStrLenTo( g_consoleField.buffer, g_consoleField.scroll, NULL );
+	int pos = Q_PrintStrLenTo( g_consoleField.buffer, g_consoleField.scroll, nullptr );
 	if ( pos + g_consoleField.widthInChars < len )
 		SCR_DrawSmallChar( cls.glconfig.vidWidth - con.charWidth, y, CON_SCROLL_R_CHAR );
 }
@@ -820,7 +820,7 @@ void Con_DrawNotify (void)
 		}
 	}
 
-	re->SetColor( NULL );
+	re->SetColor( nullptr );
 
 	if (Key_GetCatcher( ) & (KEYCATCH_UI | KEYCATCH_CGAME) ) {
 		return;
@@ -887,7 +887,7 @@ void Con_DrawSolidConsole( float frac ) {
 		}
 		else
 		{
-			re->SetColor(NULL);
+			re->SetColor(nullptr);
 		}
 		SCR_DrawPic( 0, 0, SCREEN_WIDTH, (float) y, cls.consoleShader );
 	}
@@ -997,7 +997,7 @@ void Con_DrawSolidConsole( float frac ) {
 		}
 	}
 
-	re->SetColor( NULL );
+	re->SetColor( nullptr );
 }
 
 

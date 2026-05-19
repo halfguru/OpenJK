@@ -118,7 +118,7 @@ void R_CalcMikkTSpaceBSPSurface(int numSurfaces, packedVertex_t *vertices, glInd
 	tangentSpaceInterface.m_getNormal = R_GetNormalBSPSurface;
 	tangentSpaceInterface.m_getTexCoord = R_GetBSPTexCoord;
 	tangentSpaceInterface.m_setTSpaceBasic = R_SetBSPTSpaceBasic;
-	tangentSpaceInterface.m_setTSpace = NULL;
+	tangentSpaceInterface.m_setTSpace = nullptr;
 
 	BspMeshData meshData;
 	meshData.numSurfaces = numSurfaces;
@@ -194,7 +194,7 @@ void R_CalcMikkTSpaceMD3Surface(int numSurfaces, mdvVertex_t *verts, uint32_t *t
 	tangentSpaceInterface.m_getNormal = R_GetNormalModelSurface;
 	tangentSpaceInterface.m_getTexCoord = R_GetModelTexCoord;
 	tangentSpaceInterface.m_setTSpaceBasic = R_SetModelTSpaceBasic;
-	tangentSpaceInterface.m_setTSpace = NULL;
+	tangentSpaceInterface.m_setTSpace = nullptr;
 
 	ModelMeshData meshData;
 	meshData.numSurfaces = numSurfaces;
@@ -274,7 +274,7 @@ void R_CalcMikkTSpaceGlmSurface(int numSurfaces, mdxmVertex_t *vertices, mdxmVer
 	tangentSpaceInterface.m_getNormal = R_GetNormalGlmSurface;
 	tangentSpaceInterface.m_getTexCoord = R_GetGlmTexCoord;
 	tangentSpaceInterface.m_setTSpaceBasic = R_SetGlmTSpaceBasic;
-	tangentSpaceInterface.m_setTSpace = NULL;
+	tangentSpaceInterface.m_setTSpace = nullptr;
 
 	GlmMeshData meshData;
 	meshData.numSurfaces = numSurfaces;

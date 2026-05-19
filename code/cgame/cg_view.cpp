@@ -172,7 +172,7 @@ void CG_TestModelSetAnglespre_f(void)
 	angles[0] = atof(CG_Argv(2));
 	angles[1] = atof(CG_Argv(3));
 	angles[2] = atof(CG_Argv(4));
-	gi.G2API_SetBoneAngles(&ghoul2[cg.testModel], CG_Argv(1), angles, BONE_ANGLES_PREMULT, POSITIVE_X, POSITIVE_Z, POSITIVE_Y, NULL, 0, 0);
+	gi.G2API_SetBoneAngles(&ghoul2[cg.testModel], CG_Argv(1), angles, BONE_ANGLES_PREMULT, POSITIVE_X, POSITIVE_Z, POSITIVE_Y, nullptr, 0, 0);
 }
 
 void CG_TestModelSetAnglespost_f(void)
@@ -188,7 +188,7 @@ void CG_TestModelSetAnglespost_f(void)
 	angles[0] = atof(CG_Argv(2));
 	angles[1] = atof(CG_Argv(3));
 	angles[2] = atof(CG_Argv(4));
-	gi.G2API_SetBoneAngles(&ghoul2[cg.testModel], CG_Argv(1), angles, BONE_ANGLES_POSTMULT, POSITIVE_X, POSITIVE_Z, POSITIVE_Y, NULL, 0, 0);
+	gi.G2API_SetBoneAngles(&ghoul2[cg.testModel], CG_Argv(1), angles, BONE_ANGLES_POSTMULT, POSITIVE_X, POSITIVE_Z, POSITIVE_Y, nullptr, 0, 0);
 }
 
 void CG_TestModelAnimate_f(void)
@@ -499,7 +499,7 @@ static void CG_ResetThirdPersonViewDamp(void)
 		cameraFocusAngles[PITCH] = -89.0;
 	}
 
-	AngleVectors(cameraFocusAngles, camerafwd, NULL, cameraup);
+	AngleVectors(cameraFocusAngles, camerafwd, nullptr, cameraup);
 
 	// Set the cameraIdealTarget
 	CG_CalcIdealThirdPersonViewTarget();
@@ -703,7 +703,7 @@ static void CG_UpdateThirdPersonCameraDamp(void)
 		{
 			centity_t *cent = &cg_entities[trace.entityNum];
 			gentity_t *gent = &g_entities[trace.entityNum];
-			if ( cent != NULL && gent != NULL )
+			if ( cent != nullptr && gent != nullptr )
 			{
 				if ( cent->currentState.pos.trType == TR_LINEAR || cent->currentState.pos.trType == TR_LINEAR_STOP )
 				{
@@ -813,7 +813,7 @@ static void CG_OffsetThirdPersonView( void )
 		vec3_t	org, viewDir;
 		VectorCopy( cg_entities[0].gent->client->renderInfo.eyePoint, org );
 		float blend = 1.0f - fabs(cg.refdefViewAngles[PITCH])/90.0f;
-		AngleVectors( cg.refdefViewAngles, viewDir, NULL, NULL );
+		AngleVectors( cg.refdefViewAngles, viewDir, nullptr, nullptr );
 		VectorMA( org, -8, viewDir, org );
 		VectorScale( org, 1.0f - blend, org );
 		VectorMA( org, blend, cg.refdef.vieworg, cg.refdef.vieworg );
@@ -838,7 +838,7 @@ static void CG_OffsetThirdPersonView( void )
 			cameraFocusAngles[PITCH] = -89.0;
 		}
 
-		AngleVectors(cameraFocusAngles, camerafwd, NULL, cameraup);
+		AngleVectors(cameraFocusAngles, camerafwd, nullptr, cameraup);
 
 		deltayaw = fabs(cameraFocusAngles[YAW] - cameraLastYaw);
 		if (deltayaw > 180.0f)
@@ -931,7 +931,7 @@ static void CG_OffsetThirdPersonView( void ) {
 	if ( focusAngles[PITCH] > 45 ) {
 		focusAngles[PITCH] = 45;		// don't go too far overhead
 	}
-	AngleVectors( focusAngles, forward, NULL, NULL );
+	AngleVectors( focusAngles, forward, nullptr, nullptr );
 
 	VectorMA( cg.refdef.vieworg, FOCUS_DISTANCE, forward, focusPoint );
 
@@ -1231,7 +1231,7 @@ static void CG_OffsetFirstPersonView( qboolean firstPersonSaber ) {
 		//add leaning offset
 		//FIXME: when crouching, this bounces up and down?!
 		cg.refdefViewAngles[2] += (float)cg.snap->ps.leanofs/2;
-		AngleVectors(cg.refdefViewAngles, NULL, right, NULL);
+		AngleVectors(cg.refdefViewAngles, nullptr, right, nullptr);
 		VectorMA(cg.refdef.vieworg, (float)cg.snap->ps.leanofs, right, cg.refdef.vieworg);
 	}
 
@@ -1242,7 +1242,7 @@ static void CG_OffsetFirstPersonView( qboolean firstPersonSaber ) {
 	vec3_t			forward, up;
 
 	cg.refdef.vieworg[2] -= NECK_LENGTH;
-	AngleVectors( cg.refdefViewAngles, forward, NULL, up );
+	AngleVectors( cg.refdefViewAngles, forward, nullptr, up );
 	VectorMA( cg.refdef.vieworg, 3, forward, cg.refdef.vieworg );
 	VectorMA( cg.refdef.vieworg, NECK_LENGTH, up, cg.refdef.vieworg );
 	}
@@ -1540,7 +1540,7 @@ void CG_SaberClashFlare( void )
 
 	trace_t tr;
 
-	CG_Trace( &tr, cg.refdef.vieworg, NULL, NULL, g_saberFlashPos, -1, CONTENTS_SOLID );
+	CG_Trace( &tr, cg.refdef.vieworg, nullptr, nullptr, g_saberFlashPos, -1, CONTENTS_SOLID );
 
 	if ( tr.fraction < 1.0f )
 	{
@@ -1684,7 +1684,7 @@ static qboolean CG_CalcViewValues( void ) {
 				vec3_t dir;
 				CG_OffsetFirstPersonView( qtrue );
 				cg.refdef.vieworg[2] += 32;
-				AngleVectors( cg.refdefViewAngles, dir, NULL, NULL );
+				AngleVectors( cg.refdefViewAngles, dir, nullptr, nullptr );
 				VectorMA( cg.refdef.vieworg, -2, dir, cg.refdef.vieworg );
 			}
 		}
@@ -1774,7 +1774,7 @@ static void CG_PowerupTimerSounds( void )
 //			switch( i )
 //			{
 //			case PW_WEAPON_OVERCHARGE:
-//				cgi_S_StartSound( NULL, cg.snap->ps.clientNum, CHAN_ITEM, cgs.media.overchargeEndSound );
+//				cgi_S_StartSound( nullptr, cg.snap->ps.clientNum, CHAN_ITEM, cgs.media.overchargeEndSound );
 //				break;
 //			}
 		}
@@ -2059,10 +2059,10 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView ) {
 		{
 			speed *= 0.25f;
 		}
-		Vehicle_t *pVeh = NULL;
+		Vehicle_t *pVeh = nullptr;
 
 		// Mouse turns slower.
-		if ( ( pVeh = G_IsRidingVehicle( &g_entities[0] ) ) != NULL )
+		if ( ( pVeh = G_IsRidingVehicle( &g_entities[0] ) ) != nullptr )
 		{
 			if ( pVeh->m_pVehicleInfo->mousePitch )
 			{

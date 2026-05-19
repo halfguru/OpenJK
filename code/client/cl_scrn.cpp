@@ -68,7 +68,7 @@ void SCR_FillRect( float x, float y, float width, float height, const float *col
 
 	re.DrawStretchPic( x, y, width, height, 0, 0, 0, 0, cls.whiteShader );
 
-	re.SetColor( NULL );
+	re.SetColor( nullptr );
 }
 
 
@@ -237,7 +237,7 @@ void SCR_DrawBigStringExt( int x, int y, const char *string, float *setColor, qb
 		xx += BIGCHAR_WIDTH;
 		s++;
 	}
-	re.SetColor( NULL );
+	re.SetColor( nullptr );
 }
 
 
@@ -287,7 +287,7 @@ void SCR_DrawSmallStringExt( int x, int y, const char *string, float *setColor, 
 		xx += con.charWidth;
 		s++;
 	}
-	re.SetColor( NULL );
+	re.SetColor( nullptr );
 }
 
 /*
@@ -366,7 +366,7 @@ void SCR_DrawDebugGraph (void)
 	re.SetColor( g_color_table[0] );
 	re.DrawStretchPic(x, y - cl_graphheight->integer,
 		w, cl_graphheight->integer, 0, 0, 0, 0, 0 );
-	re.SetColor( NULL );
+	re.SetColor( nullptr );
 
 	for (a=0 ; a<w ; a++)
 	{
@@ -429,7 +429,7 @@ void SCR_DrawScreenField( stereoFrame_t stereoFrame ) {
 			break;
 		case CA_DISCONNECTED:
 			// force menu up
-			UI_SetActiveMenu( "mainMenu", NULL );
+			UI_SetActiveMenu( "mainMenu", nullptr );
 			break;
 		case CA_CONNECTING:
 		case CA_CHALLENGING:
@@ -509,7 +509,7 @@ void SCR_UpdateScreen( void ) {
 		if ( com_speeds->integer ) {
 			re.EndFrame( &time_frontend, &time_backend );
 		} else {
-			re.EndFrame( NULL, NULL );
+			re.EndFrame( nullptr, nullptr );
 		}
 	}
 

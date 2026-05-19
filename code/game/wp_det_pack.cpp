@@ -48,7 +48,7 @@ void charge_stick( gentity_t *self, gentity_t *other, trace_t *trace )
 	VectorScale( self->maxs, -1, self->mins );
 
 	self->activator = self->owner;
-	self->owner = NULL;
+	self->owner = nullptr;
 
 	self->e_TouchFunc = touchF_NULL;
 	self->e_ThinkFunc = thinkF_NULL;
@@ -99,8 +99,8 @@ static void WP_DropDetPack( gentity_t *self, vec3_t start, vec3_t dir )
 	gi.G2API_InitGhoul2Model( missile->ghoul2, weaponData[WP_DET_PACK].missileMdl, G_ModelIndex( weaponData[WP_DET_PACK].missileMdl ),
 		NULL_HANDLE, NULL_HANDLE, 0, 0);
 
-	AddSoundEvent( NULL, missile->currentOrigin, 128, AEL_MINOR, qtrue );
-	AddSightEvent( NULL, missile->currentOrigin, 128, AEL_SUSPICIOUS, 10 );
+	AddSoundEvent( nullptr, missile->currentOrigin, 128, AEL_MINOR, qtrue );
+	AddSightEvent( nullptr, missile->currentOrigin, 128, AEL_SUSPICIOUS, 10 );
 }
 
 //---------------------------------------------------------
@@ -116,10 +116,10 @@ void WP_FireDetPack( gentity_t *ent, qboolean alt_fire )
 	{
 		if ( ent->client->ps.eFlags & EF_PLANTED_CHARGE )
 		{
-			gentity_t *found = NULL;
+			gentity_t *found = nullptr;
 
 			// loop through all ents and blow the crap out of them!
-			while (( found = G_Find( found, FOFS( classname ), "detpack" )) != NULL )
+			while (( found = G_Find( found, FOFS( classname ), "detpack" )) != nullptr )
 			{
 				if ( found->activator == ent )
 				{
@@ -129,8 +129,8 @@ void WP_FireDetPack( gentity_t *ent, qboolean alt_fire )
 					G_Sound( found, G_SoundIndex( "sound/weapons/detpack/warning.wav" ));
 
 					// would be nice if this actually worked?
-					AddSoundEvent( NULL, found->currentOrigin, found->splashRadius*2, AEL_DANGER, qfalse, qtrue );//FIXME: are we on ground or not?
-					AddSightEvent( NULL, found->currentOrigin, found->splashRadius*2, AEL_DISCOVERED, 100 );
+					AddSoundEvent( nullptr, found->currentOrigin, found->splashRadius*2, AEL_DANGER, qfalse, qtrue );//FIXME: are we on ground or not?
+					AddSightEvent( nullptr, found->currentOrigin, found->splashRadius*2, AEL_DISCOVERED, 100 );
 				}
 			}
 

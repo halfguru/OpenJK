@@ -264,7 +264,7 @@ void G_CopySaberItemValues( gentity_t *pickUpSaber, gentity_t *oldSaber )
 
 gentity_t *G_DropSaberItem( const char *saberType, saber_colors_t saberColor, vec3_t saberPos, vec3_t saberVel, vec3_t saberAngles, gentity_t *copySaber )
 {//turn it into a pick-uppable item!
-	gentity_t *newItem = NULL;
+	gentity_t *newItem = nullptr;
 	if ( saberType
 		&& saberType[0] )
 	{//have a valid string to use for saberType
@@ -369,7 +369,7 @@ qboolean Pickup_Saber( gentity_t *self, qboolean hadSaber, gentity_t *pickUpSabe
 					//to determine which one to replace, see which side of me it's on
 					VectorSubtract( pickUpSaber->currentOrigin, self->currentOrigin, dir2Saber );
 					dir2Saber[2] = 0;
-					AngleVectors( self->currentAngles, NULL, rightDir, NULL );
+					AngleVectors( self->currentAngles, nullptr, rightDir, nullptr );
 					rightDir[2] = 0;
 					if ( DotProduct( rightDir, dir2Saber ) > 0 )
 					{
@@ -425,7 +425,7 @@ qboolean Pickup_Saber( gentity_t *self, qboolean hadSaber, gentity_t *pickUpSabe
 			{
 				self->client->ps.saberStylesKnown |= self->client->ps.saber[saberNum].singleBladeStyle;
 			}
-			if ( pickUpSaber->NPC_targetname != NULL )
+			if ( pickUpSaber->NPC_targetname != nullptr )
 			{//NPC_targetname = saberColor
 				saber_colors_t saber_color = TranslateSaberColor( pickUpSaber->NPC_targetname );
 				for ( int bladeNum = 0; bladeNum < MAX_BLADES; bladeNum++ )
@@ -479,7 +479,7 @@ int Pickup_Weapon (gentity_t *ent, gentity_t *other)
 	}
 	other->client->ps.stats[STAT_WEAPONS] |= ( 1 << ent->item->giTag );
 
-	if ( ent->item->giTag == WP_SABER && (!hadWeapon || ent->NPC_type != NULL) )
+	if ( ent->item->giTag == WP_SABER && (!hadWeapon || ent->NPC_type != nullptr) )
 	{//didn't have a saber or it is specifying a certain kind of saber to use
 		if ( !Pickup_Saber( other, hadWeapon, ent ) )
 		{
@@ -767,7 +767,7 @@ void Touch_Item (gentity_t *ent, gentity_t *other, trace_t *trace) {
 	{
 		if ( other->NPC && other->NPC->goalEntity && other->NPC->goalEntity == ent )
 		{//they were running to pick me up, they did, so clear goal
-			other->NPC->goalEntity	= NULL;
+			other->NPC->goalEntity	= nullptr;
 			other->NPC->squadState	= SQUAD_STAND_AND_SHOOT;
  			NPCInfo->tempBehavior	= BS_DEFAULT;
 			TIMER_Set(other, "flee", -1);
@@ -877,7 +877,7 @@ void Touch_Item (gentity_t *ent, gentity_t *other, trace_t *trace) {
 	{//SIGH... with timescale on, you lose events left and right
 extern void CG_ItemPickup( int itemNum, qboolean bHadItem );
 		// but we're SP so we'll cheat
-		cgi_S_StartSound( NULL, other->s.number, CHAN_AUTO,	cgi_S_RegisterSound( ent->item->pickup_sound ) );
+		cgi_S_StartSound( nullptr, other->s.number, CHAN_AUTO,	cgi_S_RegisterSound( ent->item->pickup_sound ) );
 		// show icon and name on status bar
 		CG_ItemPickup( ent->s.modelindex, bHadWeapon );
 	}
@@ -1020,7 +1020,7 @@ Spawns an item and tosses it forward
 ================
 */
 gentity_t *Drop_Item( gentity_t *ent, gitem_t *item, float angle, qboolean copytarget ) {
-	gentity_t	*dropped = NULL;
+	gentity_t	*dropped = nullptr;
 	vec3_t	velocity;
 	vec3_t	angles;
 
@@ -1028,7 +1028,7 @@ gentity_t *Drop_Item( gentity_t *ent, gitem_t *item, float angle, qboolean copyt
 	angles[YAW] += angle;
 	angles[PITCH] = 0;	// always forward
 
-	AngleVectors( angles, velocity, NULL, NULL );
+	AngleVectors( angles, velocity, nullptr, nullptr );
 	VectorScale( velocity, 150, velocity );
 	velocity[2] += 200 + Q_flrand(-1.0f, 1.0f) * 50;
 
@@ -1038,7 +1038,7 @@ gentity_t *Drop_Item( gentity_t *ent, gitem_t *item, float angle, qboolean copyt
 	}
 	else
 	{
-		dropped = LaunchItem( item, ent->s.pos.trBase, velocity, NULL );
+		dropped = LaunchItem( item, ent->s.pos.trBase, velocity, nullptr );
 	}
 
 	dropped->activator = ent;//so we know who we belonged to so they can pick it back up later
@@ -1065,7 +1065,7 @@ void Use_Item( gentity_t *ent, gentity_t *other, gentity_t *activator )
 				return;
 			}
 		}
-		GEntity_TouchFunc( ent, other, NULL );
+		GEntity_TouchFunc( ent, other, nullptr );
 	}
 	else
 	{//use me
@@ -1145,7 +1145,7 @@ void FinishSpawningItem( gentity_t *ent ) {
 			&& g_saber->string
 			&& g_saber->string[0]
 			&& Q_stricmp( "none", g_saber->string )
-			&& Q_stricmp( "NULL", g_saber->string ) )
+			&& Q_stricmp( "nullptr", g_saber->string ) )
 		{//player's saber
 			WP_SaberParseParms( g_saber->string, &itemSaber );
 		}
@@ -1288,7 +1288,7 @@ The item will be added to the precache list
 */
 void RegisterItem( gitem_t *item ) {
 	if ( !item ) {
-		G_Error( "RegisterItem: NULL" );
+		G_Error( "RegisterItem: nullptr" );
 	}
 	itemRegistered[ item - bg_itemlist ] = '1';
 	gi.SetConfigstring(CS_ITEMS, itemRegistered);	//Write the needed items to a config string
@@ -1394,7 +1394,7 @@ void G_SpawnItem (gentity_t *ent, gitem_t *item) {
 			ent->count = 1;
 		}
 	}
-	ent->team = NULL;
+	ent->team = nullptr;
 }
 
 
@@ -1430,7 +1430,7 @@ void G_BounceItem( gentity_t *ent, trace_t *trace ) {
 	if ( droppedSaber )
 	{//a dropped saber item
 		//FIXME: use NPC_type (as saberType) to get proper bounce sound?
-		WP_SaberFallSound( NULL, ent );
+		WP_SaberFallSound( nullptr, ent );
 	}
 
 	// check for stop

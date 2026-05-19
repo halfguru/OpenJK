@@ -281,7 +281,7 @@ static void ProcessOrientCommands( Vehicle_t *pVeh )
 	playerState_t *parentPS, *riderPS;
 
 #ifdef _JK2MP
-	bgEntity_t *rider = NULL;
+	bgEntity_t *rider = nullptr;
 	if (parent->s.owner != ENTITYNUM_NONE)
 	{
 		rider = PM_BGEntForNum(parent->s.owner); //&g_entities[parent->r.ownerNum];

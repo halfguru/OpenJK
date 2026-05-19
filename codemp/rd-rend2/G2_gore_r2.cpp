@@ -37,11 +37,11 @@ R2GoreTextureCoordinates::~R2GoreTextureCoordinates()
 		if ( tex[i] )
 		{
 			ri.Z_Free(tex[i]->verts);
-			tex[i]->verts = NULL;
+			tex[i]->verts = nullptr;
 			ri.Z_Free(tex[i]->indexes);
-			tex[i]->indexes = NULL;
+			tex[i]->indexes = nullptr;
 			ri.Z_Free(tex[i]);
-			tex[i] = NULL;
+			tex[i] = nullptr;
 		}
 	}
 }

@@ -52,7 +52,7 @@ void NPC_SaberDroid_PlayConfusionSound( gentity_t *self )
 	self->NPC->tempBehavior = BS_DEFAULT;
 
 	//self->NPC->behaviorState = BS_PATROL;
-	G_ClearEnemy( self );//FIXME: or just self->enemy = NULL;?
+	G_ClearEnemy( self );//FIXME: or just self->enemy = nullptr;?
 
 	self->NPC->investigateCount = 0;
 }
@@ -313,7 +313,7 @@ void NPC_BSSaberDroid_Attack( void )
 	//If we don't have an enemy, just idle
 	if ( NPC_CheckEnemyExt() == qfalse )//!NPC->enemy )//
 	{
-		NPC->enemy = NULL;
+		NPC->enemy = nullptr;
 		NPC_BSSaberDroid_Patrol();//FIXME: or patrol?
 		return;
 	}

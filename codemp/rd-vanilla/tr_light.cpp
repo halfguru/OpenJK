@@ -420,7 +420,7 @@ int R_LightForPoint( vec3_t point, vec3_t ambientLight, vec3_t directedLight, ve
 {
 	trRefEntity_t ent;
 
-	if ( tr.world->lightGridData == NULL )
+	if ( tr.world->lightGridData == nullptr )
 		return qfalse;
 
 	memset(&ent, 0, sizeof(ent));

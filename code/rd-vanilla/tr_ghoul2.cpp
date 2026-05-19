@@ -517,7 +517,7 @@ char *G2_GetBoneNameFromSkel(CGhoul2Info &ghoul2, int boneNum)
 {
 	if (!ghoul2.mBoneCache)
 	{
-		return NULL;
+		return nullptr;
 	}
 	CBoneCache &boneCache=*ghoul2.mBoneCache;
 	assert(boneCache.mod);
@@ -2634,14 +2634,14 @@ void R_AddGhoulSurfaces( trRefEntity_t *ent ) {
 			//
 			// figure out whether we should be using a custom shader for this model
 			//
-			skin = NULL;
+			skin = nullptr;
 			if (ent->e.customShader)
 			{
 				cust_shader = R_GetShaderByHandle(ent->e.customShader );
 			}
 			else
 			{
-				cust_shader = NULL;
+				cust_shader = nullptr;
 				// figure out the custom skin thing
 				if (ent->e.customSkin)
 				{
@@ -3630,7 +3630,7 @@ qboolean R_LoadMDXM( model_t *mod, void *buffer, const char *mod_name, qboolean 
 
 	char	animGLAName[MAX_QPATH];
 	char	*strippedName;
-	char	*slash = NULL;
+	char	*slash = nullptr;
 	const char*mapname = sv_mapname->string;
 
 	if (strcmp(mapname,"nomap") )

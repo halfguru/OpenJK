@@ -45,7 +45,7 @@ int G_GetHitLocFromTrace( trace_t *trace, int mod )
 		CCollisionRecord &coll = trace->G2CollisionMap[i];
 		if ( (coll.mFlags & G2_FRONTFACE) )
 		{
-			G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &hitLoc, coll.mCollisionPosition, NULL, NULL, mod );
+			G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &hitLoc, coll.mCollisionPosition, nullptr, nullptr, mod );
 			//we only want the first "entrance wound", so break
 			break;
 		}
@@ -61,7 +61,7 @@ static void WP_DisruptorMainFire( gentity_t *ent )
 	qboolean	render_impact = qtrue;
 	vec3_t		start, end, spot;
 	trace_t		tr;
-	gentity_t	*traceEnt = NULL, *tent;
+	gentity_t	*traceEnt = nullptr, *tent;
 	float		dist, shotDist, shotRange = 8192;
 
 	if ( ent->NPC )
@@ -96,7 +96,7 @@ static void WP_DisruptorMainFire( gentity_t *ent )
 	int traces = 0;
 	while ( traces < 10 )
 	{//need to loop this in case we hit a Jedi who dodges the shot
-		gi.trace( &tr, start, NULL, NULL, end, ignore, MASK_SHOT, G2_RETURNONHIT, 0 );
+		gi.trace( &tr, start, nullptr, nullptr, end, ignore, MASK_SHOT, G2_RETURNONHIT, 0 );
 
 		traceEnt = &g_entities[tr.entityNum];
 		if ( traceEnt && traceEnt->s.weapon == WP_SABER )//&& traceEnt->NPC
@@ -201,7 +201,7 @@ void WP_DisruptorAltFire( gentity_t *ent )
 	else
 	{
 		VectorCopy( ent->client->renderInfo.eyePoint, start );
-		AngleVectors( ent->client->renderInfo.eyeAngles, wpFwd, NULL, NULL );
+		AngleVectors( ent->client->renderInfo.eyeAngles, wpFwd, nullptr, nullptr );
 
 		// don't let NPC's do charging
 		int count = ( level.time - ent->client->ps.weaponChargeTime - 50 ) / DISRUPTOR_CHARGE_UNIT;
@@ -244,7 +244,7 @@ void WP_DisruptorAltFire( gentity_t *ent )
 
 		//NOTE: if you want to be able to hit guys in emplaced guns, use "G2_COLLIDE, 10" instead of "G2_RETURNONHIT, 0"
 		//alternately, if you end up hitting an emplaced_gun that has a sitter, just redo this one trace with the "G2_COLLIDE, 10" to see if we it the sitter
-		gi.trace( &tr, start, NULL, NULL, end, skip, MASK_SHOT, G2_COLLIDE, 10 );//G2_RETURNONHIT, 0 );
+		gi.trace( &tr, start, nullptr, nullptr, end, skip, MASK_SHOT, G2_COLLIDE, 10 );//G2_RETURNONHIT, 0 );
 
 		if ( tr.surfaceFlags & SURF_NOIMPACT )
 		{

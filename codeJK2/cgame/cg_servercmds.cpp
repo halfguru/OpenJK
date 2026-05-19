@@ -285,7 +285,7 @@ Cmd_Argc() / Cmd_Argv()
 */
 static void CG_ServerCommand( void ) {
 	const char		*cmd = CG_Argv( 0 );
-	serverCommand_t	*command = NULL;
+	serverCommand_t	*command = nullptr;
 
 	if ( !cmd[0] ) {
 		// server claimed the command

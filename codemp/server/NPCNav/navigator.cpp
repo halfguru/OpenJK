@@ -105,7 +105,7 @@ CNode::CNode( void )
 {
 	m_numEdges		= 0;
 	m_radius		= 0;
-	m_ranks			= NULL;
+	m_ranks			= nullptr;
 }
 
 CNode::~CNode( void )
@@ -351,10 +351,10 @@ InitRanks
 void CNode::InitRanks( int size )
 {
 	//Clear it if it's already allocated
-	if ( m_ranks != NULL )
+	if ( m_ranks != nullptr )
 	{
 		delete [] m_ranks;
-		m_ranks = NULL;
+		m_ranks = nullptr;
 	}
 
 	m_ranks = new int[size];
@@ -721,7 +721,7 @@ int CNavigator::AddRawPoint( vec3_t point, int flags, int radius )
 {
 	CNode	*node	= CNode::Create( point, flags, radius, m_nodes.size() );
 
-	if ( node == NULL )
+	if ( node == nullptr )
 	{
 		Com_Error( ERR_DROP, "Error adding node!\n" );
 		return -1;
@@ -1652,7 +1652,7 @@ void CNavigator::ShowPath( int start, int end )
 	CNode	*endNode	= m_nodes[ end ];
 
 	CNode	*moveNode = startNode;
-	CNode	*testNode = NULL;
+	CNode	*testNode = nullptr;
 
 	int		bestNode;
 	vec3_t	startPos, endPos;
@@ -2077,7 +2077,7 @@ qboolean CNavigator::CheckFailedEdge( failedEdge_t *failedEdge )
 		{
 			vec3_t		start, end, mins, maxs;
 			int			ignore, clipmask;
-			sharedEntity_t	*ent = SV_GentityNum(failedEdge->entID); //(failedEdge->entID<ENTITYNUM_WORLD)?&g_entities[failedEdge->entID]:NULL;
+			sharedEntity_t	*ent = SV_GentityNum(failedEdge->entID); //(failedEdge->entID<ENTITYNUM_WORLD)?&g_entities[failedEdge->entID]:nullptr;
 			int			hitEntNum;
 
 			if ( !ent || /*!ent->inuse || !ent->client || ent->health <= 0*/ (ent->s.eType != ET_PLAYER && ent->s.eType != ET_NPC) ||

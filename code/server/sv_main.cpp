@@ -117,7 +117,7 @@ SV_SendServerCommand
 
 Sends a reliable command string to be interpreted by
 the client game module: "cp", "print", "chat", etc
-A NULL client will broadcast to all clients
+A nullptr client will broadcast to all clients
 =================
 */
 void SV_SendServerCommand(client_t *cl, const char *fmt, ...) {
@@ -140,7 +140,7 @@ void SV_SendServerCommand(client_t *cl, const char *fmt, ...) {
 		return;
 	}
 
-	if ( cl != NULL ) {
+	if ( cl != nullptr ) {
 		SV_AddServerCommand( cl, (char *)message );
 		return;
 	}

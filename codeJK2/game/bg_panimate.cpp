@@ -1065,7 +1065,7 @@ qboolean PM_CheckEnemyInBack( float backCheckDist )
 	trace_t	trace;
 	vec3_t end, fwd, fwdAngles = {0,pm->ps->viewangles[YAW],0};
 
-	AngleVectors( fwdAngles, fwd, NULL, NULL );
+	AngleVectors( fwdAngles, fwd, nullptr, nullptr );
 	VectorMA( pm->ps->origin, -backCheckDist, fwd, end );
 
 	pm->trace( &trace, pm->ps->origin, vec3_origin, vec3_origin, end, pm->ps->clientNum, CONTENTS_SOLID|CONTENTS_BODY, G2_NOCOLLIDE, 0 );
@@ -1324,7 +1324,7 @@ int PM_SaberLungeAttackMove( void )
 	VectorCopy( pm->ps->viewangles, fwdAngles );
 	fwdAngles[PITCH] = fwdAngles[ROLL] = 0;
 	//do the lunge
-	AngleVectors( fwdAngles, jumpFwd, NULL, NULL );
+	AngleVectors( fwdAngles, jumpFwd, nullptr, nullptr );
 	VectorScale( jumpFwd, 150, pm->ps->velocity );
 	pm->ps->velocity[2] = 50;
 	PM_AddEvent( EV_JUMP );
@@ -1338,7 +1338,7 @@ int PM_SaberJumpAttackMove( void )
 
 	VectorCopy( pm->ps->viewangles, fwdAngles );
 	fwdAngles[PITCH] = fwdAngles[ROLL] = 0;
-	AngleVectors( fwdAngles, jumpFwd, NULL, NULL );
+	AngleVectors( fwdAngles, jumpFwd, nullptr, nullptr );
 	VectorScale( jumpFwd, 200, pm->ps->velocity );
 	pm->ps->velocity[2] = 180;
 	pm->ps->forceJumpZStart = pm->ps->origin[2];//so we don't take damage if we land at same height
@@ -1360,7 +1360,7 @@ int PM_SaberFlipOverAttackMove( void )
 
 	VectorCopy( pm->ps->viewangles, fwdAngles );
 	fwdAngles[PITCH] = fwdAngles[ROLL] = 0;
-	AngleVectors( fwdAngles, jumpFwd, NULL, NULL );
+	AngleVectors( fwdAngles, jumpFwd, nullptr, nullptr );
 	VectorScale( jumpFwd, 150, pm->ps->velocity );
 	pm->ps->velocity[2] = 250;
 	//250 is normalized for a standing enemy at your z level, about 64 tall... adjust for actual maxs[2]-mins[2] of enemy and for zdiff in origins
@@ -1526,7 +1526,7 @@ int PM_SaberAttackForMovement( int forwardmove, int rightmove, int move )
 				if ( pm->gent && pm->gent->enemy )
 				{//FIXME: or just trace for a valid enemy standing behind me?  And no enemy in front?
 					vec3_t enemyDir, faceFwd, facingAngles = {0, pm->ps->viewangles[YAW], 0};
-					AngleVectors( facingAngles, faceFwd, NULL, NULL );
+					AngleVectors( facingAngles, faceFwd, nullptr, nullptr );
 					VectorSubtract( pm->gent->enemy->currentOrigin, pm->ps->origin, enemyDir );
 					float dot = DotProduct( enemyDir, faceFwd );
 					if ( dot < 0 )
@@ -1847,7 +1847,7 @@ Returns animNumber for current frame
 int PM_LegsAnimForFrame( gentity_t *ent, int legsFrame )
 {
 	//Must be a valid client
-	if ( ent->client == NULL )
+	if ( ent->client == nullptr )
 		return -1;
 
 	//Must have a file index entry
@@ -1925,7 +1925,7 @@ Returns animNumber for current frame
 int PM_TorsoAnimForFrame( gentity_t *ent, int torsoFrame )
 {
 	//Must be a valid client
-	if ( ent->client == NULL )
+	if ( ent->client == nullptr )
 		return -1;
 
 	//Must have a file index entry
@@ -1964,7 +1964,7 @@ qboolean PM_FinishedCurrentLegsAnim( gentity_t *self )
 		return qtrue;
 	}
 
-	gi.G2API_GetBoneAnimIndex( &self->ghoul2[self->playerModel], self->rootBone, (cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &animSpeed, NULL );
+	gi.G2API_GetBoneAnimIndex( &self->ghoul2[self->playerModel], self->rootBone, (cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &animSpeed, nullptr );
 	curFrame = floor( currentFrame );
 
 	int				legsAnim	= self->client->ps.legsAnim;
@@ -1987,7 +1987,7 @@ PM_HasAnimation
 qboolean PM_HasAnimation( gentity_t *ent, int animation )
 {
 	//Must be a valid client
-	if ( !ent || ent->client == NULL )
+	if ( !ent || ent->client == nullptr )
 		return qfalse;
 
 	//must be a valid anim number
@@ -2259,7 +2259,7 @@ void PM_SetAnimFinal(int *torsoAnim,int *legsAnim,
 		{
 			if ( g_ICARUSDebug->integer >= 3  )
 			{
-				//gi.Printf(S_COLOR_RED"SET_ANIM_UPPER ERROR: anim %s does not exist in this model (%s)!\n", animTable[anim].name, ((gent!=NULL&&gent->client!=NULL) ? gent->client->renderInfo.torsoModelName : "unknown") );
+				//gi.Printf(S_COLOR_RED"SET_ANIM_UPPER ERROR: anim %s does not exist in this model (%s)!\n", animTable[anim].name, ((gent!=nullptr&&gent->client!=nullptr) ? gent->client->renderInfo.torsoModelName : "unknown") );
 			}
 			goto setAnimLegs;
 		}
@@ -2271,7 +2271,7 @@ void PM_SetAnimFinal(int *torsoAnim,int *legsAnim,
 		{//see if we need to tell ghoul2 to play it again because of a animSpeed change
 			int		blah;
 			float	junk;
-			if (!gi.G2API_GetBoneAnimIndex( &gent->ghoul2[gent->playerModel], gent->lowerLumbarBone, actualTime, &junk, &blah, &blah, &blah, &oldAnimSpeed, NULL ))
+			if (!gi.G2API_GetBoneAnimIndex( &gent->ghoul2[gent->playerModel], gent->lowerLumbarBone, actualTime, &junk, &blah, &blah, &blah, &oldAnimSpeed, nullptr ))
 			{
 				animSpeed = oldAnimSpeed;
 			}
@@ -2340,7 +2340,7 @@ void PM_SetAnimFinal(int *torsoAnim,int *legsAnim,
 					int		flags;
 					qboolean animatingLegs = gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel],
 										gent->rootBone, actualTime, &currentFrame,
-										&startFrame, &endFrame, &flags, &legAnimSpeed, NULL );
+										&startFrame, &endFrame, &flags, &legAnimSpeed, nullptr );
 					if ( g_synchSplitAnims->integer
 						&& !(setAnimFlags & SETANIM_FLAG_RESTART)
 						&& animatingLegs
@@ -2507,7 +2507,7 @@ setAnimLegs:
 		{
 			if ( g_ICARUSDebug->integer >= 3 )
 			{
-				//gi.Printf(S_COLOR_RED"SET_ANIM_LOWER ERROR: anim %s does not exist in this model (%s)!\n", animTable[anim].name, ((gent!=NULL&&gent->client!=NULL) ? gent->client->renderInfo.legsModelName : "unknown") );
+				//gi.Printf(S_COLOR_RED"SET_ANIM_LOWER ERROR: anim %s does not exist in this model (%s)!\n", animTable[anim].name, ((gent!=nullptr&&gent->client!=nullptr) ? gent->client->renderInfo.legsModelName : "unknown") );
 			}
 			goto setAnimDone;
 		}
@@ -2519,7 +2519,7 @@ setAnimLegs:
 		{//see if we need to tell ghoul2 to play it again because of a animSpeed change
 			int		blah;
 			float	junk;
-			if (!gi.G2API_GetBoneAnimIndex( &gent->ghoul2[gent->playerModel], gent->rootBone, actualTime, &junk, &blah, &blah, &blah, &oldAnimSpeed, NULL ))
+			if (!gi.G2API_GetBoneAnimIndex( &gent->ghoul2[gent->playerModel], gent->rootBone, actualTime, &junk, &blah, &blah, &blah, &oldAnimSpeed, nullptr ))
 			{
 				animSpeed = oldAnimSpeed;
 			}
@@ -2589,7 +2589,7 @@ setAnimLegs:
 				//qboolean animatingTorso =  gi.G2API_GetAnimRangeIndex(&gent->ghoul2[gent->playerModel], gent->lowerLumbarBone, &startFrame, &endFrame);
 				float	currentFrame, torsoAnimSpeed;
 				int		flags;
-				qboolean animatingTorso = gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel], gent->lowerLumbarBone,actualTime, &currentFrame, &startFrame, &endFrame, &flags, &torsoAnimSpeed, NULL);
+				qboolean animatingTorso = gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel], gent->lowerLumbarBone,actualTime, &currentFrame, &startFrame, &endFrame, &flags, &torsoAnimSpeed, nullptr);
 				if ( g_synchSplitAnims->integer
 					&& !(setAnimFlags & SETANIM_FLAG_RESTART)
 					&& animatingTorso
@@ -2637,7 +2637,7 @@ setAnimLegs:
 					int		flags;
 					qboolean animatingLegs = gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel],
 										gent->rootBone, actualTime, &currentFrame,
-										&startFrame, &endFrame, &flags, &legAnimSpeed, NULL );
+										&startFrame, &endFrame, &flags, &legAnimSpeed, nullptr );
 					// lets see if a) we are already animating and b) we aren't going to do the same animation again
 					if (animatingLegs
 						&& ( (legAnimSpeed!=animSpeed) || (firstFrame != startFrame) || (lastFrame != endFrame) ) )
@@ -2722,7 +2722,7 @@ void PM_SetAnim(pmove_t	*pm,int setAnimParts,int anim,int setAnimFlags, int blen
 		return;
 	}
 
-	if ( pm->gent == NULL )
+	if ( pm->gent == nullptr )
 	{
 		return;
 	}
@@ -2942,7 +2942,7 @@ void PM_TorsoAnimLightsaber()
 				}
 				if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 				{//
-					if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+					if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 					{//fell to the ground and we're not trying to pull it back
 						saberInAir = qfalse;
 					}
@@ -3025,7 +3025,7 @@ void PM_TorsoAnimation( void )
 		return;
 	}
 
-	if(pm->gent != NULL && pm->gent->client)
+	if(pm->gent != nullptr && pm->gent->client)
 	{
 		pm->gent->client->renderInfo.torsoFpsMod = 1.0f;
 	}
@@ -3080,7 +3080,7 @@ void PM_TorsoAnimation( void )
 			}
 			if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 			{//
-				if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+				if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 				{//fell to the ground and we're not trying to pull it back
 					saberInAir = qfalse;
 				}
@@ -3223,7 +3223,7 @@ void PM_TorsoAnimation( void )
 					PM_SetAnim( pm, SETANIM_TORSO, BOTH_BUTTON_RELEASE, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 				}//else still holding, leave it as it is
 			}
-			else if ( pm->gent != NULL
+			else if ( pm->gent != nullptr
 				&& pm->gent->s.number == 0
 				&& pm->ps->weaponstate != WEAPON_CHARGING
 				&& pm->ps->weaponstate != WEAPON_CHARGING_ALT )

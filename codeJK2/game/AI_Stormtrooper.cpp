@@ -320,7 +320,7 @@ static void ST_HoldPosition( void )
 	if ( !Q3_TaskIDPending( NPC, TID_MOVE_NAV ) )
 	{//don't have a script waiting for me to get to my point, okay to stop trying and stand
 		AI_GroupUpdateSquadstates( NPCInfo->group, NPC, SQUAD_STAND_AND_SHOOT );
-		NPCInfo->goalEntity = NULL;
+		NPCInfo->goalEntity = nullptr;
 	}
 
 	/*if ( TIMER_Done( NPC, "stand" ) )
@@ -389,7 +389,7 @@ static qboolean ST_Move( void )
 	{//FIXME: if we're going to a combat point, need to pick a different one
 		if ( !Q3_TaskIDPending( NPC, TID_MOVE_NAV ) )
 		{//can't transfer movegoal or stop when a script we're running is waiting to complete
-			if ( info.blocker && info.blocker->NPC && NPCInfo->group != NULL && info.blocker->NPC->group == NPCInfo->group )//(NPCInfo->aiFlags&NPCAI_BLOCKED) && NPCInfo->group != NULL )
+			if ( info.blocker && info.blocker->NPC && NPCInfo->group != nullptr && info.blocker->NPC->group == NPCInfo->group )//(NPCInfo->aiFlags&NPCAI_BLOCKED) && NPCInfo->group != nullptr )
 			{//dammit, something is in our way
 				//see if it's one of ours
 				for ( int j = 0; j < NPCInfo->group->numGroup; j++ )
@@ -503,7 +503,7 @@ qboolean NPC_CheckEnemyStealth( gentity_t *target )
 	float		target_dist, minDist = 40;//any closer than 40 and we definitely notice
 
 	//In case we aquired one some other way
-	if ( NPC->enemy != NULL )
+	if ( NPC->enemy != nullptr )
 		return qtrue;
 
 	//Ignore notarget
@@ -924,7 +924,7 @@ static void ST_OffsetLook( float offset, vec3_t out )
 
 	GetAnglesForDirection( NPC->currentOrigin, NPCInfo->investigateGoal, angles );
 	angles[YAW] += offset;
-	AngleVectors( angles, forward, NULL, NULL );
+	AngleVectors( angles, forward, nullptr, nullptr );
 	VectorMA( NPC->currentOrigin, 64, forward, out );
 
 	CalcEntitySpot( NPC, SPOT_HEAD, temp );
@@ -1033,7 +1033,7 @@ void NPC_BSST_Investigate( void )
 	//FIXME: else, look for new alerts
 
 	//See if we're searching for the noise's origin
-	if ( NPCInfo->localState == LSTATE_INVESTIGATE && (NPCInfo->goalEntity!=NULL) )
+	if ( NPCInfo->localState == LSTATE_INVESTIGATE && (NPCInfo->goalEntity!=nullptr) )
 	{
 		//See if we're there
 		if ( NAV_HitNavGoal( NPC->currentOrigin, NPC->mins, NPC->maxs, NPCInfo->goalEntity->currentOrigin, 32, FlyingCreature( NPC ) ) == qfalse )
@@ -1309,7 +1309,7 @@ static void ST_CheckMoveState( void )
 	}
 
 	//See if we're moving towards a goal, not the enemy
-	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != NULL ) )
+	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != nullptr ) )
 	{
 		//Did we make it?
 		if ( NAV_HitNavGoal( NPC->currentOrigin, NPC->mins, NPC->maxs, NPCInfo->goalEntity->currentOrigin, 16, FlyingCreature( NPC ) ) ||
@@ -1440,7 +1440,7 @@ static void ST_CheckFireState( void )
 					trace_t tr;
 					//vec3_t	mins = {-2,-2,-2}, maxs = {2,2,2};
 					vec3_t	forward, end;
-					AngleVectors( NPC->client->ps.viewangles, forward, NULL, NULL );
+					AngleVectors( NPC->client->ps.viewangles, forward, nullptr, nullptr );
 					VectorMA( muzzle, 8192, forward, end );
 					gi.trace( &tr, muzzle, vec3_origin, vec3_origin, end, NPC->s.number, MASK_SHOT, G2_NOCOLLIDE, 0 );
 					VectorCopy( tr.endpos, impactPos );
@@ -1727,7 +1727,7 @@ void ST_Commander( void )
 
 	group->processed = qtrue;
 
-	if ( group->enemy == NULL || group->enemy->client == NULL )
+	if ( group->enemy == nullptr || group->enemy->client == nullptr )
 	{//hmm, no enemy...?!
 		return;
 	}
@@ -1772,7 +1772,7 @@ void ST_Commander( void )
 				NPC_BSSearchStart( group->enemy->waypoint, BS_SEARCH );
 			}
 		}
-		group->enemy = NULL;
+		group->enemy = nullptr;
 		RestoreNPCGlobals();
 		return;
 	}
@@ -1909,7 +1909,7 @@ void ST_Commander( void )
 		{//not already retreating
 			if ( NPC->client->ps.weapon == WP_NONE )
 			{//weaponless, should be hiding
-				if ( NPCInfo->goalEntity == NULL || NPCInfo->goalEntity->enemy == NULL || NPCInfo->goalEntity->enemy->s.eType != ET_ITEM )
+				if ( NPCInfo->goalEntity == nullptr || NPCInfo->goalEntity->enemy == nullptr || NPCInfo->goalEntity->enemy->s.eType != ET_ITEM )
 				{//not running after a pickup
 					if ( TIMER_Done( NPC, "hideTime" ) || (DistanceSquared( group->enemy->currentOrigin, NPC->currentOrigin ) < 65536 && NPC_ClearLOS( NPC->enemy )) )
 					{//done hiding or enemy near and can see us
@@ -2409,7 +2409,7 @@ void NPC_BSST_Attack( void )
 	//If we don't have an enemy, just idle
 	if ( NPC_CheckEnemyExt() == qfalse )//!NPC->enemy )//
 	{
-		NPC->enemy = NULL;
+		NPC->enemy = nullptr;
 		if( NPC->client->playerTeam == TEAM_PLAYER )
 		{
 			NPC_BSPatrol();
@@ -2482,7 +2482,7 @@ void NPC_BSST_Attack( void )
 	vec3_t	enemyDir, shootDir;
 	VectorSubtract( NPC->enemy->currentOrigin, NPC->currentOrigin, enemyDir );
 	VectorNormalize( enemyDir );
-	AngleVectors( NPC->client->ps.viewangles, shootDir, NULL, NULL );
+	AngleVectors( NPC->client->ps.viewangles, shootDir, nullptr, nullptr );
 	float dot = DotProduct( enemyDir, shootDir );
 	if ( dot > 0.5f ||( enemyDist * (1.0f-dot)) < 10000 )
 	{//enemy is in front of me or they're very close and not behind me

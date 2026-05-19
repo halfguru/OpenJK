@@ -96,7 +96,7 @@ void SV_DirectConnect( netadr_t from ) {
 	}
 
 
-	newcl = NULL;
+	newcl = nullptr;
 	for ( i = 0; i < 1 ; i++ ) {
 		cl = &svs.clients[i];
 		if (cl->state == CS_FREE) {
@@ -167,7 +167,7 @@ void SV_DropClient( client_t *drop, const char *reason ) {
 
 	if (drop->download)	{
 		FS_FreeFile (drop->download);
-		drop->download = NULL;
+		drop->download = nullptr;
 	}
 
 	// call the prog function for removing a client
@@ -175,7 +175,7 @@ void SV_DropClient( client_t *drop, const char *reason ) {
 	ge->ClientDisconnect( drop - svs.clients );
 
 	// tell everyone why they got dropped
-	SV_SendServerCommand( NULL, "print \"%s %s\n\"", drop->name, reason );
+	SV_SendServerCommand( nullptr, "print \"%s %s\n\"", drop->name, reason );
 
 	// add the disconnect command
 	SV_SendServerCommand( drop, "disconnect" );
@@ -321,7 +321,7 @@ static ucmd_t ucmds[] = {
 	{"userinfo", SV_UpdateUserinfo_f},
 	{"disconnect", SV_Disconnect_f},
 
-	{NULL, NULL}
+	{nullptr, nullptr}
 };
 
 /*
@@ -585,7 +585,7 @@ void SV_FreeClient(client_t *client)
 	for(i=0; i<MAX_RELIABLE_COMMANDS; i++) {
 		if ( client->reliableCommands[ i] ) {
 			Z_Free( client->reliableCommands[ i] );
-			client->reliableCommands[i] = NULL;
+			client->reliableCommands[i] = nullptr;
 			client->reliableSequence = 0;
 		}
 	}

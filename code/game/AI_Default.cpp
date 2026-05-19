@@ -203,7 +203,7 @@ void NPC_BSRun (void)
 void NPC_BSStandGuard (void)
 {
 	//FIXME: Use Snapshot info
-	if ( NPC->enemy == NULL )
+	if ( NPC->enemy == nullptr )
 	{//Possible to pick one up by being shot
 		if( Q_flrand(0.0f, 1.0f) < 0.5 )
 		{
@@ -224,7 +224,7 @@ void NPC_BSStandGuard (void)
 		}
 	}
 
-	if ( NPC->enemy != NULL )
+	if ( NPC->enemy != nullptr )
 	{
 		if( NPCInfo->tempBehavior == BS_STAND_GUARD )
 		{
@@ -443,7 +443,7 @@ void NPC_BSRunAndShoot (void)
 	if ( NPC->enemy )
 	{
 		int monitor = NPC->cantHitEnemyCounter;
-		NPC_StandTrackAndShoot( NPC, qfalse );//(NPCInfo->hidingGoal != NULL) );
+		NPC_StandTrackAndShoot( NPC, qfalse );//(NPCInfo->hidingGoal != nullptr) );
 
 		if ( !(ucmd.buttons & BUTTON_ATTACK) && ucmd.upmove >= 0 && NPC->cantHitEnemyCounter > monitor )
 		{//not crouching and not firing
@@ -629,7 +629,7 @@ Move in a direction, face another
 */
 void NPC_BSMove(void)
 {
-	gentity_t	*goal = NULL;
+	gentity_t	*goal = nullptr;
 
 	NPC_CheckEnemy(qtrue, qfalse);
 	if(NPC->enemy)

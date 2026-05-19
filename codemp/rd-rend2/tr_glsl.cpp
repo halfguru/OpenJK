@@ -533,7 +533,7 @@ static void GLSL_ShowProgramUniforms(GLuint program)
 	// Loop over each of the active uniforms, and set their value
 	for(i = 0; i < count; i++)
 	{
-		qglGetActiveUniform(program, i, sizeof(uniformName), NULL, &size, &type, uniformName);
+		qglGetActiveUniform(program, i, sizeof(uniformName), nullptr, &size, &type, uniformName);
 
 		ri.Printf(PRINT_DEVELOPER, "active uniform: '%s'\n", uniformName);
 	}
@@ -1372,11 +1372,11 @@ void GLSL_InitSplashScreenShader()
 		"}";
 
 	GLuint vshader = qglCreateShader(GL_VERTEX_SHADER);
-	qglShaderSource(vshader, 1, &vs, NULL);
+	qglShaderSource(vshader, 1, &vs, nullptr);
 	qglCompileShader(vshader);
 
 	GLuint fshader = qglCreateShader(GL_FRAGMENT_SHADER);
-	qglShaderSource(fshader, 1, &fs, NULL);
+	qglShaderSource(fshader, 1, &fs, nullptr);
 	qglCompileShader(fshader);
 
 	GLuint program = qglCreateProgram();
@@ -2470,7 +2470,7 @@ void GLSL_BindNullProgram(void)
 	if(glState.currentProgram)
 	{
 		qglUseProgram(0);
-		glState.currentProgram = NULL;
+		glState.currentProgram = nullptr;
 	}
 }
 

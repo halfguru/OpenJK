@@ -642,7 +642,7 @@ srfBspSurface_t *R_GridInsertColumn( srfBspSurface_t *grid, int column, int row,
 	oldwidth = 0;
 	width = grid->width + 1;
 	if (width > MAX_GRID_SIZE)
-		return NULL;
+		return nullptr;
 	height = grid->height;
 	for (i = 0; i < width; i++) {
 		if (i == column) {
@@ -703,7 +703,7 @@ srfBspSurface_t *R_GridInsertRow( srfBspSurface_t *grid, int row, int column, ve
 	width = grid->width;
 	height = grid->height + 1;
 	if (height > MAX_GRID_SIZE)
-		return NULL;
+		return nullptr;
 	for (i = 0; i < height; i++) {
 		if (i == row) {
 			//insert new row

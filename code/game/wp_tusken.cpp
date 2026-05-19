@@ -56,7 +56,7 @@ void WP_FireTuskenRifle( gentity_t *ent )
 				angs[YAW]	+= ( Q_flrand(-1.0f, 1.0f) * ((5-ent->NPC->currentAim)*0.25f) );
 			}
 
-			AngleVectors( angs, forwardVec, NULL, NULL );
+			AngleVectors( angs, forwardVec, nullptr, nullptr );
 		}
 	}
 

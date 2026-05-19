@@ -47,8 +47,8 @@ void Use_Target_Give( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 	G_ActivateBehavior(ent,BSET_USE);
 
 	memset( &trace, 0, sizeof( trace ) );
-	t = NULL;
-	while ( (t = G_Find (t, FOFS(targetname), ent->target)) != NULL ) {
+	t = nullptr;
+	while ( (t = G_Find (t, FOFS(targetname), ent->target)) != nullptr ) {
 		if ( !t->item ) {
 			continue;
 		}
@@ -285,7 +285,7 @@ void target_laser_think (gentity_t *self) {
 	// fire forward and see what we hit
 	VectorMA (self->s.origin, 2048, self->movedir, end);
 
-	gi.trace( &tr, self->s.origin, NULL, NULL, end, self->s.number, CONTENTS_SOLID|CONTENTS_BODY|CONTENTS_CORPSE, (EG2_Collision)0, 0);
+	gi.trace( &tr, self->s.origin, nullptr, nullptr, end, self->s.number, CONTENTS_SOLID|CONTENTS_BODY|CONTENTS_CORPSE, (EG2_Collision)0, 0);
 
 	if ( tr.entityNum ) {
 		// hurt it if we can
@@ -330,7 +330,7 @@ void target_laser_start (gentity_t *self)
 	self->s.eType = ET_BEAM;
 
 	if (self->target) {
-		ent = G_Find (NULL, FOFS(targetname), self->target);
+		ent = G_Find (nullptr, FOFS(targetname), self->target);
 		if (!ent) {
 			gi.Printf ("%s at %s: %s is a bad target\n", self->classname, vtos(self->s.origin), self->target);
 		}
@@ -488,7 +488,7 @@ void target_kill_use( gentity_t *self, gentity_t *other, gentity_t *activator ) 
 
 	if ( self->spawnflags & 1 )
 	{//falling death
-		G_Damage ( activator, NULL, NULL, NULL, NULL, 100000, DAMAGE_NO_PROTECTION, MOD_FALLING );
+		G_Damage ( activator, nullptr, nullptr, nullptr, nullptr, 100000, DAMAGE_NO_PROTECTION, MOD_FALLING );
 		if ( !activator->s.number && activator->health <= 0 && 1 )
 		{
 			extern void CGCam_Fade( vec4_t source, vec4_t dest, float duration );
@@ -498,7 +498,7 @@ void target_kill_use( gentity_t *self, gentity_t *other, gentity_t *activator ) 
 	}
 	else if ( self->spawnflags & 2 ) // electrical
 	{
-		G_Damage ( activator, NULL, NULL, NULL, NULL, 100000, DAMAGE_NO_PROTECTION, MOD_ELECTROCUTE );
+		G_Damage ( activator, nullptr, nullptr, nullptr, nullptr, 100000, DAMAGE_NO_PROTECTION, MOD_ELECTROCUTE );
 
 		if ( activator->client )
 		{
@@ -508,7 +508,7 @@ void target_kill_use( gentity_t *self, gentity_t *other, gentity_t *activator ) 
 	}
 	else
 	{
-		G_Damage ( activator, NULL, NULL, NULL, NULL, 100000, DAMAGE_NO_PROTECTION, MOD_UNKNOWN);
+		G_Damage ( activator, nullptr, nullptr, nullptr, nullptr, 100000, DAMAGE_NO_PROTECTION, MOD_UNKNOWN);
 	}
 }
 
@@ -535,7 +535,7 @@ void target_location_linkup(gentity_t *ent)
 
 	level.locationLinked = qtrue;
 
-	level.locationHead = NULL;
+	level.locationHead = nullptr;
 
 	for (i = 0, ent = g_entities; i < globals.num_entities; i++, ent++) {
 		if (ent->classname && !Q_stricmp(ent->classname, "target_location")) {
@@ -649,7 +649,7 @@ USEONCE	set to never fire again
 void target_random_use(gentity_t *self, gentity_t *other, gentity_t *activator)
 {
 	int			t_count = 0, pick;
-	gentity_t	*t = NULL;
+	gentity_t	*t = nullptr;
 
 	//gi.Printf("target_random %s used by %s (entnum %d)\n", self->targetname, activator->targetname, activator->s.number );
 	G_ActivateBehavior(self,BSET_USE);
@@ -659,7 +659,7 @@ void target_random_use(gentity_t *self, gentity_t *other, gentity_t *activator)
 		self->e_UseFunc = useF_NULL;
 	}
 
-	while ( (t = G_Find (t, FOFS(targetname), self->target)) != NULL )
+	while ( (t = G_Find (t, FOFS(targetname), self->target)) != nullptr )
 	{
 		if (t != self)
 		{
@@ -681,7 +681,7 @@ void target_random_use(gentity_t *self, gentity_t *other, gentity_t *activator)
 	//FIXME: need a seed
 	pick = Q_irand(1, t_count);
 	t_count = 0;
-	while ( (t = G_Find (t, FOFS(targetname), self->target)) != NULL )
+	while ( (t = G_Find (t, FOFS(targetname), self->target)) != nullptr )
 	{
 		if (t != self)
 		{
@@ -737,7 +737,7 @@ void scriptrunner_run (gentity_t *self)
 		if ( self->count <= 0 )
 		{
 			self->e_UseFunc = useF_NULL;
-			self->behaviorSet[BSET_USE] = NULL;
+			self->behaviorSet[BSET_USE] = nullptr;
 			return;
 		}
 		else
@@ -1036,7 +1036,7 @@ void target_level_change_use(gentity_t *self, gentity_t *other, gentity_t *activ
 		if (self->noise_index)
 		{
 			cgi_S_StopSounds();
-			cgi_S_StartSound( NULL, 0, CHAN_VOICE, cgs.sound_precache[ self->noise_index ] );
+			cgi_S_StartSound( nullptr, 0, CHAN_VOICE, cgs.sound_precache[ self->noise_index ] );
 		}
 	}
 
@@ -1203,7 +1203,7 @@ extern	cvar_t	*com_buildScript;
 void target_autosave_use(gentity_t *self, gentity_t *other, gentity_t *activator)
 {
 	G_ActivateBehavior(self,BSET_USE);
-	//gi.SendServerCommand( NULL, "cp @SP_INGAME_CHECKPOINT" );
+	//gi.SendServerCommand( nullptr, "cp @SP_INGAME_CHECKPOINT" );
 	CG_CenterPrint( "@SP_INGAME_CHECKPOINT", SCREEN_HEIGHT * 0.25 );	//jump the network
 
 	gi.SendConsoleCommand( "wait 2;save auto\n" );

@@ -129,7 +129,7 @@ static void GM_CreateExplosion( gentity_t *self, const int boltID, qboolean doSm
 		gi.G2API_GetBoltMatrix( self->ghoul2, self->playerModel,
 					boltID,
 					&boltMatrix, self->currentAngles, self->currentOrigin, (cg.time?cg.time:level.time),
-					NULL, self->s.modelScale );
+					nullptr, self->s.modelScale );
 
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, org );
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, NEGATIVE_Y, dir );
@@ -372,7 +372,7 @@ static void GM_HoldPosition( void )
 	NPC_FreeCombatPoint( NPCInfo->combatPoint, qtrue );
 	if ( !Q3_TaskIDPending( NPC, TID_MOVE_NAV ) )
 	{//don't have a script waiting for me to get to my point, okay to stop trying and stand
-		NPCInfo->goalEntity = NULL;
+		NPCInfo->goalEntity = nullptr;
 	}
 }
 
@@ -451,7 +451,7 @@ static void GM_CheckMoveState( void )
 	}
 
 	//See if we're moving towards a goal, not the enemy
-	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != NULL ) )
+	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != nullptr ) )
 	{
 		//Did we make it?
 		if ( NAV_HitNavGoal( NPC->currentOrigin, NPC->mins, NPC->maxs, NPCInfo->goalEntity->currentOrigin, 16, qfalse ) ||
@@ -501,7 +501,7 @@ static void GM_CheckFireState( void )
 					trace_t tr;
 					//vec3_t	mins = {-2,-2,-2}, maxs = {2,2,2};
 					vec3_t	forward, end;
-					AngleVectors( NPC->client->ps.viewangles, forward, NULL, NULL );
+					AngleVectors( NPC->client->ps.viewangles, forward, nullptr, nullptr );
 					VectorMA( muzzle, 8192, forward, end );
 					gi.trace( &tr, muzzle, vec3_origin, vec3_origin, end, NPC->s.number, MASK_SHOT, G2_NOCOLLIDE, 0 );
 					VectorCopy( tr.endpos, impactPos );
@@ -665,7 +665,7 @@ void NPC_BSGM_Attack( void )
 	//If we don't have an enemy, just idle
 	if ( NPC_CheckEnemyExt() == qfalse || !NPC->enemy )
 	{
-		NPC->enemy = NULL;
+		NPC->enemy = nullptr;
 		NPC_BSGM_Patrol();
 		return;
 	}
@@ -1146,15 +1146,15 @@ void NPC_BSGM_Attack( void )
 			if ( NPC->client->ps.powerups[PW_GALAK_SHIELD] > 0 )
 			{
 				NPC->client->ps.powerups[PW_BATTLESUIT] = level.time + ARMOR_EFFECT_TIME;
-				G_Damage( NPC->enemy, NPC, NPC, NULL, NPC->currentOrigin, 100, DAMAGE_NO_KNOCKBACK, MOD_ELECTROCUTE );
+				G_Damage( NPC->enemy, NPC, NPC, nullptr, NPC->currentOrigin, 100, DAMAGE_NO_KNOCKBACK, MOD_ELECTROCUTE );
 			}
 			else
 			{
-				G_Damage( NPC->enemy, NPC, NPC, NULL, NPC->currentOrigin, 100, DAMAGE_NO_KNOCKBACK, MOD_CRUSH );
+				G_Damage( NPC->enemy, NPC, NPC, nullptr, NPC->currentOrigin, 100, DAMAGE_NO_KNOCKBACK, MOD_CRUSH );
 			}
 		}
 	}
-	else if ( NPCInfo->touchedByPlayer != NULL && NPCInfo->touchedByPlayer == NPC->enemy )
+	else if ( NPCInfo->touchedByPlayer != nullptr && NPCInfo->touchedByPlayer == NPC->enemy )
 	{//touched enemy
 		if ( NPC->client->ps.powerups[PW_GALAK_SHIELD] > 0 )
 		{//zap him!
@@ -1163,7 +1163,7 @@ void NPC_BSGM_Attack( void )
 			TIMER_Set( NPC, "attackDelay", NPC->client->ps.torsoAnimTimer );
 			TIMER_Set( NPC, "standTime", NPC->client->ps.legsAnimTimer );
 			//FIXME: debounce this?
-			NPCInfo->touchedByPlayer = NULL;
+			NPCInfo->touchedByPlayer = nullptr;
 			//FIXME: some shield effect?
 			NPC->client->ps.powerups[PW_BATTLESUIT] = level.time + ARMOR_EFFECT_TIME;
 			vec3_t	smackDir;

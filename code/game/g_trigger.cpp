@@ -217,7 +217,7 @@ void Touch_Multi( gentity_t *self, gentity_t *other, trace_t *trace )
 	{
 		if ( self->spawnflags & 16 )
 		{//NPCONLY
-			if ( other->NPC == NULL )
+			if ( other->NPC == nullptr )
 			{
 				return;
 			}
@@ -258,11 +258,11 @@ void Touch_Multi( gentity_t *self, gentity_t *other, trace_t *trace )
 
 		if ( other->client )
 		{
-			AngleVectors( other->client->ps.viewangles, forward, NULL, NULL );
+			AngleVectors( other->client->ps.viewangles, forward, nullptr, nullptr );
 		}
 		else
 		{
-			AngleVectors( other->currentAngles, forward, NULL, NULL );
+			AngleVectors( other->currentAngles, forward, nullptr, nullptr );
 		}
 
 		if ( DotProduct( self->movedir, forward ) < 0.5 )
@@ -469,7 +469,7 @@ void SP_trigger_multiple( gentity_t *ent )
 	if ( ent->team && ent->team[0] )
 	{
 		ent->noDamageTeam = (team_t)GetIDForString( TeamTable, ent->team );
-		ent->team = NULL;
+		ent->team = nullptr;
 	}
 
 	InitTrigger( ent );
@@ -519,7 +519,7 @@ void SP_trigger_once( gentity_t *ent )
 	if ( ent->team && ent->team[0] )
 	{
 		ent->noDamageTeam = (team_t)GetIDForString( TeamTable, ent->team );
-		ent->team = NULL;
+		ent->team = nullptr;
 	}
 
 	ent->delay *= 1000;//1 = 1 msec, 1000 = 1 sec
@@ -570,12 +570,12 @@ When an ent is asked for it's location, it will return this ent's "message" fiel
 char *G_GetLocationForEnt( gentity_t *ent )
 {
 	vec3_t		mins, maxs;
-	gentity_t	*found = NULL;
+	gentity_t	*found = nullptr;
 
 	VectorAdd( ent->currentOrigin, ent->mins, mins );
 	VectorAdd( ent->currentOrigin, ent->maxs, maxs );
 
-	while( (found = G_Find(found, FOFS(classname), "trigger_location")) != NULL )
+	while( (found = G_Find(found, FOFS(classname), "trigger_location")) != nullptr )
 	{
 		if ( gi.EntityContact( mins, maxs, found ) )
 		{
@@ -583,7 +583,7 @@ char *G_GetLocationForEnt( gentity_t *ent )
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void SP_trigger_location( gentity_t *ent )
@@ -679,7 +679,7 @@ void trigger_push_touch (gentity_t *self, gentity_t *other, trace_t *trace ) {
 	{
 		if ( self->spawnflags & 8 )
 		{//NPCONLY
-			if ( other->NPC == NULL )
+			if ( other->NPC == nullptr )
 			{
 				return;
 			}
@@ -833,7 +833,7 @@ void trigger_push_checkclear( gentity_t *self )
 	VectorAdd( self->absmin, self->absmax, center );
 	VectorScale( center, 0.5, center );
 
-	gentity_t *target = G_Find( NULL, FOFS(targetname), self->target );
+	gentity_t *target = G_Find( nullptr, FOFS(targetname), self->target );
 	gi.trace( &trace, center, vec3_origin, vec3_origin, target->currentOrigin, ENTITYNUM_NONE, CONTENTS_SOLID, (EG2_Collision)0, 0 );
 
 	if ( trace.fraction >= 1.0f )
@@ -1025,13 +1025,13 @@ void trigger_teleporter_touch (gentity_t *self, gentity_t *other, trace_t *trace
 
 void trigger_teleporter_find_closest_portal( gentity_t *self )
 {
-	gentity_t *found = NULL;
+	gentity_t *found = nullptr;
 	vec3_t		org, vec;
 	float		dist, bestDist = 64*64;
 
 	VectorAdd( self->mins, self->maxs, org );
 	VectorScale( org, 0.5, org );
-	while ( (found = G_Find( found, FOFS(classname), "misc_portal_surface" )) != NULL )
+	while ( (found = G_Find( found, FOFS(classname), "misc_portal_surface" )) != nullptr )
 	{
 		VectorSubtract( found->currentOrigin, org, vec );
 		dist = VectorLengthSquared( vec );
@@ -1229,7 +1229,7 @@ void hurt_touch( gentity_t *self, gentity_t *other, trace_t *trace )
 			}
 			else
 			{
-				G_Damage (other, self, self, NULL, NULL, actualDmg, dflags|DAMAGE_NO_ARMOR, MOD_FALLING);
+				G_Damage (other, self, self, nullptr, nullptr, actualDmg, dflags|DAMAGE_NO_ARMOR, MOD_FALLING);
 				// G_Damage will free this ent, which makes it s.number 0, so we must check inuse...
 				if ( !other->s.number && other->health <= 0 )
 				{
@@ -1254,7 +1254,7 @@ void hurt_touch( gentity_t *self, gentity_t *other, trace_t *trace )
 		}
 		else
 		{
-			G_Damage (other, self, self, NULL, NULL, actualDmg, dflags, MOD_TRIGGER_HURT);
+			G_Damage (other, self, self, nullptr, nullptr, actualDmg, dflags, MOD_TRIGGER_HURT);
 		}
 		if( other && !other->s.number )
 		{
@@ -1376,7 +1376,7 @@ void shipboundary_touch( gentity_t *self, gentity_t *other, trace_t *trace )
 		return;
 	}
 
-	ent = G_Find (NULL, FOFS(targetname), self->target);
+	ent = G_Find (nullptr, FOFS(targetname), self->target);
 	if (!ent || !ent->inuse)
 	{ //this is bad
 		G_Error("trigger_shipboundary has invalid target '%s'\n", self->target);
@@ -1385,7 +1385,7 @@ void shipboundary_touch( gentity_t *self, gentity_t *other, trace_t *trace )
 
 	if (!other->s.m_iVehicleNum || other->m_pVehicle->m_iRemovedSurfaces)
 	{ //if a vehicle touches a boundary without a pilot in it or with parts missing, just blow the thing up
-		G_Damage(other, other, other, NULL, other->client->ps.origin, 99999, DAMAGE_NO_PROTECTION, MOD_SUICIDE);
+		G_Damage(other, other, other, nullptr, other->client->ps.origin, 99999, DAMAGE_NO_PROTECTION, MOD_SUICIDE);
 		return;
 	}
 
@@ -1513,8 +1513,8 @@ if it finds either of these within distance it will fire.
 void trigger_entdist_use( gentity_t *self, gentity_t *other, gentity_t *activator )
 {
 	vec3_t		diff;
-	gentity_t	*found = NULL;
-	gentity_t	*owner = NULL;
+	gentity_t	*found = nullptr;
+	gentity_t	*owner = nullptr;
 	qboolean	useflag;
 	const char	*token, *holdString;
 
@@ -1525,10 +1525,10 @@ void trigger_entdist_use( gentity_t *self, gentity_t *other, gentity_t *activato
 
 	if(self->ownername && self->ownername[0])
 	{
-		owner = G_Find(NULL, FOFS(targetname), self->ownername);
+		owner = G_Find(nullptr, FOFS(targetname), self->ownername);
 	}
 
-	if(owner == NULL)
+	if(owner == nullptr)
 	{
 		owner = self;
 	}
@@ -1640,7 +1640,7 @@ void trigger_visible_check_player_visibility( gentity_t *self )
 		vec3_t	forward;
 		float	dot;
 		//2: see if dot to us and player viewangles is > 0.7
-		AngleVectors( player->client->renderInfo.eyeAngles, forward, NULL, NULL );
+		AngleVectors( player->client->renderInfo.eyeAngles, forward, nullptr, nullptr );
 		dot = DotProduct( forward, dir );
 		if ( dot > self->random )
 		{//Within the desired FOV

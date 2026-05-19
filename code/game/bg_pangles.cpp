@@ -102,10 +102,10 @@ void BG_IK_MoveLimb( CGhoul2Info_v &ghoul2, int boltIndex, char *animBone, char 
 
 		//ikP.forceAnimOnBone = qfalse; //let it use existing anim if it's the same as this one.
 
-		//we want to call with a null bone name first. This will init all of the
+		//we want to call with a nullptr bone name first. This will init all of the
 		//ik system stuff on the g2 instance, because we need ragdoll effectors
 		//in order for our pcj's to know how to angle properly.
-		if ( !gi.G2API_SetBoneIKState( ghoul2, time, NULL, IKS_DYNAMIC, &ikP ) )
+		if ( !gi.G2API_SetBoneIKState( ghoul2, time, nullptr, IKS_DYNAMIC, &ikP ) )
 		{
 			assert( !"Failed to init IK system for g2 instance!" );
 		}
@@ -212,18 +212,18 @@ void BG_IK_MoveLimb( CGhoul2Info_v &ghoul2, int boltIndex, char *animBone, char 
 		float cFrame, animSpeed;
 		int sFrame, eFrame, flags;
 
-		gi.G2API_SetBoneIKState( ghoul2, time, "lower_lumbar", IKS_NONE, NULL );
-		gi.G2API_SetBoneIKState( ghoul2, time, "upper_lumbar", IKS_NONE, NULL );
-		gi.G2API_SetBoneIKState( ghoul2, time, "thoracic", IKS_NONE, NULL );
-		gi.G2API_SetBoneIKState( ghoul2, time, secondBone, IKS_NONE, NULL );
-		gi.G2API_SetBoneIKState( ghoul2, time, firstBone, IKS_NONE, NULL );
+		gi.G2API_SetBoneIKState( ghoul2, time, "lower_lumbar", IKS_NONE, nullptr );
+		gi.G2API_SetBoneIKState( ghoul2, time, "upper_lumbar", IKS_NONE, nullptr );
+		gi.G2API_SetBoneIKState( ghoul2, time, "thoracic", IKS_NONE, nullptr );
+		gi.G2API_SetBoneIKState( ghoul2, time, secondBone, IKS_NONE, nullptr );
+		gi.G2API_SetBoneIKState( ghoul2, time, firstBone, IKS_NONE, nullptr );
 
 		//then reset the angles/anims on these PCJs
-		gi.G2API_SetBoneAngles( &ghoul2[0], "lower_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 0, time );
-		gi.G2API_SetBoneAngles( &ghoul2[0], "upper_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 0, time );
-		gi.G2API_SetBoneAngles( &ghoul2[0], "thoracic", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 0, time );
-		gi.G2API_SetBoneAngles( &ghoul2[0], secondBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 0, time );
-		gi.G2API_SetBoneAngles( &ghoul2[0], firstBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 0, time );
+		gi.G2API_SetBoneAngles( &ghoul2[0], "lower_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 0, time );
+		gi.G2API_SetBoneAngles( &ghoul2[0], "upper_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 0, time );
+		gi.G2API_SetBoneAngles( &ghoul2[0], "thoracic", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 0, time );
+		gi.G2API_SetBoneAngles( &ghoul2[0], secondBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 0, time );
+		gi.G2API_SetBoneAngles( &ghoul2[0], firstBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 0, time );
 
 		//Get the anim/frames that the pelvis is on exactly, and match the left arm back up with them again.
 		gi.G2API_GetBoneAnim( &ghoul2[0], animBone, (const int)time, &cFrame, &sFrame, &eFrame, &flags, &animSpeed, 0 );
@@ -233,8 +233,8 @@ void BG_IK_MoveLimb( CGhoul2Info_v &ghoul2, int boltIndex, char *animBone, char 
 		gi.G2API_SetBoneAnim( &ghoul2[0], secondBone, sFrame, eFrame, flags, animSpeed, time, sFrame, 300 );
 		gi.G2API_SetBoneAnim( &ghoul2[0], firstBone, sFrame, eFrame, flags, animSpeed, time, sFrame, 300 );
 
-		//And finally, get rid of all the ik state effector data by calling with null bone name (similar to how we init it).
-		gi.G2API_SetBoneIKState( ghoul2, time, NULL, IKS_NONE, NULL );
+		//And finally, get rid of all the ik state effector data by calling with nullptr bone name (similar to how we init it).
+		gi.G2API_SetBoneIKState( ghoul2, time, nullptr, IKS_NONE, nullptr );
 
 		*ikInProgress = qfalse;
 	}
@@ -474,7 +474,7 @@ qboolean PM_AdjustAngleForWallRun( gentity_t *ent, usercmd_t *ucmd, qboolean doM
 		trace_t	trace;
 		float	dist, yawAdjust=0.0f;
 
-		AngleVectors( fwdAngles, fwd, rt, NULL );
+		AngleVectors( fwdAngles, fwd, rt, nullptr );
 
 		if ( ent->client->ps.legsAnim == BOTH_WALL_RUN_RIGHT )
 		{
@@ -496,7 +496,7 @@ qboolean PM_AdjustAngleForWallRun( gentity_t *ent, usercmd_t *ucmd, qboolean doM
 			vec3_t	wallRunFwd, wallRunAngles = {0};
 
 			wallRunAngles[YAW] = vectoyaw( trace.plane.normal )+yawAdjust;
-			AngleVectors( wallRunAngles, wallRunFwd, NULL, NULL );
+			AngleVectors( wallRunAngles, wallRunFwd, nullptr, nullptr );
 
 			VectorMA( ent->currentOrigin, 32, wallRunFwd, traceTo2 );
 			gi.trace( &trace2, ent->currentOrigin, mins, maxs, traceTo2, ent->s.number, ent->clipmask, (EG2_Collision)0, 0 );
@@ -648,7 +648,7 @@ qboolean PM_AdjustAnglesForSpinningFlip( gentity_t *ent, usercmd_t *ucmd, qboole
 		if ( (ent->s.number>=MAX_CLIENTS&&!G_ControlledByPlayer(ent)) || !player_locked )
 		{
 			vec3_t pushDir, pushAngles = {0,ent->angle,0};
-			AngleVectors( pushAngles, pushDir, NULL, NULL );
+			AngleVectors( pushAngles, pushDir, nullptr, nullptr );
 			if ( DotProduct( ent->client->ps.velocity, pushDir ) < 100 )
 			{
 				VectorMA( ent->client->ps.velocity, 10, pushDir, ent->client->ps.velocity );
@@ -846,7 +846,7 @@ qboolean PM_AdjustAngleForWallRunUp( gentity_t *ent, usercmd_t *ucmd, qboolean d
 		trace_t	trace;
 		float	dist = 128;
 
-		AngleVectors( fwdAngles, fwd, NULL, NULL );
+		AngleVectors( fwdAngles, fwd, nullptr, nullptr );
 		VectorMA( ent->currentOrigin, dist, fwd, traceTo );
 		gi.trace( &trace, ent->currentOrigin, mins, maxs, traceTo, ent->s.number, ent->clipmask, (EG2_Collision)0, 0 );
 		if ( trace.fraction > 0.5f )
@@ -977,23 +977,23 @@ qboolean PM_AdjustAngleForWallJump( gentity_t *ent, usercmd_t *ucmd, qboolean do
 		{
 		case BOTH_FORCEWALLREBOUND_RIGHT:
 		case BOTH_FORCEWALLHOLD_RIGHT:
-			AngleVectors( fwdAngles, NULL, checkDir, NULL );
+			AngleVectors( fwdAngles, nullptr, checkDir, nullptr );
 			yawAdjust = -90;
 			break;
 		case BOTH_FORCEWALLREBOUND_LEFT:
 		case BOTH_FORCEWALLHOLD_LEFT:
-			AngleVectors( fwdAngles, NULL, checkDir, NULL );
+			AngleVectors( fwdAngles, nullptr, checkDir, nullptr );
 			VectorScale( checkDir, -1, checkDir );
 			yawAdjust = 90;
 			break;
 		case BOTH_FORCEWALLREBOUND_FORWARD:
 		case BOTH_FORCEWALLHOLD_FORWARD:
-			AngleVectors( fwdAngles, checkDir, NULL, NULL );
+			AngleVectors( fwdAngles, checkDir, nullptr, nullptr );
 			yawAdjust = 180;
 			break;
 		case BOTH_FORCEWALLREBOUND_BACK:
 		case BOTH_FORCEWALLHOLD_BACK:
-			AngleVectors( fwdAngles, checkDir, NULL, NULL );
+			AngleVectors( fwdAngles, checkDir, nullptr, nullptr );
 			VectorScale( checkDir, -1, checkDir );
 			yawAdjust = 0;
 			break;
@@ -1109,7 +1109,7 @@ qboolean PM_AdjustAnglesForBFKick( gentity_t *self, usercmd_t *ucmd, vec3_t fwdA
 	float		dot, bestDot = -1.1f;
 	float		bestYaw = Q3_INFINITE;
 
-	AngleVectors( fwdAngs, v_fwd, NULL, NULL );
+	AngleVectors( fwdAngs, v_fwd, nullptr, nullptr );
 
 	VectorCopy( self->currentOrigin, center );
 
@@ -1384,7 +1384,7 @@ void PM_UpdateViewAngles( playerState_t *ps, usercmd_t *cmd, gentity_t *gent )
 
 	//TEMP
 #if 0 //rww 12/23/02 - I'm disabling this for now, I'm going to try to make it work with my new rag stuff
-	if ( gent != NULL )
+	if ( gent != nullptr )
 	{
 		PM_IKUpdate( gent );
 	}
@@ -1399,7 +1399,7 @@ void PM_UpdateViewAngles( playerState_t *ps, usercmd_t *cmd, gentity_t *gent )
 //	{//can't turn
 //		return;
 //	}
-	if ( ps->clientNum != 0 && gent != NULL && gent->client != NULL )
+	if ( ps->clientNum != 0 && gent != nullptr && gent->client != nullptr )
 	{
 		if(gent->client->renderInfo.renderFlags & RF_LOCKEDANGLE)
 		{
@@ -1440,7 +1440,7 @@ void PM_UpdateViewAngles( playerState_t *ps, usercmd_t *cmd, gentity_t *gent )
 		}
 	}
 
-	Vehicle_t *pVeh = NULL;
+	Vehicle_t *pVeh = nullptr;
 
 	// If we're a vehicle, or we're riding a vehicle...?
 	if ( gent && gent->client && gent->client->NPC_class == CLASS_VEHICLE && gent->m_pVehicle)
@@ -1457,7 +1457,7 @@ void PM_UpdateViewAngles( playerState_t *ps, usercmd_t *cmd, gentity_t *gent )
 			lockedYaw = qtrue;
 		}
 		// If we're riding a vehicle...
-		else if ( (pVeh = G_IsRidingVehicle( gent ) ) != NULL )
+		else if ( (pVeh = G_IsRidingVehicle( gent ) ) != nullptr )
 		{
 			if ( pVeh->m_pVehicleInfo->type != VH_ANIMAL )
 			{//animals just turn normally, no clamping
@@ -1790,7 +1790,7 @@ void PM_UpdateViewAngles( playerState_t *ps, usercmd_t *cmd, gentity_t *gent )
 				start[2] += ps->viewheight;
 				VectorCopy( ps->viewangles, viewangles );
 				viewangles[ROLL] = 0;
-				AngleVectors( ps->viewangles, NULL, right, NULL );
+				AngleVectors( ps->viewangles, nullptr, right, nullptr );
 				VectorNormalize( right );
 				right[2] = (leanofs<0)?0.25:-0.25;
 				VectorMA( start, leanofs, right, end );

@@ -102,7 +102,7 @@ void SV_GameSendServerCommand( int clientNum, const char *fmt, ... ) {
 	va_end (argptr);
 
 	if ( clientNum == -1 ) {
-		SV_SendServerCommand( NULL, "%s", msg );
+		SV_SendServerCommand( nullptr, "%s", msg );
 	} else {
 		if ( clientNum < 0 || clientNum >= 1 ) {
 			return;
@@ -140,7 +140,7 @@ void SV_SetBrushModel( gentity_t *ent, const char *name ) {
 
 	if (!name)
 	{
-		Com_Error( ERR_DROP, "SV_SetBrushModel: NULL model for ent number %d", ent->s.number );
+		Com_Error( ERR_DROP, "SV_SetBrushModel: nullptr model for ent number %d", ent->s.number );
 	}
 
 	if (name[0] == '*')
@@ -207,7 +207,7 @@ const char *SV_SetActiveSubBSP(int index)
 		sv.mLocalSubBSPIndex = -1;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -410,7 +410,7 @@ void SV_ShutdownGameProgs (qboolean shutdownCin) {
 
 	Sys_UnloadDll( gameLibrary );
 
-	ge = NULL;
+	ge = nullptr;
 	cgvm.entryPoint = 0;
 }
 
@@ -1089,7 +1089,7 @@ void SV_InitGameProgs (void) {
 	// clear all gentity pointers that might still be set from
 	// a previous level
 	for ( i = 0 ; i < 1 ; i++ ) {
-		svs.clients[i].gentity = NULL;
+		svs.clients[i].gentity = nullptr;
 	}
 }
 

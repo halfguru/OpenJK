@@ -33,7 +33,7 @@ server_t		sv;					// local server
 cvar_t	*sv_snapsMin;			// minimum snapshots/sec a client can request, also limited by sv_snapsMax
 cvar_t	*sv_snapsMax;			// maximum snapshots/sec a client can request, also limited by sv_fps
 cvar_t	*sv_snapsPolicy;		// 0-2
-cvar_t	*sv_fps = NULL;				// time rate for running non-clients
+cvar_t	*sv_fps = nullptr;				// time rate for running non-clients
 cvar_t	*sv_timeout;			// seconds without any message
 cvar_t	*sv_zombietime;			// seconds to sink messages after disconnect
 cvar_t	*sv_rconPassword;		// password for remote server commands
@@ -151,7 +151,7 @@ SV_SendServerCommand
 
 Sends a reliable command string to be interpreted by
 the client game module: "cp", "print", "chat", etc
-A NULL client will broadcast to all clients
+A nullptr client will broadcast to all clients
 =================
 */
 void QDECL SV_SendServerCommand(client_t *cl, const char *fmt, ...) {
@@ -172,7 +172,7 @@ void QDECL SV_SendServerCommand(client_t *cl, const char *fmt, ...) {
 		return;
 	}
 
-	if ( cl != NULL ) {
+	if ( cl != nullptr ) {
 		SV_AddServerCommand( cl, (char *)message );
 		return;
 	}
@@ -328,7 +328,7 @@ static leakyBucket_t *SVC_BucketForAddress( const netadr_t *address, int burst, 
 	static int lastGC = 0;
 
 	if (address->type != NA_IP) {
-		return NULL;
+		return nullptr;
 	}
 
 	// Consider following spoofed dos scenario:
@@ -372,7 +372,7 @@ SVC_RateLimit
 qboolean SVC_RateLimit( leakyBucket_t *bucket, int burst, int period, int now ) {
 	qboolean	block = qfalse;
 
-	if ( bucket != NULL ) {
+	if ( bucket != nullptr ) {
 		int interval = now - bucket->lastTime;
 		int expired = interval / period;
 		int expiredRemainder = interval % period;
@@ -632,7 +632,7 @@ static std::set<int32_t>	svc_whitelist;
 
 void SVC_LoadWhitelist( void ) {
 	fileHandle_t f;
-	int32_t *data = NULL;
+	int32_t *data = nullptr;
 	int len = FS_SV_FOpenFileRead(WHITELIST_FILE, &f);
 
 	if (len <= 0) {
@@ -651,7 +651,7 @@ void SVC_LoadWhitelist( void ) {
 	}
 
 	Z_Free(data);
-	data = NULL;
+	data = nullptr;
 }
 
 void SVC_WhitelistAdr( const netadr_t *adr ) {
@@ -1023,7 +1023,7 @@ void SV_CheckCvars( void ) {
 		if (sv_ratePolicy->integer == 1)
 		{
 			// NOTE: what if server sets some dumb sv_clientRate value?
-			client_t *cl = NULL;
+			client_t *cl = nullptr;
 			int i = 0;
 
 			for (i = 0, cl = svs.clients; i < sv_maxclients->integer; i++, cl++) {
@@ -1043,7 +1043,7 @@ void SV_CheckCvars( void ) {
 		else if (sv_ratePolicy->integer == 2)
 		{
 			// NOTE: what if server sets some dumb sv_clientRate value?
-			client_t *cl = NULL;
+			client_t *cl = nullptr;
 			int i = 0;
 
 			for (i = 0, cl = svs.clients; i < sv_maxclients->integer; i++, cl++) {
@@ -1080,7 +1080,7 @@ void SV_CheckCvars( void ) {
 
 		if (sv_snapsPolicy->integer == 1)
 		{
-			client_t *cl = NULL;
+			client_t *cl = nullptr;
 			int i = 0;
 
 			for (i = 0, cl = svs.clients; i < sv_maxclients->integer; i++, cl++) {
@@ -1094,7 +1094,7 @@ void SV_CheckCvars( void ) {
 		}
 		else if (sv_snapsPolicy->integer == 2)
 		{
-			client_t *cl = NULL;
+			client_t *cl = nullptr;
 			int i = 0;
 			int minSnaps = Com_Clampi(1, sv_snapsMax->integer, sv_snapsMin->integer); // between 1 and sv_snapsMax ( 1 <-> 40 )
 			int maxSnaps = Q_min(sv_fps->integer, sv_snapsMax->integer); // can't produce more than sv_fps snapshots/sec, but can send less than sv_fps snapshots/sec

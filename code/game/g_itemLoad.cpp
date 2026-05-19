@@ -88,8 +88,8 @@ static void IT_SetDefaults()
 
 
 	bg_itemlist[itemParms.itemNum].pickup_sound = PICKUPSOUND;	//give it a default sound
-	bg_itemlist[itemParms.itemNum].precaches = NULL;
-	bg_itemlist[itemParms.itemNum].sounds = NULL;
+	bg_itemlist[itemParms.itemNum].precaches = nullptr;
+	bg_itemlist[itemParms.itemNum].sounds = nullptr;
 }
 
 static void IT_Name(const char **holdBuf)

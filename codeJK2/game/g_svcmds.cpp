@@ -109,13 +109,13 @@ gclient_t	*ClientForString( const char *s ) {
 		idnum = atoi( s );
 		if ( idnum < 0 || idnum >= level.maxclients ) {
 			Com_Printf( "Bad client slot: %i\n", idnum );
-			return NULL;
+			return nullptr;
 		}
 
 		cl = &level.clients[idnum];
 		if ( cl->pers.connected == CON_DISCONNECTED ) {
 			gi.Printf( "Client %i is not connected\n", idnum );
-			return NULL;
+			return nullptr;
 		}
 		return cl;
 	}
@@ -133,7 +133,7 @@ gclient_t	*ClientForString( const char *s ) {
 
 	gi.Printf( "User %s is not on the server\n", s );
 
-	return NULL;
+	return nullptr;
 }
 
 //---------------------------
@@ -403,8 +403,8 @@ static void Svcmd_RunScript_f(void)
 		const char *cmd3 = gi.argv(2);
 		if ( cmd3 && cmd3[0] )
 		{
-			gentity_t *found = NULL;
-			if ( (found = G_Find(NULL, FOFS(targetname), cmd2 ) ) != NULL )
+			gentity_t *found = nullptr;
+			if ( (found = G_Find(nullptr, FOFS(targetname), cmd2 ) ) != nullptr )
 			{
 				ICARUS_RunScript( found, cmd3 );
 			}

@@ -97,7 +97,7 @@ const surfaceInfo_t *G2_FindOverrideSurface(int surfaceNum,const surfaceInfo_v &
 				QuickOverride.Set(surfaceList[i].surface,i);
 			}
 		}
-		return NULL;
+		return nullptr;
 	}
 	int idx=QuickOverride.Test(surfaceNum);
 	if (idx<0)
@@ -125,7 +125,7 @@ const surfaceInfo_t *G2_FindOverrideSurface(int surfaceNum,const surfaceInfo_v &
 		// didn't find it.
 		assert(i==surfaceList.size()); // our quickoverride is not working right
 #endif
-		return NULL;
+		return nullptr;
 	}
 	assert(idx>=0&&idx<(int)surfaceList.size());
 	assert(surfaceList[idx].surface == surfaceNum);
@@ -162,14 +162,14 @@ int G2_IsSurfaceLegal(const model_s *mod_m, const char *surfaceName, uint32_t *f
  *
  * Input
  *    filename of model, surface list of model instance, name of surface, int to be filled in
- * with the index of this surface (defaults to NULL)
+ * with the index of this surface (defaults to nullptr)
  *
  * Output
  *    pointer to surface if successful, false otherwise
  *
  ************************************************************************************************/
 const mdxmSurface_t *G2_FindSurface(CGhoul2Info *ghlInfo, surfaceInfo_v &slist, const char *surfaceName,
-							 int *surfIndex/*NULL*/)
+							 int *surfIndex/*nullptr*/)
 {
 	int						i = 0;
 	// find the model we want

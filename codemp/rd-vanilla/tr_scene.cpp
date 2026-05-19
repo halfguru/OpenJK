@@ -135,7 +135,7 @@ void RE_AddPolyToScene( qhandle_t hShader, int numVerts, const polyVert_t *verts
 	}
 
 	if ( !hShader ) {
-		ri.Printf( PRINT_ALL, S_COLOR_YELLOW  "WARNING: RE_AddPolyToScene: NULL poly shader\n");
+		ri.Printf( PRINT_ALL, S_COLOR_YELLOW  "WARNING: RE_AddPolyToScene: nullptr poly shader\n");
 		return;
 	}
 
@@ -164,7 +164,7 @@ void RE_AddPolyToScene( qhandle_t hShader, int numVerts, const polyVert_t *verts
 		r_numpolyverts += numVerts;
 
 		// if no world is loaded
-		if ( tr.world == NULL ) {
+		if ( tr.world == nullptr ) {
 			fogIndex = 0;
 		}
 		// see if it is in a fog volume
@@ -275,7 +275,7 @@ void RE_AddRefEntityToScene( const refEntity_t *ent ) {
 
 /************************************************************************************************
  * RE_AddMiniRefEntityToScene                                                                   *
- *    Adds a mini ref ent to the scene.  If the input parameter is null, it signifies the end   *
+ *    Adds a mini ref ent to the scene.  If the input parameter is nullptr, it signifies the end   *
  *    of the chain.  Otherwise, if there is a valid chain parent, it will be added to that.     *
  *    If there is no parent, it will be added as a regular ref ent.                             *
  *                                                                                              *
@@ -411,7 +411,7 @@ void RE_RenderScene( const refdef_t *fd ) {
 	startTime = ri.Milliseconds()*ri.Cvar_VariableValue( "timescale" );
 
 	if (!tr.world && !( fd->rdflags & RDF_NOWORLDMODEL ) ) {
-		Com_Error (ERR_DROP, "R_RenderScene: NULL worldmodel");
+		Com_Error (ERR_DROP, "R_RenderScene: nullptr worldmodel");
 	}
 
 	memcpy( tr.refdef.text, fd->text, sizeof( tr.refdef.text ) );

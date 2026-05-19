@@ -46,7 +46,7 @@ CROFFSystem::CROFF::CROFF( const char *file, int id )
 	strcpy( mROFFFilePath, file );
 
 	mID				= id;
-	mMoveRotateList = NULL;
+	mMoveRotateList = nullptr;
 	mNoteTrackIndexes = 0;
 	mUsedByClient = mUsedByServer = qfalse;
 }
@@ -624,13 +624,13 @@ qboolean CROFFSystem::List( int id )
 //---------------------------------------------------------------------------
 qboolean CROFFSystem::Play( int entID, int id, qboolean doTranslation, qboolean isClient )
 {
-	sharedEntity_t *ent = NULL;
+	sharedEntity_t *ent = nullptr;
 
 	if ( !isClient )
 	{
 		ent = SV_GentityNum( entID );
 
-		if ( ent == NULL )
+		if ( ent == nullptr )
 		{ // shame on you..
 			return qfalse;
 		}
@@ -757,7 +757,7 @@ qboolean CROFFSystem::PurgeEnt( int entID, qboolean isClient )
 //---------------------------------------------------------------------------
 qboolean CROFFSystem::PurgeEnt( char *name )
 {
-/* rjr	CEntity *ent = entitySystem->GetEntityFromName( NULL, name );
+/* rjr	CEntity *ent = entitySystem->GetEntityFromName( nullptr, name );
 
 	if ( ent && ent->GetInUse() == qtrue )
 	{
@@ -859,9 +859,9 @@ void CROFFSystem::UpdateEntities(qboolean isClient)
 qboolean CROFFSystem::ApplyROFF( SROFFEntity *roff_ent, CROFFSystem::CROFF *roff )
 {
 	vec3_t			f, r, u, result;
-	sharedEntity_t	*ent = NULL;
-	trajectory_t	*originTrajectory = NULL, *angleTrajectory = NULL;
-	float			*origin = NULL, *angle = NULL;
+	sharedEntity_t	*ent = nullptr;
+	trajectory_t	*originTrajectory = nullptr, *angleTrajectory = nullptr;
+	float			*origin = nullptr, *angle = nullptr;
 
 
 	if ( sv.time < roff_ent->mNextROFFTime )
@@ -900,8 +900,8 @@ qboolean CROFFSystem::ApplyROFF( SROFFEntity *roff_ent, CROFFSystem::CROFF *roff
 
 	if ( roff_ent->mROFFFrame >= roff->mROFFEntries )
 	{ // we are done roffing, so stop moving and flag this ent to be removed
-		SetLerp( originTrajectory, TR_STATIONARY, origin, NULL, sv.time, roff->mLerp );
-		SetLerp( angleTrajectory, TR_STATIONARY, angle, NULL, sv.time, roff->mLerp );
+		SetLerp( originTrajectory, TR_STATIONARY, origin, nullptr, sv.time, roff->mLerp );
+		SetLerp( angleTrajectory, TR_STATIONARY, angle, nullptr, sv.time, roff->mLerp );
 		if (!roff_ent->mIsClient)
 		{
 			ent->r.mIsRoffing = qfalse;
@@ -1012,9 +1012,9 @@ void CROFFSystem::ProcessNote(SROFFEntity *roff_ent, char *note)
 //---------------------------------------------------------------------------
 qboolean CROFFSystem::ClearLerp( SROFFEntity *roff_ent )
 {
-	sharedEntity_t	*ent = NULL;
-	trajectory_t	*originTrajectory = NULL, *angleTrajectory = NULL;
-	float			*origin = NULL, *angle = NULL;
+	sharedEntity_t	*ent = nullptr;
+	trajectory_t	*originTrajectory = nullptr, *angleTrajectory = nullptr;
+	float			*origin = nullptr, *angle = nullptr;
 
 #ifndef DEDICATED
 	vec3_t		originTemp, angleTemp;
@@ -1044,8 +1044,8 @@ qboolean CROFFSystem::ClearLerp( SROFFEntity *roff_ent )
 		angle = ent->r.currentAngles;
 	}
 
-	SetLerp( originTrajectory, TR_STATIONARY, origin, NULL, sv.time, ROFF_SAMPLE_RATE );
-	SetLerp( angleTrajectory, TR_STATIONARY, angle, NULL, sv.time, ROFF_SAMPLE_RATE );
+	SetLerp( originTrajectory, TR_STATIONARY, origin, nullptr, sv.time, ROFF_SAMPLE_RATE );
+	SetLerp( angleTrajectory, TR_STATIONARY, angle, nullptr, sv.time, ROFF_SAMPLE_RATE );
 
 	return qtrue;
 }
@@ -1067,7 +1067,7 @@ void CROFFSystem::SetLerp( trajectory_t *tr, trType_t type, vec3_t origin, vec3_
 	tr->trTime = time;
 	VectorCopy( origin, tr->trBase );
 
-	// Check for a NULL delta
+	// Check for a nullptr delta
 	if ( delta )
 	{
 		VectorScale( delta, rate, tr->trDelta );

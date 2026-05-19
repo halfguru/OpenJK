@@ -156,12 +156,12 @@ void G_ReadSessionData( gclient_t *client ) {
 
 	i=0;
 	var = strtok( s, " " );
-	while( var != NULL )
+	while( var != nullptr )
 	{
       /* While there are tokens in "s" */
 	  client->sess.missionStats.forceUsed[i++] = atoi(var);
       /* Get next token: */
-      var = strtok( NULL, " " );
+      var = strtok( nullptr, " " );
 	}
 	assert (i==NUM_FORCE_POWERS);
 
@@ -170,12 +170,12 @@ void G_ReadSessionData( gclient_t *client ) {
 
 	i=0;
 	var = strtok( s, " " );
-	while( var != NULL )
+	while( var != nullptr )
 	{
       /* While there are tokens in "s" */
 	  client->sess.missionStats.weaponUsed[i++] = atoi(var);
       /* Get next token: */
-      var = strtok( NULL, " " );
+      var = strtok( nullptr, " " );
 	}
 	assert (i==WP_NUM_WEAPONS);
 }

@@ -86,7 +86,7 @@ static void WP_RepeaterAltFire( gentity_t *ent )
 {
 	vec3_t	start;
 	int		damage	= weaponData[WP_REPEATER].altDamage;
-	gentity_t *missile = NULL;
+	gentity_t *missile = nullptr;
 
 	VectorCopy( muzzle, start );
 	WP_TraceSetStart( ent, start, vec3_origin, vec3_origin );//make sure our start point isn't on the other side of a wall
@@ -182,7 +182,7 @@ void WP_FireRepeater( gentity_t *ent, qboolean alt_fire )
 			}
 		}
 
-		AngleVectors( angs, dir, NULL, NULL );
+		AngleVectors( angs, dir, nullptr, nullptr );
 
 		// FIXME: if temp_org does not have clear trace to inside the bbox, don't shoot!
 		WP_RepeaterMainFire( ent, dir );

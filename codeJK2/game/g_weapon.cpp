@@ -141,7 +141,7 @@ void WP_Explode( gentity_t *self )
 	self->s.loopSound = 0;
 
 //	VectorCopy( self->currentOrigin, self->s.pos.trBase );
-	AngleVectors( self->s.angles, wpFwd, NULL, NULL );
+	AngleVectors( self->s.angles, wpFwd, nullptr, nullptr );
 
 	if ( self->fxID > 0 )
 	{
@@ -202,7 +202,7 @@ void AddLeanOfs(const gentity_t *const ent, vec3_t point)
 		{
 			vec3_t	right;
 			//add leaning offset
-			AngleVectors(ent->client->ps.viewangles, NULL, right, NULL);
+			AngleVectors(ent->client->ps.viewangles, nullptr, right, nullptr);
 			VectorMA(point, (float)ent->client->ps.leanofs, right, point);
 		}
 	}
@@ -218,7 +218,7 @@ void SubtractLeanOfs(const gentity_t *const ent, vec3_t point)
 		{
 			vec3_t	right;
 			//add leaning offset
-			AngleVectors( ent->client->ps.viewangles, NULL, right, NULL );
+			AngleVectors( ent->client->ps.viewangles, nullptr, right, nullptr );
 			VectorMA( point, ent->client->ps.leanofs*-1, right, point );
 		}
 	}
@@ -410,7 +410,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t wpFwd, vec3_t right, vec3_t w
 		break;
 
 	case WP_SABER:
-		if(ent->NPC!=NULL &&
+		if(ent->NPC!=nullptr &&
 			(ent->client->ps.torsoAnim == TORSO_WEAPONREADY2 ||
 			ent->client->ps.torsoAnim == BOTH_ATTACK2))//Sniper pose
 		{
@@ -436,7 +436,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t wpFwd, vec3_t right, vec3_t w
 			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel,
 						ent->handLBolt,
 						&boltMatrix, ent->s.angles, ent->s.origin, (cg.time?cg.time:level.time),
-						NULL, ent->s.modelScale );
+						nullptr, ent->s.modelScale );
 		}
 		else
 		{
@@ -444,7 +444,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t wpFwd, vec3_t right, vec3_t w
 			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel,
 						ent->handRBolt,
 						&boltMatrix, ent->s.angles, ent->s.origin, (cg.time?cg.time:level.time),
-						NULL, ent->s.modelScale );
+						nullptr, ent->s.modelScale );
 		}
 
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, org );
@@ -524,7 +524,7 @@ void FireWeapon( gentity_t *ent, qboolean alt_fire )
 			{
 				yawOnlyAngles[YAW] = ent->client->ps.legsYaw;
 			}
-			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel, bolt, &boltMatrix, yawOnlyAngles, ent->currentOrigin, (cg.time?cg.time:level.time), NULL, ent->s.modelScale );
+			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel, bolt, &boltMatrix, yawOnlyAngles, ent->currentOrigin, (cg.time?cg.time:level.time), nullptr, ent->s.modelScale );
 
 			// work the matrix axis stuff into the original axis and origins used.
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, ent->client->renderInfo.muzzlePoint );
@@ -764,10 +764,10 @@ void emplaced_gun_use( gentity_t *self, gentity_t *other, gentity_t *activator )
 	if ( self->spawnflags & EMPLACED_FACING )
 	{
 		// Let's get some direction vectors for the users
-		AngleVectors( activator->client->ps.viewangles, fwd1, NULL, NULL );
+		AngleVectors( activator->client->ps.viewangles, fwd1, nullptr, nullptr );
 
 		// Get the guns direction vector
-		AngleVectors( self->pos1, fwd2, NULL, NULL );
+		AngleVectors( self->pos1, fwd2, nullptr, nullptr );
 
 		float dot = DotProduct( fwd1, fwd2 );
 
@@ -938,7 +938,7 @@ void emplaced_gun_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacke
 			vec3_t right;
 
 			// radius damage seems to throw them, but add an extra bit to throw them away from the weapon
-			AngleVectors( self->currentAngles, NULL, right, NULL );
+			AngleVectors( self->currentAngles, nullptr, right, nullptr );
 			VectorMA( self->activator->client->ps.velocity, 140, right, self->activator->client->ps.velocity );
 			self->activator->client->ps.velocity[2] = -100;
 
@@ -967,7 +967,7 @@ void emplaced_gun_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacke
 	ugly[YAW] = 4;
 	ugly[PITCH] = self->lastAngles[PITCH] * 0.8f + Q_flrand(-1.0f, 1.0f) * 6;
 	ugly[ROLL] = Q_flrand(-1.0f, 1.0f) * 7;
-	gi.G2API_SetBoneAnglesIndex( &self->ghoul2[self->playerModel], self->lowerLumbarBone, ugly, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0 );
+	gi.G2API_SetBoneAnglesIndex( &self->ghoul2[self->playerModel], self->lowerLumbarBone, ugly, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, nullptr, 0, 0 );
 
 	VectorCopy( self->currentOrigin,  org );
 	org[2] += 20;
@@ -1059,7 +1059,7 @@ void SP_emplaced_gun( gentity_t *ent )
 	ent->handRBolt = gi.G2API_AddBolt( &ent->ghoul2[0], "*flash02" );
 	ent->rootBone = gi.G2API_GetBoneIndex( &ent->ghoul2[ent->playerModel], "base_bone", qtrue );
 	ent->lowerLumbarBone = gi.G2API_GetBoneIndex( &ent->ghoul2[0], "swivel_bone", qtrue );
-	gi.G2API_SetBoneAngles( &ent->ghoul2[0], "swivel_bone", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
+	gi.G2API_SetBoneAngles( &ent->ghoul2[0], "swivel_bone", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, nullptr, 0, 0);
 
 	RegisterItem( FindItemForWeapon( WP_EMPLACED_GUN ));
 	ent->s.weapon = WP_EMPLACED_GUN;

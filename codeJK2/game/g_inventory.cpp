@@ -83,7 +83,7 @@ Security Keys
 */
 qboolean INV_SecurityKeyGive( gentity_t *target, const char *keyname )
 {
-	if ( target == NULL || keyname == NULL || target->client == NULL )
+	if ( target == nullptr || keyname == nullptr || target->client == nullptr )
 	{
 		return qfalse;
 	}

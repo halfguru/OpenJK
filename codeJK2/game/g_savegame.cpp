@@ -88,7 +88,7 @@ static const field_t savefields_gEntity[] =
 	{strFOFS(fullName),			F_STRING},
 //	{strFOFS(timers),			F_BOOLPTR},	// handled directly
 
-	{NULL, 0, F_IGNORE}
+	{nullptr, 0, F_IGNORE}
 };
 
 static const field_t savefields_gNPC[] =
@@ -107,7 +107,7 @@ static const field_t savefields_gNPC[] =
 	{strNPCOFS(greetEnt),			F_GENTITY},
 	{strNPCOFS(group),				F_GROUP},
 
-	{NULL, 0, F_IGNORE}
+	{nullptr, 0, F_IGNORE}
 };
 
 static const field_t savefields_LevelLocals[] =
@@ -115,7 +115,7 @@ static const field_t savefields_LevelLocals[] =
 	{strLLOFS(locationHead),	F_GENTITY},
 	{strLLOFS(alertEvents),		F_ALERTEVENT},
 	{strLLOFS(groups),			F_AIGROUPS},
-	{NULL, 0, F_IGNORE}
+	{nullptr, 0, F_IGNORE}
 };
 
 /*
@@ -149,7 +149,7 @@ static const field_t savefields_gClient[] =
 	{strCLOFS(clientInfo.customExtraSoundDir),F_STRING},
 	{strCLOFS(clientInfo.customJediSoundDir),F_STRING},
 
-	{NULL, 0, F_IGNORE}
+	{nullptr, 0, F_IGNORE}
 };
 
 
@@ -163,7 +163,7 @@ int GetStringNum(const char *psString)
 {
 	assert( psString != (char *)0xcdcdcdcd );
 
-	// NULL ptrs I'll write out as a strlen of -1...
+	// nullptr ptrs I'll write out as a strlen of -1...
 	//
 	if (!psString)
 	{
@@ -174,7 +174,7 @@ int GetStringNum(const char *psString)
 	return strlen(psString) + 1;	// this gives us the chunk length for the reader later
 }
 
-char *GetStringPtr(int iStrlen, char *psOriginal/*may be NULL*/)
+char *GetStringPtr(int iStrlen, char *psOriginal/*may be nullptr*/)
 {
 	if (iStrlen != -1)
 	{
@@ -197,7 +197,7 @@ char *GetStringPtr(int iStrlen, char *psOriginal/*may be NULL*/)
 		return G_NewString(sString);
 	}
 
-	return NULL;
+	return nullptr;
 }
 //
 //
@@ -213,7 +213,7 @@ intptr_t GetGEntityNum(gentity_t* ent)
 {
 	assert( ent != (gentity_t *) 0xcdcdcdcd);
 
-	if (ent == NULL)
+	if (ent == nullptr)
 	{
 		return -1;
 	}
@@ -226,7 +226,7 @@ intptr_t GetGEntityNum(gentity_t* ent)
 
 	if (iReturnIndex < 0 || iReturnIndex >= MAX_GENTITIES)
 	{
-		iReturnIndex = -1;	// will get a NULL ptr on reload
+		iReturnIndex = -1;	// will get a nullptr ptr on reload
 	}
 	return iReturnIndex;
 }
@@ -235,7 +235,7 @@ gentity_t *GetGEntityPtr(intptr_t iEntNum)
 {
 	if (iEntNum == -1)
 	{
-		return NULL;
+		return nullptr;
 	}
 	assert(iEntNum >= 0);
 	assert(iEntNum < MAX_GENTITIES);
@@ -246,7 +246,7 @@ static intptr_t GetGroupNumber(AIGroupInfo_t *pGroup)
 {
 	assert( pGroup != (AIGroupInfo_t *) 0xcdcdcdcd);
 
-	if (pGroup == NULL)
+	if (pGroup == nullptr)
 	{
 		return -1;
 	}
@@ -254,7 +254,7 @@ static intptr_t GetGroupNumber(AIGroupInfo_t *pGroup)
 	int iReturnIndex = pGroup - level.groups;
 	if (iReturnIndex < 0 || iReturnIndex >= (int)(sizeof(level.groups) / sizeof(level.groups[0])) )
 	{
-		iReturnIndex = -1;	// will get a NULL ptr on reload
+		iReturnIndex = -1;	// will get a nullptr ptr on reload
 	}
 	return iReturnIndex;
 }
@@ -263,7 +263,7 @@ static AIGroupInfo_t *GetGroupPtr(intptr_t iGroupNum)
 {
 	if (iGroupNum == -1)
 	{
-		return NULL;
+		return nullptr;
 	}
 	assert(iGroupNum >= 0);
 	assert( iGroupNum < (int)ARRAY_LEN( level.groups ) );
@@ -279,7 +279,7 @@ intptr_t GetGClientNum(gclient_t *c)
 {
 	assert(c != (gclient_t *)0xcdcdcdcd);
 
-	if (c == NULL)
+	if (c == nullptr)
 	{
 		return -1;
 	}
@@ -291,7 +291,7 @@ gclient_t *GetGClientPtr(intptr_t c)
 {
 	if (c == -1)
 	{
-		return NULL;
+		return nullptr;
 	}
 	if (c == -2)
 	{
@@ -314,7 +314,7 @@ int GetGItemNum (gitem_t *pItem)
 {
 	assert(pItem != (gitem_t*) 0xcdcdcdcd);
 
-	if (pItem == NULL)
+	if (pItem == nullptr)
 	{
 		return -1;
 	}
@@ -326,7 +326,7 @@ gitem_t *GetGItemPtr(int iItem)
 {
 	if (iItem == -1)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	assert(iItem >= 0);
@@ -363,7 +363,7 @@ void EnumerateField(const field_t *pField, byte *pbBase)
 		//
 		gentity_t *ent = (gentity_t *) pbBase;
 
-		if (ent->NPC == NULL)
+		if (ent->NPC == nullptr)
 		{
 			// regular client...
 			//
@@ -374,7 +374,7 @@ void EnumerateField(const field_t *pField, byte *pbBase)
 		{
 			// this must be one of Mike's, so mark it as special...
 			//
-			*(intptr_t *)pv = -2;	// yeuch, but distinguishes it from a valid 0 index, or -1 for client==NULL
+			*(intptr_t *)pv = -2;	// yeuch, but distinguishes it from a valid 0 index, or -1 for client==nullptr
 		}
 	}
 		break;
@@ -436,7 +436,7 @@ void EnumerateField(const field_t *pField, byte *pbBase)
 
 	// These are pointers that are always recreated
 	case F_NULL:
-		*(void **)pv = NULL;
+		*(void **)pv = nullptr;
 		break;
 
 	case F_IGNORE:
@@ -494,7 +494,7 @@ static void EnumerateFields(
 	}
 }
 
-static void EvaluateField(const field_t *pField, byte *pbBase, byte *pbOriginalRefData/* may be NULL*/)
+static void EvaluateField(const field_t *pField, byte *pbBase, byte *pbOriginalRefData/* may be nullptr*/)
 {
 	void *pv		 = (void *)(pbBase			  + pField->iOffset);
 	void *pvOriginal = (void *)(pbOriginalRefData + pField->iOffset);
@@ -502,7 +502,7 @@ static void EvaluateField(const field_t *pField, byte *pbBase, byte *pbOriginalR
 	switch (pField->eFieldType)
 	{
 	case F_STRING:
-		*(char **)pv = GetStringPtr(*(intptr_t *)pv, pbOriginalRefData?*(char**)pvOriginal:NULL);
+		*(char **)pv = GetStringPtr(*(intptr_t *)pv, pbOriginalRefData?*(char**)pvOriginal:nullptr);
 		break;
 
 	case F_GENTITY:
@@ -527,7 +527,7 @@ static void EvaluateField(const field_t *pField, byte *pbBase, byte *pbOriginalR
 			char **pO= (char **) pvOriginal;
 			for (int i=0; i<NUM_BSETS; i++, p++, pO++)
 			{
-				*p = GetStringPtr(*(intptr_t *)p, pbOriginalRefData?*(char **)pO:NULL);
+				*p = GetStringPtr(*(intptr_t *)p, pbOriginalRefData?*(char **)pO:nullptr);
 			}
 		}
 		break;

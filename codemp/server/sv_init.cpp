@@ -475,7 +475,7 @@ Ghoul2 Insert Start
 	if (svs.snapshotEntities)
 	{
 		delete[] svs.snapshotEntities;
-		svs.snapshotEntities = NULL;
+		svs.snapshotEntities = nullptr;
 	}
 /*
 Ghoul2 Insert End
@@ -772,7 +772,7 @@ void SV_BotInitBotLib(void);
 #ifdef DEDICATED
 
 #define G2_VERT_SPACE_SERVER_SIZE 256
-IHeapAllocator *G2VertSpaceServer = NULL;
+IHeapAllocator *G2VertSpaceServer = nullptr;
 CMiniHeap IHeapAllocator_singleton(G2_VERT_SPACE_SERVER_SIZE * 1024);
 
 
@@ -823,7 +823,7 @@ static IHeapAllocator *GetG2VertSpaceServer( void ) {
 	return G2VertSpaceServer;
 }
 
-refexport_t	*re = NULL;
+refexport_t	*re = nullptr;
 
 static void SV_InitRef( void ) {
 	static refimport_t ri;
@@ -1099,7 +1099,7 @@ Ghoul2 Insert Start
 	if (svs.snapshotEntities)
 	{
 		delete[] svs.snapshotEntities;
-		svs.snapshotEntities = NULL;
+		svs.snapshotEntities = nullptr;
 	}
 
 	// free current level

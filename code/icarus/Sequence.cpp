@@ -42,8 +42,8 @@ inline CSequence::CSequence( void )
 	m_flags			= 0;
 	m_iterations	= 1;
 
-	m_parent		= NULL;
-	m_return		= NULL;
+	m_parent		= nullptr;
+	m_return		= nullptr;
 }
 
 CSequence::~CSequence( void )
@@ -64,8 +64,8 @@ CSequence *CSequence::Create( void )
 
 	//TODO: Emit warning
 	assert(seq);
-	if ( seq == NULL )
-		return NULL;
+	if ( seq == nullptr )
+		return nullptr;
 
 	seq->SetFlag( SQ_COMMON );
 
@@ -94,12 +94,12 @@ void CSequence::Delete( CIcarus* icarus )
 	{
 		/*for ( iterSeq = m_childrenMap.begin(); iterSeq != m_childrenMap.end(); iterSeq++ )
 		{
-			(*iterSeq).second->SetParent( NULL );
+			(*iterSeq).second->SetParent( nullptr );
 		}*/
 
 		for ( si = m_children.begin(); si != m_children.end(); ++si )
 		{
-			(*si)->SetParent( NULL );
+			(*si)->SetParent( nullptr );
 		}
 	}
 	m_children.clear();
@@ -126,7 +126,7 @@ AddChild
 void CSequence::AddChild( CSequence *child )
 {
 	assert( child );
-	if ( child == NULL )
+	if ( child == nullptr )
 		return;
 
 	m_children.insert( m_children.end(), child );
@@ -143,7 +143,7 @@ RemoveChild
 void CSequence::RemoveChild( CSequence *child )
 {
 	assert( child );
-	if ( child == NULL )
+	if ( child == nullptr )
 		return;
 
 	m_children.remove( child );
@@ -177,7 +177,7 @@ bool CSequence::HasChild( CSequence *sequence )
 			return true;
 	}
 
-/*	sequenceID_m::iterator iterSeq = NULL;
+/*	sequenceID_m::iterator iterSeq = nullptr;
 	for ( iterSeq = m_childrenMap.begin(); iterSeq != m_childrenMap.end(); iterSeq++ )
 	{
 		if ( ((*iterSeq).second) == sequence )
@@ -200,7 +200,7 @@ void CSequence::SetParent( CSequence *parent )
 {
 	m_parent = parent;
 
-	if ( parent == NULL )
+	if ( parent == nullptr )
 		return;
 
 	//Inherit the parent's properties (this avoids messy tree walks later on)
@@ -219,13 +219,13 @@ PopCommand
 
 CBlock *CSequence::PopCommand( int type )
 {
-	CBlock	*command = NULL;
+	CBlock	*command = nullptr;
 
 	//Make sure everything is ok
 	assert( (type == POP_FRONT) || (type == POP_BACK) );
 
 	if ( m_commands.empty() )
-		return NULL;
+		return nullptr;
 
 	switch ( type )
 	{
@@ -249,7 +249,7 @@ CBlock *CSequence::PopCommand( int type )
 	}
 
 	//Invalid flag
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -310,7 +310,7 @@ void CSequence::RemoveFlag( int flag, bool children )
 
 	if ( children )
 	{
-/*		sequenceID_m::iterator iterSeq = NULL;
+/*		sequenceID_m::iterator iterSeq = nullptr;
 		for ( iterSeq = m_childrenMap.begin(); iterSeq != m_childrenMap.end(); iterSeq++ )
 		{
 			(*iterSeq).second->RemoveFlag( flag, true );
@@ -356,13 +356,13 @@ GetChildByID
 CSequence *CSequence::GetChildByID( int id )
 {
 	if ( id < 0 )
-		return NULL;
+		return nullptr;
 
 	//NOTENOTE: Done for safety reasons, I don't know what this template will return on underflow ( sigh... )
 /*	sequenceID_m::iterator mi = m_childrenMap.find( id );
 
 	if ( mi == m_childrenMap.end() )
-		return NULL;
+		return nullptr;
 
 	return (*mi).second;*/
 
@@ -373,7 +373,7 @@ CSequence *CSequence::GetChildByID( int id )
 			return (*iterSeq);
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -385,7 +385,7 @@ GetChildByIndex
 CSequence *CSequence::GetChildByIndex( int iIndex )
 {
 	if ( iIndex < 0 || iIndex >= (int)m_children.size() )
-		return NULL;
+		return nullptr;
 
 	sequence_l::iterator iterSeq = m_children.begin();
 	for ( int i = 0; i < iIndex; i++  )
@@ -486,7 +486,7 @@ int CSequence::LoadCommand( CBlock *block, CIcarus *icarus )
 		icarus->BufferRead( &bSize, sizeof( bSize ) );
 
 		//Get the member's data
-		if ( ( bData = game->Malloc( bSize ) ) == NULL )
+		if ( ( bData = game->Malloc( bSize ) ) == nullptr )
 			return false;
 
 		//Get the actual raw data
@@ -575,11 +575,11 @@ int CSequence::Save()
 	int						id;
 
 	// Save the parent (by GUID).
-	id = ( m_parent != NULL ) ? m_parent->GetID() : -1;
+	id = ( m_parent != nullptr ) ? m_parent->GetID() : -1;
 	pIcarus->BufferWrite( &id, sizeof( id ) );
 
 	//Save the return (by GUID)
-	id = ( m_return != NULL ) ? m_return->GetID() : -1;
+	id = ( m_return != nullptr ) ? m_return->GetID() : -1;
 	pIcarus->BufferWrite( &id, sizeof( id ) );
 
 	//Save the number of children
@@ -642,11 +642,11 @@ int CSequence::Load( CIcarus* icarus )
 
 	//Get the parent sequence
 	icarus->BufferRead( &id, sizeof( id ) );
-	m_parent = ( id != -1 ) ? icarus->GetSequence( id ) : NULL;
+	m_parent = ( id != -1 ) ? icarus->GetSequence( id ) : nullptr;
 
 	//Get the return sequence
 	icarus->BufferRead( &id, sizeof( id ) );
-	m_return = ( id != -1 ) ? icarus->GetSequence( id ) : NULL;
+	m_return = ( id != -1 ) ? icarus->GetSequence( id ) : nullptr;
 
 	//Get the number of children
 	int iNumChildren = 0;
@@ -659,7 +659,7 @@ int CSequence::Load( CIcarus* icarus )
 		icarus->BufferRead( &id, sizeof( id ) );
 
 		//Get the desired sequence
-		if ( ( sequence = icarus->GetSequence( id ) ) == NULL )
+		if ( ( sequence = icarus->GetSequence( id ) ) == nullptr )
 			return false;
 
 		//Insert this into the list

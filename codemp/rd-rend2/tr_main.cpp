@@ -817,7 +817,7 @@ static void R_SetFarClip( viewParms_t *viewParms, const trRefdef_t *refdef )
 
 	// if not rendering the world (icons, menus, etc)
 	// set a 2k far clip plane
-	if (refdef != NULL)
+	if (refdef != nullptr)
 	{
 		if (refdef->rdflags & RDF_NOWORLDMODEL) {
 			// override the zfar then
@@ -1695,8 +1695,8 @@ static QINLINE void R_Radix( int byte, int size, drawSurf_t *source, drawSurf_t 
   int           count[ 256 ] = { 0 };
   int           index[ 256 ];
   int           i;
-  unsigned char *sortKey = NULL;
-  unsigned char *end = NULL;
+  unsigned char *sortKey = nullptr;
+  unsigned char *end = nullptr;
 
   sortKey = ( (unsigned char *)&source[ 0 ].sort ) + byte;
   end = sortKey + ( size * sizeof( drawSurf_t ) );
@@ -1923,7 +1923,7 @@ static void R_AddEntitySurface(const trRefdef_t *refdef, trRefEntity_t *ent, int
 				if (ent->e.ghoul2)
 					R_AddGhoulSurfaces(ent, entityNum);
 				break;
-			case MOD_BAD:		// null model axis
+			case MOD_BAD:		// nullptr model axis
 				if ( (ent->e.renderfx & RF_THIRD_PERSON) && !tr.viewParms.isPortal ) {
 					break;
 				}
@@ -1935,7 +1935,7 @@ static void R_AddEntitySurface(const trRefdef_t *refdef, trRefEntity_t *ent, int
 					break;
 				}
 
-				// FIX ME: always draw null axis model instead of rejecting the drawcall
+				// FIX ME: always draw nullptr axis model instead of rejecting the drawcall
 				if (tr.currentModel->dataSize > 0)
 					R_AddDrawSurf(
 						&entitySurface,

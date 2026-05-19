@@ -39,7 +39,7 @@ qboolean G_ClearLineOfSight(const vec3_t point1, const vec3_t point2, int ignore
 {
 	trace_t		tr;
 
-	gi.trace ( &tr, point1, NULL, NULL, point2, ignore, clipmask, G2_NOCOLLIDE, 0 );
+	gi.trace ( &tr, point1, nullptr, nullptr, point2, ignore, clipmask, G2_NOCOLLIDE, 0 );
 	if ( tr.fraction == 1.0 )
 	{
 		return qtrue;
@@ -50,7 +50,7 @@ qboolean G_ClearLineOfSight(const vec3_t point1, const vec3_t point2, int ignore
 	{
 		vec3_t	newpoint1;
 		VectorCopy(tr.endpos, newpoint1);
-		gi.trace (&tr, newpoint1, NULL, NULL, point2, hit->s.number, clipmask, G2_NOCOLLIDE, 0 );
+		gi.trace (&tr, newpoint1, nullptr, nullptr, point2, hit->s.number, clipmask, G2_NOCOLLIDE, 0 );
 
 		if ( tr.fraction == 1.0 )
 		{
@@ -79,7 +79,7 @@ qboolean CanSee ( gentity_t *ent )
 	CalcEntitySpot( NPC, SPOT_HEAD_LEAN, eyes );
 
 	CalcEntitySpot( ent, SPOT_ORIGIN, spot );
-	gi.trace ( &tr, eyes, NULL, NULL, spot, NPC->s.number, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
+	gi.trace ( &tr, eyes, nullptr, nullptr, spot, NPC->s.number, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
 	ShotThroughGlass (&tr, ent, spot, MASK_OPAQUE);
 	if ( tr.fraction == 1.0 )
 	{
@@ -87,7 +87,7 @@ qboolean CanSee ( gentity_t *ent )
 	}
 
 	CalcEntitySpot( ent, SPOT_HEAD, spot );
-	gi.trace ( &tr, eyes, NULL, NULL, spot, NPC->s.number, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
+	gi.trace ( &tr, eyes, nullptr, nullptr, spot, NPC->s.number, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
 	ShotThroughGlass (&tr, ent, spot, MASK_OPAQUE);
 	if ( tr.fraction == 1.0 )
 	{
@@ -95,7 +95,7 @@ qboolean CanSee ( gentity_t *ent )
 	}
 
 	CalcEntitySpot( ent, SPOT_LEGS, spot );
-	gi.trace ( &tr, eyes, NULL, NULL, spot, NPC->s.number, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
+	gi.trace ( &tr, eyes, nullptr, nullptr, spot, NPC->s.number, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
 	ShotThroughGlass (&tr, ent, spot, MASK_OPAQUE);
 	if ( tr.fraction == 1.0 )
 	{
@@ -116,7 +116,7 @@ qboolean InFront( vec3_t spot, vec3_t from, vec3_t fromAngles, float threshHold 
 
 	VectorCopy( fromAngles, angles );
 	angles[0] = 0;
-	AngleVectors( angles, forward, NULL, NULL );
+	AngleVectors( angles, forward, nullptr, nullptr );
 
 	dot = DotProduct( dir, forward );
 
@@ -497,7 +497,7 @@ NPC_CheckAlertEvents
 
 int G_CheckAlertEvents( gentity_t *self, qboolean checkSight, qboolean checkSound, float maxSeeDist, float maxHearDist, int ignoreAlert, qboolean mustHaveOwner, int minAlertLevel )
 {
-	if ( &g_entities[0] == NULL || g_entities[0].health <= 0 )
+	if ( &g_entities[0] == nullptr || g_entities[0].health <= 0 )
 	{
 		//player is dead
 		return -1;
@@ -607,7 +607,7 @@ void AddSoundEvent( gentity_t *owner, vec3_t position, float radius, alertEventL
 		}
 	}
 
-	if ( owner == NULL && alertLevel < AEL_DANGER )	//allows un-owned danger alerts
+	if ( owner == nullptr && alertLevel < AEL_DANGER )	//allows un-owned danger alerts
 		return;
 
 	//FIXME: if owner is not a player or player ally, and there are no player allies present,
@@ -654,7 +654,7 @@ void AddSightEvent( gentity_t *owner, vec3_t position, float radius, alertEventL
 		}
 	}
 
-	if ( owner == NULL && alertLevel < AEL_DANGER )	//allows un-owned danger alerts
+	if ( owner == nullptr && alertLevel < AEL_DANGER )	//allows un-owned danger alerts
 		return;
 
 	//FIXME: if owner is not a player or player ally, and there are no player allies present,
@@ -766,14 +766,14 @@ qboolean G_ClearLOS( gentity_t *self, const vec3_t start, const vec3_t end )
 	int			traceCount = 0;
 
 	//FIXME: ENTITYNUM_NONE ok?
-	gi.trace ( &tr, start, NULL, NULL, end, ENTITYNUM_NONE, CONTENTS_OPAQUE/*CONTENTS_SOLID*//*(CONTENTS_SOLID|CONTENTS_MONSTERCLIP)*/, G2_NOCOLLIDE, 0 );
+	gi.trace ( &tr, start, nullptr, nullptr, end, ENTITYNUM_NONE, CONTENTS_OPAQUE/*CONTENTS_SOLID*//*(CONTENTS_SOLID|CONTENTS_MONSTERCLIP)*/, G2_NOCOLLIDE, 0 );
 	while ( tr.fraction < 1.0 && traceCount < 3 )
 	{//can see through 3 panes of glass
 		if ( tr.entityNum < ENTITYNUM_WORLD )
 		{
-			if ( &g_entities[tr.entityNum] != NULL && (g_entities[tr.entityNum].svFlags&SVF_GLASS_BRUSH) )
+			if ( &g_entities[tr.entityNum] != nullptr && (g_entities[tr.entityNum].svFlags&SVF_GLASS_BRUSH) )
 			{//can see through glass, trace again, ignoring me
-				gi.trace ( &tr, tr.endpos, NULL, NULL, end, tr.entityNum, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
+				gi.trace ( &tr, tr.endpos, nullptr, nullptr, end, tr.entityNum, MASK_OPAQUE, G2_NOCOLLIDE, 0 );
 				traceCount++;
 				continue;
 			}

@@ -100,7 +100,7 @@ static void CG_DrawMessageLit(centity_t *cent,int x,int y)
 
 				if (cg_neverHearThatDumbBeepingSoundAgain.integer == 0)
 				{
-					cgi_S_StartSound( NULL, 0, CHAN_AUTO, cgs.media.messageLitSound );
+					cgi_S_StartSound( nullptr, 0, CHAN_AUTO, cgs.media.messageLitSound );
 				}
 				*/
 				cg.messageLitActive = qtrue;
@@ -147,7 +147,7 @@ static void CG_DrawForcePower(const centity_t *cent,const int xPos,const int yPo
 		if (cg.forceHUDNextFlashTime < cg.time)
 		{
 			cg.forceHUDNextFlashTime = cg.time + 400;
-			cgi_S_StartSound( NULL, 0, CHAN_AUTO, cgs.media.noforceSound );
+			cgi_S_StartSound( nullptr, 0, CHAN_AUTO, cgs.media.noforceSound );
 			if (cg.forceHUDActive)
 			{
 				cg.forceHUDActive = qfalse;
@@ -1791,7 +1791,7 @@ static void CG_DrawSimpleForcePower( const centity_t *cent )
 		if ( cg.forceHUDNextFlashTime < cg.time )
 		{
 			cg.forceHUDNextFlashTime = cg.time + 400;
-			cgi_S_StartSound( NULL, 0, CHAN_AUTO, cgs.media.noforceSound );
+			cgi_S_StartSound( nullptr, 0, CHAN_AUTO, cgs.media.noforceSound );
 			if ( cg.forceHUDActive )
 			{
 				cg.forceHUDActive = qfalse;
@@ -2399,7 +2399,7 @@ static void CG_DrawPickupItem( void ) {
 			//CG_DrawBigString( ICON_SIZE + 16, 398, bg_itemlist[ value ].classname, fadeColor[0] );
 			//CG_DrawProportionalString( ICON_SIZE + 16, 398,
 			//	bg_itemlist[ value ].classname, CG_SMALLFONT,fadeColor );
-			cgi_R_SetColor( NULL );
+			cgi_R_SetColor( nullptr );
 		}
 	}
 }
@@ -2740,7 +2740,7 @@ static void CG_DrawCrosshair( vec3_t worldPoint )
 	{
 		if ( !CG_WorldCoordToScreenCoordFloat( worldPoint, &x, &y ) )
 		{//off screen, don't draw it
-			cgi_R_SetColor( NULL );
+			cgi_R_SetColor( nullptr );
 			return;
 		}
 		x -= 320;//????
@@ -2788,7 +2788,7 @@ static void CG_DrawCrosshair( vec3_t worldPoint )
 								cgs.media.forceCoronaShader );
 	}
 
-	cgi_R_SetColor( NULL );
+	cgi_R_SetColor( nullptr );
 }
 
 /*
@@ -2924,11 +2924,11 @@ extern float forcePushPullRadius[];
 static void CG_ScanForCrosshairEntity( qboolean scanAll )
 {
 	trace_t		trace;
-	gentity_t	*traceEnt = NULL;
+	gentity_t	*traceEnt = nullptr;
 	vec3_t		start, end;
 	int			content;
 	int			ignoreEnt = cg.snap->ps.clientNum;
-	Vehicle_t *pVeh = NULL;
+	Vehicle_t *pVeh = nullptr;
 
 	//FIXME: debounce this to about 10fps?
 
@@ -2938,7 +2938,7 @@ static void CG_ScanForCrosshairEntity( qboolean scanAll )
 		vec3_t d_f, d_rt, d_up;
 
 		// If you're riding a vehicle and not being drawn.
-		if ( ( pVeh = G_IsRidingVehicle( cg_entities[0].gent ) ) != NULL && cg_entities[0].currentState.eFlags & EF_NODRAW )
+		if ( ( pVeh = G_IsRidingVehicle( cg_entities[0].gent ) ) != nullptr && cg_entities[0].currentState.eFlags & EF_NODRAW )
 		{
 			VectorCopy( cg_entities[pVeh->m_pParentEntity->s.number].lerpOrigin, start );
 			AngleVectors( cg_entities[pVeh->m_pParentEntity->s.number].lerpAngles, d_f, d_rt, d_up );
@@ -3037,7 +3037,7 @@ static void CG_ScanForCrosshairEntity( qboolean scanAll )
 		{//100% accurate
 			vec3_t d_f, d_rt, d_up;
 			// If you're riding a vehicle and not being drawn.
-			if ( ( pVeh = G_IsRidingVehicle( cg_entities[0].gent ) ) != NULL && cg_entities[0].currentState.eFlags & EF_NODRAW )
+			if ( ( pVeh = G_IsRidingVehicle( cg_entities[0].gent ) ) != nullptr && cg_entities[0].currentState.eFlags & EF_NODRAW )
 			{
 				VectorCopy( cg_entities[pVeh->m_pParentEntity->s.number].lerpOrigin, start );
 				AngleVectors( cg_entities[pVeh->m_pParentEntity->s.number].lerpAngles, d_f, d_rt, d_up );
@@ -3556,7 +3556,7 @@ static void CG_UseIcon()
 	cg_usingInFrontOf = CanUseInfrontOf(cg_entities[cg.snap->ps.clientNum].gent);
 	if (cg_usingInFrontOf)
 	{
-		cgi_R_SetColor( NULL );
+		cgi_R_SetColor( nullptr );
 		CG_DrawPic( 50, 285, 64, 64, cgs.media.useableHint );
 	}
 }
@@ -4005,7 +4005,7 @@ static void CG_Draw2D( void )
 		//CROSSHAIR is now done from the crosshair ent trace
 		//if ( !cg.renderingThirdPerson && !cg_dynamicCrosshair.integer ) // disruptor draws it's own crosshair artwork; binocs draw nothing; third person draws its own crosshair
 		//{
-		//	CG_DrawCrosshair( NULL );
+		//	CG_DrawCrosshair( nullptr );
 		//}
 
 

@@ -643,7 +643,7 @@ Traps "localhost" for loopback, passes everything else to system
 */
 qboolean	NET_StringToAdr( const char *s, netadr_t *a ) {
 	char	base[MAX_STRING_CHARS];
-	char	*port = NULL;
+	char	*port = nullptr;
 
 	if (!strcmp (s, "localhost")) {
 		Com_Memset (a, 0, sizeof(*a));

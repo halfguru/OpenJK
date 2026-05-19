@@ -42,7 +42,7 @@ void WP_FireNoghriStick( gentity_t *ent )
 		angs[YAW]	+= ( Q_flrand(-1.0f, 1.0f) * (BLASTER_NPC_SPREAD+(6-ent->NPC->currentAim)*0.25f));//was 0.5f
 	}
 
-	AngleVectors( angs, dir, NULL, NULL );
+	AngleVectors( angs, dir, nullptr, nullptr );
 
 	// FIXME: if temp_org does not have clear trace to inside the bbox, don't shoot!
 	int velocity	= 1200;

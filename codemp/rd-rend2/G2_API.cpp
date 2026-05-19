@@ -116,7 +116,7 @@ void G2_DEBUG_RemovePtrFromTracker(CGhoul2Info_v *g2)
 	{
 		if (g_G2AllocTrack[i] == g2)
 		{
-			g_G2AllocTrack[i] = NULL;
+			g_G2AllocTrack[i] = nullptr;
 			return;
 		}
 		i++;
@@ -198,7 +198,7 @@ void G2API_AttachInstanceToEntNum(CGhoul2Info_v &ghoul2, int entityNum, qboolean
 void G2API_ClearAttachedInstance(int entityNum)
 {
 #ifdef _G2_LISTEN_SERVER_OPT
-	g2ClientAttachments[entityNum] = NULL;
+	g2ClientAttachments[entityNum] = nullptr;
 #endif
 }
 
@@ -209,7 +209,7 @@ void G2API_CleanEntAttachments(void)
 
 	while (i < MAX_GENTITIES)
 	{
-		g2ClientAttachments[i] = NULL;
+		g2ClientAttachments[i] = nullptr;
 		i++;
 	}
 #endif
@@ -581,7 +581,7 @@ public:
 	}
 	std::vector<CGhoul2Info> &Get(int handle)
 	{
-		assert(handle>0); //null handle
+		assert(handle>0); //nullptr handle
 		assert((handle&G2_INDEX_MASK)>=0&&(handle&G2_INDEX_MASK)<MAX_G2_MODELS); //junk handle
 		assert(mIds[handle&G2_INDEX_MASK]==handle); // not a valid handle, could be old or garbage
 		assert(!(handle<=0||(handle&G2_INDEX_MASK)<0||(handle&G2_INDEX_MASK)>=MAX_G2_MODELS||mIds[handle&G2_INDEX_MASK]!=handle));
@@ -598,10 +598,10 @@ public:
 #if G2API_DEBUG
 	vector<CGhoul2Info> &GetDebug(int handle)
 	{
-		static vector<CGhoul2Info> null;
+		static vector<CGhoul2Info> nullptr;
 		if (handle<=0||(handle&G2_INDEX_MASK)<0||(handle&G2_INDEX_MASK)>=MAX_G2_MODELS||mIds[handle&G2_INDEX_MASK]!=handle)
 		{
-			return *(vector<CGhoul2Info> *)0; // null reference, intentional
+			return *(vector<CGhoul2Info> *)0; // nullptr reference, intentional
 		}
 		return mInfos[handle&G2_INDEX_MASK];
 	}
@@ -625,7 +625,7 @@ public:
 #endif
 };
 
-static Ghoul2InfoArray *singleton = NULL;
+static Ghoul2InfoArray *singleton = nullptr;
 IGhoul2InfoArray &TheGhoul2InfoArray()
 {
 	if(!singleton) {
@@ -638,14 +638,14 @@ IGhoul2InfoArray &TheGhoul2InfoArray()
 
 void RestoreGhoul2InfoArray()
 {
-	if (singleton == NULL)
+	if (singleton == nullptr)
 	{
 		// Create the ghoul2 info array
 		TheGhoul2InfoArray();
 
 		size_t size;
 		const void *data = ri.PD_Load (PERSISTENT_G2DATA, &size);
-		if ( data == NULL )
+		if ( data == nullptr )
 		{
 			return;
 		}
@@ -675,7 +675,7 @@ void Ghoul2InfoArray_Free(void)
 {
 	if(singleton) {
 		delete singleton;
-		singleton = NULL;
+		singleton = nullptr;
 	}
 }
 
@@ -706,7 +706,7 @@ void G2API_CleanGhoul2Models(CGhoul2Info_v **ghoul2Ptr)
 				}
 				else
 				{
-					strcpy(mName, "NULL!");
+					strcpy(mName, "nullptr!");
 				}
 
 				if (ghoul2[0].mFileName && ghoul2[0].mFileName[0])
@@ -746,7 +746,7 @@ void G2API_CleanGhoul2Models(CGhoul2Info_v **ghoul2Ptr)
 #endif
 
 		delete *ghoul2Ptr;
-		*ghoul2Ptr = NULL;
+		*ghoul2Ptr = nullptr;
 	}
 }
 
@@ -887,7 +887,7 @@ qboolean G2API_SetShader(CGhoul2Info *ghlInfo, qhandle_t customShader)
 
 qboolean G2API_SetSurfaceOnOff(CGhoul2Info_v &ghoul2, const char *surfaceName, const int flags)
 {
-	CGhoul2Info *ghlInfo = NULL;
+	CGhoul2Info *ghlInfo = nullptr;
 
 	if (ghoul2.size()>0)
 	{
@@ -1050,7 +1050,7 @@ qboolean G2API_RemoveGhoul2Model(CGhoul2Info_v **ghlRemove, const int modelIndex
 			g_Ghoul2Allocations -= sizeof(*ghlRemove);
 #endif
 			delete *ghlRemove;
-			*ghlRemove = NULL;
+			*ghlRemove = nullptr;
 		}
 	}
 
@@ -1138,7 +1138,7 @@ qboolean G2API_RemoveGhoul2Models(CGhoul2Info_v **ghlRemove)
 		g_Ghoul2Allocations -= sizeof(*ghlRemove);
 #endif
 		delete *ghlRemove;
-		*ghlRemove = NULL;
+		*ghlRemove = nullptr;
 	}
 	return qtrue;
 }
@@ -1726,21 +1726,21 @@ G2_GetRagBoneConveniently(CGhoul2Info_v &ghoul2, const char *boneName)
 
 	if (!(ghlInfo->mFlags & GHOUL2_RAG_STARTED))
 	{ // can't do this if not in ragdoll
-		return NULL;
+		return nullptr;
 	}
 
 	int boneIndex = G2_Find_Bone_Rag(ghlInfo, ghlInfo->mBlist, boneName);
 
 	if (boneIndex < 0)
 	{ // bad bone specification
-		return NULL;
+		return nullptr;
 	}
 
 	boneInfo_t *bone = &ghlInfo->mBlist[boneIndex];
 
 	if (!(bone->flags & BONE_ANGLES_RAGDOLL))
 	{ // only want to return rag bones
-		return NULL;
+		return nullptr;
 	}
 
 	return bone;
@@ -2113,7 +2113,7 @@ qboolean G2API_GetBoltMatrix(
 	qhandle_t *modelList,
 	vec3_t scale)
 {
-	G2ERROR(matrix, "NULL matrix");
+	G2ERROR(matrix, "nullptr matrix");
 	G2ERROR(
 		modelIndex >= 0 && modelIndex < ghoul2.size(),
 		"Invalid ModelIndex");
@@ -2783,12 +2783,12 @@ char *G2API_GetGLAName(CGhoul2Info_v &ghoul2, int modelIndex)
 			return ghoul2[modelIndex].currentModel->data.glm->header->animName;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 qboolean G2API_SetNewOrigin(CGhoul2Info_v &ghoul2, const int boltIndex)
 {
-	CGhoul2Info *ghlInfo = NULL;
+	CGhoul2Info *ghlInfo = nullptr;
 
 	if (ghoul2.size()>0)
 	{
@@ -2970,7 +2970,7 @@ void G2API_AddSkinGore(CGhoul2Info_v &ghoul2,SSkinGoreData &gore)
 
 qboolean G2_TestModelPointers(CGhoul2Info *ghlInfo) // returns true if the model is properly set up
 {
-	G2ERROR(ghlInfo,"NULL ghlInfo");
+	G2ERROR(ghlInfo,"nullptr ghlInfo");
 	if (!ghlInfo)
 	{
 		return qfalse;
@@ -3044,7 +3044,7 @@ qboolean G2_SetupModelPointers(CGhoul2Info *ghlInfo) // returns true if the mode
 #ifdef G2_PERFORMANCE_ANALYSIS
 	G2PerformanceTimer_G2_SetupModelPointers.Start();
 #endif
-	G2ERROR(ghlInfo,"NULL ghlInfo");
+	G2ERROR(ghlInfo,"nullptr ghlInfo");
 	if (!ghlInfo)
 	{
 		return qfalse;
@@ -3083,7 +3083,7 @@ qboolean G2_SetupModelPointers(CGhoul2Info *ghlInfo) // returns true if the mode
 			ghlInfo->currentModel = R_GetModelByHandle(ghlInfo->mModel);
 		}
 
-		G2ERROR(ghlInfo->currentModel,va("NULL Model (glm) %s",ghlInfo->mFileName));
+		G2ERROR(ghlInfo->currentModel,va("nullptr Model (glm) %s",ghlInfo->mFileName));
 		if (ghlInfo->currentModel)
 		{
 			G2ERROR(ghlInfo->currentModel->modelData,va("Model has no mdxm (glm) %s",ghlInfo->mFileName));
@@ -3102,7 +3102,7 @@ qboolean G2_SetupModelPointers(CGhoul2Info *ghlInfo) // returns true if the mode
 				G2ERROR(ghlInfo->currentModelSize,va("Zero sized Model? (glm) %s",ghlInfo->mFileName));
 
 				ghlInfo->animModel = R_GetModelByHandle(mdxm->animIndex);
-				G2ERROR(ghlInfo->animModel,va("NULL Model (gla) %s",ghlInfo->mFileName));
+				G2ERROR(ghlInfo->animModel,va("nullptr Model (gla) %s",ghlInfo->mFileName));
 				if (ghlInfo->animModel)
 				{
 					ghlInfo->aHeader = ghlInfo->animModel->data.gla;

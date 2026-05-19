@@ -1315,7 +1315,7 @@ int			Trooper_CanHitTarget(gentity_t* actor, gentity_t* target, CTroop& troop, f
 	{
 		// Clear Line Of Sight To Target?
 		//--------------------------------
-		gi.trace(&tr, MuzzlePoint.v, NULL, NULL, troop.TargetVisablePosition().v, actor->s.number, MASK_SHOT, (EG2_Collision)0, 0);
+		gi.trace(&tr, MuzzlePoint.v, nullptr, nullptr, troop.TargetVisablePosition().v, actor->s.number, MASK_SHOT, (EG2_Collision)0, 0);
 		if (tr.startsolid || tr.allsolid)
 		{
 			return ENTITYNUM_NONE;

@@ -33,7 +33,7 @@ void func_wait_return_solid( gentity_t *self )
 {
 	//once a frame, see if it's clear.
 	self->clipmask = CONTENTS_BODY;//|CONTENTS_MONSTERCLIP|CONTENTS_BOTCLIP;
-	if ( !(self->spawnflags&16) || G_TestEntityPosition( self ) == NULL )
+	if ( !(self->spawnflags&16) || G_TestEntityPosition( self ) == nullptr )
 	{
 		gi.SetBrushModel( self, self->model );
 		VectorCopy( self->currentOrigin, self->pos1 );
@@ -99,7 +99,7 @@ void func_usable_use( gentity_t *self, gentity_t *other, gentity_t *activator )
 	{//directly used by use button trace
 		if ( (self->spawnflags&32) )
 		{//only usable by NPCs
-			if ( activator->NPC == NULL )
+			if ( activator->NPC == nullptr )
 			{//Not an NPC
 				return;
 			}

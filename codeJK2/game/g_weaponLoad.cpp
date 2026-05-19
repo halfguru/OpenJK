@@ -90,7 +90,7 @@ func_t	funcs[] = {
 	{"atstmain_func",		FX_ATSTMainProjectileThink},
 	{"atst_side_alt_func",	FX_ATSTSideAltProjectileThink},
 	{"atst_side_main_func",	FX_ATSTSideMainProjectileThink},
-	{NULL,					NULL}
+	{nullptr,					nullptr}
 };
 
 //qboolean COM_ParseInt( char **data, int *i );

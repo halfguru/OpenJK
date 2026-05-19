@@ -148,7 +148,7 @@ static void *R_GetCommandBufferReserved( int bytes, int reservedBytes ) {
 			ri.Error( ERR_FATAL, "R_GetCommandBuffer: bad size %i", bytes );
 		}
 		// if we run out of room, just start dropping commands
-		return NULL;
+		return nullptr;
 	}
 
 	cmdList->used += bytes;
@@ -195,7 +195,7 @@ void	R_AddDrawSurfCmd( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 =============
 RE_SetColor
 
-Passing NULL will set the color to white
+Passing nullptr will set the color to white
 =============
 */
 void	RE_SetColor( const float *rgba ) {
@@ -370,7 +370,7 @@ for each RE_EndFrame
 ====================
 */
 void RE_BeginFrame( stereoFrame_t stereoFrame ) {
-	drawBufferCommand_t	*cmd = NULL;
+	drawBufferCommand_t	*cmd = nullptr;
 
 	if ( !tr.registered ) {
 		return;

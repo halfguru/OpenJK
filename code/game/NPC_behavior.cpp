@@ -112,13 +112,13 @@ void NPC_BSAdvanceFight (void)
 					trace_t		tr;
 					gentity_t	*traceEnt;
 					//are we gonna hit him if we shoot at his center?
-					gi.trace ( &tr, muzzle, NULL, NULL, enemy_org, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
+					gi.trace ( &tr, muzzle, nullptr, nullptr, enemy_org, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 					traceEnt = &g_entities[tr.entityNum];
 					if( traceEnt != NPC->enemy &&
 						(!traceEnt || !traceEnt->client || !NPC->client->enemyTeam || NPC->client->enemyTeam != traceEnt->client->playerTeam) )
 					{//no, so shoot for the head
 						attack_scale *= 0.75;
-						gi.trace ( &tr, muzzle, NULL, NULL, enemy_head, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
+						gi.trace ( &tr, muzzle, nullptr, nullptr, enemy_head, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 						traceEnt = &g_entities[tr.entityNum];
 					}
 
@@ -155,7 +155,7 @@ void NPC_BSAdvanceFight (void)
 					if( !dead_on )
 					{//We're not going to hit him directly, try a suppressing fire
 						//see if where we're going to shoot is too far from his origin
-						AngleVectors (NPCInfo->shootAngles, forward, NULL, NULL);
+						AngleVectors (NPCInfo->shootAngles, forward, nullptr, nullptr);
 						VectorMA ( muzzle, distanceToEnemy, forward, hitspot);
 						VectorSubtract(hitspot, enemy_org, diff);
 						aim_off = VectorLength(diff);
@@ -561,7 +561,7 @@ bool NPC_BSFollowLeader_UpdateLeader(void)
 
 	if (NPC->client->leader && NPC->client->leader->health<=0)
 	{
-		NPC->client->leader = NULL;
+		NPC->client->leader = nullptr;
 	}
 
 	if ( !NPC->client->leader )
@@ -1029,7 +1029,7 @@ void NPC_BSRemove (void)
 		NPC->s.eType = ET_INVISIBLE;
 		NPC->contents = 0;
 		NPC->health = 0;
-		NPC->targetname = NULL;
+		NPC->targetname = nullptr;
 
 		//Disappear in half a second
 		NPC->e_ThinkFunc = thinkF_G_FreeEntity;
@@ -1061,7 +1061,7 @@ void NPC_BSSearch (void)
 		}
 	}
 
-	//FIXME: what if our goalEntity is not NULL and NOT our tempGoal - they must
+	//FIXME: what if our goalEntity is not nullptr and NOT our tempGoal - they must
 	//want us to do something else?  If tempBehavior, just default, else set
 	//to run and shoot...?
 
@@ -1232,7 +1232,7 @@ void NPC_BSNoClip ( void )
 		vectoangles( dir, angles );
 		NPCInfo->desiredYaw = angles[YAW];
 
-		AngleVectors( NPC->currentAngles, forward, right, NULL );
+		AngleVectors( NPC->currentAngles, forward, right, nullptr );
 
 		VectorNormalize( dir );
 
@@ -1515,7 +1515,7 @@ void NPC_Surrender( void )
 		NPC->s.weapon != WP_MELEE &&
 		NPC->s.weapon != WP_SABER )
 	{
-		WP_DropWeapon( NPC, NULL );
+		WP_DropWeapon( NPC, nullptr );
 	}
 	if ( NPCInfo->surrenderTime < level.time - 5000 )
 	{//haven't surrendered for at least 6 seconds, tell them what you're doing
@@ -1764,7 +1764,7 @@ qboolean NPC_BSFlee( void )
 		&& Distance( NPCInfo->goalEntity->currentOrigin, NPC->enemy->currentOrigin ) < enemyTooCloseDist )
 	{
 		//our goal is too close to our enemy, dump it...
-		NPCInfo->goalEntity = NULL;
+		NPCInfo->goalEntity = nullptr;
 	}
 	if (NPCInfo->goalEntity && !NPCInfo->goalEntity->inuse)
 	{

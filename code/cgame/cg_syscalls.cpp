@@ -285,7 +285,7 @@ qboolean cgi_Language_UsesSpaces(void)
 	return (qboolean)(Q_syscall( CG_LANGUAGE_USESSPACES ) != 0);
 }
 
-unsigned int cgi_AnyLanguage_ReadCharFromString( const char *psText, int *piAdvanceCount, qboolean *pbIsTrailingPunctuation /* = NULL */ )
+unsigned int cgi_AnyLanguage_ReadCharFromString( const char *psText, int *piAdvanceCount, qboolean *pbIsTrailingPunctuation /* = nullptr */ )
 {
 	return Q_syscall( CG_ANYLANGUAGE_READFROMSTRING, psText, piAdvanceCount, pbIsTrailingPunctuation );
 }
@@ -453,8 +453,8 @@ void	cgi_R_WorldEffectCommand( const char *command )
 	Q_syscall( CG_R_WORLD_EFFECT_COMMAND, command );
 }
 
-// this returns a handle.  arg0 is the name in the format "idlogo.roq", set arg1 to NULL, alteredstates to qfalse (do not alter gamestate)
-int trap_CIN_PlayCinematic( const char *arg0, int xpos, int ypos, int width, int height, int bits, const char *psAudioFile /* = NULL */) {
+// this returns a handle.  arg0 is the name in the format "idlogo.roq", set arg1 to nullptr, alteredstates to qfalse (do not alter gamestate)
+int trap_CIN_PlayCinematic( const char *arg0, int xpos, int ypos, int width, int height, int bits, const char *psAudioFile /* = nullptr */) {
   return Q_syscall(CG_CIN_PLAYCINEMATIC, arg0, xpos, ypos, width, height, bits, psAudioFile);
 }
 

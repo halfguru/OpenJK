@@ -536,7 +536,7 @@ void G_FindTeams( void ) {
 				// make sure that targets only point at the master
 				if ( e2->targetname ) {
 					e->targetname = e2->targetname;
-					e2->targetname = NULL;
+					e2->targetname = nullptr;
 				}
 			}
 		}
@@ -634,7 +634,7 @@ void InitGame(  const char *mapname, const char *spawntarget, int checkSum, cons
 	level.time = levelTime;
 	level.globalTime = globalTime;
 	Q_strncpyz( level.mapname, mapname, sizeof(level.mapname) );
-	if ( spawntarget != NULL && spawntarget[0] )
+	if ( spawntarget != nullptr && spawntarget[0] )
 	{
 		Q_strncpyz( level.spawntarget, spawntarget, sizeof(level.spawntarget) );
 	}
@@ -909,7 +909,7 @@ static void G_CheckTasksCompleted (gentity_t *ent)
 
 static void G_CheckSpecialPersistentEvents( gentity_t *ent )
 {//special-case alerts that would be a pain in the ass to have the ent's think funcs generate
-	if ( ent == NULL )
+	if ( ent == nullptr )
 	{
 		return;
 	}
@@ -960,7 +960,7 @@ void G_RunThink (gentity_t *ent)
 	float	thinktime;
 
 	/*
-	if ( ent->NPC == NULL )
+	if ( ent->NPC == nullptr )
 	{
 		if ( ent->taskManager && !stop_icarus )
 		{
@@ -983,7 +983,7 @@ void G_RunThink (gentity_t *ent)
 	ent->nextthink = 0;
 	if ( ent->e_ThinkFunc == thinkF_NULL )	// actually you don't need this if I check for it in the next function -slc
 	{
-		//gi.Error ( "NULL ent->think");
+		//gi.Error ( "nullptr ent->think");
 		goto runicarus;
 	}
 
@@ -992,7 +992,7 @@ void G_RunThink (gentity_t *ent)
 runicarus:
 	if ( ent->inuse )	// GEntity_ThinkFunc( ent ) can have freed up this ent if it was a type flier_child (stasis1 crash)
 	{
-		if ( ent->NPC == NULL )
+		if ( ent->NPC == nullptr )
 		{
 			if ( ent->taskManager && !stop_icarus )
 			{
@@ -1026,7 +1026,7 @@ void G_Animate ( gentity_t *self )
 
 				// I guess query ghoul2 to find out what the current frame is and see if we are done.
 				gi.G2API_GetBoneAnimIndex( &self->ghoul2[self->playerModel], self->rootBone,
-									(cg.time?cg.time:level.time), &frame, &junk, &junk, &junk, &junk2, NULL );
+									(cg.time?cg.time:level.time), &frame, &junk, &junk, &junk, &junk2, nullptr );
 
 				// It NEVER seems to get to what you'd think the last frame would be, so I'm doing this to try and catch when the animation has stopped
 				if ( frame + 1 >= self->endFrame )
@@ -1413,7 +1413,7 @@ void G_RunFrame( int levelTime ) {
 			{
 				if ( ent->client->ps.groundEntityNum != ENTITYNUM_NONE )
 				{//on the ground
-					pitch_roll_for_slope( ent, NULL );
+					pitch_roll_for_slope( ent, nullptr );
 				}
 			}
 

@@ -65,7 +65,7 @@ void fx_runner_think( gentity_t *ent )
 	G_AddEvent( ent, EV_PLAY_EFFECT, ent->fxID );
 
 	// Assume angles, we'll do a cross product on the other end to finish up
-	AngleVectors( ent->currentAngles, ent->pos3, NULL, NULL );
+	AngleVectors( ent->currentAngles, ent->pos3, nullptr, nullptr );
 	MakeNormalVectors( ent->pos3, ent->pos4, temp ); // there IS a reason this is done...it's so that it doesn't break every effect in the game...
 
 	ent->nextthink = level.time + ent->delay + Q_flrand(0.0f, 1.0f) * ent->random;
@@ -162,7 +162,7 @@ void fx_runner_link( gentity_t *ent )
 	if ( ent->target )
 	{
 		// try to use the target to override the orientation
-		gentity_t	*target = NULL;
+		gentity_t	*target = nullptr;
 
 		target = G_Find( target, FOFS(targetname), ent->target );
 
@@ -184,7 +184,7 @@ void fx_runner_link( gentity_t *ent )
 	// don't really do anything with this right now other than do a check to warn the designers if the target2 is bogus
 	if ( ent->target2 )
 	{
-		gentity_t	*target = NULL;
+		gentity_t	*target = nullptr;
 
 		target = G_Find( target, FOFS(targetname), ent->target2 );
 
@@ -442,7 +442,7 @@ void fx_explosion_trail_use( gentity_t *self, gentity_t *other, gentity_t *activ
 void fx_explosion_trail_link( gentity_t *ent )
 {
 	vec3_t		dir;
-	gentity_t	*target = NULL;
+	gentity_t	*target = nullptr;
 
 	// we ony activate when used
 	ent->e_UseFunc = useF_fx_explosion_trail_use;
@@ -466,7 +466,7 @@ void fx_explosion_trail_link( gentity_t *ent )
 	else
 	{
 		// we are assuming that we have angles, but there are no checks to verify this
-		AngleVectors( ent->s.angles, dir, NULL, NULL );
+		AngleVectors( ent->s.angles, dir, nullptr, nullptr );
 	}
 
 	// NOTE: this really isn't an angle, but rather an orientation vector
@@ -568,7 +568,7 @@ void fx_target_beam_fire( gentity_t *ent )
 
 	if ( !ent->enemy || !ent->enemy->inuse )
 	{//info_null most likely
-		ent->enemy = NULL;
+		ent->enemy = nullptr;
 		VectorCopy( ent->s.origin2, org );
 	}
 	else
@@ -580,7 +580,7 @@ void fx_target_beam_fire( gentity_t *ent )
 	VectorSubtract( org, ent->s.origin, dir );
 	VectorNormalize( dir );
 
-	gi.trace( &trace, ent->s.origin, NULL, NULL, org, ENTITYNUM_NONE, MASK_SHOT, G2_NOCOLLIDE, 0 );//ignore
+	gi.trace( &trace, ent->s.origin, nullptr, nullptr, org, ENTITYNUM_NONE, MASK_SHOT, G2_NOCOLLIDE, 0 );//ignore
 	if ( ent->spawnflags & 2 )
 	{
 		open = qtrue;
@@ -673,7 +673,7 @@ void fx_target_beam_think( gentity_t *ent )
 //------------------------------------------
 void fx_target_beam_link( gentity_t *ent )
 {
-	gentity_t	*target = NULL;
+	gentity_t	*target = nullptr;
 	vec3_t		dir;
 
 	target = G_Find( target, FOFS(targetname), ent->target );
@@ -762,7 +762,7 @@ void SP_fx_target_beam( gentity_t *ent )
 	ent->fxID = G_EffectIndex( ent->fxFile );
 
 	ent->activator = ent;
-	ent->owner	= NULL;
+	ent->owner	= nullptr;
 
 	ent->e_ThinkFunc = thinkF_fx_target_beam_link;
 	ent->nextthink	= level.time + START_TIME_LINK_ENTS;

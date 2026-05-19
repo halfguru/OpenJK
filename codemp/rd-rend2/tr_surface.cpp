@@ -215,7 +215,7 @@ void RB_InstantQuad2(vec4_t quadVerts[4], vec2_t texCoords[4])
 
 	RB_UpdateVBOs(ATTR_POSITION | ATTR_TEXCOORD0);
 
-	GLSL_VertexAttribsState(ATTR_POSITION | ATTR_TEXCOORD0, NULL);
+	GLSL_VertexAttribsState(ATTR_POSITION | ATTR_TEXCOORD0, nullptr);
 
 	R_DrawElementsVBO(tess.numIndexes, tess.firstIndex, tess.minIndex, tess.maxIndex);
 
@@ -680,7 +680,7 @@ static void RB_SurfaceBeam( void )
 	// FIXME: A lot of this can probably be removed for speed, and refactored into a more convenient function
 	RB_UpdateVBOs(ATTR_POSITION);
 
-	GLSL_VertexAttribsState(ATTR_POSITION, NULL);
+	GLSL_VertexAttribsState(ATTR_POSITION, nullptr);
 	GLSL_BindProgram(sp);
 
 	GLSL_SetUniformMatrix4x4(sp, UNIFORM_MODELVIEWPROJECTIONMATRIX, glState.modelviewProjection);
@@ -1963,7 +1963,7 @@ static void RB_SurfaceBSPGrid( srfBspSurface_t *srf ) {
 /*
 ===========================================================================
 
-NULL MODEL
+nullptr MODEL
 
 ===========================================================================
 */

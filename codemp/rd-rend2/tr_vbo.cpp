@@ -118,7 +118,7 @@ VBO_t *R_CreateVBO(byte * vertexes, int vertexesSize, vboUsage_t usage)
 
 	qglBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	glState.currentVBO = NULL;
+	glState.currentVBO = nullptr;
 
 	GL_CheckErrors();
 
@@ -166,7 +166,7 @@ IBO_t *R_CreateIBO(byte * indexes, int indexesSize, vboUsage_t usage)
 
 	qglBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	glState.currentIBO = NULL;
+	glState.currentIBO = nullptr;
 
 	GL_CheckErrors();
 
@@ -183,7 +183,7 @@ void R_BindVBO(VBO_t * vbo)
 	if(!vbo)
 	{
 		//R_BindNullVBO();
-		ri.Error(ERR_DROP, "R_BindVBO: NULL vbo");
+		ri.Error(ERR_DROP, "R_BindVBO: nullptr vbo");
 		return;
 	}
 
@@ -222,7 +222,7 @@ void R_BindNullVBO(void)
 	if(glState.currentVBO)
 	{
 		qglBindBuffer(GL_ARRAY_BUFFER, 0);
-		glState.currentVBO = NULL;
+		glState.currentVBO = nullptr;
 	}
 
 	GL_CheckErrors();
@@ -238,7 +238,7 @@ void R_BindIBO(IBO_t * ibo)
 	if(!ibo)
 	{
 		//R_BindNullIBO();
-		ri.Error(ERR_DROP, "R_BindIBO: NULL ibo");
+		ri.Error(ERR_DROP, "R_BindIBO: nullptr ibo");
 		return;
 	}
 
@@ -269,7 +269,7 @@ void R_BindNullIBO(void)
 	if(glState.currentIBO)
 	{
 		qglBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-		glState.currentIBO = NULL;
+		glState.currentIBO = nullptr;
 	}
 }
 
@@ -565,7 +565,7 @@ void CalculateVertexArraysFromVBO(
 				vbo->sizes[i],
 				vbo->strides[i],
 				vbo->offsets[i],
-				NULL,
+				nullptr,
 				0);
 	}
 }

@@ -63,7 +63,7 @@ void ShaderEntryPtrs_Insert(const char *token, const char *p)
 	}
 }
 
-// returns NULL if not found...
+// returns nullptr if not found...
 //
 const char *ShaderEntryPtrs_Lookup(const char *psShaderName)
 {
@@ -74,5 +74,5 @@ const char *ShaderEntryPtrs_Lookup(const char *psShaderName)
 		return p;
 	}
 
-	return NULL;
+	return nullptr;
 }

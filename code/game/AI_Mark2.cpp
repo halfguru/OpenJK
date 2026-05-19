@@ -82,7 +82,7 @@ void NPC_Mark2_Part_Explode( gentity_t *self, int bolt )
 		gi.G2API_GetBoltMatrix( self->ghoul2, self->playerModel,
 					bolt,
 					&boltMatrix, self->currentAngles, self->currentOrigin, (cg.time?cg.time:level.time),
-					NULL, self->s.modelScale );
+					nullptr, self->s.modelScale );
 
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, org );
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, NEGATIVE_Y, dir );
@@ -128,7 +128,7 @@ void NPC_Mark2_Pain( gentity_t *self, gentity_t *inflictor, gentity_t *other, co
 	// If any pods were blown off, kill him
 	if (self->count > 0)
 	{
-		G_Damage( self, NULL, NULL, NULL, NULL, self->health, DAMAGE_NO_PROTECTION, MOD_UNKNOWN );
+		G_Damage( self, nullptr, nullptr, nullptr, nullptr, self->health, DAMAGE_NO_PROTECTION, MOD_UNKNOWN );
 	}
 }
 
@@ -139,7 +139,7 @@ Mark2_Hunt
 */
 void Mark2_Hunt(void)
 {
-	if ( NPCInfo->goalEntity == NULL )
+	if ( NPCInfo->goalEntity == nullptr )
 	{
 		NPCInfo->goalEntity = NPC->enemy;
 	}
@@ -166,7 +166,7 @@ void Mark2_FireBlaster(qboolean advance)
 	gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->playerModel,
 				NPC->genericBolt1,
 				&boltMatrix, NPC->currentAngles, NPC->currentOrigin, (cg.time?cg.time:level.time),
-				NULL, NPC->s.modelScale );
+				nullptr, NPC->s.modelScale );
 
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, muzzle1 );
 

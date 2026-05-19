@@ -90,7 +90,7 @@ qboolean CModelCacheManager::LoadFile( const char *pFileName, void **ppFileBuffe
 	}
 
 	int len = ri.FS_ReadFile(path, ppFileBuffer);
-	if ( len == -1 || *ppFileBuffer == NULL )
+	if ( len == -1 || *ppFileBuffer == nullptr )
 	{
 		return qfalse;
 	}
@@ -106,12 +106,12 @@ void* CModelCacheManager::Allocate( int iSize, void *pvDiskBuffer, const char *p
 	int		iChecksum;
 	char	sModelName[MAX_QPATH];
 
-	/* Standard NULL checking. */
+	/* Standard nullptr checking. */
 	if( !psModelFileName || !psModelFileName[0] )
-		return NULL;
+		return nullptr;
 
 	if( !bAlreadyFound )
-		return NULL;
+		return nullptr;
 
 	NormalizePath(sModelName, psModelFileName, sizeof(sModelName));
 
@@ -296,7 +296,7 @@ void CModelCacheManager::StoreShaderRequest( const char *psModelFileName, const 
 		return;
 	}
 
-	if( file->pDiskImage == NULL )
+	if( file->pDiskImage == nullptr )
 	{
 		/* Shouldn't even happen. */
 		assert(0);
@@ -322,7 +322,7 @@ void CModelCacheManager::AllocateShaders( const char *psFileName )
 		return;
 	}
 
-	if( file->pDiskImage == NULL )
+	if( file->pDiskImage == nullptr )
 	{
 		/* Shouldn't even happen. */
 		assert(0);

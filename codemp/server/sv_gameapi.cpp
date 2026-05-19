@@ -444,7 +444,7 @@ static void SV_GameDropClient( int clientNum, const char *reason ) {
 
 static void SV_GameSendServerCommand( int clientNum, const char *text ) {
 	if ( clientNum == -1 ) {
-		SV_SendServerCommand( NULL, "%s", text );
+		SV_SendServerCommand( nullptr, "%s", text );
 	} else {
 		if ( clientNum < 0 || clientNum >= sv_maxclients->integer ) {
 			return;
@@ -475,7 +475,7 @@ static void SV_SetBrushModel( sharedEntity_t *ent, const char *name ) {
 
 	if (!name)
 	{
-		Com_Error( ERR_DROP, "SV_SetBrushModel: NULL" );
+		Com_Error( ERR_DROP, "SV_SetBrushModel: nullptr" );
 	}
 
 	if (name[0] == '*')
@@ -604,7 +604,7 @@ static const char *SV_SetActiveSubBSP( int index ) {
 	}
 
 	sv.mLocalSubBSPIndex = -1;
-	return NULL;
+	return nullptr;
 }
 
 static qboolean SV_GetEntityToken( char *buffer, int bufferSize ) {
@@ -2789,12 +2789,12 @@ intptr_t SV_GameSystemCalls( intptr_t *args ) {
 
 void SV_InitGame( qboolean restart ) {
 	int i=0;
-	client_t *cl = NULL;
+	client_t *cl = nullptr;
 
 	// clear level pointers
 	sv.entityParsePoint = CM_EntityString();
 	for ( i=0, cl=svs.clients; i<sv_maxclients->integer; i++, cl++ )
-		cl->gentity = NULL;
+		cl->gentity = nullptr;
 
 	GVM_InitGame( sv.time, Com_Milliseconds(), restart );
 }
@@ -3142,7 +3142,7 @@ void SV_BindGame( void ) {
 void SV_UnbindGame( void ) {
 	GVM_ShutdownGame( qfalse );
 	VM_Free( gvm );
-	gvm = NULL;
+	gvm = nullptr;
 }
 
 void SV_RestartGame( void ) {

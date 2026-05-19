@@ -118,7 +118,7 @@ void Howler_TryDamage( gentity_t *enemy, int damage )
 		return;
 	}
 
-	AngleVectors( NPC->client->ps.viewangles, dir, NULL, NULL );
+	AngleVectors( NPC->client->ps.viewangles, dir, nullptr, nullptr );
 	VectorMA( NPC->currentOrigin, MIN_DISTANCE, dir, end );
 
 	// Should probably trace from the mouth, but, ah well.

@@ -187,7 +187,7 @@ static const char *GetSubString(std::string &strResult)
 	static char sTemp[MAX_LINE_BYTES];
 
 	if (!strlen(strResult.c_str()))
-		return NULL;
+		return nullptr;
 
 	Q_strncpyz(sTemp,strResult.c_str(),sizeof(sTemp));
 
@@ -232,7 +232,7 @@ void CG_Credits_Init( const char *psStripReference, vec4_t *pv4Color )
 
 	// first, ask the strlen of the final string...
 	//
-	int iStrLen = cgi_SP_GetStringTextString( psStripReference, NULL, 0 );
+	int iStrLen = cgi_SP_GetStringTextString( psStripReference, nullptr, 0 );
 	if (!iStrLen)
 	{
 #ifndef FINAL_BUILD
@@ -401,7 +401,7 @@ void CG_Credits_Init( const char *psStripReference, vec4_t *pv4Color )
 
 					std::string strResult(sLine);
 					const char *p;
-					while ((p=GetSubString(strResult)) != NULL)
+					while ((p=GetSubString(strResult)) != nullptr)
 					{
 						if (CreditLine.strText.IsEmpty())
 						{
@@ -444,7 +444,7 @@ void CG_Credits_Init( const char *psStripReference, vec4_t *pv4Color )
 
 					std::string strResult(sLine);
 					const char *p;
-					while ((p=GetSubString(strResult)) != NULL)
+					while ((p=GetSubString(strResult)) != nullptr)
 					{
 						if (CreditCard.strTitle.IsEmpty())
 						{

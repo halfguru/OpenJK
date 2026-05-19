@@ -266,7 +266,7 @@ void	Boba_DustFallNear(const vec3_t origin, int dustcount)
 		testDirection[2] = 1.0f;
 
 		VectorMA(origin, 1000.0f, testDirection, testEndPos);
-		gi.trace (&testTrace, origin, NULL, NULL, testEndPos, (player && player->inuse)?(0):(ENTITYNUM_NONE), MASK_SHOT, (EG2_Collision)0, 0 );
+		gi.trace (&testTrace, origin, nullptr, nullptr, testEndPos, (player && player->inuse)?(0):(ENTITYNUM_NONE), MASK_SHOT, (EG2_Collision)0, 0 );
 
 		if (!testTrace.startsolid &&
 			!testTrace.allsolid &&
@@ -310,7 +310,7 @@ qboolean Boba_StopKnockdown( gentity_t *self, gentity_t *pusher, const vec3_t pu
 	float	fDot, rDot;
 	int		strafeTime = Q_irand( 1000, 2000 );
 
-	AngleVectors( ang, fwd, right, NULL );
+	AngleVectors( ang, fwd, right, nullptr );
 	VectorNormalize2( pushDir, pDir );
 	fDot = DotProduct( pDir, fwd );
 	rDot = DotProduct( pDir, right );
@@ -471,7 +471,7 @@ void Boba_FireFlameThrower( gentity_t *self )
 	vec3_t		start, end, dir;
 	CVec3		traceMins(self->mins);
 	CVec3		traceMaxs(self->maxs);
-	gentity_t*	traceEnt	= NULL;
+	gentity_t*	traceEnt	= nullptr;
 	int			damage		= Q_irand( BOBA_FLAMETHROWDAMAGEMIN, BOBA_FLAMETHROWDAMAGEMAX );
 
   	AngleVectors(self->currentAngles, dir, 0, 0);
@@ -1033,7 +1033,7 @@ void	Boba_Update()
 			trace_t		testTrace;
 			vec3_t		eyes;
 			CalcEntitySpot( NPC, SPOT_HEAD_LEAN, eyes );
-			gi.trace (&testTrace, eyes, NULL, NULL, NPC->enemy->currentOrigin, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0);
+			gi.trace (&testTrace, eyes, nullptr, nullptr, NPC->enemy->currentOrigin, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0);
 
 			bool	wasSeen = Boba_CanSeeEnemy(NPC);
 

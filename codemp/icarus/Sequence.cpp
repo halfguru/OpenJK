@@ -35,8 +35,8 @@ CSequence::CSequence( void )
 	m_flags			= 0;
 	m_iterations	= 1;
 
-	m_parent		= NULL;
-	m_return		= NULL;
+	m_parent		= nullptr;
+	m_return		= nullptr;
 }
 
 CSequence::~CSequence( void )
@@ -56,8 +56,8 @@ CSequence *CSequence::Create( void )
 
 	//TODO: Emit warning
 	assert(seq);
-	if ( seq == NULL )
-		return NULL;
+	if ( seq == nullptr )
+		return nullptr;
 
 	seq->SetFlag( SQ_COMMON );
 
@@ -86,12 +86,12 @@ void CSequence::Delete( void )
 	{
 		/*for ( iterSeq = m_childrenMap.begin(); iterSeq != m_childrenMap.end(); iterSeq++ )
 		{
-			(*iterSeq).second->SetParent( NULL );
+			(*iterSeq).second->SetParent( nullptr );
 		}*/
 
 		for ( si = m_children.begin(); si != m_children.end(); ++si )
 		{
-			(*si)->SetParent( NULL );
+			(*si)->SetParent( nullptr );
 		}
 	}
 	m_children.clear();
@@ -115,7 +115,7 @@ AddChild
 void CSequence::AddChild( CSequence *child )
 {
 	assert( child );
-	if ( child == NULL )
+	if ( child == nullptr )
 		return;
 
 	m_children.insert( m_children.end(), child );
@@ -130,7 +130,7 @@ RemoveChild
 void CSequence::RemoveChild( CSequence *child )
 {
 	assert( child );
-	if ( child == NULL )
+	if ( child == nullptr )
 		return;
 
 	//Remove the child
@@ -169,7 +169,7 @@ void CSequence::SetParent( CSequence *parent )
 {
 	m_parent = parent;
 
-	if ( parent == NULL )
+	if ( parent == nullptr )
 		return;
 
 	//Inherit the parent's properties (this avoids messy tree walks later on)
@@ -188,13 +188,13 @@ PopCommand
 
 CBlock *CSequence::PopCommand( int type )
 {
-	CBlock	*command = NULL;
+	CBlock	*command = nullptr;
 
 	//Make sure everything is ok
 	assert( (type == POP_FRONT) || (type == POP_BACK) );
 
 	if ( m_commands.empty() )
-		return NULL;
+		return nullptr;
 
 	switch ( type )
 	{
@@ -218,7 +218,7 @@ CBlock *CSequence::PopCommand( int type )
 	}
 
 	//Invalid flag
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -320,7 +320,7 @@ GetChild
 CSequence *CSequence::GetChildByIndex( int iIndex )
 {
 	if ( iIndex < 0 || iIndex >= (int)m_children.size() )
-		return NULL;
+		return nullptr;
 
 	sequence_l::iterator iterSeq = m_children.begin();
 	for ( int i = 0; i < iIndex; i++  )
@@ -387,11 +387,11 @@ int CSequence::Save( void )
 	int						id;
 
 	//Save the parent (by GUID)
-	id = ( m_parent != NULL ) ? m_parent->GetID() : -1;
+	id = ( m_parent != nullptr ) ? m_parent->GetID() : -1;
 	(m_owner->GetInterface())->I_WriteSaveData( 'SPID', &id, sizeof( id ) );
 
 	//Save the return (by GUID)
-	id = ( m_return != NULL ) ? m_return->GetID() : -1;
+	id = ( m_return != nullptr ) ? m_return->GetID() : -1;
 	(m_owner->GetInterface())->I_WriteSaveData( 'SRID', &id, sizeof( id ) );
 
 	//Save the number of children
@@ -443,11 +443,11 @@ int CSequence::Load( void )
 
 	//Get the parent sequence
 	(m_owner->GetInterface())->I_ReadSaveData( 'SPID', &id, sizeof( id ) );
-	m_parent = ( id != -1 ) ? m_owner->GetSequence( id ) : NULL;
+	m_parent = ( id != -1 ) ? m_owner->GetSequence( id ) : nullptr;
 
 	//Get the return sequence
 	(m_owner->GetInterface())->I_ReadSaveData( 'SRID', &id, sizeof( id ) );
-	m_return = ( id != -1 ) ? m_owner->GetSequence( id ) : NULL;
+	m_return = ( id != -1 ) ? m_owner->GetSequence( id ) : nullptr;
 
 	//Get the number of children
 //	(m_owner->GetInterface())->I_ReadSaveData( 'SNCH', &m_numChildren, sizeof( m_numChildren ) );
@@ -459,7 +459,7 @@ int CSequence::Load( void )
 		(m_owner->GetInterface())->I_ReadSaveData( 'SCHD', &id, sizeof( id ) );
 
 		//Get the desired sequence
-		if ( ( sequence = m_owner->GetSequence( id ) ) == NULL )
+		if ( ( sequence = m_owner->GetSequence( id ) ) == nullptr )
 			return false;
 
 		//Insert this into the list
@@ -506,7 +506,7 @@ int CSequence::Load( void )
 			(m_owner->GetInterface())->I_ReadSaveData( 'BSIZ', &bSize, sizeof( bSize ) );
 
 			//Get the member's data
-			if ( ( bData = ICARUS_Malloc( bSize ) ) == NULL )
+			if ( ( bData = ICARUS_Malloc( bSize ) ) == nullptr )
 				return false;
 
 			//Get the actual raw data

@@ -1999,7 +1999,7 @@ static void RawImage_UploadTexture( byte *data, int x, int y, int width, int hei
 
 			qglTexStorage2D (GL_TEXTURE_2D, numLevels, internalFormat, width, height);
 
-			if ( data != NULL )
+			if ( data != nullptr )
 			{
 				qglTexSubImage2D (GL_TEXTURE_2D, 0, 0, 0, width, height, dataFormat, dataType, data);
 			}
@@ -2011,10 +2011,10 @@ static void RawImage_UploadTexture( byte *data, int x, int y, int width, int hei
 	}
 
 	if ((flags & IMGFLAG_MIPMAP) && (!r_simpleMipMaps->integer) &&
-		(data != NULL || !ShouldUseImmutableTextures(flags, internalFormat) ))
+		(data != nullptr || !ShouldUseImmutableTextures(flags, internalFormat) ))
 	{
 		// Don't need to generate mipmaps if we are generating an immutable texture and
-		// the data is NULL. All levels have already been allocated by glTexStorage2D.
+		// the data is nullptr. All levels have already been allocated by glTexStorage2D.
 
 		int miplevel = 0;
 
@@ -2090,8 +2090,8 @@ extern qboolean charSet;
 static void Upload32( byte *data, int width, int height, imgType_t type, int flags,
 	qboolean lightMap, GLenum internalFormat, int *pUploadWidth, int *pUploadHeight)
 {
-	byte		*scaledBuffer = NULL;
-	byte		*resampledBuffer = NULL;
+	byte		*scaledBuffer = nullptr;
+	byte		*resampledBuffer = nullptr;
 	int			scaled_width = width;
 	int			scaled_height = height;
 	int			i, c;
@@ -2232,12 +2232,12 @@ static void EmptyTexture( int width, int height, imgType_t type, int flags,
 {
 	int			scaled_width, scaled_height;
 
-	RawImage_ScaleToPower2(NULL, &width, &height, &scaled_width, &scaled_height, type, flags, NULL);
+	RawImage_ScaleToPower2(nullptr, &width, &height, &scaled_width, &scaled_height, type, flags, nullptr);
 
 	*pUploadWidth = scaled_width;
 	*pUploadHeight = scaled_height;
 
-	RawImage_UploadTexture(NULL, 0, 0, scaled_width, scaled_height, internalFormat, type, flags, qfalse);
+	RawImage_UploadTexture(nullptr, 0, 0, scaled_width, scaled_height, internalFormat, type, flags, qfalse);
 
 	if (flags & IMGFLAG_MIPMAP)
 	{
@@ -2424,7 +2424,7 @@ image_t *R_CreateImage( const char *name, byte *pic, int width, int height, imgT
 
 			qglTexStorage2D (GL_TEXTURE_CUBE_MAP, numLevels, internalFormat, width, height);
 
-			if ( pic != NULL )
+			if ( pic != nullptr )
 			{
 				for ( int i = 0; i < 6; i++ )
 				{
@@ -2535,7 +2535,7 @@ image_t *R_Create2DImageArray(const char *name, byte *pic, int width, int height
 	if (ShouldUseImmutableTextures(image->flags, internalFormat))
 		qglTexStorage3D(GL_TEXTURE_2D_ARRAY, 0, internalFormat, width, height, layers);
 	else
-		qglTexImage3D(GL_TEXTURE_2D_ARRAY, 0, internalFormat, width, height, layers, 0, format, GL_UNSIGNED_BYTE, NULL);
+		qglTexImage3D(GL_TEXTURE_2D_ARRAY, 0, internalFormat, width, height, layers, 0, format, GL_UNSIGNED_BYTE, nullptr);
 
 	switch (internalFormat)
 	{
@@ -2579,8 +2579,8 @@ image_t *R_Create2DImageArray(const char *name, byte *pic, int width, int height
 
 void R_UpdateSubImage( image_t *image, byte *pic, int x, int y, int width, int height )
 {
-	byte *scaledBuffer = NULL;
-	byte *resampledBuffer = NULL;
+	byte *scaledBuffer = nullptr;
+	byte *resampledBuffer = nullptr;
 	int	 scaled_width, scaled_height, scaled_x, scaled_y;
 	byte *data = pic;
 
@@ -2693,7 +2693,7 @@ image_t* R_GetLoadedImage(const char *name, int flags) {
 			return image;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 void R_LoadPackedMaterialImage(shaderStage_t *stage, const char *packedImageName, int flags)
@@ -2727,7 +2727,7 @@ void R_LoadPackedMaterialImage(shaderStage_t *stage, const char *packedImageName
 	// see if the image is already loaded
 	//
 	image = R_GetLoadedImage(packedName, flags);
-	if (image != NULL)
+	if (image != nullptr)
 	{
 		// Don't scale occlusion, roughness and metalness
 		stage->specularScale[0] =
@@ -2740,7 +2740,7 @@ void R_LoadPackedMaterialImage(shaderStage_t *stage, const char *packedImageName
 	}
 
 	R_LoadImage(packedImageName, &packedPic, &packedWidth, &packedHeight);
-	if (packedPic == NULL) {
+	if (packedPic == nullptr) {
 		return;
 	}
 
@@ -2798,7 +2798,7 @@ image_t *R_BuildSDRSpecGlossImage(shaderStage_t *stage, const char *specImageNam
 	image_t *image;
 
 	if (!specImageName)
-		return NULL;
+		return nullptr;
 
 	COM_StripExtension(specImageName, sdrName, sizeof(sdrName));
 	Q_strcat(sdrName, sizeof(sdrName), "_SDR");
@@ -2807,12 +2807,12 @@ image_t *R_BuildSDRSpecGlossImage(shaderStage_t *stage, const char *specImageNam
 	// see if the image is already loaded
 	//
 	image = R_GetLoadedImage(sdrName, flags);
-	if (image != NULL)
+	if (image != nullptr)
 		return image;
 
 	R_LoadImage(specImageName, &specPic, &specWidth, &specHeight);
-	if (specPic == NULL)
-		return NULL;
+	if (specPic == nullptr)
+		return nullptr;
 
 	byte *sdrSpecPic = (byte *)ri.Hunk_AllocateTempMemory(sizeof(unsigned) * specWidth * specHeight);
 	vec3_t currentColor;
@@ -2852,7 +2852,7 @@ static void R_CreateNormalMap ( const char *name, byte *pic, int width, int heig
 	normalImage = R_FindImageFile(normalName, IMGTYPE_NORMAL, normalFlags);
 
 	// if not, generate it
-	if (normalImage == NULL)
+	if (normalImage == nullptr)
 	{
 		byte *normalPic;
 		int x, y;
@@ -2944,7 +2944,7 @@ static void R_CreateNormalMap ( const char *name, byte *pic, int width, int heig
 R_FindImageFile
 
 Finds or loads the given image.
-Returns NULL if it fails, not a default image.
+Returns nullptr if it fails, not a default image.
 ==============
 */
 image_t	*R_FindImageFile( const char *name, imgType_t type, int flags )
@@ -2956,10 +2956,10 @@ image_t	*R_FindImageFile( const char *name, imgType_t type, int flags )
 	int loadFlags = flags;
 
 	if (!name) {
-		return NULL;
+		return nullptr;
 	}
 
-	if ((image = R_GetLoadedImage(name, flags)) != NULL)
+	if ((image = R_GetLoadedImage(name, flags)) != nullptr)
 		return image;
 
 	//
@@ -2971,7 +2971,7 @@ image_t	*R_FindImageFile( const char *name, imgType_t type, int flags )
 		Com_sprintf(filename, sizeof(filename), "%s.hdr", name);
 		float	*floatBuffer;
 		R_LoadHDRImage(filename, &pic, &width, &height);
-		if (pic == NULL)
+		if (pic == nullptr)
 		{
 			R_LoadImage(name, &pic, &width, &height);
 		}
@@ -3005,8 +3005,8 @@ image_t	*R_FindImageFile( const char *name, imgType_t type, int flags )
 		R_LoadImage(name, &pic, &width, &height);
 	}
 
-	if ( pic == NULL ) {
-		return NULL;
+	if ( pic == nullptr ) {
+		return nullptr;
 	}
 
 	if (r_normalMapping->integer && !(type == IMGTYPE_NORMAL) &&
@@ -3343,7 +3343,7 @@ void R_CreateBuiltinImages( void ) {
 	{
 		tr.pointShadowArrayImage = R_Create2DImageArray(
 			va("*pointshadowmapImage"),
-			NULL,
+			nullptr,
 			DSHADOW_MAP_SIZE,
 			DSHADOW_MAP_SIZE,
 			MAX_DLIGHTS*6,
@@ -3389,11 +3389,11 @@ void R_CreateBuiltinImages( void ) {
 	int rgbFormat = GL_RGBA8;
 
 	tr.renderImage = R_CreateImage(
-		"_render", NULL, width, height, IMGTYPE_COLORALPHA,
+		"_render", nullptr, width, height, IMGTYPE_COLORALPHA,
 		IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, hdrFormat);
 
 	tr.glowImage = R_CreateImage(
-		"*glow", NULL, width, height, IMGTYPE_COLORALPHA,
+		"*glow", nullptr, width, height, IMGTYPE_COLORALPHA,
 		IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, hdrFormat);
 
 	int glowImageWidth = width;
@@ -3401,7 +3401,7 @@ void R_CreateBuiltinImages( void ) {
 	for (int i = 0; i < ARRAY_LEN(tr.glowImageScaled); i++)
 	{
 		tr.glowImageScaled[i] = R_CreateImage(
-			va("*glowScaled%d", i), NULL, glowImageWidth, glowImageHeight,
+			va("*glowScaled%d", i), nullptr, glowImageWidth, glowImageHeight,
 			IMGTYPE_COLORALPHA, IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE,
 			hdrFormat);
 
@@ -3411,14 +3411,14 @@ void R_CreateBuiltinImages( void ) {
 
 	if (r_drawSunRays->integer)
 		tr.sunRaysImage = R_CreateImage(
-			"*sunRays", NULL, width, height, IMGTYPE_COLORALPHA,
+			"*sunRays", nullptr, width, height, IMGTYPE_COLORALPHA,
 			IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, rgbFormat);
 
 	tr.renderDepthImage  = R_CreateImage(
-		"*renderdepth",  NULL, width, height, IMGTYPE_COLORALPHA,
+		"*renderdepth",  nullptr, width, height, IMGTYPE_COLORALPHA,
 		IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, GL_DEPTH24_STENCIL8);
 	tr.textureDepthImage = R_CreateImage(
-		"*texturedepth", NULL, PSHADOW_MAP_SIZE, PSHADOW_MAP_SIZE,
+		"*texturedepth", nullptr, PSHADOW_MAP_SIZE, PSHADOW_MAP_SIZE,
 		IMGTYPE_COLORALPHA, IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE,
 		GL_DEPTH_COMPONENT24);
 
@@ -3457,14 +3457,14 @@ void R_CreateBuiltinImages( void ) {
 	for (x = 0; x < 2; x++)
 	{
 		tr.textureScratchImage[x] = R_CreateImage(
-			va("*textureScratch%d", x), NULL, 256, 256, IMGTYPE_COLORALPHA,
+			va("*textureScratch%d", x), nullptr, 256, 256, IMGTYPE_COLORALPHA,
 			IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, GL_RGBA8);
 	}
 
 	for (x = 0; x < 2; x++)
 	{
 		tr.quarterImage[x] = R_CreateImage(
-			va("*quarter%d", x), NULL, width / 2, height / 2,
+			va("*quarter%d", x), nullptr, width / 2, height / 2,
 			IMGTYPE_COLORALPHA, IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE,
 			GL_RGBA8);
 	}
@@ -3472,10 +3472,10 @@ void R_CreateBuiltinImages( void ) {
 	if (r_ssao->integer)
 	{
 		tr.screenSsaoImage = R_CreateImage(
-			"*screenSsao", NULL, width / 2, height / 2, IMGTYPE_COLORALPHA,
+			"*screenSsao", nullptr, width / 2, height / 2, IMGTYPE_COLORALPHA,
 			IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, GL_RGBA8);
 		tr.hdrDepthImage = R_CreateImage(
-			"*hdrDepth", NULL, width, height, IMGTYPE_COLORALPHA,
+			"*hdrDepth", nullptr, width, height, IMGTYPE_COLORALPHA,
 			IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, GL_R32F);
 	}
 
@@ -3483,7 +3483,7 @@ void R_CreateBuiltinImages( void ) {
 	{
 		tr.pshadowArrayImage = R_Create2DImageArray(
 			va("*pshadowmapArray"),
-			NULL,
+			nullptr,
 			PSHADOW_MAP_SIZE,
 			PSHADOW_MAP_SIZE,
 			MAX_DRAWN_PSHADOWS,
@@ -3496,7 +3496,7 @@ void R_CreateBuiltinImages( void ) {
 	{
 		tr.sunShadowArrayImage = R_Create2DImageArray(
 			va("*sunShadowmapArray"),
-			NULL,
+			nullptr,
 			r_shadowMapSize->integer,
 			r_shadowMapSize->integer,
 			3, // number of cascades
@@ -3505,14 +3505,14 @@ void R_CreateBuiltinImages( void ) {
 			GL_DEPTH_COMPONENT16);
 
 		tr.screenShadowImage = R_CreateImage(
-			"*screenShadow", NULL, width, height, IMGTYPE_COLORALPHA,
+			"*screenShadow", nullptr, width, height, IMGTYPE_COLORALPHA,
 			IMGFLAG_NO_COMPRESSION | IMGFLAG_CLAMPTOEDGE, GL_R8);
 	}
 
 	if (r_cubeMapping->integer)
 	{
 		tr.renderCubeImage = R_CreateImage(
-			"*renderCube", NULL, CUBE_MAP_SIZE, CUBE_MAP_SIZE,
+			"*renderCube", nullptr, CUBE_MAP_SIZE, CUBE_MAP_SIZE,
 			IMGTYPE_COLORALPHA,
 			IMGFLAG_NO_COMPRESSION |
 			IMGFLAG_CLAMPTOEDGE |
@@ -3521,7 +3521,7 @@ void R_CreateBuiltinImages( void ) {
 			hdrFormat);
 
 		tr.renderCubeDepthImage = R_CreateImage(
-			"*renderdepth", NULL, CUBE_MAP_SIZE, CUBE_MAP_SIZE,
+			"*renderdepth", nullptr, CUBE_MAP_SIZE, CUBE_MAP_SIZE,
 			IMGTYPE_COLORALPHA,
 			IMGFLAG_NO_COMPRESSION |
 			IMGFLAG_CLAMPTOEDGE,
@@ -3611,8 +3611,8 @@ void R_InitImagesPool()
 {
 	Com_Memset(hashTable, 0, sizeof(hashTable));
 
-	imagesPool = NULL;
-	tr.imagesFreeList = NULL;
+	imagesPool = nullptr;
+	tr.imagesFreeList = nullptr;
 	R_ExtendImagesPool();
 }
 

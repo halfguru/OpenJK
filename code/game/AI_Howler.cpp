@@ -222,7 +222,7 @@ static void Howler_TryDamage( int damage, qboolean tongue, qboolean knockdown )
 	else
 	{
 		VectorCopy( NPC->currentOrigin, start );
-		AngleVectors( NPC->currentAngles, dir, NULL, NULL );
+		AngleVectors( NPC->currentAngles, dir, nullptr, nullptr );
 		VectorMA( start, MIN_DISTANCE*2, dir, end );
 	}
 
@@ -286,7 +286,7 @@ static void Howler_Howl( void )
 			continue;
 		}
 
-		if ( radiusEnts[i]->client == NULL )
+		if ( radiusEnts[i]->client == nullptr )
 		{//must be a client
 			continue;
 		}
@@ -371,7 +371,7 @@ static void Howler_Attack( float enemyDist, qboolean howl )
 		{//lunge attack
 			//jump foward
 			vec3_t	fwd, yawAng = {0, NPC->client->ps.viewangles[YAW], 0};
-			AngleVectors( yawAng, fwd, NULL, NULL );
+			AngleVectors( yawAng, fwd, nullptr, nullptr );
 			VectorScale( fwd, (enemyDist*3.0f), NPC->client->ps.velocity );
 			NPC->client->ps.velocity[2] = 200;
 			NPC->client->ps.groundEntityNum = ENTITYNUM_NONE;
@@ -626,7 +626,7 @@ void NPC_BSHowler_Default( void )
 		{//successfully trying to run away
 			return;
 		}
-		if ( NPC->enemy == NULL)
+		if ( NPC->enemy == nullptr)
 		{
 			NPC_UpdateAngles( qfalse, qtrue );
 			return;
@@ -661,7 +661,7 @@ void NPC_BSHowler_Default( void )
 			if ( Distance( NPC->enemy->currentOrigin, NPC->currentOrigin ) < HOWLER_RETREAT_DIST )
 			{//enemy is close
 				vec3_t moveDir;
-				AngleVectors( NPC->currentAngles, moveDir, NULL, NULL );
+				AngleVectors( NPC->currentAngles, moveDir, nullptr, nullptr );
 				VectorScale( moveDir, -1, moveDir );
 				if ( !NAV_DirSafe( NPC, moveDir, 8 ) )
 				{//enemy is backing me up against a wall or ledge!  Start to get really mad!
@@ -728,7 +728,7 @@ void NPC_BSHowler_Default( void )
 			TIMER_Remove( NPC, "lookForNewEnemy" );//make them look again right now
 			if ( !NPC->enemy->inuse || level.time - NPC->enemy->s.time > Q_irand( 10000, 15000 ) )
 			{//it's been a while since the enemy died, or enemy is completely gone, get bored with him
-				NPC->enemy = NULL;
+				NPC->enemy = nullptr;
 				Howler_Patrol();
 				NPC_UpdateAngles( qtrue, qtrue );
 				return;
@@ -737,7 +737,7 @@ void NPC_BSHowler_Default( void )
 		if ( TIMER_Done( NPC, "lookForNewEnemy" ) )
 		{
 			gentity_t *sav_enemy = NPC->enemy;//FIXME: what about NPC->lastEnemy?
-			NPC->enemy = NULL;
+			NPC->enemy = nullptr;
 			gentity_t *newEnemy = NPC_CheckEnemy( (qboolean)(NPCInfo->confusionTime < level.time), qfalse, qfalse );
 			NPC->enemy = sav_enemy;
 			if ( newEnemy && newEnemy != sav_enemy )

@@ -92,7 +92,7 @@ static void NPC_CheckAttacker( gentity_t *other, int mod )
 	}
 
 	//If we haven't taken a target, just get mad
-	if ( NPC->enemy == NULL )//was using "other", fixed to NPC
+	if ( NPC->enemy == nullptr )//was using "other", fixed to NPC
 	{
 		G_SetEnemy( NPC, other );
 		return;
@@ -362,10 +362,10 @@ void NPC_Pain( gentity_t *self, gentity_t *inflictor, gentity_t *other, vec3_t p
 	team_t otherTeam = TEAM_FREE;
 	int		voiceEvent = -1;
 
-	if ( self->NPC == NULL )
+	if ( self->NPC == nullptr )
 		return;
 
-	if ( other == NULL )
+	if ( other == nullptr )
 		return;
 
 	//or just remove ->pain in player_die?
@@ -561,7 +561,7 @@ void NPC_Touch(gentity_t *self, gentity_t *other, trace_t *trace)
 			if ( keyTaken )
 			{//remove my key
 				gi.G2API_SetSurfaceOnOff( &self->ghoul2[self->playerModel], "l_arm_key", 0x00000002 );
-				self->message = NULL;
+				self->message = nullptr;
 				//FIXME: temp pickup sound
 				G_Sound( player, G_SoundIndex( "sound/weapons/key_pkup.wav" ) );
 				//FIXME: need some event to pass to cgame for sound/graphic/message?

@@ -85,7 +85,7 @@ void Q3_DeclareVariable( int type, const char *name )
 		break;
 
 	case TK_STRING:
-		varStrings[ name ] = "NULL";
+		varStrings[ name ] = "nullptr";
 		break;
 
 	case TK_VECTOR:

@@ -34,7 +34,7 @@ Coordinates are 640*480 virtual values
 void CG_FillRect( float x, float y, float width, float height, const float *color ) {
 	cgi_R_SetColor( color );
 	cgi_R_DrawStretchPic( x, y, width, height, 0, 0, 0, 0, cgs.media.whiteShader);
-	cgi_R_SetColor( NULL );
+	cgi_R_SetColor( nullptr );
 }
 
 
@@ -207,7 +207,7 @@ void CG_DrawStringExt( int x, int y, const char *string, const float *setColor,
 		xx += charWidth;
 		s++;
 	}
-	cgi_R_SetColor( NULL );
+	cgi_R_SetColor( nullptr );
 }
 
 
@@ -307,13 +307,13 @@ float *CG_FadeColor( int startMsec, int totalMsec ) {
 	int			t;
 
 	if ( startMsec == 0 ) {
-		return NULL;
+		return nullptr;
 	}
 
 	t = cg.time - startMsec;
 
 	if ( t >= totalMsec ) {
-		return NULL;
+		return nullptr;
 	}
 
 	// fade out

@@ -41,7 +41,7 @@ const char *showLoadPowersName[] =
 	"INGAME_SABER_THROW2",
 	"INGAME_SABER_OFFENSE2",
 	"INGAME_SABER_DEFENSE2",
-	NULL,
+	nullptr,
 };
 
 // Hack to see if the graphics objectives have been printed.
@@ -413,7 +413,7 @@ void CG_DrawInformation( void ) {
 	{
 		// put up the pre-defined levelshot for this map...
 		//
-		cgi_R_SetColor( NULL );
+		cgi_R_SetColor( nullptr );
 		CG_DrawPic( 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, levelshot );
 	}
 

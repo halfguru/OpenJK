@@ -99,7 +99,7 @@ vec3_t  ssrightvectors[4];
 vec3_t  ssfwdvector;
 int		rightvectorcount;
 
-trRefEntity_t *ssLastEntityDrawn=NULL;
+trRefEntity_t *ssLastEntityDrawn=nullptr;
 vec3_t	ssViewOrigin, ssViewRight, ssViewUp;
 
 
@@ -124,7 +124,7 @@ static void R_SurfaceSpriteFrameUpdate(void)
 	}
 
 	// Reset the last entity drawn, since this is a new frame.
-	ssLastEntityDrawn = NULL;
+	ssLastEntityDrawn = nullptr;
 
 	// Adjust for an FOV.  If things look twice as wide on the screen, pretend the shaders have twice the range.
 	// ASSUMPTION HERE IS THAT "standard" fov is the first one rendered.
@@ -194,7 +194,7 @@ static void R_SurfaceSpriteFrameUpdate(void)
 		curWeatherAmount = r_surfaceWeather->value;
 	}
 
-	if (R_GetWindSpeed(targetspeed, NULL))
+	if (R_GetWindSpeed(targetspeed, nullptr))
 	{	// We successfully got a speed from the rain system.
 		// Set the windgust to 5, since that looks pretty good.
 		targetspeed *= 0.02f;
@@ -234,7 +234,7 @@ static void R_SurfaceSpriteFrameUpdate(void)
 	}
 
 	// See if there is a weather system that will tell us a windspeed.
-	if (R_GetWindVector(retwindvec, NULL))
+	if (R_GetWindVector(retwindvec, nullptr))
 	{
 		retwindvec[2]=0;
 		//VectorScale(retwindvec, -1.0f, retwindvec);
@@ -259,13 +259,13 @@ static void R_SurfaceSpriteFrameUpdate(void)
 	}
 
 	// Get the grass wind vector first
-	AngleVectors(ang, targetWindGrassDir, NULL, NULL);
+	AngleVectors(ang, targetWindGrassDir, nullptr, nullptr);
 	targetWindGrassDir[2]-=1.0;
 //		VectorScale(targetWindGrassDir, targetspeed, targetWindGrassDir);
 
 	// Now get the general wind vector (no pitch)
 	ang[PITCH]=0;
-	AngleVectors(ang, targetWindBlowVect, NULL, NULL);
+	AngleVectors(ang, targetWindBlowVect, nullptr, nullptr);
 
 	// Start calculating a smoothing factor so wind doesn't change abruptly between speeds.
 	dampfactor = 1.0-r_windDampFactor->value;	// We must exponent the amount LEFT rather than the amount bled off
@@ -814,7 +814,7 @@ static void RB_DrawVerticalSurfaceSprites( shaderStage_t *stage, shaderCommands_
 						else
 						{
 							RB_VerticalSurfaceSpriteWindPoint(curpoint, width, height, (byte)light, (byte)(alpha*255.0),
-										stage->ss->wind, stage->ss->windIdle, NULL, stage->ss->facing, skew,
+										stage->ss->wind, stage->ss->windIdle, nullptr, stage->ss->facing, skew,
 										winddiffv, windforce, SURFSPRITE_FLATTENED == stage->ss->surfaceSpriteType);
 						}
 					}
@@ -828,7 +828,7 @@ static void RB_DrawVerticalSurfaceSprites( shaderStage_t *stage, shaderCommands_
 						else
 						{
 							RB_VerticalSurfaceSprite(curpoint, width, height, (byte)light, (byte)(alpha*255.0),
-										stage->ss->wind, stage->ss->windIdle, NULL, stage->ss->facing, skew, SURFSPRITE_FLATTENED == stage->ss->surfaceSpriteType);
+										stage->ss->wind, stage->ss->windIdle, nullptr, stage->ss->facing, skew, SURFSPRITE_FLATTENED == stage->ss->surfaceSpriteType);
 						}
 					}
 
@@ -1104,7 +1104,7 @@ static void RB_DrawOrientedSurfaceSprites( shaderStage_t *stage, shaderCommands_
 					}
 					else
 					{
-						RB_OrientedSurfaceSprite(curpoint, width, height, (byte)light, (byte)(alpha*255.0), NULL, stage->ss->facing);
+						RB_OrientedSurfaceSprite(curpoint, width, height, (byte)light, (byte)(alpha*255.0), nullptr, stage->ss->facing);
 					}
 
 					totalsurfsprites++;
@@ -1197,7 +1197,7 @@ static void RB_EffectSurfaceSprite(vec3_t loc, float width, float height, byte l
 	}
 
 	// Add the sprite to the render list.
-	SQuickSprite.Add(points, color, NULL);
+	SQuickSprite.Add(points, color, nullptr);
 }
 
 static void RB_DrawEffectSurfaceSprites( shaderStage_t *stage, shaderCommands_t *input)

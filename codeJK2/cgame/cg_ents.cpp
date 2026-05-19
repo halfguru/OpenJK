@@ -197,11 +197,11 @@ void CG_AddRefEntWithTransportEffect ( centity_t *cent, refEntity_t *ent )
 		{
 			VectorMA( ent->origin, -i, ent->axis[2], org );
 
-			FX_AddSprite( org, NULL, NULL, 5.5f, 5.5f, wv, wv, 0.0f, 0.0f, 1.0f, cgs.media.yellowDroppedSaberShader, 0x08000000 );
+			FX_AddSprite( org, nullptr, nullptr, 5.5f, 5.5f, wv, wv, 0.0f, 0.0f, 1.0f, cgs.media.yellowDroppedSaberShader, 0x08000000 );
 		}
 		if ( cent->gent->owner->s.weapon == WP_SABER )
 		{//he's still controlling me
-			FX_AddSprite( cent->gent->owner->client->renderInfo.handRPoint, NULL, NULL, 8.0f, 8.0f, wv, wv, 0.0f, 0.0f, 1.0f, cgs.media.yellowDroppedSaberShader, 0x08000000 );
+			FX_AddSprite( cent->gent->owner->client->renderInfo.handRPoint, nullptr, nullptr, 8.0f, 8.0f, wv, wv, 0.0f, 0.0f, 1.0f, cgs.media.yellowDroppedSaberShader, 0x08000000 );
 		}
 	}
 }
@@ -479,7 +479,7 @@ Ghoul2 Insert Start
 		{
 			centity_t *cc = &cg_entities[cent->gent->activator->s.number];
 
-const weaponData_t  *wData = NULL;
+const weaponData_t  *wData = nullptr;
 
 			if ( cc->currentState.weapon )
 			{
@@ -516,7 +516,7 @@ const weaponData_t  *wData = NULL;
 			// HACK: adding in muzzle flashes
 			if ( cc->muzzleFlashTime > 0 && wData )
 			{
-				const char *effect = NULL;
+				const char *effect = nullptr;
 				cc->muzzleFlashTime = 0;
 
 				// Try and get a default muzzle so we have one to fall back on
@@ -571,7 +571,7 @@ const weaponData_t  *wData = NULL;
 					if ( cent->gent->owner->client->ps.saberLength > 0 )
 					{
 						CG_AddSaberBlade( &cg_entities[cent->gent->owner->s.number],
-							&cg_entities[cent->gent->s.number], NULL, ent.renderfx,
+							&cg_entities[cent->gent->s.number], nullptr, ent.renderfx,
 							cent->gent->weaponModel, cent->lerpOrigin, cent->lerpAngles );
 					}
 					else if ( cent->gent->owner->client->ps.saberEventFlags & SEF_INWATER )
@@ -624,7 +624,7 @@ const weaponData_t  *wData = NULL;
 					if ( cent->gent->owner->client->ps.saberLength > 0 )
 					{//only add the blade if it's on
 						CG_AddSaberBlade( &cg_entities[cent->gent->owner->s.number],
-							&cg_entities[cent->gent->s.number], NULL, ent.renderfx,
+							&cg_entities[cent->gent->s.number], nullptr, ent.renderfx,
 							0, cent->lerpOrigin, cent->lerpAngles );
 					}
 					else if ( cent->gent->owner->client->ps.saberEventFlags & SEF_INWATER )
@@ -684,7 +684,7 @@ const weaponData_t  *wData = NULL;
 				}
 			}
 			CG_AddSaberBlade( &cg_entities[cent->gent->owner->s.number],
-				NULL, &ent, ent.renderfx, 0, NULL, NULL );
+				nullptr, &ent, ent.renderfx, 0, nullptr, nullptr );
 
 			if ( cent->gent->owner->health )
 			{
@@ -784,7 +784,7 @@ Ghoul2 Insert End
 		// hack for the spotlight
 		vec3_t	org, axis[3], dir;
 
-		AngleVectors( cent->lerpAngles, dir, NULL, NULL );
+		AngleVectors( cent->lerpAngles, dir, nullptr, nullptr );
 
 		CG_GetTagWorldPosition( &ent, "tag_flash", org, axis );
 
@@ -841,7 +841,7 @@ static void CG_Speaker( centity_t *cent ) {
 		return;
 	}
 
-	cgi_S_StartSound (NULL, cent->currentState.number, CHAN_ITEM, cgs.sound_precache[cent->currentState.eventParm] );
+	cgi_S_StartSound (nullptr, cent->currentState.number, CHAN_ITEM, cgs.sound_precache[cent->currentState.eventParm] );
 
 	//	ent->s.frame = ent->wait * 10;
 	//	ent->s.clientNum = ent->random * 10;
@@ -1012,7 +1012,7 @@ Ghoul2 Insert End
 		{
 			VectorMA( ent.origin, -i, ent.axis[2], org );
 
-			FX_AddSprite( org, NULL, NULL, 10.0f, 10.0f, wv * 0.5f, wv * 0.5f, 0.0f, 0.0f, 1.0f, cgs.media.yellowDroppedSaberShader, 0x08000000 );
+			FX_AddSprite( org, nullptr, nullptr, 10.0f, 10.0f, wv * 0.5f, wv * 0.5f, 0.0f, 0.0f, 1.0f, cgs.media.yellowDroppedSaberShader, 0x08000000 );
 		}
 
 		// THIS light looks crappy...maybe it should just be removed...
@@ -1138,7 +1138,7 @@ Ghoul2 Insert End
 	}
 
 	// add to refresh list, possibly with quad glow
-	CG_AddRefEntityWithPowerups( &ent, s1->powerups, NULL );
+	CG_AddRefEntityWithPowerups( &ent, s1->powerups, nullptr );
 }
 
 /*
@@ -1323,14 +1323,14 @@ void CG_Cube( vec3_t mins, vec3_t maxs, vec3_t color, float alpha )
 		//- face
 		point[0][vec[0]] = point[1][vec[0]] = point[2][vec[0]] = point[3][vec[0]] = mins[vec[0]];
 
-		FX_AddPoly( point, st, 4, NULL, NULL, alpha, alpha, 0.0f,
+		FX_AddPoly( point, st, 4, nullptr, nullptr, alpha, alpha, 0.0f,
 						color, color, 0.0f, rot, 0.0f, 0.0f,
 						100, cgs.media.solidWhiteShader, 0 );
 
 		//+ face
 		point[0][vec[0]] = point[1][vec[0]] = point[2][vec[0]] = point[3][vec[0]] = maxs[vec[0]];
 
-		FX_AddPoly( point, st, 4, NULL, NULL, alpha, alpha, 0.0f,
+		FX_AddPoly( point, st, 4, nullptr, nullptr, alpha, alpha, 0.0f,
 						color, color, 0.0f, rot, 0.0f, 0.0f,
 						100, cgs.media.solidWhiteShader, 0 );
 	}
@@ -1514,8 +1514,8 @@ Ghoul2 Insert End
 
 		// it would be an internal error to find an entity that interpolates without
 		// a snapshot ahead of the current one
-		if ( cg.nextSnap == NULL ) {
-			CG_Error( "CG_AddCEntity: cg.nextSnap == NULL" );
+		if ( cg.nextSnap == nullptr ) {
+			CG_Error( "CG_AddCEntity: cg.nextSnap == nullptr" );
 		}
 
 		f = cg.frameInterpolation;
@@ -1602,7 +1602,7 @@ Ghoul2 Insert End
 			{//this mover has stopped moving and is going to wig out if we predict it
 				//based on last frame's info- cut across the network and use the currentOrigin
 				VectorCopy( ent->currentOrigin, cent->lerpOrigin );
-				posData = NULL;
+				posData = nullptr;
 			}
 			else
 			{
@@ -1685,9 +1685,9 @@ OutputDebugString(va("[%3d] nonext %4.2f t=%6d  st = %6d  nst = %6d     b=%6.2f 
 
 		// it would be an internal error to find an entity that interpolates without
 		// a snapshot ahead of the current one
-		if ( cg.nextSnap == NULL )
+		if ( cg.nextSnap == nullptr )
 		{
-			CG_Error( "CG_AddCEntity: cg.nextSnap == NULL" );
+			CG_Error( "CG_AddCEntity: cg.nextSnap == nullptr" );
 		}
 
 		f = cg.frameInterpolation;
@@ -1718,7 +1718,7 @@ OutputDebugString(va("[%3d] nonext %4.2f t=%6d  st = %6d  nst = %6d     b=%6.2f 
 			{//this mover has stopped moving and is going to wig out if we predict it
 				//based on last frame's info- cut across the network and use the currentOrigin
 				VectorCopy( ent->currentOrigin, cent->lerpOrigin );
-				posData = NULL;
+				posData = nullptr;
 			}
 			else
 			{
@@ -1767,7 +1767,7 @@ void CG_DLightThink ( centity_t *cent )
 		float	percentage = ( tDelta/((float)cent->gent->speed) );
 		vec3_t	org;
 		vec4_t	currentRGBA;
-		gentity_t	*owner = NULL;
+		gentity_t	*owner = nullptr;
 		int		i;
 
 		if ( percentage >= 1.0f )

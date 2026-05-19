@@ -46,7 +46,7 @@ const char *showLoadPowersName[] =
 	"SP_INGAME_SABER_THROW2",
 	"SP_INGAME_SABER_OFFENSE2",
 	"SP_INGAME_SABER_DEFENSE2",
-	NULL,
+	nullptr,
 };
 
 #define MAX_OBJ_GRAPHICS 4
@@ -546,7 +546,7 @@ static void CG_DrawLoadWeapons( int weaponBits )
 		CG_DrawLoadWeaponsPrintRow("weaponicons_row2", weaponBits, rowIconCnt,endIndex+1);
 	}
 
-	cgi_R_SetColor( NULL );
+	cgi_R_SetColor( nullptr );
 }
 
 
@@ -658,7 +658,7 @@ static void CG_DrawLoadForcePowers( int forceBits )
 		CG_DrawLoadForcePrintRow("forceicons_row2", forceBits, rowIconCnt,endIndex+1);
 	}
 
-	cgi_R_SetColor( NULL );
+	cgi_R_SetColor( nullptr );
 }
 
 // Get the player weapons and force power info
@@ -698,12 +698,12 @@ static void CG_GetLoadScreenInfo(int *weaponBits,int *forceBits)
 	gi.Cvar_VariableStringBuffer( "playerfplvl", s, sizeof(s) );
 	i=0;
 	var = strtok( s, " " );
-	while( var != NULL )
+	while( var != nullptr )
 	{
 		/* While there are tokens in "s" */
 		loadForcePowerLevel[i++] = atoi(var);
 		/* Get next token: */
-		var = strtok( NULL, " " );
+		var = strtok( nullptr, " " );
 	}
 }
 
@@ -722,7 +722,7 @@ static void CG_DrawLoadingScreen( qhandle_t	levelshot ,const char *mapName)
 	int weapons=0, forcepowers=0;
 
 	// Get mission briefing for load screen
-	if (cgi_SP_GetStringTextString( va("BRIEFINGS_%s",mapName), NULL, 0 ) == 0)
+	if (cgi_SP_GetStringTextString( va("BRIEFINGS_%s",mapName), nullptr, 0 ) == 0)
 	{
 		cgi_Cvar_Set( "ui_missionbriefing", "@BRIEFINGS_NONE" );
 	}

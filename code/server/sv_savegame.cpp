@@ -148,7 +148,7 @@ void SV_WipeGame_f(void)
 		return;
 	}
 	SG_WipeSavegame(Cmd_Argv(1));
-//	Com_Printf("%s has been wiped\n", Cmd_Argv(1));	// wurde gelöscht in german, but we've only got one string
+//	Com_Printf("%s has been wiped\n", Cmd_Argv(1));	// wurde gelï¿½scht in german, but we've only got one string
 //	Com_Printf("Ok\n"); // no localization of this
 }
 
@@ -729,7 +729,7 @@ static void SG_WriteComment(qboolean qbAutosave, const char *psMapName)
 		sComment);
 
 	// Add Date/Time/Map stamp
-	unsigned int timestamp = SG_UnixTimestamp (time (NULL));
+	unsigned int timestamp = SG_UnixTimestamp (time (nullptr));
 
 	saved_game.write_chunk<uint32_t>(
 		INT_ID('C', 'M', 'T', 'M'),
@@ -864,13 +864,13 @@ int SG_GetSaveGameComment(
 
 // read the mapname field from the supplied savegame file
 //
-// returns NULL if not found
+// returns nullptr if not found
 //
 static char *SG_GetSaveGameMapName(const char *psPathlessBaseName)
 {
 	static char sMapName[iSG_MAPCMD_SIZE]={0};
-	char *psReturn = NULL;
-	if (SG_GetSaveGameComment(psPathlessBaseName, NULL, sMapName))
+	char *psReturn = nullptr;
+	if (SG_GetSaveGameComment(psPathlessBaseName, nullptr, sMapName))
 	{
 		psReturn = sMapName;
 	}
@@ -926,7 +926,7 @@ static bool SG_ReadScreenshot(
 	//
 	// decompress JPG data...
 	//
-	byte* image = NULL;
+	byte* image = nullptr;
 	int width;
 	int height;
 
@@ -1028,8 +1028,8 @@ static void SG_WriteScreenshot(qboolean qbAutosave, const char *psMapName)
 	ojk::SavedGameHelper saved_game(
 		&ojk::SavedGame::get_instance());
 
-	byte *pbRawScreenShot = NULL;
-	byte *byBlank = NULL;
+	byte *pbRawScreenShot = nullptr;
+	byte *byBlank = nullptr;
 	byte *src, *dst;
 
 	if( qbAutosave )
@@ -1062,7 +1062,7 @@ static void SG_WriteScreenshot(qboolean qbAutosave, const char *psMapName)
 
 	if (!pbRawScreenShot)
 	{
-		if (byBlank != NULL)
+		if (byBlank != nullptr)
 		{
 			delete[] byBlank;
 		}
@@ -1132,7 +1132,7 @@ qboolean SG_GameAllowedToSaveHere(qboolean inCamera)
 		}
 
 		//No savegames from "_" maps
-		if ( !sv_mapname || (sv_mapname->string != NULL && sv_mapname->string[0] == '_') )
+		if ( !sv_mapname || (sv_mapname->string != nullptr && sv_mapname->string[0] == '_') )
 		{
 			return qfalse;	//		Com_Printf (S_COLOR_RED "Cannot save on holodeck or brig.\n");
 		}

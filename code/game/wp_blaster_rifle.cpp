@@ -152,7 +152,7 @@ void WP_FireBlaster( gentity_t *ent, qboolean alt_fire )
 		}
 	}
 
-	AngleVectors( angs, dir, NULL, NULL );
+	AngleVectors( angs, dir, nullptr, nullptr );
 
 	// FIXME: if temp_org does not have clear trace to inside the bbox, don't shoot!
 	WP_FireBlasterMissile( ent, muzzle, dir, alt_fire );

@@ -351,13 +351,13 @@ void FBO_Bind(FBO_t * fbo)
 		if (fbo)
 			GLimp_LogComment(va("--- FBO_Bind( %s ) ---\n", fbo->name));
 		else
-			GLimp_LogComment("--- FBO_Bind ( NULL ) ---\n");
+			GLimp_LogComment("--- FBO_Bind ( nullptr ) ---\n");
 	}
 
 	if (!fbo)
 	{
 		qglBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glState.currentFBO = NULL;
+		glState.currentFBO = nullptr;
 	}
 	else
 	{
@@ -417,7 +417,7 @@ void FBO_Init(void)
 	}
 
 	// only create a render FBO if we need to resolve MSAA or do HDR
-	// otherwise just render straight to the screen (tr.renderFbo = NULL)
+	// otherwise just render straight to the screen (tr.renderFbo = nullptr)
 	if (multisample)
 	{
 		tr.renderFbo = FBO_Create(
@@ -496,7 +496,7 @@ void FBO_Init(void)
 	}
 
 #if MAX_DRAWN_PSHADOWS > 0
-	if (tr.pshadowArrayImage != NULL)
+	if (tr.pshadowArrayImage != nullptr)
 	{
 		for( i = 0; i < MAX_DRAWN_PSHADOWS; i++)
 		{
@@ -527,7 +527,7 @@ void FBO_Init(void)
 		}
 	}
 
-	if (tr.sunShadowArrayImage != NULL)
+	if (tr.sunShadowArrayImage != nullptr)
 	{
 		for ( i = 0; i < 3; i++)
 		{
@@ -627,7 +627,7 @@ void FBO_Init(void)
 		R_CheckFBO(tr.screenSsaoFbo);
 	}
 
-	if (tr.renderCubeImage != NULL)
+	if (tr.renderCubeImage != nullptr)
 	{
 		for (i = 0; i < 6; i++)
 		{
@@ -671,7 +671,7 @@ void FBO_Init(void)
 
 	GL_CheckErrors();
 
-	FBO_Bind(NULL);
+	FBO_Bind(nullptr);
 }
 
 /*
@@ -686,7 +686,7 @@ void FBO_Shutdown(void)
 
 	ri.Printf(PRINT_ALL, "------- FBO_Shutdown -------\n");
 
-	FBO_Bind(NULL);
+	FBO_Bind(nullptr);
 
 	for(i = 0; i < tr.numFBOs; i++)
 	{
@@ -862,7 +862,7 @@ void FBO_Blit(FBO_t *src, vec4i_t inSrcBox, vec2_t srcTexScale, FBO_t *dst, vec4
 
 	if (!src)
 	{
-		ri.Printf(PRINT_WARNING, "Tried to blit from a NULL FBO!\n");
+		ri.Printf(PRINT_WARNING, "Tried to blit from a nullptr FBO!\n");
 		return;
 	}
 
@@ -888,7 +888,7 @@ void FBO_FastBlit(FBO_t *src, vec4i_t srcBox, FBO_t *dst, vec4i_t dstBox, int bu
 	GLuint srcFb, dstFb;
 
 	// get to a neutral state first
-	//FBO_Bind(NULL);
+	//FBO_Bind(nullptr);
 
 	srcFb = src ? src->frameBuffer : 0;
 	dstFb = dst ? dst->frameBuffer : 0;
@@ -933,13 +933,13 @@ void FBO_FastBlit(FBO_t *src, vec4i_t srcBox, FBO_t *dst, vec4i_t dstBox, int bu
 						  buffers, filter);
 
 	qglBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glState.currentFBO = NULL;
+	glState.currentFBO = nullptr;
 }
 
 void FBO_FastBlitIndexed(FBO_t *src, FBO_t *dst, int srcReadBuffer, int dstDrawBuffer, int buffers, int filter)
 {
-	assert (src != NULL);
-	assert (dst != NULL);
+	assert (src != nullptr);
+	assert (dst != nullptr);
 
 	qglBindFramebuffer(GL_READ_FRAMEBUFFER, src->frameBuffer);
 	qglReadBuffer (GL_COLOR_ATTACHMENT0 + srcReadBuffer);
@@ -957,5 +957,5 @@ void FBO_FastBlitIndexed(FBO_t *src, FBO_t *dst, int srcReadBuffer, int dstDrawB
 	FBO_SetupDrawBuffers();
 
 	qglBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glState.currentFBO = NULL;
+	glState.currentFBO = nullptr;
 }

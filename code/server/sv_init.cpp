@@ -33,7 +33,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 void CM_CleanLeafCache(void);
 extern void SV_FreeClient(client_t*);
 
-CMiniHeap *G2VertSpaceServer = NULL;
+CMiniHeap *G2VertSpaceServer = nullptr;
 /*
 Ghoul2 Insert End
 */
@@ -66,7 +66,7 @@ void SV_SetConfigstring (int index, const char *val) {
 	// send it to all the clients if we aren't
 	// spawning a new server
 	if ( sv.state == SS_GAME ) {
-		SV_SendServerCommand( NULL, "cs %i \"%s\"\n", index, val );
+		SV_SendServerCommand( nullptr, "cs %i \"%s\"\n", index, val );
 	}
 }
 
@@ -215,7 +215,7 @@ void SV_SpawnServer( const char *server, ForceReload_e eForceReload, qboolean bA
 	if (svs.snapshotEntities)
 	{
 		Z_Free(svs.snapshotEntities);
-		svs.snapshotEntities = NULL;
+		svs.snapshotEntities = nullptr;
 	}
 
 	// don't let sound stutter and dump all stuff on the hunk
@@ -236,7 +236,7 @@ void SV_SpawnServer( const char *server, ForceReload_e eForceReload, qboolean bA
 	for ( i = 0 ; i < MAX_CONFIGSTRINGS ; i++ ) {
 		if ( sv.configstrings[i] ) {
 			Z_Free( sv.configstrings[i] );
-			sv.configstrings[i] = NULL;
+			sv.configstrings[i] = nullptr;
 		}
 	}
 
@@ -429,8 +429,8 @@ to totally exit after returning from this function.
 void SV_FinalMessage( const char *message ) {
 	client_t *cl = svs.clients;
 
-	SV_SendServerCommand( NULL, "print \"%s\"", message );
-	SV_SendServerCommand( NULL, "disconnect" );
+	SV_SendServerCommand( nullptr, "print \"%s\"", message );
+	SV_SendServerCommand( nullptr, "disconnect" );
 
 	// send it twice, ignoring rate
 	if ( cl->state >= CS_CONNECTED ) {
@@ -467,7 +467,7 @@ void SV_Shutdown( const char *finalmsg ) {
 	if (svs.snapshotEntities)
 	{
 		Z_Free(svs.snapshotEntities);
-		svs.snapshotEntities = NULL;
+		svs.snapshotEntities = nullptr;
 	}
 
 	for ( i = 0 ; i < MAX_CONFIGSTRINGS ; i++ ) {

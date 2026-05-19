@@ -231,7 +231,7 @@ void CG_AddFragment( localEntity_t *le )
 	VectorCopy( newOrigin, le->refEntity.lightingOrigin );
 
 	// trace a line from previous position to new position
-	CG_Trace( &trace, le->refEntity.origin, NULL, NULL, newOrigin, le->ownerGentNum, CONTENTS_SOLID );
+	CG_Trace( &trace, le->refEntity.origin, nullptr, nullptr, newOrigin, le->ownerGentNum, CONTENTS_SOLID );
 	if ( trace.fraction == 1.0 ) {
 		// still in free fall
 		VectorCopy( newOrigin, le->refEntity.origin );

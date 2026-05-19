@@ -100,7 +100,7 @@ int G_FindLookItem( gentity_t *self )
 
 	//FIXME: no need to do this in 1st person?
 	fwdangles[1] = self->client->ps.viewangles[1];
-	AngleVectors( fwdangles, forward, NULL, NULL );
+	AngleVectors( fwdangles, forward, nullptr, nullptr );
 
 	VectorCopy( self->currentOrigin, center );
 
@@ -306,7 +306,7 @@ void G_ChooseLookEnemy( gentity_t *self, usercmd_t *ucmd )
 {
 //FIXME: should be a more intelligent way of doing this, like auto aim?
 //closest, most in front... did damage to... took damage from?  How do we know who the player is focusing on?
-	gentity_t	*ent, *bestEnt = NULL;
+	gentity_t	*ent, *bestEnt = nullptr;
 	gentity_t	*entityList[MAX_GENTITIES];
 	int			numListedEntities;
 	vec3_t		center, mins, maxs, fwdangles, forward, dir;
@@ -318,7 +318,7 @@ void G_ChooseLookEnemy( gentity_t *self, usercmd_t *ucmd )
 	fwdangles[0] = 0;		//Must initialize data!
 	fwdangles[1] = self->client->ps.viewangles[1];
 	fwdangles[2] = 0;
-	AngleVectors( fwdangles, forward, NULL, NULL );
+	AngleVectors( fwdangles, forward, nullptr, nullptr );
 
 	VectorCopy( self->currentOrigin, center );
 
@@ -521,7 +521,7 @@ void P_WorldEffects( gentity_t *ent ) {
 				// don't play a normal pain sound
 				ent->painDebounceTime = level.time + 200;
 
-				G_Damage (ent, NULL, NULL, NULL, NULL,
+				G_Damage (ent, nullptr, nullptr, nullptr, nullptr,
 					ent->damage, DAMAGE_NO_ARMOR, MOD_WATER);
 			}
 		}
@@ -541,12 +541,12 @@ void P_WorldEffects( gentity_t *ent ) {
 			&& ent->painDebounceTime < level.time	) {
 
 			if (ent->watertype & CONTENTS_LAVA) {
-				G_Damage (ent, NULL, NULL, NULL, NULL,
+				G_Damage (ent, nullptr, nullptr, nullptr, nullptr,
 					15*ent->waterlevel, 0, MOD_LAVA);
 			}
 
 			if (ent->watertype & CONTENTS_SLIME) {
-				G_Damage (ent, NULL, NULL, NULL, NULL,
+				G_Damage (ent, nullptr, nullptr, nullptr, nullptr,
 					1, 0, MOD_SLIME);
 			}
 		}
@@ -557,7 +557,7 @@ void P_WorldEffects( gentity_t *ent ) {
 	{
 		ent->client->poisonDamage -= 2;
 		ent->client->poisonTime = level.time + 1000;
-		G_Damage( ent, NULL, NULL, 0, 0, 2, DAMAGE_NO_KNOCKBACK|DAMAGE_NO_ARMOR, MOD_UNKNOWN );//FIXME: MOD_POISON?
+		G_Damage( ent, nullptr, nullptr, 0, 0, 2, DAMAGE_NO_KNOCKBACK|DAMAGE_NO_ARMOR, MOD_UNKNOWN );//FIXME: MOD_POISON?
 
 		if (ent->client->poisonDamage<0)
 		{
@@ -760,7 +760,7 @@ void DoImpact( gentity_t *self, gentity_t *other, qboolean damageSelf )
 						{//FIXME: for now Jedi take no falling damage, but really they should if pushed off?
 							magnitude = 0;
 						}
-						G_Damage( self, NULL, NULL, NULL, self->currentOrigin, magnitude/2, DAMAGE_NO_ARMOR, MOD_FALLING );//FIXME: MOD_IMPACT
+						G_Damage( self, nullptr, nullptr, nullptr, self->currentOrigin, magnitude/2, DAMAGE_NO_ARMOR, MOD_FALLING );//FIXME: MOD_IMPACT
 					}
 				}
 		}
@@ -798,7 +798,7 @@ void ClientImpacts( gentity_t *ent, pmove_t *pm ) {
 		}
 		other = &g_entities[ pm->touchents[i] ];
 
-		if ( ( ent->NPC != NULL ) && ( ent->e_TouchFunc != touchF_NULL ) ) {	// last check unneccessary
+		if ( ( ent->NPC != nullptr ) && ( ent->e_TouchFunc != touchF_NULL ) ) {	// last check unneccessary
 			GEntity_TouchFunc( ent, other, &trace );
 		}
 
@@ -918,7 +918,7 @@ void	G_TouchTriggersLerped( gentity_t *ent ) {
 
 			//WTF?  Why would a trigger ever fire off the NPC's touch func??!!!
 			/*
-			if ( ( ent->NPC != NULL ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
+			if ( ( ent->NPC != nullptr ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
 				GEntity_TouchFunc( ent, hit, &trace );
 			}
 			*/
@@ -989,7 +989,7 @@ void	G_TouchTriggers( gentity_t *ent ) {
 			GEntity_TouchFunc(hit, ent, &trace);
 		}
 
-		if ( ( ent->NPC != NULL ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
+		if ( ( ent->NPC != nullptr ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
 			GEntity_TouchFunc( ent, hit, &trace );
 		}
 	}
@@ -1197,7 +1197,7 @@ void ClientTimerActions( gentity_t *ent, int msec ) {
 			vec3_t	seekerPos, dir;
 			gentity_t *enemy = SeekerAcquiresTarget( ent, seekerPos );
 
-			if ( enemy != NULL ) // set the client's enemy to a valid target
+			if ( enemy != nullptr ) // set the client's enemy to a valid target
 			{
 				FireSeeker( ent, enemy, seekerPos, dir );
 
@@ -1269,7 +1269,7 @@ void ClientEvents( gentity_t *ent, int oldEventSequence ) {
 				damage = 25;
 			}
 			ent->painDebounceTime = level.time + 200;	// no normal pain sound
-			G_Damage (ent, NULL, NULL, NULL, NULL, damage, 0, MOD_FALLING);
+			G_Damage (ent, nullptr, nullptr, nullptr, nullptr, damage, 0, MOD_FALLING);
 			*/
 			break;
 
@@ -1514,7 +1514,7 @@ void BG_AddPushVecToUcmd( gentity_t *self, usercmd_t *ucmd )
 		return;
 	}
 
-	AngleVectors(self->client->ps.viewangles, forward, right, NULL);
+	AngleVectors(self->client->ps.viewangles, forward, right, nullptr);
 	VectorScale(forward, ucmd->forwardmove/127.0f * self->client->ps.speed, moveDir);
 	VectorMA(moveDir, ucmd->rightmove/127.0f * self->client->ps.speed, right, moveDir);
 	//moveDir is now our intended move velocity
@@ -1600,7 +1600,7 @@ static int NPC_GetWalkSpeed( gentity_t *ent )
 {
 	int	walkSpeed = 0;
 
-	if ( ( ent->client == NULL ) || ( ent->NPC == NULL ) )
+	if ( ( ent->client == nullptr ) || ( ent->NPC == nullptr ) )
 		return 0;
 
 	switch ( ent->client->playerTeam )
@@ -1628,7 +1628,7 @@ static int NPC_GetRunSpeed( gentity_t *ent )
 {
 	int	runSpeed = 0;
 
-	if ( ( ent->client == NULL ) || ( ent->NPC == NULL ) )
+	if ( ( ent->client == nullptr ) || ( ent->NPC == nullptr ) )
 		return 0;
 
 	// team no longer indicates species/race.  Use NPC_class to adjust speed for specific npc types
@@ -1671,7 +1671,7 @@ void G_UpdateEmplacedWeaponData( gentity_t *ent )
 		// Getting the seat bolt here
 		gi.G2API_GetBoltMatrix( chair->ghoul2, chair->playerModel, chair->headBolt,
 				&boltMatrix, chairAng, chair->currentOrigin, (cg.time?cg.time:level.time),
-				NULL, chair->s.modelScale );
+				nullptr, chair->s.modelScale );
 		// Storing ent position, bolt position, and bolt axis
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, ent->client->ps.origin );
 		gi.linkentity( ent );
@@ -1730,7 +1730,7 @@ extern void CG_ChangeWeapon( int num );
 		VectorCopy( ent->owner->s.angles, ent->owner->pos1 );
 
 		// if we are the player we will have put down a brush that blocks NPCs so that we have a clear spot to get back out.
-		//gentity_t *place = G_Find( NULL, FOFS(classname), "emp_placeholder" );
+		//gentity_t *place = G_Find( nullptr, FOFS(classname), "emp_placeholder" );
 
 		if ( ent->health > 0 && ent->owner->nextTrain )
 		{//he's still alive, and we have a placeholder, so put him back
@@ -1748,7 +1748,7 @@ extern void CG_ChangeWeapon( int num );
 		{
 			// dead, so give 'em a push out of the chair
 			vec3_t dir;
-			AngleVectors( ent->owner->s.angles, NULL, dir, NULL );
+			AngleVectors( ent->owner->s.angles, nullptr, dir, nullptr );
 
 			if ( rand() & 1 )
 			{
@@ -1767,12 +1767,12 @@ extern void CG_ChangeWeapon( int num );
 	ent->owner->noDamageTeam = TEAM_FREE;
 	ent->owner->svFlags &= ~SVF_NONNPC_ENEMY;
 	ent->owner->delay = level.time;
-	ent->owner->activator = NULL;
+	ent->owner->activator = nullptr;
 
 	if ( !ent->NPC )
 	{
 		// by keeping the owner, a dead npc can be pushed out of the chair without colliding with it
-		ent->owner = NULL;
+		ent->owner = nullptr;
 	}
 }
 
@@ -2011,7 +2011,7 @@ extern cvar_t	*g_skippingcin;
 			int	newLookTarget;
 			if ( !G_ValidateLookEnemy( ent, ent->enemy ) )
 			{
-				ent->enemy = NULL;
+				ent->enemy = nullptr;
 			}
 			//FIXME: make this a little prescient?
 			G_ChooseLookEnemy( ent, ucmd );
@@ -2296,7 +2296,7 @@ extern cvar_t	*g_skippingcin;
 					else
 					{
 						vec3_t gEFwd, gEAngles = {0,groundEnt->client->ps.viewangles[YAW],0};
-						AngleVectors( gEAngles, gEFwd, NULL, NULL );
+						AngleVectors( gEAngles, gEFwd, nullptr, nullptr );
 						if ( DotProduct( ent->client->ps.velocity, gEFwd ) > 50 )
 						{//pushing him forward
 							knockAnim = BOTH_KNOCKDOWN3;
@@ -2359,7 +2359,7 @@ extern cvar_t	*g_skippingcin;
 	}
 
 	// set speed
-	if ( ent->NPC != NULL )
+	if ( ent->NPC != nullptr )
 	{//we don't actually scale the ucmd, we use actual speeds
 		if ( ent->NPC->combatMove == qfalse )
 		{
@@ -2617,7 +2617,7 @@ extern cvar_t	*g_skippingcin;
 		ucmd->forwardmove = client->forced_forwardmove;
 		if ( !client->ps.speed )
 		{
-			if ( ent->NPC != NULL )
+			if ( ent->NPC != nullptr )
 			{
 				client->ps.speed = ent->NPC->stats.runSpeed;
 			}
@@ -2633,7 +2633,7 @@ extern cvar_t	*g_skippingcin;
 		ucmd->rightmove = client->forced_rightmove;
 		if ( !client->ps.speed )
 		{
-			if ( ent->NPC != NULL  )
+			if ( ent->NPC != nullptr  )
 			{
 				client->ps.speed = ent->NPC->stats.runSpeed;
 			}
@@ -2833,7 +2833,7 @@ extern cvar_t	*g_skippingcin;
 	if ( client->ps.stats[STAT_HEALTH] <= 0 )
 	{
 		// wait for the attack button to be pressed
-		if ( ent->NPC == NULL && level.time > client->respawnTime )
+		if ( ent->NPC == nullptr && level.time > client->respawnTime )
 		{
 			// don't allow respawn if they are still flying through the
 			// air, unless 10 extra seconds have passed, meaning something
@@ -3018,7 +3018,7 @@ void ClientEndPowerUps( gentity_t *ent )
 {
 	int			i;
 
-	if ( ent == NULL || ent->client == NULL )
+	if ( ent == nullptr || ent->client == nullptr )
 	{
 		return;
 	}

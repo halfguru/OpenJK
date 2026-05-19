@@ -129,7 +129,7 @@ void RE_AddPolyToScene( qhandle_t hShader , int numVerts, const polyVert_t *vert
 
 	if ( !hShader ) {
 #ifndef FINAL_BUILD
-		Com_DPrintf( S_COLOR_YELLOW"WARNING: RE_AddPolyToScene: NULL poly shader\n");
+		Com_DPrintf( S_COLOR_YELLOW"WARNING: RE_AddPolyToScene: nullptr poly shader\n");
 #endif
 		return;
 	}
@@ -284,7 +284,7 @@ void RE_RenderScene( const refdef_t *fd ) {
 	startTime = ri.Milliseconds();
 
 	if (!tr.world && !( fd->rdflags & RDF_NOWORLDMODEL ) ) {
-		Com_Error (ERR_DROP, "R_RenderScene: NULL worldmodel");
+		Com_Error (ERR_DROP, "R_RenderScene: nullptr worldmodel");
 	}
 
 //	memcpy( tr.refdef.text, fd->text, sizeof( tr.refdef.text ) );

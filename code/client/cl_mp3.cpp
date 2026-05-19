@@ -59,7 +59,7 @@ int MP3_GetUnpackedSize( const char *psLocalFilename, void *pvData, int iDataLen
 
 	// always do this now that we have fast-unpack code for measuring output size... (much safer than relying on tags that may have been edited, or if MP3 has been re-saved with same tag)
 	//
-	if (1)//qbIgnoreID3Tag || !MP3_ReadSpecialTagInfo((byte *)pvData, iDataLen, NULL, &iUnpackedSize))
+	if (1)//qbIgnoreID3Tag || !MP3_ReadSpecialTagInfo((byte *)pvData, iDataLen, nullptr, &iUnpackedSize))
 	{
 		char *psError = C_MP3_GetUnpackedSize( pvData, iDataLen, &iUnpackedSize, bStereoDesired);
 
@@ -179,9 +179,9 @@ const char sKEY_UNCOMP[]="#UNCOMP";	//    "        "
 // returns qtrue for success...
 //
 qboolean MP3_ReadSpecialTagInfo(byte *pbLoadedFile, int iLoadedFileLen,
-								id3v1_1** ppTAG /* = NULL */,
-								int *piUncompressedSize /* = NULL */,
-								float *pfMaxVol /* = NULL */
+								id3v1_1** ppTAG /* = nullptr */,
+								int *piUncompressedSize /* = nullptr */,
+								float *pfMaxVol /* = nullptr */
 								)
 {
 	qboolean qbError = qfalse;
@@ -224,7 +224,7 @@ qboolean MP3_ReadSpecialTagInfo(byte *pbLoadedFile, int iLoadedFileLen,
 	}
 	else
 	{
-		pTAG = NULL;
+		pTAG = nullptr;
 	}
 
 	if (ppTAG)
@@ -240,7 +240,7 @@ qboolean MP3_ReadSpecialTagInfo(byte *pbLoadedFile, int iLoadedFileLen,
 #define FUZZY_AMOUNT (5*1024)	// so it has to be significantly over, not just break even, because of
 								// the xtra CPU time versus memory saving
 
-cvar_t* cv_MP3overhead = NULL;
+cvar_t* cv_MP3overhead = nullptr;
 void MP3_InitCvars(void)
 {
 	cv_MP3overhead = Cvar_Get("s_mp3overhead", va("%d", sizeof(MP3STREAM) + FUZZY_AMOUNT), CVAR_ARCHIVE );
@@ -272,7 +272,7 @@ qboolean MP3Stream_InitFromFile( sfx_t* sfx, byte *pbSrcData, int iSrcDatalen, c
 		//
 		float fMaxVol = 128;	// seems to be a reasonable typical default for maxvol (for lip synch). Naturally there's no #define I can use instead...
 
-		MP3_ReadSpecialTagInfo(pbSrcData, iSrcDatalen, NULL, NULL, &fMaxVol );	// try and read a read maxvol from MP3 header
+		MP3_ReadSpecialTagInfo(pbSrcData, iSrcDatalen, nullptr, nullptr, &fMaxVol );	// try and read a read maxvol from MP3 header
 
 		// fill in some sfx_t fields...
 		//

@@ -139,7 +139,7 @@ int G_FindLookItem( gentity_t *self )
 
 	//FIXME: no need to do this in 1st person?
 	fwdangles[1] = self->client->ps.viewangles[1];
-	AngleVectors( fwdangles, forward, NULL, NULL );
+	AngleVectors( fwdangles, forward, nullptr, nullptr );
 
 	VectorCopy( self->currentOrigin, center );
 
@@ -366,7 +366,7 @@ void G_ChooseLookEnemy( gentity_t *self, usercmd_t *ucmd )
 {
 //FIXME: should be a more intelligent way of doing this, like auto aim?
 //closest, most in front... did damage to... took damage from?  How do we know who the player is focusing on?
-	gentity_t	*ent, *bestEnt = NULL;
+	gentity_t	*ent, *bestEnt = nullptr;
 	gentity_t	*entityList[MAX_GENTITIES];
 	int			numListedEntities;
 	vec3_t		center, mins, maxs, fwdangles, forward, dir;
@@ -378,7 +378,7 @@ void G_ChooseLookEnemy( gentity_t *self, usercmd_t *ucmd )
 	fwdangles[0] = 0;		//Must initialize data!
 	fwdangles[1] = self->client->ps.viewangles[1];
 	fwdangles[2] = 0;
-	AngleVectors( fwdangles, forward, NULL, NULL );
+	AngleVectors( fwdangles, forward, nullptr, nullptr );
 
 	VectorCopy( self->currentOrigin, center );
 
@@ -589,7 +589,7 @@ void P_WorldEffects( gentity_t *ent ) {
 				// don't play a normal pain sound
 				ent->painDebounceTime = level.time + 200;
 
-				G_Damage (ent, NULL, NULL, NULL, NULL,
+				G_Damage (ent, nullptr, nullptr, nullptr, nullptr,
 					ent->damage, DAMAGE_NO_ARMOR, MOD_WATER);
 			}
 		}
@@ -609,12 +609,12 @@ void P_WorldEffects( gentity_t *ent ) {
 			&& ent->painDebounceTime < level.time	) {
 
 			if (ent->watertype & CONTENTS_LAVA) {
-				G_Damage (ent, NULL, NULL, NULL, NULL,
+				G_Damage (ent, nullptr, nullptr, nullptr, nullptr,
 					15*ent->waterlevel, 0, MOD_LAVA);
 			}
 
 			if (ent->watertype & CONTENTS_SLIME) {
-				G_Damage (ent, NULL, NULL, NULL, NULL,
+				G_Damage (ent, nullptr, nullptr, nullptr, nullptr,
 					1, 0, MOD_SLIME);
 			}
 		}
@@ -634,7 +634,7 @@ void P_WorldEffects( gentity_t *ent ) {
 		}
 		else
 		{
-			G_Damage (ent, NULL, NULL, NULL, NULL, 1, 0, MOD_SLIME);
+			G_Damage (ent, nullptr, nullptr, nullptr, nullptr, 1, 0, MOD_SLIME);
 		}
 	}
 
@@ -643,7 +643,7 @@ void P_WorldEffects( gentity_t *ent ) {
 	{
 		ent->client->poisonDamage -= 2;
 		ent->client->poisonTime = level.time + 1000;
-		G_Damage( ent, NULL, NULL, 0, 0, 2, DAMAGE_NO_KNOCKBACK|DAMAGE_NO_ARMOR, MOD_UNKNOWN );//FIXME: MOD_POISON?
+		G_Damage( ent, nullptr, nullptr, 0, 0, 2, DAMAGE_NO_KNOCKBACK|DAMAGE_NO_ARMOR, MOD_UNKNOWN );//FIXME: MOD_POISON?
 
 		if (ent->client->poisonDamage<0)
 		{
@@ -667,7 +667,7 @@ void P_WorldEffects( gentity_t *ent ) {
 			{ //suffocate!
 				if (ent->health > 0)
 				{ //if they're still alive..
-					G_Damage(ent, spacetrigger, spacetrigger, NULL, ent->client->ps.origin, Q_irand(20, 40), DAMAGE_NO_ARMOR, MOD_SUICIDE);
+					G_Damage(ent, spacetrigger, spacetrigger, nullptr, ent->client->ps.origin, Q_irand(20, 40), DAMAGE_NO_ARMOR, MOD_SUICIDE);
 
 					if (ent->health > 0)
 					{ //did that last one kill them?
@@ -742,8 +742,8 @@ void DoImpact( gentity_t *self, gentity_t *other, qboolean damageSelf, trace_t *
 	bool	thrown = false;
 	vec3_t	velocity;
 
-	Vehicle_t *pSelfVeh = NULL;
-	Vehicle_t *pOtherVeh = NULL;
+	Vehicle_t *pSelfVeh = nullptr;
+	Vehicle_t *pOtherVeh = nullptr;
 
 	// See if either of these guys are vehicles, if so, keep a pointer to the vehicle npc.
 	if ( self->client && self->client->NPC_class == CLASS_VEHICLE )
@@ -1032,7 +1032,7 @@ void DoImpact( gentity_t *self, gentity_t *other, qboolean damageSelf, trace_t *
 					pSelfVeh->m_ulFlags		|= VEH_CRASHING;
 				}
 
-				G_Damage( self, player, player, NULL, self->currentOrigin, magnitude, vehDFlags, MOD_FALLING );//FIXME: MOD_IMPACT
+				G_Damage( self, player, player, nullptr, self->currentOrigin, magnitude, vehDFlags, MOD_FALLING );//FIXME: MOD_IMPACT
 			}
 
 			if ( self->owner == other || self->activator == other )
@@ -1295,7 +1295,7 @@ void DoImpact( gentity_t *self, gentity_t *other, qboolean damageSelf, trace_t *
 						magnitude = 0;
 					}
 
-					G_Damage( self, NULL, NULL, NULL, self->currentOrigin, magnitude/2, DAMAGE_NO_ARMOR, MOD_FALLING );//FIXME: MOD_IMPACT
+					G_Damage( self, nullptr, nullptr, nullptr, self->currentOrigin, magnitude/2, DAMAGE_NO_ARMOR, MOD_FALLING );//FIXME: MOD_IMPACT
 				}
 			}
 		}
@@ -1333,7 +1333,7 @@ void ClientImpacts( gentity_t *ent, pmove_t *pm ) {
 		}
 		other = &g_entities[ pm->touchents[i] ];
 
-		if ( ( ent->NPC != NULL ) && ( ent->e_TouchFunc != touchF_NULL ) ) {	// last check unneccessary
+		if ( ( ent->NPC != nullptr ) && ( ent->e_TouchFunc != touchF_NULL ) ) {	// last check unneccessary
 			GEntity_TouchFunc( ent, other, &trace );
 		}
 
@@ -1461,7 +1461,7 @@ void	G_TouchTriggersLerped( gentity_t *ent ) {
 
 			//WTF?  Why would a trigger ever fire off the NPC's touch func??!!!
 			/*
-			if ( ( ent->NPC != NULL ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
+			if ( ( ent->NPC != nullptr ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
 				GEntity_TouchFunc( ent, hit, &trace );
 			}
 			*/
@@ -1532,7 +1532,7 @@ void	G_TouchTriggers( gentity_t *ent ) {
 			GEntity_TouchFunc(hit, ent, &trace);
 		}
 
-		if ( ( ent->NPC != NULL ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
+		if ( ( ent->NPC != nullptr ) && ( ent->e_TouchFunc != touchF_NULL ) ) {
 			GEntity_TouchFunc( ent, hit, &trace );
 		}
 	}
@@ -1704,7 +1704,7 @@ void ClientTimerActions( gentity_t *ent, int msec ) {
 			vec3_t	seekerPos, dir;
 			gentity_t *enemy = SeekerAcquiresTarget( ent, seekerPos );
 
-			if ( enemy != NULL ) // set the client's enemy to a valid target
+			if ( enemy != nullptr ) // set the client's enemy to a valid target
 			{
 				FireSeeker( ent, enemy, seekerPos, dir );
 
@@ -1788,7 +1788,7 @@ void ClientEvents( gentity_t *ent, int oldEventSequence ) {
 				damage = 25;
 			}
 			ent->painDebounceTime = level.time + 200;	// no normal pain sound
-			G_Damage (ent, NULL, NULL, NULL, NULL, damage, 0, MOD_FALLING);
+			G_Damage (ent, nullptr, nullptr, nullptr, nullptr, damage, 0, MOD_FALLING);
 			*/
 			break;
 
@@ -1869,7 +1869,7 @@ void G_ThrownDeathAnimForDeathAnim( gentity_t *hitEnt, vec3_t impactPoint )
 			dir2Impact[2] = 0;
 			VectorNormalize( dir2Impact );
 			VectorSet( fwdAngles, 0, hitEnt->client->ps.viewangles[YAW], 0 );
-			AngleVectors( fwdAngles, facing, NULL, NULL );
+			AngleVectors( fwdAngles, facing, nullptr, nullptr );
 			float dot = DotProduct( facing, dir2Impact );//-1 = hit in front, 0 = hit on side, 1 = hit in back
 			if ( dot > 0.5f )
 			{//kicked in chest, fly backward
@@ -1950,7 +1950,7 @@ gentity_t *G_KickTrace( gentity_t *ent, vec3_t kickDir, float kickDist, vec3_t k
 {
 	vec3_t	traceOrg, traceEnd, kickMins={-2,-2,-2}, kickMaxs={2,2,2};
 	trace_t	trace;
-	gentity_t	*hitEnt = NULL;
+	gentity_t	*hitEnt = nullptr;
 	//FIXME: variable kick height?
 	if ( kickEnd && !VectorCompare( kickEnd, vec3_origin ) )
 	{//they passed us the end point of the trace, just use that
@@ -1983,11 +1983,11 @@ gentity_t *G_KickTrace( gentity_t *ent, vec3_t kickDir, float kickDist, vec3_t k
 					if ( PM_InKnockDown( &hitEnt->client->ps )
 						&& !PM_InGetUp( &hitEnt->client->ps ) )
 					{//don't hit people who are knocked down or being knocked down (okay to hit people getting up, though)
-						return NULL;
+						return nullptr;
 					}
 					if ( PM_InRoll( &hitEnt->client->ps ) )
 					{//can't hit people who are rolling
-						return NULL;
+						return nullptr;
 					}
 					//don't hit same ent more than once per kick
 					if ( hitEnt->takedamage )
@@ -2159,7 +2159,7 @@ qboolean G_CheckRollSafety( gentity_t *self, int anim, float testDist )
 	}
 	angles[PITCH] = angles[ROLL] = 0;
 	angles[YAW] = self->client->ps.viewangles[YAW];//Add ucmd.angles[YAW]?
-	AngleVectors( angles, forward, right, NULL );
+	AngleVectors( angles, forward, right, nullptr );
 
 	switch ( anim )
 	{
@@ -2229,7 +2229,7 @@ void G_CamCircleForLegsAnim( gentity_t *ent )
 
 qboolean G_GrabClient( gentity_t *ent, usercmd_t *ucmd )
 {
-	gentity_t	*bestEnt = NULL, *radiusEnts[ 128 ];
+	gentity_t	*bestEnt = nullptr, *radiusEnts[ 128 ];
 	int			numEnts;
 	const float	radius = 100.0f;
 	const float	radiusSquared = (radius*radius);
@@ -2256,7 +2256,7 @@ qboolean G_GrabClient( gentity_t *ent, usercmd_t *ucmd )
 			continue;
 		}
 
-		if ( radiusEnts[i]->client == NULL )
+		if ( radiusEnts[i]->client == nullptr )
 		{//must be a client
 			continue;
 		}
@@ -2301,7 +2301,7 @@ qboolean G_GrabClient( gentity_t *ent, usercmd_t *ucmd )
 		}
 	}
 
-	if ( bestEnt != NULL )
+	if ( bestEnt != nullptr )
 	{
 		int lockType = LOCK_KYLE_GRAB1;
 		if ( ucmd->forwardmove > 0 )
@@ -2349,7 +2349,7 @@ qboolean G_PullAttack( gentity_t *ent, usercmd_t *ucmd )
 			VectorMA( pullPos, puller->client->ps.saber[0].blade[0].length*0.5f, puller->client->ps.saber[0].blade[0].muzzleDir, pullPos );
 			*/
 			vec3_t pullerFwd;
-			AngleVectors( puller->client->ps.viewangles, pullerFwd, NULL, NULL );
+			AngleVectors( puller->client->ps.viewangles, pullerFwd, nullptr, nullptr );
 			VectorMA( puller->currentOrigin, (puller->maxs[0]*1.5f)+16.0f, pullerFwd, pullPos );
 			//pull me towards that pos
 			VectorSubtract( pullPos, ent->currentOrigin, pullDir );
@@ -2564,7 +2564,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 		&& ent->client->ps.legsAnimTimer )
 	{
 		vec3_t vFwd, fwdAng = {0,ent->currentAngles[YAW],0};
-		AngleVectors( fwdAng, vFwd, NULL, NULL );
+		AngleVectors( fwdAng, vFwd, nullptr, nullptr );
 		if ( ent->client->ps.groundEntityNum == ENTITYNUM_NONE )
 		{
 			float savZ = ent->client->ps.velocity[2];
@@ -3049,7 +3049,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				}
 				if ( damage )
 				{
-					G_Damage( ent, ent->enemy, ent->enemy, NULL, ent->currentOrigin, damage, dflags, MOD_MELEE );//MOD_IMPACT?
+					G_Damage( ent, ent->enemy, ent->enemy, nullptr, ent->currentOrigin, damage, dflags, MOD_MELEE );//MOD_IMPACT?
 				}
 			}
 		}
@@ -3075,7 +3075,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 			{
 				vec3_t ang = {10,ent->currentAngles[YAW],0};
 				vec3_t throwDir;
-				AngleVectors( ang, throwDir, NULL, NULL );
+				AngleVectors( ang, throwDir, nullptr, nullptr );
 				if ( !(ent->flags&FL_NO_KNOCKBACK) )
 				{
 					G_Throw( ent, throwDir, -100 );
@@ -3097,7 +3097,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 			{
 				vec3_t ang = {10,ent->currentAngles[YAW],0};
 				vec3_t throwDir;
-				AngleVectors( ang, throwDir, NULL, NULL );
+				AngleVectors( ang, throwDir, nullptr, nullptr );
 				if ( !(ent->flags&FL_NO_KNOCKBACK) )
 				{
 					G_Throw( ent, throwDir, -100 );
@@ -3187,7 +3187,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				}
 				else
 				{//guess
-					AngleVectors( fwdAngs, kickDir, NULL, NULL );
+					AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 				}
 			}
 		}
@@ -3209,7 +3209,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3226,7 +3226,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				if ( elapsedTime >= 800 && elapsedTime <= 1200 )
@@ -3241,7 +3241,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir2, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir2, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3260,7 +3260,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				if ( elapsedTime >= 400 && elapsedTime <= 850 )
@@ -3276,7 +3276,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir2, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir2, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3295,7 +3295,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				if ( elapsedTime >= 350 && elapsedTime <= 650 )
@@ -3311,7 +3311,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir2, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir2, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3328,7 +3328,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				if ( elapsedTime >= 600 && elapsedTime <= 900 )
@@ -3343,7 +3343,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir2, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir2, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3362,7 +3362,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				if ( elapsedTime >= 1150 && elapsedTime <= 1600 )
@@ -3378,7 +3378,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir2, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir2, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3398,7 +3398,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				if ( elapsedTime >= 900 && elapsedTime <= 1600 )
@@ -3414,7 +3414,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir2, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir2, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3435,7 +3435,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				if ( ent->client->ps.legsAnim == BOTH_GETUP_BROLL_B
@@ -3459,7 +3459,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3478,7 +3478,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 				}
 				break;
@@ -3497,7 +3497,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -3516,7 +3516,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -3536,7 +3536,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -3556,7 +3556,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 					}
 				}
 				break;
@@ -3575,7 +3575,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -3595,7 +3595,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -3621,48 +3621,48 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					if ( elapsedTime >= 400 && elapsedTime < 500 )
 					{//front
 						doKick = qtrue;
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 					else if ( elapsedTime >= 500 && elapsedTime < 600 )
 					{//front-right?
 						doKick = qtrue;
 						fwdAngs[YAW] += 45;
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 					else if ( elapsedTime >= 600 && elapsedTime < 700 )
 					{//right
 						doKick = qtrue;
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 					}
 					else if ( elapsedTime >= 700 && elapsedTime < 800 )
 					{//back-right?
 						doKick = qtrue;
 						fwdAngs[YAW] += 45;
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 					}
 					else if ( elapsedTime >= 800 && elapsedTime < 900 )
 					{//back
 						doKick = qtrue;
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 					else if ( elapsedTime >= 900 && elapsedTime < 1000 )
 					{//back-left?
 						doKick = qtrue;
 						fwdAngs[YAW] += 45;
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 					else if ( elapsedTime >= 1000 && elapsedTime < 1100 )
 					{//left
 						doKick = qtrue;
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 					else if ( elapsedTime >= 1100 && elapsedTime < 1200 )
 					{//front-left?
 						doKick = qtrue;
 						fwdAngs[YAW] += 45;
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -3694,12 +3694,12 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					if ( elapsedTime >= 250 && elapsedTime < 350 )
 					{//front
 						doKick = qtrue;
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 					}
 					else if ( elapsedTime >= 350 && elapsedTime < 450 )
 					{//back
 						doKick = qtrue;
-						AngleVectors( fwdAngs, kickDir, NULL, NULL );
+						AngleVectors( fwdAngs, kickDir, nullptr, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -3723,7 +3723,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 					}
 				}
 				else if ( elapsedTime >= 350 && elapsedTime < 450 )
@@ -3740,7 +3740,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 					}
 					else
 					{//guess
-						AngleVectors( fwdAngs, NULL, kickDir, NULL );
+						AngleVectors( fwdAngs, nullptr, kickDir, nullptr );
 						VectorScale( kickDir, -1, kickDir );
 					}
 				}
@@ -4066,7 +4066,7 @@ void BG_AddPushVecToUcmd( gentity_t *self, usercmd_t *ucmd )
 		return;
 	}
 
-	AngleVectors(self->client->ps.viewangles, forward, right, NULL);
+	AngleVectors(self->client->ps.viewangles, forward, right, nullptr);
 	VectorScale(forward, ucmd->forwardmove/127.0f * self->client->ps.speed, moveDir);
 	VectorMA(moveDir, ucmd->rightmove/127.0f * self->client->ps.speed, right, moveDir);
 	//moveDir is now our intended move velocity
@@ -4152,7 +4152,7 @@ static int NPC_GetWalkSpeed( gentity_t *ent )
 {
 	int	walkSpeed = 0;
 
-	if ( ( ent->client == NULL ) || ( ent->NPC == NULL ) )
+	if ( ( ent->client == nullptr ) || ( ent->NPC == nullptr ) )
 		return 0;
 
 	switch ( ent->client->playerTeam )
@@ -4180,7 +4180,7 @@ static int NPC_GetRunSpeed( gentity_t *ent )
 {
 	int	runSpeed = 0;
 
-	if ( ( ent->client == NULL ) || ( ent->NPC == NULL ) )
+	if ( ( ent->client == nullptr ) || ( ent->NPC == nullptr ) )
 		return 0;
 
 	// team no longer indicates species/race.  Use NPC_class to adjust speed for specific npc types
@@ -4229,7 +4229,7 @@ void G_HeldByMonster( gentity_t *ent, usercmd_t **ucmd )
 		monAngles[YAW] = monster->currentAngles[YAW];//only use YAW when passing angles to G2
 		gi.G2API_GetBoltMatrix( monster->ghoul2, monster->playerModel, boltIndex,
 				&boltMatrix, monAngles, monster->currentOrigin, (cg.time?cg.time:level.time),
-				NULL, monster->s.modelScale );
+				nullptr, monster->s.modelScale );
 		// Storing ent position, bolt position, and bolt axis
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, ent->client->ps.origin );
 		gi.linkentity( ent );
@@ -4242,7 +4242,7 @@ void G_HeldByMonster( gentity_t *ent, usercmd_t **ucmd )
 	}
 	else if (ent)
 	{//doh, my captor died!
-		ent->activator = NULL;
+		ent->activator = nullptr;
 		if (ent->client)
 		{
 			ent->client->ps.eFlags &= ~(EF_HELD_BY_WAMPA|EF_HELD_BY_RANCOR);
@@ -4413,7 +4413,7 @@ This function is called ONLY from ClientThinkReal, and is responsible for settin
 void	ClientAlterSpeed(gentity_t *ent, usercmd_t *ucmd, qboolean	controlledByPlayer, float vehicleFrameTimeModifier)
 {
 	gclient_t	*client = ent->client;
-	Vehicle_t *pVeh = NULL;
+	Vehicle_t *pVeh = nullptr;
 
 	if ( ent->client && ent->client->NPC_class == CLASS_VEHICLE )
 	{
@@ -4422,7 +4422,7 @@ void	ClientAlterSpeed(gentity_t *ent, usercmd_t *ucmd, qboolean	controlledByPlay
 
 	// set speed
 	// This may be wrong: If we're an npc and we are in a vehicle???
-	if ( ent->NPC != NULL && ent->client && ( ent->s.m_iVehicleNum != 0 )/*&& ent->client->NPC_class == CLASS_VEHICLE*/ )
+	if ( ent->NPC != nullptr && ent->client && ( ent->s.m_iVehicleNum != 0 )/*&& ent->client->NPC_class == CLASS_VEHICLE*/ )
 	{//we don't actually scale the ucmd, we use actual speeds
 		//FIXME: swoop should keep turning (and moving forward?) for a little bit?
 		if ( ent->NPC->combatMove == qfalse )
@@ -4629,7 +4629,7 @@ void	ClientAlterSpeed(gentity_t *ent, usercmd_t *ucmd, qboolean	controlledByPlay
 		ucmd->forwardmove = client->forced_forwardmove;
 		if ( !client->ps.speed )
 		{
-			if ( ent->NPC != NULL )
+			if ( ent->NPC != nullptr )
 			{
 				client->ps.speed = ent->NPC->stats.runSpeed;
 			}
@@ -4645,7 +4645,7 @@ void	ClientAlterSpeed(gentity_t *ent, usercmd_t *ucmd, qboolean	controlledByPlay
 		ucmd->rightmove = client->forced_rightmove;
 		if ( !client->ps.speed )
 		{
-			if ( ent->NPC != NULL  )
+			if ( ent->NPC != nullptr  )
 			{
 				client->ps.speed = ent->NPC->stats.runSpeed;
 			}
@@ -4762,7 +4762,7 @@ void ClientThink_real( gentity_t *ent, usercmd_t *ucmd )
 	qboolean	inSpinFlipAttack = PM_AdjustAnglesForSpinningFlip( ent, ucmd, qfalse );
 	qboolean	controlledByPlayer = qfalse;
 
-	Vehicle_t *pVeh = NULL;
+	Vehicle_t *pVeh = nullptr;
 
 	if ( ent->client && ent->client->NPC_class == CLASS_VEHICLE )
 	{
@@ -4796,7 +4796,7 @@ extern cvar_t	*g_skippingcin;
 			int	newLookTarget;
 			if ( !G_ValidateLookEnemy( ent, ent->enemy ) )
 			{
-				ent->enemy = NULL;
+				ent->enemy = nullptr;
 			}
 			//FIXME: make this a little prescient?
 			G_ChooseLookEnemy( ent, ucmd );
@@ -5015,7 +5015,7 @@ extern cvar_t	*g_skippingcin;
 						&& groundEnt->client->ps.legsAnim != BOTH_BUCK_RIDER )
 					{//don't interrupt special anims
 						vec3_t	throwDir, right;
-						AngleVectors( groundEnt->currentAngles, throwDir, right, NULL );
+						AngleVectors( groundEnt->currentAngles, throwDir, right, nullptr );
 						VectorScale(throwDir,-1,throwDir);
 						VectorMA( throwDir, Q_flrand( -0.5f, 0.5f), right, throwDir );
 						throwDir[2] = 0.2f;
@@ -5061,7 +5061,7 @@ extern cvar_t	*g_skippingcin;
 							&& !ent->client->ps.velocity[1] )
 						{//not moving, shove us a little
 							vec3_t slideFwd;
-							AngleVectors( ent->client->ps.viewangles, slideFwd, NULL, NULL );
+							AngleVectors( ent->client->ps.viewangles, slideFwd, nullptr, nullptr );
 							slideFwd[2] = 0.0f;
 							VectorNormalize( slideFwd );
 							ent->client->ps.velocity[0] = slideFwd[0]*10.0f;
@@ -5158,7 +5158,7 @@ extern cvar_t	*g_skippingcin;
 						else
 						{
 							vec3_t gEFwd, gEAngles = {0,groundEnt->client->ps.viewangles[YAW],0};
-							AngleVectors( gEAngles, gEFwd, NULL, NULL );
+							AngleVectors( gEAngles, gEFwd, nullptr, nullptr );
 							if ( DotProduct( ent->client->ps.velocity, gEFwd ) > 50 )
 							{//pushing him forward
 								knockAnim = BOTH_KNOCKDOWN3;
@@ -5479,7 +5479,7 @@ extern cvar_t	*g_skippingcin;
 	if ( client->ps.stats[STAT_HEALTH] <= 0 )
 	{
 		// wait for the attack button to be pressed
-		if ( ent->NPC == NULL && level.time > client->respawnTime )
+		if ( ent->NPC == nullptr && level.time > client->respawnTime )
 		{
 			// don't allow respawn if they are still flying through the
 			// air, unless 10 extra seconds have passed, meaning something
@@ -5626,7 +5626,7 @@ void ClientThink( int clientNum, usercmd_t *ucmd ) {
 		PM_CheckForceUseButton( ent, ucmd );
 	}
 
-	Vehicle_t *pVeh = NULL;
+	Vehicle_t *pVeh = nullptr;
 
 	// Rider logic.
 	// NOTE: Maybe this should be extracted into a RiderUpdate() within the vehicle.
@@ -5693,7 +5693,7 @@ void ClientEndPowerUps( gentity_t *ent )
 {
 	int			i;
 
-	if ( ent == NULL || ent->client == NULL )
+	if ( ent == nullptr || ent->client == nullptr )
 	{
 		return;
 	}

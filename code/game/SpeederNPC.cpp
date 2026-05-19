@@ -186,13 +186,13 @@ bool Update( Vehicle_t *pVeh, const usercmd_t *pUcmd )
 	{
 		vec3_t vVehAngles;
 		VectorSet(vVehAngles, 0, pVeh->m_vOrientation[YAW], 0 );
-		AngleVectors( vVehAngles, parent->client->ps.moveDir, NULL, NULL );
+		AngleVectors( vVehAngles, parent->client->ps.moveDir, nullptr, nullptr );
 	}
 	else
 	{
 		vec3_t vVehAngles;
 		VectorSet(vVehAngles, pVeh->m_vOrientation[PITCH], pVeh->m_vOrientation[YAW], 0 );
-		AngleVectors( vVehAngles, parent->client->ps.moveDir, NULL, NULL );
+		AngleVectors( vVehAngles, parent->client->ps.moveDir, nullptr, nullptr );
 	}
 
 	// Check For A Strafe Ram
@@ -302,7 +302,7 @@ static void ProcessMoveCommands( Vehicle_t *pVeh )
 	//Client sets ucmds and such for speed alterations
 	float speedInc, speedIdleDec, speedIdle, /*speedIdleAccel, */speedMin, speedMax;
 	playerState_t *parentPS;
-	//playerState_t *pilotPS = NULL;
+	//playerState_t *pilotPS = nullptr;
 	int	curTime;
 
 #ifdef _JK2MP
@@ -398,7 +398,7 @@ static void ProcessMoveCommands( Vehicle_t *pVeh )
 
 									VectorSet(boltDir, 0.0f, pVeh->m_pParentEntity->playerState->viewangles[YAW], 0.0f);
 
-									trap_G2API_GetBoltMatrix(pVeh->m_pParentEntity->ghoul2, 0, pVeh->m_iExhaustTag[i], &boltMatrix, boltDir, pVeh->m_pParentEntity->playerState->origin, level.time, NULL, pVeh->m_pParentEntity->modelScale);
+									trap_G2API_GetBoltMatrix(pVeh->m_pParentEntity->ghoul2, 0, pVeh->m_iExhaustTag[i], &boltMatrix, boltDir, pVeh->m_pParentEntity->playerState->origin, level.time, nullptr, pVeh->m_pParentEntity->modelScale);
 									BG_GiveMeVectorFromMatrix(&boltMatrix, ORIGIN, boltOrg);
 									BG_GiveMeVectorFromMatrix(&boltMatrix, ORIGIN, boltDir);
 									G_PlayEffectID(pVeh->m_pVehicleInfo->iTurboStartFX, boltOrg, boltDir);
@@ -885,7 +885,7 @@ void AnimateRiders( Vehicle_t *pVeh )
 		{
 			float		bodyCurrent	  = 0.0f;
 			int			bodyEnd		  = 0;
-			if (!!gi.G2API_GetBoneAnimIndex(&pVeh->m_pPilot->ghoul2[pVeh->m_pPilot->playerModel], pVeh->m_pPilot->rootBone, level.time, &bodyCurrent, NULL, &bodyEnd, NULL, NULL, NULL))
+			if (!!gi.G2API_GetBoneAnimIndex(&pVeh->m_pPilot->ghoul2[pVeh->m_pPilot->playerModel], pVeh->m_pPilot->rootBone, level.time, &bodyCurrent, nullptr, &bodyEnd, nullptr, nullptr, nullptr))
 			{
 				if (bodyCurrent<=((float)(bodyEnd)-1.5f))
 				{

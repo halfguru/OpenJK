@@ -184,7 +184,7 @@ void Sentry_Fire (void)
 	gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->playerModel,
 				bolt,
 				&boltMatrix, NPC->currentAngles, NPC->currentOrigin, (cg.time?cg.time:level.time),
-				NULL, NPC->s.modelScale );
+				nullptr, NPC->s.modelScale );
 
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, muzzle );
 
@@ -252,7 +252,7 @@ void Sentry_MaintainHeight( void )
 	}
 	else
 	{
-		gentity_t *goal = NULL;
+		gentity_t *goal = nullptr;
 
 		if ( NPCInfo->goalEntity )	// Is there a goal?
 		{
@@ -358,14 +358,14 @@ void Sentry_Strafe( void )
 	vec3_t	end, right;
 	trace_t	tr;
 
-	AngleVectors( NPC->client->renderInfo.eyeAngles, NULL, right, NULL );
+	AngleVectors( NPC->client->renderInfo.eyeAngles, nullptr, right, nullptr );
 
 	// Pick a random strafe direction, then check to see if doing a strafe would be
 	//	reasonable valid
 	dir = ( rand() & 1 ) ? -1 : 1;
 	VectorMA( NPC->currentOrigin, SENTRY_STRAFE_DIS * dir, right, end );
 
-	gi.trace( &tr, NPC->currentOrigin, NULL, NULL, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
+	gi.trace( &tr, NPC->currentOrigin, nullptr, nullptr, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
 
 	// Close enough
 	if ( tr.fraction > 0.9f )
@@ -489,7 +489,7 @@ void Sentry_AttackDecision( void )
 	// He's dead.
 	if (NPC->enemy->health<1)
 	{
-		NPC->enemy = NULL;
+		NPC->enemy = nullptr;
 		Sentry_Idle();
 		return;
 	}

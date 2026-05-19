@@ -484,7 +484,7 @@ void CGCam_Follow( const char *cameraGroup, float speed, float initLerp )
 		return;
 	}
 
-	if ( Q_stricmp("NULL", (char *)cameraGroup) == 0 )
+	if ( Q_stricmp("nullptr", (char *)cameraGroup) == 0 )
 	{//Turn off all aiming
 		return;
 	}
@@ -493,7 +493,7 @@ void CGCam_Follow( const char *cameraGroup, float speed, float initLerp )
 	client_camera.info_state |= CAMERA_FOLLOWING;
 	client_camera.info_state &= ~CAMERA_PANNING;
 
-	//NULL terminate last char in case they type a name too long
+	//nullptr terminate last char in case they type a name too long
 	Q_strncpyz( client_camera.cameraGroup, cameraGroup, sizeof(client_camera.cameraGroup) );
 
 	if ( speed )
@@ -529,7 +529,7 @@ Q3_CameraAutoAim
 void CG_CameraAutoAim( const char *name )
 {
 	/*
-	gentity_t *aimEnt = NULL;
+	gentity_t *aimEnt = nullptr;
 
 	//Clear any previous
 	CGCam_FollowDisable();
@@ -539,7 +539,7 @@ void CG_CameraAutoAim( const char *name )
 		return;
 	}
 
-	aimEnt = G_Find(NULL, FOFS(targetname), (char *)name);
+	aimEnt = G_Find(nullptr, FOFS(targetname), (char *)name);
 
 	if(!aimEnt)
 	{
@@ -561,7 +561,7 @@ CGCam_Track
 */
 void CGCam_Track( const char *trackName, float speed, float initLerp )
 {
-	gentity_t	*trackEnt = NULL;
+	gentity_t	*trackEnt = nullptr;
 
 	CGCam_TrackDisable();
 
@@ -572,7 +572,7 @@ void CGCam_Track( const char *trackName, float speed, float initLerp )
 
 	//NOTE: if this interrupts a move before it's done, need to copy the cg.refdef.vieworg to the camera.origin!
 	//This will find a path_corner now, not a misc_camera_track
-	trackEnt = G_Find(NULL, FOFS(targetname), (char *)trackName);
+	trackEnt = G_Find(nullptr, FOFS(targetname), (char *)trackName);
 
 	if ( !trackEnt )
 	{
@@ -614,7 +614,7 @@ void CGCam_Track( const char *trackName, float speed, float initLerp )
 		//Possible that track has no next point, in which case we won't be moving anyway
 		if ( trackEnt->target && trackEnt->target[0] )
 		{
-			gentity_t *newTrackEnt = G_Find( NULL, FOFS(targetname), trackEnt->target );
+			gentity_t *newTrackEnt = G_Find( nullptr, FOFS(targetname), trackEnt->target );
 			if ( newTrackEnt )
 			{
 				VectorSubtract( newTrackEnt->currentOrigin, client_camera.origin, client_camera.moveDir );
@@ -641,7 +641,7 @@ Q3_CameraAutoTrack
 void CG_CameraAutoTrack( const char *name )
 {
 	/*
-	gentity_t *trackEnt = NULL;
+	gentity_t *trackEnt = nullptr;
 
 	CGCam_TrackDisable();
 
@@ -651,7 +651,7 @@ void CG_CameraAutoTrack( const char *name )
 	}
 
 	//This will find a path_corner now, not a misc_camera_track
-	trackEnt = G_Find(NULL, FOFS(targetname), (char *)name);
+	trackEnt = G_Find(nullptr, FOFS(targetname), (char *)name);
 
 	if(!trackEnt)
 	{
@@ -692,15 +692,15 @@ void CGCam_Distance( float distance, float initLerp )
 void CGCam_FollowUpdate ( void )
 {
 	vec3_t		center, dir, cameraAngles, vec, focus[MAX_CAMERA_GROUP_SUBJECTS];//No more than 16 subjects in a cameraGroup
-	gentity_t	*from = NULL;
-	centity_t	*fromCent = NULL;
+	gentity_t	*from = nullptr;
+	centity_t	*fromCent = nullptr;
 	int			num_subjects = 0, i;
 	qboolean	focused = qfalse;
 
 	if ( client_camera.cameraGroup[0] )
 	{
 		//Stay centered in my cameraGroup, if I have one
-		while( NULL != (from = G_Find(from, FOFS(cameraGroup), client_camera.cameraGroup)))
+		while( nullptr != (from = G_Find(from, FOFS(cameraGroup), client_camera.cameraGroup)))
 		{
 			/*
 			if ( from->s.number == client_camera.aimEntNum )
@@ -848,8 +848,8 @@ void CGCam_FollowUpdate ( void )
 
 void CGCam_TrackEntUpdate ( void )
 {//FIXME: only do every 100 ms
-	gentity_t	*trackEnt = NULL;
-	gentity_t	*newTrackEnt = NULL;
+	gentity_t	*trackEnt = nullptr;
+	gentity_t	*newTrackEnt = nullptr;
 	qboolean	reached = qfalse;
 	vec3_t		vec;
 	float		dist;
@@ -871,7 +871,7 @@ void CGCam_TrackEntUpdate ( void )
 
 		if ( trackEnt->target && trackEnt->target[0] )
 		{//Find our next path_corner
-			newTrackEnt = G_Find( NULL, FOFS(targetname), trackEnt->target );
+			newTrackEnt = G_Find( nullptr, FOFS(targetname), trackEnt->target );
 			if ( newTrackEnt )
 			{
 				if ( newTrackEnt->radius < 0 )

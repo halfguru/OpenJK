@@ -263,7 +263,7 @@ CSequence *ICARUS_Instance::GetSequence( int id )
 			return (*si);
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -302,7 +302,7 @@ int ICARUS_Instance::AllocateSequences( int numSequences, int *idTable )
 			m_GUID = idTable[i];
 
 		//Allocate the container sequence
-		if ( ( sequence = GetSequence() ) == NULL )
+		if ( ( sequence = GetSequence() ) == nullptr )
 			return false;
 
 		//Override the given GUID with the real one
@@ -331,7 +331,7 @@ int ICARUS_Instance::SaveSequenceIDTable( void )
 	int	*idTable = new int[ numSequences ];
 	int	itr = 0;
 
-	if ( idTable == NULL )
+	if ( idTable == nullptr )
 		return false;
 
 	STL_ITERATE( sqi, m_sequences )
@@ -408,7 +408,7 @@ int ICARUS_Instance::SaveSignals( void )
 		const char *name = ((*si).first).c_str();
 
 		//Make sure this is a valid string
-		assert( ( name != NULL ) && ( name[0] != '\0' ) );
+		assert( ( name != nullptr ) && ( name[0] != '\0' ) );
 
 		int length = strlen( name ) + 1;
 
@@ -519,7 +519,7 @@ int ICARUS_Instance::LoadSequences( void )
 
 	int	*idTable = new int[ numSequences ];
 
-	if ( idTable == NULL )
+	if ( idTable == nullptr )
 		return false;
 
 	//Load the sequencer ID table
@@ -533,7 +533,7 @@ int ICARUS_Instance::LoadSequences( void )
 	for ( int i = 0; i < numSequences; i++ )
 	{
 		//Get the proper sequence for this load
-		if ( ( sequence = GetSequence( idTable[i] ) ) == NULL )
+		if ( ( sequence = GetSequence( idTable[i] ) ) == nullptr )
 			return false;
 
 		//Load the sequence
@@ -565,7 +565,7 @@ int ICARUS_Instance::LoadSequencers( void )
 	for ( int i = 0; i < numSequencers; i++ )
 	{
 		//NOTENOTE: The ownerID will be replaced in the loading process
-		if ( ( sequencer = GetSequencer( -1 ) ) == NULL )
+		if ( ( sequencer = GetSequencer( -1 ) ) == nullptr )
 			return false;
 
 		if ( sequencer->Load() == false )

@@ -145,7 +145,7 @@ void RE_AddPolyToScene( qhandle_t hShader, int numVerts, const polyVert_t *verts
 		r_numpolyverts += numVerts;
 
 		// if no world is loaded
-		if ( tr.world == NULL ) {
+		if ( tr.world == nullptr ) {
 			fogIndex = 0;
 		}
 		// see if it is in a fog volume
@@ -534,7 +534,7 @@ void RE_RenderScene( const refdef_t *fd )
 	startTime = ri.Milliseconds();
 
 	if (!tr.world && !( fd->rdflags & RDF_NOWORLDMODEL ) ) {
-		ri.Error (ERR_DROP, "R_RenderScene: NULL worldmodel");
+		ri.Error (ERR_DROP, "R_RenderScene: nullptr worldmodel");
 	}
 
 	RE_BeginScene(fd);

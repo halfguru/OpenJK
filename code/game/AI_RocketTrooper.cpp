@@ -94,7 +94,7 @@ void RT_FireDecide( void )
 	vec3_t	enemyDir, shootDir;
 	VectorSubtract( NPC->enemy->currentOrigin, NPC->currentOrigin, enemyDir );
 	VectorNormalize( enemyDir );
-	AngleVectors( NPC->client->ps.viewangles, shootDir, NULL, NULL );
+	AngleVectors( NPC->client->ps.viewangles, shootDir, nullptr, nullptr );
 	float dot = DotProduct( enemyDir, shootDir );
 	if ( dot > 0.5f ||( enemyDist * (1.0f-dot)) < 10000 )
 	{//enemy is in front of me or they're very close and not behind me
@@ -205,7 +205,7 @@ void RT_FireDecide( void )
 							trace_t tr;
 							//vec3_t	mins = {-2,-2,-2}, maxs = {2,2,2};
 							vec3_t	forward, end;
-							AngleVectors( NPC->client->ps.viewangles, forward, NULL, NULL );
+							AngleVectors( NPC->client->ps.viewangles, forward, nullptr, nullptr );
 							VectorMA( muzzle, 8192, forward, end );
 							gi.trace( &tr, muzzle, vec3_origin, vec3_origin, end, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 							VectorCopy( tr.endpos, impactPos );
@@ -580,7 +580,7 @@ void RT_Flying_MaintainHeight( void )
 	}
 	else
 	{
-		gentity_t *goal = NULL;
+		gentity_t *goal = nullptr;
 
 		if ( NPCInfo->goalEntity )	// Is there a goal?
 		{
@@ -632,14 +632,14 @@ void RT_Flying_Strafe( void )
 		|| !NPC->enemy->client )
 	{
 		// Do a regular style strafe
-		AngleVectors( NPC->client->renderInfo.eyeAngles, NULL, right, NULL );
+		AngleVectors( NPC->client->renderInfo.eyeAngles, nullptr, right, nullptr );
 
 		// Pick a random strafe direction, then check to see if doing a strafe would be
 		//	reasonably valid
 		side = ( rand() & 1 ) ? -1 : 1;
 		VectorMA( NPC->currentOrigin, RT_FLYING_STRAFE_DIS * side, right, end );
 
-		gi.trace( &tr, NPC->currentOrigin, NULL, NULL, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
+		gi.trace( &tr, NPC->currentOrigin, nullptr, nullptr, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
 
 		// Close enough
 		if ( tr.fraction > 0.9f )
@@ -669,7 +669,7 @@ void RT_Flying_Strafe( void )
 	else
 	{
 		// Do a strafe to try and keep on the side of their enemy
-		AngleVectors( NPC->enemy->client->renderInfo.eyeAngles, dir, right, NULL );
+		AngleVectors( NPC->enemy->client->renderInfo.eyeAngles, dir, right, nullptr );
 
 		// Pick a random side
 		side = ( rand() & 1 ) ? -1 : 1;
@@ -679,7 +679,7 @@ void RT_Flying_Strafe( void )
 		// then add a very small bit of random in front of/behind the player action
 		VectorMA( end, Q_flrand(-1.0f, 1.0f) * 25, dir, end );
 
-		gi.trace( &tr, NPC->currentOrigin, NULL, NULL, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
+		gi.trace( &tr, NPC->currentOrigin, nullptr, nullptr, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
 
 		// Close enough
 		if ( tr.fraction > 0.9f )
@@ -905,7 +905,7 @@ void NPC_BSRT_Default( void )
 	{//FIXME: only officers need do this, right?
 		RT_Flying_Think();
 	}
-	else if ( NPC->enemy != NULL )
+	else if ( NPC->enemy != nullptr )
 	{//rocketrooper on ground with enemy
 		UpdateGoal();
 		RT_RunStormtrooperAI();

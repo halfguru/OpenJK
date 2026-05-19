@@ -62,7 +62,7 @@ cvar_t	*com_skippingcin;
 cvar_t	*com_speedslog;		// 1 = buffer log, 2 = flush after each print
 cvar_t  *com_homepath;
 #ifndef _WIN32
-cvar_t	*com_ansiColor = NULL;
+cvar_t	*com_ansiColor = nullptr;
 #endif
 cvar_t	*com_busyWait;
 
@@ -117,9 +117,9 @@ void Com_EndRedirect (void)
 		rd_flush(rd_buffer);
 	}
 
-	rd_buffer = NULL;
+	rd_buffer = nullptr;
 	rd_buffersize = 0;
-	rd_flush = NULL;
+	rd_flush = nullptr;
 }
 #if !defined(FINAL_BUILD) && defined(_WIN32)
 #define OUTPUT_TO_BUILD_WINDOW
@@ -162,7 +162,7 @@ void QDECL Com_Printf( const char *fmt, ... ) {
 		size_t			lineLen;
 
 		if (newLine && com_timestamps && com_timestamps->integer) {
-			time_t t = time( NULL );
+			time_t t = time( nullptr );
 			struct tm *tms = localtime( &t );
 			Com_sprintf(line, sizeof(line), "%04i-%02i-%02i %02i:%02i:%02i ",
 				1900 + tms->tm_year, 1 + tms->tm_mon, tms->tm_mday, tms->tm_hour, tms->tm_min, tms->tm_sec);
@@ -436,7 +436,7 @@ qboolean Com_SafeMode( void ) {
 Com_StartupVariable
 
 Searches for command line parameters that are set commands.
-If match is not NULL, only that cvar will be looked for.
+If match is not nullptr, only that cvar will be looked for.
 That is necessary because cddir and basedir need to be set
 before the filesystem is started, but all other sets should
 be after execing the config and default.
@@ -569,7 +569,7 @@ const char *Com_StringContains(const char *str1, const char *str2, int casesensi
 			return str1;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -930,7 +930,7 @@ Can be used for profiling, but will be journaled accurately
 int Com_Milliseconds (void) {
 	sysEvent_t	ev;
 
-	// get events and push them until we get a null event with the current time
+	// get events and push them until we get a nullptr event with the current time
 	do {
 
 		ev = Com_GetRealEvent();
@@ -1094,7 +1094,7 @@ void Com_Init( char *commandLine ) {
 		Cbuf_Init ();
 
 		// override anything from the config files with command line args
-		Com_StartupVariable( NULL );
+		Com_StartupVariable( nullptr );
 
 		Com_InitZoneMemoryVars();
 		Cmd_Init ();
@@ -1113,7 +1113,7 @@ void Com_Init( char *commandLine ) {
 		Com_ExecuteCfg();
 
 		// override anything from the config files with command line args
-		Com_StartupVariable( NULL );
+		Com_StartupVariable( nullptr );
 
 		// allocate the stack based hunk allocator
 		Com_InitHunkMemory();
@@ -1758,7 +1758,7 @@ static char *Field_FindFirstSeparator( char *s ) {
 			return &s[ i ];
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 /*

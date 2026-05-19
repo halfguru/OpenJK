@@ -55,9 +55,9 @@ typedef std::vector<int>		vInts_t;
 //
 ///////////////////////////////////////////////
 
-cvar_t	*se_language = NULL;
-cvar_t	*se_debug = NULL;
-cvar_t  *sp_leet = NULL;	// kept as 'sp_' for JK2 compat.
+cvar_t	*se_language = nullptr;
+cvar_t	*se_debug = nullptr;
+cvar_t  *sp_leet = nullptr;	// kept as 'sp_' for JK2 compat.
 
 #define __DEBUGOUT(_string)	OutputDebugString(_string)
 #define __ASSERT(_blah)		assert(_blah)
@@ -314,7 +314,7 @@ void CStringEdPackage::REMKill( char *psBuffer )
 
 	// scan forwards in case there are more than one (and the first is inside quotes)...
 	//
-	while ( (p=strstr(psScanPos,"//")) != NULL)
+	while ( (p=strstr(psScanPos,"//")) != nullptr)
 	{
 		// count the number of double quotes before this point, if odd number, then we're inside quotes...
 		//
@@ -522,31 +522,31 @@ static char *CopeWithDumbStringData( const char *psSentence, const char *psThisL
 		char *p;
 
 	//	strXLS_Speech.Replace(va("%c",0x92),va("%c",0x27));	// "'"
-		while ((p=strchr(psNewString,0x92))!=NULL)  // "rich" (and illegal) apostrophe
+		while ((p=strchr(psNewString,0x92))!=nullptr)  // "rich" (and illegal) apostrophe
 		{
 			*p = 0x27;
 		}
 
 	//	strXLS_Speech.Replace(va("%c",0x93),"\"");			// smart quotes -> '"'
-		while ((p=strchr(psNewString,0x93))!=NULL)
+		while ((p=strchr(psNewString,0x93))!=nullptr)
 		{
 			*p = '"';
 		}
 
 	//	strXLS_Speech.Replace(va("%c",0x94),"\"");			// smart quotes -> '"'
-		while ((p=strchr(psNewString,0x94))!=NULL)
+		while ((p=strchr(psNewString,0x94))!=nullptr)
 		{
 			*p = '"';
 		}
 
 	//	strXLS_Speech.Replace(va("%c",0x0B),".");			// full stop
-		while ((p=strchr(psNewString,0x0B))!=NULL)
+		while ((p=strchr(psNewString,0x0B))!=nullptr)
 		{
 			*p = '.';
 		}
 
 	//	strXLS_Speech.Replace(va("%c",0x85),"...");			// "..."-char ->  3-char "..."
-		while ((p=strchr(psNewString,0x85))!=NULL)  // "rich" (and illegal) apostrophe
+		while ((p=strchr(psNewString,0x85))!=nullptr)  // "rich" (and illegal) apostrophe
 		{
 			memmove(p+2,p,strlen(p));
 			*p++ = '.';
@@ -555,33 +555,33 @@ static char *CopeWithDumbStringData( const char *psSentence, const char *psThisL
 		}
 
 	//	strXLS_Speech.Replace(va("%c",0x91),va("%c",0x27));	// "'"
-		while ((p=strchr(psNewString,0x91))!=NULL)
+		while ((p=strchr(psNewString,0x91))!=nullptr)
 		{
 			*p = 0x27;
 		}
 
 	//	strXLS_Speech.Replace(va("%c",0x96),va("%c",0x2D));	// "-"
-		while ((p=strchr(psNewString,0x96))!=NULL)
+		while ((p=strchr(psNewString,0x96))!=nullptr)
 		{
 			*p = 0x2D;
 		}
 
 	//	strXLS_Speech.Replace(va("%c",0x97),va("%c",0x2D));	// "-"
-		while ((p=strchr(psNewString,0x97))!=NULL)
+		while ((p=strchr(psNewString,0x97))!=nullptr)
 		{
 			*p = 0x2D;
 		}
 
 		// bug fix for picky grammatical errors, replace "?." with "? "
 		//
-		while ((p=strstr(psNewString,"?."))!=NULL)
+		while ((p=strstr(psNewString,"?."))!=nullptr)
 		{
 			p[1] = ' ';
 		}
 
 		// StripEd and our print code don't support tabs...
 		//
-		while ((p=strchr(psNewString,0x09))!=NULL)
+		while ((p=strchr(psNewString,0x09))!=nullptr)
 		{
 			*p = ' ';
 		}
@@ -590,11 +590,11 @@ static char *CopeWithDumbStringData( const char *psSentence, const char *psThisL
 	return psNewString;
 }
 
-// return is either NULL for good else error message to display...
+// return is either nullptr for good else error message to display...
 //
 const char *CStringEdPackage::ParseLine( const char *psLine )
 {
-	const char *psErrorMessage = NULL;
+	const char *psErrorMessage = nullptr;
 
 	if (psLine)
 	{
@@ -638,7 +638,7 @@ const char *CStringEdPackage::ParseLine( const char *psLine )
 				char sFlags[1024]={0};	// 1024 chars should be enough to store 8 flag names
 				strncpy(sFlags, psLine, sizeof(sFlags)-1);
 				char *psToken = strtok( sFlags, sSeperators );
-				while( psToken != NULL )
+				while( psToken != nullptr )
 				{
 					// psToken = flag name (in caps)
 					//
@@ -647,7 +647,7 @@ const char *CStringEdPackage::ParseLine( const char *psLine )
 
 					// read next flag for this string...
 					//
-					psToken = strtok( NULL, sSeperators );
+					psToken = strtok( nullptr, sSeperators );
 				}
 			}
 			else
@@ -780,7 +780,7 @@ const char *Leetify( const char *psString )
 		char *p;
 		for (size_t i=0; i<sizeof(cReplace); i+=2)
 		{
-			while ( ( p = const_cast<char*>( strchr(str.c_str(),cReplace[i]) ) ) != NULL )
+			while ( ( p = const_cast<char*>( strchr(str.c_str(),cReplace[i]) ) ) != nullptr )
 				*p = cReplace[i+1];
 		}
 	}
@@ -840,11 +840,11 @@ void CStringEdPackage::SetString( const char *psLocalReference, const char *psNe
 
 // filename is local here, eg:	"strings/german/obj.str"
 //
-// return is either NULL for good else error message to display...
+// return is either nullptr for good else error message to display...
 //
 static const char *SE_Load_Actual( const char *psFileName, SE_BOOL bLoadDebug, SE_BOOL bSpeculativeLoad )
 {
-	const char *psErrorMessage = NULL;
+	const char *psErrorMessage = nullptr;
 
 	unsigned char *psLoadedData = SE_LoadFileData( psFileName );
 	if ( psLoadedData )
@@ -894,7 +894,7 @@ static const char *SE_GetFoundFile( std::string &strResult )
 	static char sTemp[1024/*MAX_PATH*/];
 
 	if (!strlen(strResult.c_str()))
-		return NULL;
+		return nullptr;
 
 	strncpy(sTemp,strResult.c_str(),sizeof(sTemp)-1);
 	sTemp[sizeof(sTemp)-1]='\0';
@@ -922,7 +922,7 @@ static const char *SE_GetFoundFile( std::string &strResult )
 
 // filename is local here, eg:	"strings/german/obj.str"
 //
-// return is either NULL for good else error message to display...
+// return is either nullptr for good else error message to display...
 //
 const char *SE_Load( const char *psFileName, SE_BOOL bLoadDebug = SE_TRUE, SE_BOOL bFailIsCritical = SE_TRUE  )
 {
@@ -1108,7 +1108,7 @@ int SE_GetNumLanguages(void)
 
 		std::set<std::string> strUniqueStrings;	// laziness <g>
 		const char *p;
-		while ((p=SE_GetFoundFile (strResults)) != NULL)
+		while ((p=SE_GetFoundFile (strResults)) != nullptr)
 		{
 			const char *psLanguage = TheStringPackage.ExtractLanguageFromPath( p );
 
@@ -1215,13 +1215,13 @@ void SE_ShutDown(void)
 }
 
 
-// returns error message else NULL for ok.
+// returns error message else nullptr for ok.
 //
 // Any errors that result from this should probably be treated as game-fatal, since an asset file is fuxored.
 //
 const char *SE_LoadLanguage( const char *psLanguage, SE_BOOL bLoadDebug /* = SE_TRUE */ )
 {
-	const char *psErrorMessage = NULL;
+	const char *psErrorMessage = nullptr;
 
 	if (psLanguage && psLanguage[0])
 	{
@@ -1238,7 +1238,7 @@ const char *SE_LoadLanguage( const char *psLanguage, SE_BOOL bLoadDebug /* = SE_
 											);
 
 		const char *p;
-		while ( (p=SE_GetFoundFile (strResults)) != NULL && !psErrorMessage )
+		while ( (p=SE_GetFoundFile (strResults)) != nullptr && !psErrorMessage )
 		{
 			const char *psThisLang = TheStringPackage.ExtractLanguageFromPath( p );
 

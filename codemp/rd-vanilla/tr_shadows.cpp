@@ -188,7 +188,7 @@ void RB_ShadowTessEnd( void )
 			backEnd.currentEntity->directedLight[1] ||
 			backEnd.currentEntity->directedLight[2]))
 	{ //an ent that has its light set for it
-		RB_DoShadowTessEnd(NULL);
+		RB_DoShadowTessEnd(nullptr);
 		return;
 	}
 
@@ -218,7 +218,7 @@ void RB_ShadowTessEnd( void )
 			RB_DoShadowTessEnd(dl->transformed);
 
 #else //old ents-only way
-	RB_DoShadowTessEnd(NULL);
+	RB_DoShadowTessEnd(nullptr);
 #endif
 }
 
@@ -534,7 +534,7 @@ void RB_CaptureScreenImage(void)
 	//using this method, we could pixel-filter the texture and all sorts of crazy stuff.
 	//but, it is slow as hell.
 	/*
-	static byte *tmp = NULL;
+	static byte *tmp = nullptr;
 	if (!tmp)
 	{
 		tmp = (byte *)Z_Malloc((sizeof(byte)*4)*(glConfig.vidWidth*glConfig.vidHeight), TAG_ICARUS, qtrue);

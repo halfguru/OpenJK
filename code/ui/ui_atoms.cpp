@@ -376,7 +376,7 @@ void UI_FillRect( float x, float y, float width, float height, const float *colo
 
 	ui.R_DrawStretchPic( x, y, width, height, 0, 0, 0, 0, uis.whiteShader );
 
-	ui.R_SetColor( NULL );
+	ui.R_SetColor( nullptr );
 }
 
 /*

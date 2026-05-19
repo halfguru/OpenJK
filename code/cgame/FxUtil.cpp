@@ -151,7 +151,7 @@ static void FX_FreeMember( SEffectList *obj )
 //
 // Finds an unused effect slot
 //
-// Note - in the editor, this function may return NULL, indicating that all
+// Note - in the editor, this function may return nullptr, indicating that all
 // effects are being stopped.
 //-------------------------
 static SEffectList *FX_GetValidEffect()
@@ -380,7 +380,7 @@ void FX_Add( bool portal )
 //-------------------------
 // FX_AddPrimitive
 //
-// Note - in the editor, this function may change *pEffect to NULL, indicating that
+// Note - in the editor, this function may change *pEffect to nullptr, indicating that
 // all effects are being stopped.
 //-------------------------
 extern bool gEffectsInPortal;	//from FXScheduler.cpp so i don't have to pass it in on EVERY FX_ADD*
@@ -423,7 +423,7 @@ CParticle *FX_AddParticle(  int clientID, const vec3_t org, const vec3_t vel, co
 	{
 		if (flags&FX_RELATIVE && clientID>=0)
 		{
-			fx->SetOrigin1( NULL );
+			fx->SetOrigin1( nullptr );
 			fx->SetOrgOffset( org );
 			fx->SetClient( clientID, modelNum, boltNum );
 		}
@@ -486,7 +486,7 @@ CParticle *FX_AddParticle(  int clientID, const vec3_t org, const vec3_t vel, co
 		fx->SetImpactFxID( impactID );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL
+		// in the editor, fx may now be nullptr
 	}
 
 	return fx;
@@ -512,7 +512,7 @@ CLine *FX_AddLine( int clientID, vec3_t start, vec3_t end, float size1, float si
 	{
 		if (flags&FX_RELATIVE && clientID>=0)
 		{
-			fx->SetOrigin1( NULL );
+			fx->SetOrigin1( nullptr );
 			fx->SetOrgOffset( start ); //offset from bolt pos
 			fx->SetVel( end );	//vel is the vector offset from bolt+orgOffset
 			fx->SetClient( clientID, modelNum, boltNum );
@@ -569,7 +569,7 @@ CLine *FX_AddLine( int clientID, vec3_t start, vec3_t end, float size1, float si
 		fx->SetImpactFxID( impactFX_id );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL
+		// in the editor, fx may now be nullptr
 	}
 
 	return fx;
@@ -594,7 +594,7 @@ CElectricity *FX_AddElectricity( int clientID, vec3_t start, vec3_t end, float s
 	{
 		if (flags&FX_RELATIVE && clientID>=0)
 		{
-			fx->SetOrigin1( NULL );
+			fx->SetOrigin1( nullptr );
 			fx->SetOrgOffset( start );//offset
 			fx->SetVel( end );	//vel is the vector offset from bolt+orgOffset
 			fx->SetClient( clientID, modelNum, boltNum );
@@ -652,7 +652,7 @@ CElectricity *FX_AddElectricity( int clientID, vec3_t start, vec3_t end, float s
 		fx->SetSTScale( 1.0f, 1.0f );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL?
+		// in the editor, fx may now be nullptr?
 		if ( fx )
 		{
 			fx->Initialize();
@@ -686,7 +686,7 @@ CTail *FX_AddTail( int clientID, vec3_t org, vec3_t vel, vec3_t accel,
 	{
 		if (flags&FX_RELATIVE && clientID>=0)
 		{
-			fx->SetOrigin1( NULL );
+			fx->SetOrigin1( nullptr );
 			fx->SetOrgOffset( org );
 			fx->SetClient( clientID, modelNum, boltNum );
 		}
@@ -759,7 +759,7 @@ CTail *FX_AddTail( int clientID, vec3_t org, vec3_t vel, vec3_t accel,
 		fx->SetImpactFxID( impactID );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL
+		// in the editor, fx may now be nullptr
 	}
 
 	return fx;
@@ -787,7 +787,7 @@ CCylinder *FX_AddCylinder( int clientID, vec3_t start, vec3_t normal,
 	{
 		if (flags&FX_RELATIVE && clientID>=0)
 		{
-			fx->SetOrigin1( NULL );
+			fx->SetOrigin1( nullptr );
 			fx->SetOrgOffset( start );//offset
 			//NOTE: relative version doesn't ever use normal!
 			//fx->SetNormal( normal );
@@ -958,7 +958,7 @@ CEmitter *FX_AddEmitter( vec3_t org, vec3_t vel, vec3_t accel,
 		fx->SetLastVel( vel );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL
+		// in the editor, fx may now be nullptr
 	}
 
 	return fx;
@@ -1012,7 +1012,7 @@ CLight *FX_AddLight( vec3_t org, float size1, float size2, float sizeParm,
 		fx->SetFlags( flags );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL
+		// in the editor, fx may now be nullptr
 	}
 
 	return fx;
@@ -1043,7 +1043,7 @@ COrientedParticle *FX_AddOrientedParticle( int clientID, vec3_t org, vec3_t norm
 	{
 		if (flags&FX_RELATIVE && clientID>=0)
 		{
-			fx->SetOrigin1( NULL );
+			fx->SetOrigin1( nullptr );
 			fx->SetOrgOffset( org );//offset
 			fx->SetNormalOffset( norm );
 			fx->SetClient( clientID, modelNum, boltNum );
@@ -1107,7 +1107,7 @@ COrientedParticle *FX_AddOrientedParticle( int clientID, vec3_t org, vec3_t norm
 		fx->SetImpactFxID( impactID );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL
+		// in the editor, fx may now be nullptr
 	}
 
 	return fx;
@@ -1181,7 +1181,7 @@ CPoly *FX_AddPoly( vec3_t *verts, vec2_t *st, int numVerts,
 		fx->PolyInit();
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be NULL
+		// in the editor, fx may now be nullptr
 	}
 
 	return fx;
@@ -1415,6 +1415,6 @@ void FX_AddQuad( vec3_t origin, vec3_t normal,
 							salpha, ealpha, 0.0f,
 							sRGB, eRGB, 0.0f,
 							rotation, 0.0f,
-							NULL, NULL, 0.0f, 0, 0, life,
+							nullptr, nullptr, 0.0f, 0, 0, life,
 							shader, 0 );
 }

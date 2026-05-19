@@ -63,7 +63,7 @@ void EWebPositionUser(gentity_t *owner, gentity_t *eweb)
 	//trace over
 	gi.G2API_GetBoltMatrix( eweb->ghoul2, 0, eweb->headBolt, &boltMatrix,
 		eweb->s.apos.trBase, eweb->currentOrigin,
-		(cg.time?cg.time:level.time), NULL, eweb->s.modelScale );
+		(cg.time?cg.time:level.time), nullptr, eweb->s.modelScale );
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, p );
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, NEGATIVE_Y, d );
 	d[2] = 0;
@@ -113,7 +113,7 @@ void EWebPositionUser(gentity_t *owner, gentity_t *eweb)
 
 				VectorCopy( p, eweb->pos4 );//update the position
 				//find out what direction he moved in
-				AngleVectors( owner->currentAngles, NULL, oRight, NULL );
+				AngleVectors( owner->currentAngles, nullptr, oRight, nullptr );
 				if ( DotProduct( moveDir, oRight ) > 0 )
 				{//moved to his right, play right strafe
 					strafeAnim = BOTH_STRAFE_RIGHT1;
@@ -208,7 +208,7 @@ void eweb_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int d
 			vec3_t right;
 
 			// radius damage seems to throw them, but add an extra bit to throw them away from the weapon
-			AngleVectors( self->currentAngles, NULL, right, NULL );
+			AngleVectors( self->currentAngles, nullptr, right, nullptr );
 			VectorMA( self->activator->client->ps.velocity, 140, right, self->activator->client->ps.velocity );
 			self->activator->client->ps.velocity[2] = -100;
 
@@ -318,11 +318,11 @@ qboolean eweb_can_be_used( gentity_t *self, gentity_t *other, gentity_t *activat
 	if ( activator->s.number < MAX_CLIENTS )
 	{//player must be facing general direction of the turret head
 		// Let's get some direction vectors for the users
-		AngleVectors( activator->client->ps.viewangles, fwd1, NULL, NULL );
+		AngleVectors( activator->client->ps.viewangles, fwd1, nullptr, nullptr );
 		fwd1[2] = 0;
 
 		// Get the gun's direction vector
-		AngleVectors( facingAngles, fwd2, NULL, NULL );
+		AngleVectors( facingAngles, fwd2, nullptr, nullptr );
 		fwd2[2] = 0;
 
 		float dot = DotProduct( fwd1, fwd2 );
@@ -474,9 +474,9 @@ void SP_emplaced_eweb( gentity_t *ent )
 	ent->rootBone = gi.G2API_GetBoneIndex( &ent->ghoul2[ent->playerModel], "model_root", qtrue );
 	ent->lowerLumbarBone = gi.G2API_GetBoneIndex( &ent->ghoul2[ent->playerModel], "cannon_Yrot", qtrue );
 	ent->upperLumbarBone = gi.G2API_GetBoneIndex( &ent->ghoul2[ent->playerModel], "cannon_Xrot", qtrue );
-	gi.G2API_SetBoneAnglesIndex( &ent->ghoul2[ent->playerModel], ent->lowerLumbarBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_X, NEGATIVE_Y, NULL, 0, 0);
-	gi.G2API_SetBoneAnglesIndex( &ent->ghoul2[ent->playerModel], ent->upperLumbarBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_X, NEGATIVE_Y, NULL, 0, 0);
-	//gi.G2API_SetBoneAngles( &ent->ghoul2[0], "cannon_Yrot", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL);
+	gi.G2API_SetBoneAnglesIndex( &ent->ghoul2[ent->playerModel], ent->lowerLumbarBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_X, NEGATIVE_Y, nullptr, 0, 0);
+	gi.G2API_SetBoneAnglesIndex( &ent->ghoul2[ent->playerModel], ent->upperLumbarBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_X, NEGATIVE_Y, nullptr, 0, 0);
+	//gi.G2API_SetBoneAngles( &ent->ghoul2[0], "cannon_Yrot", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, nullptr);
 	//set the constraints for this guy as an emplaced weapon, and his constraint angles
 	//ent->s.origin2[0] = 60.0f; //60 degrees in either direction
 
@@ -554,10 +554,10 @@ void emplaced_gun_use( gentity_t *self, gentity_t *other, gentity_t *activator )
 	if ( self->spawnflags & EMPLACED_FACING )
 	{
 		// Let's get some direction vectors for the users
-		AngleVectors( activator->client->ps.viewangles, fwd1, NULL, NULL );
+		AngleVectors( activator->client->ps.viewangles, fwd1, nullptr, nullptr );
 
 		// Get the guns direction vector
-		AngleVectors( self->pos1, fwd2, NULL, NULL );
+		AngleVectors( self->pos1, fwd2, nullptr, nullptr );
 
 		float dot = DotProduct( fwd1, fwd2 );
 
@@ -718,7 +718,7 @@ void emplaced_gun_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacke
 			vec3_t right;
 
 			// radius damage seems to throw them, but add an extra bit to throw them away from the weapon
-			AngleVectors( self->currentAngles, NULL, right, NULL );
+			AngleVectors( self->currentAngles, nullptr, right, nullptr );
 			VectorMA( self->activator->client->ps.velocity, 140, right, self->activator->client->ps.velocity );
 			self->activator->client->ps.velocity[2] = -100;
 
@@ -747,7 +747,7 @@ void emplaced_gun_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacke
 	ugly[YAW] = 4;
 	ugly[PITCH] = self->lastAngles[PITCH] * 0.8f + Q_flrand(-1.0f, 1.0f) * 6;
 	ugly[ROLL] = Q_flrand(-1.0f, 1.0f) * 7;
-	gi.G2API_SetBoneAnglesIndex( &self->ghoul2[self->playerModel], self->lowerLumbarBone, ugly, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0 );
+	gi.G2API_SetBoneAnglesIndex( &self->ghoul2[self->playerModel], self->lowerLumbarBone, ugly, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, nullptr, 0, 0 );
 
 	VectorCopy( self->currentOrigin,  org );
 	org[2] += 20;
@@ -839,7 +839,7 @@ void SP_emplaced_gun( gentity_t *ent )
 	ent->handRBolt = gi.G2API_AddBolt( &ent->ghoul2[ent->playerModel], "*flash02" );
 	ent->rootBone = gi.G2API_GetBoneIndex( &ent->ghoul2[ent->playerModel], "base_bone", qtrue );
 	ent->lowerLumbarBone = gi.G2API_GetBoneIndex( &ent->ghoul2[ent->playerModel], "swivel_bone", qtrue );
-	gi.G2API_SetBoneAnglesIndex( &ent->ghoul2[ent->playerModel], ent->lowerLumbarBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
+	gi.G2API_SetBoneAnglesIndex( &ent->ghoul2[ent->playerModel], ent->lowerLumbarBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, nullptr, 0, 0);
 
 	RegisterItem( FindItemForWeapon( WP_EMPLACED_GUN ));
 	ent->s.weapon = WP_EMPLACED_GUN;
@@ -878,7 +878,7 @@ void G_UpdateEmplacedWeaponData( gentity_t *ent )
 			// Getting the seat bolt here
 			gi.G2API_GetBoltMatrix( chair->ghoul2, chair->playerModel, chair->headBolt,
 					&boltMatrix, chairAng, chair->currentOrigin, (cg.time?cg.time:level.time),
-					NULL, chair->s.modelScale );
+					nullptr, chair->s.modelScale );
 			// Storing ent position, bolt position, and bolt axis
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, ent->client->ps.origin );
 			gi.linkentity( ent );
@@ -897,7 +897,7 @@ void ExitEmplacedWeapon( gentity_t *ent )
 	if ( ent->client )
 	{
 		// if we are the player we will have put down a brush that blocks NPCs so that we have a clear spot to get back out.
-		//gentity_t *place = G_Find( NULL, FOFS(classname), "emp_placeholder" );
+		//gentity_t *place = G_Find( nullptr, FOFS(classname), "emp_placeholder" );
 
 		if ( ent->health > 0 )
 		{//he's still alive, and we have a placeholder, so put him back
@@ -936,7 +936,7 @@ void ExitEmplacedWeapon( gentity_t *ent )
 					maxRadius = minRadius + 8.0f;
 				}
 
-				ent->owner = NULL;//so his trace hits me
+				ent->owner = nullptr;//so his trace hits me
 
 				for ( curRadius = minRadius; curRadius <= maxRadius; curRadius += 4.0f )
 				{
@@ -967,7 +967,7 @@ void ExitEmplacedWeapon( gentity_t *ent )
 		{
 			// dead, so give 'em a push out of the chair
 			vec3_t dir;
-			AngleVectors( ent->owner->s.angles, NULL, dir, NULL );
+			AngleVectors( ent->owner->s.angles, nullptr, dir, nullptr );
 
 			if ( rand() & 1 )
 			{
@@ -1074,12 +1074,12 @@ extern void CG_ChangeWeapon( int num );
 	ent->owner->noDamageTeam = TEAM_FREE;
 	ent->owner->svFlags &= ~SVF_NONNPC_ENEMY;
 	ent->owner->delay = level.time;
-	ent->owner->activator = NULL;
+	ent->owner->activator = nullptr;
 
 	if ( !ent->NPC )
 	{
 		// by keeping the owner, a dead npc can be pushed out of the chair without colliding with it
-		ent->owner = NULL;
+		ent->owner = nullptr;
 	}
 }
 

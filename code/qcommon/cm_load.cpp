@@ -606,7 +606,7 @@ CM_LoadMap
 Loads in the map and all submodels
 ==================
 */
-void *gpvCachedMapDiskImage = NULL;
+void *gpvCachedMapDiskImage = nullptr;
 char  gsCachedMapDiskImage[MAX_QPATH];
 qboolean gbUsingCachedMapDataRightNow = qfalse;	// if true, signifies that you can't delete this at the moment!! (used during z_malloc()-fail recovery attempt)
 
@@ -625,7 +625,7 @@ qboolean CM_DeleteCachedMap(qboolean bGuaranteedOkToDelete)
 		if (gpvCachedMapDiskImage)
 		{
 			Z_Free(	gpvCachedMapDiskImage );
-					gpvCachedMapDiskImage = NULL;
+					gpvCachedMapDiskImage = nullptr;
 
 			bActuallyFreedSomething = qtrue;
 		}
@@ -644,10 +644,10 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 	size_t			i;
 	dheader_t		header;
 	static unsigned	last_checksum;
-	void			*subBSPData = NULL;
+	void			*subBSPData = nullptr;
 
 	if ( !name || !name[0] ) {
-		Com_Error( ERR_DROP, "CM_LoadMap: NULL name" );
+		Com_Error( ERR_DROP, "CM_LoadMap: nullptr name" );
 	}
 
 #ifndef BSPC
@@ -672,7 +672,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 			)
 		{
 			Z_Free(gpvCachedMapDiskImage);
-				   gpvCachedMapDiskImage = NULL;
+				   gpvCachedMapDiskImage = nullptr;
 		   gsCachedMapDiskImage[0] = '\0';
 
 		   CM_ClearMap();
@@ -764,7 +764,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 		if ( header.version != BSP_VERSION )
 		{
 			Z_Free(	gpvCachedMapDiskImage);
-					gpvCachedMapDiskImage = NULL;
+					gpvCachedMapDiskImage = nullptr;
 
 			Com_Error (ERR_DROP, "CM_LoadMap: %s has wrong version number (%i should be %i)"
 			, name, header.version, BSP_VERSION );
@@ -797,7 +797,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 			)
 		{
 			Z_Free(	gpvCachedMapDiskImage );
-					gpvCachedMapDiskImage = NULL;
+					gpvCachedMapDiskImage = nullptr;
 		}
 		else
 		{
@@ -952,7 +952,7 @@ cmodel_t	*CM_ClipHandleToModel( clipHandle_t handle, clipMap_t **clipMap )
 	}
 	Com_Error( ERR_DROP, "CM_ClipHandleToModel: bad handle %i", handle + MAX_SUBMODELS );
 
-	return NULL;
+	return nullptr;
 }
 
 /*
@@ -1171,7 +1171,7 @@ int CM_ModelContents_Actual( clipHandle_t model, clipMap_t *cm )
 	for ( int i = 0; i < cmod->leaf.numLeafSurfaces; i++ ) {
 		int surfaceNum = cm->leafsurfaces[cmod->leaf.firstLeafSurface + i];
 		if ( cm->surfaces[surfaceNum] ) {
-			// HERNH?  How could we have a null surf within our cmod->leaf.numLeafSurfaces?
+			// HERNH?  How could we have a nullptr surf within our cmod->leaf.numLeafSurfaces?
 			contents |= cm->surfaces[surfaceNum]->contents;
 		}
 	}
@@ -1183,7 +1183,7 @@ int CM_ModelContents(  clipHandle_t model, int subBSPIndex )
 {
 	if (subBSPIndex < 0)
 	{
-		return CM_ModelContents_Actual(model, NULL);
+		return CM_ModelContents_Actual(model, nullptr);
 	}
 
 	return CM_ModelContents_Actual(model, &SubBSP[subBSPIndex]);
@@ -1199,7 +1199,7 @@ Writes the portal state to a savegame file
 */
 //
 qboolean SG_Append(unsigned int chid, const void *data, int length);
-int SG_Read(unsigned int chid, void *pvAddress, int iLength, void **ppvAddressPtr = NULL);
+int SG_Read(unsigned int chid, void *pvAddress, int iLength, void **ppvAddressPtr = nullptr);
 
 void CM_WritePortalState()
 {

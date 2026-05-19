@@ -1053,7 +1053,7 @@ qboolean G2_Stop_Bone_Angles(CGhoul2Info *ghlInfo, boneInfo_v &blist, const char
   rag stuff
 
 */
-static void G2_RagDollSolve(CGhoul2Info_v &ghoul2V,int g2Index,float decay,int frameNum,const vec3_t currentOrg,bool LimitAngles,CRagDollUpdateParams *params = NULL);
+static void G2_RagDollSolve(CGhoul2Info_v &ghoul2V,int g2Index,float decay,int frameNum,const vec3_t currentOrg,bool LimitAngles,CRagDollUpdateParams *params = nullptr);
 static void G2_RagDollCurrentPosition(CGhoul2Info_v &ghoul2V,int g2Index,int frameNum,const vec3_t angles,const vec3_t position,const vec3_t scale);
 static bool G2_RagDollSettlePositionNumeroTrois(CGhoul2Info_v &ghoul2V,const vec3_t currentOrg,CRagDollUpdateParams *params, int curTime);
 static bool G2_RagDollSetup(CGhoul2Info &ghoul2,int frameNum,bool resetOrigin,const vec3_t origin,bool anyRendered);
@@ -1142,7 +1142,7 @@ enum ERagState
 };
 static int				ragState;
 
-static std::vector<boneInfo_t *>		*rag = NULL;  // once we get the dependents precomputed this can be local
+static std::vector<boneInfo_t *>		*rag = nullptr;  // once we get the dependents precomputed this can be local
 
 
 static void G2_Generate_MatrixRag(
@@ -1444,7 +1444,7 @@ qboolean G2_Set_Bone_Anim_No_BS(CGhoul2Info &ghoul2, const mdxaHeader_t *mod,bon
 		blist[index].startFrame = startFrame;
 		blist[index].animSpeed = animSpeed;
 		blist[index].pauseTime = 0;
-//		blist[index].boneMap = NULL;
+//		blist[index].boneMap = nullptr;
 //		blist[index].lastTime = blist[index].startTime = (currentTime - (((setFrame - (float)startFrame) * 50.0)/ animSpeed));
 		blist[index].flags &= ~(BONE_ANIM_TOTAL);
 		blist[index].flags |= modFlags;
@@ -1463,7 +1463,7 @@ qboolean G2_Set_Bone_Anim_No_BS(CGhoul2Info &ghoul2, const mdxaHeader_t *mod,bon
 		blist[index].startFrame = startFrame;
 		blist[index].animSpeed = animSpeed;
 		blist[index].pauseTime = 0;
-//		blist[index].boneMap = NULL;
+//		blist[index].boneMap = nullptr;
 //		blist[index].lastTime = blist[index].startTime = (currentTime - (((setFrame - (float)startFrame) * 50.0f)/ animSpeed));
 		blist[index].flags &= ~(BONE_ANIM_TOTAL);
 		blist[index].flags |= modFlags;
@@ -3137,7 +3137,7 @@ static bool G2_RagDollSettlePositionNumeroTrois(CGhoul2Info_v &ghoul2V, const ve
 		testEnd[2]=e.currentOrigin[2]-30.0f;
 		{
 			trace_t		tr;
-			Rag_Trace(&tr,testStart,NULL,NULL,testEnd,ignoreNum,RAG_MASK,G2_NOCOLLIDE,0);
+			Rag_Trace(&tr,testStart,nullptr,nullptr,testEnd,ignoreNum,RAG_MASK,G2_NOCOLLIDE,0);
 			if (tr.entityNum==0)
 			{
 				VectorAdvance(testStart,.5f,testEnd,tr.endpos);
@@ -3681,7 +3681,7 @@ static bool G2_RagDollSettlePositionNumeroTrois(CGhoul2Info_v &ghoul2V, const ve
 			}
 
 			//We're not in solid so we can apply physics freely now.
-			if (!G2_ApplyRealBonePhysics(bone, e, params, goalSpot, NULL, testMins, testMaxs,
+			if (!G2_ApplyRealBonePhysics(bone, e, params, goalSpot, nullptr, testMins, testMaxs,
 				gravity, mass, bounce))
 			{ //if this is the case then somehow we failed to apply physics/get a good goal spot, just use the ent origin
 				VectorCopy(params->position, goalSpot);
@@ -4554,7 +4554,7 @@ qboolean G2_SetBoneIKState(CGhoul2Info_v &ghoul2, int time, const char *boneName
 	mod_a = (model_t *)g2.animModel;
 
 	if (!boneName)
-	{ //null bonename param means it's time to init the ik stuff on this instance
+	{ //nullptr bonename param means it's time to init the ik stuff on this instance
 		sharedRagDollUpdateParams_t sRDUP;
 
 		if (ikState == IKS_NONE)
@@ -4779,6 +4779,6 @@ void G2_FreeRag(void)
 {
 	if(rag) {
 		delete rag;
-		rag = NULL;
+		rag = nullptr;
 	}
 }

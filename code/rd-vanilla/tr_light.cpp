@@ -282,7 +282,7 @@ static void R_SetupEntityLightingGrid( trRefEntity_t *ent ) {
 			//draw
 			refEntity_t refEnt;
 			refEnt.hModel = 0;
-			refEnt.ghoul2 = NULL;
+			refEnt.ghoul2 = nullptr;
 			refEnt.renderfx = 0;
 			VectorCopy( gridOrg, refEnt.origin );
 			vectoangles( normal, refEnt.angles );
@@ -506,7 +506,7 @@ int R_LightForPoint( vec3_t point, vec3_t ambientLight, vec3_t directedLight, ve
 	trRefEntity_t ent;
 
 	// bk010103 - this segfaults with -nolight maps
-	if ( tr.world->lightGridData == NULL )
+	if ( tr.world->lightGridData == nullptr )
 	  return qfalse;
 
 	memset(&ent, 0, sizeof(ent));

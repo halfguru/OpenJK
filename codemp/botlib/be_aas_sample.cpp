@@ -116,7 +116,7 @@ void AAS_InitAASLinkHeap(void)
 		aasworld.linkheap = (aas_link_t *) GetHunkMemory(max_aaslinks * sizeof(aas_link_t));
 	} //end if
 	//link the links on the heap
-	aasworld.linkheap[0].prev_ent = NULL;
+	aasworld.linkheap[0].prev_ent = nullptr;
 	aasworld.linkheap[0].next_ent = &aasworld.linkheap[1];
 	for (i = 1; i < max_aaslinks-1; i++)
 	{
@@ -124,7 +124,7 @@ void AAS_InitAASLinkHeap(void)
 		aasworld.linkheap[i].next_ent = &aasworld.linkheap[i + 1];
 	} //end for
 	aasworld.linkheap[max_aaslinks-1].prev_ent = &aasworld.linkheap[max_aaslinks-2];
-	aasworld.linkheap[max_aaslinks-1].next_ent = NULL;
+	aasworld.linkheap[max_aaslinks-1].next_ent = nullptr;
 	//pointer to the first free link
 	aasworld.freelinks = &aasworld.linkheap[0];
 	//
@@ -139,7 +139,7 @@ void AAS_InitAASLinkHeap(void)
 void AAS_FreeAASLinkHeap(void)
 {
 	if (aasworld.linkheap) FreeMemory(aasworld.linkheap);
-	aasworld.linkheap = NULL;
+	aasworld.linkheap = nullptr;
 	aasworld.linkheapsize = 0;
 } //end of the function AAS_FreeAASLinkHeap
 //===========================================================================
@@ -161,10 +161,10 @@ aas_link_t *AAS_AllocAASLink(void)
 		{
 			botimport.Print(PRT_FATAL, "empty aas link heap\n");
 		} //end if
-		return NULL;
+		return nullptr;
 	} //end if
 	if (aasworld.freelinks) aasworld.freelinks = aasworld.freelinks->next_ent;
-	if (aasworld.freelinks) aasworld.freelinks->prev_ent = NULL;
+	if (aasworld.freelinks) aasworld.freelinks->prev_ent = nullptr;
 	numaaslinks--;
 	return link;
 } //end of the function AAS_AllocAASLink
@@ -177,10 +177,10 @@ aas_link_t *AAS_AllocAASLink(void)
 void AAS_DeAllocAASLink(aas_link_t *link)
 {
 	if (aasworld.freelinks) aasworld.freelinks->prev_ent = link;
-	link->prev_ent = NULL;
+	link->prev_ent = nullptr;
 	link->next_ent = aasworld.freelinks;
-	link->prev_area = NULL;
-	link->next_area = NULL;
+	link->prev_area = nullptr;
+	link->next_area = nullptr;
 	aasworld.freelinks = link;
 	numaaslinks++;
 } //end of the function AAS_DeAllocAASLink
@@ -206,7 +206,7 @@ void AAS_InitAASLinkedEntities(void)
 void AAS_FreeAASLinkedEntities(void)
 {
 	if (aasworld.arealinkedentities) FreeMemory(aasworld.arealinkedentities);
-	aasworld.arealinkedentities = NULL;
+	aasworld.arealinkedentities = nullptr;
 } //end of the function AAS_InitAASLinkedEntities
 //===========================================================================
 // returns the AAS area the point is in
@@ -1028,7 +1028,7 @@ aas_face_t *AAS_AreaGroundFace(int areanum, vec3_t point)
 	aas_area_t *area;
 	aas_face_t *face;
 
-	if (!aasworld.loaded) return NULL;
+	if (!aasworld.loaded) return nullptr;
 
 	area = &aasworld.areas[areanum];
 	for (i = 0; i < area->numfaces; i++)
@@ -1045,7 +1045,7 @@ aas_face_t *AAS_AreaGroundFace(int areanum, vec3_t point)
 			if (AAS_InsideFace(face, normal, point, 0.01f)) return face;
 		} //end if
 	} //end for
-	return NULL;
+	return nullptr;
 } //end of the function AAS_AreaGroundFace
 //===========================================================================
 // returns the face the trace end position is situated in
@@ -1073,12 +1073,12 @@ aas_face_t *AAS_TraceEndFace(aas_trace_t *trace)
 {
 	int i, facenum;
 	aas_area_t *area;
-	aas_face_t *face, *firstface = NULL;
+	aas_face_t *face, *firstface = nullptr;
 
-	if (!aasworld.loaded) return NULL;
+	if (!aasworld.loaded) return nullptr;
 
 	//if started in solid no face was hit
-	if (trace->startsolid) return NULL;
+	if (trace->startsolid) return nullptr;
 	//trace->lastarea is the last area the trace was in
 	area = &aasworld.areas[trace->lastarea];
 	//check which face the trace.endpos was in
@@ -1236,10 +1236,10 @@ aas_link_t *AAS_AASLinkEntity(vec3_t absmins, vec3_t absmaxs, int entnum)
 	if (!aasworld.loaded)
 	{
 		botimport.Print(PRT_ERROR, "AAS_LinkEntity: aas not loaded\n");
-		return NULL;
+		return nullptr;
 	} //end if
 
-	areas = NULL;
+	areas = nullptr;
 	//
 	lstack_p = linkstack;
 	//we start with the whole line on the stack
@@ -1272,12 +1272,12 @@ aas_link_t *AAS_AASLinkEntity(vec3_t absmins, vec3_t absmaxs, int entnum)
 			link->entnum = entnum;
 			link->areanum = -nodenum;
 			//put the link into the double linked area list of the entity
-			link->prev_area = NULL;
+			link->prev_area = nullptr;
 			link->next_area = areas;
 			if (areas) areas->prev_area = link;
 			areas = link;
 			//put the link into the double linked entity list of the area
-			link->prev_ent = NULL;
+			link->prev_ent = nullptr;
 			link->next_ent = aasworld.arealinkedentities[-nodenum];
 			if (aasworld.arealinkedentities[-nodenum])
 					aasworld.arealinkedentities[-nodenum]->prev_ent = link;

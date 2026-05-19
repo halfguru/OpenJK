@@ -133,7 +133,7 @@ bool BG_FighterUpdate(Vehicle_t *pVeh, const usercmd_t *pUcmd, vec3_t trMins, ve
 
 	if (!parentPS)
 	{
-		Com_Error(ERR_DROP, "NULL PS in BG_FighterUpdate (%s)", pVeh->m_pVehicleInfo->name);
+		Com_Error(ERR_DROP, "nullptr PS in BG_FighterUpdate (%s)", pVeh->m_pVehicleInfo->name);
 		return false;
 	}
 
@@ -354,7 +354,7 @@ qboolean FighterSuspended( Vehicle_t *pVeh, playerState_t *parentPS )
 	if (!pVeh->m_pPilot//empty
 		&& !parentPS->speed//not moving
 		&& pVeh->m_ucmd.forwardmove <= 0//not trying to go forward for whatever reason
-		&& pVeh->m_pParentEntity != NULL
+		&& pVeh->m_pParentEntity != nullptr
 		&& (((gentity_t *)pVeh->m_pParentEntity)->spawnflags&2) )//SUSPENDED spawnflag is on
 	{
 		return qtrue;
@@ -424,7 +424,7 @@ static void ProcessMoveCommands( Vehicle_t *pVeh )
 #ifdef QAGAME//MP GAME-side
 					//G_EntitySound( ((gentity_t *)(pVeh->m_pParentEntity)), CHAN_LOCAL, pVeh->m_pVehicleInfo->soundHyper );
 #elif defined CGAME//MP CGAME-side
-					trap_S_StartSound( NULL, pm->ps->clientNum, CHAN_LOCAL, pVeh->m_pVehicleInfo->soundHyper );
+					trap_S_StartSound( nullptr, pm->ps->clientNum, CHAN_LOCAL, pVeh->m_pVehicleInfo->soundHyper );
 #endif
 				}
 
@@ -534,7 +534,7 @@ static void ProcessMoveCommands( Vehicle_t *pVeh )
 #elif defined QAGAME//MP GAME-side
 				G_EntitySound( ((gentity_t *)(pVeh->m_pParentEntity)), CHAN_AUTO, pVeh->m_pVehicleInfo->soundTurbo );
 #elif defined CGAME//MP CGAME-side
-				//trap_S_StartSound( NULL, pVeh->m_pParentEntity->s.number, CHAN_AUTO, pVeh->m_pVehicleInfo->soundTurbo );
+				//trap_S_StartSound( nullptr, pVeh->m_pParentEntity->s.number, CHAN_AUTO, pVeh->m_pVehicleInfo->soundTurbo );
 #endif
 			}
 		}
@@ -761,7 +761,7 @@ static void ProcessMoveCommands( Vehicle_t *pVeh )
 		float strafeSpeed = (pVeh->m_pVehicleInfo->strafePerc*speedMax)*5.0f;
 		VectorCopy( pVeh->m_vOrientation, vAngles );
 		vAngles[PITCH] = vAngles[ROLL] = 0;
-		AngleVectors( vAngles, NULL, vRight, NULL );
+		AngleVectors( vAngles, nullptr, vRight, nullptr );
 
 		if ( pVeh->m_ucmd.rightmove > 0 )
 		{//strafe right
@@ -1203,7 +1203,7 @@ static void ProcessOrientCommands( Vehicle_t *pVeh )
 #endif
 
 #ifdef _JK2MP
-	bgEntity_t *rider = NULL;
+	bgEntity_t *rider = nullptr;
 	if (parent->s.owner != ENTITYNUM_NONE)
 	{
 		rider = PM_BGEntForNum(parent->s.owner); //&g_entities[parent->r.ownerNum];
@@ -1629,7 +1629,7 @@ static void AnimateVehicle( Vehicle_t *pVeh )
 #ifdef QAGAME//MP GAME-side
 						G_EntitySound( ((gentity_t *)(pVeh->m_pParentEntity)), CHAN_AUTO, pVeh->m_pVehicleInfo->soundLand );
 #elif defined CGAME//MP CGAME-side
-						//trap_S_StartSound( NULL, pVeh->m_pParentEntity->s.number, CHAN_AUTO, pVeh->m_pVehicleInfo->soundLand );
+						//trap_S_StartSound( nullptr, pVeh->m_pParentEntity->s.number, CHAN_AUTO, pVeh->m_pVehicleInfo->soundLand );
 #endif
 					}
 #endif

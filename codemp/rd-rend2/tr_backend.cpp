@@ -45,7 +45,7 @@ void GL_Bind( image_t *image ) {
 	int texnum;
 
 	if ( !image ) {
-		ri.Printf( PRINT_WARNING, "GL_Bind: NULL image\n" );
+		ri.Printf( PRINT_WARNING, "GL_Bind: nullptr image\n" );
 		texnum = tr.defaultImage->texnum;
 	} else {
 		texnum = image->texnum;
@@ -538,11 +538,11 @@ void RB_BeginDrawingView (void) {
 
 	// FIXME: HUGE HACK: render to the screen fbo if we've already postprocessed the frame and aren't drawing more world
 	// drawing more world check is in case of double renders, such as skyportals
-	if (backEnd.viewParms.targetFbo == NULL)
+	if (backEnd.viewParms.targetFbo == nullptr)
 	{
 		if (!tr.renderFbo || (backEnd.framePostProcessed && (backEnd.refdef.rdflags & RDF_NOWORLDMODEL)))
 		{
-			FBO_Bind(NULL);
+			FBO_Bind(nullptr);
 		}
 		else
 		{
@@ -602,7 +602,7 @@ void RB_BeginDrawingView (void) {
 	if (clearBits > 0 && !(backEnd.viewParms.flags & VPF_NOCLEAR))
 		qglClear( clearBits );
 
-	if (backEnd.viewParms.targetFbo == NULL)
+	if (backEnd.viewParms.targetFbo == nullptr)
 	{
 		// Clear the glow target
 		float black[] = {0.0f, 0.0f, 0.0f, 1.0f};
@@ -1581,7 +1581,7 @@ void RE_StretchRaw (int x, int y, int w, int h, int cols, int rows, const byte *
 	// FIXME: HUGE hack
 	if (!tr.renderFbo || backEnd.framePostProcessed)
 	{
-		FBO_Bind(NULL);
+		FBO_Bind(nullptr);
 	}
 	else
 	{
@@ -1664,7 +1664,7 @@ static const void *RB_StretchPic ( const void *data ) {
 	// FIXME: HUGE hack
 	if (!tr.renderFbo || backEnd.framePostProcessed)
 	{
-		FBO_Bind(NULL);
+		FBO_Bind(nullptr);
 	}
 	else
 	{
@@ -1747,7 +1747,7 @@ static const void *RB_RotatePic ( const void *data )
 	// FIXME: HUGE hack
 	if (!tr.renderFbo || backEnd.framePostProcessed)
 	{
-		FBO_Bind(NULL);
+		FBO_Bind(nullptr);
 	}
 	else
 	{
@@ -1840,7 +1840,7 @@ static const void *RB_RotatePic2 ( const void *data )
 	// FIXME: HUGE hack
 	if (!tr.renderFbo || backEnd.framePostProcessed)
 	{
-		FBO_Bind(NULL);
+		FBO_Bind(nullptr);
 	}
 	else
 	{
@@ -1948,7 +1948,7 @@ static const void *RB_PrefilterEnvMap(const void *data) {
 		// FIX ME: Only allocate needed mip level!
 		cmd->cubemap->image = R_CreateImage(
 			va("*cubeMap%d", cmd->cubemapId),
-			NULL,
+			nullptr,
 			CUBE_MAP_SIZE,
 			CUBE_MAP_SIZE,
 			IMGTYPE_COLORALPHA,
@@ -2049,12 +2049,12 @@ static void RB_RenderDepthOnly( drawSurf_t *drawSurfs, int numDrawSurfs )
 	if (tr.msaaResolveFbo && backEnd.viewParms.targetFbo == tr.renderFbo)
 	{
 		FBO_FastBlit(
-			tr.renderFbo, NULL,
-			tr.msaaResolveFbo, NULL,
+			tr.renderFbo, nullptr,
+			tr.msaaResolveFbo, nullptr,
 			GL_DEPTH_BUFFER_BIT,
 			GL_NEAREST);
 	}
-	else if (tr.renderFbo == NULL)
+	else if (tr.renderFbo == nullptr)
 	{
 		// If we're rendering directly to the screen, copy the depth to a texture
 		GL_BindToTMU(tr.renderDepthImage, 0);
@@ -2252,7 +2252,7 @@ static void RB_UpdateFogsConstants(gpuFrame_t *frame)
 	}
 	else
 	{
-		fogsBlock.numFogs = tr.world->numfogs - 1; // Don't reserve fog 0 as 'null'
+		fogsBlock.numFogs = tr.world->numfogs - 1; // Don't reserve fog 0 as 'nullptr'
 	}
 
 	for (int i = 0; i < fogsBlock.numFogs; ++i)
@@ -2661,7 +2661,7 @@ static const void *RB_ClearDepth(const void *data)
 
 	if (!tr.renderFbo || backEnd.framePostProcessed)
 	{
-		FBO_Bind(NULL);
+		FBO_Bind(nullptr);
 	}
 	else
 	{
@@ -2728,12 +2728,12 @@ static const void	*RB_SwapBuffers( const void *data ) {
 		if (tr.msaaResolveFbo && r_hdr->integer)
 		{
 			// Resolving an RGB16F MSAA FBO to the screen messes with the brightness, so resolve to an RGB16F FBO first
-			FBO_FastBlit(tr.renderFbo, NULL, tr.msaaResolveFbo, NULL, GL_COLOR_BUFFER_BIT, GL_NEAREST);
-			FBO_FastBlit(tr.msaaResolveFbo, NULL, NULL, NULL, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+			FBO_FastBlit(tr.renderFbo, nullptr, tr.msaaResolveFbo, nullptr, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+			FBO_FastBlit(tr.msaaResolveFbo, nullptr, nullptr, nullptr, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 		}
 		else if (tr.renderFbo)
 		{
-			FBO_FastBlit(tr.renderFbo, NULL, NULL, NULL, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+			FBO_FastBlit(tr.renderFbo, nullptr, nullptr, nullptr, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 		}
 	}
 
@@ -2785,7 +2785,7 @@ const void *RB_PostProcess(const void *data)
 	{
 		// Resolve the MSAA before anything else
 		// Can't resolve just part of the MSAA FBO, so multiple views will suffer a performance hit here
-		FBO_FastBlit(tr.renderFbo, NULL, tr.msaaResolveFbo, NULL, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+		FBO_FastBlit(tr.renderFbo, nullptr, tr.msaaResolveFbo, nullptr, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, GL_NEAREST);
 		srcFbo = tr.msaaResolveFbo;
 
 		if ( r_dynamicGlow->integer )
@@ -2807,7 +2807,7 @@ const void *RB_PostProcess(const void *data)
 		srcBox[2] = backEnd.viewParms.viewportWidth  * tr.screenSsaoImage->width  / (float)glConfig.vidWidth;
 		srcBox[3] = backEnd.viewParms.viewportHeight * tr.screenSsaoImage->height / (float)glConfig.vidHeight;
 
-		//FBO_BlitFromTexture(tr.screenSsaoImage, srcBox, NULL, srcFbo, dstBox, NULL, NULL, GLS_SRCBLEND_DST_COLOR | GLS_DSTBLEND_ZERO);
+		//FBO_BlitFromTexture(tr.screenSsaoImage, srcBox, nullptr, srcFbo, dstBox, nullptr, nullptr, GLS_SRCBLEND_DST_COLOR | GLS_DSTBLEND_ZERO);
 		srcBox[1] = tr.screenSsaoImage->height - srcBox[1];
 		srcBox[3] = -srcBox[3];
 
@@ -2815,7 +2815,7 @@ const void *RB_PostProcess(const void *data)
 		if (r_ssao->integer == 2)
 			blendMode = GLS_SRCBLEND_ONE | GLS_DSTBLEND_ZERO;
 
-		FBO_Blit(tr.screenSsaoFbo, srcBox, NULL, srcFbo, dstBox, NULL, NULL, blendMode);
+		FBO_Blit(tr.screenSsaoFbo, srcBox, nullptr, srcFbo, dstBox, nullptr, nullptr, blendMode);
 	}
 #endif
 
@@ -2839,11 +2839,11 @@ const void *RB_PostProcess(const void *data)
 		if (r_hdr->integer && (r_toneMap->integer || r_forceToneMap->integer))
 		{
 			autoExposure = (qboolean)(r_autoExposure->integer || r_forceAutoExposure->integer);
-			RB_ToneMap(srcFbo, srcBox, NULL, dstBox, autoExposure);
+			RB_ToneMap(srcFbo, srcBox, nullptr, dstBox, autoExposure);
 		}
 		else if (r_cameraExposure->value == 0.0f)
 		{
-			FBO_FastBlit(srcFbo, srcBox, NULL, dstBox, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+			FBO_FastBlit(srcFbo, srcBox, nullptr, dstBox, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 		}
 		else
 		{
@@ -2854,51 +2854,51 @@ const void *RB_PostProcess(const void *data)
 			color[2] = pow(2, r_cameraExposure->value); //exp2(r_cameraExposure->value);
 			color[3] = 1.0f;
 
-			FBO_Blit(srcFbo, srcBox, NULL, NULL, dstBox, NULL, color, 0);
+			FBO_Blit(srcFbo, srcBox, nullptr, nullptr, dstBox, nullptr, color, 0);
 		}
 
 		// Copy depth buffer to the backbuffer for depth culling refractive surfaces
-		FBO_FastBlit(tr.renderFbo, srcBox, NULL, dstBox, GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
+		FBO_FastBlit(tr.renderFbo, srcBox, nullptr, dstBox, GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
 	}
 
 	if (r_drawSunRays->integer)
-		RB_SunRays(NULL, srcBox, NULL, dstBox);
+		RB_SunRays(nullptr, srcBox, nullptr, dstBox);
 
 #if 0
 	if (backEnd.refdef.blurFactor > 0.0f)
-		RB_BokehBlur(NULL, srcBox, NULL, dstBox, backEnd.refdef.blurFactor);
+		RB_BokehBlur(nullptr, srcBox, nullptr, dstBox, backEnd.refdef.blurFactor);
 #endif
 
 	if (r_debugWeather->integer == 2)
 	{
-		FBO_BlitFromTexture(tr.weatherDepthImage, NULL, NULL, NULL, nullptr, NULL, NULL, 0);
+		FBO_BlitFromTexture(tr.weatherDepthImage, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, 0);
 	}
 
 	if (0)
 	{
 		vec4i_t dstBox;
 		VectorSet4(dstBox, 256, glConfig.vidHeight - 256, 256, 256);
-		FBO_BlitFromTexture(tr.renderDepthImage, NULL, NULL, NULL, dstBox, NULL, NULL, 0);
+		FBO_BlitFromTexture(tr.renderDepthImage, nullptr, nullptr, nullptr, dstBox, nullptr, nullptr, 0);
 		VectorSet4(dstBox, 512, glConfig.vidHeight - 256, 256, 256);
-		FBO_BlitFromTexture(tr.screenShadowImage, NULL, NULL, NULL, dstBox, NULL, NULL, 0);
+		FBO_BlitFromTexture(tr.screenShadowImage, nullptr, nullptr, nullptr, dstBox, nullptr, nullptr, 0);
 	}
 
 	if (0 && r_ssao->integer)
 	{
 		vec4i_t dstBox;
 		VectorSet4(dstBox, 0, glConfig.vidHeight, 512, -512);
-		FBO_BlitFromTexture(tr.screenSsaoImage, NULL, NULL, NULL, dstBox, NULL, NULL, 0);
+		FBO_BlitFromTexture(tr.screenSsaoImage, nullptr, nullptr, nullptr, dstBox, nullptr, nullptr, 0);
 		VectorSet4(dstBox, 512, glConfig.vidHeight, 512, -512);
-		FBO_BlitFromTexture(tr.quarterImage[0], NULL, NULL, NULL, dstBox, NULL, NULL, 0);
+		FBO_BlitFromTexture(tr.quarterImage[0], nullptr, nullptr, nullptr, dstBox, nullptr, nullptr, 0);
 		VectorSet4(dstBox, 1024, glConfig.vidHeight, 512, -512);
-		FBO_BlitFromTexture(tr.quarterImage[1], NULL, NULL, NULL, dstBox, NULL, NULL, 0);
+		FBO_BlitFromTexture(tr.quarterImage[1], nullptr, nullptr, nullptr, dstBox, nullptr, nullptr, 0);
 	}
 
 	if (0)
 	{
 		vec4i_t dstBox;
 		VectorSet4(dstBox, 256, glConfig.vidHeight - 256, 256, 256);
-		FBO_BlitFromTexture(tr.sunRaysImage, NULL, NULL, NULL, dstBox, NULL, NULL, 0);
+		FBO_BlitFromTexture(tr.sunRaysImage, nullptr, nullptr, nullptr, dstBox, nullptr, nullptr, 0);
 	}
 
 #if 0
@@ -2910,8 +2910,8 @@ const void *RB_PostProcess(const void *data)
 		if (cubemapIndex)
 		{
 			VectorSet4(dstBox, 0, glConfig.vidHeight - 256, 256, 256);
-			//FBO_BlitFromTexture(tr.renderCubeImage, NULL, NULL, NULL, dstBox, &tr.testcubeShader, NULL, 0);
-			FBO_BlitFromTexture(tr.cubemaps[cubemapIndex - 1], NULL, NULL, NULL, dstBox, &tr.testcubeShader, NULL, 0);
+			//FBO_BlitFromTexture(tr.renderCubeImage, nullptr, nullptr, nullptr, dstBox, &tr.testcubeShader, nullptr, 0);
+			FBO_BlitFromTexture(tr.cubemaps[cubemapIndex - 1], nullptr, nullptr, nullptr, dstBox, &tr.testcubeShader, nullptr, 0);
 		}
 	}
 #endif
@@ -2938,11 +2938,11 @@ const void *RB_PostProcess(const void *data)
 			color[0] = color[1] = color[2] = r_dynamicGlowIntensity->value;
 		}
 
-		FBO_BlitFromTexture (tr.glowFboScaled[0]->colorImage[0], NULL, NULL, NULL, NULL, NULL, color, blendFunc);
+		FBO_BlitFromTexture (tr.glowFboScaled[0]->colorImage[0], nullptr, nullptr, nullptr, nullptr, nullptr, color, blendFunc);
 	}
 
 	backEnd.framePostProcessed = qtrue;
-	FBO_Bind(NULL);
+	FBO_Bind(nullptr);
 	backEnd.refractionFill = qtrue;
 	RB_RenderDrawSurfList(
 		backEnd.refdef.drawSurfs + backEnd.refdef.fistDrawSurf,

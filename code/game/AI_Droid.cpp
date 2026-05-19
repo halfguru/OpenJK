@@ -56,7 +56,7 @@ void R2D2_PartsMove(void)
 
 		if (NPC->genericBone1)
 		{
-			gi.G2API_SetBoneAnglesIndex( &NPC->ghoul2[NPC->playerModel], NPC->genericBone1, NPC->pos1, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 0, 0);
+			gi.G2API_SetBoneAnglesIndex( &NPC->ghoul2[NPC->playerModel], NPC->genericBone1, NPC->pos1, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 0, 0);
 		}
 		TIMER_Set( NPC, "eyeDelay", Q_irand( 100, 1000 ) );
 	}
@@ -501,7 +501,7 @@ static void R5D2_OffsetLook( float offset, vec3_t out )
 
 	GetAnglesForDirection( NPC->currentOrigin, NPCInfo->investigateGoal, angles );
 	angles[YAW] += offset;
-	AngleVectors( angles, forward, NULL, NULL );
+	AngleVectors( angles, forward, nullptr, nullptr );
 	VectorMA( NPC->currentOrigin, 64, forward, out );
 
 	CalcEntitySpot( NPC, SPOT_HEAD, temp );
