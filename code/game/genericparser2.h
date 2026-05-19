@@ -19,6 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // Filename:-	genericparser2.h
 
@@ -32,8 +33,6 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #include "qcommon/safe/files.h"
 #include "qcommon/safe/string.h"
 
-#ifndef GENERICPARSER2_H
-#define GENERICPARSER2_H
 
 namespace GP2
 {
@@ -180,7 +179,6 @@ public:
 	}
 };
 
-#endif	// #ifndef GENERICPARSER2_H
 
 
 //////////////////// eof /////////////////////

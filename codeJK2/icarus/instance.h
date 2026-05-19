@@ -19,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // ICARUS Intance header
 
-#ifndef __INSTANCE__
-#define __INSTANCE__
 
 #include "blockstream.h"
 #include "interface.h"
@@ -100,4 +99,3 @@ protected:
 
 };
 
-#endif	//__INSTANCE__

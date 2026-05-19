@@ -19,9 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __ANIMS_H__
-#define __ANIMS_H__
 // playerAnimations
 
 
@@ -1818,5 +1817,4 @@ typedef enum //# animNumber_e
 #define SABER_ANIM_GROUP_SIZE (BOTH_A2_T__B_ - BOTH_A1_T__B_)
 
 
-#endif// #ifndef __ANIMS_H__
 

@@ -19,9 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __STRIPPUB_H
-#define __STRIPPUB_H
 
 
 #define STRIP_VERSION	1
@@ -121,4 +120,3 @@ inline int Language_GetIntegerValue(void)
 
 
 
-#endif // __STRIPPUB_H

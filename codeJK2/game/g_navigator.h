@@ -19,9 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __G_NAVIGATOR__
-#define __G_NAVIGATOR__
 
 #define	__NEWCOLLECT	1
 
@@ -286,4 +285,3 @@ private:
 	std::vector<CEdge*>	mHeap;
 };
 
-#endif	//__G_NAVIGATOR__

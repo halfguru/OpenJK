@@ -19,13 +19,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 #if !defined(CG_LOCAL_H_INC)
 	#include "cg_local.h"
 #endif
 
-#ifndef FX_SYSTEM_H_INC
-#define FX_SYSTEM_H_INC
 
 #include "qcommon/safe/gsl.h"
 
@@ -80,4 +79,3 @@ struct SFxHelper
 
 extern SFxHelper	theFxHelper;
 
-#endif // FX_SYSTEM_H_INC

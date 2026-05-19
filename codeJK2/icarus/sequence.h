@@ -19,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // Sequence Header File
 
-#ifndef __SEQUENCE__
-#define __SEQUENCE__
 
 #include "blockstream.h"
 #include "interface.h"
@@ -110,4 +109,3 @@ protected:
 	int						m_numCommands;
 };
 
-#endif	//__SEQUENCE__

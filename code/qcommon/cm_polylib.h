@@ -20,11 +20,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // this is only used for visualization tools in cm_ debug functions
 
-#ifndef CM_POLYLIB_H
-#define CM_POLYLIB_H
 
 typedef struct
 {
@@ -60,4 +59,3 @@ void	ChopWindingInPlace (winding_t **w, vec3_t normal, vec_t dist, vec_t epsilon
 // frees the original if clipped
 
 void pw(winding_t *w);
-#endif

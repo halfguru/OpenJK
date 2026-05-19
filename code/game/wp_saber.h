@@ -19,9 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __WP_SABER_H
-#define __WP_SABER_H
 
 #include "b_public.h"
 
@@ -465,4 +464,3 @@ typedef struct
 
 extern saberMoveData_t	saberMoveData[LS_MOVE_MAX];
 
-#endif	// __WP_SABER_H

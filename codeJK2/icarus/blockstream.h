@@ -19,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // BlockStream.h
 
-#ifndef __INTERPRETED_BLOCK_STREAM__
-#define	__INTERPRETED_BLOCK_STREAM__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -200,4 +199,3 @@ protected:
 	int		m_streamPos;
 };
 
-#endif	//__INTERPRETED_BLOCK_STREAM__

@@ -1,5 +1,3 @@
-#ifndef _AL_H_
-#define _AL_H_
 
 /**
  * OpenAL cross platform audio library
@@ -20,6 +18,7 @@
  *  Boston, MA  02111-1307, USA.
  * Or go to http://www.gnu.org/copyleft/lgpl.html
  */
+#pragma once
 #include "altypes.h"
 
 #ifdef __cplusplus
@@ -492,4 +491,3 @@ ALAPI ALvoid	ALAPIENTRY (*alDopplerVelocity)( ALfloat value );
 }
 #endif
 
-#endif

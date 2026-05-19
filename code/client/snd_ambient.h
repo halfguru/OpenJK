@@ -19,9 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef	__SND_AMBIENT__
-#define __SND_AMBIENT__
 
 // Includes
 #include "../qcommon/sstring.h"	// #include <string>
@@ -121,4 +120,3 @@ extern int S_AddLocalSet( const char *name, vec3_t origin, int time );
 
 extern sfxHandle_t	AS_GetBModelSound( const char *name, int stage );
 
-#endif	//__SND_AMBIENT__

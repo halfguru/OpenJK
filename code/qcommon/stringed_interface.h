@@ -19,14 +19,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // Filename:-	stringed_interface.h
 //
 // These are the functions that get replaced by game-specific ones (or StringEd code) so SGE can access files etc
 //
 
-#ifndef STRINGED_INTERFACE_H
-#define STRINGED_INTERFACE_H
 
 #include <string>
 
@@ -34,7 +33,6 @@ unsigned char *	SE_LoadFileData			( const char *psFileName, int *piLoadedLength 
 void			SE_FreeFileDataAfterLoad( unsigned char *psLoadedFile );
 int				SE_BuildFileList		( const char *psStartDir, std::string &strResults );
 
-#endif	// #ifndef STRINGED_INTERFACE_H
 
 
 ////////////////// eof ///////////////////

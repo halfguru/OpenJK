@@ -19,9 +19,8 @@ along with Reaction source code; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
+#pragma once
 
-#ifndef TR_POSTPROCESS_H
-#define TR_POSTPROCESS_H
 
 typedef struct FBO_s FBO_t;
 typedef struct image_s image_t;
@@ -36,4 +35,3 @@ void RB_BloomDownscale(image_t *sourceImage, FBO_t *destFBO);
 void RB_BloomDownscale(FBO_t *sourceFBO, FBO_t *destFBO);
 void RB_BloomUpscale(FBO_t *sourceFBO, FBO_t *destFBO);
 
-#endif

@@ -3,6 +3,7 @@
 /*
 ** QGL.H
 */
+#pragma once
 
 #if defined( __LINT__ )
 
@@ -46,8 +47,6 @@
 
 #endif
 
-#ifndef APIENTRY
-#define APIENTRY
 #endif
 #ifndef WINAPI
 #define WINAPI
@@ -747,4 +746,3 @@ extern void (*qglXSwapBuffers)( Display *dpy, GLXDrawable drawable );
 
 #endif // __linux__ || __FreeBSD__ // rb010123
 
-#endif	// _WIN32 && __linux__

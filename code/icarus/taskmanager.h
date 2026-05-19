@@ -19,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // Task Manager header file
 
-#ifndef __TASK_MANAGER__
-#define __TASK_MANAGER__
 
 #include "../qcommon/q_shared.h"
 
@@ -246,4 +245,3 @@ protected:
 	//CTask	*m_waitTask;		//Global pointer to the current task that is waiting for callback completion
 };
 
-#endif	//__TASK_MANAGER__

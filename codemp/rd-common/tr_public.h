@@ -21,9 +21,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef TR_PUBLIC_H
-#define TR_PUBLIC_H
 
 #include "../rd-common/tr_types.h"
 #include "../qcommon/MiniHeap.h"
@@ -357,5 +356,4 @@ typedef struct refimport_s {
 	typedef	refexport_t* (QDECL *GetRefAPI_t) (int apiVersion, refimport_t *rimp);
 #endif
 
-#endif
 

@@ -20,9 +20,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __BG_PUBLIC_H__
-#define __BG_PUBLIC_H__
 // bg_public.h -- definitions shared by both the server game and client game modules
 #include "weapons.h"
 #include "g_items.h"
@@ -762,4 +761,3 @@ void PlayerStateToEntityState( playerState_t *ps, entityState_t *s );
 
 qboolean	BG_PlayerTouchesItem( playerState_t *ps, entityState_t *item, int atTime );
 
-#endif//#ifndef __BG_PUBLIC_H__

@@ -21,10 +21,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // qcommon.h -- definitions common between client and server, but not game.or ref modules
-#ifndef __QCOMMON_H__
-#define __QCOMMON_H__
 
 #include "q_shared.h"
 #include "stringed_ingame.h"
@@ -807,4 +806,3 @@ uint32_t ConvertUTF8ToUTF32( char *utf8CurrentChar, char **utf8NextChar );
 
 #include "sys/sys_public.h"
 
-#endif //__QCOMMON_H__

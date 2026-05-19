@@ -19,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // Tokenizer.h
 
-#ifndef __TOKENIZER_H
-#define __TOKENIZER_H
 
 #include <string>
 #include <string.h>
@@ -577,4 +576,3 @@ protected:
 	CDirectiveSymbol*			m_defineSymbol;
 };
 
-#endif//__TOKENIZER_H

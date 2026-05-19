@@ -20,9 +20,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __G_LOCAL_H__
-#define __G_LOCAL_H__
 // g_local.h -- local definitions for game module
 
 // define GAME_INCLUDE so that g_public.h does not define the
@@ -662,4 +661,3 @@ void		TIMER_Remove( gentity_t *ent, const char *identifier );
 float NPC_GetHFOVPercentage( vec3_t spot, vec3_t from, vec3_t facing, float hFOV );
 float NPC_GetVFOVPercentage( vec3_t spot, vec3_t from, vec3_t facing, float vFOV );
 
-#endif//#ifndef __G_LOCAL_H__

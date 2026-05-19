@@ -20,9 +20,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef TEAMS_H
-#define TEAMS_H
 
 typedef enum //# team_e
 {
@@ -112,4 +111,3 @@ typedef enum
 
 extern stringID_table_t ClassTable[];
 
-#endif	// #ifndef TEAMS_H

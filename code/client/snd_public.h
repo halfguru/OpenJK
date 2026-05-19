@@ -20,9 +20,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef _SND_PUBLIC_H
-#define _SND_PUBLIC_H
 
 void S_Init( void );
 void S_Shutdown( void );
@@ -75,4 +74,3 @@ sfxHandle_t	S_RegisterSound( const char *sample );
 
 void S_FreeAllSFXMem(void);
 
-#endif

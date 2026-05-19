@@ -1,7 +1,6 @@
 /*
 */
-#ifndef __EAXMANH
-#define __EAXMANH
+#pragma once
 
 #define COM_NO_WINDOWS_H
 #include <objbase.h>
@@ -168,4 +167,3 @@ DECLARE_INTERFACE_(IEaxManager, IUnknown)
 };
 #endif // __cplusplus
 
-#endif

@@ -19,9 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __Q3_INTERFACE__
-#define __Q3_INTERFACE__
 
 #include <array>
 #include "../icarus/IcarusInterface.h"
@@ -730,4 +729,3 @@ inline CQuake3GameInterface *Quake3Game() { return (CQuake3GameInterface *)IGame
 /*					END Quake 3 Game Interface END						*/
 //////////////////////////////////////////////////////////////////////////
 
-#endif	//__Q3_INTERFACE__

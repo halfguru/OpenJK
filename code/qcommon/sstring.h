@@ -19,6 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // Filename:-	sstring.h
 //
@@ -26,8 +27,6 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 //	conditions...
 
 
-#ifndef SSTRING_H
-#define SSTRING_H
 
 #include "../qcommon/q_shared.h"
 #include "qcommon/safe/gsl.h"
@@ -148,7 +147,6 @@ public:
 
 typedef sstring<MAX_QPATH> sstring_t;
 
-#endif	// #ifndef SSTRING_H
 
 /////////////////// eof ////////////////////
 

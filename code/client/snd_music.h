@@ -19,13 +19,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // Filename:-	snd_music.h
 //
 //
 
-#ifndef SND_MUSIC_H
-#define SND_MUSIC_H
 
 // if you change this enum, you MUST update the #defines below
 typedef enum
@@ -79,7 +78,6 @@ qboolean	Music_AllowedToTransition	( float fPlayingTimeElapsed, MusicState_e eMu
 const char *Music_BaseStateToString		( MusicState_e eMusicState, qboolean bDebugPrintQuery = qfalse);
 
 
-#endif	// #ifndef SND_MUSIC_H
 
 
 //////////////// eof /////////////////

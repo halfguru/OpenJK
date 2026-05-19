@@ -20,9 +20,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __QFILES_H__
-#define __QFILES_H__
 
 //
 // qfiles.h: quake file formats
@@ -459,4 +458,3 @@ typedef struct dfontdat_s
 
 
 
-#endif

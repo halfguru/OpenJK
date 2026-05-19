@@ -19,9 +19,8 @@ along with Reaction source code; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
+#pragma once
 
-#ifndef __TR_EXTRATYPES_H__
-#define __TR_EXTRATYPES_H__
 
 // tr_extratypes.h, for mods that want to extend tr_types.h without losing compatibility with original VMs
 
@@ -37,4 +36,3 @@ typedef struct {
 	float           sunAmbCol[3];
 } refdefex_t;
 
-#endif

@@ -19,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // ICARUS Public Header File
 
-#ifndef	__ICARUS__
-#define __ICARUS__
 
 //For system-wide prints
 enum WL_e {
@@ -46,4 +45,3 @@ enum WL_e {
 extern void *ICARUS_Malloc(int iSize);
 extern void  ICARUS_Free(void *pMem);
 
-#endif	//__ICARUS__

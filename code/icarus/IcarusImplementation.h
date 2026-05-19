@@ -19,10 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // IcarusImplementation.h
-#ifndef ICARUSIMPLEMENTATION_DEFINED
-#define ICARUSIMPLEMENTATION_DEFINED
 
 #ifndef ICARUSINTERFACE_DEFINED
 #include "IcarusInterface.h"
@@ -265,4 +264,3 @@ public:
 	void BufferRead( void *pDstBuff, unsigned long ulNumBytesToRead );
 };
 
-#endif

@@ -19,9 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
-#ifndef __BSTATE_H__
-#define __BSTATE_H__
 
 //bstate.h
 typedef enum //# bState_e
@@ -48,4 +47,3 @@ typedef enum //# bState_e
 	NUM_BSTATES
 } bState_t;
 
-#endif //#ifndef __BSTATE_H__

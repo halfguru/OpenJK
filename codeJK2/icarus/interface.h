@@ -19,11 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
+#pragma once
 
 // ICARUS Interface header file
 
-#ifndef __INTERFACE__
-#define __INTERFACE__
 
 #include "g_shared.h"
 
@@ -88,4 +87,3 @@ typedef struct interface_export_s
 	ojk::ISavedGame* saved_game;
 } interface_export_t;
 
-#endif	//__INTERFACE__

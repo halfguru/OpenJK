@@ -17,9 +17,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ===========================================================================
 */
+#pragma once
 
-#ifndef JSON_H
-#define JSON_H
 
 enum
 {
@@ -350,4 +349,3 @@ int JSON_ValueGetInt(const char *json, const char *jsonEnd)
 #undef IS_STRUCT_OPEN
 #undef IS_STRUCT_CLOSE
 
-#endif
