@@ -195,7 +195,7 @@ jobs:
 
       - name: Create Build Environment
         run: |
-          brew install zlib libjpeg libpng sdl2
+          brew install sdl2 || true
           cmake -E make_directory ${{ github.workspace }}/build
 
       - name: Configure CMake
