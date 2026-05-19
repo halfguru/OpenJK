@@ -503,7 +503,7 @@ int	FS_Read( void *buffer, int len, fileHandle_t f );
 void	FS_FCloseFile( fileHandle_t f );
 // note: you can't just fclose from another DLL, due to MS libc issues
 
-long		FS_ReadFile( const char *qpath, void **buffer );
+[[nodiscard]] long		FS_ReadFile( const char *qpath, void **buffer );
 // returns the length of the file
 // a null buffer will just return the file length without loading
 // as a quick check for existance. -1 length == not present

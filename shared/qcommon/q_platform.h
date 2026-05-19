@@ -28,6 +28,13 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #define QDECL
 #define QCALL
 
+// C++17 attributes (safe for C compilation)
+#ifdef __cplusplus
+	#define Q_NODISCARD [[nodiscard]]
+#else
+	#define Q_NODISCARD
+#endif
+
 // Win64
 #if defined(WIN64) || defined(_WIN64) || defined(__WIN64__)
 

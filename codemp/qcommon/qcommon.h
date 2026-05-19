@@ -633,7 +633,7 @@ int		FS_Read( void *buffer, int len, fileHandle_t f );
 void	FS_FCloseFile( fileHandle_t f );
 // note: you can't just fclose from another DLL, due to MS libc issues
 
-long		FS_ReadFile( const char *qpath, void **buffer );
+[[nodiscard]] long		FS_ReadFile( const char *qpath, void **buffer );
 // returns the length of the file
 // a null buffer will just return the file length without loading
 // as a quick check for existance. -1 length == not present
@@ -870,11 +870,11 @@ void Z_LogHeap( void );
 // later on I'll re-implement __FILE__, __LINE__ etc, but for now...
 //
 #ifdef DEBUG_ZONE_ALLOCS
-void *Z_Malloc  ( int iSize, memtag_t eTag, qboolean bZeroit = qfalse, int iAlign = 4);	// return memory NOT zero-filled by default
-void *S_Malloc	( int iSize );					// NOT 0 filled memory only for small allocations
+[[nodiscard]] void *Z_Malloc  ( int iSize, memtag_t eTag, qboolean bZeroit = qfalse, int iAlign = 4);	// return memory NOT zero-filled by default
+[[nodiscard]] void *S_Malloc	( int iSize );					// NOT 0 filled memory only for small allocations
 #else
-void *Z_Malloc  ( int iSize, memtag_t eTag, qboolean bZeroit = qfalse, int iAlign = 4);	// return memory NOT zero-filled by default
-void *S_Malloc	( int iSize );					// NOT 0 filled memory only for small allocations
+[[nodiscard]] void *Z_Malloc  ( int iSize, memtag_t eTag, qboolean bZeroit = qfalse, int iAlign = 4);	// return memory NOT zero-filled by default
+[[nodiscard]] void *S_Malloc	( int iSize );					// NOT 0 filled memory only for small allocations
 #endif
 void  Z_MorphMallocTag( void *pvBuffer, memtag_t eDesiredTag );
 void  Z_Validate( void );

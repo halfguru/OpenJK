@@ -1366,9 +1366,9 @@ void		RE_LoadWorldMap( const char *mapname );
 
 void		RE_SetWorldVisData( const byte *vis );
 
-qhandle_t	RE_RegisterServerModel( const char *name );
-qhandle_t	RE_RegisterModel( const char *name );
-qhandle_t	RE_RegisterSkin( const char *name );
+[[nodiscard]] qhandle_t	RE_RegisterServerModel( const char *name );
+[[nodiscard]] qhandle_t	RE_RegisterModel( const char *name );
+[[nodiscard]] qhandle_t	RE_RegisterSkin( const char *name );
 void		RE_Shutdown( qboolean destroyWindow );
 
 void		RE_RegisterMedia_LevelLoadBegin(const char *psMapName, ForceReload_e eForceReload);
@@ -1422,9 +1422,9 @@ extern	const int	lightmapsVertex[MAXLIGHTMAPS];
 extern	const int	lightmapsFullBright[MAXLIGHTMAPS];
 extern	const byte	stylesDefault[MAXLIGHTMAPS];
 
-qhandle_t RE_RegisterShaderLightMap( const char *name, const int *lightmapIndex, const byte *styles ) ;
-qhandle_t		 RE_RegisterShader( const char *name );
-qhandle_t		 RE_RegisterShaderNoMip( const char *name );
+[[nodiscard]] qhandle_t RE_RegisterShaderLightMap( const char *name, const int *lightmapIndex, const byte *styles ) ;
+[[nodiscard]] qhandle_t		 RE_RegisterShader( const char *name );
+[[nodiscard]] qhandle_t		 RE_RegisterShaderNoMip( const char *name );
 const char		*RE_ShaderNameFromIndex(int index);
 qhandle_t RE_RegisterShaderFromImage(const char *name, int *lightmapIndex, byte *styles, image_t *image, qboolean mipRawImage);
 
