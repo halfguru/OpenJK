@@ -13,8 +13,9 @@ This file is part of Jedi Academy.
     You should have received a copy of the GNU General Public License
     along with Jedi Academy.  If not, see <http://www.gnu.org/licenses/>.
 */
-#pragma once
 // Copyright 2001-2013 Raven Software
+#ifndef __EAXMANH
+#define __EAXMANH
 
 #define COM_NO_WINDOWS_H
 #include <objbase.h>
@@ -181,3 +182,4 @@ DECLARE_INTERFACE_(IEaxManager, IUnknown)
 };
 #endif // __cplusplus
 
+#endif

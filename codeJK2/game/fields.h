@@ -19,11 +19,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Filename:-	fields.h
 //
 
+#ifndef FIELDS_H
+#define FIELDS_H
 
 //
 // fields are needed for spawning from the entity string
@@ -95,6 +96,7 @@ typedef struct
 extern field_t fields[];
 
 
+#endif	// #ifndef FIELDS_H
 
 //////////////////////// eof //////////////////////////
 

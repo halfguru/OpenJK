@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __GHOUL2_GORE_H
+#define __GHOUL2_GORE_H
 
 #ifdef _G2_GORE
 
@@ -211,3 +212,4 @@ public:
 };
 //rww - RAGDOLL_END
 
+#endif

@@ -81,7 +81,7 @@ LAN_ResetPings
 */
 void LAN_ResetPings(int source) {
 	int count,i;
-	serverInfo_t *servers = nullptr;
+	serverInfo_t *servers = NULL;
 	count = 0;
 
 	switch (source) {
@@ -114,9 +114,9 @@ LAN_AddServer
 int LAN_AddServer(int source, const char *name, const char *address) {
 	int max, *count, i;
 	netadr_t adr;
-	serverInfo_t *servers = nullptr;
+	serverInfo_t *servers = NULL;
 	max = MAX_OTHER_SERVERS;
-	count = nullptr;
+	count = NULL;
 
 	switch (source) {
 		case AS_LOCAL :
@@ -186,8 +186,8 @@ LAN_RemoveServer
 */
 void LAN_RemoveServer(int source, const char *addr) {
 	int *count, i;
-	serverInfo_t *servers = nullptr;
-	count = nullptr;
+	serverInfo_t *servers = NULL;
+	count = NULL;
 	switch (source) {
 		case AS_LOCAL :
 			count = &cls.numlocalservers;
@@ -279,7 +279,7 @@ LAN_GetServerInfo
 */
 void LAN_GetServerInfo( int source, int n, char *buf, int buflen ) {
 	char info[MAX_STRING_CHARS];
-	serverInfo_t *server = nullptr;
+	serverInfo_t *server = NULL;
 	info[0] = '\0';
 	switch (source) {
 		case AS_LOCAL :
@@ -334,7 +334,7 @@ LAN_GetServerPing
 ====================
 */
 int LAN_GetServerPing( int source, int n ) {
-	serverInfo_t *server = nullptr;
+	serverInfo_t *server = NULL;
 	switch (source) {
 		case AS_LOCAL :
 			if (n >= 0 && n < MAX_OTHER_SERVERS) {
@@ -383,7 +383,7 @@ static serverInfo_t *LAN_GetServerPtr( int source, int n ) {
 			}
 			break;
 	}
-	return nullptr;
+	return NULL;
 }
 
 /*
@@ -499,7 +499,7 @@ LAN_MarkServerVisible
 void LAN_MarkServerVisible(int source, int n, qboolean visible ) {
 	if (n == -1) {
 		int count = MAX_OTHER_SERVERS;
-		serverInfo_t *server = nullptr;
+		serverInfo_t *server = NULL;
 		switch (source) {
 			case AS_LOCAL :
 				server = &cls.localServers[0];

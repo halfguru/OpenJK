@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __ICR_STDAFX__
+#define __ICR_STDAFX__
 
 #include <string>
 #include <list>
@@ -31,3 +32,4 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #define STL_ITERATE( a, b )		for ( a = b.begin(); a != b.end(); ++a )
 #define STL_INSERT( a, b )		a.insert( a.end(), b );
 
+#endif

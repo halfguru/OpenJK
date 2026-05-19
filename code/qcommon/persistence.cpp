@@ -36,13 +36,13 @@ static persisentData_t *FindEmptyStore ( persisentData_t *stores, size_t count )
 {
 	for ( size_t i = 0; i < count; i++ )
 	{
-		if ( stores[i].data == nullptr )
+		if ( stores[i].data == NULL )
 		{
 			return &stores[i];
 		}
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 static persisentData_t *FindStoreWithName ( persisentData_t *stores, size_t count, const char *name )
@@ -55,13 +55,13 @@ static persisentData_t *FindStoreWithName ( persisentData_t *stores, size_t coun
 		}
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 bool PD_Store ( const char *name, const void *data, size_t size )
 {
 	persisentData_t *store = FindEmptyStore (persistentData, MAX_PERSISENT_DATA_STORES);
-	if ( store == nullptr )
+	if ( store == NULL )
 	{
 		Com_Printf (S_COLOR_YELLOW "WARNING: No persistent data store found.\n");
 		return false;
@@ -77,18 +77,18 @@ bool PD_Store ( const char *name, const void *data, size_t size )
 const void *PD_Load ( const char *name, size_t *size )
 {
 	persisentData_t *store = FindStoreWithName (persistentData, MAX_PERSISENT_DATA_STORES, name);
-	if ( store == nullptr )
+	if ( store == NULL )
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	const void *data = store->data;
-	if ( size != nullptr )
+	if ( size != NULL )
 	{
 		*size = store->size;
 	}
 
-	store->data = nullptr;
+	store->data = NULL;
 	store->size = 0;
 
 	return data;

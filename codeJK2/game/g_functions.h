@@ -19,11 +19,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Filename:-	g_functions.h
 //
 
+#ifndef G_FUNCTIONS
+#define G_FUNCTIONS
 
 #undef thinkFunc_t
 #undef clThinkFunc_t
@@ -608,6 +609,7 @@ void GEntity_DieFunc(gentity_t *self, gentity_t *inflictor, gentity_t *attacker,
 // external functions that I now refer to...
 
 
+#endif	// #ifndef G_FUNCTIONS
 
 /////////////////// eof ///////////////////
 

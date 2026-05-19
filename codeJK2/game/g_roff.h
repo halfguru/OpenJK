@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __G_ROFF_H__
+#define __G_ROFF_H__
 
 
 #include "../../code/qcommon/q_shared.h"
@@ -106,3 +107,4 @@ void	G_Roff( gentity_t *ent );
 void	G_SaveCachedRoffs();
 void	G_LoadCachedRoffs();
 
+#endif

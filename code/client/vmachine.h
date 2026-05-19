@@ -20,9 +20,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // vmachine.h -- virtual machine header for client
+#ifndef __VMACHINE_H__
+#define __VMACHINE_H__
 
 #include "../qcommon/q_shared.h"
 
@@ -82,3 +83,4 @@ intptr_t	VM_Call( int callnum, ... );
 intptr_t	VM_DllSyscall( intptr_t arg, ... );
 void		CL_ShutdownCGame( void );
 
+#endif //__VMACHINE_H__

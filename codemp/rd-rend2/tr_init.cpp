@@ -307,7 +307,7 @@ static void R_Splash()
 bool GL_CheckForExtension(const char *ext)
 {
 	const char *ptr = Q_stristr( glConfigExt.originalExtensionString, ext );
-	if (ptr == nullptr)
+	if (ptr == NULL)
 		return false;
 	ptr += strlen(ext);
 	return ((*ptr == ' ') || (*ptr == '\0'));  // verify it's complete string.
@@ -431,13 +431,13 @@ static const char *TruncateGLExtensionsString (const char *extensionsString, int
 
 	char *truncatedExtensions;
 
-	while ( (q = strchr (p, ' ')) != nullptr && numExtensions < maxExtensions )
+	while ( (q = strchr (p, ' ')) != NULL && numExtensions < maxExtensions )
 	{
 		p = q + 1;
 		numExtensions++;
 	}
 
-	if ( q != nullptr )
+	if ( q != NULL )
 	{
 		// We still have more extensions. We'll call this the end
 
@@ -1862,7 +1862,7 @@ static void R_InitStaticConstants()
 		GL_UNIFORM_BUFFER, tr.defaultShaderInstanceUboOffset, sizeof(shaderInstanceBlock), &shaderInstanceBlock);
 	alignedBlockSize += (sizeof(ShaderInstanceBlock) + alignment) & ~alignment;
 
-	qglBindBuffer(GL_UNIFORM_BUFFER, 0);
+	qglBindBuffer(GL_UNIFORM_BUFFER, NULL);
 	glState.currentGlobalUBO = -1;
 
 	GL_CheckErrors();
@@ -1880,7 +1880,7 @@ static void R_ShutdownBackEndFrameData()
 		if (frame->sync)
 		{
 			qglDeleteSync(frame->sync);
-			frame->sync = nullptr;
+			frame->sync = NULL;
 		}
 
 		qglDeleteBuffers(1, &frame->ubo);
@@ -2070,7 +2070,7 @@ void RE_Shutdown( qboolean destroyWindow, qboolean restarting ) {
 	}
 
 	tr.registered = qfalse;
-	backEndData = nullptr;
+	backEndData = NULL;
 }
 
 /*
@@ -2187,7 +2187,7 @@ Q_EXPORT refexport_t* QDECL GetRefAPI ( int apiVersion, refimport_t *rimp ) {
 	if ( apiVersion != REF_API_VERSION ) {
 		ri.Printf(PRINT_ALL, "Mismatched REF_API_VERSION: expected %i, got %i\n",
 			REF_API_VERSION, apiVersion );
-		return nullptr;
+		return NULL;
 	}
 
 	// the RE_ functions are Renderer Entry points

@@ -41,7 +41,7 @@ CQuickSpriteSystem SQuickSprite;
 //////////////////////////////////////////////////////////////////////
 
 CQuickSpriteSystem::CQuickSpriteSystem() :
-	mTexBundle(nullptr),
+	mTexBundle(NULL),
 	mGLStateBits(0),
 	mFogIndex(-1),
 	mUseFog(qfalse),

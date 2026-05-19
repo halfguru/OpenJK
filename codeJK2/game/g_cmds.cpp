@@ -305,14 +305,14 @@ void Cmd_Give_f( gentity_t *ent )
 void Cmd_Fx( gentity_t *ent )
 {
 	vec3_t		dir;
-	gentity_t	*fx_ent = nullptr;
+	gentity_t	*fx_ent = NULL;
 
 	if ( Q_stricmp( gi.argv(1), "play" ) == 0 )
 	{
 		if ( gi.argc() == 3 )
 		{
 			// I guess, only allow one active at a time
-			while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != nullptr )
+			while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != NULL )
 			{
 				G_FreeEntity( fx_ent );
 			}
@@ -322,7 +322,7 @@ void Cmd_Fx( gentity_t *ent )
 			fx_ent->fxFile = gi.argv( 2 );
 
 			// Move out in front of the person spawning the effect
-			AngleVectors( ent->currentAngles, dir, nullptr, nullptr );
+			AngleVectors( ent->currentAngles, dir, NULL, NULL );
 			VectorMA( ent->currentOrigin, 32, dir, fx_ent->s.origin );
 
 extern void SP_fx_runner( gentity_t *ent );
@@ -336,7 +336,7 @@ extern void SP_fx_runner( gentity_t *ent );
 	}
 	else if ( Q_stricmp( gi.argv(1), "stop" ) == 0 )
 	{
-		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != nullptr )
+		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != NULL )
 		{
 			G_FreeEntity( fx_ent );
 		}
@@ -345,7 +345,7 @@ extern void SP_fx_runner( gentity_t *ent );
 	}
 	else if ( Q_stricmp( gi.argv(1), "delay" ) == 0 )
 	{
-		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != nullptr )
+		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != NULL )
 		{
 			if ( gi.argc() == 3 )
 			{
@@ -361,7 +361,7 @@ extern void SP_fx_runner( gentity_t *ent );
 	}
 	else if ( Q_stricmp( gi.argv(1), "random" ) == 0 )
 	{
-		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != nullptr )
+		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != NULL )
 		{
 			if ( gi.argc() == 3 )
 			{
@@ -377,7 +377,7 @@ extern void SP_fx_runner( gentity_t *ent );
 	}
 	else if ( Q_stricmp( gi.argv(1), "origin" ) == 0 )
 	{
-		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != nullptr )
+		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != NULL )
 		{
 			if ( gi.argc() == 5 )
 			{
@@ -398,7 +398,7 @@ extern void SP_fx_runner( gentity_t *ent );
 	}
 	else if ( Q_stricmp( gi.argv(1), "dir" ) == 0 )
 	{
-		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != nullptr )
+		while (( fx_ent = G_Find( fx_ent, FOFS(classname), "cmd_fx")) != NULL )
 		{
 			if ( gi.argc() == 5 )
 			{
@@ -648,7 +648,7 @@ void UserSpawn( gentity_t *ent, const char *name )
 
 	//Spawn the entity and place it there
 	VectorSet( angles, 0, ent->s.apos.trBase[YAW], 0 );
-	AngleVectors( angles, vf, nullptr, nullptr );
+	AngleVectors( angles, vf, NULL, NULL );
 	VectorMA( ent->s.pos.trBase, 96, vf, origin );	//FIXME: Find the radius size of the object, and push out 32 + radius
 
 	origin[2] += 8;
@@ -881,7 +881,7 @@ void Cmd_UseSeeker_f( gentity_t *ent )
 		{
 			vec3_t	fwd, right, spot;
 
-			AngleVectors( ent->client->ps.viewangles, fwd, right, nullptr );
+			AngleVectors( ent->client->ps.viewangles, fwd, right, NULL );
 
 			VectorCopy( ent->currentOrigin, spot ); // does nothing really, just initialize the goods...
 
@@ -1100,7 +1100,7 @@ void ClientCommand( int clientNum ) {
 	{
 		if ( CheatsOk( ent ) )
 		{
-			G_DriveATST( ent, nullptr );
+			G_DriveATST( ent, NULL );
 		}
 	}
 	else if (Q_stricmp (cmd, "thereisnospoon") == 0)

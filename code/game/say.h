@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __SAY_H__
+#define __SAY_H__
 
 typedef enum //# saying_e
 {
@@ -49,3 +50,4 @@ typedef enum //# saying_e
 	NUM_SAYINGS
 } saying_t;
 
+#endif //#ifndef __SAY_H__

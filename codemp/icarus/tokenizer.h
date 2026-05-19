@@ -278,7 +278,7 @@ protected:
 	char*			m_symbolName;
 };
 
-using symbolmap_t = std::map<const char *, CSymbol*, lessstr>;
+typedef std::map<const char *, CSymbol*, lessstr> symbolmap_t;
 
 class CDirectiveSymbol : public CSymbol
 {

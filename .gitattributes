@@ -24,6 +24,3 @@
 # Set line endings to LF, even on Windows. Otherwise, execution within Docker fails.
 # See https://help.github.com/articles/dealing-with-line-endings/
 *.sh text eol=lf
-
-# Source code, headers, configs, and docs always use LF
-*.{c,cpp,h,hpp,cmake,txt,json,yml,yaml,md} text eol=lf

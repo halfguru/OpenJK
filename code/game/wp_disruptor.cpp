@@ -38,7 +38,7 @@ static void WP_DisruptorMainFire( gentity_t *ent )
 	qboolean	render_impact = qtrue;
 	vec3_t		start, end, spot;
 	trace_t		tr;
-	gentity_t	*traceEnt = nullptr, *tent;
+	gentity_t	*traceEnt = NULL, *tent;
 	float		dist, shotDist, shotRange = 8192;
 
 	if ( ent->NPC )
@@ -74,7 +74,7 @@ static void WP_DisruptorMainFire( gentity_t *ent )
 	int traces = 0;
 	while ( traces < 10 )
 	{//need to loop this in case we hit a Jedi who dodges the shot
-		gi.trace( &tr, start, nullptr, nullptr, end, ignore, MASK_SHOT, G2_RETURNONHIT, 0 );
+		gi.trace( &tr, start, NULL, NULL, end, ignore, MASK_SHOT, G2_RETURNONHIT, 0 );
 
 		traceEnt = &g_entities[tr.entityNum];
 		if ( traceEnt
@@ -180,7 +180,7 @@ void WP_DisruptorAltFire( gentity_t *ent )
 	else
 	{
 		VectorCopy( ent->client->renderInfo.eyePoint, start );
-		AngleVectors( ent->client->renderInfo.eyeAngles, forwardVec, nullptr, nullptr );
+		AngleVectors( ent->client->renderInfo.eyeAngles, forwardVec, NULL, NULL );
 
 		// don't let NPC's do charging
 		int count = ( level.time - ent->client->ps.weaponChargeTime - 50 ) / DISRUPTOR_CHARGE_UNIT;
@@ -223,7 +223,7 @@ void WP_DisruptorAltFire( gentity_t *ent )
 
 		//NOTE: if you want to be able to hit guys in emplaced guns, use "G2_COLLIDE, 10" instead of "G2_RETURNONHIT, 0"
 		//alternately, if you end up hitting an emplaced_gun that has a sitter, just redo this one trace with the "G2_COLLIDE, 10" to see if we it the sitter
-		gi.trace( &tr, start, nullptr, nullptr, end, skip, MASK_SHOT, G2_COLLIDE, 10 );//G2_RETURNONHIT, 0 );
+		gi.trace( &tr, start, NULL, NULL, end, skip, MASK_SHOT, G2_COLLIDE, 10 );//G2_RETURNONHIT, 0 );
 
 		if ( tr.surfaceFlags & SURF_NOIMPACT )
 		{

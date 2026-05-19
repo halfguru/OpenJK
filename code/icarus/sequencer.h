@@ -50,9 +50,9 @@ typedef struct bstream_s
 
 class CSequencer
 {
-	//using sequenceID_m = map < int, CSequence * >;
-	using sequence_l = std::list < CSequence * >;
-	using taskSequence_m = std::map < CTaskGroup *, CSequence * >;
+	//typedef	map < int, CSequence * >			sequenceID_m;
+	typedef std::list < CSequence * >				sequence_l;
+	typedef std::map < CTaskGroup *, CSequence * >	taskSequence_m;
 
 public:
 	enum

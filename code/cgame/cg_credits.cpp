@@ -189,7 +189,7 @@ static const char *GetSubString(std::string &strResult)
 	static char sTemp[MAX_LINE_BYTES];
 
 	if (!strlen(strResult.c_str()))
-		return nullptr;
+		return NULL;
 
 	Q_strncpyz(sTemp,strResult.c_str(),sizeof(sTemp));
 
@@ -228,12 +228,12 @@ void CG_Credits_Init( const char *psStripReference, vec4_t *pv4Color)
 	// Play the light side end credits music.
 	if ( g_entities[0].client->sess.mission_objectives[0].status != 2 )
 	{
-		cgi_S_StartBackgroundTrack( "music/endcredits.mp3", nullptr, qfalse );
+		cgi_S_StartBackgroundTrack( "music/endcredits.mp3", NULL, qfalse );
 	}
 	// Play the dark side end credits music.
 	else
 	{
-		cgi_S_StartBackgroundTrack( "music/vjun3/vjun3_explore.mp3", nullptr, qfalse );
+		cgi_S_StartBackgroundTrack( "music/vjun3/vjun3_explore.mp3", NULL, qfalse );
 	}
 
 	// could make these into parameters later, but for now...
@@ -245,7 +245,7 @@ void CG_Credits_Init( const char *psStripReference, vec4_t *pv4Color)
 
 	// first, ask the strlen of the final string...
 	//
-	int iStrLen = cgi_SP_GetStringTextString( psStripReference, nullptr, 0 );
+	int iStrLen = cgi_SP_GetStringTextString( psStripReference, NULL, 0 );
 	if (!iStrLen)
 	{
 #ifndef FINAL_BUILD
@@ -419,7 +419,7 @@ void CG_Credits_Init( const char *psStripReference, vec4_t *pv4Color)
 
 					std::string strResult(sLine);
 					const char *p;
-					while ((p=GetSubString(strResult)) != nullptr)
+					while ((p=GetSubString(strResult)) != NULL)
 					{
 						if (CreditLine.strText.IsEmpty())
 						{
@@ -462,7 +462,7 @@ void CG_Credits_Init( const char *psStripReference, vec4_t *pv4Color)
 
 					std::string strResult(sLine);
 					const char *p;
-					while ((p=GetSubString(strResult)) != nullptr)
+					while ((p=GetSubString(strResult)) != NULL)
 					{
 						if (CreditCard.strTitle.IsEmpty())
 						{

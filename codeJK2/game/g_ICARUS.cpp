@@ -93,7 +93,7 @@ int ICARUS_RunScript( gentity_t *ent, const char *name )
 	int len;
 
 	//Make sure the caller is valid
-	if ( ent->sequencer == nullptr )
+	if ( ent->sequencer == NULL )
 	{
 		//Com_Printf( "%s : entity is not a valid script user\n", ent->classname );
 		return false;
@@ -133,7 +133,7 @@ void ICARUS_Init( void )
 	//Create the ICARUS instance for this session
 	iICARUS = ICARUS_Instance::Create( &interface_export );
 
-	if ( iICARUS == nullptr )
+	if ( iICARUS == NULL )
 	{
 		Com_Error( ERR_DROP, "Unable to initialize ICARUS instance\n" );
 		return;
@@ -182,7 +182,7 @@ void ICARUS_Shutdown( void )
 	if ( iICARUS )
 	{
 		iICARUS->Delete();
-		iICARUS = nullptr;
+		iICARUS = NULL;
 	}
 }
 
@@ -202,7 +202,7 @@ void ICARUS_FreeEnt( gentity_t *ent )
 	assert( iICARUS );
 
 	//Make sure the ent is valid
-	if ( ent->sequencer == nullptr )
+	if ( ent->sequencer == NULL )
 		return;
 
 	//Remove them from the ICARUSE_EntList list so that when their g_entity index is reused, ICARUS doesn't try to affect the new (incorrect) ent.
@@ -225,8 +225,8 @@ void ICARUS_FreeEnt( gentity_t *ent )
 	iICARUS->DeleteSequencer( ent->sequencer );
 
 	//Clean up the pointers
-	ent->sequencer		= nullptr;
-	ent->taskManager	= nullptr;
+	ent->sequencer		= NULL;
+	ent->taskManager	= NULL;
 }
 
 
@@ -294,7 +294,7 @@ bool ICARUS_RegisterScript( const char *name, bool bCalledDuringInterrogate /* =
 	bufferlist_t::iterator	ei;
 	pscript_t	*pscript;
 	char		newname[MAX_FILENAME_LENGTH];
-	char		*buffer = nullptr;	// lose compiler warning about uninitialised vars
+	char		*buffer = NULL;	// lose compiler warning about uninitialised vars
 	long		length;
 
 	//Make sure this isn't already cached
@@ -324,7 +324,7 @@ bool ICARUS_RegisterScript( const char *name, bool bCalledDuringInterrogate /* =
 
 		gi.FS_FOpenFile( newname, &file, FS_READ );
 
-		if ( file == nullptr )
+		if ( file == NULL )
 		{
 			qbIgnoreFileRead = qtrue;	// warn disk code further down not to try FS_ReadFile()
 		}
@@ -375,7 +375,7 @@ void ICARUS_InterrogateScript( const char *filename )
 	CBlockMember	*blockMember;
 	CBlock			block;
 
-	if (!Q_stricmp(filename,"nullptr") || !Q_stricmp(filename,"default"))
+	if (!Q_stricmp(filename,"NULL") || !Q_stricmp(filename,"default"))
 		return;
 
 	//////////////////////////////////
@@ -511,7 +511,7 @@ extern	cvar_t	*com_buildScript;
 						fileHandle_t file;
 						char	name[MAX_OSPATH];
 
-						if (strstr(sVal2, "/") == nullptr && strstr(sVal2, "\\") == nullptr) {
+						if (strstr(sVal2, "/") == NULL && strstr(sVal2, "\\") == NULL) {
 							Com_sprintf (name, sizeof(name), "video/%s", sVal2);
 						} else {
 							Com_sprintf (name, sizeof(name), "%s", sVal2);
@@ -566,7 +566,7 @@ void ICARUS_PrecacheEnt( gentity_t *ent )
 
 	for ( i = 0; i < NUM_BSETS; i++ )
 	{
-		if ( ent->behaviorSet[i] == nullptr )
+		if ( ent->behaviorSet[i] == NULL )
 			continue;
 
 		if ( GetIDForString( BSTable, ent->behaviorSet[i] ) == -1 )
@@ -592,13 +592,13 @@ void ICARUS_InitEnt( gentity_t *ent )
 {
 	//Make sure this is a fresh ent
 	assert( iICARUS );
-	assert( ent->taskManager == nullptr );
-	assert( ent->sequencer == nullptr );
+	assert( ent->taskManager == NULL );
+	assert( ent->sequencer == NULL );
 
-	if ( ent->sequencer != nullptr )
+	if ( ent->sequencer != NULL )
 		return;
 
-	if ( ent->taskManager != nullptr )
+	if ( ent->taskManager != NULL )
 		return;
 
 	//Create the sequencer and setup the task manager
@@ -625,7 +625,7 @@ int ICARUS_LinkEntity( int entID, CSequencer *sequencer, CTaskManager *taskManag
 {
 	gentity_t	*ent = &g_entities[ entID ];
 
-	if ( ent == nullptr )
+	if ( ent == NULL )
 		return false;
 
 	ent->sequencer = sequencer;
@@ -651,9 +651,9 @@ void Svcmd_ICARUS_f( void )
 		g_ICARUSDebug->integer = WL_DEBUG;
 		if ( VALIDSTRING( gi.argv( 2 ) ) )
 		{
-			gentity_t	*ent = G_Find( nullptr, FOFS( script_targetname ), gi.argv(2) );
+			gentity_t	*ent = G_Find( NULL, FOFS( script_targetname ), gi.argv(2) );
 
-			if ( ent == nullptr )
+			if ( ent == NULL )
 			{
 				Com_Printf( "Entity \"%s\" not found!\n", gi.argv(2) );
 				return;

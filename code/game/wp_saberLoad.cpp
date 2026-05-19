@@ -160,27 +160,27 @@ saber_styles_t TranslateSaberStyle( const char *name ) {
 void WP_SaberFreeStrings( saberInfo_t &saber ) {
 	if ( saber.name && gi.bIsFromZone( saber.name, TAG_G_ALLOC ) ) {
 		gi.Free( saber.name );
-		saber.name = nullptr;
+		saber.name = NULL;
 	}
 	if ( saber.fullName && gi.bIsFromZone( saber.fullName, TAG_G_ALLOC ) ) {
 		gi.Free( saber.fullName );
-		saber.fullName = nullptr;
+		saber.fullName = NULL;
 	}
 	if ( saber.model && gi.bIsFromZone( saber.model, TAG_G_ALLOC ) ) {
 		gi.Free( saber.model );
-		saber.model = nullptr;
+		saber.model = NULL;
 	}
 	if ( saber.skin && gi.bIsFromZone( saber.skin, TAG_G_ALLOC ) ) {
 		gi.Free( saber.skin );
-		saber.skin = nullptr;
+		saber.skin = NULL;
 	}
 	if ( saber.brokenSaber1 && gi.bIsFromZone( saber.brokenSaber1, TAG_G_ALLOC ) ) {
 		gi.Free( saber.brokenSaber1 );
-		saber.brokenSaber1 = nullptr;
+		saber.brokenSaber1 = NULL;
 	}
 	if ( saber.brokenSaber2 && gi.bIsFromZone( saber.brokenSaber2, TAG_G_ALLOC ) ) {
 		gi.Free( saber.brokenSaber2 );
-		saber.brokenSaber2 = nullptr;
+		saber.brokenSaber2 = NULL;
 	}
 }
 
@@ -352,8 +352,8 @@ qboolean WP_SaberCanTurnOffSomeBlades( saberInfo_t *saber )
 void WP_SaberSetDefaults( saberInfo_t *saber, qboolean setColors = qtrue )
 {
 	//Set defaults so that, if it fails, there's at least something there
-	saber->name = nullptr;
-	saber->fullName = nullptr;
+	saber->name = NULL;
+	saber->fullName = NULL;
 	for ( int i = 0; i < MAX_BLADES; i++ )
 	{
 		if ( setColors )
@@ -364,7 +364,7 @@ void WP_SaberSetDefaults( saberInfo_t *saber, qboolean setColors = qtrue )
 		saber->blade[i].lengthMax = 32;
 	}
 	saber->model = "models/weapons2/saber_reborn/saber_w.glm";
-	saber->skin = nullptr;
+	saber->skin = NULL;
 	saber->soundOn = G_SoundIndex( "sound/weapons/saber/enemy_saber_on.wav" );
 	saber->soundLoop = G_SoundIndex( "sound/weapons/saber/saberhum3.wav" );
 	saber->soundOff = G_SoundIndex( "sound/weapons/saber/enemy_saber_off.wav" );
@@ -381,8 +381,8 @@ void WP_SaberSetDefaults( saberInfo_t *saber, qboolean setColors = qtrue )
 	saber->disarmBonus = 0;
 	saber->disarmBonus2 = 0;
 	saber->singleBladeStyle = SS_NONE;//makes it so that you use a different style if you only have the first blade active
-	saber->brokenSaber1 = nullptr;//if saber is actually hit by another saber, it can be cut in half/broken and will be replaced with this saber in your right hand
-	saber->brokenSaber2 = nullptr;//if saber is actually hit by another saber, it can be cut in half/broken and will be replaced with this saber in your left hand
+	saber->brokenSaber1 = NULL;//if saber is actually hit by another saber, it can be cut in half/broken and will be replaced with this saber in your right hand
+	saber->brokenSaber2 = NULL;//if saber is actually hit by another saber, it can be cut in half/broken and will be replaced with this saber in your left hand
 //===NEW========================================================================================
 	//these values are global to the saber, like all of the ones above
 	saber->saberFlags = 0;					//see all the SFL_ flags
@@ -1816,162 +1816,162 @@ static keywordHash_t *KeywordHash_Find( keywordHash_t *table[], const char *keyw
 			return key;
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 static keywordHash_t saberParseKeywords[] = {
-	{ "name",					Saber_ParseName,				nullptr	},
-	{ "saberType",				Saber_ParseSaberType,			nullptr	},
-	{ "saberModel",				Saber_ParseSaberModel,			nullptr	},
-	{ "customSkin",				Saber_ParseCustomSkin,			nullptr	},
-	{ "soundOn",				Saber_ParseSoundOn,				nullptr	},
-	{ "soundLoop",				Saber_ParseSoundLoop,			nullptr	},
-	{ "soundOff",				Saber_ParseSoundOff,			nullptr	},
-	{ "numBlades",				Saber_ParseNumBlades,			nullptr	},
-	{ "saberColor",				Saber_ParseSaberColor,			nullptr	},
-	{ "saberColor2",			Saber_ParseSaberColor2,			nullptr	},
-	{ "saberColor3",			Saber_ParseSaberColor3,			nullptr	},
-	{ "saberColor4",			Saber_ParseSaberColor4,			nullptr	},
-	{ "saberColor5",			Saber_ParseSaberColor5,			nullptr	},
-	{ "saberColor6",			Saber_ParseSaberColor6,			nullptr	},
-	{ "saberColor7",			Saber_ParseSaberColor7,			nullptr	},
-	{ "saberLength",			Saber_ParseSaberLength,			nullptr	},
-	{ "saberLength2",			Saber_ParseSaberLength2,		nullptr	},
-	{ "saberLength3",			Saber_ParseSaberLength3,		nullptr	},
-	{ "saberLength4",			Saber_ParseSaberLength4,		nullptr	},
-	{ "saberLength5",			Saber_ParseSaberLength5,		nullptr	},
-	{ "saberLength6",			Saber_ParseSaberLength6,		nullptr	},
-	{ "saberLength7",			Saber_ParseSaberLength7,		nullptr	},
-	{ "saberRadius",			Saber_ParseSaberRadius,			nullptr	},
-	{ "saberRadius2",			Saber_ParseSaberRadius2,		nullptr	},
-	{ "saberRadius3",			Saber_ParseSaberRadius3,		nullptr	},
-	{ "saberRadius4",			Saber_ParseSaberRadius4,		nullptr	},
-	{ "saberRadius5",			Saber_ParseSaberRadius5,		nullptr	},
-	{ "saberRadius6",			Saber_ParseSaberRadius6,		nullptr	},
-	{ "saberRadius7",			Saber_ParseSaberRadius7,		nullptr	},
-	{ "saberStyle",				Saber_ParseSaberStyle,			nullptr	},
-	{ "saberStyleLearned",		Saber_ParseSaberStyleLearned,	nullptr	},
-	{ "saberStyleForbidden",	Saber_ParseSaberStyleForbidden,	nullptr	},
-	{ "maxChain",				Saber_ParseMaxChain,			nullptr	},
-	{ "lockable",				Saber_ParseLockable,			nullptr	},
-	{ "throwable",				Saber_ParseThrowable,			nullptr	},
-	{ "disarmable",				Saber_ParseDisarmable,			nullptr	},
-	{ "blocking",				Saber_ParseBlocking,			nullptr	},
-	{ "twoHanded",				Saber_ParseTwoHanded,			nullptr	},
-	{ "forceRestrict",			Saber_ParseForceRestrict,		nullptr	},
-	{ "lockBonus",				Saber_ParseLockBonus,			nullptr	},
-	{ "parryBonus",				Saber_ParseParryBonus,			nullptr	},
-	{ "breakParryBonus",		Saber_ParseBreakParryBonus,		nullptr	},
-	{ "breakParryBonus2",		Saber_ParseBreakParryBonus2,	nullptr	},
-	{ "disarmBonus",			Saber_ParseDisarmBonus,			nullptr	},
-	{ "disarmBonus2",			Saber_ParseDisarmBonus2,		nullptr	},
-	{ "singleBladeStyle",		Saber_ParseSingleBladeStyle,	nullptr	},
-	{ "singleBladeThrowable",	Saber_ParseSingleBladeThrowable,nullptr	},
-	{ "brokenSaber1",			Saber_ParseBrokenSaber1,		nullptr	},
-	{ "brokenSaber2",			Saber_ParseBrokenSaber2,		nullptr	},
-	{ "returnDamage",			Saber_ParseReturnDamage,		nullptr	},
-	{ "spinSound",				Saber_ParseSpinSound,			nullptr	},
-	{ "swingSound1",			Saber_ParseSwingSound1,			nullptr	},
-	{ "swingSound2",			Saber_ParseSwingSound2,			nullptr	},
-	{ "swingSound3",			Saber_ParseSwingSound3,			nullptr	},
-	{ "fallSound1",				Saber_ParseFallSound1,			nullptr	},
-	{ "fallSound2",				Saber_ParseFallSound2,			nullptr	},
-	{ "fallSound3",				Saber_ParseFallSound3,			nullptr	},
-	{ "moveSpeedScale",			Saber_ParseMoveSpeedScale,		nullptr	},
-	{ "animSpeedScale",			Saber_ParseAnimSpeedScale,		nullptr	},
-	{ "onInWater",				Saber_ParseOnInWater,			nullptr	},
-	{ "bounceOnWalls",			Saber_ParseBounceOnWalls,		nullptr	},
-	{ "boltToWrist",			Saber_ParseBoltToWrist,			nullptr	},
-	{ "kataMove",				Saber_ParseKataMove,			nullptr	},
-	{ "lungeAtkMove",			Saber_ParseLungeAtkMove,		nullptr	},
-	{ "jumpAtkUpMove",			Saber_ParseJumpAtkUpMove,		nullptr	},
-	{ "jumpAtkFwdMove",			Saber_ParseJumpAtkFwdMove,		nullptr	},
-	{ "jumpAtkBackMove",		Saber_ParseJumpAtkBackMove,		nullptr	},
-	{ "jumpAtkRightMove",		Saber_ParseJumpAtkRightMove,	nullptr	},
-	{ "jumpAtkLeftMove",		Saber_ParseJumpAtkLeftMove,		nullptr	},
-	{ "readyAnim",				Saber_ParseReadyAnim,			nullptr	},
-	{ "drawAnim",				Saber_ParseDrawAnim,			nullptr	},
-	{ "putawayAnim",			Saber_ParsePutawayAnim,			nullptr	},
-	{ "tauntAnim",				Saber_ParseTauntAnim,			nullptr	},
-	{ "bowAnim",				Saber_ParseBowAnim,				nullptr	},
-	{ "meditateAnim",			Saber_ParseMeditateAnim,		nullptr	},
-	{ "flourishAnim",			Saber_ParseFlourishAnim,		nullptr	},
-	{ "gloatAnim",				Saber_ParseGloatAnim,			nullptr	},
-	{ "noRollStab",				Saber_ParseNoRollStab,			nullptr	},
-	{ "noPullAttack",			Saber_ParseNoPullAttack,		nullptr	},
-	{ "noBackAttack",			Saber_ParseNoBackAttack,		nullptr	},
-	{ "noStabDown",				Saber_ParseNoStabDown,			nullptr	},
-	{ "noWallRuns",				Saber_ParseNoWallRuns,			nullptr	},
-	{ "noWallFlips",			Saber_ParseNoWallFlips,			nullptr	},
-	{ "noWallGrab",				Saber_ParseNoWallGrab,			nullptr	},
-	{ "noRolls",				Saber_ParseNoRolls,				nullptr	},
-	{ "noFlips",				Saber_ParseNoFlips,				nullptr	},
-	{ "noCartwheels",			Saber_ParseNoCartwheels,		nullptr	},
-	{ "noKicks",				Saber_ParseNoKicks,				nullptr	},
-	{ "noMirrorAttacks",		Saber_ParseNoMirrorAttacks,		nullptr	},
-	{ "notInMP",				Saber_ParseNotInMP,				nullptr	},
-	{ "bladeStyle2Start",		Saber_ParseBladeStyle2Start,	nullptr	},
-	{ "noWallMarks",			Saber_ParseNoWallMarks,			nullptr	},
-	{ "noWallMarks2",			Saber_ParseNoWallMarks2,		nullptr	},
-	{ "noDlight",				Saber_ParseNoDLight,			nullptr	},
-	{ "noDlight2",				Saber_ParseNoDLight2,			nullptr	},
-	{ "noBlade",				Saber_ParseNoBlade,				nullptr	},
-	{ "noBlade2",				Saber_ParseNoBlade2,			nullptr	},
-	{ "trailStyle",				Saber_ParseTrailStyle,			nullptr	},
-	{ "trailStyle2",			Saber_ParseTrailStyle2,			nullptr	},
-	{ "g2MarksShader",			Saber_ParseG2MarksShader,		nullptr	},
-	{ "g2MarksShader2",			Saber_ParseG2MarksShader2,		nullptr	},
-	{ "g2WeaponMarkShader",		Saber_ParseG2WeaponMarkShader,	nullptr	},
-	{ "g2WeaponMarkShader2",	Saber_ParseG2WeaponMarkShader2,	nullptr	},
-	{ "knockbackScale",			Saber_ParseKnockbackScale,		nullptr	},
-	{ "knockbackScale2",		Saber_ParseKnockbackScale2,		nullptr	},
-	{ "damageScale",			Saber_ParseDamageScale,			nullptr	},
-	{ "damageScale2",			Saber_ParseDamageScale2,		nullptr	},
-	{ "noDismemberment",		Saber_ParseNoDismemberment,		nullptr	},
-	{ "noDismemberment2",		Saber_ParseNoDismemberment2,	nullptr	},
-	{ "noIdleEffect",			Saber_ParseNoIdleEffect,		nullptr	},
-	{ "noIdleEffect2",			Saber_ParseNoIdleEffect2,		nullptr	},
-	{ "alwaysBlock",			Saber_ParseAlwaysBlock,			nullptr	},
-	{ "alwaysBlock2",			Saber_ParseAlwaysBlock2,		nullptr	},
-	{ "noManualDeactivate",		Saber_ParseNoManualDeactivate,	nullptr	},
-	{ "noManualDeactivate2",	Saber_ParseNoManualDeactivate2,	nullptr	},
-	{ "transitionDamage",		Saber_ParseTransitionDamage,	nullptr	},
-	{ "transitionDamage2",		Saber_ParseTransitionDamage2,	nullptr	},
-	{ "splashRadius",			Saber_ParseSplashRadius,		nullptr	},
-	{ "splashRadius2",			Saber_ParseSplashRadius2,		nullptr	},
-	{ "splashDamage",			Saber_ParseSplashDamage,		nullptr	},
-	{ "splashDamage2",			Saber_ParseSplashDamage2,		nullptr	},
-	{ "splashKnockback",		Saber_ParseSplashKnockback,		nullptr	},
-	{ "splashKnockback2",		Saber_ParseSplashKnockback2,	nullptr	},
-	{ "hitSound1",				Saber_ParseHitSound1,			nullptr	},
-	{ "hit2Sound1",				Saber_ParseHit2Sound1,			nullptr	},
-	{ "hitSound2",				Saber_ParseHitSound2,			nullptr	},
-	{ "hit2Sound2",				Saber_ParseHit2Sound2,			nullptr	},
-	{ "hitSound3",				Saber_ParseHitSound3,			nullptr	},
-	{ "hit2Sound3",				Saber_ParseHit2Sound3,			nullptr	},
-	{ "blockSound1",			Saber_ParseBlockSound1,			nullptr	},
-	{ "block2Sound1",			Saber_ParseBlock2Sound1,		nullptr	},
-	{ "blockSound2",			Saber_ParseBlockSound2,			nullptr	},
-	{ "block2Sound2",			Saber_ParseBlock2Sound2,		nullptr	},
-	{ "blockSound3",			Saber_ParseBlockSound3,			nullptr	},
-	{ "block2Sound3",			Saber_ParseBlock2Sound3,		nullptr	},
-	{ "bounceSound1",			Saber_ParseBounceSound1,		nullptr	},
-	{ "bounce2Sound1",			Saber_ParseBounce2Sound1,		nullptr	},
-	{ "bounceSound2",			Saber_ParseBounceSound2,		nullptr	},
-	{ "bounce2Sound2",			Saber_ParseBounce2Sound2,		nullptr	},
-	{ "bounceSound3",			Saber_ParseBounceSound3,		nullptr	},
-	{ "bounce2Sound3",			Saber_ParseBounce2Sound3,		nullptr	},
-	{ "blockEffect",			Saber_ParseBlockEffect,			nullptr	},
-	{ "blockEffect2",			Saber_ParseBlockEffect2,		nullptr	},
-	{ "hitPersonEffect",		Saber_ParseHitPersonEffect,		nullptr	},
-	{ "hitPersonEffect2",		Saber_ParseHitPersonEffect2,	nullptr	},
-	{ "hitOtherEffect",			Saber_ParseHitOtherEffect,		nullptr	},
-	{ "hitOtherEffect2",		Saber_ParseHitOtherEffect2,		nullptr	},
-	{ "bladeEffect",			Saber_ParseBladeEffect,			nullptr	},
-	{ "bladeEffect2",			Saber_ParseBladeEffect2,		nullptr	},
-	{ "noClashFlare",			Saber_ParseNoClashFlare,		nullptr	},
-	{ "noClashFlare2",			Saber_ParseNoClashFlare2,		nullptr	},
-	{ nullptr,						nullptr,							nullptr	}
+	{ "name",					Saber_ParseName,				NULL	},
+	{ "saberType",				Saber_ParseSaberType,			NULL	},
+	{ "saberModel",				Saber_ParseSaberModel,			NULL	},
+	{ "customSkin",				Saber_ParseCustomSkin,			NULL	},
+	{ "soundOn",				Saber_ParseSoundOn,				NULL	},
+	{ "soundLoop",				Saber_ParseSoundLoop,			NULL	},
+	{ "soundOff",				Saber_ParseSoundOff,			NULL	},
+	{ "numBlades",				Saber_ParseNumBlades,			NULL	},
+	{ "saberColor",				Saber_ParseSaberColor,			NULL	},
+	{ "saberColor2",			Saber_ParseSaberColor2,			NULL	},
+	{ "saberColor3",			Saber_ParseSaberColor3,			NULL	},
+	{ "saberColor4",			Saber_ParseSaberColor4,			NULL	},
+	{ "saberColor5",			Saber_ParseSaberColor5,			NULL	},
+	{ "saberColor6",			Saber_ParseSaberColor6,			NULL	},
+	{ "saberColor7",			Saber_ParseSaberColor7,			NULL	},
+	{ "saberLength",			Saber_ParseSaberLength,			NULL	},
+	{ "saberLength2",			Saber_ParseSaberLength2,		NULL	},
+	{ "saberLength3",			Saber_ParseSaberLength3,		NULL	},
+	{ "saberLength4",			Saber_ParseSaberLength4,		NULL	},
+	{ "saberLength5",			Saber_ParseSaberLength5,		NULL	},
+	{ "saberLength6",			Saber_ParseSaberLength6,		NULL	},
+	{ "saberLength7",			Saber_ParseSaberLength7,		NULL	},
+	{ "saberRadius",			Saber_ParseSaberRadius,			NULL	},
+	{ "saberRadius2",			Saber_ParseSaberRadius2,		NULL	},
+	{ "saberRadius3",			Saber_ParseSaberRadius3,		NULL	},
+	{ "saberRadius4",			Saber_ParseSaberRadius4,		NULL	},
+	{ "saberRadius5",			Saber_ParseSaberRadius5,		NULL	},
+	{ "saberRadius6",			Saber_ParseSaberRadius6,		NULL	},
+	{ "saberRadius7",			Saber_ParseSaberRadius7,		NULL	},
+	{ "saberStyle",				Saber_ParseSaberStyle,			NULL	},
+	{ "saberStyleLearned",		Saber_ParseSaberStyleLearned,	NULL	},
+	{ "saberStyleForbidden",	Saber_ParseSaberStyleForbidden,	NULL	},
+	{ "maxChain",				Saber_ParseMaxChain,			NULL	},
+	{ "lockable",				Saber_ParseLockable,			NULL	},
+	{ "throwable",				Saber_ParseThrowable,			NULL	},
+	{ "disarmable",				Saber_ParseDisarmable,			NULL	},
+	{ "blocking",				Saber_ParseBlocking,			NULL	},
+	{ "twoHanded",				Saber_ParseTwoHanded,			NULL	},
+	{ "forceRestrict",			Saber_ParseForceRestrict,		NULL	},
+	{ "lockBonus",				Saber_ParseLockBonus,			NULL	},
+	{ "parryBonus",				Saber_ParseParryBonus,			NULL	},
+	{ "breakParryBonus",		Saber_ParseBreakParryBonus,		NULL	},
+	{ "breakParryBonus2",		Saber_ParseBreakParryBonus2,	NULL	},
+	{ "disarmBonus",			Saber_ParseDisarmBonus,			NULL	},
+	{ "disarmBonus2",			Saber_ParseDisarmBonus2,		NULL	},
+	{ "singleBladeStyle",		Saber_ParseSingleBladeStyle,	NULL	},
+	{ "singleBladeThrowable",	Saber_ParseSingleBladeThrowable,NULL	},
+	{ "brokenSaber1",			Saber_ParseBrokenSaber1,		NULL	},
+	{ "brokenSaber2",			Saber_ParseBrokenSaber2,		NULL	},
+	{ "returnDamage",			Saber_ParseReturnDamage,		NULL	},
+	{ "spinSound",				Saber_ParseSpinSound,			NULL	},
+	{ "swingSound1",			Saber_ParseSwingSound1,			NULL	},
+	{ "swingSound2",			Saber_ParseSwingSound2,			NULL	},
+	{ "swingSound3",			Saber_ParseSwingSound3,			NULL	},
+	{ "fallSound1",				Saber_ParseFallSound1,			NULL	},
+	{ "fallSound2",				Saber_ParseFallSound2,			NULL	},
+	{ "fallSound3",				Saber_ParseFallSound3,			NULL	},
+	{ "moveSpeedScale",			Saber_ParseMoveSpeedScale,		NULL	},
+	{ "animSpeedScale",			Saber_ParseAnimSpeedScale,		NULL	},
+	{ "onInWater",				Saber_ParseOnInWater,			NULL	},
+	{ "bounceOnWalls",			Saber_ParseBounceOnWalls,		NULL	},
+	{ "boltToWrist",			Saber_ParseBoltToWrist,			NULL	},
+	{ "kataMove",				Saber_ParseKataMove,			NULL	},
+	{ "lungeAtkMove",			Saber_ParseLungeAtkMove,		NULL	},
+	{ "jumpAtkUpMove",			Saber_ParseJumpAtkUpMove,		NULL	},
+	{ "jumpAtkFwdMove",			Saber_ParseJumpAtkFwdMove,		NULL	},
+	{ "jumpAtkBackMove",		Saber_ParseJumpAtkBackMove,		NULL	},
+	{ "jumpAtkRightMove",		Saber_ParseJumpAtkRightMove,	NULL	},
+	{ "jumpAtkLeftMove",		Saber_ParseJumpAtkLeftMove,		NULL	},
+	{ "readyAnim",				Saber_ParseReadyAnim,			NULL	},
+	{ "drawAnim",				Saber_ParseDrawAnim,			NULL	},
+	{ "putawayAnim",			Saber_ParsePutawayAnim,			NULL	},
+	{ "tauntAnim",				Saber_ParseTauntAnim,			NULL	},
+	{ "bowAnim",				Saber_ParseBowAnim,				NULL	},
+	{ "meditateAnim",			Saber_ParseMeditateAnim,		NULL	},
+	{ "flourishAnim",			Saber_ParseFlourishAnim,		NULL	},
+	{ "gloatAnim",				Saber_ParseGloatAnim,			NULL	},
+	{ "noRollStab",				Saber_ParseNoRollStab,			NULL	},
+	{ "noPullAttack",			Saber_ParseNoPullAttack,		NULL	},
+	{ "noBackAttack",			Saber_ParseNoBackAttack,		NULL	},
+	{ "noStabDown",				Saber_ParseNoStabDown,			NULL	},
+	{ "noWallRuns",				Saber_ParseNoWallRuns,			NULL	},
+	{ "noWallFlips",			Saber_ParseNoWallFlips,			NULL	},
+	{ "noWallGrab",				Saber_ParseNoWallGrab,			NULL	},
+	{ "noRolls",				Saber_ParseNoRolls,				NULL	},
+	{ "noFlips",				Saber_ParseNoFlips,				NULL	},
+	{ "noCartwheels",			Saber_ParseNoCartwheels,		NULL	},
+	{ "noKicks",				Saber_ParseNoKicks,				NULL	},
+	{ "noMirrorAttacks",		Saber_ParseNoMirrorAttacks,		NULL	},
+	{ "notInMP",				Saber_ParseNotInMP,				NULL	},
+	{ "bladeStyle2Start",		Saber_ParseBladeStyle2Start,	NULL	},
+	{ "noWallMarks",			Saber_ParseNoWallMarks,			NULL	},
+	{ "noWallMarks2",			Saber_ParseNoWallMarks2,		NULL	},
+	{ "noDlight",				Saber_ParseNoDLight,			NULL	},
+	{ "noDlight2",				Saber_ParseNoDLight2,			NULL	},
+	{ "noBlade",				Saber_ParseNoBlade,				NULL	},
+	{ "noBlade2",				Saber_ParseNoBlade2,			NULL	},
+	{ "trailStyle",				Saber_ParseTrailStyle,			NULL	},
+	{ "trailStyle2",			Saber_ParseTrailStyle2,			NULL	},
+	{ "g2MarksShader",			Saber_ParseG2MarksShader,		NULL	},
+	{ "g2MarksShader2",			Saber_ParseG2MarksShader2,		NULL	},
+	{ "g2WeaponMarkShader",		Saber_ParseG2WeaponMarkShader,	NULL	},
+	{ "g2WeaponMarkShader2",	Saber_ParseG2WeaponMarkShader2,	NULL	},
+	{ "knockbackScale",			Saber_ParseKnockbackScale,		NULL	},
+	{ "knockbackScale2",		Saber_ParseKnockbackScale2,		NULL	},
+	{ "damageScale",			Saber_ParseDamageScale,			NULL	},
+	{ "damageScale2",			Saber_ParseDamageScale2,		NULL	},
+	{ "noDismemberment",		Saber_ParseNoDismemberment,		NULL	},
+	{ "noDismemberment2",		Saber_ParseNoDismemberment2,	NULL	},
+	{ "noIdleEffect",			Saber_ParseNoIdleEffect,		NULL	},
+	{ "noIdleEffect2",			Saber_ParseNoIdleEffect2,		NULL	},
+	{ "alwaysBlock",			Saber_ParseAlwaysBlock,			NULL	},
+	{ "alwaysBlock2",			Saber_ParseAlwaysBlock2,		NULL	},
+	{ "noManualDeactivate",		Saber_ParseNoManualDeactivate,	NULL	},
+	{ "noManualDeactivate2",	Saber_ParseNoManualDeactivate2,	NULL	},
+	{ "transitionDamage",		Saber_ParseTransitionDamage,	NULL	},
+	{ "transitionDamage2",		Saber_ParseTransitionDamage2,	NULL	},
+	{ "splashRadius",			Saber_ParseSplashRadius,		NULL	},
+	{ "splashRadius2",			Saber_ParseSplashRadius2,		NULL	},
+	{ "splashDamage",			Saber_ParseSplashDamage,		NULL	},
+	{ "splashDamage2",			Saber_ParseSplashDamage2,		NULL	},
+	{ "splashKnockback",		Saber_ParseSplashKnockback,		NULL	},
+	{ "splashKnockback2",		Saber_ParseSplashKnockback2,	NULL	},
+	{ "hitSound1",				Saber_ParseHitSound1,			NULL	},
+	{ "hit2Sound1",				Saber_ParseHit2Sound1,			NULL	},
+	{ "hitSound2",				Saber_ParseHitSound2,			NULL	},
+	{ "hit2Sound2",				Saber_ParseHit2Sound2,			NULL	},
+	{ "hitSound3",				Saber_ParseHitSound3,			NULL	},
+	{ "hit2Sound3",				Saber_ParseHit2Sound3,			NULL	},
+	{ "blockSound1",			Saber_ParseBlockSound1,			NULL	},
+	{ "block2Sound1",			Saber_ParseBlock2Sound1,		NULL	},
+	{ "blockSound2",			Saber_ParseBlockSound2,			NULL	},
+	{ "block2Sound2",			Saber_ParseBlock2Sound2,		NULL	},
+	{ "blockSound3",			Saber_ParseBlockSound3,			NULL	},
+	{ "block2Sound3",			Saber_ParseBlock2Sound3,		NULL	},
+	{ "bounceSound1",			Saber_ParseBounceSound1,		NULL	},
+	{ "bounce2Sound1",			Saber_ParseBounce2Sound1,		NULL	},
+	{ "bounceSound2",			Saber_ParseBounceSound2,		NULL	},
+	{ "bounce2Sound2",			Saber_ParseBounce2Sound2,		NULL	},
+	{ "bounceSound3",			Saber_ParseBounceSound3,		NULL	},
+	{ "bounce2Sound3",			Saber_ParseBounce2Sound3,		NULL	},
+	{ "blockEffect",			Saber_ParseBlockEffect,			NULL	},
+	{ "blockEffect2",			Saber_ParseBlockEffect2,		NULL	},
+	{ "hitPersonEffect",		Saber_ParseHitPersonEffect,		NULL	},
+	{ "hitPersonEffect2",		Saber_ParseHitPersonEffect2,	NULL	},
+	{ "hitOtherEffect",			Saber_ParseHitOtherEffect,		NULL	},
+	{ "hitOtherEffect2",		Saber_ParseHitOtherEffect2,		NULL	},
+	{ "bladeEffect",			Saber_ParseBladeEffect,			NULL	},
+	{ "bladeEffect2",			Saber_ParseBladeEffect2,		NULL	},
+	{ "noClashFlare",			Saber_ParseNoClashFlare,		NULL	},
+	{ "noClashFlare2",			Saber_ParseNoClashFlare2,		NULL	},
+	{ NULL,						NULL,							NULL	}
 };
 static keywordHash_t *saberParseKeywordHash[KEYWORDHASH_SIZE];
 static qboolean hashSetup = qfalse;
@@ -2174,7 +2174,7 @@ void WP_SaberSetColor( gentity_t *ent, int saberNum, int bladeNum, char *colorNa
 extern void WP_SetSaberEntModelSkin( gentity_t *ent, gentity_t *saberent );
 qboolean WP_BreakSaber( gentity_t *ent, const char *surfName, saberType_t saberType )
 {//Make sure there *is* one specified and not using dualSabers
-	if ( ent == nullptr || ent->client == nullptr )
+	if ( ent == NULL || ent->client == NULL )
 	{//invalid ent or client
 		return qfalse;
 	}

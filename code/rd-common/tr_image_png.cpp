@@ -37,10 +37,10 @@ void user_flush_data( png_structp png_ptr ) {
 
 int RE_SavePNG( const char *filename, byte *buf, size_t width, size_t height, int byteDepth ) {
 	fileHandle_t fp;
-	png_structp png_ptr = nullptr;
-	png_infop info_ptr = nullptr;
+	png_structp png_ptr = NULL;
+	png_infop info_ptr = NULL;
 	unsigned int x, y;
-	png_byte ** row_pointers = nullptr;
+	png_byte ** row_pointers = NULL;
 	/* "status" contains the return value of this function. At first
 	it is set to a value which means 'failure'. When the routine
 	has finished its work, it is set to a value which means
@@ -56,13 +56,13 @@ int RE_SavePNG( const char *filename, byte *buf, size_t width, size_t height, in
 		goto fopen_failed;
 	}
 
-	png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
-	if (png_ptr == nullptr) {
+	png_ptr = png_create_write_struct (PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	if (png_ptr == NULL) {
 		goto png_create_write_struct_failed;
 	}
 
 	info_ptr = png_create_info_struct (png_ptr);
-	if (info_ptr == nullptr) {
+	if (info_ptr == NULL) {
 		goto png_create_info_struct_failed;
 	}
 
@@ -103,7 +103,7 @@ int RE_SavePNG( const char *filename, byte *buf, size_t width, size_t height, in
 //	png_init_io (png_ptr, fp);
 	png_set_write_fn( png_ptr, (png_voidp)&fp, user_write_data, user_flush_data );
 	png_set_rows (png_ptr, info_ptr, row_pointers);
-	png_write_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, nullptr);
+	png_write_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
 
 	/* The routine has successfully written the file, so we set
 	"status" to a value which indicates success. */
@@ -139,26 +139,26 @@ bool IsPowerOfTwo ( int i ) { return (i & (i - 1)) == 0; }
 
 struct PNGFileReader
 {
-	PNGFileReader ( char *buf ) : buf(buf), offset(0), png_ptr(nullptr), info_ptr(nullptr) {}
+	PNGFileReader ( char *buf ) : buf(buf), offset(0), png_ptr(NULL), info_ptr(NULL) {}
 	~PNGFileReader()
 	{
 		ri.FS_FreeFile (buf);
 
-		if ( info_ptr != nullptr )
+		if ( info_ptr != NULL )
 		{
 			// Destroys both structs
 			png_destroy_info_struct (png_ptr, &info_ptr);
 		}
-		else if ( png_ptr != nullptr )
+		else if ( png_ptr != NULL )
 		{
-			png_destroy_read_struct (&png_ptr, nullptr, nullptr);
+			png_destroy_read_struct (&png_ptr, NULL, NULL);
 		}
 	}
 
 	int Read ( byte **data, int *width, int *height )
 	{
 		// Setup the pointers
-		*data = nullptr;
+		*data = NULL;
 		*width = 0;
 		*height = 0;
 
@@ -174,8 +174,8 @@ struct PNGFileReader
 			return 0;
 		}
 
-		png_ptr = png_create_read_struct (PNG_LIBPNG_VER_STRING, nullptr, png_print_error, png_print_warning);
-		if ( png_ptr == nullptr )
+		png_ptr = png_create_read_struct (PNG_LIBPNG_VER_STRING, NULL, png_print_error, png_print_warning);
+		if ( png_ptr == NULL )
 		{
 			ri.Printf (PRINT_ERROR, "Could not allocate enough memory to load the image.");
 			return 0;
@@ -194,7 +194,7 @@ struct PNGFileReader
 		png_set_read_fn (png_ptr, (png_voidp)this, &user_read_data);
 #ifdef PNG_HANDLE_AS_UNKNOWN_SUPPORTED
 		// This generic "ignore all, except required chunks" requires 1.6.0 or newer"
-		png_set_keep_unknown_chunks (png_ptr, PNG_HANDLE_CHUNK_NEVER, nullptr, -1);
+		png_set_keep_unknown_chunks (png_ptr, PNG_HANDLE_CHUNK_NEVER, NULL, -1);
 #endif
 		png_set_sig_bytes (png_ptr, SIGNATURE_LEN);
 		png_read_info (png_ptr, info_ptr);
@@ -204,7 +204,7 @@ struct PNGFileReader
 		int depth;
 		int colortype;
 
-		png_get_IHDR (png_ptr, info_ptr, &width_, &height_, &depth, &colortype, nullptr, nullptr, nullptr);
+		png_get_IHDR (png_ptr, info_ptr, &width_, &height_, &depth, &colortype, NULL, NULL, NULL);
 
 		// While modern OpenGL can handle non-PoT textures, it's faster to handle only PoT
 		// so that the graphics driver doesn't have to fiddle about with the texture when uploading.
@@ -241,7 +241,7 @@ struct PNGFileReader
 			return 0;
 		}
 
-		// Dynamic array of row pointers, with 'height' elements, initialized to nullptr.
+		// Dynamic array of row pointers, with 'height' elements, initialized to NULL.
 		byte **row_pointers = (byte **) R_Malloc (sizeof (byte *) * height_, TAG_TEMP_PNG, qfalse);
 		if ( !row_pointers )
 		{
@@ -268,7 +268,7 @@ struct PNGFileReader
 		png_read_image (png_ptr, row_pointers);
 
 		// Finish reading
-		png_read_end (png_ptr, nullptr);
+		png_read_end (png_ptr, NULL);
 
 		R_Free (row_pointers);
 
@@ -302,9 +302,9 @@ void user_read_data( png_structp png_ptr, png_bytep data, png_size_t length ) {
 // Loads a PNG image from file.
 void LoadPNG ( const char *filename, byte **data, int *width, int *height )
 {
-	char *buf = nullptr;
+	char *buf = NULL;
 	int len = ri.FS_ReadFile (filename, (void **)&buf);
-	if ( len < 0 || buf == nullptr )
+	if ( len < 0 || buf == NULL )
 	{
 		return;
 	}

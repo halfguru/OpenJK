@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __UI_PUBLIC_H__
+#define __UI_PUBLIC_H__
 
 
 #include "../client/keycodes.h"
@@ -262,3 +263,4 @@ typedef enum {
 	UI_CEIL
 } uiImport_t;
 
+#endif

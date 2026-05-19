@@ -1,7 +1,6 @@
 /** \file mikktspace/mikktspace.h
  *  \ingroup mikktspace
  */
-#pragma once
 /**
  *  Copyright (C) 2011 by Morten S. Mikkelsen
  *
@@ -22,6 +21,8 @@
  *  3. This notice may not be removed or altered from any source distribution.
  */
 
+#ifndef __MIKKTSPACE_H__
+#define __MIKKTSPACE_H__
 
 
 #ifdef __cplusplus
@@ -141,3 +142,4 @@ tbool genTangSpace(const SMikkTSpaceContext * pContext, const float fAngularThre
 }
 #endif
 
+#endif

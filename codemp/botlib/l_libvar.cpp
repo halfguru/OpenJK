@@ -39,7 +39,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #include "l_libvar.h"
 
 //list with library variables
-libvar_t *libvarlist = nullptr;
+libvar_t *libvarlist = NULL;
 
 //===========================================================================
 //
@@ -125,7 +125,7 @@ void LibVarDeAllocAll(void)
 		libvarlist = libvarlist->next;
 		LibVarDeAlloc(v);
 	} //end for
-	libvarlist = nullptr;
+	libvarlist = NULL;
 } //end of the function LibVarDeAllocAll
 //===========================================================================
 //
@@ -144,7 +144,7 @@ libvar_t *LibVarGet(char *var_name)
 			return v;
 		} //end if
 	} //end for
-	return nullptr;
+	return NULL;
 } //end of the function LibVarGet
 //===========================================================================
 //

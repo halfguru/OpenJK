@@ -92,7 +92,7 @@ void G_RunObject( gentity_t *ent )
 {
 	vec3_t		origin, oldOrg;
 	trace_t		tr;
-	gentity_t	*traceEnt = nullptr;
+	gentity_t	*traceEnt = NULL;
 
 	//FIXME: floaters need to stop floating up after a while, even if gravity stays negative?
 	if ( ent->s.pos.trType == TR_STATIONARY )//g_gravity->value <= 0 &&
@@ -321,9 +321,9 @@ gentity_t *G_CreateObject ( gentity_t *owner, vec3_t origin, vec3_t angles, int 
 
 	object = G_Spawn();
 
-	if ( object == nullptr )
+	if ( object == NULL )
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	object->classname = "object";//?

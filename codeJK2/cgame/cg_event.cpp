@@ -292,7 +292,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		if (cg_footsteps.integer) {
 			if ( cent->gent && cent->gent->s.number == 0 && !cg.renderingThirdPerson )//!cg_thirdPerson.integer )
 			{//Everyone else has keyframed footsteps in animsounds.cfg
-				cgi_S_StartSound (nullptr, es->number, CHAN_BODY,
+				cgi_S_StartSound (NULL, es->number, CHAN_BODY,
 					cgs.media.footsteps[ FOOTSTEP_NORMAL ][rand()&3] );
 			}
 		}
@@ -303,28 +303,28 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		{
 			if ( cent->gent && cent->gent->s.number == 0 && !cg.renderingThirdPerson )//!cg_thirdPerson.integer )
 			{//Everyone else has keyframed footsteps in animsounds.cfg
-				cgi_S_StartSound (nullptr, es->number, CHAN_BODY, cgs.media.footsteps[ FOOTSTEP_METAL ][rand()&3] );
+				cgi_S_StartSound (NULL, es->number, CHAN_BODY, cgs.media.footsteps[ FOOTSTEP_METAL ][rand()&3] );
 			}
 		}
 		break;
 	case EV_FOOTSPLASH:
 		DEBUGNAME("EV_FOOTSPLASH");
 		if (cg_footsteps.integer) {
-			cgi_S_StartSound (nullptr, es->number, CHAN_BODY,
+			cgi_S_StartSound (NULL, es->number, CHAN_BODY,
 				cgs.media.footsteps[ FOOTSTEP_SPLASH ][rand()&3] );
 		}
 		break;
 	case EV_FOOTWADE:
 		DEBUGNAME("EV_FOOTWADE");
 		if (cg_footsteps.integer) {
-			cgi_S_StartSound (nullptr, es->number, CHAN_BODY,
+			cgi_S_StartSound (NULL, es->number, CHAN_BODY,
 				cgs.media.footsteps[ FOOTSTEP_WADE ][rand()&3] );
 		}
 		break;
 	case EV_SWIM:
 		DEBUGNAME("EV_SWIM");
 		if (cg_footsteps.integer) {
-			cgi_S_StartSound (nullptr, es->number, CHAN_BODY,
+			cgi_S_StartSound (NULL, es->number, CHAN_BODY,
 				cgs.media.footsteps[ FOOTSTEP_SWIM ][rand()&3] );
 		}
 		break;
@@ -332,7 +332,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_FALL_SHORT:
 		DEBUGNAME("EV_FALL_SHORT");
-		cgi_S_StartSound( nullptr, es->number, CHAN_AUTO, cgs.media.landSound  );
+		cgi_S_StartSound( NULL, es->number, CHAN_AUTO, cgs.media.landSound  );
 		if ( clientNum == cg.predicted_player_state.clientNum ) {
 			// smooth landing z changes
 			cg.landChange = -8;
@@ -345,15 +345,15 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		// use normal pain sound -
 		if ( g_entities[es->number].health <= 0 )
 		{//dead
-			cgi_S_StartSound( nullptr, es->number, CHAN_AUTO, cgs.media.landSound  );
+			cgi_S_StartSound( NULL, es->number, CHAN_AUTO, cgs.media.landSound  );
 		}
 		else if ( g_entities[es->number].s.weapon == WP_SABER )
 		{//jedi
-			CG_TryPlayCustomSound( nullptr, es->number, CHAN_BODY, "*land1.wav", CS_BASIC );
+			CG_TryPlayCustomSound( NULL, es->number, CHAN_BODY, "*land1.wav", CS_BASIC );
 		}
 		else
 		{//still alive
-			CG_TryPlayCustomSound( nullptr, es->number, CHAN_BODY, "*pain100.wav", CS_BASIC );
+			CG_TryPlayCustomSound( NULL, es->number, CHAN_BODY, "*pain100.wav", CS_BASIC );
 		}
 		if ( clientNum == cg.predicted_player_state.clientNum ) {
 			// smooth landing z changes
@@ -364,8 +364,8 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		break;
 	case EV_FALL_FAR:
 		DEBUGNAME("EV_FALL_FAR");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_BODY, "*land1.wav", CS_BASIC );
-		cgi_S_StartSound( nullptr, es->number, CHAN_AUTO, cgs.media.landSound  );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_BODY, "*land1.wav", CS_BASIC );
+		cgi_S_StartSound( NULL, es->number, CHAN_AUTO, cgs.media.landSound  );
 		cent->pe.painTime = cg.time;	// don't play a pain sound right after this
 		if ( clientNum == cg.predicted_player_state.clientNum ) {
 			// smooth landing z changes
@@ -413,45 +413,45 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_JUMP:
 		DEBUGNAME("EV_JUMP");
-		CG_TryPlayCustomSound(nullptr, es->number, CHAN_AUTO, "*jump1.wav", CS_BASIC );//CHAN_VOICE
+		CG_TryPlayCustomSound(NULL, es->number, CHAN_AUTO, "*jump1.wav", CS_BASIC );//CHAN_VOICE
 		break;
 
 	case EV_ROLL:
 		DEBUGNAME("EV_ROLL");
-		CG_TryPlayCustomSound(nullptr, es->number, CHAN_AUTO, "*jump1.wav", CS_BASIC );//CHAN_VOICE
-		cgi_S_StartSound( nullptr, es->number, CHAN_BODY, cgs.media.rollSound  );//CHAN_AUTO
+		CG_TryPlayCustomSound(NULL, es->number, CHAN_AUTO, "*jump1.wav", CS_BASIC );//CHAN_VOICE
+		cgi_S_StartSound( NULL, es->number, CHAN_BODY, cgs.media.rollSound  );//CHAN_AUTO
 		//FIXME: need some sort of body impact on ground sound and maybe kick up some dust?
 		break;
 
 	case EV_WATER_TOUCH:
 		DEBUGNAME("EV_WATER_TOUCH");
-		cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgs.media.watrInSound );
+		cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgs.media.watrInSound );
 		break;
 
 	case EV_WATER_LEAVE:
 		DEBUGNAME("EV_WATER_LEAVE");
-		cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgs.media.watrOutSound );
+		cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgs.media.watrOutSound );
 		break;
 
 	case EV_WATER_UNDER:
 		DEBUGNAME("EV_WATER_UNDER");
-		cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgs.media.watrUnSound );
+		cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgs.media.watrUnSound );
 		break;
 
 	case EV_WATER_CLEAR:
 		DEBUGNAME("EV_WATER_CLEAR");
-		CG_TryPlayCustomSound(nullptr, es->number, CHAN_AUTO, "*gasp.wav", CS_BASIC );
+		CG_TryPlayCustomSound(NULL, es->number, CHAN_AUTO, "*gasp.wav", CS_BASIC );
 		break;
 
 	case EV_WATER_GURP1:
 	case EV_WATER_GURP2:
 		DEBUGNAME("EV_WATER_GURPx");
-		CG_TryPlayCustomSound(nullptr, es->number, CHAN_AUTO, va("*gurp%d.wav",event-EV_WATER_GURP1+1), CS_BASIC );
+		CG_TryPlayCustomSound(NULL, es->number, CHAN_AUTO, va("*gurp%d.wav",event-EV_WATER_GURP1+1), CS_BASIC );
 		break;
 
 	case EV_WATER_DROWN:
 		DEBUGNAME("EV_WATER_DROWN");
-		CG_TryPlayCustomSound(nullptr, es->number, CHAN_AUTO, "*drown.wav", CS_BASIC );
+		CG_TryPlayCustomSound(NULL, es->number, CHAN_AUTO, "*drown.wav", CS_BASIC );
 		break;
 
 	case EV_ITEM_PICKUP:
@@ -473,7 +473,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 				break;
 			}
 			item = &bg_itemlist[ index ];
-			cgi_S_StartSound (nullptr, es->number, CHAN_AUTO,	cgi_S_RegisterSound( item->pickup_sound ) );
+			cgi_S_StartSound (NULL, es->number, CHAN_AUTO,	cgi_S_RegisterSound( item->pickup_sound ) );
 
 			// show icon and name on status bar
 			if ( es->number == cg.snap->ps.clientNum ) {
@@ -487,7 +487,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	//
 	case EV_NOAMMO:
 		DEBUGNAME("EV_NOAMMO");
-		//cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgs.media.noAmmoSound );
+		//cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgs.media.noAmmoSound );
 		if ( es->number == cg.snap->ps.clientNum ) {
 			CG_OutOfAmmoChange();
 		}
@@ -499,7 +499,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 			/*
 			if ( !cent->gent || !cent->gent->client || (cent->currentState.saberInFlight == qfalse && cent->currentState.saberActive == qtrue) )
 			{
-				cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgi_S_RegisterSound( "sound/weapons/saber/saberoffquick.wav" ) );
+				cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgi_S_RegisterSound( "sound/weapons/saber/saberoffquick.wav" ) );
 			}
 			*/
 			if ( cent->gent && cent->gent->client )
@@ -515,12 +515,12 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		if ( weaponData[cg.weaponSelect].selectSnd[0] )
 		{
 			// custom select sound
-			cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgi_S_RegisterSound( weaponData[cg.weaponSelect].selectSnd ));
+			cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgi_S_RegisterSound( weaponData[cg.weaponSelect].selectSnd ));
 		}
 		else
 		{
 			// generic sound
-			cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgs.media.selectSound );
+			cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgs.media.selectSound );
 		}
 		break;
 
@@ -564,7 +564,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 			cg.powerupActive = PW_BATTLESUIT;
 			cg.powerupTime = cg.time;
 		}
-		//cgi_S_StartSound (nullptr, es->number, CHAN_ITEM, cgs.media.invulnoProtectSound );
+		//cgi_S_StartSound (NULL, es->number, CHAN_ITEM, cgs.media.invulnoProtectSound );
 		break;
 
 	//=================================================================
@@ -603,9 +603,9 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 				break;
 /*			case PW_SHOCKED:// arc welder
 				disintEffect = EF_DISINT_1;//ef_
-				disintSound1 = nullptr;//with scream
-				disintSound2 = nullptr;//no scream
-				disintSound3 = nullptr;//with inhuman scream
+				disintSound1 = NULL;//with scream
+				disintSound2 = NULL;//no scream
+				disintSound3 = NULL;//with inhuman scream
 				disintLength = 4000;
 				break;
 */
@@ -630,17 +630,17 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 							npc_class != CLASS_R2D2 && npc_class != CLASS_R5D2 &&
 							npc_class != CLASS_SEEKER && npc_class != CLASS_SENTRY)
 						{//Only the humanoids scream
-							cgi_S_StartSound ( nullptr, cent->gent->owner->s.number, CHAN_VOICE, disintSound1 );
+							cgi_S_StartSound ( NULL, cent->gent->owner->s.number, CHAN_VOICE, disintSound1 );
 						}
 						// no more forge or 8472
 					//	else if ( cent->gent->owner->client->playerTeam == TEAM_FORGE ||
 					//			cent->gent->owner->client->playerTeam == TEAM_8472 )
 					//	{
-					//		cgi_S_StartSound ( nullptr, cent->gent->s.number, CHAN_VOICE, disintSound3 );
+					//		cgi_S_StartSound ( NULL, cent->gent->s.number, CHAN_VOICE, disintSound3 );
 					//	}
 						else
 						{
-							cgi_S_StartSound ( nullptr, cent->gent->s.number, CHAN_AUTO, disintSound2 );
+							cgi_S_StartSound ( NULL, cent->gent->s.number, CHAN_AUTO, disintSound2 );
 						}
 					}
 					cent->gent->owner->s.powerups |= ( 1 << disintPW );
@@ -688,29 +688,29 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_BMODEL_SOUND:
 		DEBUGNAME("EV_BMODEL_SOUND");
-		cgi_S_StartSound( nullptr, es->number, CHAN_AUTO, es->eventParm );
+		cgi_S_StartSound( NULL, es->number, CHAN_AUTO, es->eventParm );
 		break;
 
 	case EV_GENERAL_SOUND:
 		DEBUGNAME("EV_GENERAL_SOUND");
 		if ( cgs.sound_precache[ es->eventParm ] )
 		{
-			cgi_S_StartSound (nullptr, es->number, CHAN_AUTO, cgs.sound_precache[ es->eventParm ] );
+			cgi_S_StartSound (NULL, es->number, CHAN_AUTO, cgs.sound_precache[ es->eventParm ] );
 		}
 		else
 		{
 			s = CG_ConfigString( CS_SOUNDS + es->eventParm );
-			CG_TryPlayCustomSound(nullptr, es->number, CHAN_AUTO, s, CS_BASIC );
+			CG_TryPlayCustomSound(NULL, es->number, CHAN_AUTO, s, CS_BASIC );
 		}
 		break;
 
 	case EV_GLOBAL_SOUND:	// play from the player's head so it never diminishes
 		DEBUGNAME("EV_GLOBAL_SOUND");
 		if ( cgs.sound_precache[ es->eventParm ] ) {
-			cgi_S_StartSound (nullptr, cg.snap->ps.clientNum, CHAN_AUTO, cgs.sound_precache[ es->eventParm ] );
+			cgi_S_StartSound (NULL, cg.snap->ps.clientNum, CHAN_AUTO, cgs.sound_precache[ es->eventParm ] );
 		} else {
 			s = CG_ConfigString( CS_SOUNDS + es->eventParm );
-			CG_TryPlayCustomSound( nullptr, cg.snap->ps.clientNum, CHAN_AUTO, s, CS_BASIC );
+			CG_TryPlayCustomSound( NULL, cg.snap->ps.clientNum, CHAN_AUTO, s, CS_BASIC );
 		}
 		break;
 
@@ -748,7 +748,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		} else {
 			snd = "*pain25.wav";
 		}
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, snd, CS_BASIC );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, snd, CS_BASIC );
 
 		// save pain time for programitic twitch animation
 		cent->pe.painTime = cg.time;
@@ -766,7 +766,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 			return;
 		}
 		*/
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*death%i.wav", event - EV_DEATH1 + 1), CS_BASIC );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*death%i.wav", event - EV_DEATH1 + 1), CS_BASIC );
 		break;
 
 	// Called by the FxRunner entity...usually for Environmental FX Events
@@ -819,7 +819,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 				}
 				else
 				{
-					s2 = nullptr;
+					s2 = NULL;
 				}
 
 				CG_DrawTargetBeam( cent->lerpOrigin, cent->gent->s.origin2, cent->gent->pos1, s, s2 );
@@ -836,45 +836,45 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	case EV_ANGER2:
 	case EV_ANGER3:
 		DEBUGNAME("EV_ANGERx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*anger%i.wav", event - EV_ANGER1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*anger%i.wav", event - EV_ANGER1 + 1), CS_COMBAT );
 		break;
 
 	case EV_VICTORY1:	//Say when killed an enemy
 	case EV_VICTORY2:
 	case EV_VICTORY3:
 		DEBUGNAME("EV_VICTORYx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*victory%i.wav", event - EV_VICTORY1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*victory%i.wav", event - EV_VICTORY1 + 1), CS_COMBAT );
 		break;
 
 	case EV_CONFUSE1:	//Say when confused
 	case EV_CONFUSE2:
 	case EV_CONFUSE3:
 		DEBUGNAME("EV_CONFUSEDx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*confuse%i.wav", event - EV_CONFUSE1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*confuse%i.wav", event - EV_CONFUSE1 + 1), CS_COMBAT );
 		break;
 
 	case EV_PUSHED1:	//Say when pushed
 	case EV_PUSHED2:
 	case EV_PUSHED3:
 		DEBUGNAME("EV_PUSHEDx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*pushed%i.wav", event - EV_PUSHED1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*pushed%i.wav", event - EV_PUSHED1 + 1), CS_COMBAT );
 		break;
 
 	case EV_CHOKE1:	//Say when choking
 	case EV_CHOKE2:
 	case EV_CHOKE3:
 		DEBUGNAME("EV_CHOKEx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*choke%i.wav", event - EV_CHOKE1 + 1), CS_COMBAT );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*choke%i.wav", event - EV_CHOKE1 + 1), CS_COMBAT );
 		break;
 
 	case EV_FFWARN:	//Warn ally to stop shooting you
 		DEBUGNAME("EV_FFWARN");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, "*ffwarn.wav", CS_COMBAT );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, "*ffwarn.wav", CS_COMBAT );
 		break;
 
 	case EV_FFTURN:	//Turn on ally after being shot by them
 		DEBUGNAME("EV_FFTURN");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, "*ffturn.wav", CS_COMBAT );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, "*ffturn.wav", CS_COMBAT );
 		break;
 
 	//extra sounds for ST
@@ -882,7 +882,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	case EV_CHASE2:
 	case EV_CHASE3:
 		DEBUGNAME("EV_CHASEx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*chase%i.wav", event - EV_CHASE1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*chase%i.wav", event - EV_CHASE1 + 1), CS_EXTRA );
 		break;
 	case EV_COVER1:
 	case EV_COVER2:
@@ -890,7 +890,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	case EV_COVER4:
 	case EV_COVER5:
 		DEBUGNAME("EV_COVERx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*cover%i.wav", event - EV_COVER1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*cover%i.wav", event - EV_COVER1 + 1), CS_EXTRA );
 		break;
 	case EV_DETECTED1:
 	case EV_DETECTED2:
@@ -898,46 +898,46 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	case EV_DETECTED4:
 	case EV_DETECTED5:
 		DEBUGNAME("EV_DETECTEDx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*detected%i.wav", event - EV_DETECTED1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*detected%i.wav", event - EV_DETECTED1 + 1), CS_EXTRA );
 		break;
 	case EV_GIVEUP1:
 	case EV_GIVEUP2:
 	case EV_GIVEUP3:
 	case EV_GIVEUP4:
 		DEBUGNAME("EV_GIVEUPx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*giveup%i.wav", event - EV_GIVEUP1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*giveup%i.wav", event - EV_GIVEUP1 + 1), CS_EXTRA );
 		break;
 	case EV_LOOK1:
 	case EV_LOOK2:
 		DEBUGNAME("EV_LOOKx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*look%i.wav", event - EV_LOOK1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*look%i.wav", event - EV_LOOK1 + 1), CS_EXTRA );
 		break;
 	case EV_LOST1:
 		DEBUGNAME("EV_LOST1");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, "*lost1.wav", CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, "*lost1.wav", CS_EXTRA );
 		break;
 	case EV_OUTFLANK1:
 	case EV_OUTFLANK2:
 		DEBUGNAME("EV_OUTFLANKx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*outflank%i.wav", event - EV_OUTFLANK1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*outflank%i.wav", event - EV_OUTFLANK1 + 1), CS_EXTRA );
 		break;
 	case EV_ESCAPING1:
 	case EV_ESCAPING2:
 	case EV_ESCAPING3:
 		DEBUGNAME("EV_ESCAPINGx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*escaping%i.wav", event - EV_ESCAPING1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*escaping%i.wav", event - EV_ESCAPING1 + 1), CS_EXTRA );
 		break;
 	case EV_SIGHT1:
 	case EV_SIGHT2:
 	case EV_SIGHT3:
 		DEBUGNAME("EV_SIGHTx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*sight%i.wav", event - EV_SIGHT1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*sight%i.wav", event - EV_SIGHT1 + 1), CS_EXTRA );
 		break;
 	case EV_SOUND1:
 	case EV_SOUND2:
 	case EV_SOUND3:
 		DEBUGNAME("EV_SOUNDx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*sound%i.wav", event - EV_SOUND1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*sound%i.wav", event - EV_SOUND1 + 1), CS_EXTRA );
 		break;
 	case EV_SUSPICIOUS1:
 	case EV_SUSPICIOUS2:
@@ -945,54 +945,54 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 	case EV_SUSPICIOUS4:
 	case EV_SUSPICIOUS5:
 		DEBUGNAME("EV_SUSPICIOUSx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*suspicious%i.wav", event - EV_SUSPICIOUS1 + 1), CS_EXTRA );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*suspicious%i.wav", event - EV_SUSPICIOUS1 + 1), CS_EXTRA );
 		break;
 	//extra sounds for Jedi
 	case EV_COMBAT1:
 	case EV_COMBAT2:
 	case EV_COMBAT3:
 		DEBUGNAME("EV_COMBATx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*combat%i.wav", event - EV_COMBAT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*combat%i.wav", event - EV_COMBAT1 + 1), CS_JEDI );
 		break;
 	case EV_JDETECTED1:
 	case EV_JDETECTED2:
 	case EV_JDETECTED3:
 		DEBUGNAME("EV_JDETECTEDx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*jdetected%i.wav", event - EV_JDETECTED1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*jdetected%i.wav", event - EV_JDETECTED1 + 1), CS_JEDI );
 		break;
 	case EV_TAUNT1:
 	case EV_TAUNT2:
 	case EV_TAUNT3:
 		DEBUGNAME("EV_TAUNTx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*taunt%i.wav", event - EV_TAUNT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*taunt%i.wav", event - EV_TAUNT1 + 1), CS_JEDI );
 		break;
 	case EV_JCHASE1:
 	case EV_JCHASE2:
 	case EV_JCHASE3:
 		DEBUGNAME("EV_JCHASEx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*jchase%i.wav", event - EV_JCHASE1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*jchase%i.wav", event - EV_JCHASE1 + 1), CS_JEDI );
 		break;
 	case EV_JLOST1:
 	case EV_JLOST2:
 	case EV_JLOST3:
 		DEBUGNAME("EV_JLOSTx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*jlost%i.wav", event - EV_JLOST1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*jlost%i.wav", event - EV_JLOST1 + 1), CS_JEDI );
 		break;
 	case EV_DEFLECT1:
 	case EV_DEFLECT2:
 	case EV_DEFLECT3:
 		DEBUGNAME("EV_DEFLECTx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*deflect%i.wav", event - EV_DEFLECT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*deflect%i.wav", event - EV_DEFLECT1 + 1), CS_JEDI );
 		break;
 	case EV_GLOAT1:
 	case EV_GLOAT2:
 	case EV_GLOAT3:
 		DEBUGNAME("EV_GLOATx");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, va("*gloat%i.wav", event - EV_GLOAT1 + 1), CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*gloat%i.wav", event - EV_GLOAT1 + 1), CS_JEDI );
 		break;
 	case EV_PUSHFAIL:
 		DEBUGNAME("EV_PUSHFAIL");
-		CG_TryPlayCustomSound( nullptr, es->number, CHAN_VOICE, "*pushfail.wav", CS_JEDI );
+		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, "*pushfail.wav", CS_JEDI );
 		break;
 
 	case EV_USE_FORCE:

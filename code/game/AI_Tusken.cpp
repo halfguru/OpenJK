@@ -106,7 +106,7 @@ void NPC_Tusken_PlayConfusionSound( gentity_t *self )
 	self->NPC->tempBehavior = BS_DEFAULT;
 
 	//self->NPC->behaviorState = BS_PATROL;
-	G_ClearEnemy( self );//FIXME: or just self->enemy = nullptr;?
+	G_ClearEnemy( self );//FIXME: or just self->enemy = NULL;?
 
 	self->NPC->investigateCount = 0;
 }
@@ -142,7 +142,7 @@ ST_HoldPosition
 static void Tusken_HoldPosition( void )
 {
 	NPC_FreeCombatPoint( NPCInfo->combatPoint, qtrue );
-	NPCInfo->goalEntity = nullptr;
+	NPCInfo->goalEntity = NULL;
 }
 
 /*
@@ -432,7 +432,7 @@ void Tusken_StaffTrace( void )
 			gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->weaponModel[0],
 						boltIndex,
 						&boltMatrix, angles, NPC->currentOrigin, time,
-						nullptr, NPC->s.modelScale );
+						NULL, NPC->s.modelScale );
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, base );
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, NEGATIVE_Y, dir );
 			VectorMA( base, -20, dir, base );
@@ -486,9 +486,9 @@ qboolean G_TuskenAttackAnimDamage( gentity_t *self )
 					&current,
 					&start,
 					&end,
-					nullptr,
-					nullptr,
-					nullptr))
+					NULL,
+					NULL,
+					NULL))
 		{
  			float percentComplete = (current-start)/(end-start);
 			//gi.Printf("%f\n", percentComplete);

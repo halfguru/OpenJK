@@ -239,10 +239,10 @@ static datpadmovedata_t datapadMoveData[MD_MOVE_TITLE_MAX][MAX_MOVES] =
 { "@MENUS_JUMPUP_FROM_KNOCKDOWN",		"@MENUS_JUMPUP_FROM_KNOCKDOWN_DESC","BOTH_KNOCKDOWN3",				MDS_NONE },
 { "@MENUS_JUMPKICK_FROM_KNOCKDOWN",	"@MENUS_JUMPKICK_FROM_KNOCKDOWN_DESC","BOTH_KNOCKDOWN2",			MDS_NONE },
 { "@MENUS_ROLL_FROM_KNOCKDOWN",		"@MENUS_ROLL_FROM_KNOCKDOWN_DESC",	"BOTH_KNOCKDOWN1",				MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
 },
 
 {
@@ -254,15 +254,15 @@ static datpadmovedata_t datapadMoveData[MD_MOVE_TITLE_MAX][MAX_MOVES] =
 { "@MENUS_ATTACK_ENEMYONGROUND",		"@MENUS_ATTACK_ENEMYONGROUND_DESC", "BOTH_STABDOWN",				MDS_FORCE_JUMP },
 { "@MENUS_CARTWHEEL",					"@MENUS_CARTWHEEL_DESC",			"BOTH_ARIAL_RIGHT",				MDS_FORCE_JUMP },
 { "@MENUS_BOTH_ROLL_STAB",			"@MENUS_BOTH_ROLL_STAB2_DESC",		"BOTH_ROLL_STAB",				MDS_SABER },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
 },
 
 {
@@ -274,15 +274,15 @@ static datpadmovedata_t datapadMoveData[MD_MOVE_TITLE_MAX][MAX_MOVES] =
 { "@MENUS_ATTACK_ENEMYONGROUND",		"@MENUS_ATTACK_ENEMYONGROUND_DESC", "BOTH_STABDOWN",				MDS_FORCE_JUMP },
 { "@MENUS_CARTWHEEL",					"@MENUS_CARTWHEEL_DESC",			"BOTH_ARIAL_RIGHT",				MDS_FORCE_JUMP },
 { "@MENUS_BOTH_ROLL_STAB",			"@MENUS_BOTH_ROLL_STAB2_DESC",		"BOTH_ROLL_STAB",				MDS_SABER },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
 },
 
 {
@@ -294,15 +294,15 @@ static datpadmovedata_t datapadMoveData[MD_MOVE_TITLE_MAX][MAX_MOVES] =
 { "@MENUS_ATTACK_ENEMYONGROUND",		"@MENUS_ATTACK_ENEMYONGROUND_DESC", "BOTH_STABDOWN",				MDS_FORCE_JUMP },
 { "@MENUS_CARTWHEEL",					"@MENUS_CARTWHEEL_DESC",			"BOTH_ARIAL_RIGHT",				MDS_FORCE_JUMP },
 { "@MENUS_BOTH_ROLL_STAB",			"@MENUS_BOTH_ROLL_STAB2_DESC",		"BOTH_ROLL_STAB",				MDS_SABER },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
 },
 
 {
@@ -316,13 +316,13 @@ static datpadmovedata_t datapadMoveData[MD_MOVE_TITLE_MAX][MAX_MOVES] =
 { "@MENUS_DUAL_STAB_LEFT_RIGHT",		"@MENUS_DUAL_STAB_LEFT_RIGHT_DESC", "BOTH_A6_LR",					MDS_SABER },
 { "@MENUS_CARTWHEEL",					"@MENUS_CARTWHEEL_DESC",			"BOTH_ARIAL_RIGHT",				MDS_FORCE_JUMP },
 { "@MENUS_BOTH_ROLL_STAB",			"@MENUS_BOTH_ROLL_STAB_DESC",		"BOTH_ROLL_STAB",				MDS_SABER },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
 },
 
 {
@@ -339,10 +339,10 @@ static datpadmovedata_t datapadMoveData[MD_MOVE_TITLE_MAX][MAX_MOVES] =
 { "@MENUS_FLIP_KICK",					"@MENUS_FLIP_KICK_DESC",			"BOTH_A7_KICK_BF",				MDS_FORCE_JUMP },
 { "@MENUS_BUTTERFLY_ATTACK",			"@MENUS_BUTTERFLY_ATTACK_DESC",		"BOTH_BUTTERFLY_FR1",			MDS_SABER },
 { "@MENUS_BOTH_ROLL_STAB",			"@MENUS_BOTH_ROLL_STAB2_DESC",		"BOTH_ROLL_STAB",				MDS_SABER },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
-{ nullptr, nullptr, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
+{ NULL, NULL, 0,	MDS_NONE },
 }
 };
 
@@ -441,31 +441,31 @@ static void UI_UpdateScreenshot( void )
 
 static cvarTable_t cvarTable[] =
 {
-	{ &ui_menuFiles,			"ui_menuFiles",			"ui/menus.txt", nullptr, CVAR_ARCHIVE },
+	{ &ui_menuFiles,			"ui_menuFiles",			"ui/menus.txt", NULL, CVAR_ARCHIVE },
 #ifdef JK2_MODE
-	{ &ui_hudFiles,				"cg_hudFiles",			"ui/jk2hud.txt", nullptr, CVAR_ARCHIVE},
+	{ &ui_hudFiles,				"cg_hudFiles",			"ui/jk2hud.txt", NULL, CVAR_ARCHIVE},
 #else
-	{ &ui_hudFiles,				"cg_hudFiles",			"ui/jahud.txt", nullptr, CVAR_ARCHIVE},
+	{ &ui_hudFiles,				"cg_hudFiles",			"ui/jahud.txt", NULL, CVAR_ARCHIVE},
 #endif
 
-	{ &ui_char_anim,			"ui_char_anim",			"BOTH_WALK1", nullptr, 0},
+	{ &ui_char_anim,			"ui_char_anim",			"BOTH_WALK1", NULL, 0},
 
-	{ &ui_char_model,			"ui_char_model",		"", nullptr, 0},	//these are filled in by the "g_*" versions on load
-	{ &ui_char_skin_head,		"ui_char_skin_head",	"", nullptr, 0},	//the "g_*" versions are initialized in UI_Init, ui_atoms.cpp
-	{ &ui_char_skin_torso,		"ui_char_skin_torso",	"", nullptr, 0},
-	{ &ui_char_skin_legs,		"ui_char_skin_legs",	"", nullptr, 0},
+	{ &ui_char_model,			"ui_char_model",		"", NULL, 0},	//these are filled in by the "g_*" versions on load
+	{ &ui_char_skin_head,		"ui_char_skin_head",	"", NULL, 0},	//the "g_*" versions are initialized in UI_Init, ui_atoms.cpp
+	{ &ui_char_skin_torso,		"ui_char_skin_torso",	"", NULL, 0},
+	{ &ui_char_skin_legs,		"ui_char_skin_legs",	"", NULL, 0},
 
-	{ &ui_saber_type,			"ui_saber_type",		"", nullptr, 0},
-	{ &ui_saber,				"ui_saber",				"", nullptr, 0},
-	{ &ui_saber2,				"ui_saber2",			"", nullptr, 0},
-	{ &ui_saber_color,			"ui_saber_color",		"", nullptr, 0},
-	{ &ui_saber2_color,			"ui_saber2_color",		"", nullptr, 0},
+	{ &ui_saber_type,			"ui_saber_type",		"", NULL, 0},
+	{ &ui_saber,				"ui_saber",				"", NULL, 0},
+	{ &ui_saber2,				"ui_saber2",			"", NULL, 0},
+	{ &ui_saber_color,			"ui_saber_color",		"", NULL, 0},
+	{ &ui_saber2_color,			"ui_saber2_color",		"", NULL, 0},
 
-	{ &ui_char_color_red,		"ui_char_color_red",	"", nullptr, 0},
-	{ &ui_char_color_green,		"ui_char_color_green",	"", nullptr, 0},
-	{ &ui_char_color_blue,		"ui_char_color_blue",	"", nullptr, 0},
+	{ &ui_char_color_red,		"ui_char_color_red",	"", NULL, 0},
+	{ &ui_char_color_green,		"ui_char_color_green",	"", NULL, 0},
+	{ &ui_char_color_blue,		"ui_char_color_blue",	"", NULL, 0},
 
-	{ &ui_PrecacheModels,		"ui_PrecacheModels",	"1", nullptr, CVAR_ARCHIVE},
+	{ &ui_PrecacheModels,		"ui_PrecacheModels",	"1", NULL, CVAR_ARCHIVE},
 
 	{ &ui_screenshotType,		"ui_screenshotType",	"jpg", UI_UpdateScreenshot, CVAR_ARCHIVE }
 };
@@ -536,7 +536,7 @@ void _UI_Refresh( int realtime )
 	}
 
 	// draw cursor
-	UI_SetColor( nullptr );
+	UI_SetColor( NULL );
 	if (Menu_Count() > 0)
 	{
 		if (uiInfo.uiDC.cursorShow == qtrue)
@@ -709,7 +709,7 @@ const char *UI_FeederItemText(float feederID, int index, int column, qhandle_t *
 	{
 #ifdef JK2_MODE
 		// FIXME
-		return nullptr;
+		return NULL;
 #else
 		return SE_GetLanguageName( index );
 #endif
@@ -834,7 +834,7 @@ static int CreateNextSaveName(char *fileName)
 		Com_sprintf( fileName, MAX_SAVELOADNAME, "jedi_%02d", i );
 #endif
 
-		if (!ui.SG_GetSaveGameComment(fileName, nullptr, nullptr))
+		if (!ui.SG_GetSaveGameComment(fileName, NULL, NULL))
 		{
 			return qtrue;
 		}
@@ -1421,7 +1421,7 @@ static qboolean UI_RunMenuScript ( const char **args )
 				return qfalse;
 			}
 
-			const char *soundfile = nullptr;
+			const char *soundfile = NULL;
 			String_Parse(args, &soundfile);
 
 			UI_AddWeaponSelection(atoi(weaponIndex),atoi(ammoIndex),atoi(ammoAmount),itemName,litItemName, backgroundName, soundfile);
@@ -2434,7 +2434,7 @@ void UI_FreeAllSpecies( void )
 	free(uiInfo.playerSpecies);
 
 	uiInfo.playerSpeciesCount = 0;
-	uiInfo.playerSpecies = nullptr;
+	uiInfo.playerSpecies = NULL;
 }
 
 /*
@@ -2502,7 +2502,7 @@ static void UI_BuildPlayerModel_List( qboolean inGameLoad )
 		if (f)
 		{
 			char filelist[2048];
-			playerSpeciesInfo_t *species = nullptr;
+			playerSpeciesInfo_t *species = NULL;
 
 			std::vector<char> buffer(filelen + 1);
 			ui.FS_Read(&buffer[0], filelen, f);
@@ -2729,7 +2729,7 @@ void _UI_Init( qboolean inGameLoad )
 
 	const char *menuSet = UI_Cvar_VariableString("ui_menuFiles");
 
-	if (menuSet == nullptr || menuSet[0] == '\0')
+	if (menuSet == NULL || menuSet[0] == '\0')
 	{
 		menuSet = "ui/menus.txt";
 	}
@@ -2771,7 +2771,7 @@ void _UI_Init( qboolean inGameLoad )
 	uiInfo.selectedWeapon2 = NOWEAPON;
 	uiInfo.selectedThrowWeapon = NOWEAPON;
 
-	uiInfo.uiDC.Assets.nullSound = trap_S_RegisterSound("sound/nullptr", qfalse);
+	uiInfo.uiDC.Assets.nullSound = trap_S_RegisterSound("sound/null", qfalse);
 
 #ifndef JK2_MODE
 	//FIXME hack to prevent error in jk2 by disabling
@@ -2788,7 +2788,7 @@ UI_RegisterCvars
 static void UI_RegisterCvars( void )
 {
 	size_t i = 0;
-	const cvarTable_t *cv = nullptr;
+	const cvarTable_t *cv = NULL;
 
 	for ( i=0, cv=cvarTable; i<cvarTableSize; i++, cv++ ) {
 		Cvar_Register( cv->vmCvar, cv->cvarName, cv->defaultString, cv->cvarFlags );
@@ -3024,7 +3024,7 @@ void UI_Load(void)
 	{
 		menuSet= UI_Cvar_VariableString("ui_menuFiles");
 	}
-	if (menuSet == nullptr || menuSet[0] == '\0')
+	if (menuSet == NULL || menuSet[0] == '\0')
 	{
 		menuSet = "ui/menus.txt";
 	}
@@ -3651,7 +3651,7 @@ void _UI_DrawRect( float x, float y, float width, float height, float size, cons
 	_UI_DrawTopBottom(x, y, width, height, size);
 	_UI_DrawSides(x, y, width, height, size);
 
-	trap_R_SetColor( nullptr );
+	trap_R_SetColor( NULL );
 }
 
 /*
@@ -3662,7 +3662,7 @@ UI_UpdateCvars
 void UI_UpdateCvars( void )
 {
 	size_t i = 0;
-	const cvarTable_t *cv = nullptr;
+	const cvarTable_t *cv = NULL;
 
 	for ( i=0, cv=cvarTable; i<cvarTableSize; i++, cv++ ) {
 		if ( cv->vmCvar ) {
@@ -3744,7 +3744,7 @@ static void UI_DrawGLInfo(rectDef_t *rect, float scale, vec4_t color, int textSt
 	y += 15;
 	Text_Paint(rect->x, y, scale, color, va ("Color(%d-bits) Z(%d-bits) stencil(%d-bits)",uiInfo.uiDC.glconfig.colorBits, uiInfo.uiDC.glconfig.depthBits, uiInfo.uiDC.glconfig.stencilBits), rect->w, textStyle, iFontIndex);
 	y += 15;
-	// build nullptr terminated extension strings
+	// build null terminated extension strings
 	Q_strncpyz(buff, uiInfo.uiDC.glconfig.extensions_string, sizeof(buff));
 	int testy=y-16;
 	while ( testy <= rect->y + rect->h && *eptr && (numLines < MAX_LINES) )
@@ -3800,7 +3800,7 @@ static void UI_DrawCrosshair(rectDef_t *rect, float scale, vec4_t color) {
 		uiInfo.currentCrosshair = 0;
 	}
 	UI_DrawHandlePic( rect->x, rect->y, rect->w, rect->h, uiInfo.uiDC.Assets.crosshairShader[uiInfo.currentCrosshair]);
- 	trap_R_SetColor( nullptr );
+ 	trap_R_SetColor( NULL );
 }
 
 
@@ -3947,7 +3947,7 @@ int UI_OwnerDrawWidth(int ownerDraw, float scale)
 {
 //	int i, h, value;
 //	const char *text;
-	const char *s = nullptr;
+	const char *s = NULL;
 
 
 	switch (ownerDraw)
@@ -4032,7 +4032,7 @@ void _UI_MouseEvent( int dx, int dy )
 	{
     //menuDef_t *menu = Menu_GetFocused();
     //Menu_HandleMouseMove(menu, uiInfo.uiDC.cursorx, uiInfo.uiDC.cursory);
-		Display_MouseMove(nullptr, uiInfo.uiDC.cursorx, uiInfo.uiDC.cursory);
+		Display_MouseMove(NULL, uiInfo.uiDC.cursorx, uiInfo.uiDC.cursory);
 	}
 
 }
@@ -4235,25 +4235,25 @@ interface versions of the cvars.
 */
 void UI_GetVideoSetup ( void )
 {
-	Cvar_Register ( nullptr, "ui_r_glCustom",				"4", CVAR_ARCHIVE );
+	Cvar_Register ( NULL, "ui_r_glCustom",				"4", CVAR_ARCHIVE );
 
 	// Make sure the cvars are registered as read only.
-	Cvar_Register ( nullptr, "ui_r_mode",					"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_fullscreen",			"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_colorbits",				"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_lodbias",				"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_picmip",				"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_texturebits",			"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_texturemode",			"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_detailtextures",		"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_ext_compress_textures",	"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_depthbits",				"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_subdivisions",			"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_fastSky",				"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_inGameVideo",			"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_allowExtensions",		"0", CVAR_ROM );
-//	Cvar_Register ( nullptr, "ui_cg_shadows",				"0", CVAR_ROM );
-	Cvar_Register ( nullptr, "ui_r_modified",				"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_mode",					"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_fullscreen",			"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_colorbits",				"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_lodbias",				"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_picmip",				"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_texturebits",			"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_texturemode",			"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_detailtextures",		"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_ext_compress_textures",	"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_depthbits",				"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_subdivisions",			"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_fastSky",				"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_inGameVideo",			"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_allowExtensions",		"0", CVAR_ROM );
+//	Cvar_Register ( NULL, "ui_cg_shadows",				"0", CVAR_ROM );
+	Cvar_Register ( NULL, "ui_r_modified",				"0", CVAR_ROM );
 
 	// Copy over the real video cvars into their temporary counterparts
 	Cvar_Set ( "ui_r_mode", Cvar_VariableString ( "r_mode" ) );
@@ -4782,7 +4782,7 @@ static void	UI_DemoSetForceLevels( void )
 	char	buffer[MAX_STRING_CHARS];
 
 	client_t* cl = &svs.clients[0];	// 0 because only ever us as a player
-	playerState_t*		pState = nullptr;
+	playerState_t*		pState = NULL;
 	if( cl )
 	{
 		pState = cl->gentity->client;
@@ -5030,7 +5030,7 @@ static void UI_DecrementCurrentForcePower ( void )
 
 	// Get player state
 	client_t* cl = &svs.clients[0];	// 0 because only ever us as a player
-	playerState_t*		pState = nullptr;
+	playerState_t*		pState = NULL;
 	int forcelevel;
 
 	if( cl )
@@ -5135,7 +5135,7 @@ static void UI_AffectForcePowerLevel ( const char *forceName )
 
 	// Get player state
 	client_t* cl = &svs.clients[0];	// 0 because only ever us as a player
-	playerState_t*		pState = nullptr;
+	playerState_t*		pState = NULL;
 	int	forcelevel;
 	if( cl )
 	{
@@ -5824,7 +5824,7 @@ static void UI_RemoveWeaponSelection ( const int weaponSelectionIndex )
 		if (uiInfo.weapon1ItemButton)
 		{
 			uiInfo.weapon1ItemButton->descText = "@MENUS_CLICKSELECT";
-			uiInfo.weapon1ItemButton = nullptr;
+			uiInfo.weapon1ItemButton = NULL;
 		}
 	}
 	else if ( weaponSelectionIndex == 2 )
@@ -5838,7 +5838,7 @@ static void UI_RemoveWeaponSelection ( const int weaponSelectionIndex )
 		if (uiInfo.weapon2ItemButton)
 		{
 			uiInfo.weapon2ItemButton->descText = "@MENUS_CLICKSELECT";
-			uiInfo.weapon2ItemButton = nullptr;
+			uiInfo.weapon2ItemButton = NULL;
 		}
 	}
 	else
@@ -6170,7 +6170,7 @@ static void UI_RemoveThrowWeaponSelection ( void )
 	if (uiInfo.weaponThrowButton)
 	{
 		uiInfo.weaponThrowButton->descText = "@MENUS_CLICKSELECT";
-		uiInfo.weaponThrowButton = nullptr;
+		uiInfo.weaponThrowButton = NULL;
 	}
 
 #ifndef JK2_MODE
@@ -6361,7 +6361,7 @@ static void UI_UpdateSaberHilt( qboolean secondSaber )
 		}
 		else
 		{
-			ItemParse_model_g2skin_go( item, nullptr );//apply the skin
+			ItemParse_model_g2skin_go( item, NULL );//apply the skin
 		}
 	}
 }

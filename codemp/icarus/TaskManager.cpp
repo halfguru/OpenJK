@@ -53,8 +53,8 @@ CTask *CTask::Create( int GUID, CBlock *block )
 
 	//TODO: Emit warning
 	assert( task );
-	if ( task == nullptr )
-		return nullptr;
+	if ( task == NULL )
+		return NULL;
 
 	task->SetTimeStamp( 0 );
 	task->SetBlock( block );
@@ -88,7 +88,7 @@ CTaskGroup::CTaskGroup( void )
 	Init();
 
 	m_GUID		= 0;
-	m_parent	= nullptr;
+	m_parent	= NULL;
 }
 
 CTaskGroup::~CTaskGroup( void )
@@ -118,7 +118,7 @@ void CTaskGroup::Init( void )
 	m_completedTasks.clear();
 
 	m_numCompleted	= 0;
-	m_parent		= nullptr;
+	m_parent		= NULL;
 }
 
 /*
@@ -188,13 +188,13 @@ Init
 int	CTaskManager::Init( CSequencer *owner )
 {
 	//TODO: Emit warning
-	if ( owner == nullptr )
+	if ( owner == NULL )
 		return TASK_FAILED;
 
 	m_tasks.clear();
 	m_owner		= owner;
 	m_ownerID	= owner->GetOwnerID();
-	m_curGroup	= nullptr;
+	m_curGroup	= NULL;
 	m_GUID		= 0;
 	m_resident	= false;
 
@@ -275,10 +275,10 @@ CTaskGroup *CTaskManager::AddTaskGroup( const char *name )
 
 	//TODO: Emit warning
 	assert( group );
-	if ( group == nullptr )
+	if ( group == NULL )
 	{
 		(m_owner->GetInterface())->I_DPrintf( WL_ERROR, "Unable to allocate task group \"%s\"\n", name );
-		return nullptr;
+		return NULL;
 	}
 
 	//Setup the internal information
@@ -307,7 +307,7 @@ CTaskGroup *CTaskManager::GetTaskGroup( const char *name )
 	if ( tgi == m_taskGroupNameMap.end() )
 	{
 		(m_owner->GetInterface())->I_DPrintf( WL_WARNING, "Could not find task group \"%s\"\n", name );
-		return nullptr;
+		return NULL;
 	}
 
 	return (*tgi).second;
@@ -322,7 +322,7 @@ CTaskGroup *CTaskManager::GetTaskGroup( int id )
 	if ( tgi == m_taskGroupIDMap.end() )
 	{
 		(m_owner->GetInterface())->I_DPrintf( WL_WARNING, "Could not find task group \"%d\"\n", id );
-		return nullptr;
+		return NULL;
 	}
 
 	return (*tgi).second;
@@ -714,7 +714,7 @@ Go
 
 int	CTaskManager::Go( void )
 {
-	CTask	*task = nullptr;
+	CTask	*task = NULL;
 	bool	completed = false;
 
 	//Check for run away scripts
@@ -732,7 +732,7 @@ int	CTaskManager::Go( void )
 		task = PopTask( POP_BACK );
 
 		assert( task );
-		if ( task == nullptr )
+		if ( task == NULL )
 		{
 			(m_owner->GetInterface())->I_DPrintf( WL_ERROR, "Invalid task found in Go()!\n" );
 			return TASK_FAILED;
@@ -865,7 +865,7 @@ int	CTaskManager::SetCommand( CBlock *command, int type )
 
 	//TODO: Emit warning
 	assert( task );
-	if ( task == nullptr )
+	if ( task == NULL )
 	{
 		(m_owner->GetInterface())->I_DPrintf( WL_ERROR, "Unable to allocate new task!\n" );
 		return TASK_FAILED;
@@ -888,7 +888,7 @@ int CTaskManager::MarkTask( int id, int operation )
 
 	assert( group );
 
-	if ( group == nullptr )
+	if ( group == NULL )
 		return TASK_FAILED;
 
 	if ( operation == TASK_START )
@@ -902,7 +902,7 @@ int CTaskManager::MarkTask( int id, int operation )
 	else if ( operation == TASK_END )
 	{
 		assert( m_curGroup );
-		if ( m_curGroup == nullptr )
+		if ( m_curGroup == NULL )
 			return TASK_FAILED;
 
 		m_curGroup = m_curGroup->GetParent();
@@ -978,7 +978,7 @@ CBlock *CTaskManager::RecallTask( void )
 	//	return task->GetBlock();
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 /*
@@ -1023,7 +1023,7 @@ CTask *CTaskManager::PopTask( int flag )
 	assert( (flag == POP_FRONT) || (flag == POP_BACK) );
 
 	if ( m_tasks.empty() )
-		return nullptr;
+		return NULL;
 
 	switch ( flag )
 	{
@@ -1043,7 +1043,7 @@ CTask *CTaskManager::PopTask( int flag )
 	}
 
 	//Invalid flag
-	return nullptr;
+	return NULL;
 }
 
 /*
@@ -1056,8 +1056,8 @@ CBlock *CTaskManager::GetCurrentTask( void )
 {
 	CTask *task = PopTask( POP_BACK );
 
-	if ( task == nullptr )
-		return nullptr;
+	if ( task == NULL )
+		return NULL;
 // fixed 2/12/2 to free the task that has been popped (called from sequencer Interrupt)
 	CBlock* retBlock = task->GetBlock();
 	task->Free();
@@ -1099,7 +1099,7 @@ int CTaskManager::Wait( CTask *task, bool &completed  )
 
 		CTaskGroup	*group = GetTaskGroup( sVal );
 
-		if ( group == nullptr )
+		if ( group == NULL )
 		{
 			//TODO: Emit warning
 			completed = false;
@@ -1454,7 +1454,7 @@ int CTaskManager::Move( CTask *task )
 
 
 		(m_owner->GetInterface())->I_DPrintf( WL_DEBUG, "%4d move( <%f %f %f>, %f ); [%d]", m_ownerID, vector[0], vector[1], vector[2], duration, task->GetTimeStamp() );
-		(m_owner->GetInterface())->I_Lerp2Pos( task->GetGUID(), m_ownerID, vector, nullptr, duration );
+		(m_owner->GetInterface())->I_Lerp2Pos( task->GetGUID(), m_ownerID, vector, NULL, duration );
 
 		return TASK_OK;
 	}
@@ -1730,7 +1730,7 @@ void CTaskManager::Save( void )
 	STL_ITERATE( tgi, m_taskGroups )
 	{
 		//Save out the parent
-		id = ( (*tgi)->GetParent() == nullptr ) ? -1 : ((*tgi)->GetParent())->GetGUID();
+		id = ( (*tgi)->GetParent() == NULL ) ? -1 : ((*tgi)->GetParent())->GetGUID();
 		(m_owner->GetInterface())->I_WriteSaveData( 'TKGP', &id, sizeof( id ) );
 
 		//Save out the number of commands
@@ -1762,7 +1762,7 @@ void CTaskManager::Save( void )
 	if ( m_taskGroups.size() )
 	{
 		//Save out the currently active group
-		int	curGroupID = ( m_curGroup == nullptr ) ? -1 : m_curGroup->GetGUID();
+		int	curGroupID = ( m_curGroup == NULL ) ? -1 : m_curGroup->GetGUID();
 		(m_owner->GetInterface())->I_WriteSaveData( 'TGCG', &curGroupID, sizeof( curGroupID ) );
 	}
 
@@ -1774,7 +1774,7 @@ void CTaskManager::Save( void )
 		name = ((*tmi).first).c_str();
 
 		//Make sure this is a valid string
-		assert( ( name != nullptr ) && ( name[0] != nullptr ) );
+		assert( ( name != NULL ) && ( name[0] != NULL ) );
 
 		int length = strlen( name ) + 1;
 
@@ -1862,7 +1862,7 @@ void CTaskManager::Load( void )
 			(m_owner->GetInterface())->I_ReadSaveData( 'BSIZ', &bSize, sizeof( bSize ) );
 
 			//Get the member's data
-			if ( ( bData = ICARUS_Malloc( bSize ) ) == nullptr )
+			if ( ( bData = ICARUS_Malloc( bSize ) ) == NULL )
 			{
 				assert( 0 );
 				return;
@@ -1953,7 +1953,7 @@ void CTaskManager::Load( void )
 		(m_owner->GetInterface())->I_ReadSaveData( 'TKGP', &id, sizeof( id ) );
 
 		if ( id != -1 )
-			taskGroup->m_parent = ( GetTaskGroup( id ) != nullptr ) ? GetTaskGroup( id ) : nullptr;
+			taskGroup->m_parent = ( GetTaskGroup( id ) != NULL ) ? GetTaskGroup( id ) : NULL;
 
 		//Get the number of commands in this group
 		(m_owner->GetInterface())->I_ReadSaveData( 'TGNC', &numMembers, sizeof( numMembers ) );
@@ -2002,7 +2002,7 @@ void CTaskManager::Load( void )
 		m_taskGroupIDMap[ taskGroup->GetGUID() ] = taskGroup;
 	}
 
-	m_curGroup = ( curGroupID == -1 ) ? nullptr : m_taskGroupIDMap[curGroupID];
+	m_curGroup = ( curGroupID == -1 ) ? NULL : m_taskGroupIDMap[curGroupID];
 
 	delete[] taskIDs;
 #endif

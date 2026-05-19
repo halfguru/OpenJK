@@ -299,7 +299,7 @@ namespace
 						if (tess.numVertexes + 4 >= SHADER_MAX_VERTEXES || tess.numIndexes + 6 >= SHADER_MAX_INDEXES)
 						{
 							RB_UpdateVBOs(ATTR_POSITION);
-							GLSL_VertexAttribsState(ATTR_POSITION, nullptr);
+							GLSL_VertexAttribsState(ATTR_POSITION, NULL);
 							GLSL_BindProgram(&tr.textureColorShader);
 							GLSL_SetUniformMatrix4x4(
 								&tr.textureColorShader,
@@ -324,7 +324,7 @@ namespace
 
 			// draw remaining quads
 			RB_UpdateVBOs(ATTR_POSITION);
-			GLSL_VertexAttribsState(ATTR_POSITION, nullptr);
+			GLSL_VertexAttribsState(ATTR_POSITION, NULL);
 			GLSL_BindProgram(&tr.textureColorShader);
 			GLSL_SetUniformMatrix4x4(
 				&tr.textureColorShader,
@@ -1240,7 +1240,7 @@ void RB_SurfaceWeather( srfWeather_t *surf )
 
 				SamplerBindingsWriter samplerBindingsWriter;
 				samplerBindingsWriter.AddStaticImage(tr.weatherDepthImage, TB_SHADOWMAP);
-				if (weatherObject->drawImage != nullptr)
+				if (weatherObject->drawImage != NULL)
 					samplerBindingsWriter.AddStaticImage(weatherObject->drawImage, TB_DIFFUSEMAP);
 				else
 					samplerBindingsWriter.AddStaticImage(tr.whiteImage, TB_DIFFUSEMAP);

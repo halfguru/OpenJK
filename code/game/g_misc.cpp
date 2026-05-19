@@ -222,7 +222,7 @@ void TeleportPlayer( gentity_t *player, vec3_t origin, vec3_t angles )
 	VectorCopy ( player->client->ps.origin, player->currentOrigin );
 
 	// spit the player out
-	AngleVectors( angles, player->client->ps.velocity, nullptr, nullptr );
+	AngleVectors( angles, player->client->ps.velocity, NULL, NULL );
 	VectorScale( player->client->ps.velocity, 0, player->client->ps.velocity );
 	//player->client->ps.pm_time = 160;		// hold time
 	//player->client->ps.pm_flags |= PMF_TIME_KNOCKBACK;
@@ -260,7 +260,7 @@ void TeleportMover( gentity_t *mover, vec3_t origin, vec3_t diffAngles, qboolean
 		vec3_t	dir;
 
 		VectorCopy( diffAngles, newAngle );
-		AngleVectors( newAngle, dir, nullptr, nullptr );
+		AngleVectors( newAngle, dir, NULL, NULL );
 		VectorNormalize( dir );//necessary?
 		speed = VectorLength( mover->s.pos.trDelta );
 		VectorScale( dir, speed, mover->s.pos.trDelta );
@@ -276,7 +276,7 @@ void TeleportMover( gentity_t *mover, vec3_t origin, vec3_t diffAngles, qboolean
 		vectoangles( mover->s.pos.trDelta, oldAngle );
 		VectorAdd( oldAngle, diffAngles, newAngle );
 
-		AngleVectors( newAngle, mover->s.pos.trDelta, nullptr, nullptr );
+		AngleVectors( newAngle, mover->s.pos.trDelta, NULL, NULL );
 		VectorNormalize( mover->s.pos.trDelta );
 
 		VectorScale( mover->s.pos.trDelta, speed, mover->s.pos.trDelta );
@@ -467,12 +467,12 @@ void setCamera ( gentity_t *ent )
 void cycleCamera( gentity_t *self )
 {
 	self->owner = G_Find( self->owner, FOFS(targetname), self->target );
-	if  ( self->owner == nullptr )
+	if  ( self->owner == NULL )
 	{
 		//Uh oh! Not targeted at any ents!  Or reached end of list?  Which is it?
 		//for now assume reached end of list and are cycling
 		self->owner = G_Find( self->owner, FOFS(targetname), self->target );
-		if  ( self->owner == nullptr )
+		if  ( self->owner == NULL )
 		{//still didn't find one
 			gi.Printf( "Couldn't find target for misc_portal_surface\n" );
 			G_FreeEntity( self );
@@ -502,7 +502,7 @@ void misc_portal_use( gentity_t *self, gentity_t *other, gentity_t *activator )
 void locateCamera( gentity_t *ent )
 {//FIXME: make this fadeout with distance from misc_camera_portal
 
-	ent->owner = G_Find(nullptr, FOFS(targetname), ent->target);
+	ent->owner = G_Find(NULL, FOFS(targetname), ent->target);
 	if ( !ent->owner )
 	{
 		gi.Printf( "Couldn't find target for misc_portal_surface\n" );
@@ -514,7 +514,7 @@ void locateCamera( gentity_t *ent )
 
 	if ( !ent->targetname )
 	{//not targetted, so auto-cycle
-		if ( G_Find(ent->owner, FOFS(targetname), ent->target) != nullptr  )
+		if ( G_Find(ent->owner, FOFS(targetname), ent->target) != NULL  )
 		{//targeted at more than one thing
 			ent->e_ThinkFunc = thinkF_cycleCamera;
 			if ( ent->owner->wait > 0 )
@@ -678,7 +678,7 @@ void SP_terrain(gentity_t *ent)
 void G_PortalifyEntities(gentity_t *ent)
 {
 	int i = 0;
-	gentity_t *scan = nullptr;
+	gentity_t *scan = NULL;
 
 	while (i < MAX_GENTITIES)
 	{
@@ -771,10 +771,10 @@ void camera_use( gentity_t *self, gentity_t *other, gentity_t *activator )
 	// FIXME: I guess we are allowing them to switch to a dead camera.  Maybe we should conditionally do this though?
 	if ( /*self->health <= 0 ||*/ (player && player->client && player->client->ps.viewEntity == self->s.number) )
 	{//I'm already viewEntity, or I'm destroyed, find next
-		gentity_t *next = nullptr;
-		if ( self->target2 != nullptr )
+		gentity_t *next = NULL;
+		if ( self->target2 != NULL )
 		{
-			next = G_Find( nullptr, FOFS(targetname), self->target2 );
+			next = G_Find( NULL, FOFS(targetname), self->target2 );
 		}
 		if ( next )
 		{//found another one
@@ -837,7 +837,7 @@ void camera_aim( gentity_t *self )
 	//update my aim
 	if ( self->target )
 	{
-		gentity_t *targ = G_Find( nullptr, FOFS(targetname), self->target );
+		gentity_t *targ = G_Find( NULL, FOFS(targetname), self->target );
 		if ( targ )
 		{
 			vec3_t angles, dir;
@@ -1159,8 +1159,8 @@ void misc_dlight_think ( gentity_t *ent )
 	}
 	else if ( ent->ownername )
 	{
-		ent->owner = G_Find( nullptr, FOFS(targetname), ent->ownername );
-		ent->ownername = nullptr;
+		ent->owner = G_Find( NULL, FOFS(targetname), ent->ownername );
+		ent->ownername = NULL;
 	}
 	ent->nextthink = level.time + FRAMETIME;
 }
@@ -1730,7 +1730,7 @@ model6  - sixth random model key
 
 NOTE: do not skip one of these model names, start with the lowest and fill in each next highest one with a value.  A gap will cause the item to not work correctly.
 
-NOTE: if you use an invalid model, it will still try to use it and show the nullptr axis model (or nothing at all)
+NOTE: if you use an invalid model, it will still try to use it and show the NULL axis model (or nothing at all)
 
 targetname - how you refer to it for using it
 */
@@ -1821,7 +1821,7 @@ void SP_misc_trip_mine( gentity_t *self )
 	vec3_t	forward, end;
 	trace_t	trace;
 
-	AngleVectors( self->s.angles, forward, nullptr, nullptr );
+	AngleVectors( self->s.angles, forward, NULL, NULL );
 	VectorMA( self->s.origin, 128, forward, end );
 
 	gi.trace( &trace, self->s.origin, vec3_origin, vec3_origin, end, self->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
@@ -1922,7 +1922,7 @@ void maglock_link( gentity_t *self )
 	vec3_t	forward, start, end;
 	trace_t	trace;
 
-	AngleVectors( self->s.angles, forward, nullptr, nullptr );
+	AngleVectors( self->s.angles, forward, NULL, NULL );
 	VectorMA( self->s.origin, 128, forward, end );
 	VectorMA( self->s.origin, -4, forward, start );
 
@@ -2571,7 +2571,7 @@ void welder_think( gentity_t *self )
 		// The welder gets rotated around a lot, and since the origin is offset by 352 I have to make this super expensive call to position the hurt...
 		gi.G2API_GetBoltMatrix( self->ghoul2, self->playerModel, newBolt,
 					&boltMatrix, self->currentAngles, self->currentOrigin, (cg.time?cg.time:level.time),
-					nullptr, self->s.modelScale );
+					NULL, self->s.modelScale );
 
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, org );
 		VectorSubtract( self->currentOrigin, org, dir );
@@ -3043,8 +3043,8 @@ void misc_atst_use( gentity_t *self, gentity_t *other, gentity_t *activator )
 		gi.G2API_CopyGhoul2Instance( activator->ghoul2, self->ghoul2, -1 );
 		self->playerModel = 0;//assumption
 		//reset player to kyle
-		G_DriveATST( activator, nullptr );
-		activator->activator = nullptr;
+		G_DriveATST( activator, NULL );
+		activator->activator = NULL;
 		self->s.eFlags &= ~EF_NODRAW;
 		self->svFlags &= ~SVF_NOCLIENT;
 		self->contents = CONTENTS_SOLID|CONTENTS_BODY|CONTENTS_MONSTERCLIP|CONTENTS_BOTCLIP;

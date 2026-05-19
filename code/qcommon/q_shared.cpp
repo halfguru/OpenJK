@@ -178,7 +178,7 @@ char *COM_Parse( const char **data_p )
 COM_Parse
 
 Parse a token out of a string
-Will never return nullptr, just empty strings
+Will never return NULL, just empty strings
 
 If "allowLineBreaks" is qtrue then an empty
 string will be returned if the next token is
@@ -196,7 +196,7 @@ const char *SkipWhitespace( const char *data, qboolean *hasNewLines )
 	{
 		if( !c )
 		{
-			return nullptr;
+			return NULL;
 		}
 		if( c == '\n' )
 		{
@@ -293,7 +293,7 @@ char *COM_ParseExt( const char **data_p, qboolean allowLineBreaks )
 	// make sure incoming data is valid
 	if ( !data )
 	{
-		*data_p = nullptr;
+		*data_p = NULL;
 		return com_token;
 	}
 
@@ -306,7 +306,7 @@ char *COM_ParseExt( const char **data_p, qboolean allowLineBreaks )
 		data = SkipWhitespace( data, &hasNewLines );
 		if ( !data )
 		{
-			*data_p = nullptr;
+			*data_p = NULL;
 			return com_token;
 		}
 		if ( hasNewLines && !allowLineBreaks )
@@ -842,7 +842,7 @@ void Info_RemoveKey( char *s, const char *key ) {
 		}
 		*o = 0;
 
-		//OJKNOTE: static analysis pointed out pkey may not be nullptr-terminated
+		//OJKNOTE: static analysis pointed out pkey may not be null-terminated
 		if (!strcmp (key, pkey) )
 		{
 			memmove(start, s, strlen(s) + 1);	// remove this part
@@ -1021,7 +1021,7 @@ const char *GetStringForID( const stringID_table_t *table, int id )
 		index++;
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 qboolean Q_InBitflags( const uint32_t *bits, int index, uint32_t bitsPerByte ) {
@@ -1045,5 +1045,5 @@ void *Q_LinearSearch( const void *key, const void *ptr, size_t count,
 		if ( cmp( key, ptr ) == 0 ) return (void *)ptr;
 		ptr = (const char *)ptr + size;
 	}
-	return nullptr;
+	return NULL;
 }

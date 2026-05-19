@@ -165,7 +165,7 @@ static void R_SetupEntityLightingGrid( trRefEntity_t *ent, world_t *world ) {
 	VectorClear( ent->directedLight );
 	VectorClear( direction );
 
-	assert( world->lightGridData ); // nullptr with -nolight maps
+	assert( world->lightGridData ); // NULL with -nolight maps
 
 	// trilerp the light value
 	gridStep[0] = 1;
@@ -428,7 +428,7 @@ int R_LightForPoint( vec3_t point, vec3_t ambientLight, vec3_t directedLight, ve
 {
 	trRefEntity_t ent;
 
-	if ( tr.world->lightGridData == nullptr )
+	if ( tr.world->lightGridData == NULL )
 	  return qfalse;
 
 	Com_Memset(&ent, 0, sizeof(ent));
@@ -446,7 +446,7 @@ int R_LightDirForPoint( vec3_t point, vec3_t lightDir, vec3_t normal, world_t *w
 {
 	trRefEntity_t ent;
 
-	if ( world->lightGridData == nullptr )
+	if ( world->lightGridData == NULL )
 	  return qfalse;
 
 	Com_Memset(&ent, 0, sizeof(ent));

@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __G_SHARED_H__
+#define __G_SHARED_H__
 
 #include "bg_public.h"
 #include "g_public.h"
@@ -1695,6 +1696,7 @@ enum
 	NODE_NAVGOAL,
 };
 
+#endif // #ifndef __G_SHARED_H__
 
 /*
 structures heirarchy

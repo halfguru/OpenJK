@@ -79,7 +79,7 @@ void TAG_Init( void )
 	//Delete all owners
 	for ( rtoi = refTagOwnerMap.begin(); rtoi != refTagOwnerMap.end(); ++rtoi )
 	{
-		if ( (*rtoi).second == nullptr )
+		if ( (*rtoi).second == NULL )
 		{
 			assert( 0 );	//FIXME: This is not good
 			continue;
@@ -90,7 +90,7 @@ void TAG_Init( void )
 		//Delete all tags within the owner's scope
 		for ( rti = ((*rtoi).second)->tags.begin(); rti != ((*rtoi).second)->tags.end(); ++rti )
 		{
-			if ( (*rti) == nullptr )
+			if ( (*rti) == NULL )
 			{
 				assert( 0 );	//FIXME: Bad bad
 				continue;
@@ -125,7 +125,7 @@ tagOwner_t	*TAG_FindOwner( const char *owner )
 	rtoi = refTagOwnerMap.find( owner );
 
 	if ( rtoi == refTagOwnerMap.end() )
-		return nullptr;
+		return NULL;
 
 	return (*rtoi).second;
 }
@@ -143,12 +143,12 @@ reference_tag_t	*TAG_Find( const char *owner, const char *name )
 	tagOwner = VALIDSTRING( owner ) ? TAG_FindOwner( owner ) : TAG_FindOwner( TAG_GENERIC_NAME );
 
 	//Not found...
-	if ( tagOwner == nullptr )
+	if ( tagOwner == NULL )
 	{
 		tagOwner = TAG_FindOwner( TAG_GENERIC_NAME );
 
-		if ( tagOwner == nullptr )
-			return nullptr;
+		if ( tagOwner == NULL )
+			return NULL;
 	}
 
 	refTag_m::iterator	rti;
@@ -160,8 +160,8 @@ reference_tag_t	*TAG_Find( const char *owner, const char *name )
 		//Try the generic owner instead
 		tagOwner = TAG_FindOwner( TAG_GENERIC_NAME );
 
-		if ( tagOwner == nullptr )
-			return nullptr;
+		if ( tagOwner == NULL )
+			return NULL;
 
 		char	tempName[ MAX_REFNAME ];
 
@@ -171,7 +171,7 @@ reference_tag_t	*TAG_Find( const char *owner, const char *name )
 		rti = tagOwner->tagMap.find( tempName );
 
 		if ( rti == tagOwner->tagMap.end() )
-			return nullptr;
+			return NULL;
 	}
 
 	return (*rti).second;
@@ -199,7 +199,7 @@ reference_tag_t	*TAG_Add( const char *name, const char *owner, vec3_t origin, ve
 		//gi.Error("Nameless ref_tag found at (%i %i %i)", (int)origin[0], (int)origin[1], (int)origin[2]);
 		gi.Printf(S_COLOR_RED"ERROR: Nameless ref_tag found at (%i %i %i)\n", (int)origin[0], (int)origin[1], (int)origin[2]);
 		delete tag;
-		return nullptr;
+		return NULL;
 	}
 
 	//Copy the name
@@ -211,7 +211,7 @@ reference_tag_t	*TAG_Add( const char *name, const char *owner, vec3_t origin, ve
 	{
 		gi.Printf(S_COLOR_RED"Duplicate tag name \"%s\"\n", name );
 		delete tag;
-		return nullptr;
+		return NULL;
 	}
 
 	//Attempt to add this to the owner's list
@@ -281,7 +281,7 @@ int	TAG_GetOrigin2( const char *owner, const char *name, vec3_t origin )
 {
 	reference_tag_t	*tag = TAG_Find( owner, name );
 
-	if( tag == nullptr )
+	if( tag == NULL )
 	{
 		return qfalse;
 	}
@@ -376,7 +376,7 @@ void ref_link ( gentity_t *ent )
 	if ( ent->target )
 	{
 		//TODO: Find the target and set our angles to that direction
-		gentity_t	*target = G_Find( nullptr, FOFS(targetname), ent->target );
+		gentity_t	*target = G_Find( NULL, FOFS(targetname), ent->target );
 		vec3_t	dir;
 
 		if ( target )

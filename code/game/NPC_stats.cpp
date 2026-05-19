@@ -56,7 +56,7 @@ stringID_table_t animEventTypeTable[] =
 	ENUM2STRING(AEV_SABER_SWING),	//# animID AEV_SABER_SWING framenum CHANNEL randomlow randomhi chancetoplay
 	ENUM2STRING(AEV_SABER_SPIN),	//# animID AEV_SABER_SPIN framenum CHANNEL chancetoplay
 	//must be terminated
-	{ nullptr,-1 }
+	{ NULL,-1 }
 };
 
 stringID_table_t footstepTypeTable[] =
@@ -66,7 +66,7 @@ stringID_table_t footstepTypeTable[] =
 	ENUM2STRING(FOOTSTEP_HEAVY_R),
 	ENUM2STRING(FOOTSTEP_HEAVY_L),
 	//must be terminated
-	{ nullptr,-1 }
+	{ NULL,-1 }
 };
 
 stringID_table_t FPTable[] =
@@ -703,7 +703,7 @@ static void ParseAnimationEvtBlock(int glaIndex, unsigned short modelIndex, cons
 				{
 					break;
 				}
-				if ( Q_stricmp( "none", token ) != 0 && Q_stricmp( "nullptr", token ) != 0 )
+				if ( Q_stricmp( "none", token ) != 0 && Q_stricmp( "NULL", token ) != 0 )
 				{//actually are specifying a bolt to use
 					animEvents[curAnimEvent].stringData = G_NewString( token );
 				}
@@ -802,7 +802,7 @@ void G_ParseAnimationEvtFile(int glaIndex, const char* eventsDirectory, int file
 
 	assert(fileIndex>=0 && fileIndex<MAX_ANIM_FILES);
 
-	const char *psAnimFileInternalName = (iRealGLAIndex == -1 ? nullptr : gi.G2API_GetAnimFileInternalNameIndex( iRealGLAIndex ));
+	const char *psAnimFileInternalName = (iRealGLAIndex == -1 ? NULL : gi.G2API_GetAnimFileInternalNameIndex( iRealGLAIndex ));
 	bool bIsFrameSkipped = (psAnimFileInternalName && strlen(psAnimFileInternalName)>5 && !Q_stricmp(&psAnimFileInternalName[strlen(psAnimFileInternalName)-5],"_skip"));
 
 	// Open The File, Make Sure It Is Safe
@@ -1097,8 +1097,8 @@ int		G_ParseAnimFileSet(const char *skeletonName, const char *modelName=0)
 			legsAnimEvents[i].eventType		= AEV_NONE;
 			torsoAnimEvents[i].keyFrame		= (unsigned short)-1;	//65535 should never be a valid frame... :)
 			legsAnimEvents[i].keyFrame		= (unsigned short)-1;	//Frame to play event on
-			torsoAnimEvents[i].stringData	= nullptr;			//we allow storage of one string, temporarily (in case we have to look up an index later,
-			legsAnimEvents[i].stringData	= nullptr;			//then make sure to set stringData to nullptr so we only do the look-up once)
+			torsoAnimEvents[i].stringData	= NULL;			//we allow storage of one string, temporarily (in case we have to look up an index later,
+			legsAnimEvents[i].stringData	= NULL;			//then make sure to set stringData to NULL so we only do the look-up once)
 			torsoAnimEvents[i].modelOnly	= 0;
 			legsAnimEvents[i].modelOnly		= 0;
 			torsoAnimEvents[i].glaIndex		= 0;
@@ -1202,7 +1202,7 @@ void G_LoadAnimFileSet( gentity_t *ent, const char *pModelName )
 //load its animation config
 	char	animName[MAX_QPATH];
 	char	*GLAName, *modelName;
-	char	*slash = nullptr;
+	char	*slash = NULL;
 	char	*strippedName;
 
 	if ( ent->playerModel == -1 )
@@ -1333,7 +1333,7 @@ void NPC_PrecacheAnimationCFG( const char *NPC_type )
 			}
 			char	animName[MAX_QPATH];
 			char	*GLAName;
-			char	*slash = nullptr;
+			char	*slash = NULL;
 			char	*strippedName;
 
 			int handle = gi.G2API_PrecacheGhoul2Model( va( "models/players/%s/model.glm", value ) );
@@ -1474,7 +1474,7 @@ void NPC_PrecacheByClassName( const char* type )
 	}
 	else if ( !Q_stricmp( "interrogator", type))
 	{
-		NPC_Interrogator_Precache(nullptr);
+		NPC_Interrogator_Precache(NULL);
 	}
 	else if ( !Q_stricmp( "probe", type))
 	{
@@ -1943,7 +1943,7 @@ qboolean NPC_ParseParms( const char *NPCName, gentity_t *NPC )
 	char	customSkin[MAX_QPATH];
 	clientInfo_t	*ci = &NPC->client->clientInfo;
 	renderInfo_t	*ri = &NPC->client->renderInfo;
-	gNPCstats_t		*stats = nullptr;
+	gNPCstats_t		*stats = NULL;
 	qboolean	md3Model = qtrue;
 	char	surfOff[1024]={0};
 	char	surfOn[1024]={0};
@@ -1955,7 +1955,7 @@ qboolean NPC_ParseParms( const char *NPCName, gentity_t *NPC )
 		NPCName = "Player";
 	}
 
-	if ( !NPC->s.number && NPC->client != nullptr )
+	if ( !NPC->s.number && NPC->client != NULL )
 	{//player, only want certain data
 		parsingPlayer = qtrue;
 	}
@@ -1999,7 +1999,7 @@ qboolean NPC_ParseParms( const char *NPCName, gentity_t *NPC )
 	}
 	else
 	{
-		stats = nullptr;
+		stats = NULL;
 	}
 
 	Q_strncpyz( ci->name, NPCName, sizeof( ci->name ) );

@@ -191,12 +191,12 @@ typedef struct
 #pragma pack(pop)
 
 const static StaticZeroMem_t gZeroMalloc  =
-	{ {ZONE_MAGIC, TAG_STATIC,0,nullptr,nullptr},{ZONE_MAGIC}};
+	{ {ZONE_MAGIC, TAG_STATIC,0,NULL,NULL},{ZONE_MAGIC}};
 
 #ifdef DEBUG_ZONE_ALLOCS
-#define DEF_STATIC(_char) {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr, "<static>",0,"",0},{_char,'\0'},{ZONE_MAGIC}
+#define DEF_STATIC(_char) {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL, "<static>",0,"",0},{_char,'\0'},{ZONE_MAGIC}
 #else
-#define DEF_STATIC(_char) {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr			        },{_char,'\0'},{ZONE_MAGIC}
+#define DEF_STATIC(_char) {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL			        },{_char,'\0'},{ZONE_MAGIC}
 #endif
 
 const static StaticMem_t gEmptyString =
@@ -267,8 +267,8 @@ void *Z_Malloc(int iSize, memtag_t eTag, qboolean bZeroit, int /*unusedAlign*/)
 
 	// Allocate a chunk...
 	//
-	zoneHeader_t *pMemory = nullptr;
-	while (pMemory == nullptr)
+	zoneHeader_t *pMemory = NULL;
+	while (pMemory == NULL)
 	{
 		if (gbMemFreeupOccured)
 		{
@@ -357,7 +357,7 @@ void *Z_Malloc(int iSize, memtag_t eTag, qboolean bZeroit, int /*unusedAlign*/)
 			Com_Printf(S_COLOR_RED"Z_Malloc(): Failed to alloc %d bytes (TAG_%s) !!!!!\n", iSize, psTagStrings[eTag]);
 			Z_Details_f();
 			Com_Error(ERR_FATAL,"(Repeat): Z_Malloc(): Failed to alloc %d bytes (TAG_%s) !!!!!\n", iSize, psTagStrings[eTag]);
-			return nullptr;
+			return NULL;
 		}
 	}
 

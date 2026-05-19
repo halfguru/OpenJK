@@ -62,7 +62,7 @@ void UI_DrawConnect( const char *servername, const char *updateInfoString ) {
 	if ( connState < CA_LOADING && !strcmp( cls.servername, "localhost" ) ) {
 		UI_SetColor( g_color_table[0] );
 		re.DrawFill (0, 0, re.scrWidth, re.scrHeight);
-		UI_SetColor( nullptr );
+		UI_SetColor( NULL );
 		return;
 	}
 #endif

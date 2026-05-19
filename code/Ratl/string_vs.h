@@ -379,7 +379,7 @@ public:
 }
 
 //fixme get rid of these
-using TString_vs = ratl::string_vs<256>;
-using TUIString_vs = ratl::string_vs<128>;
+typedef ratl::string_vs<256> TString_vs;
+typedef ratl::string_vs<128> TUIString_vs;
 
 #endif

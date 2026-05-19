@@ -94,7 +94,7 @@ void ImperialProbe_MaintainHeight( void )
 	}
 	else
 	{
-		gentity_t *goal = nullptr;
+		gentity_t *goal = NULL;
 
 		if ( NPCInfo->goalEntity )	// Is there a goal?
 		{
@@ -138,7 +138,7 @@ void ImperialProbe_MaintainHeight( void )
 
 		// Stay at a given height until we take on an enemy
 /*		VectorSet( endPos, NPC->currentOrigin[0], NPC->currentOrigin[1], NPC->currentOrigin[2] - 512 );
-		gi.trace( &trace, NPC->currentOrigin, nullptr, nullptr, endPos, NPC->s.number, MASK_SOLID );
+		gi.trace( &trace, NPC->currentOrigin, NULL, NULL, endPos, NPC->s.number, MASK_SOLID );
 
 		if ( trace.fraction != 1.0f )
 		{
@@ -205,14 +205,14 @@ void ImperialProbe_Strafe( void )
 	vec3_t	end, right;
 	trace_t	tr;
 
-	AngleVectors( NPC->client->renderInfo.eyeAngles, nullptr, right, nullptr );
+	AngleVectors( NPC->client->renderInfo.eyeAngles, NULL, right, NULL );
 
 	// Pick a random strafe direction, then check to see if doing a strafe would be
 	//	reasonable valid
 	dir = ( rand() & 1 ) ? -1 : 1;
 	VectorMA( NPC->currentOrigin, HUNTER_STRAFE_DIS * dir, right, end );
 
-	gi.trace( &tr, NPC->currentOrigin, nullptr, nullptr, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
+	gi.trace( &tr, NPC->currentOrigin, NULL, NULL, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
 
 	// Close enough
 	if ( tr.fraction > 0.9f )
@@ -295,7 +295,7 @@ void ImperialProbe_FireBlaster(void)
 	gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->playerModel,
 				NPC->genericBolt1,
 				&boltMatrix, NPC->currentAngles, NPC->currentOrigin, (cg.time?cg.time:level.time),
-				nullptr, NPC->s.modelScale );
+				NULL, NPC->s.modelScale );
 
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, muzzle1 );
 
@@ -454,7 +454,7 @@ void NPC_Probe_Pain( gentity_t *self, gentity_t *inflictor, gentity_t *other, co
 		trace_t	trace;
 
 		VectorSet( endPos, self->currentOrigin[0], self->currentOrigin[1], self->currentOrigin[2] - 128 );
-		gi.trace( &trace, self->currentOrigin, nullptr, nullptr, endPos, self->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
+		gi.trace( &trace, self->currentOrigin, NULL, NULL, endPos, self->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
 
 		if ( trace.fraction == 1.0f || mod == MOD_DEMP2 ) // demp2 always does this
 		{
@@ -577,11 +577,11 @@ void ImperialProbe_Wait(void)
 		NPCInfo->desiredYaw = AngleNormalize360( NPCInfo->desiredYaw + 25 );
 
 		VectorSet( endPos, NPC->currentOrigin[0], NPC->currentOrigin[1], NPC->currentOrigin[2] - 32 );
-		gi.trace( &trace, NPC->currentOrigin, nullptr, nullptr, endPos, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
+		gi.trace( &trace, NPC->currentOrigin, NULL, NULL, endPos, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
 
 		if ( trace.fraction != 1.0f )
 		{
-			G_Damage(NPC, NPC->enemy, NPC->enemy, nullptr, nullptr, 2000, 0,MOD_UNKNOWN);
+			G_Damage(NPC, NPC->enemy, NPC->enemy, NULL, NULL, 2000, 0,MOD_UNKNOWN);
 		}
 	}
 

@@ -114,7 +114,7 @@ protected:
 
 class CBlock
 {
-	using blockMember_v = std::vector< CBlockMember * >;
+	typedef std::vector< CBlockMember * >	blockMember_v;
 
 public:
 

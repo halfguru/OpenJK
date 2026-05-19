@@ -92,7 +92,7 @@ void funcBBrushDieGo (gentity_t *self)
 	{
 		if ( g_entities[i].s.groundEntityNum == self->s.number && ( g_entities[i].s.eFlags & EF_MISSILE_STICK ))
 		{
-			G_Damage( &g_entities[i], self, self, nullptr, nullptr, 99999, 0, MOD_CRUSH ); //?? MOD?
+			G_Damage( &g_entities[i], self, self, NULL, NULL, 99999, 0, MOD_CRUSH ); //?? MOD?
 		}
 	}
 
@@ -107,7 +107,7 @@ void funcBBrushDieGo (gentity_t *self)
 
 	VectorSet(up, 0, 0, 1);
 
-	if ( self->target && attacker != nullptr )
+	if ( self->target && attacker != NULL )
 	{
 		G_UseTargets(self, attacker);
 	}
@@ -142,7 +142,7 @@ void funcBBrushDieGo (gentity_t *self)
 	VectorAdd( self->absmin,self->absmax, org );
 	VectorScale( org, 0.5f, org );
 
-	if ( attacker != nullptr && attacker->client )
+	if ( attacker != NULL && attacker->client )
 	{
 		VectorSubtract( org, attacker->currentOrigin, dir );
 		VectorNormalize( dir );
@@ -241,7 +241,7 @@ void funcBBrushPain(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, 
 		VectorMA( self->absmin, 0.5, org, org );
 		VectorAdd( self->absmin,self->absmax, org );
 		VectorScale( org, 0.5f, org );
-		if ( attacker != nullptr && attacker->client )
+		if ( attacker != NULL && attacker->client )
 		{
 			VectorSubtract( attacker->currentOrigin, org, dir );
 			VectorNormalize( dir );
@@ -429,9 +429,9 @@ void SP_func_breakable( gentity_t *self )
 			G_Error("team name %s not recognized\n", self->team);
 		}
 	}
-	self->team = nullptr;
+	self->team = NULL;
 	if (!self->model) {
-		G_Error("func_breakable with nullptr model\n");
+		G_Error("func_breakable with NULL model\n");
 	}
 	InitBBrush( self );
 
@@ -499,7 +499,7 @@ void misc_model_breakable_die( gentity_t *self, gentity_t *inflictor, gentity_t 
 
 	self->health = 0;
 	//Throw some chunks
-	AngleVectors( self->s.apos.trBase, dir, nullptr, nullptr );
+	AngleVectors( self->s.apos.trBase, dir, NULL, NULL );
 	VectorNormalize( dir );
 
 	numChunks = Q_flrand(0.0f, 1.0f) * 6 + 20;
@@ -631,7 +631,7 @@ void misc_model_throw_at_target4( gentity_t *self, gentity_t *activator )
 	vec3_t	pushDir, kvel;
 	float	knockback = 200;
 	float	mass = self->mass;
-	gentity_t *target = G_Find( nullptr, FOFS(targetname), self->target4 );
+	gentity_t *target = G_Find( NULL, FOFS(targetname), self->target4 );
 	if ( !target )
 	{//nothing to throw ourselves at...
 		return;
@@ -821,7 +821,7 @@ void TieFighterThink ( gentity_t *self )
 		VectorSubtract( self->currentOrigin, self->lastOrigin, fighterDir );
 		VectorCopy( self->currentOrigin, self->lastOrigin );
 		fighterSpeed = VectorNormalize( fighterDir )*1000;
-		AngleVectors( self->currentAngles, fwd, rt, nullptr );
+		AngleVectors( self->currentAngles, fwd, rt, NULL );
 
 		if ( fighterSpeed )
 		{
@@ -914,7 +914,7 @@ void TieFighterUse( gentity_t *self, gentity_t *other, gentity_t *activator )
 		return;
 
 	vec3_t	fwd, rt;
-	AngleVectors( self->currentAngles, fwd, rt, nullptr );
+	AngleVectors( self->currentAngles, fwd, rt, NULL );
 
 	gentity_t	*bolt;
 	bolt = G_Spawn();
@@ -1016,7 +1016,7 @@ void TieBomberThink( gentity_t *self )
 
 		// Make the bombs go forward in the bombers direction a little.
 		vec3_t	fwd, rt;
-		AngleVectors( self->currentAngles, fwd, rt, nullptr );
+		AngleVectors( self->currentAngles, fwd, rt, NULL );
 		rt[2] -= 0.5f;
 		VectorMA( bomb->s.pos.trBase, -30.0, rt, bomb->s.pos.trBase );
 		VectorScale( fwd, 300, bomb->s.pos.trDelta );
@@ -1267,7 +1267,7 @@ void SP_misc_model_breakable( gentity_t *ent )
 		}
 	}
 
-	ent->team = nullptr;
+	ent->team = NULL;
 
 	//HACK
 	if ( ent->model && Q_stricmp( "models/map_objects/ships/x_wing_nogear.md3", ent->model ) == 0 )
@@ -1359,7 +1359,7 @@ void SP_misc_model_breakable( gentity_t *ent )
 	{//affected by gravity
 		G_SetAngles( ent, ent->s.angles );
 		G_SetOrigin( ent, ent->currentOrigin );
-		G_SpawnString( "throwtarget", nullptr, &ent->target4 ); // used to throw itself at something
+		G_SpawnString( "throwtarget", NULL, &ent->target4 ); // used to throw itself at something
 		misc_model_breakable_gravity_init( ent, qtrue );
 	}
 
@@ -1413,7 +1413,7 @@ void funcGlassDie( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, i
 	{
 		if ( g_entities[i].s.groundEntityNum == self->s.number && ( g_entities[i].s.eFlags & EF_MISSILE_STICK ))
 		{
-			G_Damage( &g_entities[i], self, self, nullptr, nullptr, 99999, 0, MOD_CRUSH ); //?? MOD?
+			G_Damage( &g_entities[i], self, self, NULL, NULL, 99999, 0, MOD_CRUSH ); //?? MOD?
 		}
 	}
 
@@ -1434,7 +1434,7 @@ void funcGlassDie( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, i
 	self->clipmask = 0;
 	gi.linkentity(self);
 
-	if ( self->target && attacker != nullptr )
+	if ( self->target && attacker != NULL )
 	{
 		G_UseTargets( self, attacker );
 	}

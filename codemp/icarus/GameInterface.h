@@ -31,8 +31,8 @@ typedef struct pscript_s
 	long	length;
 } pscript_t;
 
-using entlist_t = std::map < std::string, int >;
-using bufferlist_t = std::map < std::string, pscript_t* >;
+typedef	std::map < std::string, int >		entlist_t;
+typedef std::map < std::string, pscript_t* >	bufferlist_t;
 
 //ICARUS includes
 extern	interface_export_t	interface_export;

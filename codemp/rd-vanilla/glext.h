@@ -27,7 +27,6 @@ extern "C" {
 ** TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 ** MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 */
-#pragma once
 /*
 ** This header is generated from the Khronos OpenGL / OpenGL ES XML
 ** API Registry. The current version of the Registry, generator scripts
@@ -44,6 +43,8 @@ extern "C" {
 #include <windows.h>
 #endif
 
+#ifndef APIENTRY
+#define APIENTRY
 #endif
 #ifndef APIENTRYP
 #define APIENTRYP APIENTRY *
@@ -11766,3 +11767,4 @@ GLAPI void APIENTRY glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN (co
 }
 #endif
 
+#endif

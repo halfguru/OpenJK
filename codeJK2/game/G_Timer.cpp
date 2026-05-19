@@ -104,14 +104,14 @@ void TIMER_Clear( void )
 	int i;
 	for (i = 0; i < MAX_GENTITIES; i++)
 	{
-		g_timers[i] = nullptr;
+		g_timers[i] = NULL;
 	}
 
 	for (i = 0; i < MAX_GTIMERS - 1; i++)
 	{
 		g_timerPool[i].next = &g_timerPool[i+1];
 	}
-	g_timerPool[MAX_GTIMERS-1].next = nullptr;
+	g_timerPool[MAX_GTIMERS-1].next = NULL;
 	g_timerFreeList = &g_timerPool[0];
 }
 
@@ -143,7 +143,7 @@ void TIMER_Clear( int idx )
 		// Splice the lists
 		p->next = g_timerFreeList;
 		g_timerFreeList = g_timers[idx];
-		g_timers[idx] = nullptr;
+		g_timers[idx] = NULL;
 		return;
 	}
 }
@@ -301,7 +301,7 @@ static gtimer_t *TIMER_GetNew(int num, const char *identifier)
 	if (!g_timerFreeList)
 	{//oh no, none free!
 		assert(g_timerFreeList);
-		return nullptr;
+		return NULL;
 	}
 
 	p = g_timerFreeList;
@@ -326,7 +326,7 @@ gtimer_t *TIMER_GetExisting(int num, const char *identifier)
 		p = p->next;
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 
@@ -423,7 +423,7 @@ TIMER_Exists
 */
 qboolean TIMER_Exists( gentity_t *ent, const char *identifier )
 {
-	return (qboolean)(TIMER_GetExisting(ent->s.number, identifier) != nullptr);
+	return (qboolean)(TIMER_GetExisting(ent->s.number, identifier) != NULL);
 }
 
 

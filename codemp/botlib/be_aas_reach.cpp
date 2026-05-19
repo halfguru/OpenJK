@@ -467,7 +467,7 @@ void AAS_SetupReachabilityHeap(void)
 	{
 		reachabilityheap[i].next = &reachabilityheap[i+1];
 	} //end for
-	reachabilityheap[AAS_MAX_REACHABILITYSIZE-1].next = nullptr;
+	reachabilityheap[AAS_MAX_REACHABILITYSIZE-1].next = NULL;
 	nextreachability = reachabilityheap;
 	numlreachabilities = 0;
 } //end of the function AAS_InitReachabilityHeap
@@ -493,7 +493,7 @@ aas_lreachability_t *AAS_AllocReachability(void)
 {
 	aas_lreachability_t *r;
 
-	if (!nextreachability) return nullptr;
+	if (!nextreachability) return NULL;
 	//make sure the error message only shows up once
 	if (!nextreachability->next) AAS_Error("AAS_MAX_REACHABILITYSIZE\n");
 	//
@@ -1557,7 +1557,7 @@ int AAS_Reachability_Step_Barrier_WaterJump_WalkOffLedge(int area1num, int area2
 					if (AAS_PointAreaNum(trace.endpos) == area2num)
 					{
 						//if not going through a cluster portal
-						numareas = AAS_TraceAreas(start, end, areas, nullptr, ARRAY_LEN(areas));
+						numareas = AAS_TraceAreas(start, end, areas, NULL, ARRAY_LEN(areas));
 						for (i = 0; i < numareas; i++)
 							if (AAS_AreaClusterPortal(areas[i]))
 								break;
@@ -2312,7 +2312,7 @@ int AAS_Reachability_Jump(int area1num, int area2num)
 			//because the predicted jump could have rushed through the area
 			VectorMA(move.endpos, -64, dir, teststart);
 			teststart[2] += 1;
-			numareas = AAS_TraceAreas(move.endpos, teststart, areas, nullptr, ARRAY_LEN(areas));
+			numareas = AAS_TraceAreas(move.endpos, teststart, areas, NULL, ARRAY_LEN(areas));
 			for (j = 0; j < numareas; j++)
 			{
 				if (areas[j] == area2num)
@@ -2388,7 +2388,7 @@ int AAS_Reachability_Ladder(int area1num, int area2num)
 	vec3_t area1point, area2point, v1, v2, up = {0, 0, 1};
 	vec3_t mid, lowestpoint = {0, 0}, start, end, sharededgevec, dir;
 	aas_area_t *area1, *area2;
-	aas_face_t *face1, *face2, *ladderface1 = nullptr, *ladderface2 = nullptr;
+	aas_face_t *face1, *face2, *ladderface1 = NULL, *ladderface2 = NULL;
 	aas_plane_t *plane1, *plane2;
 	aas_edge_t *sharededge, *edge1;
 	aas_lreachability_t *lreach;
@@ -2869,7 +2869,7 @@ void AAS_Reachability_Teleport(void)
 				if (angle)
 				{
 					VectorSet(angles, 0, angle, 0);
-					AngleVectors(angles, velocity, nullptr, nullptr);
+					AngleVectors(angles, velocity, NULL, NULL);
 					VectorScale(velocity, 400, velocity);
 				} //end if
 				else
@@ -3165,9 +3165,9 @@ aas_lreachability_t *AAS_FindFaceReachabilities(vec3_t *facepoints, int numpoint
 	aas_plane_t *faceplane, *bestfaceplane;
 
 	//
-	lreachabilities = nullptr;
+	lreachabilities = NULL;
 	bestfacenum = 0;
-	bestfaceplane = nullptr;
+	bestfaceplane = NULL;
 	//
 	for (i = 1; i < aasworld.numareas; i++)
 	{
@@ -3311,7 +3311,7 @@ void AAS_Reachability_FuncBobbing(void)
 		if (!AAS_VectorForBSPEpairKey(ent, "origin", origin))
 			VectorSet(origin, 0, 0, 0);
 		//
-		AAS_BSPModelMinsMaxsOrigin(modelnum, angles, mins, maxs, nullptr);
+		AAS_BSPModelMinsMaxsOrigin(modelnum, angles, mins, maxs, NULL);
 		//
 		VectorAdd(mins, origin, mins);
 		VectorAdd(maxs, origin, maxs);
@@ -3858,7 +3858,7 @@ int AAS_Reachability_Grapple(int area1num, int area2num)
 		VectorCopy(facecenter, start);
 		VectorMA(facecenter, -500, aasworld.planes[face2->planenum].normal, end);
 		//
-		bsptrace = AAS_Trace(start, nullptr, nullptr, end, 0, CONTENTS_SOLID);
+		bsptrace = AAS_Trace(start, NULL, NULL, end, 0, CONTENTS_SOLID);
 		//the grapple won't stick to the sky and the grapple point should be near the AAS wall
 		if ((bsptrace.surface.flags & SURF_SKY) || (bsptrace.fraction * 500 > 32)) continue;
 		//trace a full bounding box from the area center on the ground to
@@ -3890,7 +3890,7 @@ int AAS_Reachability_Grapple(int area1num, int area2num)
 		//only end in areas we can stand
 		if (!AAS_AreaGrounded(areanum)) continue;
 		//never go through cluster portals!!
-		numareas = AAS_TraceAreas(areastart, bsptrace.endpos, areas, nullptr, 20);
+		numareas = AAS_TraceAreas(areastart, bsptrace.endpos, areas, NULL, 20);
 		if (numareas >= 20) continue;
 		for (j = 0; j < numareas; j++)
 		{
@@ -4251,7 +4251,7 @@ void AAS_Reachability_WalkOffLedge(int areanum)
 							break;
 						} //end if
 						//if not going through a cluster portal
-						numareas = AAS_TraceAreas(mid, testend, areas, nullptr, ARRAY_LEN(areas));
+						numareas = AAS_TraceAreas(mid, testend, areas, NULL, ARRAY_LEN(areas));
 						for (p = 0; p < numareas; p++)
 							if (AAS_AreaClusterPortal(areas[p]))
 								break;

@@ -504,9 +504,9 @@ static void GLimp_InitExtensions( void )
 	Com_Printf ("...using GL_EXT_texture_edge_clamp\n" );
 
 	// GL_ARB_multitexture
-	qglMultiTexCoord2fARB = nullptr;
-	qglActiveTextureARB = nullptr;
-	qglClientActiveTextureARB = nullptr;
+	qglMultiTexCoord2fARB = NULL;
+	qglActiveTextureARB = NULL;
+	qglClientActiveTextureARB = NULL;
 	if ( ri.GL_ExtensionSupported( "GL_ARB_multitexture" ) )
 	{
 		if ( r_ext_multitexture->integer )
@@ -525,9 +525,9 @@ static void GLimp_InitExtensions( void )
 				}
 				else
 				{
-					qglMultiTexCoord2fARB = nullptr;
-					qglActiveTextureARB = nullptr;
-					qglClientActiveTextureARB = nullptr;
+					qglMultiTexCoord2fARB = NULL;
+					qglActiveTextureARB = NULL;
+					qglClientActiveTextureARB = NULL;
 					Com_Printf ("...not using GL_ARB_multitexture, < 2 texture units\n" );
 				}
 			}
@@ -543,8 +543,8 @@ static void GLimp_InitExtensions( void )
 	}
 
 	// GL_EXT_compiled_vertex_array
-	qglLockArraysEXT = nullptr;
-	qglUnlockArraysEXT = nullptr;
+	qglLockArraysEXT = NULL;
+	qglUnlockArraysEXT = NULL;
 	if ( ri.GL_ExtensionSupported( "GL_EXT_compiled_vertex_array" ) )
 	{
 		if ( r_ext_compiled_vertex_array->integer )
@@ -598,8 +598,8 @@ static void GLimp_InitExtensions( void )
 				 !qglGetCombinerOutputParameterfvNV || !qglGetCombinerOutputParameterivNV || !qglGetFinalCombinerInputParameterfvNV || !qglGetFinalCombinerInputParameterivNV )
 			{
 				bNVRegisterCombiners = false;
-				qglCombinerParameterfvNV = nullptr;
-				qglCombinerParameteriNV = nullptr;
+				qglCombinerParameterfvNV = NULL;
+				qglCombinerParameteriNV = NULL;
 				Com_Printf ("...GL_NV_register_combiners failed\n" );
 			}
 		}
@@ -676,8 +676,8 @@ static void GLimp_InitExtensions( void )
 		{
 			bARBVertexProgram = false;
 			bARBFragmentProgram = false;
-			qglGenProgramsARB = nullptr;	//clear ptrs that get checked
-			qglProgramEnvParameter4fARB = nullptr;
+			qglGenProgramsARB = NULL;	//clear ptrs that get checked
+			qglProgramEnvParameter4fARB = NULL;
 			Com_Printf ("...ignoring GL_ARB_vertex_program\n" );
 			Com_Printf ("...ignoring GL_ARB_fragment_program\n" );
 		}
@@ -753,13 +753,13 @@ static const char *TruncateGLExtensionsString (const char *extensionsString, int
 
 	char *truncatedExtensions;
 
-	while ( (q = strchr (p, ' ')) != nullptr && numExtensions < maxExtensions )
+	while ( (q = strchr (p, ' ')) != NULL && numExtensions < maxExtensions )
 	{
 		p = q + 1;
 		numExtensions++;
 	}
 
-	if ( q != nullptr )
+	if ( q != NULL )
 	{
 		// We still have more extensions. We'll call this the end
 
@@ -991,7 +991,7 @@ R_TakeScreenshotPNG
 ==================
 */
 void R_TakeScreenshotPNG( int x, int y, int width, int height, char *fileName ) {
-	byte *buffer=nullptr;
+	byte *buffer=NULL;
 	size_t offset=0;
 	int padlen=0;
 
@@ -1978,7 +1978,7 @@ Q_EXPORT refexport_t* QDECL GetRefAPI( int apiVersion, refimport_t *rimp ) {
 
 	if ( apiVersion != REF_API_VERSION ) {
 		ri.Printf( PRINT_ALL,  "Mismatched REF_API_VERSION: expected %i, got %i\n", REF_API_VERSION, apiVersion );
-		return nullptr;
+		return NULL;
 	}
 
 	// the RE_ functions are Renderer Entry points

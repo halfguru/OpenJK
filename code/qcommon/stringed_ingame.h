@@ -19,11 +19,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Filename:-	stringed_ingame.h
 //
 
+#ifndef STRINGED_INGAME_H
+#define	STRINGED_INGAME_H
 
 
 // alter these to suit your own game...
@@ -123,6 +124,7 @@ inline SE_BOOL Language_IsThai(void)
 }
 
 
+#endif	// #ifndef STRINGED_INGAME_H
 
 /////////////////// eof ////////////////
 

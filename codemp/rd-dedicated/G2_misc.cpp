@@ -41,7 +41,7 @@ static std::map<std::pair<int,int>,int> GoreTagsTemp; // this is a surface index
 								  // temporarily during the generation phase so we reuse gore tags per LOD
 int goreModelIndex;
 
-static cvar_t *cg_g2MarksAllModels=nullptr;
+static cvar_t *cg_g2MarksAllModels=NULL;
 
 GoreTextureCoordinates *FindGoreRecord(int tag);
 static inline void DestroyGoreTexCoordinates(int tag)
@@ -549,12 +549,12 @@ void G2_TransformModel(CGhoul2Info_v &ghoul2, const int frameNum, vec3_t scale, 
 	qboolean		firstModelOnly = qfalse;
 
 #ifdef _G2_GORE
-	if ( cg_g2MarksAllModels == nullptr )
+	if ( cg_g2MarksAllModels == NULL )
 	{
 		cg_g2MarksAllModels = ri.Cvar_Get( "cg_g2MarksAllModels", "0", 0, "" );
 	}
 
-	if (cg_g2MarksAllModels == nullptr
+	if (cg_g2MarksAllModels == NULL
 		|| !cg_g2MarksAllModels->integer )
 	{
 		firstModelOnly = qtrue;
@@ -1498,12 +1498,12 @@ void G2_TraceModels(CGhoul2Info_v &ghoul2, vec3_t rayStart, vec3_t rayEnd, Colli
 	qboolean		firstModelOnly = qfalse;
 
 #ifdef _G2_GORE
-	if ( cg_g2MarksAllModels == nullptr )
+	if ( cg_g2MarksAllModels == NULL )
 	{
 		cg_g2MarksAllModels = ri.Cvar_Get( "cg_g2MarksAllModels", "0", 0, "" );
 	}
 
-	if (cg_g2MarksAllModels == nullptr
+	if (cg_g2MarksAllModels == NULL
 		|| !cg_g2MarksAllModels->integer )
 	{
 		firstModelOnly = qtrue;
@@ -1540,7 +1540,7 @@ void G2_TraceModels(CGhoul2Info_v &ghoul2, vec3_t rayStart, vec3_t rayEnd, Colli
 		}
 		else
 		{
-			cust_shader = nullptr;
+			cust_shader = NULL;
 		}
 
 		// figure out the custom skin thing
@@ -1550,7 +1550,7 @@ void G2_TraceModels(CGhoul2Info_v &ghoul2, vec3_t rayStart, vec3_t rayEnd, Colli
 		}
 		else
 		{
-			skin = nullptr;
+			skin = NULL;
 		}
 
 		lod = G2_DecideTraceLod(ghoul2[i],useLod);

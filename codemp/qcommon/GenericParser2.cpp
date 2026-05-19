@@ -195,7 +195,7 @@ char *CTextPool::AllocText(char *text, bool addNULL, CTextPool **poolPtr)
 	int	length = strlen(text) + (addNULL ? 1 : 0);
 
 	if (mUsed + length + 1> mSize)
-	{	// extra 1 to put a nullptr on the end
+	{	// extra 1 to put a null on the end
 		if (poolPtr)
 		{
 			(*poolPtr)->SetNext(new CTextPool(mSize));
@@ -678,7 +678,7 @@ CGPGroup *CGPGroup::FindSubGroup(const char *name)
 		}
 		group = (CGPGroup *)group->GetNext();
 	}
-	return(nullptr);
+	return(NULL);
 }
 
 bool CGPGroup::Parse(char **dataPtr, CTextPool **textPool)

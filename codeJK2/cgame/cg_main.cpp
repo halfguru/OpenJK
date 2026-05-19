@@ -1969,7 +1969,7 @@ void CG_DrawCombatPoint( vec3_t origin, int type )
 	{
 	case 0:	//FIXME: To shut up the compiler warning (more will be added here later of course)
 	default:
-		FX_AddSprite( origin, nullptr, nullptr, 8.0f, 0.0f, 1.0f, 1.0f, color, color, 0.0f, 0.0f, 51, cgi_R_RegisterShader( "gfx/misc/nav_cpoint" ) );
+		FX_AddSprite( origin, NULL, NULL, 8.0f, 0.0f, 1.0f, 1.0f, color, color, 0.0f, 0.0f, 51, cgi_R_RegisterShader( "gfx/misc/nav_cpoint" ) );
 		break;
 	}
 */
@@ -1995,7 +1995,7 @@ void CG_DrawAlert( vec3_t origin, float rating )
 	startRGB[1] = 1 - rating;
 	startRGB[2] = 0;
 
-	FX_AddSprite( drawPos, nullptr, nullptr, 16, 0.0f, 1.0f, 1.0f, startRGB, startRGB, 0, 0, 50, cgs.media.whiteShader );
+	FX_AddSprite( drawPos, NULL, NULL, 16, 0.0f, 1.0f, 1.0f, startRGB, startRGB, 0, 0, 50, cgs.media.whiteShader );
 }
 
 
@@ -2238,8 +2238,8 @@ void CG_ParseMenu(const char *menuFile)
 
 		if(!token)
 		{
-			// nullptr checking is the best kind of checking --eez
-			Com_Error(ERR_FATAL, "cgi_UI_ParseExt: nullptr token parameter");
+			// NULL checking is the best kind of checking --eez
+			Com_Error(ERR_FATAL, "cgi_UI_ParseExt: NULL token parameter");
 		}
 
 		if (!*token)	// All done?
@@ -2617,7 +2617,7 @@ void CG_NextInventory_f( void )
 
 		if ( CG_InventorySelectable( cg.inventorySelect ) && (inv_icons[cg.inventorySelect]))
 		{
-			cgi_S_StartSound (nullptr, 0, CHAN_AUTO, cgs.media.selectSound2 );
+			cgi_S_StartSound (NULL, 0, CHAN_AUTO, cgs.media.selectSound2 );
 			SetInventoryTime();
 			return;
 		}
@@ -2671,7 +2671,7 @@ void CG_PrevInventory_f( void )
 
 		if ( CG_InventorySelectable( cg.inventorySelect ) && (inv_icons[cg.inventorySelect]))
 		{
-			cgi_S_StartSound (nullptr, 0, CHAN_AUTO, cgs.media.selectSound2 );
+			cgi_S_StartSound (NULL, 0, CHAN_AUTO, cgs.media.selectSound2 );
 			SetInventoryTime();
 			return;
 		}
@@ -2851,7 +2851,7 @@ void CG_DrawInventorySelect( void )
 
 		if (inv_icons[i])
 		{
-			cgi_R_SetColor(nullptr);
+			cgi_R_SetColor(NULL);
 			CG_DrawPic( holdX, y+10, smallIconSize, smallIconSize, inv_icons[i] );
 
 			cgi_R_SetColor(colorTable[CT_ICON_BLUE]);
@@ -2866,7 +2866,7 @@ void CG_DrawInventorySelect( void )
 	//height = bigIconSize * cg.iconHUDPercent;
 	if (inv_icons[cg.inventorySelect])
 	{
-		cgi_R_SetColor(nullptr);
+		cgi_R_SetColor(NULL);
 		CG_DrawPic( x-(bigIconSize/2), (y-((bigIconSize-smallIconSize)/2))+10, bigIconSize, bigIconSize, inv_icons[cg.inventorySelect] );
 		addX = (float) bigIconSize * .75;
 		cgi_R_SetColor(colorTable[CT_ICON_BLUE]);
@@ -2927,7 +2927,7 @@ void CG_DrawInventorySelect( void )
 
 		if (inv_icons[i])
 		{
-			cgi_R_SetColor(nullptr);
+			cgi_R_SetColor(NULL);
 			CG_DrawPic( holdX, y+10, smallIconSize, smallIconSize, inv_icons[i] );
 
 			cgi_R_SetColor(colorTable[CT_ICON_BLUE]);
@@ -3050,7 +3050,7 @@ void CG_DrawDataPadInventorySelect( void )
 
 		if (inv_icons[i])
 		{
-			cgi_R_SetColor(nullptr);
+			cgi_R_SetColor(NULL);
 			CG_DrawPic( holdX, y+10, smallIconSize, smallIconSize, inv_icons[i] );
 
 			cgi_R_SetColor(colorTable[CT_ICON_BLUE]);
@@ -3065,7 +3065,7 @@ void CG_DrawDataPadInventorySelect( void )
 	//height = bigIconSize * cg.iconHUDPercent;
 	if (inv_icons[cg.DataPadInventorySelect])
 	{
-		cgi_R_SetColor(nullptr);
+		cgi_R_SetColor(NULL);
 		CG_DrawPic( x-(bigIconSize/2), (y-((bigIconSize-smallIconSize)/2))+10, bigIconSize, bigIconSize, inv_icons[cg.DataPadInventorySelect] );
 		addX = (float) bigIconSize * .75;
 		cgi_R_SetColor(colorTable[CT_ICON_BLUE]);
@@ -3112,7 +3112,7 @@ void CG_DrawDataPadInventorySelect( void )
 
 		if (inv_icons[i])
 		{
-			cgi_R_SetColor(nullptr);
+			cgi_R_SetColor(NULL);
 			CG_DrawPic( holdX, y+10, smallIconSize, smallIconSize, inv_icons[i] );
 
 			cgi_R_SetColor(colorTable[CT_ICON_BLUE]);
@@ -3268,7 +3268,7 @@ void CG_NextForcePower_f( void )
 
 		if (ForcePower_Valid(cg.forcepowerSelect))	// Does he have the force power?
 		{
-			cgi_S_StartSound (nullptr, 0, CHAN_AUTO, cgs.media.selectSound2 );
+			cgi_S_StartSound (NULL, 0, CHAN_AUTO, cgs.media.selectSound2 );
 			return;
 		}
 	}
@@ -3310,7 +3310,7 @@ void CG_PrevForcePower_f( void )
 
 		if (ForcePower_Valid(cg.forcepowerSelect))	// Does he have the force power?
 		{
-			cgi_S_StartSound (nullptr, 0, CHAN_AUTO, cgs.media.selectSound2 );
+			cgi_S_StartSound (NULL, 0, CHAN_AUTO, cgs.media.selectSound2 );
 			return;
 		}
 	}
@@ -3407,7 +3407,7 @@ void CG_DrawForceSelect( void )
 		i = MAX_SHOWPOWERS-1;
 	}
 
-	cgi_R_SetColor(nullptr);
+	cgi_R_SetColor(NULL);
 	// Work backwards from current icon
 	holdX = x - ((bigIconSize/2) + pad + smallIconSize);
 	for (iconCnt=1;iconCnt<(sideLeftIconCnt+1);i--)
@@ -3699,7 +3699,7 @@ void CG_DrawDataPadForceSelect( void )
 		i = MAX_DPSHOWPOWERS-1;
 	}
 
-	cgi_R_SetColor(nullptr);
+	cgi_R_SetColor(NULL);
 	// Work backwards from current icon
 	holdX = x - ((bigIconSize/2) + pad + smallIconSize);
 	for (iconCnt=1;iconCnt<(sideLeftIconCnt+1);i--)

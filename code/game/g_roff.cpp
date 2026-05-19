@@ -521,7 +521,7 @@ static qboolean G_InitRoff( char *file, unsigned char *data )
 		roffs[num_roffs].mFrameTime = 100; // old school ones have a hard-coded frame time
 		roffs[num_roffs].mLerp = 10;
 		roffs[num_roffs].mNumNoteTracks = 0;
-		roffs[num_roffs].mNoteTrackIndexes = nullptr;
+		roffs[num_roffs].mNoteTrackIndexes = NULL;
 
 		if ( mem )
 		{

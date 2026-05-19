@@ -120,8 +120,8 @@ template<class T, int IS_MULTI>
 class tree_base
 {
 public:
-    using TStorageTraits = T;
-	using TTValue = typename T::TValue;
+    typedef T TStorageTraits;
+	typedef typename T::TValue TTValue;
     ////////////////////////////////////////////////////////////////////////////////////
 	// Capacity Enum
     ////////////////////////////////////////////////////////////////////////////////////
@@ -851,8 +851,8 @@ class set_base : public tree_base<T,IS_MULTI>
 {
 
 public:
-    using TStorageTraits = T;
-	using TTValue = typename T::TValue;
+    typedef T TStorageTraits;
+	typedef typename T::TValue TTValue;
     ////////////////////////////////////////////////////////////////////////////////////
 	// Capacity Enum
     ////////////////////////////////////////////////////////////////////////////////////
@@ -1171,8 +1171,8 @@ template<class T, int ARG_CAPACITY>
 class set_vs : public set_base<storage::value_semantics_node<T,ARG_CAPACITY,tree_node>,0 >
 {
 public:
-	using TStorageTraits = typename storage::value_semantics_node<T,ARG_CAPACITY,tree_node>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::value_semantics_node<T,ARG_CAPACITY,tree_node> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY = ARG_CAPACITY;
 	set_vs() {}
 };
@@ -1181,8 +1181,8 @@ template<class T, int ARG_CAPACITY>
 class set_os : public set_base<storage::object_semantics_node<T,ARG_CAPACITY,tree_node>,0 >
 {
 public:
-	using TStorageTraits = typename storage::object_semantics_node<T,ARG_CAPACITY,tree_node>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::object_semantics_node<T,ARG_CAPACITY,tree_node> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY = ARG_CAPACITY;
 	set_os() {}
 };
@@ -1191,8 +1191,8 @@ template<class T, int ARG_CAPACITY, int ARG_MAX_CLASS_SIZE>
 class set_is : public set_base<storage::virtual_semantics_node<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE,tree_node>,0 >
 {
 public:
-	using TStorageTraits = typename storage::virtual_semantics_node<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE,tree_node>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::virtual_semantics_node<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE,tree_node> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY = ARG_CAPACITY;
 	static const int MAX_CLASS_SIZE	= ARG_MAX_CLASS_SIZE;
 	set_is() {}
@@ -1203,11 +1203,11 @@ template<class K,class V,int IS_MULTI>
 class map_base : public tree_base<K,IS_MULTI>
 {
 public:
-    using TKeyStorageTraits = K;
-	using TKTValue = typename K::TValue;
+    typedef K TKeyStorageTraits;
+	typedef typename K::TValue TKTValue;
 
-    using TValueStorageTraits = V;
-	using TVTValue = typename V::TValue;
+    typedef V TValueStorageTraits;
+	typedef typename V::TValue TVTValue;
     ////////////////////////////////////////////////////////////////////////////////////
 	// Capacity Enum
     ////////////////////////////////////////////////////////////////////////////////////
@@ -1588,8 +1588,8 @@ class map_vs : public map_base<
 	0 >
 {
 public:
-	using VStorageTraits = typename storage::value_semantics<V,ARG_CAPACITY>;
-	using TTValue = typename VStorageTraits::TValue;
+	typedef typename storage::value_semantics<V,ARG_CAPACITY> VStorageTraits;
+	typedef typename VStorageTraits::TValue TTValue;
 	static const int CAPACITY = ARG_CAPACITY;
 	map_vs() {}
 };
@@ -1601,8 +1601,8 @@ class map_os : public map_base<
 	0 >
 {
 public:
-	using VStorageTraits = typename storage::object_semantics<V,ARG_CAPACITY>;
-	using TTValue = typename VStorageTraits::TValue;
+	typedef typename storage::object_semantics<V,ARG_CAPACITY> VStorageTraits;
+	typedef typename VStorageTraits::TValue TTValue;
 	static const int CAPACITY = ARG_CAPACITY;
 	map_os() {}
 };
@@ -1614,8 +1614,8 @@ class map_is : public map_base<
 	0 >
 {
 public:
-	using VStorageTraits = typename storage::virtual_semantics<V,ARG_CAPACITY,ARG_MAX_CLASS_SIZE>;
-	using TTValue = typename VStorageTraits::TValue;
+	typedef typename storage::virtual_semantics<V,ARG_CAPACITY,ARG_MAX_CLASS_SIZE> VStorageTraits;
+	typedef typename VStorageTraits::TValue TTValue;
 	static const int CAPACITY = ARG_CAPACITY;
 	static const int MAX_CLASS_SIZE = ARG_MAX_CLASS_SIZE;
 	map_is() {}

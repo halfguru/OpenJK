@@ -247,7 +247,7 @@ qboolean Jedi_StopKnockdown( gentity_t *self, gentity_t *pusher, const vec3_t pu
 	float	fDot, rDot;
 	int		strafeTime = Q_irand( 1000, 2000 );
 
-	AngleVectors( ang, fwd, right, nullptr );
+	AngleVectors( ang, fwd, right, NULL );
 	VectorNormalize2( pushDir, pDir );
 	fDot = DotProduct( pDir, fwd );
 	rDot = DotProduct( pDir, right );
@@ -343,7 +343,7 @@ void Tavion_ScepterDamage( void )
 			gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->weaponModel[1],
 						NPC->genericBolt1,
 						&boltMatrix, angles, NPC->currentOrigin, time,
-						nullptr, NPC->s.modelScale );
+						NULL, NPC->s.modelScale );
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, base );
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, NEGATIVE_X, dir );
 			VectorMA( base, 512, dir, tip );
@@ -421,7 +421,7 @@ void Tavion_ScepterSlam( void )
 		gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->weaponModel[1],
 					boltIndex,
 					&boltMatrix, angles, NPC->currentOrigin, (cg.time?cg.time:level.time),
-					nullptr, NPC->s.modelScale );
+					NULL, NPC->s.modelScale );
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, handle );
 		VectorCopy( handle, bottom );
 		bottom[2] -= 128.0f;
@@ -456,7 +456,7 @@ void Tavion_ScepterSlam( void )
 				continue;
 			}
 
-			if ( radiusEnts[i]->client == nullptr )
+			if ( radiusEnts[i]->client == NULL )
 			{//must be a client
 				if ( G_EntIsBreakable( radiusEnts[i]->s.number, NPC ) )
 				{//damage breakables within range, but not as much
@@ -911,7 +911,7 @@ qboolean NPC_MoveDirClear( int forwardmove, int rightmove, qboolean reset )
 	mins[2] += STEPSIZE;
 	angles[PITCH] = angles[ROLL] = 0;
 	angles[YAW] = NPC->client->ps.viewangles[YAW];//Add ucmd.angles[YAW]?
-	AngleVectors( angles, forward, right, nullptr );
+	AngleVectors( angles, forward, right, NULL );
 	fwdDist = ((float)forwardmove)/2.0f;
 	rtDist = ((float)rightmove)/2.0f;
 	VectorMA( NPC->currentOrigin, fwdDist, forward, testPos );
@@ -991,7 +991,7 @@ Jedi_HoldPosition
 static void Jedi_HoldPosition( void )
 {
 	//NPCInfo->squadState = SQUAD_STAND_AND_SHOOT;
-	NPCInfo->goalEntity = nullptr;
+	NPCInfo->goalEntity = NULL;
 
 	/*
 	if ( TIMER_Done( NPC, "stand" ) )
@@ -1045,7 +1045,7 @@ static qboolean Jedi_Hunt( void )
 		}
 		else
 		{
-		/*	if ( NPCInfo->goalEntity == nullptr )
+		/*	if ( NPCInfo->goalEntity == NULL )
 			{//hunt
 				NPCInfo->goalEntity = NPC->enemy;
 			}
@@ -2157,7 +2157,7 @@ qboolean Jedi_DodgeEvasion( gentity_t *self, gentity_t *shooter, trace_t *tr, in
 				}
 
 				CCollisionRecord &coll	= tr->G2CollisionMap[z];
-				G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &hitLoc, coll.mCollisionPosition, nullptr, nullptr, MOD_UNKNOWN );
+				G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &hitLoc, coll.mCollisionPosition, NULL, NULL, MOD_UNKNOWN );
 				//only want the first
 				break;
 			}
@@ -2347,7 +2347,7 @@ evasionType_t Jedi_CheckFlipEvasions( gentity_t *self, float rightdot, float zdi
 		vec3_t right, fwdAngles = {0, self->client->ps.viewangles[YAW], 0};
 		int		anim = -1;
 
-		AngleVectors( fwdAngles, nullptr, right, nullptr );
+		AngleVectors( fwdAngles, NULL, right, NULL );
 
 		float animLength = PM_AnimLength( self->client->clientInfo.animFileIndex, (animNumber_t)self->client->ps.legsAnim );
 		if ( self->client->ps.legsAnim == BOTH_WALL_RUN_LEFT && rightdot < 0 )
@@ -2403,7 +2403,7 @@ evasionType_t Jedi_CheckFlipEvasions( gentity_t *self, float rightdot, float zdi
 		vec3_t fwd, right, traceto, mins = {self->mins[0],self->mins[1],self->mins[2]+STEPSIZE}, maxs = {self->maxs[0],self->maxs[1],24}, fwdAngles = {0, self->client->ps.viewangles[YAW], 0};
 		trace_t	trace;
 
-		AngleVectors( fwdAngles, fwd, right, nullptr );
+		AngleVectors( fwdAngles, fwd, right, NULL );
 
 		int parts = SETANIM_BOTH, anim;
 		float	speed, checkDist;
@@ -2465,7 +2465,7 @@ evasionType_t Jedi_CheckFlipEvasions( gentity_t *self, float rightdot, float zdi
 			VectorCopy( self->client->ps.viewangles, fwdAngles );
 			fwdAngles[PITCH] = fwdAngles[ROLL] = 0;
 			//do the flip
-			AngleVectors( fwdAngles, nullptr, jumpRt, nullptr );
+			AngleVectors( fwdAngles, NULL, jumpRt, NULL );
 			VectorScale( jumpRt, speed, self->client->ps.velocity );
 			self->client->ps.forceJumpCharge = 0;//so we don't play the force flip anim
 			self->client->ps.velocity[2] = 200;
@@ -3015,7 +3015,7 @@ evasionType_t Jedi_SaberBlockGo( gentity_t *self, usercmd_t *cmd, vec3_t pHitloc
 	//VectorNormalize( diff );
 	fwdangles[1] = self->client->ps.viewangles[1];
 	// Ultimately we might care if the shot was ahead or behind, but for now, just quadrant is fine.
-	AngleVectors( fwdangles, nullptr, right, nullptr );
+	AngleVectors( fwdangles, NULL, right, NULL );
 
 	rightdot = DotProduct(right, diff);// + Q_flrand(-0.10f,0.10f);
 	//totalHeight = self->client->renderInfo.eyePoint[2] - self->absmin[2];
@@ -3720,7 +3720,7 @@ static evasionType_t Jedi_CheckEvadeSpecialAttacks( void )
 						{//roll?
 							vec3_t enemyRight, dir2Me;
 
-							AngleVectors( yawOnlyAngles, nullptr, enemyRight, nullptr );
+							AngleVectors( yawOnlyAngles, NULL, enemyRight, NULL );
 							VectorSubtract( NPC->currentOrigin, NPC->enemy->currentOrigin, dir2Me );
 							VectorNormalize( dir2Me );
 							float dot = DotProduct( enemyRight, dir2Me );
@@ -4046,7 +4046,7 @@ static qboolean Jedi_SaberBlock( void )
 	//FIXME: if saber is off and/or we have force speed and want to be really cocky,
 	//		and the swing misses by some amount, we can use the dodges here... :)
 	evasionType_t	evasionType;
-	if ( (evasionType=Jedi_SaberBlockGo( NPC, &ucmd, hitloc, dir, nullptr, dist )) != EVASION_NONE )
+	if ( (evasionType=Jedi_SaberBlockGo( NPC, &ucmd, hitloc, dir, NULL, dist )) != EVASION_NONE )
 	{//did some sort of evasion
 		if ( evasionType != EVASION_DODGE )
 		{//(not dodge)
@@ -4201,7 +4201,7 @@ static void Jedi_EvasionSaber( vec3_t enemy_movedir, float enemy_dist, vec3_t en
 		if ( VectorCompare( enemy_movedir, vec3_origin ) || shooting_lightning || throwing_saber )
 		{//he's not moving (or he's using a ranged attack), see if he's facing me
 			vec3_t	enemy_fwd;
-			AngleVectors( NPC->enemy->client->ps.viewangles, enemy_fwd, nullptr, nullptr );
+			AngleVectors( NPC->enemy->client->ps.viewangles, enemy_fwd, NULL, NULL );
 			facingAmt = DotProduct( enemy_fwd, dirEnemy2Me );
 		}
 		else
@@ -4297,7 +4297,7 @@ static void Jedi_EvasionSaber( vec3_t enemy_movedir, float enemy_dist, vec3_t en
 				{//he's getting close and swinging at me
 					vec3_t	fwd;
 					//see if I'm facing him
-					AngleVectors( NPC->client->ps.viewangles, fwd, nullptr, nullptr );
+					AngleVectors( NPC->client->ps.viewangles, fwd, NULL, NULL );
 					if ( DotProduct( enemy_dir, fwd ) < 0.5 )
 					{//I'm not really facing him, best option is to strafe
 						whichDefense = Q_irand( 5, 16 );
@@ -4472,7 +4472,7 @@ gentity_t *Jedi_FindEnemyInCone( gentity_t *self, gentity_t *fallback, float min
 	vec3_t forward, mins, maxs, dir;
 	float	dist, bestDist = Q3_INFINITE;
 	gentity_t	*enemy = fallback;
-	gentity_t	*check = nullptr;
+	gentity_t	*check = NULL;
 	gentity_t	*entityList[MAX_GENTITIES];
 	int			e, numListedEntities;
 	trace_t		tr;
@@ -4482,7 +4482,7 @@ gentity_t *Jedi_FindEnemyInCone( gentity_t *self, gentity_t *fallback, float min
 		return enemy;
 	}
 
-	AngleVectors( self->client->ps.viewangles, forward, nullptr, nullptr );
+	AngleVectors( self->client->ps.viewangles, forward, NULL, NULL );
 
 	for ( e = 0 ; e < 3 ; e++ )
 	{
@@ -4640,10 +4640,10 @@ static void Jedi_FaceEnemy( qboolean doPitch )
 {
 	vec3_t	enemy_eyes, eyes, angles;
 
-	if ( NPC == nullptr )
+	if ( NPC == NULL )
 		return;
 
-	if ( NPC->enemy == nullptr )
+	if ( NPC->enemy == NULL )
 		return;
 
 	if ( NPC->client->ps.forcePowersActive & (1<<FP_GRIP) &&
@@ -5393,7 +5393,7 @@ static qboolean Jedi_AttackDecide( int enemy_dist )
 			{//25% chance of doing this
 				vec3_t  right, dir2enemy;
 
-				AngleVectors( NPC->currentAngles, nullptr, right, nullptr );
+				AngleVectors( NPC->currentAngles, NULL, right, NULL );
 				VectorSubtract( NPC->enemy->currentOrigin, NPC->currentAngles, dir2enemy );
 				if ( DotProduct( right, dir2enemy ) > 0 )
 				{//he's to my right, strafe left
@@ -5542,7 +5542,7 @@ static void Jedi_CheckEnemyMovement( float enemy_dist )
 
 							vec3_t enemyFwd, dest, dir;
 
-							AngleVectors( NPC->enemy->currentAngles, enemyFwd, nullptr, nullptr );
+							AngleVectors( NPC->enemy->currentAngles, enemyFwd, NULL, NULL );
 							VectorMA( NPC->enemy->currentOrigin, -32, enemyFwd, dest );
 							VectorSubtract( dest, NPC->currentOrigin, dir );
 							if ( VectorNormalize( dir ) > 64 )
@@ -5831,7 +5831,7 @@ static void Jedi_Combat( void )
 						vec3_t angles, forward;
 						VectorCopy( NPC->client->ps.viewangles, angles );
 						angles[0] = 0;
-						AngleVectors( angles, forward, nullptr, nullptr );
+						AngleVectors( angles, forward, NULL, NULL );
 						VectorMA( end, 64, forward, end );
 						gi.trace( &trace, NPC->currentOrigin, NPC->mins, NPC->maxs, end, NPC->s.number, NPC->clipmask|CONTENTS_BOTCLIP );
 						if ( !trace.allsolid && !trace.startsolid )
@@ -6063,7 +6063,7 @@ void NPC_Jedi_Pain( gentity_t *self, gentity_t *inflictor, gentity_t *other, con
 			VectorSubtract( point, self->client->renderInfo.eyePoint, diff );
 			diff[2] = 0;
 			fwdangles[1] = self->client->ps.viewangles[1];
-			AngleVectors( fwdangles, nullptr, right, nullptr );
+			AngleVectors( fwdangles, NULL, right, NULL );
 			float rightdot = DotProduct(right, diff);
 			float zdiff = point[2] - self->client->renderInfo.eyePoint[2];
 
@@ -6292,7 +6292,7 @@ static void Jedi_Patrol( void )
 	}
 	else if ( NPCInfo->scriptFlags&SCF_LOOK_FOR_ENEMIES )//NPCInfo->scriptFlags & SCF_CHASE_ENEMIES )
 	{//look for enemies
-		gentity_t *best_enemy = nullptr;
+		gentity_t *best_enemy = NULL;
 		float	best_enemy_dist = Q3_INFINITE;
 		for ( int i = 0; i < ENTITYNUM_WORLD; i++ )
 		{
@@ -6746,7 +6746,7 @@ static void Jedi_Attack( void )
 					G_AddVoiceEvent( NPC, Q_irand( EV_VICTORY1, EV_VICTORY3 ), 3000 );
 					jediSpeechDebounceTime[NPC->client->playerTeam] = level.time + 3000;
 					NPCInfo->desiredPitch = 0;
-					NPCInfo->goalEntity = nullptr;
+					NPCInfo->goalEntity = NULL;
 				}
 				Jedi_FaceEnemy( qtrue );
 				NPC_UpdateAngles( qtrue, qtrue );
@@ -6771,7 +6771,7 @@ static void Jedi_Attack( void )
 						G_AddVoiceEvent( NPC, Q_irand( EV_VICTORY1, EV_VICTORY3 ), 3000 );
 						jediSpeechDebounceTime[NPC->client->playerTeam] = level.time + 3000;
 						NPCInfo->desiredPitch = 0;
-						NPCInfo->goalEntity = nullptr;
+						NPCInfo->goalEntity = NULL;
 					}
 					TIMER_Set( NPC, "gloatTime", 10000 );
 				}
@@ -7053,11 +7053,11 @@ qboolean Rosh_BeingHealed( gentity_t *self )
 
 qboolean Rosh_TwinPresent( gentity_t *self )
 {
-	gentity_t *foundTwin = G_Find( nullptr, FOFS(NPC_type), "DKothos" );
+	gentity_t *foundTwin = G_Find( NULL, FOFS(NPC_type), "DKothos" );
 	if ( !foundTwin
 		|| foundTwin->health < 0 )
 	{
-		foundTwin = G_Find( nullptr, FOFS(NPC_type), "VKothos" );
+		foundTwin = G_Find( NULL, FOFS(NPC_type), "VKothos" );
 	}
 	if ( !foundTwin
 		|| foundTwin->health < 0 )
@@ -7069,11 +7069,11 @@ qboolean Rosh_TwinPresent( gentity_t *self )
 
 qboolean Rosh_TwinNearBy( gentity_t *self )
 {
-	gentity_t *foundTwin = G_Find( nullptr, FOFS(NPC_type), "DKothos" );
+	gentity_t *foundTwin = G_Find( NULL, FOFS(NPC_type), "DKothos" );
 	if ( !foundTwin
 		|| foundTwin->health < 0 )
 	{
-		foundTwin = G_Find( nullptr, FOFS(NPC_type), "VKothos" );
+		foundTwin = G_Find( NULL, FOFS(NPC_type), "VKothos" );
 	}
 	if ( !foundTwin
 		|| foundTwin->health < 0 )
@@ -7117,7 +7117,7 @@ qboolean Kothos_HealRosh( void )
 				gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->playerModel,
 							(Q_irand(0,1)?NPC->handLBolt:NPC->handRBolt),
 							&boltMatrix, angles, NPC->currentOrigin, (cg.time?cg.time:level.time),
-							nullptr, NPC->s.modelScale );
+							NULL, NPC->s.modelScale );
 				gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, fxOrg );
 				VectorSubtract( NPC->client->leader->currentOrigin, fxOrg, fxDir );
 				VectorNormalize( fxDir );
@@ -7389,7 +7389,7 @@ qboolean Jedi_InSpecialMove( void )
 		{
 			if ( !NPC->client->leader )
 			{//find Rosh
-				NPC->client->leader = G_Find( nullptr, FOFS(NPC_type), "rosh_dark" );
+				NPC->client->leader = G_Find( NULL, FOFS(NPC_type), "rosh_dark" );
 			}
 			//NPC->client->ps.eFlags &= ~EF_POWERING_ROSH;
 			if ( NPC->client->leader )
@@ -7646,7 +7646,7 @@ void NPC_BSJedi_Default( void )
 		{//not doing anything (or walking toward a vanquished enemy - fixme: always taunt the player?), not using force powers and it's time to look again
 			//FIXME: build a list of all local enemies (since we have to find best anyway) for other AI factors- like when to use group attacks, determine when to change tactics, when surrounded, when blocked by another in the enemy group, etc.  Should we build this group list or let the enemies maintain their own list and we just access it?
 			gentity_t *sav_enemy = NPC->enemy;//FIXME: what about NPC->lastEnemy?
-			NPC->enemy = nullptr;
+			NPC->enemy = NULL;
 			gentity_t *newEnemy = NPC_CheckEnemy( (qboolean)(NPCInfo->confusionTime < level.time), qfalse, qfalse );
 			NPC->enemy = sav_enemy;
 			if ( newEnemy && newEnemy != sav_enemy )

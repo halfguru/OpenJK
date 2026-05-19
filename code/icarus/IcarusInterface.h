@@ -19,9 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 #pragma once
+#ifndef ICARUSINTERFACE_DEFINED
+#define ICARUSINTERFACE_DEFINED
 
 #include "../qcommon/q_shared.h"
 
@@ -162,3 +163,4 @@ public:
 	virtual void	PrecacheFromSet(const char* setname, const char* filename) = 0;
 };
 
+#endif

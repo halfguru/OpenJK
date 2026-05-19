@@ -272,7 +272,7 @@ void CL_SetUserCmdAngles( float pitchOverride, float yawOverride, float rollOver
 }
 
 void CL_AddCgameCommand( const char *cmdName ) {
-	Cmd_AddCommand( cmdName, nullptr );
+	Cmd_AddCommand( cmdName, NULL );
 }
 
 /*
@@ -431,7 +431,7 @@ void CL_ShutdownCGame( void ) {
 	VM_Call( CG_SHUTDOWN );
 
 //	VM_Free( cgvm );
-//	cgvm = nullptr;
+//	cgvm = NULL;
 }
 
 #ifdef JK2_MODE
@@ -1138,7 +1138,7 @@ Ghoul2 Insert End
 		return 0;
 
 	case CG_UI_SETACTIVE_MENU:
-		UI_SetActiveMenu((const char *) VMA(1),nullptr);
+		UI_SetActiveMenu((const char *) VMA(1),NULL);
 		return 0;
 
 	case CG_UI_MENU_OPENBYNAME:
@@ -1179,7 +1179,7 @@ Ghoul2 Insert End
 
 		if(!holdPtr)
 		{
-			Com_Error(ERR_FATAL, "CG_UI_PARSEEXT: nullptr holdPtr");
+			Com_Error(ERR_FATAL, "CG_UI_PARSEEXT: NULL holdPtr");
 		}
 
 		*holdPtr = PC_ParseExt();
@@ -1328,7 +1328,7 @@ Ghoul2 Insert End
 		const char* text;
 
 		assert(VMA(1));
-//		assert(VMA(2));	// can now pass in nullptr to just query the size
+//		assert(VMA(2));	// can now pass in NULL to just query the size
 
 		if (args[0] == CG_SP_GETSTRINGTEXT)
 		{

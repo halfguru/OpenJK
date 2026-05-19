@@ -147,7 +147,7 @@ gentity_t	*G_TestEntityPosition( gentity_t *ent ) {
 	if (tr.startsolid)
 		return &g_entities[ tr.entityNum ];
 
-	return nullptr;
+	return NULL;
 }
 
 
@@ -275,7 +275,7 @@ qboolean G_MoverPush( gentity_t *pusher, vec3_t move, vec3_t amove, gentity_t **
 	gentity_t	*entityList[MAX_GENTITIES];
 	gentity_t	*check;
 
-	*obstacle = nullptr;
+	*obstacle = NULL;
 
 
 	if ( !pusher->bmodel )
@@ -342,7 +342,7 @@ qboolean G_MoverPush( gentity_t *pusher, vec3_t move, vec3_t amove, gentity_t **
 		if (( check->s.eFlags & EF_MISSILE_STICK ) && (notMoving || check->s.groundEntityNum < 0 || check->s.groundEntityNum >= ENTITYNUM_NONE ))
 		{
 			// special case hack for sticky things, destroy it if we aren't attached to the thing that is moving, but the moving thing is pushing us
-			G_Damage( check, pusher, pusher, nullptr, nullptr, 99999, 0, MOD_CRUSH );
+			G_Damage( check, pusher, pusher, NULL, NULL, 99999, 0, MOD_CRUSH );
 			continue;
 		}
 
@@ -421,7 +421,7 @@ qboolean G_MoverPush( gentity_t *pusher, vec3_t move, vec3_t amove, gentity_t **
 		// really need a flag like MOVER_TOUCH that calls the ent's touch function here, instead of this stricmp crap
 		else if ( (pusher->spawnflags&2) && !Q_stricmp( "func_rotating", pusher->classname ) )
 		{
-			GEntity_TouchFunc( pusher, check, nullptr );
+			GEntity_TouchFunc( pusher, check, NULL );
 			continue;	// don't want it blocking so skip past it
 		}
 
@@ -454,7 +454,7 @@ qboolean G_MoverPush( gentity_t *pusher, vec3_t move, vec3_t amove, gentity_t **
 		if ( check->s.eFlags & EF_MISSILE_STICK )
 		{
 			// so nuke 'em so they don't block us anymore
-			G_Damage( check, pusher, pusher, nullptr, nullptr, 99999, 0, MOD_CRUSH );
+			G_Damage( check, pusher, pusher, NULL, NULL, 99999, 0, MOD_CRUSH );
 			continue;
 		}
 
@@ -490,7 +490,7 @@ void G_MoverTeam( gentity_t *ent ) {
 	gentity_t	*part, *obstacle;
 	vec3_t		origin, angles;
 
-	obstacle = nullptr;
+	obstacle = NULL;
 
 	// make sure all team slaves can move before commiting
 	// any moves or calling any think functions
@@ -922,7 +922,7 @@ void UnLockDoors(gentity_t *const ent)
 	{	// want to allow locked toggle doors, so keep the targetname
 		if( !(slave->spawnflags & MOVER_TOGGLE) )
 		{
-			slave->targetname = nullptr;//not usable ever again
+			slave->targetname = NULL;//not usable ever again
 		}
 		slave->spawnflags &= ~MOVER_LOCKED;
 		slave->s.frame = 1;//second stage of anim
@@ -1160,7 +1160,7 @@ void Blocked_Door( gentity_t *ent, gentity_t *other ) {
 	}
 
 	if ( ent->damage ) {
-		G_Damage( other, ent, ent, nullptr, nullptr, ent->damage, 0, MOD_CRUSH );
+		G_Damage( other, ent, ent, NULL, NULL, ent->damage, 0, MOD_CRUSH );
 	}
 	if ( ent->spawnflags & MOVER_CRUSHER ) {
 		return;		// crushers don't reverse
@@ -1283,7 +1283,7 @@ qboolean G_EntIsDoor( int entityNum )
 
 gentity_t *G_FindDoorTrigger( gentity_t *ent )
 {
-	gentity_t *owner = nullptr;
+	gentity_t *owner = NULL;
 	gentity_t *door = ent;
 	if ( door->flags & FL_TEAMSLAVE )
 	{//not the master door, get the master door
@@ -1295,15 +1295,15 @@ gentity_t *G_FindDoorTrigger( gentity_t *ent )
 	if ( door->targetname )
 	{//find out what is targeting it
 		//FIXME: if ent->targetname, check what kind of trigger/ent is targetting it?  If a normal trigger (active, etc), then it's okay?
-		while ( (owner = G_Find( owner, FOFS( target ), door->targetname )) != nullptr )
+		while ( (owner = G_Find( owner, FOFS( target ), door->targetname )) != NULL )
 		{
 			if ( owner && (owner->contents&CONTENTS_TRIGGER) )
 			{
 				return owner;
 			}
 		}
-		owner = nullptr;
-		while ( (owner = G_Find( owner, FOFS( target2 ), door->targetname )) != nullptr )
+		owner = NULL;
+		while ( (owner = G_Find( owner, FOFS( target2 ), door->targetname )) != NULL )
 		{
 			if ( owner && (owner->contents&CONTENTS_TRIGGER) )
 			{
@@ -1312,8 +1312,8 @@ gentity_t *G_FindDoorTrigger( gentity_t *ent )
 		}
 	}
 
-	owner = nullptr;
-	while ( (owner = G_Find( owner, FOFS( classname ), "trigger_door" )) != nullptr )
+	owner = NULL;
+	while ( (owner = G_Find( owner, FOFS( classname ), "trigger_door" )) != NULL )
 	{
 		if ( owner->owner == door )
 		{
@@ -1321,7 +1321,7 @@ gentity_t *G_FindDoorTrigger( gentity_t *ent )
 		}
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 qboolean G_TriggerActive( gentity_t *self );
@@ -1335,7 +1335,7 @@ qboolean G_EntIsUnlockedDoor( int entityNum )
 	if ( G_EntIsDoor( entityNum ) )
 	{
 		gentity_t *ent = &g_entities[entityNum];
-		gentity_t *owner = nullptr;
+		gentity_t *owner = NULL;
 		if ( ent->flags & FL_TEAMSLAVE )
 		{//not the master door, get the master door
 			while ( ent->teammaster && (ent->flags&FL_TEAMSLAVE))
@@ -1345,9 +1345,9 @@ qboolean G_EntIsUnlockedDoor( int entityNum )
 		}
 		if ( ent->targetname )
 		{//find out what is targetting it
-			owner = nullptr;
+			owner = NULL;
 			//FIXME: if ent->targetname, check what kind of trigger/ent is targetting it?  If a normal trigger (active, etc), then it's okay?
-			while ( (owner = G_Find( owner, FOFS( target ), ent->targetname )) != nullptr )
+			while ( (owner = G_Find( owner, FOFS( target ), ent->targetname )) != NULL )
 			{
 				if ( !Q_stricmp( "trigger_multiple", owner->classname ) )//FIXME: other triggers okay too?
 				{
@@ -1357,8 +1357,8 @@ qboolean G_EntIsUnlockedDoor( int entityNum )
 					}
 				}
 			}
-			owner = nullptr;
-			while ( (owner = G_Find( owner, FOFS( target2 ), ent->targetname )) != nullptr )
+			owner = NULL;
+			while ( (owner = G_Find( owner, FOFS( target2 ), ent->targetname )) != NULL )
 			{
 				if ( !Q_stricmp( "trigger_multiple", owner->classname ) )//FIXME: other triggers okay too?
 				{
@@ -1930,7 +1930,7 @@ Link all the corners together
 void Think_SetupTrainTargets( gentity_t *ent ) {
 	gentity_t		*path, *next, *start;
 
-	ent->nextTrain = G_Find( nullptr, FOFS(targetname), ent->target );
+	ent->nextTrain = G_Find( NULL, FOFS(targetname), ent->target );
 	if ( !ent->nextTrain ) {
 		gi.Printf( "func_train at %s with an unfound target\n",
 			vtos(ent->absmin) );
@@ -1943,7 +1943,7 @@ void Think_SetupTrainTargets( gentity_t *ent ) {
 	// t1---->t2---->t3
 	//         ^      |
 	//          \_____|
-	start = nullptr;
+	start = NULL;
 	for ( path = ent->nextTrain ; path != start ; path = next ) {
 		if ( !start ) {
 			start = path;
@@ -1959,7 +1959,7 @@ void Think_SetupTrainTargets( gentity_t *ent ) {
 		// find a path_corner among the targets
 		// there may also be other targets that get fired when the corner
 		// is reached
-		next = nullptr;
+		next = NULL;
 		do {
 			next = G_Find( next, FOFS(targetname), path->target );
 			if ( !next ) {
@@ -2214,7 +2214,7 @@ void func_rotating_touch( gentity_t *self, gentity_t *other, trace_t *trace )
 //		tent->owner = self;
 		// let G_Damage call the fx instead, beside, this way you can disintegrate a corpse this way
 		G_Sound( other, G_SoundIndex( "sound/effects/energy_crackle.wav" ) );
-		G_Damage( other, self, self, nullptr, nullptr, 10000, DAMAGE_NO_KNOCKBACK, MOD_SNIPER );
+		G_Damage( other, self, self, NULL, NULL, 10000, DAMAGE_NO_KNOCKBACK, MOD_SNIPER );
 	}
 }
 

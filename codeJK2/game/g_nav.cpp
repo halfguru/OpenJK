@@ -56,7 +56,7 @@ NPC_Blocked
 
 void NPC_Blocked( gentity_t *self, gentity_t *blocker )
 {
-	if ( self->NPC == nullptr )
+	if ( self->NPC == NULL )
 		return;
 
 	//Don't do this too often
@@ -101,12 +101,12 @@ NPC_SetMoveGoal
 void NPC_SetMoveGoal( gentity_t *ent, vec3_t point, int radius, qboolean isNavGoal, int combatPoint, gentity_t *targetEnt )
 {
 	//Must be an NPC
-	if ( ent->NPC == nullptr )
+	if ( ent->NPC == NULL )
 	{
 		return;
 	}
 
-	if ( ent->NPC->tempGoal == nullptr )
+	if ( ent->NPC->tempGoal == NULL )
 	{//must still have a goal
 		return;
 	}
@@ -119,7 +119,7 @@ void NPC_SetMoveGoal( gentity_t *ent, vec3_t point, int radius, qboolean isNavGo
 	VectorCopy( ent->mins, ent->NPC->tempGoal->mins );
 	VectorCopy( ent->mins, ent->NPC->tempGoal->maxs );
 
-	ent->NPC->tempGoal->target = nullptr;
+	ent->NPC->tempGoal->target = NULL;
 	ent->NPC->tempGoal->clipmask = ent->clipmask;
 	ent->NPC->tempGoal->svFlags &= ~SVF_NAVGOAL;
 	if ( targetEnt && targetEnt->waypoint >= 0 )
@@ -284,7 +284,7 @@ qboolean NAV_ClearPathToPoint( gentity_t *self, vec3_t pmins, vec3_t pmaxs, vec3
 		{
 			if ( NAVDEBUG_showCollision )
 			{
-				if ( trace.entityNum < ENTITYNUM_WORLD && (&g_entities[trace.entityNum] != nullptr) && !g_entities[trace.entityNum].bmodel )
+				if ( trace.entityNum < ENTITYNUM_WORLD && (&g_entities[trace.entityNum] != NULL) && !g_entities[trace.entityNum].bmodel )
 				{
 					vec3_t	p1, p2;
 					CG_DrawEdge( point, trace.endpos, EDGE_PATH );
@@ -317,7 +317,7 @@ qboolean NAV_ClearPathToPoint( gentity_t *self, vec3_t pmins, vec3_t pmaxs, vec3
 
 		if ( NAVDEBUG_showCollision )
 		{
-			if ( trace.entityNum < ENTITYNUM_WORLD && (&g_entities[trace.entityNum] != nullptr) && !g_entities[trace.entityNum].bmodel )
+			if ( trace.entityNum < ENTITYNUM_WORLD && (&g_entities[trace.entityNum] != NULL) && !g_entities[trace.entityNum].bmodel )
 			{
 				vec3_t	p1, p2;
 				CG_DrawEdge( self->currentOrigin, trace.endpos, EDGE_PATH );
@@ -438,11 +438,11 @@ int NAV_Steer( gentity_t *self, vec3_t dir, float distance )
 	VectorCopy( dir, deviation );
 	deviation[YAW] = right_ang;
 
-	AngleVectors( deviation, right_test, nullptr, nullptr );
+	AngleVectors( deviation, right_test, NULL, NULL );
 
 	deviation[YAW] = left_ang;
 
-	AngleVectors( deviation, left_test, nullptr, nullptr );
+	AngleVectors( deviation, left_test, NULL, NULL );
 
 	//Find the end positions
 	VectorMA( self->currentOrigin, distance, right_test, right_test );
@@ -546,7 +546,7 @@ static qboolean NAV_TestBypass( gentity_t *self, float yaw, float blocked_dist, 
 	VectorClear( avoidAngles );
 	avoidAngles[YAW] = yaw;
 
-	AngleVectors( avoidAngles, block_test, nullptr, nullptr );
+	AngleVectors( avoidAngles, block_test, NULL, NULL );
 	VectorMA( self->currentOrigin, blocked_dist, block_test, block_pos );
 
 	if ( NAVDEBUG_showCollision )
@@ -582,7 +582,7 @@ qboolean NAV_Bypass( gentity_t *self, gentity_t *blocker, vec3_t blocked_dir, fl
 		CG_DrawEdge( self->currentOrigin, blocker->currentOrigin, EDGE_NORMAL );
 	}
 
-	AngleVectors( self->currentAngles, nullptr, right, nullptr );
+	AngleVectors( self->currentAngles, NULL, right, NULL );
 
 	//Get the blocked direction
 	float yaw = vectoyaw( blocked_dir );
@@ -662,7 +662,7 @@ qboolean NAV_MoveBlocker( gentity_t *self, vec3_t shove_dir )
 	vectoangles( shove_dir, temp_dir );
 
 	temp_dir[YAW] += 45;
-	AngleVectors( temp_dir, forward, nullptr, nullptr );
+	AngleVectors( temp_dir, forward, NULL, NULL );
 
 	VectorScale( forward, SHOVE_SPEED, self->client->ps.velocity );
 	self->client->ps.velocity[2] += SHOVE_LIFT;
@@ -700,7 +700,7 @@ NAV_TrueCollision
 qboolean NAV_TrueCollision( gentity_t *self, gentity_t *blocker, vec3_t movedir, vec3_t blocked_dir )
 {
 	//TODO: Handle all ents
-	if ( blocker->client == nullptr )
+	if ( blocker->client == NULL )
 		return qfalse;
 
 	vec3_t	velocityDir;
@@ -856,7 +856,7 @@ NAV_TestForBlocked
 
 qboolean NAV_TestForBlocked( gentity_t *self, gentity_t *goal, gentity_t *blocker, float distance, int &flags )
 {
-	if ( goal == nullptr )
+	if ( goal == NULL )
 		return qfalse;
 
 	if ( blocker->s.eType == ET_ITEM )
@@ -1093,7 +1093,7 @@ NAV_MoveToGoal
 int	NAV_MoveToGoal( gentity_t *self, navInfo_t &info )
 {
 	//Must have a goal entity to move there
-	if( self->NPC->goalEntity == nullptr )
+	if( self->NPC->goalEntity == NULL )
 		return WAYPOINT_NONE;
 
 	//Check special player optimizations
@@ -1207,7 +1207,7 @@ unsigned int waypoint_testDirection( vec3_t origin, float yaw, unsigned int minD
 
 	//Get our test direction
 	vec3_t	angles = { 0, yaw, 0 };
-	AngleVectors( angles, trace_dir, nullptr, nullptr );
+	AngleVectors( angles, trace_dir, NULL, NULL );
 
 	//Move ahead
 //	VectorMA( origin, MAX_RADIUS_CHECK, trace_dir, test_pos );
@@ -1368,7 +1368,7 @@ void SP_waypoint_navgoal( gentity_t *ent )
 		}
 #endif
 	}
-	TAG_Add( ent->targetname, nullptr, ent->s.origin, ent->s.angles, radius, RTF_NAVGOAL );
+	TAG_Add( ent->targetname, NULL, ent->s.origin, ent->s.angles, radius, RTF_NAVGOAL );
 
 	ent->classname = "navgoal";
 	G_FreeEntity( ent );//can't do this, they need to be found later by some functions, though those could be fixed, maybe?
@@ -1404,7 +1404,7 @@ void SP_waypoint_navgoal_8( gentity_t *ent )
 		assert(0);
 	}
 
-	TAG_Add( ent->targetname, nullptr, ent->s.origin, ent->s.angles, 8, RTF_NAVGOAL );
+	TAG_Add( ent->targetname, NULL, ent->s.origin, ent->s.angles, 8, RTF_NAVGOAL );
 
 	ent->classname = "navgoal";
 	G_FreeEntity( ent );//can't do this, they need to be found later by some functions, though those could be fixed, maybe?
@@ -1440,7 +1440,7 @@ void SP_waypoint_navgoal_4( gentity_t *ent )
 		assert(0);
 	}
 
-	TAG_Add( ent->targetname, nullptr, ent->s.origin, ent->s.angles, 4, RTF_NAVGOAL );
+	TAG_Add( ent->targetname, NULL, ent->s.origin, ent->s.angles, 4, RTF_NAVGOAL );
 
 	ent->classname = "navgoal";
 	G_FreeEntity( ent );//can't do this, they need to be found later by some functions, though those could be fixed, maybe?
@@ -1476,7 +1476,7 @@ void SP_waypoint_navgoal_2( gentity_t *ent )
 		assert(0);
 	}
 
-	TAG_Add( ent->targetname, nullptr, ent->s.origin, ent->s.angles, 2, RTF_NAVGOAL );
+	TAG_Add( ent->targetname, NULL, ent->s.origin, ent->s.angles, 2, RTF_NAVGOAL );
 
 	ent->classname = "navgoal";
 	G_FreeEntity( ent );//can't do this, they need to be found later by some functions, though those could be fixed, maybe?
@@ -1512,7 +1512,7 @@ void SP_waypoint_navgoal_1( gentity_t *ent )
 		assert(0);
 	}
 
-	TAG_Add( ent->targetname, nullptr, ent->s.origin, ent->s.angles, 1, RTF_NAVGOAL );
+	TAG_Add( ent->targetname, NULL, ent->s.origin, ent->s.angles, 1, RTF_NAVGOAL );
 
 	ent->classname = "navgoal";
 	G_FreeEntity( ent );//can't do this, they need to be found later by some functions, though those could be fixed, maybe?
@@ -1621,7 +1621,7 @@ NAV_CalculatePaths
 */
 #ifndef FINAL_BUILD
 int fatalErrors = 0;
-char *fatalErrorPointer = nullptr;
+char *fatalErrorPointer = NULL;
 char	fatalErrorString[4096];
 qboolean NAV_WaypointsTooFar( gentity_t *wp1, gentity_t *wp2 )
 {

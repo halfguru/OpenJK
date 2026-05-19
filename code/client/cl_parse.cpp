@@ -96,7 +96,7 @@ void CL_ParsePacketEntities( msg_t *msg, clSnapshot_t *oldframe, clSnapshot_t *n
 
 	// delta from the entities present in oldframe
 	oldindex = 0;
-	oldstate = nullptr;
+	oldstate = NULL;
 	if (!oldframe) {
 		oldnum = 99999;
 	} else {
@@ -237,7 +237,7 @@ void CL_ParseSnapshot( msg_t *msg ) {
 	// message
 	if ( newSnap.deltaNum <= 0 ) {
 		newSnap.valid = qtrue;		// uncompressed frame
-		old = nullptr;
+		old = NULL;
 	} else {
 		old = &cl.frames[newSnap.deltaNum & PACKET_MASK];
 		if ( !old->valid ) {
@@ -263,7 +263,7 @@ void CL_ParseSnapshot( msg_t *msg ) {
 	if ( old ) {
 		MSG_ReadDeltaPlayerstate( msg, &old->ps, &newSnap.ps );
 	} else {
-		MSG_ReadDeltaPlayerstate( msg, nullptr, &newSnap.ps );
+		MSG_ReadDeltaPlayerstate( msg, NULL, &newSnap.ps );
 	}
 
 	// read packet entities
@@ -443,7 +443,7 @@ void CL_FreeServerCommands(void)
 	for(i=0; i<MAX_RELIABLE_COMMANDS; i++) {
 		if ( clc.serverCommands[ i ] ) {
 			Z_Free( clc.serverCommands[ i ] );
-			clc.serverCommands[ i ] = nullptr;
+			clc.serverCommands[ i ] = NULL;
 		}
 	}
 }

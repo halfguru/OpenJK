@@ -123,10 +123,10 @@ extern void G_SetFighterVehicleFunctions( vehicleInfo_t *pVehInfo );
 #endif
 
 vehWeaponInfo_t g_vehWeaponInfo[MAX_VEH_WEAPONS];
-int		numVehicleWeapons = 1;//first one is nullptr/default
+int		numVehicleWeapons = 1;//first one is null/default
 
 vehicleInfo_t g_vehicleInfo[MAX_VEHICLES];
-int		numVehicles = 0;//first one is nullptr/default
+int		numVehicles = 0;//first one is null/default
 
 void BG_VehicleLoadParms( void );
 
@@ -196,7 +196,7 @@ static vehField_t *FindVehWeaponParm( const char *parmName )
 		if ( vehWeaponFields[i].name && !Q_stricmp( vehWeaponFields[i].name, parmName ) )
 			return &vehWeaponFields[i];
 	}
-	return nullptr;
+	return NULL;
 }
 
 static qboolean BG_ParseVehWeaponParm( vehWeaponInfo_t *vehWeapon, const char *parmName, char *pValue )
@@ -339,7 +339,7 @@ int VEH_LoadVehWeapon( const char *vehWeaponName )
 	char		parmName[128];//we'll assume that no parm name is longer than 128
 	char		*value;
 	const char	*p;
-	vehWeaponInfo_t	*vehWeapon = nullptr;
+	vehWeaponInfo_t	*vehWeapon = NULL;
 
 	//BG_VehWeaponSetDefaults( &g_vehWeaponInfo[0] );//set the first vehicle to default data
 
@@ -802,17 +802,17 @@ void BG_VehicleSetDefaults( vehicleInfo_t *vehicle )
 	strcpy(vehicle->model, "models/map_objects/ships/swoop.md3");
 
 	vehicle->modelIndex = 0;							//set internally, not until this vehicle is spawned into the level
-	vehicle->skin = nullptr;								//what skin to use - if make it an NPC's primary model, don't need this?
+	vehicle->skin = NULL;								//what skin to use - if make it an NPC's primary model, don't need this?
 	vehicle->riderAnim = BOTH_GUNSIT1;					//what animation the rider uses
 
-	vehicle->soundOn = nullptr;							//sound to play when get on it
-	vehicle->soundLoop = nullptr;							//sound to loop while riding it
-	vehicle->soundOff = nullptr;							//sound to play when get off
-	vehicle->exhaustFX = nullptr;							//exhaust effect, played from "*exhaust" bolt(s)
-	vehicle->trailFX = nullptr;							//trail effect, played from "*trail" bolt(s)
-	vehicle->impactFX = nullptr;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
-	vehicle->explodeFX = nullptr;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
-	vehicle->wakeFX = nullptr;								//effect itmakes when going across water
+	vehicle->soundOn = NULL;							//sound to play when get on it
+	vehicle->soundLoop = NULL;							//sound to loop while riding it
+	vehicle->soundOff = NULL;							//sound to play when get off
+	vehicle->exhaustFX = NULL;							//exhaust effect, played from "*exhaust" bolt(s)
+	vehicle->trailFX = NULL;							//trail effect, played from "*trail" bolt(s)
+	vehicle->impactFX = NULL;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
+	vehicle->explodeFX = NULL;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
+	vehicle->wakeFX = NULL;								//effect itmakes when going across water
 
 	//other misc stats
 	vehicle->gravity = VEH_DEFAULT_GRAVITY;				//normal is 800
@@ -879,7 +879,7 @@ static vehField_t *FindVehicleParm( const char *parmName )
 		if ( vehicleFields[i].name && !Q_stricmp( vehicleFields[i].name, parmName ) )
 			return &vehicleFields[i];
 	}
-	return nullptr;
+	return NULL;
 }
 
 static qboolean BG_ParseVehicleParm( vehicleInfo_t *vehicle, const char *parmName, char *pValue )
@@ -1034,9 +1034,9 @@ int VEH_LoadVehicle( const char *vehicleName )
 	char		weapMuzzle8[128] = { 0 };
 	char		weapMuzzle9[128] = { 0 };
 	char		weapMuzzle10[128] = { 0 };
-	char		*value = nullptr;
-	const char	*p = nullptr;
-	vehicleInfo_t	*vehicle = nullptr;
+	char		*value = NULL;
+	const char	*p = NULL;
+	vehicleInfo_t	*vehicle = NULL;
 
 	// Load the vehicle parms if no vehicles have been loaded yet.
 	if ( numVehicles == 0 )
@@ -1525,7 +1525,7 @@ void BG_VehWeaponLoadParms( void )
 #ifdef _JK2MP
 	BG_TempFree(MAX_VEH_WEAPON_DATA_SIZE);
 #else
-	gi.Free(tempReadBuffer);	tempReadBuffer = nullptr;
+	gi.Free(tempReadBuffer);	tempReadBuffer = NULL;
 #endif
 }
 
@@ -1617,10 +1617,10 @@ void BG_VehicleLoadParms( void )
 #ifdef _JK2MP
 	BG_TempFree(MAX_VEHICLE_DATA_SIZE);
 #else
-	gi.Free(tempReadBuffer);	tempReadBuffer = nullptr;
+	gi.Free(tempReadBuffer);	tempReadBuffer = NULL;
 #endif
 
-	numVehicles = 1;//first one is nullptr/default
+	numVehicles = 1;//first one is null/default
 	//set the first vehicle to default data
 	BG_VehicleSetDefaults( &g_vehicleInfo[VEHICLE_BASE] );
 	//sanity check and clamp the vehicle's data
@@ -1703,7 +1703,7 @@ void AttachRidersGeneric( Vehicle_t *pVeh )
 		// Get the driver tag.
 		trap_G2API_GetBoltMatrix( parent->ghoul2, 0, crotchBolt, &boltMatrix,
 								yawOnlyAngles, parent->playerState->origin,
-								BG_GetTime(), nullptr, parent->modelScale );
+								BG_GetTime(), NULL, parent->modelScale );
 		BG_GiveMeVectorFromMatrix( &boltMatrix, ORIGIN, pilot->playerState->origin );
 	}
 }

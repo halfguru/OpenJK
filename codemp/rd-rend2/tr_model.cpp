@@ -244,7 +244,7 @@ model_t *R_AllocModel( void ) {
 	model_t		*mod;
 
 	if ( tr.numModels == MAX_MOD_KNOWN ) {
-		return nullptr;
+		return NULL;
 	}
 
 	mod = (model_t *)ri.Hunk_Alloc( sizeof( *tr.models[tr.numModels] ), h_low );
@@ -302,7 +302,7 @@ qhandle_t RE_RegisterModel( const char *name ) {
 	char		altName[ MAX_QPATH ];
 
 	if ( !name || !name[0] ) {
-		ri.Printf( PRINT_ALL, "RE_RegisterModel: nullptr name\n" );
+		ri.Printf( PRINT_ALL, "RE_RegisterModel: NULL name\n" );
 		return 0;
 	}
 
@@ -329,7 +329,7 @@ qhandle_t RE_RegisterModel( const char *name ) {
 	}
 
 	// allocate a new model_t
-	if ( ( mod = R_AllocModel() ) == nullptr ) {
+	if ( ( mod = R_AllocModel() ) == NULL ) {
 		ri.Printf( PRINT_WARNING, "RE_RegisterModel: R_AllocModel() failed for '%s'\n", name);
 		return 0;
 	}
@@ -791,7 +791,7 @@ qhandle_t RE_RegisterServerModel( const char *name ) {
 	}
 
 	// allocate a new model_t
-	if ( ( mod = R_AllocModel() ) == nullptr ) {
+	if ( ( mod = R_AllocModel() ) == NULL ) {
 		ri.Printf( PRINT_WARNING, "RE_RegisterModel: R_AllocModel() failed for '%s'\n", name);
 		return 0;
 	}
@@ -1620,7 +1620,7 @@ R_ModelInit
 void R_ModelInit( void ) {
 	model_t		*mod;
 
-	// leave a space for nullptr model
+	// leave a space for NULL model
 	tr.numModels = 0;
 
 	CModelCache->DeleteAll();
@@ -1701,7 +1701,7 @@ static mdvTag_t *R_GetTag( mdvModel_t *mod, int frame, const char *_tagName ) {
 		}
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 void R_GetAnimTag( mdrHeader_t *mod, int framenum, const char *tagName, mdvTag_t * dest)

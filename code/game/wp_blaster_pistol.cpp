@@ -61,7 +61,7 @@ void WP_FireBryarPistol( gentity_t *ent, qboolean alt_fire )
 				angs[YAW]	+= ( Q_flrand(-1.0f, 1.0f) * ((5-ent->NPC->currentAim)*0.25f) );
 			}
 
-			AngleVectors( angs, forwardVec, nullptr, nullptr );
+			AngleVectors( angs, forwardVec, NULL, NULL );
 		}
 	}
 

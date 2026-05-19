@@ -235,7 +235,7 @@ qboolean NAV_MoveDirSafe( gentity_t *self, usercmd_t *cmd, float distScale = 1.0
 			return qtrue;
 		}
 		vec3_t fwd, right, fwdAngs = {0, self->currentAngles[YAW], 0};
-		AngleVectors( fwdAngs, fwd, right, nullptr );
+		AngleVectors( fwdAngs, fwd, right, NULL );
 		VectorScale( fwd, cmd->forwardmove, fwd );
 		VectorScale( right, cmd->rightmove, right );
 		VectorAdd( fwd, right, moveDir );

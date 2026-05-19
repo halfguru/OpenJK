@@ -392,7 +392,7 @@ qboolean PM_CheckGrabWall( trace_t *trace )
 		wallDir[2] = 0;
 		VectorNormalize( wallDir );
 		VectorSet( facingAngles, 0, pm->ps->viewangles[YAW], 0 );
-		AngleVectors( facingAngles, fwdDir, rtDir, nullptr );
+		AngleVectors( facingAngles, fwdDir, rtDir, NULL );
 		float fDot = DotProduct( fwdDir, wallDir );
 		if ( fabs( fDot ) >= 0.5f )
 		{//hit a wall in front/behind
@@ -1132,7 +1132,7 @@ static qboolean PM_CheckJump( void )
 					//FIXME: make sure we don't jump further than force jump 3 allows
 					vec3_t	jFwdAngs, jFwdVec;
 					VectorSet( jFwdAngs, 0, pm->ps->viewangles[YAW], 0 );
-					AngleVectors( jFwdAngs, jFwdVec, nullptr, nullptr );
+					AngleVectors( jFwdAngs, jFwdVec, NULL, NULL );
 					float oldZVel = pm->ps->velocity[2];
 					if ( pm->ps->legsAnimTimer > 150 && oldZVel < 0 )
 					{
@@ -1191,7 +1191,7 @@ static qboolean PM_CheckJump( void )
 				//BOTH_FORCELONGLEAP_ATTACK if holding attack, too?
 				PM_SetAnim( pm, SETANIM_BOTH, BOTH_FORCELONGLEAP_START, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 				VectorSet( jFwdAngs, 0, pm->ps->viewangles[YAW], 0 );
-				AngleVectors( jFwdAngs, jFwdVec, nullptr, nullptr );
+				AngleVectors( jFwdAngs, jFwdVec, NULL, NULL );
 				VectorScale( jFwdVec, FORCE_LONG_LEAP_SPEED, pm->ps->velocity );
 				pm->ps->velocity[2] = 320;
 				pml.groundPlane = qfalse;
@@ -1319,7 +1319,7 @@ static qboolean PM_CheckJump( void )
 							{//FIXME: really want to know how far off ground we are, probably...
 								vec3_t facingFwd, facingRight, facingAngles = {0, pm->ps->viewangles[YAW], 0};
 								int	anim = -1;
-								AngleVectors( facingAngles, facingFwd, facingRight, nullptr );
+								AngleVectors( facingAngles, facingFwd, facingRight, NULL );
 								float dotR = DotProduct( facingRight, pm->ps->velocity );
 								float dotF = DotProduct( facingFwd, pm->ps->velocity );
 								if ( fabs(dotR) > fabs(dotF) * 1.5 )
@@ -1434,7 +1434,7 @@ static qboolean PM_CheckJump( void )
 		vec3_t	forward, back;
 		trace_t	trace;
 
-		AngleVectors( pm->ps->viewangles, forward, nullptr, nullptr );
+		AngleVectors( pm->ps->viewangles, forward, NULL, NULL );
 		VectorMA( pm->ps->origin, -8, forward, back );
 		pm->trace( &trace, pm->ps->origin, pm->mins, pm->maxs, back, pm->ps->clientNum, pm->tracemask&~(CONTENTS_PLAYERCLIP|CONTENTS_MONSTERCLIP), (EG2_Collision)0, 0 );
 
@@ -1753,7 +1753,7 @@ static qboolean PM_CheckJump( void )
 				qboolean doTrace = qfalse;
 				int contents = CONTENTS_SOLID;
 
-				AngleVectors( fwdAngles, fwd, right, nullptr );
+				AngleVectors( fwdAngles, fwd, right, NULL );
 
 				//trace-check for a wall, if necc.
 				switch ( anim )
@@ -1980,7 +1980,7 @@ static qboolean PM_CheckJump( void )
 									if ( traceEnt->health > 0 )
 									{//didn't kill him
 										if ( (traceEnt->s.number==0&&!Q_irand(0,g_spskill->integer))
-											|| (traceEnt->NPC!=nullptr&&Q_irand(RANK_CIVILIAN,traceEnt->NPC->rank)+Q_irand(-2,2)<RANK_ENSIGN) )
+											|| (traceEnt->NPC!=NULL&&Q_irand(RANK_CIVILIAN,traceEnt->NPC->rank)+Q_irand(-2,2)<RANK_ENSIGN) )
 										{
 											NPC_SetAnim( traceEnt, SETANIM_BOTH, BOTH_KNOCKDOWN2, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 											G_Throw( traceEnt, oppDir, strength );
@@ -2055,7 +2055,7 @@ static qboolean PM_CheckJump( void )
 				trace_t	trace;
 				int		anim = -1;
 
-				AngleVectors( fwdAngles, nullptr, right, nullptr );
+				AngleVectors( fwdAngles, NULL, right, NULL );
 
 				if ( legsAnim == BOTH_WALL_RUN_LEFT )
 				{
@@ -2114,7 +2114,7 @@ static qboolean PM_CheckJump( void )
 				trace_t	trace;
 				int		anim = -1;
 
-				AngleVectors( fwdAngles, fwd, nullptr, nullptr );
+				AngleVectors( fwdAngles, fwd, NULL, NULL );
 
 				float animLen = PM_AnimLength( pm->gent->client->clientInfo.animFileIndex, BOTH_FORCEWALLRUNFLIP_START );
 				if ( pm->ps->legsAnimTimer < animLen - 250 )//was 400
@@ -2157,7 +2157,7 @@ static qboolean PM_CheckJump( void )
 			{//double-tap back-jump does backflip
 				vec3_t fwd, fwdAngles = {0, pm->ps->viewangles[YAW], 0};
 
-				AngleVectors( fwdAngles, fwd, nullptr, nullptr );
+				AngleVectors( fwdAngles, fwd, NULL, NULL );
 				pm->ps->velocity[0] = pm->ps->velocity[1] = 0;
 				VectorMA( pm->ps->velocity, -150, fwd, pm->ps->velocity );
 				//pm->ps->velocity[2] = JUMP_VELOCITY;
@@ -2206,7 +2206,7 @@ static qboolean PM_CheckJump( void )
 					trace_t	trace;
 					vec3_t	idealNormal;
 
-					AngleVectors( fwdAngles, fwd, nullptr, nullptr );
+					AngleVectors( fwdAngles, fwd, NULL, NULL );
 					VectorMA( pm->ps->origin, 32, fwd, traceto );
 
 					pm->trace( &trace, pm->ps->origin, mins, maxs, traceto, pm->ps->clientNum, contents );//FIXME: clip brushes too?
@@ -2255,7 +2255,7 @@ static qboolean PM_CheckJump( void )
 									if ( traceEnt->health > 0 )
 									{//didn't kill him
 										if ( (traceEnt->s.number==0&&!Q_irand(0,g_spskill->integer))
-											|| (traceEnt->NPC!=nullptr&&Q_irand(RANK_CIVILIAN,traceEnt->NPC->rank)+Q_irand(-2,2)<RANK_ENSIGN) )
+											|| (traceEnt->NPC!=NULL&&Q_irand(RANK_CIVILIAN,traceEnt->NPC->rank)+Q_irand(-2,2)<RANK_ENSIGN) )
 										{
 											NPC_SetAnim( traceEnt, SETANIM_BOTH, BOTH_KNOCKDOWN2, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 											G_Throw( traceEnt, oppDir, strength );
@@ -2307,24 +2307,24 @@ static qboolean PM_CheckJump( void )
 						if ( pm->cmd.rightmove > 0 )
 						{
 							anim = BOTH_FORCEWALLREBOUND_RIGHT;
-							AngleVectors( fwdAngles, nullptr, checkDir, nullptr );
+							AngleVectors( fwdAngles, NULL, checkDir, NULL );
 						}
 						else if ( pm->cmd.rightmove < 0 )
 						{
 							anim = BOTH_FORCEWALLREBOUND_LEFT;
-							AngleVectors( fwdAngles, nullptr, checkDir, nullptr );
+							AngleVectors( fwdAngles, NULL, checkDir, NULL );
 							VectorScale( checkDir, -1, checkDir );
 						}
 					}
 					else if ( pm->cmd.forwardmove > 0 )
 					{
 						anim = BOTH_FORCEWALLREBOUND_FORWARD;
-						AngleVectors( fwdAngles, checkDir, nullptr, nullptr );
+						AngleVectors( fwdAngles, checkDir, NULL, NULL );
 					}
 					else if ( pm->cmd.forwardmove < 0 )
 					{
 						anim = BOTH_FORCEWALLREBOUND_BACK;
-						AngleVectors( fwdAngles, checkDir, nullptr, nullptr );
+						AngleVectors( fwdAngles, checkDir, NULL, NULL );
 						VectorScale( checkDir, -1, checkDir );
 					}
 					if ( anim != -1 )
@@ -2894,7 +2894,7 @@ static void PM_AirMove( void ) {
 	VectorNormalize (pml.forward);
 	VectorNormalize (pml.right);
 
-	Vehicle_t *pVeh = nullptr;
+	Vehicle_t *pVeh = NULL;
 
 	if ( pm->gent->client && pm->gent->client->NPC_class == CLASS_VEHICLE )
 	{
@@ -3156,7 +3156,7 @@ static void PM_WalkMove( void ) {
 /*	if ( ( pm->gent && pm->gent->client && pm->gent->client->NPC_class == CLASS_VEHICLE ) && pm->gent->NPC )
 	{//speeder control scheme
 		vec3_t	vfwd, vrt;
-		AngleVectors( ((CVehicleNPC *)pm->gent->NPC)->m_vOrientation, vfwd, vrt, nullptr );
+		AngleVectors( ((CVehicleNPC *)pm->gent->NPC)->m_vOrientation, vfwd, vrt, NULL );
 
 		float speed = pm->ps->speed;
 		if ( fmove < 0 )
@@ -3510,7 +3510,7 @@ static void PM_CrashLandDamage( int damage )
 		if ( damage )
 		{
 			pm->gent->painDebounceTime = level.time + 200;	// no normal pain sound
-			G_Damage( pm->gent, nullptr, player, nullptr, nullptr, damage, dflags, MOD_FALLING );
+			G_Damage( pm->gent, NULL, player, NULL, NULL, damage, dflags, MOD_FALLING );
 		}
 	}
 }
@@ -3847,7 +3847,7 @@ static qboolean PM_TryRoll( void )
 		fwdAngles = { 0, pm->ps->viewangles[YAW], 0 };
 	trace_t	trace;
 	int		anim = -1;
-	AngleVectors( fwdAngles, fwd, right, nullptr );
+	AngleVectors( fwdAngles, fwd, right, NULL );
 	//FIXME: trace ahead for clearance to roll
 	if ( pm->cmd.forwardmove )
 	{
@@ -3988,7 +3988,7 @@ static void PM_CrashLand( void )
 				int damage = floor(fabs(dot+100)/10.0f);
 				if ( damage >= 0 )
 				{
-					G_Damage( pm->gent, nullptr, nullptr, nullptr, nullptr, damage, 0, MOD_FALLING );
+					G_Damage( pm->gent, NULL, NULL, NULL, NULL, damage, 0, MOD_FALLING );
 				}
 			}
 		}
@@ -4587,7 +4587,7 @@ static void PM_SetVehicleAngles( vec3_t normal )
 
 			VectorCopy( pVeh->m_vOrientation, tempVAngles );
 			tempVAngles[ROLL] = 0;
-			AngleVectors( tempVAngles, nullptr, rt, nullptr );
+			AngleVectors( tempVAngles, NULL, rt, NULL );
 			dotp = DotProduct( velocity, rt );
 			//if (fabsf(dotp)>0.5f)
 			{
@@ -5043,7 +5043,7 @@ static void PM_GroundTraceMissed( void ) {
 
 										VectorCopy( pm->ps->viewangles, lookAngles );
 										lookAngles[PITCH] = lookAngles[ROLL] = 0;
-										AngleVectors( lookAngles, lookDir, lookRight, nullptr );
+										AngleVectors( lookAngles, lookDir, lookRight, NULL );
 
 										float dot = DotProduct( moveDir, lookDir );
 										if ( dot > 0.5 )
@@ -5152,7 +5152,7 @@ static void PM_GroundTrace( void ) {
 		VectorCopy( pm->ps->origin, pml.groundTrace.endpos );
 		pml.groundTrace.entityNum = ENTITYNUM_WORLD;
 		pml.groundTrace.fraction = 0.0f;;
-		pml.groundTrace.G2CollisionMap = nullptr;
+		pml.groundTrace.G2CollisionMap = NULL;
 		pml.groundTrace.plane.dist = 0.0f;
 		VectorSet( pml.groundTrace.plane.normal, 0, 0, 1 );
 		pml.groundTrace.plane.pad = 0;
@@ -5202,7 +5202,7 @@ static void PM_GroundTrace( void ) {
 		/*
 		if ( pm->ps->vehicleIndex != VEHICLE_NONE )
 		{
-			PM_SetVehicleAngles( nullptr );
+			PM_SetVehicleAngles( NULL );
 		}
 		*/
 		return;
@@ -5453,7 +5453,7 @@ void PM_HoverTrace( void )
 	}
 	else
 	{
-		PM_SetVehicleAngles( nullptr );
+		PM_SetVehicleAngles( NULL );
 		// We're flying in the air.
 		pVeh->m_ulFlags |= VEH_FLYING;
 		//groundTrace
@@ -7148,11 +7148,11 @@ void PM_ResetAnkleAngles( void )
 	}
 	if ( pm->gent->footLBone != -1 )
 	{
-		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footLBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, nullptr, 0, 0 );
+		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footLBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, NULL, 0, 0 );
 	}
 	if ( pm->gent->footRBone != -1 )
 	{
-		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footRBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, nullptr, 0, 0 );
+		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footRBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, NULL, 0, 0 );
 	}
 }
 
@@ -7162,13 +7162,13 @@ void PM_AnglesForSlope( const float yaw, const vec3_t slope, vec3_t angles )
 	float	pitch, mod, dot;
 
 	VectorSet( angles, 0, yaw, 0 );
-	AngleVectors( angles, ovf, ovr, nullptr );
+	AngleVectors( angles, ovf, ovr, NULL );
 
 	vectoangles( slope, new_angles );
 	pitch = new_angles[PITCH] + 90;
 	new_angles[ROLL] = new_angles[PITCH] = 0;
 
-	AngleVectors( new_angles, nvf, nullptr, nullptr );
+	AngleVectors( new_angles, nvf, NULL, NULL );
 
 	mod = DotProduct( nvf, ovr );
 
@@ -7200,11 +7200,11 @@ void PM_FootSlopeTrace( float *pDiff, float *pInterval )
 
 	if ( pm->gent->footLBolt == -1 || pm->gent->footRBolt == -1 )
 	{
-		if ( pDiff != nullptr )
+		if ( pDiff != NULL )
 		{
 			*pDiff = 0;
 		}
-		if ( pInterval != nullptr )
+		if ( pInterval != NULL )
 		{
 			*pInterval = interval;
 		}
@@ -7216,11 +7216,11 @@ void PM_FootSlopeTrace( float *pDiff, float *pInterval )
 		if ( Q_isnan( pm->gent->client->renderInfo.footLPoint[i] )
 			|| Q_isnan( pm->gent->client->renderInfo.footRPoint[i] ) )
 		{
-			if ( pDiff != nullptr )
+			if ( pDiff != NULL )
 			{
 				*pDiff = 0;
 			}
-			if ( pInterval != nullptr )
+			if ( pInterval != NULL )
 			{
 				*pInterval = interval;
 			}
@@ -7235,12 +7235,12 @@ void PM_FootSlopeTrace( float *pDiff, float *pInterval )
 	//get the feet
 	gi.G2API_GetBoltMatrix( pm->gent->ghoul2, pm->gent->playerModel, pm->gent->footLBolt,
 			&boltMatrix, G2Angles, pm->ps->origin, (cg.time?cg.time:level.time),
-					nullptr, pm->gent->s.modelScale );
+					NULL, pm->gent->s.modelScale );
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, pm->gent->client->renderInfo.footLPoint );
 
 	gi.G2API_GetBoltMatrix( pm->gent->ghoul2, pm->gent->playerModel, pm->gent->footRBolt,
 					&boltMatrix, G2Angles, pm->ps->origin, (cg.time?cg.time:level.time),
-					nullptr, pm->gent->s.modelScale );
+					NULL, pm->gent->s.modelScale );
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, pm->gent->client->renderInfo.footRPoint );
 #endif
 	//NOTE: on AT-STs, rotating the foot moves this point, so it will wiggle...
@@ -7251,16 +7251,16 @@ void PM_FootSlopeTrace( float *pDiff, float *pInterval )
 		mdxaBone_t	boltMatrix;
 		vec3_t		G2Angles = {0, pm->gent->client->ps.legsYaw, 0};
 		//get the feet
-		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footLBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, nullptr );
+		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footLBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, NULL );
 		gi.G2API_GetBoltMatrix( pm->gent->ghoul2, pm->gent->playerModel, pm->gent->footLBolt,
 				&boltMatrix, G2Angles, pm->ps->origin, (cg.time?cg.time:level.time),
-						nullptr, pm->gent->s.modelScale );
+						NULL, pm->gent->s.modelScale );
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, pm->gent->client->renderInfo.footLPoint );
 
-		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footRBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, nullptr );
+		gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footRBone, vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, NULL );
 		gi.G2API_GetBoltMatrix( pm->gent->ghoul2, pm->gent->playerModel, pm->gent->footRBolt,
 						&boltMatrix, G2Angles, pm->ps->origin, (cg.time?cg.time:level.time),
-						nullptr, pm->gent->s.modelScale );
+						NULL, pm->gent->s.modelScale );
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, pm->gent->client->renderInfo.footRPoint );
 	}
 	*/
@@ -7306,21 +7306,21 @@ void PM_FootSlopeTrace( float *pDiff, float *pInterval )
 		{//rotate the ATST's left foot pad to match the slope
 			PM_AnglesForSlope( pm->gent->client->renderInfo.legsYaw, footLSlope, footAngles );
 			//Hmm... lerp this?
-			gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footLBone, footAngles, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, nullptr, 0, 0 );
+			gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footLBone, footAngles, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, NULL, 0, 0 );
 		}
 		if ( !VectorCompare( footRSlope, vec3_origin ) )
 		{//rotate the ATST's right foot pad to match the slope
 			PM_AnglesForSlope( pm->gent->client->renderInfo.legsYaw, footRSlope, footAngles );
 			//Hmm... lerp this?
-			gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footRBone, footAngles, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, nullptr, 0, 0 );
+			gi.G2API_SetBoneAnglesIndex( &pm->gent->ghoul2[0], pm->gent->footRBone, footAngles, BONE_ANGLES_POSTMULT, POSITIVE_Z, NEGATIVE_Y, NEGATIVE_X, NULL, 0, 0 );
 		}
 	}
 
-	if ( pDiff != nullptr )
+	if ( pDiff != NULL )
 	{
 		*pDiff = diff;
 	}
-	if ( pInterval != nullptr )
+	if ( pInterval != NULL )
 	{
 		*pInterval = interval;
 	}
@@ -7827,7 +7827,7 @@ void PM_JetPackAnim( void )
 	{
 		vec3_t facingFwd, facingRight, facingAngles = {0, pm->ps->viewangles[YAW], 0};
 		int anim = BOTH_FORCEJUMP1;
-		AngleVectors( facingAngles, facingFwd, facingRight, nullptr );
+		AngleVectors( facingAngles, facingFwd, facingRight, NULL );
 		float dotR = DotProduct( facingRight, pm->ps->velocity );
 		float dotF = DotProduct( facingFwd, pm->ps->velocity );
 		if ( fabs(dotR) > fabs(dotF) * 1.5 )
@@ -7937,7 +7937,7 @@ static void PM_Footsteps( void )
 	qboolean	flipping = qfalse;
 	int			setAnimFlags = SETANIM_FLAG_NORMAL;
 
-	if( pm->gent == nullptr || pm->gent->client == nullptr )
+	if( pm->gent == NULL || pm->gent->client == NULL )
 		return;
 
 	if ( (pm->ps->eFlags&EF_HELD_BY_WAMPA) )
@@ -7981,7 +7981,7 @@ static void PM_Footsteps( void )
 		return;
 	}
 
-	if( pm->gent->NPC != nullptr )
+	if( pm->gent->NPC != NULL )
 	{
 		validNPC = qtrue;
 	}
@@ -8203,7 +8203,7 @@ static void PM_Footsteps( void )
 				}
 				if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 				{//
-					if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+					if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 					{//fell to the ground and we're not trying to pull it back
 						saberInAir = qfalse;
 					}
@@ -8345,7 +8345,7 @@ static void PM_Footsteps( void )
 	//maybe call this every frame, even when moving?
 	if ( pm->gent && pm->gent->client && pm->gent->client->NPC_class == CLASS_ATST )
 	{
-		PM_FootSlopeTrace( nullptr, nullptr );
+		PM_FootSlopeTrace( NULL, NULL );
 	}
 
 	//trying to move laterally
@@ -8609,7 +8609,7 @@ static void PM_Footsteps( void )
 		}
 	}
 
-	if(pm->gent != nullptr)
+	if(pm->gent != NULL)
 	{
 		if( pm->gent->client->renderInfo.legsFpsMod > 2 )
 		{
@@ -10564,7 +10564,7 @@ qboolean PM_SaberLocked( void )
 					qboolean ret =
 #endif
 						gi.G2API_GetBoneAnimIndex( &gent->ghoul2[gent->playerModel], gent->lowerLumbarBone,
-						(cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &junk2, nullptr );
+						(cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &junk2, NULL );
 #ifdef _DEBUG
 					assert( ret ); // this would be pretty bad, the below code seems to assume the call succeeds. -gil
 #endif
@@ -10704,7 +10704,7 @@ qboolean PM_SaberLocked( void )
 					float		currentFrame, junk2;
 					int			junk;
 
-					gi.G2API_GetBoneAnimIndex( &genemy->ghoul2[genemy->playerModel], genemy->lowerLumbarBone, (cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &junk2, nullptr );
+					gi.G2API_GetBoneAnimIndex( &genemy->ghoul2[genemy->playerModel], genemy->lowerLumbarBone, (cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &junk2, NULL );
 					*/
 
 					if ( !Q_irand( 0, 2 ) )
@@ -10860,7 +10860,7 @@ saberMoveName_t G_PickAutoKick( gentity_t *self, gentity_t *enemy, qboolean stor
 	vec3_t	v_fwd, v_rt, enemyDir, fwdAngs = {0,self->client->ps.viewangles[YAW],0};
 	VectorSubtract( enemy->currentOrigin, self->currentOrigin, enemyDir );
 	VectorNormalize( enemyDir );//not necessary, I guess, but doesn't happen often
-	AngleVectors( fwdAngs, v_fwd, v_rt, nullptr );
+	AngleVectors( fwdAngs, v_fwd, v_rt, NULL );
 	float fDot = DotProduct( enemyDir, v_fwd );
 	float rDot = DotProduct( enemyDir, v_rt );
 	if ( fabs( rDot ) > 0.5f && fabs( fDot ) < 0.5f )
@@ -10951,7 +10951,7 @@ saberMoveName_t G_PickAutoMultiKick( gentity_t *self, qboolean allowSingles, qbo
 	vec3_t		center;
 	saberMoveName_t kickMove, bestKick = LS_NONE;
 	float		distToEnt, bestDistToEnt = Q3_INFINITE;
-	gentity_t	*bestEnt = nullptr;
+	gentity_t	*bestEnt = NULL;
 	int			enemiesFront = 0;
 	int			enemiesBack = 0;
 	int			enemiesRight = 0;
@@ -11062,7 +11062,7 @@ saberMoveName_t G_PickAutoMultiKick( gentity_t *self, qboolean allowSingles, qbo
 		kickMove = bestKick;
 		//get mad at him so he knows he's being targetted
 		if ( (self->s.number < MAX_CLIENTS||G_ControlledByPlayer(self))
-			&& bestEnt != nullptr )
+			&& bestEnt != NULL )
 		{//player
 			G_SetEnemy( self, bestEnt );
 		}
@@ -12149,7 +12149,7 @@ void PM_WeaponLightsaber(void)
 		{//guiding saber
 			if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 			{//
-				if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+				if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 				{//fell to the ground and we're not trying to pull it back
 					saberInAir = qfalse;
 				}
@@ -12333,7 +12333,7 @@ void PM_WeaponLightsaber(void)
 				}
 				if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 				{//
-					if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+					if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 					{//fell to the ground and we're not trying to pull it back
 						saberInAir = qfalse;
 					}
@@ -12560,7 +12560,7 @@ void PM_WeaponLightsaber(void)
 			}
 			if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 			{//
-				if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+				if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 				{//fell to the ground and we're not trying to pull it back
 					saberInAir = qfalse;
 				}
@@ -12819,7 +12819,7 @@ void PM_WeaponLightsaber(void)
 		if ( !addTime )
 		{
 			addTime = weaponData[pm->ps->weapon].altFireTime;
-			if ( g_timescale != nullptr )
+			if ( g_timescale != NULL )
 			{
 				if ( g_timescale->value < 1.0f )
 				{
@@ -12843,7 +12843,7 @@ void PM_WeaponLightsaber(void)
 		if ( !addTime )
 		{
 			addTime = weaponData[pm->ps->weapon].fireTime;
-			if ( g_timescale != nullptr )
+			if ( g_timescale != NULL )
 			{
 				if ( g_timescale->value < 1.0f )
 				{
@@ -12876,7 +12876,7 @@ void PM_WeaponLightsaber(void)
 	//If the phaser has been fired, delay the next recharge time
 	if ( !PM_ControlledByPlayer() )
 	{
-		if( pm->gent && pm->gent->NPC != nullptr )
+		if( pm->gent && pm->gent->NPC != NULL )
 		{//NPCs have their own refire logic
 			//FIXME: this really should be universal...
 			return;
@@ -14011,13 +14011,13 @@ static void PM_Weapon( void )
 
 	if(!PM_ControlledByPlayer())
 	{
-		if(pm->gent && pm->gent->NPC != nullptr )
+		if(pm->gent && pm->gent->NPC != NULL )
 		{//NPCs have their own refire logic
 			return;
 		}
 	}
 
-	if ( g_timescale != nullptr )
+	if ( g_timescale != NULL )
 	{
 		if ( g_timescale->value < 1.0f )
 		{
@@ -14178,12 +14178,12 @@ static void PM_VehicleWeapon( void )
 		//addTime = weaponData[pm->ps->weapon].fireTime;
 	}
 
-/*	if(pm->gent && pm->gent->NPC != nullptr )
+/*	if(pm->gent && pm->gent->NPC != NULL )
 	{//NPCs have their own refire logic
 		return;
 	}*/
 
-	if ( g_timescale != nullptr )
+	if ( g_timescale != NULL )
 	{
 		if ( g_timescale->value < 1.0f )
 		{
@@ -14382,7 +14382,7 @@ void PM_SetSpecialMoveValues (void )
 		}
 	}
 
-	if ( g_timescale != nullptr )
+	if ( g_timescale != NULL )
 	{
 		if ( g_timescale->value < 1.0f )
 		{
@@ -14722,7 +14722,7 @@ Can be called by either the server or the client
 */
 void Pmove( pmove_t *pmove )
 {
-	Vehicle_t *pVeh = nullptr;
+	Vehicle_t *pVeh = NULL;
 
 	pm = pmove;
 

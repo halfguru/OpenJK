@@ -509,11 +509,11 @@ namespace storage
 	struct value_semantics
 	{
 		static const int CAPACITY		= SIZE;
-		using TAlign = T;		// this is any type that has the right alignment
-		using TValue = T;		// this is the actual thing the user uses
-		using TStorage = T;		// this is what we make our array of
+		typedef T TAlign;		// this is any type that has the right alignment
+		typedef T TValue;		// this is the actual thing the user uses
+		typedef T TStorage;		// this is what we make our array of
 
-		using TConstructed = bits_true;
+		typedef bits_true TConstructed;
 		typedef TStorage TArray[SIZE];
 
 
@@ -576,10 +576,10 @@ namespace storage
 	struct object_semantics
 	{
 		static const int CAPACITY		= SIZE;
-		using TAlign = mem::alignStruct;		// this is any type that has the right alignment
-		using TValue = T;				// this is the actual thing the user uses
+		typedef mem::alignStruct TAlign;		// this is any type that has the right alignment
+		typedef T TValue;				// this is the actual thing the user uses
 
-		using TConstructed = bits_base<SIZE>;
+		typedef bits_base<SIZE> TConstructed;
 
 		struct TStorage
 		{
@@ -638,10 +638,10 @@ namespace storage
 	struct virtual_semantics
 	{
 		static const int CAPACITY		= SIZE;
-		using TAlign = mem::alignStruct;		// this is any type that has the right alignment
-		using TValue = T;				// this is the actual thing the user uses
+		typedef mem::alignStruct TAlign;		// this is any type that has the right alignment
+		typedef T TValue;				// this is the actual thing the user uses
 
-		using TConstructed = bits_base<SIZE>;
+		typedef bits_base<SIZE> TConstructed;
 
 		struct TStorage
 		{
@@ -720,11 +720,11 @@ namespace storage
 			NODE	nodeData;
 			T		value;
 		};
-		using TAlign = SNode;		// this is any type that has the right alignment
-		using TValue = T;		// this is the actual thing the user uses
-		using TStorage = SNode;		// this is what we make our array of
+		typedef SNode		TAlign;		// this is any type that has the right alignment
+		typedef T			TValue;		// this is the actual thing the user uses
+		typedef SNode		TStorage;		// this is what we make our array of
 
-		using TConstructed = bits_true;
+		typedef bits_true TConstructed;
 		typedef TStorage TArray[SIZE];
 
 		enum
@@ -792,10 +792,10 @@ namespace storage
 	struct object_semantics_node
 	{
 		static const int CAPACITY		= SIZE;
-		using TAlign = mem::alignStruct;		// this is any type that has the right alignment
-		using TValue = T;		// this is the actual thing the user uses
+		typedef mem::alignStruct TAlign;		// this is any type that has the right alignment
+		typedef T			TValue;		// this is the actual thing the user uses
 
-		using TConstructed = bits_base<SIZE>;
+		typedef bits_base<SIZE> TConstructed;
 
 		struct TValueStorage
 		{
@@ -806,7 +806,7 @@ namespace storage
 			NODE				nodeData;
 			TValueStorage		value;
 		};
-		using TStorage = SNode;		// this is what we make our array of
+		typedef SNode		TStorage;		// this is what we make our array of
 		typedef TStorage TArray[SIZE];
 
 
@@ -885,10 +885,10 @@ namespace storage
 	struct virtual_semantics_node
 	{
 		static const int CAPACITY		= SIZE;
-		using TAlign = mem::alignStruct;		// this is any type that has the right alignment
-		using TValue = T;				// this is the actual thing the user uses
+		typedef mem::alignStruct TAlign;		// this is any type that has the right alignment
+		typedef T TValue;				// this is the actual thing the user uses
 
-		using TConstructed = bits_base<SIZE>;
+		typedef bits_base<SIZE> TConstructed;
 
 		struct TValueStorage
 		{
@@ -899,7 +899,7 @@ namespace storage
 			NODE				nodeData;
 			TValueStorage		value;
 		};
-		using TStorage = SNode;		// this is what we make our array of
+		typedef SNode		TStorage;		// this is what we make our array of
 		typedef TStorage TArray[SIZE];
 
 		enum
@@ -1000,10 +1000,10 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////
 	// Data
 	////////////////////////////////////////////////////////////////////////////////////
-    using TStorageTraits = T;
-	using TTArray = typename T::TArray;
-	using TTValue = typename T::TValue;
-	using TTConstructed = typename T::TConstructed;
+    typedef T                           TStorageTraits;
+	typedef typename T::TArray			TTArray;
+	typedef typename T::TValue			TTValue;
+	typedef typename T::TConstructed	TTConstructed;
 
 private:
 	TTArray				mArray;

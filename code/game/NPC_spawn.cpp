@@ -288,7 +288,7 @@ void NPC_SetMiscDefaultData( gentity_t *ent )
 			//ent->NPC->scriptFlags |= SCF_NO_GROUPS;
 			ent->NPC->scriptFlags &= ~SCF_FLY_WITH_JET;
 			RT_FlyStart( ent );
-			NPC_SetMoveGoal( ent, ent->currentOrigin, 16, qfalse, -1, nullptr );
+			NPC_SetMoveGoal( ent, ent->currentOrigin, 16, qfalse, -1, NULL );
 			VectorCopy( ent->currentOrigin, ent->pos1 );
 		}
 		if ( (ent->spawnflags&2) )
@@ -987,7 +987,7 @@ void NPC_Begin (gentity_t *ent)
 	vec3_t	spawn_origin, spawn_angles;
 	gclient_t	*client;
 	usercmd_t	ucmd;
-	gentity_t	*spawnPoint = nullptr;
+	gentity_t	*spawnPoint = NULL;
 
 	memset( &ucmd, 0, sizeof( ucmd ) );
 
@@ -1336,7 +1336,7 @@ qboolean NPC_StasisSpawn_Go( gentity_t *ent )
 	//Setup an owner pointer if we need it
 	if VALIDSTRING( ent->ownername )
 	{
-		ent->owner = G_Find( nullptr, FOFS( targetname ), ent->ownername );
+		ent->owner = G_Find( NULL, FOFS( targetname ), ent->ownername );
 
 		if ( ( ent->owner ) && ( ent->owner->health <= 0 ) )
 		{//our spawner thing is broken
@@ -1458,7 +1458,7 @@ gentity_t *NPC_Spawn_Do( gentity_t *ent, qboolean fullSpawnNow )
 	{
 		if (!NPC_SafeSpawn(ent, 64))
 		{
-			return nullptr;
+			return NULL;
 		}
 	}
 
@@ -1492,7 +1492,7 @@ gentity_t *NPC_Spawn_Do( gentity_t *ent, qboolean fullSpawnNow )
 
 	newent = G_Spawn();
 
-	if ( newent == nullptr )
+	if ( newent == NULL )
 	{
 		gi.Printf ( S_COLOR_RED"ERROR: NPC G_Spawn failed\n" );
 
@@ -1500,14 +1500,14 @@ gentity_t *NPC_Spawn_Do( gentity_t *ent, qboolean fullSpawnNow )
 		{
 			G_SetOrigin( ent, saveOrg );
 		}
-		return nullptr;
+		return NULL;
 	}
 
 	newent->client = (gclient_t *)gi.Malloc(sizeof(gclient_t), TAG_G_ALLOC, qtrue);
 
 	newent->svFlags |= SVF_NPC;
 
-	if ( ent->NPC_type == nullptr )
+	if ( ent->NPC_type == NULL )
 	{
 		ent->NPC_type = "random";
 		newent->NPC_type = "random";
@@ -1560,7 +1560,7 @@ gentity_t *NPC_Spawn_Do( gentity_t *ent, qboolean fullSpawnNow )
 			{
 				G_SetOrigin( ent, saveOrg );
 			}
-            return nullptr;
+            return NULL;
 		}
 		newent->soundSet = G_NewString(ent->soundSet);//get my own copy so i can free it when i die
 
@@ -1596,7 +1596,7 @@ gentity_t *NPC_Spawn_Do( gentity_t *ent, qboolean fullSpawnNow )
 				{
 					G_SetOrigin( ent, saveOrg );
 				}
-				return nullptr;
+				return NULL;
 		}
 
 		//grab this from the spawner
@@ -1654,7 +1654,7 @@ gentity_t *NPC_Spawn_Do( gentity_t *ent, qboolean fullSpawnNow )
 		{
 			G_SetOrigin( ent, saveOrg );
 		}
-		return nullptr;
+		return NULL;
 	}
 
 	if ( ent->NPC_type )
@@ -1808,7 +1808,7 @@ void NPC_StasisSpawnEffect( gentity_t *ent )
 	//Floor or wall?
 	if ( ent->spawnflags & 1 )
 	{
-		AngleVectors( ent->s.angles, forward, nullptr, nullptr );
+		AngleVectors( ent->s.angles, forward, NULL, NULL );
 		VectorMA( ent->currentOrigin,  24, forward, end );
 		VectorMA( ent->currentOrigin, -20, forward, start );
 
@@ -2554,7 +2554,7 @@ void SP_NPC_Jedi( gentity_t *self)
 					self->NPC_type = "jedi_zf2";
 					break;
 				}
-				if ( strstr( self->NPC_type, g_char_model->string ) != nullptr )
+				if ( strstr( self->NPC_type, g_char_model->string ) != NULL )
 				{//bah, we're using this one, try again
 					continue;
 				}
@@ -3448,7 +3448,7 @@ void SP_NPC_Cultist( gentity_t *self)
 	{
 		if ( (self->spawnflags&1) )
 		{
-			self->NPC_type = nullptr;
+			self->NPC_type = NULL;
 			self->spawnflags = 0;//fast, no throw
 			switch ( Q_irand( 0, 2 ) )
 			{
@@ -4117,13 +4117,13 @@ static void NPC_Spawn_f(void)
 
 	//Spawn it at spot of first player
 	//FIXME: will gib them!
-	AngleVectors(g_entities[0].client->ps.viewangles, forward, nullptr, nullptr);
+	AngleVectors(g_entities[0].client->ps.viewangles, forward, NULL, NULL);
 	VectorNormalize(forward);
 	VectorMA(g_entities[0].currentOrigin, 64, forward, end);
-	gi.trace(&trace, g_entities[0].currentOrigin, nullptr, nullptr, end, 0, MASK_SOLID, (EG2_Collision)0, 0);
+	gi.trace(&trace, g_entities[0].currentOrigin, NULL, NULL, end, 0, MASK_SOLID, (EG2_Collision)0, 0);
 	VectorCopy(trace.endpos, end);
 	end[2] -= 24;
-	gi.trace(&trace, trace.endpos, nullptr, nullptr, end, 0, MASK_SOLID, (EG2_Collision)0, 0);
+	gi.trace(&trace, trace.endpos, NULL, NULL, end, 0, MASK_SOLID, (EG2_Collision)0, 0);
 	VectorCopy(trace.endpos, end);
 	end[2] += 24;
 	G_SetOrigin(NPCspawner, end);
@@ -4165,7 +4165,7 @@ static void NPC_Spawn_f(void)
 	}
 	if ( !Q_stricmp( "jedi_random", NPCspawner->NPC_type ) )
 	{//special case, for testing
-		NPCspawner->NPC_type = nullptr;
+		NPCspawner->NPC_type = NULL;
 		NPCspawner->spawnflags |= 4;
 		SP_NPC_Jedi( NPCspawner );
 	}
@@ -4260,7 +4260,7 @@ void NPC_Kill_f( void )
 						/*
 						if ( (player->flags&FL_UNDYING) )
 						{
-							G_Damage( player, nullptr, nullptr, nullptr, nullptr, player->health+10000, 0, MOD_UNKNOWN );
+							G_Damage( player, NULL, NULL, NULL, NULL, player->health+10000, 0, MOD_UNKNOWN );
 						}
 						else
 						*/
@@ -4288,7 +4288,7 @@ void NPC_Kill_f( void )
 					/*
 					if ( (player->flags&FL_UNDYING) )
 					{
-						G_Damage( player, nullptr, nullptr, nullptr, nullptr, player->health+10000, 0, MOD_UNKNOWN );
+						G_Damage( player, NULL, NULL, NULL, NULL, player->health+10000, 0, MOD_UNKNOWN );
 					}
 					else
 					*/
@@ -4306,7 +4306,7 @@ void NPC_Kill_f( void )
 				/*
 				if ( (player->flags&FL_UNDYING) )
 				{
-					G_Damage( player, nullptr, nullptr, nullptr, nullptr, player->health+10000, 0, MOD_UNKNOWN );
+					G_Damage( player, NULL, NULL, NULL, NULL, player->health+10000, 0, MOD_UNKNOWN );
 				}
 				else
 				*/
@@ -4369,7 +4369,7 @@ void Svcmd_NPC_f( void )
 	else if ( Q_stricmp ( cmd, "score" ) == 0 )
 	{
 		char		*cmd2 = gi.argv(2);
-		gentity_t *ent = nullptr;
+		gentity_t *ent = NULL;
 
 		if ( !cmd2 || !cmd2[0] )
 		{//Show the score for all NPCs
@@ -4386,7 +4386,7 @@ void Svcmd_NPC_f( void )
 		}
 		else
 		{
-			if ( (ent = G_Find( nullptr, FOFS(targetname), cmd2 )) != nullptr && ent->client )
+			if ( (ent = G_Find( NULL, FOFS(targetname), cmd2 )) != NULL && ent->client )
 			{
 				NPC_PrintScore( ent );
 			}

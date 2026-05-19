@@ -274,7 +274,7 @@ bool CParticle::UpdateOrigin()
 			}
 			else
 			{
-				theFxHelper.Trace( &trace, mOrigin1, nullptr, nullptr, new_origin, -1, ( MASK_SHOT | CONTENTS_WATER ) );
+				theFxHelper.Trace( &trace, mOrigin1, NULL, NULL, new_origin, -1, ( MASK_SHOT | CONTENTS_WATER ) );
 			}
 
 			if ( trace.startsolid || trace.allsolid || trace.fraction == 1.0)
@@ -736,7 +736,7 @@ bool CLine::Update()
 		{
 			VectorMA( mOrigin1, 2048, dir, end );
 
-			theFxHelper.Trace( &trace, mOrigin1, nullptr, nullptr, end, mClientID, MASK_SHOT );
+			theFxHelper.Trace( &trace, mOrigin1, NULL, NULL, end, mClientID, MASK_SHOT );
 
 			VectorCopy( trace.endpos, mOrigin2 );
 
@@ -1235,7 +1235,7 @@ void CEmitter::Draw()
 					}
 					else
 					{
-						theFxHelper.Trace( &trace, mOldOrigin, nullptr, nullptr, org, -1, MASK_SHOT );
+						theFxHelper.Trace( &trace, mOldOrigin, NULL, NULL, org, -1, MASK_SHOT );
 					}
 
 					// Hit something

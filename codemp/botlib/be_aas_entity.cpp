@@ -85,9 +85,9 @@ int AAS_UpdateEntity(int entnum, bot_entitystate_t *state)
 		//unlink the entity from the BSP leaves
 		AAS_UnlinkFromBSPLeaves(ent->leaves);
 		//
-		ent->areas = nullptr;
+		ent->areas = NULL;
 		//
-		ent->leaves = nullptr;
+		ent->leaves = NULL;
 		return BLERR_NOERROR;
 	}
 
@@ -126,7 +126,7 @@ int AAS_UpdateEntity(int entnum, bot_entitystate_t *state)
 		} //end if
 		//get the mins and maxs of the model
 		//FIXME: rotate mins and maxs
-		AAS_BSPModelMinsMaxsOrigin(ent->i.modelindex, ent->i.angles, ent->i.mins, ent->i.maxs, nullptr);
+		AAS_BSPModelMinsMaxsOrigin(ent->i.modelindex, ent->i.angles, ent->i.mins, ent->i.maxs, NULL);
 	} //end if
 	else if (ent->i.solid == SOLID_BBOX)
 	{
@@ -333,8 +333,8 @@ void AAS_ResetEntityLinks(void)
 	int i;
 	for (i = 0; i < aasworld.maxentities; i++)
 	{
-		aasworld.entities[i].areas = nullptr;
-		aasworld.entities[i].leaves = nullptr;
+		aasworld.entities[i].areas = NULL;
+		aasworld.entities[i].leaves = NULL;
 	} //end for
 } //end of the function AAS_ResetEntityLinks
 //===========================================================================
@@ -369,9 +369,9 @@ void AAS_UnlinkInvalidEntities(void)
 		if (!ent->i.valid)
 		{
 			AAS_UnlinkFromAreas( ent->areas );
-			ent->areas = nullptr;
+			ent->areas = NULL;
 			AAS_UnlinkFromBSPLeaves( ent->leaves );
-			ent->leaves = nullptr;
+			ent->leaves = NULL;
 		} //end for
 	} //end for
 } //end of the function AAS_UnlinkInvalidEntities

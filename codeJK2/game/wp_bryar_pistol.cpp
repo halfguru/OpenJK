@@ -59,7 +59,7 @@ void WP_FireBryarPistol( gentity_t *ent, qboolean alt_fire )
 			angs[YAW]	+= ( Q_flrand(-1.0f, 1.0f) * ((5-ent->NPC->currentAim)*0.25f) );
 		}
 
-		AngleVectors( angs, wpFwd, nullptr, nullptr );
+		AngleVectors( angs, wpFwd, NULL, NULL );
 	}
 
 	gentity_t	*missile = CreateMissile( start, wpFwd, BRYAR_PISTOL_VEL, 10000, ent, alt_fire );

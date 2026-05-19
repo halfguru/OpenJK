@@ -299,11 +299,11 @@ bool CParticle::UpdateOrigin()
 			{
 				if (mFlags & FX_GHOUL2_TRACE)
 				{
-					theFxHelper.G2Trace( &trace, mOrigin1, nullptr, nullptr, new_origin, ENTITYNUM_NONE, ( MASK_SHOT | CONTENTS_WATER ) );
+					theFxHelper.G2Trace( &trace, mOrigin1, NULL, NULL, new_origin, ENTITYNUM_NONE, ( MASK_SHOT | CONTENTS_WATER ) );
 				}
 				else
 				{
-					theFxHelper.Trace( &trace, mOrigin1, nullptr, nullptr, new_origin, -1, ( MASK_SHOT | CONTENTS_WATER ) );
+					theFxHelper.Trace( &trace, mOrigin1, NULL, NULL, new_origin, -1, ( MASK_SHOT | CONTENTS_WATER ) );
 				}
 			}
 
@@ -734,7 +734,7 @@ bool COrientedParticle::Update()
 		vectoangles( ax[0], boltAngles );
 		vectoangles( mNormalOffset, offsetAngles );
 		VectorAdd( boltAngles, offsetAngles, transformedAngles );
-		AngleVectors( transformedAngles, mNormal, nullptr, nullptr );
+		AngleVectors( transformedAngles, mNormal, NULL, NULL );
 	}
 	else if (( mTimeStart < theFxHelper.mTime ) && UpdateOrigin() == false )
 	{
@@ -850,7 +850,7 @@ bool CLine::Update()
 		{
 			VectorMA( mOrigin1, 2048, ax[0], end );
 
-			theFxHelper.Trace( &trace, mOrigin1, nullptr, nullptr, end, mClientID, MASK_SHOT );
+			theFxHelper.Trace( &trace, mOrigin1, NULL, NULL, end, mClientID, MASK_SHOT );
 
 			VectorCopy( trace.endpos, mOrigin2 );
 
@@ -1448,7 +1448,7 @@ void CEmitter::Draw()
 					}
 					else
 					{
-						theFxHelper.Trace( &trace, mOldOrigin, nullptr, nullptr, org, -1, MASK_SHOT );
+						theFxHelper.Trace( &trace, mOldOrigin, NULL, NULL, org, -1, MASK_SHOT );
 					}
 
 					// Hit something

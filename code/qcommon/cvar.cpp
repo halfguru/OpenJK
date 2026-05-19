@@ -27,7 +27,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #include "q_shared.h"
 #include "qcommon.h"
 
-cvar_t		*cvar_vars = nullptr;
+cvar_t		*cvar_vars = NULL;
 cvar_t		*cvar_cheats;
 int			cvar_modifiedFlags;
 
@@ -39,7 +39,7 @@ int			cvar_numIndexes;
 static	cvar_t*		hashTable[FILE_HASH_SIZE];
 static	qboolean cvar_sort = qfalse;
 
-static char *lastMemPool = nullptr;
+static char *lastMemPool = NULL;
 static int memPoolSize;
 
 
@@ -112,7 +112,7 @@ static cvar_t *Cvar_FindVar( const char *var_name ) {
 		}
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 /*
@@ -329,7 +329,7 @@ cvar_t *Cvar_Get( const char *var_name, const char *var_value, int flags ) {
 	int		index;
 
     if ( !var_name || ! var_value ) {
-		Com_Error( ERR_FATAL, "Cvar_Get: nullptr parameter" );
+		Com_Error( ERR_FATAL, "Cvar_Get: NULL parameter" );
     }
 
 	if ( !Cvar_ValidateString( var_name ) ) {
@@ -408,7 +408,7 @@ cvar_t *Cvar_Get( const char *var_name, const char *var_value, int flags ) {
 			char *s;
 
 			s = var->latchedString;
-			var->latchedString = nullptr;	// otherwise cvar_set2 would free it
+			var->latchedString = NULL;	// otherwise cvar_set2 would free it
 			Cvar_Set2( var_name, s, qtrue );
 			Cvar_FreeString( s );
 		}
@@ -436,7 +436,7 @@ cvar_t *Cvar_Get( const char *var_name, const char *var_value, int flags ) {
 		if(!com_errorEntered)
 			Com_Error(ERR_FATAL, "Error: Too many cvars, cannot create a new one!");
 
-		return nullptr;
+		return NULL;
 	}
 
 	var = &cvar_indexes[index];
@@ -458,7 +458,7 @@ cvar_t *Cvar_Get( const char *var_name, const char *var_value, int flags ) {
 	if(cvar_vars)
 		cvar_vars->prev = var;
 
-	var->prev = nullptr;
+	var->prev = NULL;
 	cvar_vars = var;
 
 	var->flags = flags;
@@ -472,7 +472,7 @@ cvar_t *Cvar_Get( const char *var_name, const char *var_value, int flags ) {
 	if(hashTable[hash])
 		hashTable[hash]->hashPrev = var;
 
-	var->hashPrev = nullptr;
+	var->hashPrev = NULL;
 	hashTable[hash] = var;
 
 	// sort on write
@@ -520,7 +520,7 @@ static void Cvar_Sort( void )
 		if ( var->name ) {
 			list[ count++ ] = var;
 		} else {
-			Com_Error( ERR_FATAL, "Cvar_Sort: nullptr cvar name" );
+			Com_Error( ERR_FATAL, "Cvar_Sort: NULL cvar name" );
 		}
 	}
 
@@ -530,7 +530,7 @@ static void Cvar_Sort( void )
 
 	Cvar_QSortByName( &list[0], count-1 );
 
-	cvar_vars = nullptr;
+	cvar_vars = NULL;
 
 	// relink cvars
 	for ( i = 0; i < count; i++ ) {
@@ -539,7 +539,7 @@ static void Cvar_Sort( void )
 		var->next = cvar_vars;
 		if ( cvar_vars )
 			cvar_vars->prev = var;
-		var->prev = nullptr;
+		var->prev = NULL;
 		cvar_vars = var;
 	}
 }
@@ -592,7 +592,7 @@ cvar_t *Cvar_Set2( const char *var_name, const char *value, qboolean force ) {
 	var = Cvar_FindVar (var_name);
 	if (!var) {
 		if ( !value ) {
-			return nullptr;
+			return NULL;
 		}
 		// create it
 		if ( !force ) {
@@ -613,7 +613,7 @@ cvar_t *Cvar_Set2( const char *var_name, const char *value, qboolean force ) {
 		if(!strcmp(value, var->string))
 		{
 			Cvar_FreeString(var->latchedString);
-			var->latchedString = nullptr;
+			var->latchedString = NULL;
 			return var;
 		}
 
@@ -672,7 +672,7 @@ cvar_t *Cvar_Set2( const char *var_name, const char *value, qboolean force ) {
 		if (var->latchedString)
 		{
 			Cvar_FreeString (var->latchedString);
-			var->latchedString = nullptr;
+			var->latchedString = NULL;
 		}
 	}
 
@@ -738,7 +738,7 @@ Cvar_Reset
 ============
 */
 void Cvar_Reset( const char *var_name ) {
-	Cvar_Set2( var_name, nullptr, qfalse );
+	Cvar_Set2( var_name, NULL, qfalse );
 }
 
 /*
@@ -748,7 +748,7 @@ Cvar_ForceReset
 */
 void Cvar_ForceReset(const char *var_name)
 {
-	Cvar_Set2(var_name, nullptr, qtrue);
+	Cvar_Set2(var_name, NULL, qtrue);
 }
 
 
@@ -770,7 +770,7 @@ void Cvar_SetCheatState( void ) {
 			if (var->latchedString)
 			{
 				Cvar_FreeString(var->latchedString);
-				var->latchedString = nullptr;
+				var->latchedString = NULL;
 			}
 			if (strcmp(var->resetString,var->string)) {
 				Cvar_Set( var->name, var->resetString );
@@ -1009,9 +1009,9 @@ Cvar_List_f
 ============
 */
 void Cvar_List_f( void ) {
-	cvar_t *var = nullptr;
+	cvar_t *var = NULL;
 	int i = 0;
-	char *match = nullptr;
+	char *match = NULL;
 
 	if ( Cmd_Argc() > 1 )
 		match = Cmd_Argv( 1 );
@@ -1045,7 +1045,7 @@ void Cvar_List_f( void ) {
 }
 
 void Cvar_ListModified_f( void ) {
-	cvar_t *var = nullptr;
+	cvar_t *var = NULL;
 
 	// build a list of cvars that are modified
 	for ( var=cvar_vars;
@@ -1064,7 +1064,7 @@ void Cvar_ListModified_f( void ) {
 }
 
 void Cvar_ListUserCreated_f( void ) {
-	cvar_t *var = nullptr;
+	cvar_t *var = NULL;
 	uint32_t count = 0;
 
 	// build a list of cvars that are modified
@@ -1311,7 +1311,7 @@ updates an interpreted modules' version of a cvar
 =====================
 */
 void	Cvar_Update( vmCvar_t *vmCvar ) {
-	cvar_t	*cv = nullptr;
+	cvar_t	*cv = NULL;
 	assert(vmCvar);
 
 	if ( (unsigned)vmCvar->handle >= (unsigned)cvar_numIndexes ) {

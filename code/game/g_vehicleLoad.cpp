@@ -9,7 +9,7 @@ extern qboolean G_ParseLiteral( const char **data, const char *string );
 extern void G_CreateG2AttachedWeaponModel( gentity_t *ent, const char *weaponModel, int boltNum, int weaponNum );
 
 vehicleInfo_t g_vehicleInfo[MAX_VEHICLES];
-int		numVehicles = 1;//first one is nullptr/default
+int		numVehicles = 1;//first one is null/default
 
 typedef enum {
 	VF_INT,
@@ -173,22 +173,22 @@ void G_VehicleSetDefaults( vehicleInfo_t *vehicle )
 	//visuals & sounds
 	vehicle->model = "swoop";								//what model to use - if make it an NPC's primary model, don't need this?
 	vehicle->modelIndex = 0;							//set internally, not until this vehicle is spawned into the level
-	vehicle->skin = nullptr;								//what skin to use - if make it an NPC's primary model, don't need this?
+	vehicle->skin = NULL;								//what skin to use - if make it an NPC's primary model, don't need this?
 	vehicle->riderAnim = BOTH_GUNSIT1;					//what animation the rider uses
-	vehicle->gunswivelBone = nullptr;						//gun swivel bones
-	vehicle->lFinBone = nullptr;							//left fin bone
-	vehicle->rFinBone = nullptr;							//right fin bone
-	vehicle->lExhaustTag = nullptr;						//left exhaust tag
-	vehicle->rExhaustTag = nullptr;						//right exhaust tag
+	vehicle->gunswivelBone = NULL;						//gun swivel bones
+	vehicle->lFinBone = NULL;							//left fin bone
+	vehicle->rFinBone = NULL;							//right fin bone
+	vehicle->lExhaustTag = NULL;						//left exhaust tag
+	vehicle->rExhaustTag = NULL;						//right exhaust tag
 
-	vehicle->soundOn = nullptr;							//sound to play when get on it
-	vehicle->soundLoop = nullptr;							//sound to loop while riding it
-	vehicle->soundOff = nullptr;							//sound to play when get off
-	vehicle->exhaustFX = nullptr;							//exhaust effect, played from "*exhaust" bolt(s)
-	vehicle->trailFX = nullptr;							//trail effect, played from "*trail" bolt(s)
-	vehicle->impactFX = nullptr;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
-	vehicle->explodeFX = nullptr;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
-	vehicle->wakeFX = nullptr;								//effect itmakes when going across water
+	vehicle->soundOn = NULL;							//sound to play when get on it
+	vehicle->soundLoop = NULL;							//sound to loop while riding it
+	vehicle->soundOff = NULL;							//sound to play when get off
+	vehicle->exhaustFX = NULL;							//exhaust effect, played from "*exhaust" bolt(s)
+	vehicle->trailFX = NULL;							//trail effect, played from "*trail" bolt(s)
+	vehicle->impactFX = NULL;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
+	vehicle->explodeFX = NULL;							//explosion effect, for when it blows up (should have the sound built into explosion effect)
+	vehicle->wakeFX = NULL;								//effect itmakes when going across water
 
 	//other misc stats
 	vehicle->gravity = VEH_DEFAULT_GRAVITY;				//normal is 800

@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __G_ICARUS_H__
+#define __G_ICARUS_H__
 
 //NOTENOTE: Only change this to re-point ICARUS to a new script directory
 #define Q3_SCRIPT_DIR	"scripts"
@@ -49,3 +50,4 @@ void Svcmd_ICARUS_f( void );
 
 extern int		ICARUS_entFilter;
 
+#endif//#ifndef __G_ICARUS_H__

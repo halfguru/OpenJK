@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef	__CG_LOCAL_H__
+#define	__CG_LOCAL_H__
 
 #include "../qcommon/q_shared.h"
 
@@ -1232,3 +1233,4 @@ void	CG_SetLightstyle( int i );
 
 int CG_MagicFontToReal( int menuFontIndex );
 
+#endif	//__CG_LOCAL_H__

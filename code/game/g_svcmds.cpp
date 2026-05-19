@@ -222,7 +222,7 @@ static void Svcmd_SaberBlade_f()
 		gi.Printf( "USAGE: saberblade <sabernum> <bladenum> [0 = off, 1 = on, no arg = toggle]\n" );
 		return;
 	}
-	if ( &g_entities[0] == nullptr || g_entities[0].client == nullptr )
+	if ( &g_entities[0] == NULL || g_entities[0].client == NULL )
 	{
 		return;
 	}
@@ -594,7 +594,7 @@ qboolean G_ReleaseEntity( gentity_t *grabber )
 		{
 			heldClient->client->ps.heldByClient = ENTITYNUM_NONE;
 
-			heldClient->owner = nullptr;
+			heldClient->owner = NULL;
 		}
 		return qtrue;
 	}
@@ -607,7 +607,7 @@ void G_GrabEntity( gentity_t *grabber, const char *target )
 	{
 		return;
 	}
-	gentity_t	*heldClient = G_Find( nullptr, FOFS(targetname), (char *)target );
+	gentity_t	*heldClient = G_Find( NULL, FOFS(targetname), (char *)target );
 	if ( heldClient && heldClient->client && heldClient != grabber )//don't grab yourself, it's not polite
 	{//found him
 		grabber->client->ps.heldClient = heldClient->s.number;
@@ -664,8 +664,8 @@ static void Svcmd_RunScript_f(void)
 		const char *cmd3 = gi.argv(2);
 		if ( cmd3 && cmd3[0] )
 		{
-			gentity_t *found = nullptr;
-			if ( (found = G_Find(nullptr, FOFS(targetname), cmd2 ) ) != nullptr )
+			gentity_t *found = NULL;
+			if ( (found = G_Find(NULL, FOFS(targetname), cmd2 ) ) != NULL )
 			{
 				Quake3Game()->RunScript( found, cmd3 );
 			}

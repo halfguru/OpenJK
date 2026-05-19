@@ -19,9 +19,10 @@ along with Quake III Arena source code; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
-#pragma once
 // tr_extramath.h
 
+#ifndef __TR_EXTRAMATH_H__
+#define __TR_EXTRAMATH_H__
 
 typedef float matrix_t[16];
 typedef float mat4x3_t[12];
@@ -105,3 +106,4 @@ unsigned short FloatToHalf(float in);
 uint32_t ReverseBits(uint32_t v);
 float GSmithCorrelated(float roughness, float ndotv, float ndotl);
 float V_Neubelt(float NdotV, float NdotL);
+#endif

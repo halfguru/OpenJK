@@ -19,9 +19,10 @@ along with Quake III Arena source code; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
-#pragma once
 // tr_fbo.h
 
+#ifndef __TR_FBO_H__
+#define __TR_FBO_H__
 
 struct image_s;
 struct shaderProgram_s;
@@ -62,3 +63,4 @@ void FBO_FastBlit(FBO_t *src, vec4i_t srcBox, FBO_t *dst, vec4i_t dstBox, int bu
 void FBO_FastBlitIndexed(FBO_t *src, FBO_t *dst, int srcReadBuffer, int dstDrawBuffer, int buffers, int filter);
 
 
+#endif

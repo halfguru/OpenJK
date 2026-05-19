@@ -108,7 +108,7 @@ void Remote_MaintainHeight( void )
 	}
 	else
 	{
-		gentity_t *goal = nullptr;
+		gentity_t *goal = NULL;
 
 		if ( NPCInfo->goalEntity )	// Is there a goal?
 		{
@@ -167,14 +167,14 @@ void Remote_Strafe( void )
 	vec3_t	end, right;
 	trace_t	tr;
 
-	AngleVectors( NPC->client->renderInfo.eyeAngles, nullptr, right, nullptr );
+	AngleVectors( NPC->client->renderInfo.eyeAngles, NULL, right, NULL );
 
 	// Pick a random strafe direction, then check to see if doing a strafe would be
 	//	reasonable valid
 	dir = ( rand() & 1 ) ? -1 : 1;
 	VectorMA( NPC->currentOrigin, REMOTE_STRAFE_DIS * dir, right, end );
 
-	gi.trace( &tr, NPC->currentOrigin, nullptr, nullptr, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
+	gi.trace( &tr, NPC->currentOrigin, NULL, NULL, end, NPC->s.number, MASK_SOLID, (EG2_Collision)0, 0 );
 
 	// Close enough
 	if ( tr.fraction > 0.9f )

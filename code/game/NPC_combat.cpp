@@ -58,12 +58,12 @@ void G_ClearEnemy (gentity_t *self)
 
 		if ( self->NPC && self->enemy == self->NPC->goalEntity )
 		{
-			self->NPC->goalEntity = nullptr;
+			self->NPC->goalEntity = NULL;
 		}
 		//FIXME: set last enemy?
 	}
 
-	self->enemy = nullptr;
+	self->enemy = NULL;
 }
 
 /*
@@ -197,7 +197,7 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 
 		VectorSubtract( self->client->renderInfo.eyePoint, enemy->currentOrigin, dir );//purposely backwards
 		VectorNormalize( dir );
-		AngleVectors( self->client->renderInfo.eyeAngles, fwd, nullptr, nullptr );
+		AngleVectors( self->client->renderInfo.eyeAngles, fwd, NULL, NULL );
 		//dir[2] = fwd[2] = 0;//ignore z diff?
 
 		attDelay = (4-g_spskill->integer)*500;//initial: from 1000ms delay on hard to 2000ms delay on easy
@@ -405,7 +405,7 @@ void G_SetEnemy( gentity_t *self, gentity_t *enemy )
 	int	event = 0;
 
 	//Must be valid
-	if ( enemy == nullptr )
+	if ( enemy == NULL )
 		return;
 
 	//Must be valid
@@ -464,7 +464,7 @@ void G_SetEnemy( gentity_t *self, gentity_t *enemy )
 	//NOTE: this is not necessarily true!
 	//self->NPC->enemyLastSeenTime = level.time;
 
-	if ( self->enemy == nullptr )
+	if ( self->enemy == NULL )
 	{
 		//TEMP HACK: turn on our saber
 		if ( self->health > 0 )
@@ -1268,7 +1268,7 @@ qboolean ShotThroughGlass (trace_t *tr, gentity_t *target, vec3_t spot, int mask
 		vec3_t		muzzle;
 
 		VectorCopy(tr->endpos, muzzle);
-		gi.trace (tr, muzzle, nullptr, nullptr, spot, skip, mask, (EG2_Collision)0, 0 );
+		gi.trace (tr, muzzle, NULL, NULL, spot, skip, mask, (EG2_Collision)0, 0 );
 		return qtrue;
 	}
 
@@ -1293,7 +1293,7 @@ qboolean CanShoot ( gentity_t *ent, gentity_t *shooter )
 	CalcEntitySpot( shooter, SPOT_WEAPON, muzzle );
 	CalcEntitySpot( ent, SPOT_ORIGIN, spot );		//FIXME preferred target locations for some weapons (feet for R/L)
 
-	gi.trace ( &tr, muzzle, nullptr, nullptr, spot, shooter->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
+	gi.trace ( &tr, muzzle, NULL, NULL, spot, shooter->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 	traceEnt = &g_entities[ tr.entityNum ];
 
 	// point blank, baby!
@@ -1316,7 +1316,7 @@ qboolean CanShoot ( gentity_t *ent, gentity_t *shooter )
 	else
 	{//ok, can't hit them in center, try their head
 		CalcEntitySpot( ent, SPOT_HEAD, spot );
-		gi.trace ( &tr, muzzle, nullptr, nullptr, spot, shooter->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
+		gi.trace ( &tr, muzzle, NULL, NULL, spot, shooter->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 		traceEnt = &g_entities[ tr.entityNum ];
 		if ( traceEnt == ent)
 		{
@@ -1571,8 +1571,8 @@ gentity_t *NPC_PickEnemy( gentity_t *closestTo, int enemyTeam, qboolean checkVis
 {
 	int			num_choices = 0;
 	int			choice[128];//FIXME: need a different way to determine how many choices?
-	gentity_t	*newenemy = nullptr;
-	gentity_t	*closestEnemy = nullptr;
+	gentity_t	*newenemy = NULL;
+	gentity_t	*closestEnemy = NULL;
 	int			entNum;
 	vec3_t		diff;
 	float		relDist;
@@ -1583,7 +1583,7 @@ gentity_t *NPC_PickEnemy( gentity_t *closestTo, int enemyTeam, qboolean checkVis
 
 	if ( enemyTeam == TEAM_NEUTRAL )
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	if ( NPCInfo->behaviorState == BS_STAND_AND_SHOOT ||
@@ -1718,13 +1718,13 @@ gentity_t *NPC_PickEnemy( gentity_t *closestTo, int enemyTeam, qboolean checkVis
 	//FIXME: used to have an option to look *only* for the player... now...?  Still need it?
 	if ( enemyTeam == TEAM_PLAYER )
 	{//couldn't find the player
-		return nullptr;
+		return NULL;
 	}
 	*/
 
 	num_choices = 0;
 	bestDist = Q3_INFINITE;
-	closestEnemy = nullptr;
+	closestEnemy = NULL;
 
 	for ( entNum = 0; entNum < globals.num_entities; entNum++ )
 	{
@@ -1854,7 +1854,7 @@ gentity_t *NPC_PickEnemy( gentity_t *closestTo, int enemyTeam, qboolean checkVis
 
 	if (!num_choices)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	return &g_entities[ choice[rand() % num_choices] ];
@@ -1868,8 +1868,8 @@ gentity_t *NPC_PickAlly ( void )
 
 gentity_t *NPC_PickAlly ( qboolean facingEachOther, float range, qboolean ignoreGroup, qboolean movingOnly )
 {
-	gentity_t	*ally = nullptr;
-	gentity_t	*closestAlly = nullptr;
+	gentity_t	*ally = NULL;
+	gentity_t	*closestAlly = NULL;
 	int			entNum;
 	vec3_t		diff;
 	float		relDist;
@@ -1922,7 +1922,7 @@ gentity_t *NPC_PickAlly ( qboolean facingEachOther, float range, qboolean ignore
 							vec3_t	vf;
 							float	dot;
 
-							AngleVectors( ally->client->ps.viewangles, vf, nullptr, nullptr );
+							AngleVectors( ally->client->ps.viewangles, vf, NULL, NULL );
 							VectorNormalize(vf);
 							dot = DotProduct(diff, vf);
 
@@ -1931,7 +1931,7 @@ gentity_t *NPC_PickAlly ( qboolean facingEachOther, float range, qboolean ignore
 								continue;
 							}
 							//He's facing me, am I facing him?
-							AngleVectors( NPC->client->ps.viewangles, vf, nullptr, nullptr );
+							AngleVectors( NPC->client->ps.viewangles, vf, NULL, NULL );
 							VectorNormalize(vf);
 							dot = DotProduct(diff, vf);
 
@@ -1961,7 +1961,7 @@ gentity_t *NPC_CheckEnemy( qboolean findNew, qboolean tooFarOk, qboolean setEnem
 {
 	qboolean	forcefindNew = qfalse;
 	gentity_t	*closestTo;
-	gentity_t	*newEnemy = nullptr;
+	gentity_t	*newEnemy = NULL;
 	//FIXME: have a "NPCInfo->persistance" we can set to determine how long to try to shoot
 	//someone we can't hit?  Rather than hard-coded 10?
 
@@ -1990,7 +1990,7 @@ gentity_t *NPC_CheckEnemy( qboolean findNew, qboolean tooFarOk, qboolean setEnem
 		{
 			G_ClearEnemy( NPC );
 		}
-		return nullptr;
+		return NULL;
 	}
 
 	// Kyle does not get new enemies if not close to his leader
@@ -2003,7 +2003,7 @@ gentity_t *NPC_CheckEnemy( qboolean findNew, qboolean tooFarOk, qboolean setEnem
 		{
 			G_ClearEnemy( NPC );
 		}
-		return nullptr;
+		return NULL;
 	}
 
 
@@ -2013,7 +2013,7 @@ gentity_t *NPC_CheckEnemy( qboolean findNew, qboolean tooFarOk, qboolean setEnem
 		{
 			if ( (!NPC->NPC && !(NPC->svFlags & SVF_NONNPC_ENEMY) ) || NPC->enemy->health > 0 )
 			{//Enemy never had health (a train or info_not_null, etc) or did and is now dead (NPCs, turrets, etc)
-				return nullptr;
+				return NULL;
 			}
 		}
 		NPC->svFlags &= ~SVF_LOCKEDENEMY;
@@ -2103,7 +2103,7 @@ gentity_t *NPC_CheckEnemy( qboolean findNew, qboolean tooFarOk, qboolean setEnem
 					}
 				}
 			}
-			else if ( NPC->enemy == nullptr )
+			else if ( NPC->enemy == NULL )
 			{//We don't have an enemy, so find closest to defendEnt
 				closestTo = NPCInfo->defendEnt;
 			}
@@ -2125,7 +2125,7 @@ gentity_t *NPC_CheckEnemy( qboolean findNew, qboolean tooFarOk, qboolean setEnem
 				NPC->lastEnemy = NPC->enemy;
 				G_ClearEnemy(NPC);
 			}
-			return nullptr;
+			return NULL;
 		}
 
 		//If enemy dead or unshootable, look for others on out enemy's team
@@ -2187,7 +2187,7 @@ NPC_ClearShot
 
 qboolean NPC_ClearShot( gentity_t *ent )
 {
-	if ( ( NPC == nullptr ) || ( ent == nullptr ) )
+	if ( ( NPC == NULL ) || ( ent == NULL ) )
 		return qfalse;
 
 	vec3_t	muzzle;
@@ -2207,7 +2207,7 @@ qboolean NPC_ClearShot( gentity_t *ent )
 	}
 	else
 	{
-		gi.trace ( &tr, muzzle, nullptr, nullptr, ent->currentOrigin, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
+		gi.trace ( &tr, muzzle, NULL, NULL, ent->currentOrigin, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 	}
 
 	if ( tr.startsolid || tr.allsolid )
@@ -2229,7 +2229,7 @@ NPC_ShotEntity
 
 int NPC_ShotEntity( gentity_t *ent, vec3_t impactPos )
 {
-	if ( ( NPC == nullptr ) || ( ent == nullptr ) )
+	if ( ( NPC == NULL ) || ( ent == NULL ) )
 		return qfalse;
 
 	vec3_t	muzzle;
@@ -2243,7 +2243,7 @@ int NPC_ShotEntity( gentity_t *ent, vec3_t impactPos )
 
 		CalcEntitySpot( NPC, SPOT_HEAD, muzzle );
 		VectorSet( angles, 0, NPC->client->ps.viewangles[1], 0 );
-		AngleVectors( angles, forward, nullptr, nullptr );
+		AngleVectors( angles, forward, NULL, NULL );
 		VectorMA( muzzle, 8, forward, end );
 		end[2] += 24;
 		gi.trace ( &tr, muzzle, vec3_origin, vec3_origin, end, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
@@ -2267,7 +2267,7 @@ int NPC_ShotEntity( gentity_t *ent, vec3_t impactPos )
 	}
 	else
 	{
-		gi.trace ( &tr, muzzle, nullptr, nullptr, targ, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
+		gi.trace ( &tr, muzzle, NULL, NULL, targ, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 	}
 	//FIXME: if using a bouncing weapon like the bowcaster, should we check the reflection of the wall, too?
 	if ( impactPos )
@@ -2290,7 +2290,7 @@ qboolean NPC_EvaluateShot( int hit, qboolean glassOK )
 		return qfalse;
 	}
 
-	if ( hit == NPC->enemy->s.number || (&g_entities[hit] != nullptr && (g_entities[hit].svFlags&SVF_GLASS_BRUSH)) )
+	if ( hit == NPC->enemy->s.number || (&g_entities[hit] != NULL && (g_entities[hit].svFlags&SVF_GLASS_BRUSH)) )
 	{//can hit enemy or will hit glass, so shoot anyway
 		return qtrue;
 	}
@@ -2350,7 +2350,7 @@ qboolean NPC_CheckCanAttack (float attack_scale, qboolean stationary)
 	float		aim_off;
 	float		max_aim_off = 128 - (16 * (float)NPCInfo->stats.aim);
 	trace_t		tr;
-	gentity_t	*traceEnt = nullptr;
+	gentity_t	*traceEnt = NULL;
 
 	if(NPC->enemy->flags & FL_NOTARGET)
 	{
@@ -2423,13 +2423,13 @@ qboolean NPC_CheckCanAttack (float attack_scale, qboolean stationary)
 		{
 			//are we gonna hit him
 			//NEW: use actual forward facing
-			AngleVectors( client->ps.viewangles, forward, nullptr, nullptr );
+			AngleVectors( client->ps.viewangles, forward, NULL, NULL );
 			VectorMA( muzzle, distanceToEnemy, forward, hitspot );
-			gi.trace( &tr, muzzle, nullptr, nullptr, hitspot, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
+			gi.trace( &tr, muzzle, NULL, NULL, hitspot, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 			ShotThroughGlass( &tr, NPC->enemy, hitspot, MASK_SHOT );
 			/*
 			//OLD: trace regardless of facing
-			gi.trace ( &tr, muzzle, nullptr, nullptr, enemy_org, NPC->s.number, MASK_SHOT );
+			gi.trace ( &tr, muzzle, NULL, NULL, enemy_org, NPC->s.number, MASK_SHOT );
 			ShotThroughGlass(&tr, NPC->enemy, enemy_org, MASK_SHOT);
 			*/
 
@@ -2445,7 +2445,7 @@ qboolean NPC_CheckCanAttack (float attack_scale, qboolean stationary)
 				enemy_org[2] -= NPC->enemy->maxs[2]*Q_flrand(0.0f, 1.0f);
 
 				attack_scale *= 0.75;
-				gi.trace ( &tr, muzzle, nullptr, nullptr, enemy_org, NPC->s.number, MASK_SHOT );
+				gi.trace ( &tr, muzzle, NULL, NULL, enemy_org, NPC->s.number, MASK_SHOT );
 				ShotThroughGlass(&tr, NPC->enemy, enemy_org, MASK_SHOT);
 				traceEnt = &g_entities[tr.entityNum];
 			}
@@ -2501,7 +2501,7 @@ qboolean NPC_CheckCanAttack (float attack_scale, qboolean stationary)
 				}
 				else
 				{
-					AngleVectors (client->ps.viewangles, forward, nullptr, nullptr);
+					AngleVectors (client->ps.viewangles, forward, NULL, NULL);
 					VectorMA ( muzzle, distanceToEnemy, forward, hitspot);
 					VectorSubtract(hitspot, enemy_org, diff);
 					aim_off = VectorLength(diff);
@@ -3123,7 +3123,7 @@ qboolean NPC_SetCombatPoint( int combatPointID )
 extern qboolean CheckItemCanBePickedUpByNPC( gentity_t *item, gentity_t *pickerupper );
 gentity_t *NPC_SearchForWeapons( void )
 {
-	gentity_t *found = g_entities, *bestFound = nullptr;
+	gentity_t *found = g_entities, *bestFound = NULL;
 	float		dist, bestDist = Q3_INFINITE;
 	int i;
 //	for ( found = g_entities; found < &g_entities[globals.num_entities] ; found++)
@@ -3202,9 +3202,9 @@ void NPC_CheckGetNewWeapon( void )
 		{//maybe was running at a weapon that was picked up
 			NPC_ClearGoal();
 			Q3_TaskIDComplete( NPC, TID_MOVE_NAV );
-			//NPCInfo->goalEntity = nullptr;
+			//NPCInfo->goalEntity = NULL;
 		}
-		if ( TIMER_Done( NPC, "panic" ) && NPCInfo->goalEntity == nullptr )
+		if ( TIMER_Done( NPC, "panic" ) && NPCInfo->goalEntity == NULL )
 		{//need a weapon, any lying around?
 			gentity_t *foundWeap = NPC_SearchForWeapons();
 			if ( foundWeap )

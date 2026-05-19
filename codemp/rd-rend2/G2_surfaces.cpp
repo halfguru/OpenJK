@@ -47,7 +47,7 @@ surfaceInfo_t *G2_FindOverrideSurface(int surfaceNum, surfaceInfo_v &surfaceList
 		}
 	}
 	// didn't find it.
-	return nullptr;
+	return NULL;
 }
 
 // given a surface name, lets see if it's legal in the model
@@ -79,14 +79,14 @@ int G2_IsSurfaceLegal(void *mod, const char *surfaceName, int *flags)
  *
  * Input
  *    filename of model, surface list of model instance, name of surface, int to be filled in
- * with the index of this surface (defaults to nullptr)
+ * with the index of this surface (defaults to NULL)
  *
  * Output
  *    pointer to surface if successful, false otherwise
  *
  ************************************************************************************************/
 mdxmSurface_t *G2_FindSurface(CGhoul2Info *ghlInfo, surfaceInfo_v &slist, const char *surfaceName,
-							 int *surfIndex/*nullptr*/)
+							 int *surfIndex/*NULL*/)
 {
 	int						i = 0;
 	// find the model we want

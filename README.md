@@ -64,7 +64,7 @@ If you have the Mac App Store Version of Jedi Academy, follow these steps to get
 
 ### Building OpenJK
 
-CMake 3.31+ is required.
+CMake 4.3+ is required.
 
 **Quick start (presets):**
 

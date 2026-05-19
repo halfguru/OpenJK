@@ -20,10 +20,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 //g_items.h
 
+#ifndef __ITEMS_H__
+#define __ITEMS_H__
 
 // Items enums
 enum
@@ -113,3 +114,4 @@ enum //# item_e
 	INV_MAX						// Be sure to update MAX_INVENTORY
 };
 
+#endif

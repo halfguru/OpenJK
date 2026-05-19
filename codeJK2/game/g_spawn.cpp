@@ -139,7 +139,7 @@ qboolean G_SpawnAngleHack( const char *key, const char *defaultString, float *ou
 stringID_table_t flagTable [] =
 {
 	{ "noTED", EF_NO_TED },
-	//stringID_table_t Must end with a nullptr entry
+	//stringID_table_t Must end with a null entry
 	{ "", 0 }
 };
 
@@ -309,7 +309,7 @@ field_t fields[] = {
 	{"height", 0, F_IGNORE},
 
 
-	{nullptr}
+	{NULL}
 };
 
 
@@ -690,7 +690,7 @@ spawn_t	spawns[] = {
 
 	{"emplaced_gun", SP_emplaced_gun},
 
-	{nullptr, nullptr}
+	{NULL, NULL}
 };
 
 /*
@@ -706,7 +706,7 @@ qboolean G_CallSpawn( gentity_t *ent ) {
 	gitem_t	*item;
 
 	if ( !ent->classname ) {
-		gi.Printf (S_COLOR_RED"G_CallSpawn: nullptr classname\n");
+		gi.Printf (S_COLOR_RED"G_CallSpawn: NULL classname\n");
 		return qfalse;
 	}
 
@@ -745,7 +745,7 @@ char *G_NewString( const char *string ) {
 
 	if(!string || !string[0])
 	{
-		//gi.Printf(S_COLOR_RED"Error: G_NewString called with nullptr string!\n");
+		//gi.Printf(S_COLOR_RED"Error: G_NewString called with NULL string!\n");
 		return (char *)string;
 	}
 
@@ -1311,7 +1311,7 @@ G_ParsePrecaches
 
 void G_ParsePrecaches( void )
 {
-	gentity_t	*ent = nullptr;
+	gentity_t	*ent = NULL;
 
 	//Clear any old lists
 	if(!as_preCacheMap) {
@@ -1335,7 +1335,7 @@ void G_ASPreCacheFree(void)
 {
 	if(as_preCacheMap) {
 		delete as_preCacheMap;
-		as_preCacheMap = nullptr;
+		as_preCacheMap = NULL;
 	}
 }
 

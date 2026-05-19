@@ -70,7 +70,7 @@ fielddef_t *FindField(fielddef_t *defs, char *name)
 	{
 		if (!strcmp(defs[i].name, name)) return &defs[i];
 	} //end for
-	return nullptr;
+	return NULL;
 } //end of the function FindField
 //===========================================================================
 //

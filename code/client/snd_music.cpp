@@ -94,7 +94,7 @@ typedef struct
 } MusicFile_t;
 
 typedef std::map <sstring_t, MusicFile_t>	MusicData_t;			// string is "explore", "action", "boss" etc
-										MusicData_t* MusicData = nullptr;
+										MusicData_t* MusicData = NULL;
 // there are now 2 of these, because of the new "uses" keyword...
 //
 sstring_t	gsLevelNameForLoad;		// eg "kejim_base", formed from literal BSP name, but also used as dir name for music paths
@@ -107,7 +107,7 @@ void Music_Free(void)
 	{
 		MusicData->clear();
 	}
-	MusicData = nullptr;
+	MusicData = NULL;
 }
 
 namespace detail
@@ -176,7 +176,7 @@ static const char *Music_BuildFileName(const char *psFileNameBase, MusicState_e 
 	return sFileName.c_str();
 }
 
-// this MUST return nullptr for non-base states unless doing debug-query
+// this MUST return NULL for non-base states unless doing debug-query
 const char *Music_BaseStateToString( MusicState_e eMusicState, qboolean bDebugPrintQuery /* = qfalse */ )
 {
 	switch (eMusicState)
@@ -201,7 +201,7 @@ const char *Music_BaseStateToString( MusicState_e eMusicState, qboolean bDebugPr
 		default: break;
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 static qboolean Music_ParseMusic( gsl::czstring filename, const CGenericParser2& Parser, MusicData_t* MusicData, const CGPGroup& pgMusicFiles, const gsl::cstring_span& psMusicName, const gsl::cstring_span& psMusicNameKey, MusicState_e eMusicState )
@@ -371,7 +371,7 @@ static qboolean Music_ParseLeveldata( gsl::czstring psLevelName )
 {
 	qboolean bReturn = qfalse;
 
-	if (MusicData == nullptr)
+	if (MusicData == NULL)
 	{
 		// sorry vv, false leaks make it hard to find true leaks
 		static MusicData_t singleton;
@@ -631,7 +631,7 @@ static qboolean Music_ParseLeveldata( gsl::czstring psLevelName )
 }
 
 
-// returns ptr to music file, or nullptr for error/missing...
+// returns ptr to music file, or NULL for error/missing...
 //
 static MusicFile_t *Music_GetBaseMusicFile( const char *psMusicState )	// where psMusicState is (eg) "explore", "action" or "boss"
 {
@@ -642,7 +642,7 @@ static MusicFile_t *Music_GetBaseMusicFile( const char *psMusicState )	// where 
 		return pMusicFile;
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 static MusicFile_t *Music_GetBaseMusicFile( MusicState_e eMusicState )
@@ -653,7 +653,7 @@ static MusicFile_t *Music_GetBaseMusicFile( MusicState_e eMusicState )
 		return Music_GetBaseMusicFile( psMusicStateString );
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 
@@ -679,7 +679,7 @@ qboolean Music_DynamicDataAvailable(const char *psDynamicMusicLabel)
 
 const char *Music_GetFileNameForState( MusicState_e eMusicState)
 {
-	MusicFile_t *pMusicFile = nullptr;
+	MusicFile_t *pMusicFile = NULL;
 	switch (eMusicState)
 	{
 		case eBGRNDTRACK_EXPLORE:
@@ -734,7 +734,7 @@ const char *Music_GetFileNameForState( MusicState_e eMusicState)
 			break;
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 
@@ -810,8 +810,8 @@ qboolean Music_StateCanBeInterrupted( MusicState_e eMusicState, MusicState_e ePr
 qboolean Music_AllowedToTransition( float			fPlayingTimeElapsed,
 									MusicState_e	eMusicState,
 									//
-									MusicState_e	*peTransition /* = nullptr */,
-									float			*pfNewTrackEntryTime /* = nullptr */
+									MusicState_e	*peTransition /* = NULL */,
+									float			*pfNewTrackEntryTime /* = NULL */
 									)
 {
 	const float fTimeEpsilon = 0.3f;	// arb., how close we have to be to an exit point to take it.

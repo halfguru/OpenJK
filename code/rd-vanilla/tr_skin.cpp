@@ -53,7 +53,7 @@ static char *CommaParse( char **data_p ) {
 
 	// make sure incoming data is valid
 	if ( !data ) {
-		*data_p = nullptr;
+		*data_p = NULL;
 		return com_token;
 	}
 
@@ -150,12 +150,12 @@ typedef std::map<sstring_t,char * /*, CStringComparator*/ >	AnimationCFGs_t;
 //	with our use of cached models but uncached animation.cfg files (so frame sequences are out of sync
 //	if someone rebuild the model while you're ingame and you change levels)...
 //
-// Usage:  call with psDest == nullptr for a size enquire (for malloc),
+// Usage:  call with psDest == NULL for a size enquire (for malloc),
 //				then with NZ ptr for it to copy to your supplied buffer...
 //
 int RE_GetAnimationCFG(const char *psCFGFilename, char *psDest, int iDestSize)
 {
-	char *psText = nullptr;
+	char *psText = NULL;
 
 	AnimationCFGs_t::iterator it = AnimationCFGs.find(psCFGFilename);
 	if (it != AnimationCFGs.end())

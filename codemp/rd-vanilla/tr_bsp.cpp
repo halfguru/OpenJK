@@ -1428,8 +1428,8 @@ static	void R_LoadSubmodels( lump_t *l, world_t &worldData, int index ) {
 
 		model = R_AllocModel();
 
-		assert( model != nullptr );			// this should never happen
-		if ( model == nullptr ) {
+		assert( model != NULL );			// this should never happen
+		if ( model == NULL ) {
 			ri.Error(ERR_DROP, "R_LoadSubmodels: R_AllocModel() failed");
 		}
 
@@ -1553,7 +1553,7 @@ static	void R_LoadNodesAndLeafs (lump_t *nodeLump, lump_t *leafLump, world_t &wo
 	}
 
 	// chain decendants
-	R_SetParent (worldData.nodes, nullptr);
+	R_SetParent (worldData.nodes, NULL);
 }
 
 //=============================================================================
@@ -1860,7 +1860,7 @@ void R_LoadLightGridArray( lump_t *l, world_t &worldData ) {
 
 	if ( (unsigned)l->filelen != w->numGridArrayElements * sizeof(*w->lightGridArray) ) {
 		ri.Printf( PRINT_ALL, S_COLOR_YELLOW  "WARNING: light grid array mismatch\n" );
-		w->lightGridData = nullptr;
+		w->lightGridData = NULL;
 		return;
 	}
 
@@ -2031,7 +2031,7 @@ void RE_LoadWorldMap_Actual( const char *name, world_t &worldData, int index )
 
 		// clear tr.world so if the level fails to load, the next
 		// try will not look at the partially loaded version
-		tr.world = nullptr;
+		tr.world = NULL;
 	}
 
 	// check for cached disk file from the server first...
@@ -2101,7 +2101,7 @@ void RE_LoadWorldMap_Actual( const char *name, world_t &worldData, int index )
 	if (ri.CM_GetCachedMapDiskImage())
 	{
 		Z_Free( ri.CM_GetCachedMapDiskImage() );
-		ri.CM_SetCachedMapDiskImage( nullptr );
+		ri.CM_SetCachedMapDiskImage( NULL );
 	}
 	else
 	{

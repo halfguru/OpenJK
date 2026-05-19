@@ -45,10 +45,10 @@ static int oldSetTime = 0;
 static int		numSets	= 0;
 
 // Main ambient sound group
-static CSetGroup*	aSets = nullptr;
+static CSetGroup*	aSets = NULL;
 
 // Globals for speed, blech
-static char	*parseBuffer	= nullptr;
+static char	*parseBuffer	= NULL;
 static int		parseSize		= 0;
 static int		parsePos		= 0;
 static char	tempBuffer[1024];
@@ -170,13 +170,13 @@ ambientSet_t *CSetGroup::GetSet( const char *name )
 {
 	std::map<sstring_t, ambientSet_t *>::iterator	mi;
 
-	if ( name == nullptr )
-		return nullptr;
+	if ( name == NULL )
+		return NULL;
 
 	mi = m_setMap->find( name );
 
 	if ( mi == m_setMap->end() )
-		return nullptr;
+		return NULL;
 
 	return (*mi).second;
 }
@@ -184,13 +184,13 @@ ambientSet_t *CSetGroup::GetSet( const char *name )
 ambientSet_t *CSetGroup::GetSet( int ID )
 {
 	if ( m_ambientSets->empty() )
-		return nullptr;
+		return NULL;
 
 	if ( ID < 0 )
-		return nullptr;
+		return NULL;
 
 	if ( ID >= m_numSets )
-		return nullptr;
+		return NULL;
 
 	return (*m_ambientSets)[ID];
 }
@@ -213,7 +213,7 @@ AS_GetSetNameIDForString
 static int AS_GetSetNameIDForString( const char *name )
 {
 	//Make sure it's valid
-	if ( name == nullptr || name[0] == '\0' )
+	if ( name == NULL || name[0] == '\0' )
 		return -1;
 
 	for ( int i = 0; i < NUM_AS_SETS; i++ )
@@ -234,7 +234,7 @@ AS_GetKeywordIDForString
 static int AS_GetKeywordIDForString( const char *name )
 {
 	//Make sure it's valid
-	if ( name == nullptr || name[0] == '\0' )
+	if ( name == NULL || name[0] == '\0' )
 		return -1;
 
 	for ( int i = 0; i < NUM_AS_KEYWORDS; i++ )
@@ -864,7 +864,7 @@ void AS_Free( void )
 	{
 		aSets->Free();
 		delete aSets;
-		aSets = nullptr;
+		aSets = NULL;
 
 		currentSet	= -1;
 		oldSet		= -1;
@@ -977,7 +977,7 @@ static void AS_UpdateCurrentSet( int id ) {
 		currentSet = id;
 
 		ambientSet_t *current = aSets->GetSet( currentSet );
-		// Ste, I just put this nullptr check in for now, not sure if there's a more graceful way to exit this function - dmv
+		// Ste, I just put this null check in for now, not sure if there's a more graceful way to exit this function - dmv
 		if ( !current ) {
 			return;
 		}

@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __UI_LOCAL_H__
+#define __UI_LOCAL_H__
 
 #include <string.h>
 #include <limits.h>
@@ -249,3 +250,4 @@ void _UI_Refresh( int realtime );
 extern int registeredFontsCount;
 extern int registeredFonts[MAX_FONTS];
 
+#endif

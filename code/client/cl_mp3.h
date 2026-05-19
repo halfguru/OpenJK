@@ -19,12 +19,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Filename:-	cl_mp3.h
 //
 // (Interface to the rest of the game for the MP3 functions)
 //
+#ifndef CL_MP3_H
+#define CL_MP3_H
 
 
 #ifndef sfx_t
@@ -102,6 +103,7 @@ char*	C_MP3Stream_Rewind		(LP_MP3STREAM pSFX_MP3Stream);
 
 
 
+#endif	// #ifndef CL_MP3_H
 
 ///////////////// eof /////////////////////
 

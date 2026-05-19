@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __KEYCODES_H__
+#define __KEYCODES_H__
 
 // these are the key numbers that should be passed to KeyEvent
 
@@ -366,3 +367,4 @@ typedef enum
 // distinguished by or'ing in K_CHAR_FLAG (ugly)
 #define	K_CHAR_FLAG		1024
 
+#endif

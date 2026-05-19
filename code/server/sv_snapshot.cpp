@@ -68,8 +68,8 @@ static void SV_EmitPacketEntities( clientSnapshot_t *from, clientSnapshot_t *to,
 		from_num_entities = from->num_entities;
 	}
 
-	newent = nullptr;
-	oldent = nullptr;
+	newent = NULL;
+	oldent = NULL;
 	newindex = 0;
 	oldindex = 0;
 	const int num2Send = to->num_entities >= svs.numSnapshotEntities ? svs.numSnapshotEntities : to->num_entities;
@@ -109,7 +109,7 @@ static void SV_EmitPacketEntities( clientSnapshot_t *from, clientSnapshot_t *to,
 		if ( newnum > oldnum ) {
 			// the old entity isn't present in the new message
 			if(oldent) {
-				MSG_WriteEntity (msg, nullptr, oldent->number);
+				MSG_WriteEntity (msg, NULL, oldent->number);
 			}
 			oldindex++;
 			continue;
@@ -137,13 +137,13 @@ static void SV_WriteSnapshotToClient( client_t *client, msg_t *msg ) {
 	// try to use a previous frame as the source for delta compressing the snapshot
 	if ( client->deltaMessage <= 0 || client->state != CS_ACTIVE ) {
 		// client is asking for a retransmit
-		oldframe = nullptr;
+		oldframe = NULL;
 		lastframe = 0;
 	} else if ( client->netchan.outgoingSequence - client->deltaMessage
 		>= (PACKET_BACKUP - 3) ) {
 		// client hasn't gotten a good message through in a long time
 		Com_DPrintf ("%s: Delta request from out of date packet.\n", client->name);
-		oldframe = nullptr;
+		oldframe = NULL;
 		lastframe = 0;
 	} else {
 		// we have a valid snapshot to delta from
@@ -153,7 +153,7 @@ static void SV_WriteSnapshotToClient( client_t *client, msg_t *msg ) {
 		// the snapshot's entities may still have rolled off the buffer, though
 		if ( oldframe->first_entity <= svs.nextSnapshotEntities - svs.numSnapshotEntities ) {
 			Com_DPrintf ("%s: Delta request from out of date entities.\n", client->name);
-			oldframe = nullptr;
+			oldframe = NULL;
 			lastframe = 0;
 		}
 	}
@@ -186,7 +186,7 @@ static void SV_WriteSnapshotToClient( client_t *client, msg_t *msg ) {
 	if ( oldframe ) {
 		MSG_WriteDeltaPlayerstate( msg, &oldframe->ps, &frame->ps );
 	} else {
-		MSG_WriteDeltaPlayerstate( msg, nullptr, &frame->ps );
+		MSG_WriteDeltaPlayerstate( msg, NULL, &frame->ps );
 	}
 
 	// delta encode the entities
@@ -324,7 +324,7 @@ qboolean SV_PlayerCanSeeEnt( gentity_t *ent, int sightLevel )
 
 			dot += (0.99f-dot)*entDist/range;//the farther away they are, the more in front they have to be
 
-			AngleVectors( viewAngles, viewFwd, nullptr, nullptr );
+			AngleVectors( viewAngles, viewFwd, NULL, NULL );
 			if ( DotProduct( viewFwd, dir2Ent ) < dot )
 			{
 				return qfalse;
@@ -566,7 +566,7 @@ static clientSnapshot_t *SV_BuildClientSnapshot( client_t *client ) {
 			vec3_t v3ViewAngles;
 			VectorCopy(clent->client->viewangles, v3ViewAngles);
 			v3ViewAngles[2] += (float)frame->ps.leanofs/2;
-			AngleVectors(v3ViewAngles, nullptr, right, nullptr);
+			AngleVectors(v3ViewAngles, NULL, right, NULL);
 			VectorMA(org, (float)frame->ps.leanofs, right, org);
 		}
 //============

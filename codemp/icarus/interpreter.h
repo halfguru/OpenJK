@@ -141,8 +141,8 @@ typedef struct variable_s
 	void	*data;
 } variable_t;
 
-using variable_m = std::map< std::string, variable_t * >;
-using variable_v = std::vector < variable_t * >;
+typedef std::map< std::string, variable_t * >	variable_m;
+typedef std::vector < variable_t * > variable_v;
 
 //CInterpreter
 

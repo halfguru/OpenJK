@@ -164,22 +164,22 @@ void R_RemapShader(const char *shaderName, const char *newShaderName, const char
 	qhandle_t	h;
 
 	sh = R_FindShaderByName( shaderName );
-	if (sh == nullptr || sh == tr.defaultShader) {
+	if (sh == NULL || sh == tr.defaultShader) {
 		h = RE_RegisterShaderLightMap (shaderName, lightmapsNone, stylesDefault);
 		sh = R_GetShaderByHandle(h);
 	}
-	if (sh == nullptr || sh == tr.defaultShader) {
+	if (sh == NULL || sh == tr.defaultShader) {
 		ri.Printf( PRINT_WARNING, "WARNING: R_RemapShader: shader %s not found\n", shaderName );
 		return;
 	}
 
 	sh2 = R_FindShaderByName( newShaderName );
-	if (sh2 == nullptr || sh2 == tr.defaultShader) {
+	if (sh2 == NULL || sh2 == tr.defaultShader) {
 		h = RE_RegisterShaderLightMap (newShaderName, lightmapsNone, stylesDefault);
 		sh2 = R_GetShaderByHandle(h);
 	}
 
-	if (sh2 == nullptr || sh2 == tr.defaultShader) {
+	if (sh2 == NULL || sh2 == tr.defaultShader) {
 		ri.Printf( PRINT_WARNING, "WARNING: R_RemapShader: new shader %s not found\n", newShaderName );
 		return;
 	}
@@ -193,7 +193,7 @@ void R_RemapShader(const char *shaderName, const char *newShaderName, const char
 			if (sh != sh2) {
 				sh->remappedShader = sh2;
 			} else {
-				sh->remappedShader = nullptr;
+				sh->remappedShader = NULL;
 			}
 		}
 	}
@@ -3093,7 +3093,7 @@ static void CollapseStagesToLightall(shaderStage_t *stage, shaderStage_t *lightm
 				defs |= LIGHTDEF_USE_PARALLAXMAP;
 			//ri.Printf(PRINT_ALL, ", normalmap %s", stage->bundle[TB_NORMALMAP].image[0]->imgName);
 		}
-		else if ((lightmap || useLightVector || useLightVertex) && (diffuseImg = stage->bundle[TB_DIFFUSEMAP].image[0]) != nullptr)
+		else if ((lightmap || useLightVector || useLightVertex) && (diffuseImg = stage->bundle[TB_DIFFUSEMAP].image[0]) != NULL)
 		{
 			char normalName[MAX_QPATH];
 			image_t *normalImg;
@@ -3138,7 +3138,7 @@ static void CollapseStagesToLightall(shaderStage_t *stage, shaderStage_t *lightm
 			if (stage->specularType == SPEC_SPECGLOSS)
 				defs |= LIGHTDEF_USE_SPEC_GLOSS;
 		}
-		else if ((lightmap || useLightVector || useLightVertex) && (diffuseImg = stage->bundle[TB_DIFFUSEMAP].image[0]) != nullptr)
+		else if ((lightmap || useLightVector || useLightVertex) && (diffuseImg = stage->bundle[TB_DIFFUSEMAP].image[0]) != NULL)
 		{
 			char imageName[MAX_QPATH];
 			image_t *specularImg;
@@ -3330,7 +3330,7 @@ static qboolean CollapseStagesToGLSL(void)
 
 			diffuse  = pStage;
 			parallax = qfalse;
-			lightmap = nullptr;
+			lightmap = NULL;
 
 			// we have a diffuse map, find matching lightmap
 			for (j = i + 1; j < MAX_SHADER_STAGES; j++)
@@ -3349,7 +3349,7 @@ static qboolean CollapseStagesToGLSL(void)
 				{
 					ri.Printf (PRINT_DEVELOPER, "> Setting lightmap for %s to %s\n", pStage->bundle[0].image[0]->imgName, pStage2->bundle[0].image[0]->imgName);
 					lightmap = pStage2;
-					lightmaps[j] = nullptr;
+					lightmaps[j] = NULL;
 					break;
 				}
 			}
@@ -3378,7 +3378,7 @@ static qboolean CollapseStagesToGLSL(void)
 			CollapseStagesToLightall(diffuse, lightmap, diffuselit, vertexlit, tcgen);
 
 			//find lightstyle stages
-			if (lightmap != nullptr)
+			if (lightmap != NULL)
 			{
 				for (j = i + 2; j < MAX_SHADER_STAGES; j++)
 				{
@@ -3407,7 +3407,7 @@ static qboolean CollapseStagesToGLSL(void)
 					styleStage->bundle[TB_LIGHTMAP] = tbLightmap;
 					styleStage->bundle[TB_DELUXEMAP] = tbDeluxemap;
 
-					lightmaps[j] = nullptr;
+					lightmaps[j] = NULL;
 				}
 			}
 		}
@@ -3422,7 +3422,7 @@ static qboolean CollapseStagesToGLSL(void)
 
 			if (pStage->bundle[0].tcGen >= TCGEN_LIGHTMAP &&
 				pStage->bundle[0].tcGen <= TCGEN_LIGHTMAP3 &&
-				lightmaps[i] == nullptr)
+				lightmaps[i] == NULL)
 			{
 				pStage->active = qfalse;
 			}
@@ -4203,7 +4203,7 @@ FindShaderInShaderText
 Scans the combined text description of all the shader files for
 the given shader name.
 
-return nullptr if not found
+return NULL if not found
 
 If found, it will return a valid shader
 =====================
@@ -4232,7 +4232,7 @@ static const char *FindShaderInShaderText( const char *shadername ) {
 	p = s_shaderText;
 
 	if ( !p ) {
-		return nullptr;
+		return NULL;
 	}
 
 	// look for label
@@ -4251,7 +4251,7 @@ static const char *FindShaderInShaderText( const char *shadername ) {
 		}
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 
@@ -4268,7 +4268,7 @@ shader_t *R_FindShaderByName( const char *name ) {
 	int			hash;
 	shader_t	*sh;
 
-	if ( (name==nullptr) || (name[0] == 0) ) {
+	if ( (name==NULL) || (name[0] == 0) ) {
 		return tr.defaultShader;
 	}
 
@@ -4335,7 +4335,7 @@ static inline const int *R_FindLightmaps(const int *lightmapIndexes)
 	// do the lightmaps exist?
 	for (int i = 0; i < MAXLIGHTMAPS; i++)
 	{
-		if (lightmapIndexes[i] >= tr.numLightmaps || tr.lightmaps[lightmapIndexes[i]] == nullptr)
+		if (lightmapIndexes[i] >= tr.numLightmaps || tr.lightmaps[lightmapIndexes[i]] == NULL)
 			return lightmapsVertex;
 	}
 	return lightmapIndexes;
@@ -4893,7 +4893,7 @@ static void ScanAndLoadShaderFiles( void )
 				strcpy(ext, ".mtr");
 			}
 
-			if ( ri.FS_ReadFile( filename, nullptr ) <= 0 )
+			if ( ri.FS_ReadFile( filename, NULL ) <= 0 )
 			{
 				Com_sprintf( filename, sizeof( filename ), "shaders/%s", shaderFiles[i] );
 			}
@@ -4937,7 +4937,7 @@ static void ScanAndLoadShaderFiles( void )
 				}
 				ri.Printf(PRINT_WARNING, ".\n");
 				ri.FS_FreeFile(buffers[i]);
-				buffers[i] = nullptr;
+				buffers[i] = NULL;
 				break;
 			}
 
@@ -4946,7 +4946,7 @@ static void ScanAndLoadShaderFiles( void )
 				ri.Printf(PRINT_WARNING, "WARNING: Ignoring shader file %s. Shader \"%s\" on line %d missing closing brace.\n",
 							filename, shaderName, shaderLine);
 				ri.FS_FreeFile(buffers[i]);
-				buffers[i] = nullptr;
+				buffers[i] = NULL;
 				break;
 			}
 		}

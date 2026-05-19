@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __G_VEHICLES_H
+#define __G_VEHICLES_H
 
 #include "../qcommon/q_shared.h"
 #include "g_public.h"
@@ -789,3 +790,4 @@ struct Vehicle_t
 
 extern int BG_VehicleGetIndex( const char *vehicleName );
 
+#endif	// __G_VEHICLES_H

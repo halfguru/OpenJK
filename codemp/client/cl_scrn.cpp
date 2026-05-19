@@ -65,7 +65,7 @@ void SCR_FillRect( float x, float y, float width, float height, const float *col
 
 	re->DrawStretchPic( x, y, width, height, 0, 0, 0, 0, cls.whiteShader );
 
-	re->SetColor( nullptr );
+	re->SetColor( NULL );
 }
 
 
@@ -214,7 +214,7 @@ void SCR_DrawStringExt( int x, int y, float size, const char *string, float *set
 		xx += size;
 		s++;
 	}
-	re->SetColor( nullptr );
+	re->SetColor( NULL );
 }
 
 
@@ -266,7 +266,7 @@ void SCR_DrawSmallStringExt( int x, int y, const char *string, float *setColor, 
 		xx += con.charWidth;
 		s++;
 	}
-	re->SetColor( nullptr );
+	re->SetColor( NULL );
 }
 
 
@@ -372,7 +372,7 @@ void SCR_DrawDebugGraph (void)
 	re->SetColor( g_color_table[0] );
 	re->DrawStretchPic(x, y - cl_graphheight->integer,
 		w, cl_graphheight->integer, 0, 0, 0, 0, cls.whiteShader );
-	re->SetColor( nullptr );
+	re->SetColor( NULL );
 
 	for (a=0 ; a<w ; a++)
 	{
@@ -519,7 +519,7 @@ void SCR_UpdateScreen( void ) {
 		if ( com_speeds->integer ) {
 			re->EndFrame( &time_frontend, &time_backend );
 		} else {
-			re->EndFrame( nullptr, nullptr );
+			re->EndFrame( NULL, NULL );
 		}
 	}
 

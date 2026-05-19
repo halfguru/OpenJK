@@ -212,7 +212,7 @@ static void CG_DrawTalk(centity_t	*cent)
 
 		cgi_R_SetColor(colorTable[CT_LTPURPLE1]);	// Bottom
 		CG_DrawPic( 5, 90, 64, 16,	cgs.media.talkingbot );
-		cgi_R_SetColor(nullptr);
+		cgi_R_SetColor(NULL);
 	}
 }
 
@@ -257,7 +257,7 @@ static void CG_DrawMessageLit(centity_t *cent,int x,int y)
 		{
 			if (!cg.messageLitActive)
 			{
-				cgi_S_StartSound( nullptr, 0, CHAN_AUTO, cgs.media.messageLitSound );
+				cgi_S_StartSound( NULL, 0, CHAN_AUTO, cgs.media.messageLitSound );
 				cg.messageLitActive = qtrue;
 			}
 
@@ -1262,7 +1262,7 @@ static void CG_DrawPickupItem( void ) {
 			//CG_DrawBigString( ICON_SIZE + 16, 398, bg_itemlist[ value ].classname, fadeColor[0] );
 			//CG_DrawProportionalString( ICON_SIZE + 16, 398,
 			//	bg_itemlist[ value ].classname, CG_SMALLFONT,fadeColor );
-			cgi_R_SetColor( nullptr );
+			cgi_R_SetColor( NULL );
 		}
 	}
 }
@@ -1501,7 +1501,7 @@ static void CG_DrawCrosshair( vec3_t worldPoint )
 	{
 		if ( !CG_WorldCoordToScreenCoordFloat( worldPoint, &x, &y ) )
 		{//off screen, don't draw it
-			cgi_R_SetColor( nullptr );
+			cgi_R_SetColor( NULL );
 			return;
 		}
 		x -= 320;//????
@@ -1549,7 +1549,7 @@ static void CG_DrawCrosshair( vec3_t worldPoint )
 								cgs.media.forceCoronaShader );
 	}
 
-	cgi_R_SetColor( nullptr );
+	cgi_R_SetColor( NULL );
 }
 
 /*
@@ -1684,7 +1684,7 @@ extern float forcePushPullRadius[];
 static void CG_ScanForCrosshairEntity( qboolean scanAll )
 {
 	trace_t		trace;
-	gentity_t	*traceEnt = nullptr;
+	gentity_t	*traceEnt = NULL;
 	vec3_t		start, end;
 	int			content;
 	int			ignoreEnt = cg.snap->ps.clientNum;
@@ -2331,7 +2331,7 @@ static void CG_Draw2D( void )
 		//CROSSHAIR is now done from the crosshair ent trace
 		//if ( !cg.renderingThirdPerson && !cg_dynamicCrosshair.integer ) // disruptor draws it's own crosshair artwork; binocs draw nothing; third person draws its own crosshair
 		//{
-		//	CG_DrawCrosshair( nullptr );
+		//	CG_DrawCrosshair( NULL );
 		//}
 
 

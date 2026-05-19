@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef HITLOCS_H
+#define HITLOCS_H
 
 enum //# hitloc_e
 {
@@ -53,3 +54,4 @@ enum //# hitloc_e
 
 extern stringID_table_t HLTable[];
 
+#endif	// #ifndef HITLOCS_H

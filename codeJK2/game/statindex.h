@@ -19,12 +19,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Filename:	statindex.h
 //
 // accessed from both server and game modules
 
+#ifndef STATINDEX_H
+#define STATINDEX_H
 
 // player_state->stats[] indexes
 typedef enum {
@@ -37,6 +38,7 @@ typedef enum {
 	STAT_MAX_HEALTH					// health / armor limit, changable by handicap
 } statIndex_t;
 
+#endif	// #ifndef STATINDEX_H
 
 
 /////////////////////// eof /////////////////////

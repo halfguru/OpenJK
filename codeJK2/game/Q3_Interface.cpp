@@ -130,7 +130,7 @@ stringID_table_t BSETTable[] =
 
 stringID_table_t WPTable[] =
 {
-	{"nullptr", WP_NONE},
+	{"NULL", WP_NONE},
 	ENUM2STRING(WP_NONE),
 	// Player weapons
 	ENUM2STRING(WP_SABER),				 // NOTE: lots of code assumes this is the first weapon (... which is crap) so be careful -Ste.
@@ -179,7 +179,7 @@ stringID_table_t eventTable[] =
 
 stringID_table_t DMSTable[] =
 {
-	{"nullptr",-1},
+	{"NULL",-1},
 	ENUM2STRING(DM_AUTO),	//# let the game determine the dynamic music as normal
 	ENUM2STRING(DM_SILENCE),	//# stop the music
 	ENUM2STRING(DM_EXPLORE),	//# force the exploration music to play
@@ -651,10 +651,10 @@ Q3_GetAnimLower
 */
 static char *Q3_GetAnimLower( gentity_t *ent )
 {
-	if ( ent->client == nullptr )
+	if ( ent->client == NULL )
 	{
 		Q3_DebugPrint( WL_WARNING, "Q3_GetAnimLower: attempted to read animation state off non-client!\n" );
-		return nullptr;
+		return NULL;
 	}
 
 	int anim = ent->client->ps.legsAnim;
@@ -669,10 +669,10 @@ Q3_GetAnimUpper
 */
 static char *Q3_GetAnimUpper( gentity_t *ent )
 {
-	if ( ent->client == nullptr )
+	if ( ent->client == NULL )
 	{
 		Q3_DebugPrint( WL_WARNING, "Q3_GetAnimUpper: attempted to read animation state off non-client!\n" );
-		return nullptr;
+		return NULL;
 	}
 
 	int anim = ent->client->ps.torsoAnim;
@@ -694,14 +694,14 @@ static char *Q3_GetAnimBoth( gentity_t *ent )
 
 	if ( VALIDSTRING( lowerName ) == false )
 	{
-		Q3_DebugPrint( WL_WARNING, "Q3_GetAnimBoth: nullptr legs animation string found!\n" );
-		return nullptr;
+		Q3_DebugPrint( WL_WARNING, "Q3_GetAnimBoth: NULL legs animation string found!\n" );
+		return NULL;
 	}
 
 	if ( VALIDSTRING( upperName ) == false )
 	{
-		Q3_DebugPrint( WL_WARNING, "Q3_GetAnimBoth: nullptr torso animation string found!\n" );
-		return nullptr;
+		Q3_DebugPrint( WL_WARNING, "Q3_GetAnimBoth: NULL torso animation string found!\n" );
+		return NULL;
 	}
 
 	if ( Q_stricmp( lowerName, upperName ) )
@@ -915,8 +915,8 @@ static gentity_t *Q3_GetEntityByName( const char *name )
 	entlist_t::iterator		ei;
 	char					temp[1024];
 
-	if ( name == nullptr || name[0] == '\0' )
-		return nullptr;
+	if ( name == NULL || name[0] == '\0' )
+		return NULL;
 
 	strncpy( (char *) temp, name, sizeof(temp) );
 	temp[sizeof(temp)-1] = 0;
@@ -924,14 +924,14 @@ static gentity_t *Q3_GetEntityByName( const char *name )
 	ei = ICARUS_EntList.find( Q_strupr( (char *) temp ) );
 
 	if ( ei == ICARUS_EntList.end() )
-		return nullptr;
+		return NULL;
 
 	ent = &g_entities[(*ei).second];
 
 	return ent;
 	// this now returns the ent instead of the sequencer -- dmv 06/27/01
-//	if (ent == nullptr)
-//		return nullptr;
+//	if (ent == NULL)
+//		return NULL;
 //	return ent->sequencer;
 }
 
@@ -964,12 +964,12 @@ static qboolean G_AddSexToMunroString ( char *string, qboolean qDoBoth )
 	if VALIDSTRING( string ) {
 		if ( g_sex->string[0] == 'f' ) {
 			start = strstr( string, "kyle/" );
-			if ( start != nullptr ) {
+			if ( start != NULL ) {
 				strncpy( start, "kyla", 5 );
 				return qtrue;
 			} else {
 				start = strrchr( string, '/' );		//get the last slash before the wav
-				if (start != nullptr) {
+				if (start != NULL) {
 					if (!strncmp( start, "/mr_", 4) ) {
 						if (qDoBoth) {	//we want to change mr to ms
 							start[2] = 's';	//change mr to ms
@@ -983,7 +983,7 @@ static qboolean G_AddSexToMunroString ( char *string, qboolean qDoBoth )
 		}	//IF Female
 		else {	//i'm male
 			start = strrchr( string, '/' );		//get the last slash before the wav
-			if (start != nullptr) {
+			if (start != NULL) {
 				if (!strncmp( start, "/ms_", 4) ) {
 					return qfalse;	//don't want this one
 				}
@@ -1263,7 +1263,7 @@ Copies origin of found ent into ent running script
 */
 static void Q3_SetCopyOrigin( int entID, const char *name )
 {
-	gentity_t	*found = G_Find( nullptr, FOFS(targetname), (char *) name);
+	gentity_t	*found = G_Find( NULL, FOFS(targetname), (char *) name);
 
 	if(found)
 	{
@@ -1511,7 +1511,7 @@ void Blocked_Mover( gentity_t *ent, gentity_t *other ) {
 	}
 
 	if ( ent->damage ) {
-		G_Damage( other, ent, ent, nullptr, nullptr, ent->damage, 0, MOD_CRUSH );
+		G_Damage( other, ent, ent, NULL, NULL, ent->damage, 0, MOD_CRUSH );
 	}
 }
 
@@ -1691,7 +1691,7 @@ static void Q3_Lerp2Pos( int taskID, int entID, vec3_t origin, vec3_t angles, fl
 	//SetMoverState( ent, moverState, level.time );
 
 	//Only do the angles if specified
-	if ( angles != nullptr )
+	if ( angles != NULL )
 	{
 		//
 		// Rotation
@@ -1959,17 +1959,17 @@ static void Q3_SetNavGoal( int entID, const char *name )
 		Q3_DebugPrint( WL_ERROR, "Q3_SetNavGoal: NPC's (\"%s\") navgoal is freed: \"%s\"\n", name, ent->script_targetname );
 		return;
 	}
-	if( Q_stricmp( "nullptr", name) == 0 )
+	if( Q_stricmp( "null", name) == 0 )
 	{
-		ent->NPC->goalEntity = nullptr;
+		ent->NPC->goalEntity = NULL;
 		Q3_TaskIDComplete( ent, TID_MOVE_NAV );
 	}
 	else
 	{
 		//Get the position of the goal
-		if ( TAG_GetOrigin2( nullptr, name, goalPos ) == false )
+		if ( TAG_GetOrigin2( NULL, name, goalPos ) == false )
 		{
-			gentity_t	*targ = G_Find(nullptr, FOFS(targetname), (char*)name);
+			gentity_t	*targ = G_Find(NULL, FOFS(targetname), (char*)name);
 			if ( !targ )
 			{
 				Q3_DebugPrint( WL_ERROR, "Q3_SetNavGoal: can't find NAVGOAL \"%s\"\n", name );
@@ -1984,7 +1984,7 @@ static void Q3_SetNavGoal( int entID, const char *name )
 		}
 		else
 		{
-			int	goalRadius = TAG_GetRadius( nullptr, name );
+			int	goalRadius = TAG_GetRadius( NULL, name );
 			NPC_SetMoveGoal( ent, goalPos, goalRadius, qtrue );
 			//We know we want to clear the lastWaypoint here
 			ent->NPC->goalEntity->lastWaypoint = WAYPOINT_NONE;
@@ -2172,7 +2172,7 @@ static void Q3_SetEnemy( int entID, const char *name )
 		return;
 	}
 
-	if( !Q_stricmp("NONE", name) || !Q_stricmp("nullptr", name))
+	if( !Q_stricmp("NONE", name) || !Q_stricmp("NULL", name))
 	{
 		if(ent->NPC)
 		{
@@ -2180,14 +2180,14 @@ static void Q3_SetEnemy( int entID, const char *name )
 		}
 		else
 		{
-			ent->enemy = nullptr;
+			ent->enemy = NULL;
 		}
 	}
 	else
 	{
-		gentity_t	*enemy = G_Find( nullptr, FOFS(targetname), (char *) name);
+		gentity_t	*enemy = G_Find( NULL, FOFS(targetname), (char *) name);
 
-		if(enemy == nullptr)
+		if(enemy == NULL)
 		{
 			Q3_DebugPrint( WL_ERROR, "Q3_SetEnemy: no such enemy: '%s'\n", name );
 			return;
@@ -2223,7 +2223,7 @@ Sets the enemy of an entity
 static void Q3_SetDefendTarget( int entID, const char *name )
 {
 	gentity_t	*ent  = &g_entities[entID];
-	gentity_t	*defendEnt  = nullptr;
+	gentity_t	*defendEnt  = NULL;
 
 	if ( !ent )
 	{
@@ -2237,8 +2237,8 @@ static void Q3_SetDefendTarget( int entID, const char *name )
 		return;
 	}
 
-	defendEnt = G_Find(nullptr, FOFS(targetname), (char *)name);
-	if ( defendEnt != nullptr )
+	defendEnt = G_Find(NULL, FOFS(targetname), (char *)name);
+	if ( defendEnt != NULL )
 	{
 		ent->NPC->defendEnt = defendEnt;
 	}
@@ -2272,15 +2272,15 @@ static void Q3_SetLeader( int entID, const char *name )
 		return;
 	}
 
-	if( !Q_stricmp("NONE", name) || !Q_stricmp("nullptr", name))
+	if( !Q_stricmp("NONE", name) || !Q_stricmp("NULL", name))
 	{
-		ent->client->leader = nullptr;
+		ent->client->leader = NULL;
 	}
 	else
 	{
-		gentity_t	*leader = G_Find( nullptr, FOFS(targetname), (char *) name);
+		gentity_t	*leader = G_Find( NULL, FOFS(targetname), (char *) name);
 
-		if(leader == nullptr)
+		if(leader == NULL)
 		{
 			//Q3_DebugPrint( WL_ERROR,"Q3_SetEnemy: unable to locate enemy: '%s'\n", name );
 			return;
@@ -3104,7 +3104,7 @@ Q3_SetViewTarget
 static void Q3_SetViewTarget (int entID, const char *name)
 {
 	gentity_t	*self  = &g_entities[entID];
-	gentity_t	*viewtarget = G_Find( nullptr, FOFS(targetname), (char *) name);
+	gentity_t	*viewtarget = G_Find( NULL, FOFS(targetname), (char *) name);
 	vec3_t		viewspot, selfspot, viewvec, viewangles;
 
 	if ( !self )
@@ -3120,7 +3120,7 @@ static void Q3_SetViewTarget (int entID, const char *name)
 	}
 
 	//FIXME: Exception handle here
-	if (viewtarget == nullptr)
+	if (viewtarget == NULL)
 	{
 		Q3_DebugPrint( WL_WARNING, "Q3_SetViewTarget: can't find ViewTarget: '%s'\n", name );
 		return;
@@ -3164,7 +3164,7 @@ Q3_SetWatchTarget
 static void Q3_SetWatchTarget (int entID, const char *name)
 {
 	gentity_t	*self  = &g_entities[entID];
-	gentity_t	*watchTarget = nullptr;
+	gentity_t	*watchTarget = NULL;
 
 	if ( !self )
 	{
@@ -3178,13 +3178,13 @@ static void Q3_SetWatchTarget (int entID, const char *name)
 		return;
 	}
 
-	if ( Q_stricmp( "nullptr", name ) == 0 || Q_stricmp( "NONE", name ) == 0 || ( self->targetname && (Q_stricmp( self->targetname, name ) == 0) ) )
+	if ( Q_stricmp( "NULL", name ) == 0 || Q_stricmp( "NONE", name ) == 0 || ( self->targetname && (Q_stricmp( self->targetname, name ) == 0) ) )
 	{//clearing watchTarget
-		self->NPC->watchTarget = nullptr;
+		self->NPC->watchTarget = NULL;
 	}
 
-	watchTarget = G_Find( nullptr, FOFS(targetname), (char *) name);
-	if ( watchTarget == nullptr )
+	watchTarget = G_Find( NULL, FOFS(targetname), (char *) name);
+	if ( watchTarget == NULL )
 	{
 		Q3_DebugPrint( WL_WARNING, "Q3_SetWatchTarget: can't find WatchTarget: '%s'\n", name );
 		return;
@@ -3198,7 +3198,7 @@ void Q3_SetLoopSound(int entID, const char *name)
 	sfxHandle_t	index;
 	gentity_t	*self  = &g_entities[entID];
 
-	if ( Q_stricmp( "nullptr", name ) == 0 || Q_stricmp( "NONE", name )==0)
+	if ( Q_stricmp( "NULL", name ) == 0 || Q_stricmp( "NONE", name )==0)
 	{
 		self->s.loopSound = 0;
 		return;
@@ -3225,10 +3225,10 @@ void Q3_SetLoopSound(int entID, const char *name)
 
 void Q3_SetICARUSFreeze( int entID, const char *name, qboolean freeze )
 {
-	gentity_t	*self  = G_Find( nullptr, FOFS(targetname), name );
+	gentity_t	*self  = G_Find( NULL, FOFS(targetname), name );
 	if ( !self )
 	{//hmm, targetname failed, try script_targetname?
-		self = G_Find( nullptr, FOFS(script_targetname), name );
+		self = G_Find( NULL, FOFS(script_targetname), name );
 	}
 
 	if ( !self )
@@ -3261,7 +3261,7 @@ extern void G_SetViewEntity( gentity_t *self, gentity_t *viewEntity );
 void Q3_SetViewEntity(int entID, const char *name)
 {
 	gentity_t	*self  = &g_entities[entID];
-	gentity_t	*viewtarget = G_Find( nullptr, FOFS(targetname), (char *) name);
+	gentity_t	*viewtarget = G_Find( NULL, FOFS(targetname), (char *) name);
 
 	if ( entID != 0 )
 	{//only valid on player
@@ -3287,7 +3287,7 @@ void Q3_SetViewEntity(int entID, const char *name)
 		return;
 	}
 
-	if ( viewtarget == nullptr )
+	if ( viewtarget == NULL )
 	{
 		Q3_DebugPrint( WL_WARNING, "Q3_SetViewEntity: can't find ViewEntity: '%s'\n", name );
 		return;
@@ -3827,9 +3827,9 @@ static void Q3_SetSquadName (int entID, const char *squadname)
 		return;
 	}
 
-	if(!Q_stricmp("nullptr", ((char *)squadname)))
+	if(!Q_stricmp("NULL", ((char *)squadname)))
 	{
-		self->client->squadname = nullptr;
+		self->client->squadname = NULL;
 	}
 	else
 	{
@@ -3857,9 +3857,9 @@ static void Q3_SetTargetName (int entID, const char *targetname)
 		return;
 	}
 
-	if(!Q_stricmp("nullptr", ((char *)targetname)))
+	if(!Q_stricmp("NULL", ((char *)targetname)))
 	{
-		self->targetname = nullptr;
+		self->targetname = NULL;
 	}
 	else
 	{
@@ -3894,9 +3894,9 @@ static void Q3_SetTarget (int entID, const char *target)
 		return;
 	}
 
-	if(!Q_stricmp("nullptr", ((char *)target)))
+	if(!Q_stricmp("NULL", ((char *)target)))
 	{
-		self->target = nullptr;
+		self->target = NULL;
 	}
 	else
 	{
@@ -3923,9 +3923,9 @@ static void Q3_SetTarget2 (int entID, const char *target2)
 		return;
 	}
 
-	if(!Q_stricmp("nullptr", ((char *)target2)))
+	if(!Q_stricmp("NULL", ((char *)target2)))
 	{
-		self->target2 = nullptr;
+		self->target2 = NULL;
 	}
 	else
 	{
@@ -3957,9 +3957,9 @@ static void Q3_SetRemoveTarget (int entID, const char *target)
 		return;
 	}
 
-	if( !Q_stricmp("nullptr", ((char *)target)) )
+	if( !Q_stricmp("NULL", ((char *)target)) )
 	{
-		self->target3 = nullptr;
+		self->target3 = NULL;
 	}
 	else
 	{
@@ -3987,9 +3987,9 @@ static void Q3_SetPainTarget (int entID, const char *targetname)
 		return;
 	}
 
-	if(Q_stricmp("nullptr", ((char *)targetname)) == 0)
+	if(Q_stricmp("NULL", ((char *)targetname)) == 0)
 	{
-		self->paintarget = nullptr;
+		self->paintarget = NULL;
 	}
 	else
 	{
@@ -4016,9 +4016,9 @@ static void Q3_SetFullName (int entID, const char *fullName)
 		return;
 	}
 
-	if(!Q_stricmp("nullptr", ((char *)fullName)))
+	if(!Q_stricmp("NULL", ((char *)fullName)))
 	{
-		self->fullName = nullptr;
+		self->fullName = NULL;
 	}
 	else
 	{
@@ -4137,7 +4137,7 @@ void Q3_SetParm (int entID, int parmNum, const char *parmValue)
 	{//Just copy the string
 		//copy only 16 characters
 		strncpy( ent->parms->parm[parmNum], parmValue, sizeof(ent->parms->parm[0]) );
-		//set the last charcter to nullptr in case we had to truncate their passed string
+		//set the last charcter to null in case we had to truncate their passed string
 		if ( ent->parms->parm[parmNum][sizeof(ent->parms->parm[0]) - 1] != 0 )
 		{//Tried to set a string that is too long
 			ent->parms->parm[parmNum][sizeof(ent->parms->parm[0]) - 1] = 0;
@@ -4158,7 +4158,7 @@ Sets the capture spot goal of an entity
 static void Q3_SetCaptureGoal( int entID, const char *name )
 {
 	gentity_t	*ent  = &g_entities[entID];
-	gentity_t	*goal = G_Find( nullptr, FOFS(targetname), (char *) name);
+	gentity_t	*goal = G_Find( NULL, FOFS(targetname), (char *) name);
 
 	if ( !ent )
 	{
@@ -4173,7 +4173,7 @@ static void Q3_SetCaptureGoal( int entID, const char *name )
 	}
 
 	//FIXME: Exception handle here
-	if (goal == nullptr)
+	if (goal == NULL)
 	{
 		Q3_DebugPrint( WL_ERROR, "Q3_SetCaptureGoal: can't find CaptureGoal target: '%s'\n", name );
 		return;
@@ -4198,7 +4198,7 @@ Q3_SetEvent
 static void Q3_SetEvent( int entID, const char *event_name )
 {
 	gentity_t	*ent  = &g_entities[entID];
-//	gentity_t	*tent  = nullptr;
+//	gentity_t	*tent  = NULL;
 	int			event;
 //	vec3_t		spot;
 
@@ -4256,7 +4256,7 @@ static void Q3_Use( int entID, const char *target )
 
 	if( !target || !target[0] )
 	{
-		Q3_DebugPrint( WL_WARNING, "Q3_Use: string is nullptr!\n" );
+		Q3_DebugPrint( WL_WARNING, "Q3_Use: string is NULL!\n" );
 		return;
 	}
 
@@ -4336,21 +4336,21 @@ static qboolean Q3_SetBehaviorSet( int entID, int toSet, const char *scriptname)
 		return qfalse;
 	}
 
-	if(!Q_stricmp("nullptr", scriptname))
+	if(!Q_stricmp("NULL", scriptname))
 	{
-		if ( ent->behaviorSet[bSet] != nullptr )
+		if ( ent->behaviorSet[bSet] != NULL )
 		{
 //			gi.TagFree( ent->behaviorSet[bSet] );
 		}
 
-		ent->behaviorSet[bSet] = nullptr;
+		ent->behaviorSet[bSet] = NULL;
 		//memset( &ent->behaviorSet[bSet], 0, sizeof(ent->behaviorSet[bSet]) );
 	}
 	else
 	{
 		if ( scriptname )
 		{
-			if ( ent->behaviorSet[bSet] != nullptr )
+			if ( ent->behaviorSet[bSet] != NULL )
 			{
 //				gi.TagFree( ent->behaviorSet[bSet] );
 			}
@@ -4699,7 +4699,7 @@ Q3_SetCinematicSkipScript
 static void Q3_SetCinematicSkipScript( char *scriptname )
 {
 
-	if(Q_stricmp("none", scriptname) == 0 || Q_stricmp("nullptr", scriptname) == 0)
+	if(Q_stricmp("none", scriptname) == 0 || Q_stricmp("NULL", scriptname) == 0)
 	{
 		memset( cinematicSkipScript, 0, sizeof( cinematicSkipScript ) );
 	}
@@ -5873,13 +5873,13 @@ static void Q3_LookTarget( int entID, char *targetName)
 		return;
 	}
 
-	if(Q_stricmp("none", targetName) == 0 || Q_stricmp("nullptr", targetName) == 0)
+	if(Q_stricmp("none", targetName) == 0 || Q_stricmp("NULL", targetName) == 0)
 	{//clearing look target
 		NPC_ClearLookTarget( ent );
 		return;
 	}
 
-	gentity_t	*targ  = G_Find(nullptr, FOFS(targetname), targetName);
+	gentity_t	*targ  = G_Find(NULL, FOFS(targetname), targetName);
 	if(!targ)
 	{
 		Q3_DebugPrint( WL_ERROR, "Q3_LookTarget: Can't find ent %s\n", targetName );
@@ -6318,7 +6318,7 @@ Q3_SetCleanDamagingEnts
 */
 static void Q3_SetCleanDamagingEnts( void )
 {
-	gentity_t *ent = nullptr;
+	gentity_t *ent = NULL;
 
 	for ( int i = 0; i < ENTITYNUM_WORLD; i++ )
 	{
@@ -6344,7 +6344,7 @@ static void Q3_SetCleanDamagingEnts( void )
 			else if ( ent->client && ent->client->NPC_class == CLASS_SEEKER )
 			{
 				// they blow up when they run out of ammo, so this may as well just do the same.
-				G_Damage( ent, ent, ent, nullptr, nullptr, 999, 0, MOD_UNKNOWN );
+				G_Damage( ent, ent, ent, NULL, NULL, 999, 0, MOD_UNKNOWN );
 			}
 		}
 	}
@@ -7154,7 +7154,7 @@ static void Q3_Set( int taskID, int entID, const char *type_name, const char *da
 	case SET_TREASONED:
 		Q3_DebugPrint( WL_VERBOSE, "SET_TREASONED is disabled, do not use\n" );
 		/*
-		G_TeamRetaliation( nullptr, &g_entities[0], qfalse );
+		G_TeamRetaliation( NULL, &g_entities[0], qfalse );
 		ffireLevel = FFIRE_LEVEL_RETALIATION;
 		*/
 		break;
@@ -7671,7 +7671,7 @@ Q3_Kill
 static void Q3_Kill( int entID, const char *name )
 {
 	gentity_t	*ent = &g_entities[entID];
-	gentity_t	*victim = nullptr;
+	gentity_t	*victim = NULL;
 	int			o_health;
 
 	if( !Q_stricmp( name, "self") )
@@ -7684,7 +7684,7 @@ static void Q3_Kill( int entID, const char *name )
 	}
 	else
 	{
-		victim = G_Find (nullptr, FOFS(targetname), (char *) name );
+		victim = G_Find (NULL, FOFS(targetname), (char *) name );
 	}
 
 	if ( !victim )
@@ -7714,7 +7714,7 @@ static void Q3_Kill( int entID, const char *name )
 	//G_SetEnemy(victim, ent);
 	if( victim->e_DieFunc != dieF_NULL )	// check can be omitted
 	{
-		GEntity_DieFunc( victim, nullptr, nullptr, o_health, MOD_UNKNOWN );
+		GEntity_DieFunc( victim, NULL, NULL, o_health, MOD_UNKNOWN );
 	}
 }
 
@@ -7738,12 +7738,12 @@ static void Q3_RemoveEnt( gentity_t *victim )
 		victim->s.eType = ET_INVISIBLE;
 		victim->contents = 0;
 		victim->health = 0;
-		victim->targetname = nullptr;
+		victim->targetname = NULL;
 
-		if ( victim->NPC && victim->NPC->tempGoal != nullptr )
+		if ( victim->NPC && victim->NPC->tempGoal != NULL )
 		{
 			G_FreeEntity( victim->NPC->tempGoal );
-			victim->NPC->tempGoal = nullptr;
+			victim->NPC->tempGoal = NULL;
 		}
 		if ( victim->client->ps.saberEntityNum != ENTITYNUM_NONE && victim->client->ps.saberEntityNum > 0 )
 		{
@@ -7778,7 +7778,7 @@ Q3_Remove
 static void Q3_Remove( int entID, const char *name )
 {
 	gentity_t *ent = &g_entities[entID];
-	gentity_t	*victim = nullptr;
+	gentity_t	*victim = NULL;
 
 	if( !Q_stricmp( "self", name ) )
 	{
@@ -7802,7 +7802,7 @@ static void Q3_Remove( int entID, const char *name )
 	}
 	else
 	{
-		victim = G_Find( nullptr, FOFS(targetname), (char *) name );
+		victim = G_Find( NULL, FOFS(targetname), (char *) name );
 		if ( !victim )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_Remove: can't find %s\n", name );
@@ -7931,7 +7931,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 	case SET_PARM14:
 	case SET_PARM15:
 	case SET_PARM16:
-		if (ent->parms == nullptr)
+		if (ent->parms == NULL)
 		{
 			Q3_DebugPrint( WL_ERROR, "GET_PARM: %s %s did not have any parms set!\n", ent->classname, ent->targetname );
 			return false;	// would prefer qfalse, but I'm fitting in with what's here <sigh>
@@ -7952,7 +7952,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_XVELOCITY://## %f="0.0" # Velocity along X axis
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_XVELOCITY, %s not a client\n", ent->targetname );
 			return false;
@@ -7961,7 +7961,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_YVELOCITY://## %f="0.0" # Velocity along Y axis
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_YVELOCITY, %s not a client\n", ent->targetname );
 			return false;
@@ -7970,7 +7970,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_ZVELOCITY://## %f="0.0" # Velocity along Z axis
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_ZVELOCITY, %s not a client\n", ent->targetname );
 			return false;
@@ -7983,7 +7983,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_DPITCH://## %f="0.0" # Pitch for NPC to turn to
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_DPITCH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -7992,7 +7992,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_DYAW://## %f="0.0" # Yaw for NPC to turn to
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_DYAW, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8001,7 +8001,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_WIDTH://## %f="0.0" # Width of NPC bounding box
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_WIDTH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8011,12 +8011,12 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 	case SET_TIMESCALE://## %f="0.0" # Speed-up slow down game (0 - 1.0)
 		*value = g_timescale->value;
 		break;
-	case SET_CAMERA_GROUP_Z_OFS://## %s="nullptr" # all ents with this cameraGroup will be focused on
+	case SET_CAMERA_GROUP_Z_OFS://## %s="NULL" # all ents with this cameraGroup will be focused on
 		return false;
 		break;
 
 	case SET_VISRANGE://## %f="0.0" # How far away NPC can see
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_VISRANGE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8025,7 +8025,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_EARSHOT://## %f="0.0" # How far an NPC can hear
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_EARSHOT, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8034,7 +8034,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_VIGILANCE://## %f="0.0" # How often to look for enemies (0 - 1.0)
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_VIGILANCE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8067,7 +8067,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->wait;
 		break;
 	case SET_FOLLOWDIST:		//## %f="0.0" # How far away to stay from leader in BS_FOLLOW_LEADER
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_FOLLOWDIST, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8076,7 +8076,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 	//# #sep ints
 	case SET_ANIM_HOLDTIME_LOWER://## %d="0" # Hold lower anim for number of milliseconds
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_ANIM_HOLDTIME_LOWER, %s not a client\n", ent->targetname );
 			return false;
@@ -8084,7 +8084,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->client->ps.legsAnimTimer;
 		break;
 	case SET_ANIM_HOLDTIME_UPPER://## %d="0" # Hold upper anim for number of milliseconds
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_ANIM_HOLDTIME_UPPER, %s not a client\n", ent->targetname );
 			return false;
@@ -8096,7 +8096,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		return false;
 		break;
 	case SET_ARMOR://## %d="0" # Change armor
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_ARMOR, %s not a client\n", ent->targetname );
 			return false;
@@ -8104,7 +8104,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->client->ps.stats[STAT_ARMOR];
 		break;
 	case SET_WALKSPEED://## %d="0" # Change walkSpeed
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_WALKSPEED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8112,7 +8112,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->NPC->stats.walkSpeed;
 		break;
 	case SET_RUNSPEED://## %d="0" # Change runSpeed
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_RUNSPEED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8120,7 +8120,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->NPC->stats.runSpeed;
 		break;
 	case SET_YAWSPEED://## %d="0" # Change yawSpeed
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_YAWSPEED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8128,7 +8128,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->NPC->stats.yawSpeed;
 		break;
 	case SET_AGGRESSION://## %d="0" # Change aggression 1-5
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_AGGRESSION, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8136,7 +8136,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->NPC->stats.aggression;
 		break;
 	case SET_AIM://## %d="0" # Change aim 1-5
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_AIM, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8144,7 +8144,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->NPC->stats.aim;
 		break;
 	case SET_FRICTION://## %d="0" # Change ent's friction - 6 default
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_FRICTION, %s not a client\n", ent->targetname );
 			return false;
@@ -8152,7 +8152,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->client->ps.friction;
 		break;
 	case SET_SHOOTDIST://## %d="0" # How far the ent can shoot - 0 uses weapon
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_SHOOTDIST, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8160,7 +8160,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->NPC->stats.shootDistance;
 		break;
 	case SET_HFOV://## %d="0" # Horizontal field of view
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_HFOV, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8168,7 +8168,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->NPC->stats.hfov;
 		break;
 	case SET_VFOV://## %d="0" # Vertical field of view
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_VFOV, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8179,7 +8179,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->delayScriptTime - level.time;
 		break;
 	case SET_FORWARDMOVE://## %d="0" # NPC move forward -127(back) to 127
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_FORWARDMOVE, %s not a client\n", ent->targetname );
 			return false;
@@ -8187,7 +8187,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = ent->client->forced_forwardmove;
 		break;
 	case SET_RIGHTMOVE://## %d="0" # NPC move right -127(left) to 127
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_RIGHTMOVE, %s not a client\n", ent->targetname );
 			return false;
@@ -8205,7 +8205,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_SHOT_SPACING://## %d="1000" # Time between shots for an NPC - reset to defaults when changes weapon
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_SHOT_SPACING, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8217,7 +8217,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 	//# #sep booleans
 	case SET_IGNOREPAIN://## %t="BOOL_TYPES" # Do not react to pain
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_IGNOREPAIN, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8228,7 +8228,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->svFlags&SVF_IGNORE_ENEMIES);
 		break;
 	case SET_IGNOREALERTS://## Do not get enemy set by allies in area(ambush)
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_IGNOREALERTS, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8243,7 +8243,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->flags&FL_NOTARGET);
 		break;
 	case SET_DONTFIRE://## %t="BOOL_TYPES" # Don't fire your weapon
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_DONTFIRE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8255,7 +8255,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->svFlags&SVF_LOCKEDENEMY);
 		break;
 	case SET_CROUCHED://## %t="BOOL_TYPES" # Force NPC to crouch
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_CROUCHED, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8263,7 +8263,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_CROUCHED);
 		break;
 	case SET_WALKING://## %t="BOOL_TYPES" # Force NPC to move at walkSpeed
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_WALKING, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8271,7 +8271,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_WALKING);
 		break;
 	case SET_RUNNING://## %t="BOOL_TYPES" # Force NPC to move at runSpeed
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_RUNNING, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8279,7 +8279,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_RUNNING);
 		break;
 	case SET_CHASE_ENEMIES://## %t="BOOL_TYPES" # NPC will chase after enemies
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_CHASE_ENEMIES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8287,7 +8287,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_CHASE_ENEMIES);
 		break;
 	case SET_LOOK_FOR_ENEMIES://## %t="BOOL_TYPES" # NPC will be on the lookout for enemies
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_LOOK_FOR_ENEMIES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8295,7 +8295,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_LOOK_FOR_ENEMIES);
 		break;
 	case SET_FACE_MOVE_DIR://## %t="BOOL_TYPES" # NPC will face in the direction it's moving
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_FACE_MOVE_DIR, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8303,7 +8303,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_FACE_MOVE_DIR);
 		break;
 	case SET_FORCED_MARCH://## %t="BOOL_TYPES" # Force NPC to move at runSpeed
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_FORCED_MARCH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8314,7 +8314,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->flags&FL_UNDYING);
 		break;
 	case SET_NOAVOID://## %t="BOOL_TYPES" # Will not avoid other NPCs or architecture
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_NOAVOID, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8336,7 +8336,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		return false;
 		break;
 	case SET_SHIELDS://## %t="BOOL_TYPES" # NPC has no shields (Borg do not adapt)
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_SHIELDS, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8367,7 +8367,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		}
 		break;
 	case SET_GREET_ALLIES://## %t="BOOL_TYPES" # Makes an NPC greet teammates
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_GREET_ALLIES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8395,7 +8395,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->flags&FL_NO_KNOCKBACK);
 		break;
 	case SET_ALT_FIRE://## %t="BOOL_TYPES" # Force NPC to use altfire when shooting
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_ALT_FIRE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8403,7 +8403,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_ALT_FIRE);
 		break;
 	case SET_NO_RESPONSE://## %t="BOOL_TYPES" # NPCs will do generic responses when this is on (usescripts override generic responses as well)
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_NO_RESPONSE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8417,7 +8417,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = cg.missionStatusShow;
 		break;
 	case SET_NO_COMBAT_TALK://## %t="BOOL_TYPES" # NPCs will not do their combat talking noises when this is on
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_NO_COMBAT_TALK, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8425,7 +8425,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_COMBAT_TALK);
 		break;
 	case SET_NO_ALERT_TALK://## %t="BOOL_TYPES" # NPCs will not do their combat talking noises when this is on
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_NO_ALERT_TALK, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8433,7 +8433,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_ALERT_TALK);
 		break;
 	case SET_USE_CP_NEAREST://## %t="BOOL_TYPES" # NPCs will use their closest combat points, not try and find ones next to the player, or flank player
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_USE_CP_NEAREST, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8441,7 +8441,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_USE_CP_NEAREST);
 		break;
 	case SET_DISMEMBERABLE://## %t="BOOL_TYPES" # NPC will not be affected by force powers
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_DISMEMBERABLE, %s not a client\n", ent->targetname );
 			return false;
@@ -8449,7 +8449,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = !(ent->client->dismembered);
 		break;
 	case SET_NO_FORCE:
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_NO_FORCE, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8457,7 +8457,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_FORCE);
 		break;
 	case SET_NO_ACROBATICS:
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_NO_ACROBATICS, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8465,7 +8465,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_ACROBATICS);
 		break;
 	case SET_USE_SUBTITLES:
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_USE_SUBTITLES, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8473,7 +8473,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_USE_SUBTITLES);
 		break;
 	case SET_NO_FALLTODEATH://## %t="BOOL_TYPES" # NPC will not be affected by force powers
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_NO_FALLTODEATH, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8481,7 +8481,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		*value = (ent->NPC->scriptFlags&SCF_NO_FALLTODEATH);
 		break;
 	case SET_MORELIGHT://## %t="BOOL_TYPES" # NPCs will use their closest combat points, not try and find ones next to the player, or flank player
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetFloat: SET_MORELIGHT, %s not an NPC\n", ent->targetname );
 			return false;
@@ -8662,59 +8662,59 @@ static int Q3_GetString( int entID, int type, const char *name, char **value )
 		break;
 
 	//# #sep Scripts and other file paths
-	case SET_SPAWNSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when spawned //0 - do not change these, these are equal to BSET_SPAWN, etc
+	case SET_SPAWNSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when spawned //0 - do not change these, these are equal to BSET_SPAWN, etc
 		*value = ent->behaviorSet[BSET_SPAWN];
 		break;
-	case SET_USESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when used
+	case SET_USESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when used
 		*value = ent->behaviorSet[BSET_USE];
 		break;
-	case SET_AWAKESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when startled
+	case SET_AWAKESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when startled
 		*value = ent->behaviorSet[BSET_AWAKE];
 		break;
-	case SET_ANGERSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script run when find an enemy for the first time
+	case SET_ANGERSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script run when find an enemy for the first time
 		*value = ent->behaviorSet[BSET_ANGER];
 		break;
-	case SET_ATTACKSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you shoot
+	case SET_ATTACKSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you shoot
 		*value = ent->behaviorSet[BSET_ATTACK];
 		break;
-	case SET_VICTORYSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed someone
+	case SET_VICTORYSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed someone
 		*value = ent->behaviorSet[BSET_VICTORY];
 		break;
-	case SET_LOSTENEMYSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you can't find your enemy
+	case SET_LOSTENEMYSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when you can't find your enemy
 		*value = ent->behaviorSet[BSET_LOSTENEMY];
 		break;
-	case SET_PAINSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit
+	case SET_PAINSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit
 		*value = ent->behaviorSet[BSET_PAIN];
 		break;
-	case SET_FLEESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit and low health
+	case SET_FLEESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when hit and low health
 		*value = ent->behaviorSet[BSET_FLEE];
 		break;
-	case SET_DEATHSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed
+	case SET_DEATHSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when killed
 		*value = ent->behaviorSet[BSET_DEATH];
 		break;
-	case SET_DELAYEDSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run after a delay
+	case SET_DELAYEDSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run after a delay
 		*value = ent->behaviorSet[BSET_DELAYED];
 		break;
-	case SET_BLOCKEDSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when blocked by teammate
+	case SET_BLOCKEDSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when blocked by teammate
 		*value = ent->behaviorSet[BSET_BLOCKED];
 		break;
-	case SET_FFIRESCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player has shot own team repeatedly
+	case SET_FFIRESCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player has shot own team repeatedly
 		*value = ent->behaviorSet[BSET_FFIRE];
 		break;
-	case SET_FFDEATHSCRIPT://## %s="nullptr" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player kills a teammate
+	case SET_FFDEATHSCRIPT://## %s="NULL" !!"W:\game\base\scripts\!!#*.txt" # Script to run when player kills a teammate
 		*value = ent->behaviorSet[BSET_FFDEATH];
 		break;
 
 	//# #sep Standard strings
-	case SET_ENEMY://## %s="nullptr" # Set enemy by targetname
-		if ( ent->enemy != nullptr )
+	case SET_ENEMY://## %s="NULL" # Set enemy by targetname
+		if ( ent->enemy != NULL )
 		{
 			*value = ent->enemy->targetname;
 		}
 		else return false;
 		break;
-	case SET_LEADER://## %s="nullptr" # Set for BS_FOLLOW_LEADER
-		if ( ent->client == nullptr )
+	case SET_LEADER://## %s="NULL" # Set for BS_FOLLOW_LEADER
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetString: SET_LEADER, %s not a client\n", ent->targetname );
 			return false;
@@ -8725,33 +8725,33 @@ static int Q3_GetString( int entID, int type, const char *name, char **value )
 		}
 		else return false;
 		break;
-	case SET_CAPTURE://## %s="nullptr" # Set captureGoal by targetname
-		if ( ent->NPC == nullptr )
+	case SET_CAPTURE://## %s="NULL" # Set captureGoal by targetname
+		if ( ent->NPC == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetString: SET_CAPTURE, %s not an NPC\n", ent->targetname );
 			return false;
 		}
-		else if ( ent->NPC->captureGoal != nullptr )
+		else if ( ent->NPC->captureGoal != NULL )
 		{
 			*value = ent->NPC->captureGoal->targetname;
 		}
 		else return false;
 		break;
 
-	case SET_TARGETNAME://## %s="nullptr" # Set/change your targetname
+	case SET_TARGETNAME://## %s="NULL" # Set/change your targetname
 		*value = ent->targetname;
 		break;
-	case SET_PAINTARGET://## %s="nullptr" # Set/change what to use when hit
+	case SET_PAINTARGET://## %s="NULL" # Set/change what to use when hit
 		*value = ent->paintarget;
 		break;
-	case SET_CAMERA_GROUP://## %s="nullptr" # all ents with this cameraGroup will be focused on
+	case SET_CAMERA_GROUP://## %s="NULL" # all ents with this cameraGroup will be focused on
 		*value = ent->cameraGroup;
 		break;
-	case SET_CAMERA_GROUP_TAG://## %s="nullptr" # all ents with this cameraGroup will be focused on
+	case SET_CAMERA_GROUP_TAG://## %s="NULL" # all ents with this cameraGroup will be focused on
 		return false;
 		break;
-	case SET_LOOK_TARGET://## %s="nullptr" # object for NPC to look at
-		if ( ent->client == nullptr )
+	case SET_LOOK_TARGET://## %s="NULL" # object for NPC to look at
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetString: SET_LOOK_TARGET, %s not a client\n", ent->targetname );
 			return false;
@@ -8759,22 +8759,22 @@ static int Q3_GetString( int entID, int type, const char *name, char **value )
 		else
 		{
 			gentity_t *lookTarg = &g_entities[ent->client->renderInfo.lookTarget];
-			if ( lookTarg != nullptr )
+			if ( lookTarg != NULL )
 			{
 				*value = lookTarg->targetname;
 			}
 			else return false;
 		}
 		break;
-	case SET_TARGET2://## %s="nullptr" # Set/change your target2: on NPC's: this fires when they're knocked out by the red hypo
+	case SET_TARGET2://## %s="NULL" # Set/change your target2: on NPC's: this fires when they're knocked out by the red hypo
 		*value = ent->target2;
 		break;
 
-	case SET_REMOVE_TARGET://## %s="nullptr" # Target that is fired when someone completes the BS_REMOVE behaviorState
+	case SET_REMOVE_TARGET://## %s="NULL" # Target that is fired when someone completes the BS_REMOVE behaviorState
 		*value = ent->target3;
 		break;
 	case SET_WEAPON:
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetString: SET_WEAPON, %s not a client\n", ent->targetname );
 			return false;
@@ -8786,7 +8786,7 @@ static int Q3_GetString( int entID, int type, const char *name, char **value )
 		break;
 
 	case SET_ITEM:
-		if ( ent->client == nullptr )
+		if ( ent->client == NULL )
 		{
 			Q3_DebugPrint( WL_WARNING, "Q3_GetString: SET_ITEM, %s not a client\n", ent->targetname );
 			return false;
@@ -8800,15 +8800,15 @@ static int Q3_GetString( int entID, int type, const char *name, char **value )
 		*value = (char *)GetStringForID( DMSTable, level.dmState );
 		break;
 	//The below cannot be gotten
-	case SET_NAVGOAL://## %s="nullptr" # *Move to this navgoal then continue script
+	case SET_NAVGOAL://## %s="NULL" # *Move to this navgoal then continue script
 		Q3_DebugPrint( WL_WARNING, "Q3_GetString: SET_NAVGOAL not implemented\n" );
 		return false;
 		break;
-	case SET_VIEWTARGET://## %s="nullptr" # Set angles toward ent by targetname
+	case SET_VIEWTARGET://## %s="NULL" # Set angles toward ent by targetname
 		Q3_DebugPrint( WL_WARNING, "Q3_GetString: SET_VIEWTARGET not implemented\n" );
 		return false;
 		break;
-	case SET_WATCHTARGET://## %s="nullptr" # Set angles toward ent by targetname
+	case SET_WATCHTARGET://## %s="NULL" # Set angles toward ent by targetname
 		if ( ent && ent->NPC && ent->NPC->watchTarget )
 		{
 			*value = ent->NPC->watchTarget->targetname;
@@ -8864,7 +8864,7 @@ static int Q3_GetString( int entID, int type, const char *name, char **value )
 		return false;
 		break;
 
-	case SET_FULLNAME://## %s="nullptr" # Set/change your targetname
+	case SET_FULLNAME://## %s="NULL" # Set/change your targetname
 		*value = ent->fullName;
 		break;
 	default:

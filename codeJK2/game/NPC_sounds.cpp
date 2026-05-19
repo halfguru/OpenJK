@@ -112,7 +112,7 @@ void NPC_PlayConfusionSound( gentity_t *self )
 	self->NPC->tempBehavior = BS_DEFAULT;
 
 	//self->NPC->behaviorState = BS_PATROL;
-	G_ClearEnemy( self );//FIXME: or just self->enemy = nullptr;?
+	G_ClearEnemy( self );//FIXME: or just self->enemy = NULL;?
 
 	self->NPC->investigateCount = 0;
 }

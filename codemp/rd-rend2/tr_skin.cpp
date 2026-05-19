@@ -251,7 +251,7 @@ static char *CommaParse( char **data_p ) {
 
 	// make sure incoming data is valid
 	if ( !data ) {
-		*data_p = nullptr;
+		*data_p = NULL;
 		return com_token;
 	}
 

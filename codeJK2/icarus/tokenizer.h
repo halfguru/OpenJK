@@ -19,18 +19,19 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Tokenizer.h
 
+#ifndef __TOKENIZER_H
+#define __TOKENIZER_H
 
 #include <string>
 #include <string.h>
 #include <vector>
 #include <map>
 
-using byte = unsigned char;
-using word = unsigned short;
+typedef unsigned char byte;
+typedef unsigned short word;
 
 #define MAX_STRING_LENGTH		256
 #define MAX_IDENTIFIER_LENGTH	128
@@ -280,7 +281,7 @@ protected:
 	char*			m_symbolName;
 };
 
-using symbolmap_t = std::map<const char *, CSymbol*, lessstr>;
+typedef std::map<const char *, CSymbol*, lessstr> symbolmap_t;
 
 class CDirectiveSymbol : public CSymbol
 {
@@ -576,3 +577,4 @@ protected:
 	CDirectiveSymbol*			m_defineSymbol;
 };
 
+#endif//__TOKENIZER_H

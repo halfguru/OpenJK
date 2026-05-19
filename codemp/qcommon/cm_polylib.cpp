@@ -224,7 +224,7 @@ void ChopWindingInPlace (winding_t **inout, vec3_t normal, float dist, float eps
 	if (!counts[0])
 	{
 		FreeWinding (in);
-		*inout = nullptr;
+		*inout = NULL;
 		return;
 	}
 	if (!counts[1])

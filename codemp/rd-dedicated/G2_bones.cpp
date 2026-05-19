@@ -485,7 +485,7 @@ qboolean G2_Set_Bone_Angles_Index( boneInfo_v &blist, const int index,
 	OutputDebugString(va("PCJ %2d %6d   (%6.2f,%6.2f,%6.2f) %d %d %d %d\n",index,currentTime,angles[0],angles[1],angles[2],yaw,pitch,roll,flags));
 #endif
 
-	G2_Generate_Matrix(nullptr, blist, index, angles, flags, yaw, pitch, roll);
+	G2_Generate_Matrix(NULL, blist, index, angles, flags, yaw, pitch, roll);
 	return qtrue;
 
 }
@@ -678,7 +678,7 @@ qboolean G2_Set_Bone_Anim_Index(
 		float	currentFrame, animSpeed;
 		int 	startFrame, endFrame, flags;
 		// figure out where we are now
-		if (G2_Get_Bone_Anim_Index(blist, index, currentTime, &currentFrame, &startFrame, &endFrame, &flags, &animSpeed, nullptr, numFrames))
+		if (G2_Get_Bone_Anim_Index(blist, index, currentTime, &currentFrame, &startFrame, &endFrame, &flags, &animSpeed, NULL, numFrames))
 		{
 			if (blist[index].blendStart == currentTime)	//we're replacing a blend in progress which hasn't started
 			{
@@ -964,7 +964,7 @@ qboolean G2_Pause_Bone_Anim(CGhoul2Info *ghlInfo, boneInfo_v &blist, const char 
 			float	currentFrame = 0.0f, animSpeed = 1.0f;
 
 			// figure out what frame we are on now
-			G2_Get_Bone_Anim(ghlInfo, blist, boneName, blist[index].pauseTime, &currentFrame, &startFrame, &endFrame, &flags, &animSpeed, nullptr, 0);
+			G2_Get_Bone_Anim(ghlInfo, blist, boneName, blist[index].pauseTime, &currentFrame, &startFrame, &endFrame, &flags, &animSpeed, NULL, 0);
 			// reset start time so we are actually on this frame right now
 			G2_Set_Bone_Anim(ghlInfo, blist, boneName, startFrame, endFrame, flags, animSpeed, currentTime, currentFrame, 0);
 			// no pausing anymore
@@ -1163,7 +1163,7 @@ void G2_Animate_Bone_List(CGhoul2Info_v &ghoul2, const int currentTime, const in
   rag stuff
 
 */
-static void G2_RagDollSolve(CGhoul2Info_v &ghoul2V,int g2Index,float decay,int frameNum,const vec3_t currentOrg,bool LimitAngles,CRagDollUpdateParams *params = nullptr);
+static void G2_RagDollSolve(CGhoul2Info_v &ghoul2V,int g2Index,float decay,int frameNum,const vec3_t currentOrg,bool LimitAngles,CRagDollUpdateParams *params = NULL);
 static void G2_RagDollCurrentPosition(CGhoul2Info_v &ghoul2V,int g2Index,int frameNum,const vec3_t angles,const vec3_t position,const vec3_t scale);
 static bool G2_RagDollSettlePositionNumeroTrois(CGhoul2Info_v &ghoul2V,const vec3_t currentOrg,CRagDollUpdateParams *params, int curTime);
 static bool G2_RagDollSetup(CGhoul2Info &ghoul2,int frameNum,bool resetOrigin,const vec3_t origin,bool anyRendered);
@@ -1556,7 +1556,7 @@ qboolean G2_Set_Bone_Anim_No_BS(CGhoul2Info &ghoul2, const mdxaHeader_t *mod,bon
 		blist[index].startFrame = startFrame;
 		blist[index].animSpeed = animSpeed;
 		blist[index].pauseTime = 0;
-//		blist[index].boneMap = nullptr;
+//		blist[index].boneMap = NULL;
 //		blist[index].lastTime = blist[index].startTime = (currentTime - (((setFrame - (float)startFrame) * 50.0)/ animSpeed));
 		blist[index].flags &= ~(BONE_ANIM_TOTAL);
 		blist[index].flags |= modFlags;
@@ -1575,7 +1575,7 @@ qboolean G2_Set_Bone_Anim_No_BS(CGhoul2Info &ghoul2, const mdxaHeader_t *mod,bon
 		blist[index].startFrame = startFrame;
 		blist[index].animSpeed = animSpeed;
 		blist[index].pauseTime = 0;
-//		blist[index].boneMap = nullptr;
+//		blist[index].boneMap = NULL;
 //		blist[index].lastTime = blist[index].startTime = (currentTime - (((setFrame - (float)startFrame) * 50.0f)/ animSpeed));
 		blist[index].flags &= ~(BONE_ANIM_TOTAL);
 		blist[index].flags |= modFlags;
@@ -3034,7 +3034,7 @@ static bool G2_RagDollSettlePositionNumeroTrois(CGhoul2Info_v &ghoul2V, const ve
 		testEnd[2]=e.currentOrigin[2]-30.0f;
 		{
 			trace_t		tr;
-			Rag_Trace(&tr,testStart,nullptr,nullptr,testEnd,ignoreNum,RAG_MASK,G2_NOCOLLIDE,0);
+			Rag_Trace(&tr,testStart,NULL,NULL,testEnd,ignoreNum,RAG_MASK,G2_NOCOLLIDE,0);
 			if (tr.entityNum==0)
 			{
 				VectorAdvance(testStart,.5f,testEnd,tr.endpos);
@@ -4432,7 +4432,7 @@ qboolean G2_SetBoneIKState(CGhoul2Info_v &ghoul2, int time, const char *boneName
 	mod_a = (model_t *)g2.animModel;
 
 	if (!boneName)
-	{ //nullptr bonename param means it's time to init the ik stuff on this instance
+	{ //null bonename param means it's time to init the ik stuff on this instance
 		sharedRagDollUpdateParams_t sRDUP;
 
 		if (ikState == IKS_NONE)

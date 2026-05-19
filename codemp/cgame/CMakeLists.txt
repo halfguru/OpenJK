@@ -178,14 +178,14 @@ else()
 		COMPONENT ${JKAMPCoreComponent})
 endif()
 
-target_compile_definitions(${MPCGame} PRIVATE ${MPCGameDefines})
+set_target_properties(${MPCGame} PROPERTIES COMPILE_DEFINITIONS "${MPCGameDefines}")
 
 # Hide symbols not explicitly marked public.
 set_property(TARGET ${MPCGame} APPEND PROPERTY COMPILE_OPTIONS ${OPENJK_VISIBILITY_FLAGS})
 
-target_include_directories(${MPCGame} PRIVATE ${MPCGameIncludeDirectories})
+set_target_properties(${MPCGame} PROPERTIES INCLUDE_DIRECTORIES "${MPCGameIncludeDirectories}")
 set_target_properties(${MPCGame} PROPERTIES PROJECT_LABEL "MP Client Game Library")
 # no libraries used
 if(MPCGameLibraries)
-	target_link_libraries(${MPCGame} PRIVATE ${MPCGameLibraries})
+	target_link_libraries(${MPCGame} ${MPCGameLibraries})
 endif(MPCGameLibraries)

@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __strip_objectives_h
+#define __strip_objectives_h
 
 
 /********************************************************************************
@@ -99,4 +100,5 @@ enum
 };
 
 
+#endif // __strip_objectives_h
 

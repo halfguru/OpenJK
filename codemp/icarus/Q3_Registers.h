@@ -34,8 +34,8 @@ enum
 
 #define	MAX_VARIABLES	32
 
-using varString_m = std::map < std::string, std::string >;
-using varFloat_m = std::map < std::string, float >;
+typedef std::map < std::string, std::string >		varString_m;
+typedef std::map < std::string, float >		varFloat_m;
 
 extern	varString_m	varStrings;
 extern	varFloat_m	varFloats;

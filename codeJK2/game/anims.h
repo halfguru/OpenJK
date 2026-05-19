@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __ANIMS_H__
+#define __ANIMS_H__
 // playerAnimations
 
 
@@ -1430,4 +1431,5 @@ public:
 }; // animFileSet_t
 #define MAX_ANIM_FILES	64
 
+#endif// #ifndef __ANIMS_H__
 

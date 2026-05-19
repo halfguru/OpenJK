@@ -333,20 +333,20 @@ char *CON_Input( void )
 	int newlinepos = -1;
 
 	if( !GetNumberOfConsoleInputEvents( qconsole_hin, &events ) )
-		return nullptr;
+		return NULL;
 
 	if( events < 1 )
-		return nullptr;
+		return NULL;
 
 	// if we have overflowed, start dropping oldest input events
 	if( events >= MAX_EDIT_LINE )
 	{
 		ReadConsoleInput( qconsole_hin, buff, 1, &events );
-		return nullptr;
+		return NULL;
 	}
 
 	if( !ReadConsoleInput( qconsole_hin, buff, events, &count ) )
-		return nullptr;
+		return NULL;
 
 	FlushConsoleInputBuffer( qconsole_hin );
 
@@ -462,14 +462,14 @@ char *CON_Input( void )
 
 	if( newlinepos < 0) {
 		CON_Show();
-		return nullptr;
+		return NULL;
 	}
 
 	if( !qconsole_linelen )
 	{
 		CON_Show();
 		Com_Printf( "\n" );
-		return nullptr;
+		return NULL;
 	}
 
 	qconsole_linelen = 0;

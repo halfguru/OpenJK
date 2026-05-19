@@ -21,8 +21,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __Q_SHARED_H
+#define __Q_SHARED_H
 
 // q_shared.h -- included first by ALL program modules.
 // A user mod should never modify this file
@@ -2758,3 +2759,4 @@ typedef int( *cmpFunc_t )(const void *a, const void *b);
 void *Q_LinearSearch( const void *key, const void *ptr, size_t count,
 	size_t size, cmpFunc_t cmp );
 
+#endif	// __Q_SHARED_H

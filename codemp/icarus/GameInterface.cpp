@@ -90,7 +90,7 @@ int ICARUS_RunScript( sharedEntity_t *ent, const char *name )
 	int len;
 
 	//Make sure the caller is valid
-	if ( gSequencers[ent->s.number] == nullptr )
+	if ( gSequencers[ent->s.number] == NULL )
 	{
 		//Com_Printf( "%s : entity is not a valid script user\n", ent->classname );
 		return false;
@@ -166,7 +166,7 @@ void ICARUS_Init( void )
 	//Create the ICARUS instance for this session
 	iICARUS = ICARUS_Instance::Create( &interface_export );
 
-	if ( iICARUS == nullptr )
+	if ( iICARUS == NULL )
 	{
 		Com_Error( ERR_DROP, "Unable to initialize ICARUS instance\n" );
 		return;
@@ -220,7 +220,7 @@ void ICARUS_Shutdown( void )
 	if ( iICARUS )
 	{
 		iICARUS->Delete();
-		iICARUS = nullptr;
+		iICARUS = NULL;
 	}
 }
 
@@ -247,7 +247,7 @@ void ICARUS_FreeEnt( sharedEntity_t *ent )
 	}
 
 	//Make sure the ent is valid
-	if ( gSequencers[ent->s.number] == nullptr )
+	if ( gSequencers[ent->s.number] == NULL )
 		return;
 
 	//Remove them from the ICARUSE_EntList list so that when their g_entity index is reused, ICARUS doesn't try to affect the new (incorrect) ent.
@@ -270,8 +270,8 @@ void ICARUS_FreeEnt( sharedEntity_t *ent )
 	iICARUS->DeleteSequencer( gSequencers[ent->s.number] );
 
 	//Clean up the pointers
-	gSequencers[ent->s.number]		= nullptr;
-	gTaskManagers[ent->s.number]	= nullptr;
+	gSequencers[ent->s.number]		= NULL;
+	gTaskManagers[ent->s.number]	= NULL;
 }
 
 
@@ -348,7 +348,7 @@ bool ICARUS_RegisterScript( const char *name, qboolean bCalledDuringInterrogate 
 	bufferlist_t::iterator	ei;
 	pscript_t	*pscript;
 	char		newname[MAX_FILENAME_LENGTH];
-	char		*buffer = nullptr;	// lose compiler warning about uninitialised vars
+	char		*buffer = NULL;	// lose compiler warning about uninitialised vars
 	long		length;
 
 	//Make sure this isn't already cached
@@ -378,7 +378,7 @@ bool ICARUS_RegisterScript( const char *name, qboolean bCalledDuringInterrogate 
 
 		gi.FS_Open( newname, &file, FS_READ );
 
-		if ( file == nullptr )
+		if ( file == NULL )
 		{
 			qbIgnoreFileRead = qtrue;	// warn disk code further down not to try FS_ReadFile()
 		}
@@ -447,7 +447,7 @@ void ICARUS_InterrogateScript( const char *filename )
 	CBlockMember	*blockMember;
 	CBlock			block;
 
-	if (!Q_stricmp(filename,"nullptr") || !Q_stricmp(filename,"default"))
+	if (!Q_stricmp(filename,"NULL") || !Q_stricmp(filename,"default"))
 		return;
 
 	//////////////////////////////////
@@ -635,7 +635,7 @@ void ICARUS_PrecacheEnt( sharedEntity_t *ent )
 
 	for ( i = 0; i < NUM_BSETS; i++ )
 	{
-		if ( ent->behaviorSet[i] == nullptr )
+		if ( ent->behaviorSet[i] == NULL )
 			continue;
 
 		if ( GetIDForString( BSTable, ent->behaviorSet[i] ) == -1 )
@@ -661,13 +661,13 @@ void ICARUS_InitEnt( sharedEntity_t *ent )
 {
 	//Make sure this is a fresh ent
 	assert( iICARUS );
-	assert( gTaskManagers[ent->s.number] == nullptr );
-	assert( gSequencers[ent->s.number] == nullptr );
+	assert( gTaskManagers[ent->s.number] == NULL );
+	assert( gSequencers[ent->s.number] == NULL );
 
-	if ( gSequencers[ent->s.number] != nullptr )
+	if ( gSequencers[ent->s.number] != NULL )
 		return;
 
-	if ( gTaskManagers[ent->s.number] != nullptr )
+	if ( gTaskManagers[ent->s.number] != NULL )
 		return;
 
 	//Create the sequencer and setup the task manager
@@ -694,7 +694,7 @@ int ICARUS_LinkEntity( int entID, CSequencer *sequencer, CTaskManager *taskManag
 {
 	sharedEntity_t	*ent = SV_GentityNum(entID);
 
-	if ( ent == nullptr )
+	if ( ent == NULL )
 		return false;
 
 	gSequencers[ent->s.number] = sequencer;
@@ -722,9 +722,9 @@ void Svcmd_ICARUS_f( void )
 		//g_ICARUSDebug->integer = WL_DEBUG;
 		if ( VALIDSTRING( Cmd_Argv( 2 ) ) )
 		{
-			sharedEntity_t	*ent = G_Find( nullptr, FOFS( script_targetname ), gi.argv(2) );
+			sharedEntity_t	*ent = G_Find( NULL, FOFS( script_targetname ), gi.argv(2) );
 
-			if ( ent == nullptr )
+			if ( ent == NULL )
 			{
 				Com_Printf( "Entity \"%s\" not found!\n", gi.argv(2) );
 				return;

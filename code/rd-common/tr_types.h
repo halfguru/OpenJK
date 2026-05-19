@@ -21,8 +21,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __TR_TYPES_H
+#define __TR_TYPES_H
 
 #include "../game/ghoul2_shared.h"
 
@@ -251,3 +252,4 @@ typedef struct glconfig_s {
 	qboolean				stereoEnabled;
 } glconfig_t;
 
+#endif	// __TR_TYPES_H

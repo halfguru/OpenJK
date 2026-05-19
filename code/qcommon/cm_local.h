@@ -20,12 +20,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 #include "q_shared.h"
 #include "qcommon.h"
 #include "cm_polylib.h"
 
+#ifndef CM_LOCAL_H
+#define CM_LOCAL_H
 
 #define	BOX_MODEL_HANDLE	(MAX_SUBMODELS-1)
 
@@ -233,3 +234,4 @@ void CM_ClearLevelPatches( void );
 void CM_CalcExtents(const vec3_t start, const vec3_t end, const traceWork_t *tw, vec3pair_t bounds);
 bool CM_GenericBoxCollide(const vec3pair_t abounds, const vec3pair_t bbounds);
 
+#endif

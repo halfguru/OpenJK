@@ -522,10 +522,10 @@ qboolean R_LoadIQM( model_t *mod, void *buffer, int filesize, const char *mod_na
 	iqmData->names        = (char *)(iqmData->triangles + 3 * header->num_triangles);
 
 	if ( header->num_joints == 0 )
-		iqmData->jointMats = nullptr;
+		iqmData->jointMats = NULL;
 
 	if ( header->num_poses == 0 )
-		iqmData->poseMats = nullptr;
+		iqmData->poseMats = NULL;
 
 	// calculate joint matrices and their inverses
 	// joint inverses are needed only until the pose matrices are calculated

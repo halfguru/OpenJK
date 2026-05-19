@@ -106,7 +106,7 @@ void misc_camera_track_think (gentity_t *self)
 		{
 			G_UseTargets(self, self);
 			self->target = self->enemy->target;
-			self->enemy = nullptr;
+			self->enemy = NULL;
 		}
 	}
 
@@ -114,7 +114,7 @@ void misc_camera_track_think (gentity_t *self)
 	{
 		if( self->target && self->target[0] )
 		{//Find out next path_corner
-			self->enemy = G_Find(nullptr, FOFS(targetname), self->target);
+			self->enemy = G_Find(NULL, FOFS(targetname), self->target);
 			if(self->enemy)
 			{
 				if(self->enemy->radius < 0)
@@ -208,9 +208,9 @@ void cam_point_link( gentity_t *ent )
 
 void cam_ctrl_point_link( gentity_t *ent )
 {
-/*	gentity_t	*target2 = nullptr;
+/*	gentity_t	*target2 = NULL;
 
-	target2 = G_Find( nullptr, FOFS(targetname), ent->target2 );
+	target2 = G_Find( NULL, FOFS(targetname), ent->target2 );
 
 	if ( !target2 )
 	{
@@ -226,9 +226,9 @@ void cam_ctrl_point_link( gentity_t *ent )
 	//---------------------
 	if ( ent->target )
 	{
-		gentity_t	*target = nullptr;
+		gentity_t	*target = NULL;
 
-		target = G_Find( nullptr, FOFS(targetname), ent->target );
+		target = G_Find( NULL, FOFS(targetname), ent->target );
 
 		if ( !target )
 		{

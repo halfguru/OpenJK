@@ -86,8 +86,8 @@ CM_ClearLevelPatches
 =================
 */
 void CM_ClearLevelPatches( void ) {
-	debugPatchCollide = nullptr;
-	debugFacet = nullptr;
+	debugPatchCollide = NULL;
+	debugFacet = NULL;
 }
 
 /*
@@ -412,7 +412,7 @@ static	patchPlane_t	planes[MAX_PATCH_PLANES];
 
 //static	int				numFacets;
 //static	facet_t			facets[MAX_PATCH_PLANES]; //maybe MAX_FACETS ??
-static		facet_t			*facets = nullptr;
+static		facet_t			*facets = NULL;
 
 #define	NORMAL_EPSILON	0.00015
 #define	DIST_EPSILON	0.0235

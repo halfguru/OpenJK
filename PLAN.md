@@ -1,31 +1,31 @@
 # Modernization Plan
 
-**Goal:** Incrementally modernize OpenJK's toolchain and codebase — CMake, C++17, Catch2, Clang-first, cleaner architecture.
+**Goal:** Incrementally modernize OpenJK's toolchain and codebase — CMake, C++20, Catch2, Clang-first, cleaner architecture.
 **Strategy:** Many small, self-contained PRs, no big-bang rewrites.
 
 ---
 
-## PR 1 — CMake minimum version bump ✅ Merged
+## PR 1 — CMake minimum version bump
 
-Bumped `cmake_minimum_required` to 3.31 across the project.
+Bump `cmake_minimum_required` to 4.3 across the project.
 
 | File | Change |
 |---|---|
-| `CMakeLists.txt:21` | `3.1...3.31` → `3.31` |
-| `tools/WinSymbol/CMakeLists.txt:18` | `3.1` → `3.31` |
+| `CMakeLists.txt:21` | `3.1...3.31` → `4.3` |
+| `tools/WinSymbol/CMakeLists.txt:18` | `3.1` → `4.3` |
 
 **Completion check:** `cmake -B build_vs -G "Visual Studio 18 2026" -A x64 && cmake --build build_vs` passes.
 
 ---
 
-## PR 2 — C++17 standard, ccache, macro cleanup ✅ Merged
+## PR 2 — Switch to CMAKE_CXX_STANDARD 20
 
-Replaced hardcoded `-std=c++11` with `CMAKE_CXX_STANDARD 17`, collapsed `NOEXCEPT`/`OVERRIDE` macros, enabled ccache.
+Replace the hardcoded `-std=c++11` flag with proper `CMAKE_CXX_STANDARD 20` target property.
 
 | File | Change |
 |---|---|
 | `CMakeLists.txt:274` | Remove `set(CMAKE_CXX_FLAGS ... -std=c++11)` |
-| `CMakeLists.txt` (new) | `set(CMAKE_CXX_STANDARD 17)` + `set(CMAKE_CXX_STANDARD_REQUIRED ON)` |
+| `CMakeLists.txt` (new) | `set(CMAKE_CXX_STANDARD 20)` + `set(CMAKE_CXX_STANDARD_REQUIRED ON)` |
 
 **Completion check:** Build passes, compiler invocations show `-std=c++20` instead of `-std=c++11`.
 

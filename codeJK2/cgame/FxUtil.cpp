@@ -144,7 +144,7 @@ static void FX_FreeMember( SEffectList *obj )
 //
 // Finds an unused effect slot
 //
-// Note - in the editor, this function may return nullptr, indicating that all
+// Note - in the editor, this function may return NULL, indicating that all
 // effects are being stopped.
 //-------------------------
 static SEffectList *FX_GetValidEffect()
@@ -364,7 +364,7 @@ void FX_Add( void )
 //-------------------------
 // FX_AddPrimitive
 //
-// Note - in the editor, this function may change *pEffect to nullptr, indicating that
+// Note - in the editor, this function may change *pEffect to NULL, indicating that
 // all effects are being stopped.
 //-------------------------
 void FX_AddPrimitive( CEffect *pEffect, int killTime )
@@ -457,7 +457,7 @@ CParticle *FX_AddParticle( const vec3_t org, const vec3_t vel, const vec3_t acce
 		fx->SetImpactFxID( impactID );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -482,7 +482,7 @@ CParticle *FX_AddParticle( int clientID, const vec3_t org, const vec3_t vel, con
 
 	if ( fx )
 	{
-		fx->SetOrigin1( nullptr );
+		fx->SetOrigin1( NULL );
 		fx->SetOrgOffset( org );
 		fx->SetVel( vel );
 		fx->SetAccel( accel );
@@ -533,8 +533,8 @@ CParticle *FX_AddParticle( int clientID, const vec3_t org, const vec3_t vel, con
 		fx->SetRotation( rotation );
 		fx->SetRotationDelta( rotationDelta );
 		fx->SetElasticity( 0.0f );
-		fx->SetMin( nullptr );
-		fx->SetMax( nullptr );
+		fx->SetMin( NULL );
+		fx->SetMax( NULL );
 		fx->SetClient( clientID );
 
 		FX_AddPrimitive( fx, killTime );
@@ -609,7 +609,7 @@ CLine *FX_AddLine( vec3_t start, vec3_t end, float size1, float size2, float siz
 		fx->SetSTScale( 1.0f, 1.0f );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -634,7 +634,7 @@ CLine *FX_AddLine( int clientID, vec3_t start, float size1, float size2, float s
 	if ( fx )
 	{
 		fx->SetOrgOffset( start );
-		fx->SetOrigin1( nullptr );
+		fx->SetOrigin1( NULL );
 
 		// RGB----------------
 		fx->SetRGBStart( sRGB );
@@ -684,7 +684,7 @@ CLine *FX_AddLine( int clientID, vec3_t start, float size1, float size2, float s
 		fx->SetImpactFxID( impactFX_id );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -757,7 +757,7 @@ CElectricity *FX_AddElectricity( vec3_t start, vec3_t end, float size1, float si
 		fx->SetSTScale( 1.0f, 1.0f );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr?
+		// in the editor, fx may now be NULL?
 		if ( fx )
 		{
 			fx->Initialize();
@@ -856,7 +856,7 @@ CTail *FX_AddTail( vec3_t org, vec3_t vel, vec3_t accel,
 		fx->SetImpactFxID( impactID );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -883,7 +883,7 @@ CTail *FX_AddTail( int clientID, vec3_t org, vec3_t vel, vec3_t accel,
 
 	if ( fx )
 	{
-		fx->SetOrigin1( nullptr );
+		fx->SetOrigin1( NULL );
 		fx->SetOrgOffset( org );
 		fx->SetVel( vel );
 		fx->SetAccel( accel );
@@ -952,7 +952,7 @@ CTail *FX_AddTail( int clientID, vec3_t org, vec3_t vel, vec3_t accel,
 		fx->SetClient( clientID );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -1140,7 +1140,7 @@ CEmitter *FX_AddEmitter( vec3_t org, vec3_t vel, vec3_t accel,
 		fx->SetLastVel( vel );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -1194,7 +1194,7 @@ CLight *FX_AddLight( vec3_t org, float size1, float size2, float sizeParm,
 		fx->SetFlags( flags );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -1279,7 +1279,7 @@ COrientedParticle *FX_AddOrientedParticle( vec3_t org, vec3_t norm, vec3_t vel, 
 		fx->SetImpactFxID( impactID );
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -1353,7 +1353,7 @@ CPoly *FX_AddPoly( vec3_t *verts, vec2_t *st, int numVerts,
 		fx->PolyInit();
 
 		FX_AddPrimitive( fx, killTime );
-		// in the editor, fx may now be nullptr
+		// in the editor, fx may now be NULL
 	}
 
 	return fx;
@@ -1587,6 +1587,6 @@ void FX_AddQuad( vec3_t origin, vec3_t normal,
 							salpha, ealpha, 0.0f,
 							sRGB, eRGB, 0.0f,
 							rotation, 0.0f,
-							nullptr, nullptr, 0.0f, 0, 0, life,
+							NULL, NULL, 0.0f, 0, 0, life,
 							shader, 0 );
 }

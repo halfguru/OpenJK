@@ -373,7 +373,7 @@ static void ST_HoldPosition( void )
 	if ( !Q3_TaskIDPending( NPC, TID_MOVE_NAV ) )
 	{//don't have a script waiting for me to get to my point, okay to stop trying and stand
 		AI_GroupUpdateSquadstates( NPCInfo->group, NPC, SQUAD_STAND_AND_SHOOT );
-		NPCInfo->goalEntity = nullptr;
+		NPCInfo->goalEntity = NULL;
 	}
 
 }
@@ -516,7 +516,7 @@ qboolean NPC_CheckEnemyStealth( gentity_t *target )
 	float		target_dist, minDist = 40;//any closer than 40 and we definitely notice
 
 	//In case we aquired one some other way
-	if ( NPC->enemy != nullptr )
+	if ( NPC->enemy != NULL )
 		return qtrue;
 
 	//Ignore notarget
@@ -772,7 +772,7 @@ qboolean NPC_CheckPlayerTeamStealth( void )
 qboolean NPC_CheckEnemiesInSpotlight( void )
 {
 	gentity_t	*entityList[MAX_GENTITIES];
-	gentity_t	*enemy, *suspect = nullptr;
+	gentity_t	*enemy, *suspect = NULL;
 	int			i, numListedEntities;
 	vec3_t		mins, maxs;
 
@@ -819,7 +819,7 @@ qboolean NPC_CheckEnemiesInSpotlight( void )
 			{//one to look at if we don't get an enemy
 				if ( G_ClearLOS( NPC, enemy ) )
 				{//clear LOS
-					if ( suspect == nullptr || DistanceSquared( NPC->client->renderInfo.eyePoint, enemy->currentOrigin ) < DistanceSquared( NPC->client->renderInfo.eyePoint, suspect->currentOrigin ) )
+					if ( suspect == NULL || DistanceSquared( NPC->client->renderInfo.eyePoint, enemy->currentOrigin ) < DistanceSquared( NPC->client->renderInfo.eyePoint, suspect->currentOrigin ) )
 					{//remember him
 						suspect = enemy;
 					}
@@ -1049,7 +1049,7 @@ static void ST_OffsetLook( float offset, vec3_t out )
 
 	GetAnglesForDirection( NPC->currentOrigin, NPCInfo->investigateGoal, angles );
 	angles[YAW] += offset;
-	AngleVectors( angles, forward, nullptr, nullptr );
+	AngleVectors( angles, forward, NULL, NULL );
 	VectorMA( NPC->currentOrigin, 64, forward, out );
 
 	CalcEntitySpot( NPC, SPOT_HEAD, temp );
@@ -1158,7 +1158,7 @@ void NPC_BSST_Investigate( void )
 	//FIXME: else, look for new alerts
 
 	//See if we're searching for the noise's origin
-	if ( NPCInfo->localState == LSTATE_INVESTIGATE && (NPCInfo->goalEntity!=nullptr) )
+	if ( NPCInfo->localState == LSTATE_INVESTIGATE && (NPCInfo->goalEntity!=NULL) )
 	{
 		//See if we're there
 		if ( !STEER::Reached(NPC, NPCInfo->goalEntity, 32, FlyingCreature(NPC) != qfalse) )
@@ -1201,7 +1201,7 @@ void NPC_BSST_Patrol( void )
 	{//using spotlight search mode
 		vec3_t	eyeFwd, end, mins={-2,-2,-2}, maxs={2,2,2};
 		trace_t	trace;
-		AngleVectors( NPC->client->renderInfo.eyeAngles, eyeFwd, nullptr, nullptr );
+		AngleVectors( NPC->client->renderInfo.eyeAngles, eyeFwd, NULL, NULL );
 		VectorMA( NPC->client->renderInfo.eyePoint, NPCInfo->stats.visrange, eyeFwd, end );
 		//get server-side trace impact point
 		gi.trace( &trace, NPC->client->renderInfo.eyePoint, mins, maxs, end, NPC->s.number, MASK_OPAQUE|CONTENTS_BODY|CONTENTS_CORPSE, (EG2_Collision)0, 0 );
@@ -1406,7 +1406,7 @@ static void ST_CheckMoveState( void )
 	//See if we're a scout
 
 	//See if we're moving towards a goal, not the enemy
-	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != nullptr ) )
+	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != NULL ) )
 	{
 		//Did we make it?
 		if ( STEER::Reached(NPC, NPCInfo->goalEntity, 16, !!FlyingCreature(NPC)) ||
@@ -1544,7 +1544,7 @@ static void ST_CheckFireState( void )
 					trace_t tr;
 					//vec3_t	mins = {-2,-2,-2}, maxs = {2,2,2};
 					vec3_t	forward, end;
-					AngleVectors( NPC->client->ps.viewangles, forward, nullptr, nullptr );
+					AngleVectors( NPC->client->ps.viewangles, forward, NULL, NULL );
 					VectorMA( muzzle, 8192, forward, end );
 					gi.trace( &tr, muzzle, vec3_origin, vec3_origin, end, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 					VectorCopy( tr.endpos, impactPos );
@@ -1861,7 +1861,7 @@ void ST_Commander( void )
 
 	group->processed = qtrue;
 
-	if ( group->enemy == nullptr || group->enemy->client == nullptr )
+	if ( group->enemy == NULL || group->enemy->client == NULL )
 	{//hmm, no enemy...?!
 		return;
 	}
@@ -1906,7 +1906,7 @@ void ST_Commander( void )
 				NPC_BSSearchStart( group->enemy->waypoint, BS_SEARCH );
 			}
 		}
-		group->enemy = nullptr;
+		group->enemy = NULL;
 		RestoreNPCGlobals();
 		return;
 	}
@@ -1991,7 +1991,7 @@ void ST_Commander( void )
 
 		if ( NPC->client->ps.weapon == WP_NONE )
 		{//weaponless, should be hiding
-			if ( NPCInfo->goalEntity == nullptr || NPCInfo->goalEntity->enemy == nullptr || NPCInfo->goalEntity->enemy->s.eType != ET_ITEM )
+			if ( NPCInfo->goalEntity == NULL || NPCInfo->goalEntity->enemy == NULL || NPCInfo->goalEntity->enemy->s.eType != ET_ITEM )
 			{//not running after a pickup
 				if ( TIMER_Done( NPC, "hideTime" ) || (DistanceSquared( group->enemy->currentOrigin, NPC->currentOrigin ) < 65536 && NPC_ClearLOS( NPC->enemy )) )
 				{//done hiding or enemy near and can see us
@@ -2217,7 +2217,7 @@ void Noghri_StickTrace( void )
 			gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->weaponModel[0],
 						boltIndex,
 						&boltMatrix, angles, NPC->currentOrigin, time,
-						nullptr, NPC->s.modelScale );
+						NULL, NPC->s.modelScale );
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, base );
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, POSITIVE_Y, dir );
 			VectorMA( base, 48, dir, tip );
@@ -2346,7 +2346,7 @@ void NPC_BSST_Attack( void )
 	vec3_t	enemyDir, shootDir;
 	VectorSubtract( NPC->enemy->currentOrigin, NPC->currentOrigin, enemyDir );
 	VectorNormalize( enemyDir );
-	AngleVectors( NPC->client->ps.viewangles, shootDir, nullptr, nullptr );
+	AngleVectors( NPC->client->ps.viewangles, shootDir, NULL, NULL );
 	float dot = DotProduct( enemyDir, shootDir );
 	if ( dot > 0.5f ||( enemyDist * (1.0f-dot)) < 10000 )
 	{//enemy is in front of me or they're very close and not behind me

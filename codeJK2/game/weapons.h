@@ -20,13 +20,14 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Filename:-	weapons.h
 //
 // Note that this is now included from both server and game modules, so don't include any other header files
 //	within this one that might break stuff...
 
+#ifndef __WEAPONS_H__
+#define __WEAPONS_H__
 
 #include "../../code/qcommon/q_shared.h"
 
@@ -358,3 +359,4 @@ typedef struct ammoData_s
 #define TD_ALT_TIME			3000
 
 
+#endif//#ifndef __WEAPONS_H__

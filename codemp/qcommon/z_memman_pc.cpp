@@ -154,20 +154,20 @@ typedef struct StaticMem_s {
 #pragma pack(pop)
 
 StaticZeroMem_t gZeroMalloc  =
-	{ {ZONE_MAGIC, TAG_STATIC,0,nullptr,nullptr},{ZONE_MAGIC}};
+	{ {ZONE_MAGIC, TAG_STATIC,0,NULL,NULL},{ZONE_MAGIC}};
 StaticMem_t gEmptyString =
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'\0','\0'},{ZONE_MAGIC}};
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'\0','\0'},{ZONE_MAGIC}};
 StaticMem_t gNumberString[] = {
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'0','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'1','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'2','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'3','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'4','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'5','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'6','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'7','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'8','\0'},{ZONE_MAGIC}},
-	{ {ZONE_MAGIC, TAG_STATIC,2,nullptr,nullptr},{'9','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'0','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'1','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'2','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'3','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'4','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'5','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'6','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'7','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'8','\0'},{ZONE_MAGIC}},
+	{ {ZONE_MAGIC, TAG_STATIC,2,NULL,NULL},{'9','\0'},{ZONE_MAGIC}},
 };
 
 qboolean gbMemFreeupOccured = qfalse;
@@ -187,8 +187,8 @@ void *Z_Malloc(int iSize, memtag_t eTag, qboolean bZeroit /* = qfalse */, int iU
 
 	// Allocate a chunk...
 	//
-	zoneHeader_t *pMemory = nullptr;
-	while (pMemory == nullptr)
+	zoneHeader_t *pMemory = NULL;
+	while (pMemory == NULL)
 	{
 		if (gbMemFreeupOccured)
 		{
@@ -278,7 +278,7 @@ void *Z_Malloc(int iSize, memtag_t eTag, qboolean bZeroit /* = qfalse */, int iU
 			Com_Printf(S_COLOR_RED"Z_Malloc(): Failed to alloc %d bytes (TAG_%s) !!!!!\n", iSize, psTagStrings[eTag]);
 			Z_Details_f();
 			Com_Error(ERR_FATAL,"(Repeat): Z_Malloc(): Failed to alloc %d bytes (TAG_%s) !!!!!\n", iSize, psTagStrings[eTag]);
-			return nullptr;
+			return NULL;
 		}
 	}
 
@@ -432,9 +432,9 @@ int Z_Size(void *pvAddress)
 //
 void Z_Free(void *pvAddress)
 {
-	if (pvAddress == nullptr)	// I've put this in as a safety measure because of some bits of #ifdef BSPC stuff	-Ste.
+	if (pvAddress == NULL)	// I've put this in as a safety measure because of some bits of #ifdef BSPC stuff	-Ste.
 	{
-		//Com_Error(ERR_FATAL, "Z_Free(): nullptr arg");
+		//Com_Error(ERR_FATAL, "Z_Free(): NULL arg");
 		return;
 	}
 

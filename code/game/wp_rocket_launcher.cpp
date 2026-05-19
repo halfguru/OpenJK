@@ -259,8 +259,8 @@ void WP_FireRocket( gentity_t *ent, qboolean alt_fire )
 					{
 						vec3_t dir, dir2;
 
-						AngleVectors( missile->enemy->currentAngles, dir, nullptr, nullptr );
-						AngleVectors( ent->client->renderInfo.eyeAngles, dir2, nullptr, nullptr );
+						AngleVectors( missile->enemy->currentAngles, dir, NULL, NULL );
+						AngleVectors( ent->client->renderInfo.eyeAngles, dir2, NULL, NULL );
 
 						if ( DotProduct( dir, dir2 ) < 0.0f )
 						{

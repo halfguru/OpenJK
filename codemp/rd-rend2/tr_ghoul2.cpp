@@ -640,7 +640,7 @@ char *G2_GetBoneNameFromSkel(CGhoul2Info &ghoul2, int boneNum)
 {
 	if (!ghoul2.mBoneCache)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	CBoneCache &boneCache = *ghoul2.mBoneCache;
@@ -2398,7 +2398,7 @@ void RenderSurfaces( CRenderSurface &RS, const trRefEntity_t *ent, int entityNum
 			// list is going to be for when the surface gets rendered out
 			CRenderableSurface *newSurf = AllocGhoul2RenderableSurface();
 			newSurf->vboMesh = &RS.currentModel->data.glm->vboModels[RS.lod].vboMeshes[RS.surfaceNum];
-			assert (newSurf->vboMesh != nullptr && RS.surfaceNum == surface->thisSurfaceIndex);
+			assert (newSurf->vboMesh != NULL && RS.surfaceNum == surface->thisSurfaceIndex);
 			newSurf->surfaceData = surface;
 			newSurf->boneCache = RS.boneCache;
 			newSurf->dlightBits = dlightBits;
@@ -2518,7 +2518,7 @@ void RenderSurfaces( CRenderSurface &RS, const trRefEntity_t *ent, int entityNum
 
 			CRenderableSurface *newSurf = AllocGhoul2RenderableSurface();
 			newSurf->vboMesh = &RS.currentModel->data.glm->vboModels[RS.lod].vboMeshes[RS.surfaceNum];
-			assert(newSurf->vboMesh != nullptr && RS.surfaceNum == surface->thisSurfaceIndex);
+			assert(newSurf->vboMesh != NULL && RS.surfaceNum == surface->thisSurfaceIndex);
 			newSurf->surfaceData = surface;
 			newSurf->boneCache = RS.boneCache;
 			R_AddDrawSurf((surfaceType_t *)newSurf, entityNum, tr.projectionShadowShader, 0, qfalse, qfalse, 0);
@@ -3542,7 +3542,7 @@ void RB_SurfaceGhoul( CRenderableSurface *surf )
 {
 	mdxmVBOMesh_t *surface = surf->vboMesh;
 
-	if ( surface->vbo == nullptr || surface->ibo == nullptr )
+	if ( surface->vbo == NULL || surface->ibo == NULL )
 	{
 		return;
 	}
@@ -4453,7 +4453,7 @@ qboolean R_LoadMDXM(model_t *mod, void *buffer, const char *mod_name, qboolean &
 		assert ((byte *)verts == (data + dataSize));
 
 		const char *modelName = strrchr (mdxm->name, '/');
-		if (modelName == nullptr)
+		if (modelName == NULL)
 		{
 			modelName = mdxm->name;
 		}
@@ -4677,7 +4677,7 @@ int BoneParentChildIndex(
 	int i = 0;
 	int matchindex = -1;
 	mdxaSkel_t *bone;
-	const char *match = nullptr;
+	const char *match = NULL;
 
 	while (BoneHierarchyList[i])
 	{
@@ -4885,7 +4885,7 @@ qboolean R_LoadMDXA(model_t *mod, void *buffer, const char *mod_name, qboolean &
 					}
 					else
 					{
-						boneParent = nullptr;
+						boneParent = NULL;
 					}
 
 					if (boneParent)

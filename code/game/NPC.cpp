@@ -456,12 +456,12 @@ void pitch_roll_for_slope( gentity_t *forwhom, vec3_t pass_slope, vec3_t storeAn
 		vec3_t tempAngles;
 		tempAngles[PITCH] = tempAngles[ROLL] = 0;
 		tempAngles[YAW] = pVeh->m_vOrientation[YAW];
-		AngleVectors( tempAngles, ovf, ovr, nullptr );
+		AngleVectors( tempAngles, ovf, ovr, NULL );
 	}
 	else
 	{
 		oldPitch = forwhom->currentAngles[PITCH];
-		AngleVectors( forwhom->currentAngles, ovf, ovr, nullptr );
+		AngleVectors( forwhom->currentAngles, ovf, ovr, NULL );
 	}
 
 	vectoangles( slope, new_angles );
@@ -472,7 +472,7 @@ void pitch_roll_for_slope( gentity_t *forwhom, vec3_t pass_slope, vec3_t storeAn
 	}
 	new_angles[ROLL] = new_angles[PITCH] = 0;
 
-	AngleVectors( new_angles, nvf, nullptr, nullptr );
+	AngleVectors( new_angles, nvf, NULL, NULL );
 
 	mod = DotProduct( nvf, ovr );
 
@@ -535,7 +535,7 @@ void NPC_PostDeathThink( void )
 
 	mostdist = MIN_DROP_DIST;
 
-	AngleVectors( NPC->currentAngles, forward, right, nullptr );
+	AngleVectors( NPC->currentAngles, forward, right, NULL );
 	VectorCopy( NPC->currentOrigin, org );
 	org[2] += NPC->mins[2];
 
@@ -822,7 +822,7 @@ static void DeadThink ( void )
 	//NPC_PostDeathThink();
 
 	/*
-	if ( !NPCInfo->timeOfDeath && NPC->client != nullptr && NPCInfo != nullptr )
+	if ( !NPCInfo->timeOfDeath && NPC->client != NULL && NPCInfo != NULL )
 	{
 		//haven't finished death anim yet and were NOT given a specific amount of time to wait before removal
 		int				legsAnim	= NPC->client->ps.legsAnim;
@@ -934,9 +934,9 @@ void RestoreNPCGlobals()
 //We MUST do this, other funcs were using NPC illegally when "self" wasn't the global NPC
 void ClearNPCGlobals( void )
 {
-	NPC = nullptr;
-	NPCInfo = nullptr;
-	client = nullptr;
+	NPC = NULL;
+	NPCInfo = NULL;
+	client = NULL;
 }
 //===============
 
@@ -952,7 +952,7 @@ void NPC_ShowDebugInfo (void)
 {
 	if ( showBBoxes )
 	{
-		gentity_t	*found = nullptr;
+		gentity_t	*found = NULL;
 		vec3_t		mins, maxs;
 
 		//do player, too
@@ -960,7 +960,7 @@ void NPC_ShowDebugInfo (void)
 		VectorAdd( player->currentOrigin, player->maxs, maxs );
 		CG_Cube( mins, maxs, NPCDEBUG_RED, 0.25 );
 		//do NPCs
-		while( (found = G_Find( found, FOFS(classname), "NPC" ) ) != nullptr )
+		while( (found = G_Find( found, FOFS(classname), "NPC" ) ) != NULL )
 		{
 			if ( gi.inPVS( found->currentOrigin, g_entities[0].currentOrigin ) )
 			{
@@ -1037,7 +1037,7 @@ void NPC_ApplyScriptFlags (void)
 			NPC->s.eType = ET_INVISIBLE;
 			NPC->contents = 0;
 			NPC->health = 0;
-			NPC->targetname = nullptr;
+			NPC->targetname = NULL;
 
 			//Disappear in half a second
 			NPC->e_ThinkFunc = thinkF_G_FreeEntity;
@@ -1185,7 +1185,7 @@ void NPC_AvoidWallsAndCliffs (void)
 	VectorCopy( NPC->mins, mins );
 	mins[2] += STEPSIZE;
 	angles[YAW] = NPC->client->ps.viewangles[YAW];//Add ucmd.angles[YAW]?
-	AngleVectors( angles, forward, right, nullptr );
+	AngleVectors( angles, forward, right, NULL );
 	fwdDist = ((float)ucmd.forwardmove)/16.0f;
 	rtDist = ((float)ucmd.rightmove)/16.0f;
 	VectorMA( NPC->currentOrigin, fwdDist, forward, testPos );
@@ -1924,7 +1924,7 @@ void NPC_RunBehavior( int team, int bState )
 	}
 	else if ( NPC->client->NPC_class == CLASS_ROCKETTROOPER )
 	{//bounty hunter
-		if ( RT_Flying( NPC ) || NPC->enemy != nullptr )
+		if ( RT_Flying( NPC ) || NPC->enemy != NULL )
 		{
 			NPC_BSRT_Default();
 		}
@@ -2295,7 +2295,7 @@ void NPC_ExecuteBState ( gentity_t *self)//, int msec )
 	}
 
 	// end of thinking cleanup
-	NPCInfo->touchedByPlayer = nullptr;
+	NPCInfo->touchedByPlayer = NULL;
 
 	NPC_CheckPlayerAim();
 	NPC_CheckAllClear();
@@ -2416,7 +2416,7 @@ void NPC_Think ( gentity_t *self)//, int msec )
 			VectorSubtract( self->owner->currentOrigin, self->currentOrigin, dir2owner );
 
 			gentity_t *oldOwner = self->owner;
-			self->owner = nullptr;//clear here for that SpotWouldTelefrag check...?
+			self->owner = NULL;//clear here for that SpotWouldTelefrag check...?
 
 			if ( VectorLengthSquared( dir2owner ) > 128*128
 				|| !(self->clipmask&oldOwner->clipmask)

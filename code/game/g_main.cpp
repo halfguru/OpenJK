@@ -595,7 +595,7 @@ void G_FindTeams( void ) {
 				// make sure that targets only point at the master
 				if ( e2->targetname ) {
 					e->targetname = G_NewString(e2->targetname);
-					e2->targetname = nullptr;
+					e2->targetname = NULL;
 				}
 			}
 		}
@@ -748,7 +748,7 @@ void InitGame(  const char *mapname, const char *spawntarget, int checkSum, cons
 	level.time = levelTime;
 	level.globalTime = globalTime;
 	Q_strncpyz( level.mapname, mapname, sizeof(level.mapname) );
-	if ( spawntarget != nullptr && spawntarget[0] )
+	if ( spawntarget != NULL && spawntarget[0] )
 	{
 		Q_strncpyz( level.spawntarget, spawntarget, sizeof(level.spawntarget) );
 	}
@@ -1013,7 +1013,7 @@ static void G_CheckTasksCompleted (gentity_t *ent)
 
 static void G_CheckSpecialPersistentEvents( gentity_t *ent )
 {//special-case alerts that would be a pain in the ass to have the ent's think funcs generate
-	if ( ent == nullptr )
+	if ( ent == NULL )
 	{
 		return;
 	}
@@ -1077,7 +1077,7 @@ void G_RunThink (gentity_t *ent)
 runicarus:
 	if ( ent->inuse )	// GEntity_ThinkFunc( ent ) can have freed up this ent if it was a type flier_child (stasis1 crash)
 	{
-		if ( ent->NPC == nullptr )
+		if ( ent->NPC == NULL )
 		{
 			if ( ent->m_iIcarusID != IIcarusInterface::ICARUS_INVALID && !stop_icarus )
 			{
@@ -1111,7 +1111,7 @@ static void G_Animate ( gentity_t *self )
 
 				// I guess query ghoul2 to find out what the current frame is and see if we are done.
 				gi.G2API_GetBoneAnimIndex( &self->ghoul2[self->playerModel], self->rootBone,
-									(cg.time?cg.time:level.time), &frame, &junk, &junk, &junk, &junk2, nullptr );
+									(cg.time?cg.time:level.time), &frame, &junk, &junk, &junk, &junk2, NULL );
 
 				// It NEVER seems to get to what you'd think the last frame would be, so I'm doing this to try and catch when the animation has stopped
 				if ( frame + 1 >= self->endFrame )
@@ -1372,7 +1372,7 @@ static const char *g_effectorStringTable[] =
 	"rfemurX",
 	"lfemurX",
 //	"ceyebrow",
-	nullptr //always terminate
+	NULL //always terminate
 };
 
 extern qboolean G_StandardHumanoid( gentity_t *self );
@@ -1422,7 +1422,7 @@ static int G_RagAnimForPositioning(gentity_t *ent)
 	assert(ent->crotchBolt > -1);
 
 	gi.G2API_GetBoltMatrix(ent->ghoul2, ent->playerModel, ent->crotchBolt, &matrix, G2Angles, ent->client->ps.origin,
-		(cg.time?cg.time:level.time), nullptr, ent->s.modelScale);
+		(cg.time?cg.time:level.time), NULL, ent->s.modelScale);
 	gi.G2API_GiveMeVectorFromMatrix(matrix, NEGATIVE_Z, dir);
 
 	if (dir[2] > 0.1f)
@@ -1562,14 +1562,14 @@ qboolean G_RagDoll(gentity_t *ent, vec3_t forcedAngles)
 			boltChecks[4] = gi.G2API_AddBolt(&ent->ghoul2[ent->playerModel], "ltalus");
 
 			//Do the head first, because the hands reference it anyway.
-			gi.G2API_GetBoltMatrix(ent->ghoul2, ent->playerModel, boltChecks[2], &boltMatrix, tAng, ent->client->ps.origin, (cg.time?cg.time:level.time), nullptr, ent->s.modelScale);
+			gi.G2API_GetBoltMatrix(ent->ghoul2, ent->playerModel, boltChecks[2], &boltMatrix, tAng, ent->client->ps.origin, (cg.time?cg.time:level.time), NULL, ent->s.modelScale);
 			gi.G2API_GiveMeVectorFromMatrix(boltMatrix, ORIGIN, boltPoints[2]);
 
 			while (i < 5)
 			{
 				if (i < 2)
 				{ //when doing hands, trace to the head instead of origin
-					gi.G2API_GetBoltMatrix(ent->ghoul2, ent->playerModel, boltChecks[i], &boltMatrix, tAng, ent->client->ps.origin, (cg.time?cg.time:level.time), nullptr, ent->s.modelScale);
+					gi.G2API_GetBoltMatrix(ent->ghoul2, ent->playerModel, boltChecks[i], &boltMatrix, tAng, ent->client->ps.origin, (cg.time?cg.time:level.time), NULL, ent->s.modelScale);
 					gi.G2API_GiveMeVectorFromMatrix(boltMatrix, ORIGIN, boltPoints[i]);
 					VectorCopy(boltPoints[i], trStart);
 					VectorCopy(boltPoints[2], trEnd);
@@ -1578,7 +1578,7 @@ qboolean G_RagDoll(gentity_t *ent, vec3_t forcedAngles)
 				{
 					if (i > 2)
 					{ //2 is the head, which already has the bolt point.
-						gi.G2API_GetBoltMatrix(ent->ghoul2, ent->playerModel, boltChecks[i], &boltMatrix, tAng, ent->client->ps.origin, (cg.time?cg.time:level.time), nullptr, ent->s.modelScale);
+						gi.G2API_GetBoltMatrix(ent->ghoul2, ent->playerModel, boltChecks[i], &boltMatrix, tAng, ent->client->ps.origin, (cg.time?cg.time:level.time), NULL, ent->s.modelScale);
 						gi.G2API_GiveMeVectorFromMatrix(boltMatrix, ORIGIN, boltPoints[i]);
 					}
 					VectorCopy(boltPoints[i], trStart);
@@ -1586,7 +1586,7 @@ qboolean G_RagDoll(gentity_t *ent, vec3_t forcedAngles)
 				}
 
 				//Now that we have all that sorted out, trace between the two points we desire.
-				gi.trace(&tr, trStart, nullptr, nullptr, trEnd, ent->s.number, MASK_SOLID, (EG2_Collision)0, 0);
+				gi.trace(&tr, trStart, NULL, NULL, trEnd, ent->s.number, MASK_SOLID, (EG2_Collision)0, 0);
 
 				if (tr.fraction != 1.0 || tr.startsolid || tr.allsolid)
 				{ //Hit something or start in solid, so flag it and break.
@@ -1637,7 +1637,7 @@ qboolean G_RagDoll(gentity_t *ent, vec3_t forcedAngles)
 		/*
 		if (ent->ikStatus)
 		{ //ik must be reset before ragdoll is started, or you'll get some interesting results.
-			trap_G2API_SetBoneIKState(cent->ghoul2, cg.time, nullptr, IKS_NONE, nullptr);
+			trap_G2API_SetBoneIKState(cent->ghoul2, cg.time, NULL, IKS_NONE, NULL);
 			cent->ikStatus = qfalse;
 		}
 		*/
@@ -1652,7 +1652,7 @@ qboolean G_RagDoll(gentity_t *ent, vec3_t forcedAngles)
 			int flags;
 			float animSpeed;
 
-			if (gi.G2API_GetBoneAnim(&ent->ghoul2[0], "model_root", (cg.time?cg.time:level.time), &currentFrame, &startFrame, &endFrame, &flags, &animSpeed, nullptr))
+			if (gi.G2API_GetBoneAnim(&ent->ghoul2[0], "model_root", (cg.time?cg.time:level.time), &currentFrame, &startFrame, &endFrame, &flags, &animSpeed, NULL))
 			{ //lock the anim on the current frame.
 				int blendTime = 500;
 
@@ -1663,10 +1663,10 @@ qboolean G_RagDoll(gentity_t *ent, vec3_t forcedAngles)
 		}
 #endif
 
-		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "upper_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 100, (cg.time?cg.time:level.time) );
-		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "lower_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 100, (cg.time?cg.time:level.time) );
-		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "thoracic", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 100, (cg.time?cg.time:level.time) );
-		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "cervical", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, nullptr, 100, (cg.time?cg.time:level.time) );
+		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "upper_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 100, (cg.time?cg.time:level.time) );
+		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "lower_lumbar", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 100, (cg.time?cg.time:level.time) );
+		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "thoracic", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 100, (cg.time?cg.time:level.time) );
+		gi.G2API_SetBoneAngles( &ent->ghoul2[ent->playerModel], "cervical", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_X, NEGATIVE_Y, NEGATIVE_Z, NULL, 100, (cg.time?cg.time:level.time) );
 
 		VectorCopy(G2Angles, tParms.angles);
 		VectorCopy(usedOrg, tParms.position);
@@ -1819,11 +1819,11 @@ qboolean G_RagDoll(gentity_t *ent, vec3_t forcedAngles)
 			vec3_t dVel;
 
 			//got the hand pos of him, now we want to make our hand go to it
-			gi.G2API_RagEffectorGoal(ent->ghoul2, "rhand", nullptr);
-			gi.G2API_RagEffectorGoal(ent->ghoul2, "rradius", nullptr);
-			gi.G2API_RagEffectorGoal(ent->ghoul2, "rradiusX", nullptr);
-			gi.G2API_RagEffectorGoal(ent->ghoul2, "rhumerusX", nullptr);
-			gi.G2API_RagEffectorGoal(ent->ghoul2, "rhumerus", nullptr);
+			gi.G2API_RagEffectorGoal(ent->ghoul2, "rhand", NULL);
+			gi.G2API_RagEffectorGoal(ent->ghoul2, "rradius", NULL);
+			gi.G2API_RagEffectorGoal(ent->ghoul2, "rradiusX", NULL);
+			gi.G2API_RagEffectorGoal(ent->ghoul2, "rhumerusX", NULL);
+			gi.G2API_RagEffectorGoal(ent->ghoul2, "rhumerus", NULL);
 
 			VectorSet(dVel, 0.0f, 0.0f, -64.0f);
 			gi.G2API_RagEffectorKick(ent->ghoul2, "rhand", dVel);

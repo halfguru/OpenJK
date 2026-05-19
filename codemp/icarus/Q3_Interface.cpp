@@ -93,11 +93,11 @@ static void Q3_CenterPrint ( const char *format, ... )
 	{
 		if( text[0] == '!')
 		{
-			SV_SendServerCommand( nullptr, "cp \"%s\"", (text+1) );
+			SV_SendServerCommand( NULL, "cp \"%s\"", (text+1) );
 			return;
 		}
 
-		SV_SendServerCommand( nullptr, "cp \"%s\"", text );
+		SV_SendServerCommand( NULL, "cp \"%s\"", text );
 	}
 
 	Q3_DebugPrint( WL_VERBOSE, "%s\n", text); 	// Just a developers note
@@ -242,8 +242,8 @@ static sharedEntity_t *Q3_GetEntityByName( const char *name )
 	entlist_t::iterator		ei;
 	char					temp[1024];
 
-	if ( name == nullptr || name[0] == '\0' )
-		return nullptr;
+	if ( name == NULL || name[0] == '\0' )
+		return NULL;
 
 	strncpy( (char *) temp, name, sizeof(temp) );
 	temp[sizeof(temp)-1] = 0;
@@ -251,14 +251,14 @@ static sharedEntity_t *Q3_GetEntityByName( const char *name )
 	ei = ICARUS_EntList.find( Q_strupr( (char *) temp ) );
 
 	if ( ei == ICARUS_EntList.end() )
-		return nullptr;
+		return NULL;
 
 	ent = SV_GentityNum((*ei).second);
 
 	return ent;
 	// this now returns the ent instead of the sequencer -- dmv 06/27/01
-//	if (ent == nullptr)
-//		return nullptr;
+//	if (ent == NULL)
+//		return NULL;
 //	return gSequencers[ent->s.number];
 }
 
@@ -291,12 +291,12 @@ static qboolean G_AddSexToMunroString ( char *string, qboolean qDoBoth )
 	if VALIDSTRING( string ) {
 		if ( g_sex->string[0] == 'f' ) {
 			start = strstr( string, "kyle/" );
-			if ( start != nullptr ) {
+			if ( start != NULL ) {
 				strncpy( start, "kyla", 5 );
 				return qtrue;
 			} else {
 				start = strrchr( string, '/' );		//get the last slash before the wav
-				if (start != nullptr) {
+				if (start != NULL) {
 					if (!Q_strncmp( start, "/mr_", 4) ) {
 						if (qDoBoth) {	//we want to change mr to ms
 							start[2] = 's';	//change mr to ms
@@ -310,7 +310,7 @@ static qboolean G_AddSexToMunroString ( char *string, qboolean qDoBoth )
 		}	//IF Female
 		else {	//i'm male
 			start = strrchr( string, '/' );		//get the last slash before the wav
-			if (start != nullptr) {
+			if (start != NULL) {
 				if (!Q_strncmp( start, "/ms_", 4) ) {
 					return qfalse;	//don't want this one
 				}
@@ -716,7 +716,7 @@ int AppendToSaveGame(unsigned long chid, const void *data, int length)
 }
 
 // Changed by BTO (VV) - Visual C++ 7.1 doesn't allow default args on funcion pointers
-int ReadFromSaveGame(unsigned long chid, void *pvAddress, int iLength /* , void **ppvAddressPtr = nullptr */ )
+int ReadFromSaveGame(unsigned long chid, void *pvAddress, int iLength /* , void **ppvAddressPtr = NULL */ )
 {
 	return 1;
 }

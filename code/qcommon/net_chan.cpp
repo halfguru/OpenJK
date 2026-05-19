@@ -78,7 +78,7 @@ typedef struct {
 	int			get, send;
 } loopback_t;
 
-static loopback_t	*loopbacks = nullptr;
+static loopback_t	*loopbacks = NULL;
 
 
 /*

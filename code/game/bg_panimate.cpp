@@ -2088,7 +2088,7 @@ qboolean PM_CheckEnemyInBack( float backCheckDist )
 	trace_t	trace;
 	vec3_t end, fwd, fwdAngles = {0,pm->ps->viewangles[YAW],0};
 
-	AngleVectors( fwdAngles, fwd, nullptr, nullptr );
+	AngleVectors( fwdAngles, fwd, NULL, NULL );
 	VectorMA( pm->ps->origin, -backCheckDist, fwd, end );
 
 	pm->trace( &trace, pm->ps->origin, vec3_origin, vec3_origin, end, pm->ps->clientNum, CONTENTS_SOLID|CONTENTS_BODY, (EG2_Collision)0, 0 );
@@ -2242,7 +2242,7 @@ saberMoveName_t PM_CheckStabDown( void )
 		}
 	}
 	vec3_t enemyDir, faceFwd, facingAngles = {0, pm->ps->viewangles[YAW], 0};
-	AngleVectors( facingAngles, faceFwd, nullptr, nullptr );
+	AngleVectors( facingAngles, faceFwd, NULL, NULL );
 	VectorSubtract( pm->gent->enemy->currentOrigin, pm->ps->origin, enemyDir );
 	float enemyZDiff = enemyDir[2];
 	enemyDir[2] = 0;
@@ -2542,7 +2542,7 @@ saberMoveName_t PM_SaberLungeAttackMove( qboolean fallbackToNormalLunge )
 				VectorCopy( pm->ps->viewangles, fwdAngles );
 				fwdAngles[PITCH] = fwdAngles[ROLL] = 0;
 				//do the lunge
-				AngleVectors( fwdAngles, jumpFwd, nullptr, nullptr );
+				AngleVectors( fwdAngles, jumpFwd, NULL, NULL );
 				VectorScale( jumpFwd, 150, pm->ps->velocity );
 				pm->ps->velocity[2] = 50;
 				PM_AddEvent( EV_JUMP );
@@ -2695,7 +2695,7 @@ saberMoveName_t PM_SaberJumpForwardAttackMove( void )
 
 		VectorCopy( pm->ps->viewangles, fwdAngles );
 		fwdAngles[PITCH] = fwdAngles[ROLL] = 0;
-		AngleVectors( fwdAngles, jumpFwd, nullptr, nullptr );
+		AngleVectors( fwdAngles, jumpFwd, NULL, NULL );
 		VectorScale( jumpFwd, 200, pm->ps->velocity );
 		pm->ps->velocity[2] = 180;
 		pm->ps->forceJumpZStart = pm->ps->origin[2];//so we don't take damage if we land at same height
@@ -2880,7 +2880,7 @@ saberMoveName_t PM_SaberFlipOverAttackMove( void )
 
 	VectorCopy( pm->ps->viewangles, fwdAngles );
 	fwdAngles[PITCH] = fwdAngles[ROLL] = 0;
-	AngleVectors( fwdAngles, jumpFwd, nullptr, nullptr );
+	AngleVectors( fwdAngles, jumpFwd, NULL, NULL );
 	VectorScale( jumpFwd, 150, pm->ps->velocity );
 	pm->ps->velocity[2] = 250;
 	//250 is normalized for a standing enemy at your z level, about 64 tall... adjust for actual maxs[2]-mins[2] of enemy and for zdiff in origins
@@ -3325,7 +3325,7 @@ saberMoveName_t PM_CheckPullAttack( void )
 					&& !PM_SuperBreakLoseAnim( targEnt->client->ps.legsAnim )
 					&& !PM_SuperBreakWinAnim( targEnt->client->ps.legsAnim )
 					&& targEnt->client->ps.saberLockTime <= 0
-					&& WP_ForceThrowable( targEnt, targEnt, pm->gent, qtrue, 1.0f, 0.0f, nullptr ) )
+					&& WP_ForceThrowable( targEnt, targEnt, pm->gent, qtrue, 1.0f, 0.0f, NULL ) )
 				{
 					if ( !g_saberNewControlScheme->integer )
 					{//in old control scheme, make sure they're close or far enough away for the move we'll be doing
@@ -3498,7 +3498,7 @@ saberMoveName_t PM_SaberAttackForMovement( int forwardmove, int rightmove, int c
 			}
 			else if ( pm->ps->saberAnimLevel == SS_STAFF )
 			{
-				AngleVectors( fwdAngles, nullptr, right, nullptr );
+				AngleVectors( fwdAngles, NULL, right, NULL );
 				pm->ps->velocity[0] = pm->ps->velocity[1] = 0;
 				VectorMA( pm->ps->velocity, 190, right, pm->ps->velocity );
 				return LS_BUTTERFLY_RIGHT;
@@ -3517,7 +3517,7 @@ saberMoveName_t PM_SaberAttackForMovement( int forwardmove, int rightmove, int c
 					else
 					*/
 					{//in air
-						AngleVectors( fwdAngles, nullptr, right, nullptr );
+						AngleVectors( fwdAngles, NULL, right, NULL );
 						pm->ps->velocity[0] = pm->ps->velocity[1] = 0;
 						VectorMA( pm->ps->velocity, 190, right, pm->ps->velocity );
 						PM_SetJumped( JUMP_VELOCITY, qtrue );
@@ -3580,7 +3580,7 @@ saberMoveName_t PM_SaberAttackForMovement( int forwardmove, int rightmove, int c
 			}
 			else if ( pm->ps->saberAnimLevel == SS_STAFF )
 			{
-				AngleVectors( fwdAngles, nullptr, right, nullptr );
+				AngleVectors( fwdAngles, NULL, right, NULL );
 				pm->ps->velocity[0] = pm->ps->velocity[1] = 0;
 				VectorMA( pm->ps->velocity, -190, right, pm->ps->velocity );
 				return LS_BUTTERFLY_LEFT;
@@ -3599,7 +3599,7 @@ saberMoveName_t PM_SaberAttackForMovement( int forwardmove, int rightmove, int c
 					else
 					*/
 					{
-						AngleVectors( fwdAngles, nullptr, right, nullptr );
+						AngleVectors( fwdAngles, NULL, right, NULL );
 						pm->ps->velocity[0] = pm->ps->velocity[1] = 0;
 						VectorMA( pm->ps->velocity, -190, right, pm->ps->velocity );
 						PM_SetJumped( JUMP_VELOCITY, qtrue );
@@ -3777,7 +3777,7 @@ saberMoveName_t PM_SaberAttackForMovement( int forwardmove, int rightmove, int c
 						if ( pm->gent && pm->gent->enemy )
 						{//FIXME: or just trace for a valid enemy standing behind me?  And no enemy in front?
 							vec3_t enemyDir, faceFwd, facingAngles = {0, pm->ps->viewangles[YAW], 0};
-							AngleVectors( facingAngles, faceFwd, nullptr, nullptr );
+							AngleVectors( facingAngles, faceFwd, NULL, NULL );
 							VectorSubtract( pm->gent->enemy->currentOrigin, pm->ps->origin, enemyDir );
 							float dot = DotProduct( enemyDir, faceFwd );
 							if ( dot < 0 )
@@ -4173,7 +4173,7 @@ Returns animNumber for current frame
 int PM_LegsAnimForFrame( gentity_t *ent, int legsFrame )
 {
 	//Must be a valid client
-	if ( ent->client == nullptr )
+	if ( ent->client == NULL )
 		return -1;
 
 	//Must have a file index entry
@@ -4257,7 +4257,7 @@ Returns animNumber for current frame
 int PM_TorsoAnimForFrame( gentity_t *ent, int torsoFrame )
 {
 	//Must be a valid client
-	if ( ent->client == nullptr )
+	if ( ent->client == NULL )
 		return -1;
 
 	//Must have a file index entry
@@ -4302,7 +4302,7 @@ qboolean PM_FinishedCurrentLegsAnim( gentity_t *self )
 		return qtrue;
 	}
 
-	gi.G2API_GetBoneAnimIndex( &self->ghoul2[self->playerModel], self->rootBone, (cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &animSpeed, nullptr );
+	gi.G2API_GetBoneAnimIndex( &self->ghoul2[self->playerModel], self->rootBone, (cg.time?cg.time:level.time), &currentFrame, &junk, &junk, &junk, &animSpeed, NULL );
 	curFrame = floor( currentFrame );
 
 	int				legsAnim	= self->client->ps.legsAnim;
@@ -4325,7 +4325,7 @@ PM_HasAnimation
 qboolean PM_HasAnimation( gentity_t *ent, int animation )
 {
 	//Must be a valid client
-	if ( !ent || ent->client == nullptr )
+	if ( !ent || ent->client == NULL )
 		return qfalse;
 
 	//must be a valid anim number
@@ -4848,7 +4848,7 @@ void PM_SetAnimFinal(int *torsoAnim,int *legsAnim,
 	int		bodyBone	  = (gent->rootBone);
 	bool	bodyTimerOn	  = ((*legsAnimTimer>0) || (*legsAnimTimer)==-1);
 	bool	bodyPlay	  = ((setAnimParts&SETANIM_LEGS) && (bodyBone!=-1) && (animOverride || !bodyTimerOn));
-	bool	bodyAnimating = !!gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel], bodyBone, actualTime, &bodyCurrent, &bodyStart, &bodyEnd, &bodyFlags, &bodySpeed, nullptr);
+	bool	bodyAnimating = !!gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel], bodyBone, actualTime, &bodyCurrent, &bodyStart, &bodyEnd, &bodyFlags, &bodySpeed, NULL);
 	bool	bodyOnAnimNow = (bodyAnimating && bodyAnim==anim && bodyStart==animStart && bodyEnd==animEnd);
 	bool	bodyMatchTorsFrame = false;
 
@@ -4864,7 +4864,7 @@ void PM_SetAnimFinal(int *torsoAnim,int *legsAnim,
 	int		torsBone	  = (gent->lowerLumbarBone);
 	bool	torsTimerOn	  = ((*torsoAnimTimer)>0 || (*torsoAnimTimer)==-1);
 	bool	torsPlay	  = (gent->client->NPC_class!=CLASS_RANCOR && (setAnimParts&SETANIM_TORSO) && (torsBone!=-1) && (animOverride || !torsTimerOn));
-	bool	torsAnimating = !!gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel], torsBone, actualTime, &torsCurrent, &torsStart, &torsEnd, &torsFlags, &torsSpeed, nullptr);
+	bool	torsAnimating = !!gi.G2API_GetBoneAnimIndex(&gent->ghoul2[gent->playerModel], torsBone, actualTime, &torsCurrent, &torsStart, &torsEnd, &torsFlags, &torsSpeed, NULL);
 	bool	torsOnAnimNow = (torsAnimating && torsAnim==anim && torsStart==animStart && torsEnd==animEnd);
 	bool	torsMatchBodyFrame = false;
 
@@ -5061,7 +5061,7 @@ void PM_SetAnim(pmove_t	*pm,int setAnimParts,int anim,int setAnimFlags, int blen
 		return;
 	}
 
-	if ( pm->gent == nullptr )
+	if ( pm->gent == NULL )
 	{
 		return;
 	}
@@ -5421,7 +5421,7 @@ void PM_TorsoAnimLightsaber()
 				}
 				if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 				{//
-					if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+					if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 					{//fell to the ground and we're not trying to pull it back
 						saberInAir = qfalse;
 					}
@@ -5543,7 +5543,7 @@ void PM_TorsoAnimation( void )
 		return;
 	}
 
-	if(pm->gent != nullptr && pm->gent->client)
+	if(pm->gent != NULL && pm->gent->client)
 	{
 		pm->gent->client->renderInfo.torsoFpsMod = 1.0f;
 	}
@@ -5655,7 +5655,7 @@ void PM_TorsoAnimation( void )
 			{
 				if ( pm->ps->saberEntityNum < ENTITYNUM_NONE && pm->ps->saberEntityNum > 0 )//player is 0
 					{//
-					if ( &g_entities[pm->ps->saberEntityNum] != nullptr && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
+					if ( &g_entities[pm->ps->saberEntityNum] != NULL && g_entities[pm->ps->saberEntityNum].s.pos.trType == TR_STATIONARY )
 					{//fell to the ground and we're not trying to pull it back
 						saberInAir = qfalse;
 					}
@@ -5849,7 +5849,7 @@ void PM_TorsoAnimation( void )
 					PM_SetAnim( pm, SETANIM_TORSO, BOTH_BUTTON_RELEASE, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 				}//else still holding, leave it as it is
 			}
-			else if ( pm->gent != nullptr
+			else if ( pm->gent != NULL
 				&& (pm->gent->s.number<MAX_CLIENTS||G_ControlledByPlayer(pm->gent))
 				&& pm->ps->weaponstate != WEAPON_CHARGING
 				&& pm->ps->weaponstate != WEAPON_CHARGING_ALT )

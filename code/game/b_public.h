@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __B_PUBLIC_H__
+#define __B_PUBLIC_H__
 
 #include "bstate.h"
 #include "ai.h"
@@ -714,3 +715,4 @@ typedef struct {
 	int			parm;
 } nedge_t;
 */
+#endif

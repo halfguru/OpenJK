@@ -20,10 +20,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // snd_local.h -- private sound definations
 
+#ifndef SND_LOCAL_H
+#define SND_LOCAL_H
 
 #include "../qcommon/q_shared.h"
 #include "../qcommon/qcommon.h"
@@ -238,4 +239,5 @@ void S_memoryLoad(sfx_t *sfx);
 
 #include "cl_mp3.h"
 
+#endif	// #ifndef SND_LOCAL_H
 

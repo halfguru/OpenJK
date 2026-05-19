@@ -19,10 +19,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Sequencer Header File
 
+#ifndef __SEQUENCER__
+#define __SEQUENCER__
 
 #include "blockstream.h"
 #include "interface.h"
@@ -81,9 +82,9 @@ class ICARUS_Instance;
 
 class CSequencer
 {
-	using sequenceID_m = std::map < int, CSequence * >;
-	using sequence_l = std::list < CSequence * >;
-	using taskSequence_m = std::map < CTaskGroup *, CSequence * >;
+	typedef	std::map < int, CSequence * >			sequenceID_m;
+	typedef std::list < CSequence * >				sequence_l;
+	typedef std::map < CTaskGroup *, CSequence * >	taskSequence_m;
 
 public:
 
@@ -187,3 +188,4 @@ protected:
 	std::vector<bstream_t*>  m_streamsCreated;
 };
 
+#endif	//__SEQUENCER__

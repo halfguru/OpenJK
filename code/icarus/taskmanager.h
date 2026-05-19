@@ -19,10 +19,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Task Manager header file
 
+#ifndef __TASK_MANAGER__
+#define __TASK_MANAGER__
 
 #include "../qcommon/q_shared.h"
 
@@ -91,7 +92,7 @@ class CTaskGroup
 {
 public:
 
-	using taskCallback_m = std::map < int, bool >;
+	typedef std::map < int, bool > taskCallback_m;
 
 	CTaskGroup( void );
 	~CTaskGroup( void );
@@ -137,11 +138,11 @@ class CSequencer;
 class CTaskManager
 {
 
-	using taskID_m = std::map < int, CTask * >;
-	using taskGroupName_m = std::map < std::string, CTaskGroup * >;
-	using taskGroupID_m = std::map < int, CTaskGroup * >;
-	using taskGroup_v = std::vector < CTaskGroup * >;
-	using tasks_l = std::list < CTask *>;
+	typedef	std::map < int, CTask * >			taskID_m;
+	typedef std::map < std::string, CTaskGroup * >	taskGroupName_m;
+	typedef std::map < int, CTaskGroup * >		taskGroupID_m;
+	typedef std::vector < CTaskGroup * >			taskGroup_v;
+	typedef std::list < CTask *>					tasks_l;
 
 public:
 
@@ -245,3 +246,4 @@ protected:
 	//CTask	*m_waitTask;		//Global pointer to the current task that is waiting for callback completion
 };
 
+#endif	//__TASK_MANAGER__

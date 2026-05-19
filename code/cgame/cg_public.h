@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef _CG_PUBLIC_H
+#define _CG_PUBLIC_H
 
 #define NUM_EXPLOSION_SHADERS	8
 #define NUM_EXPLOSION_FRAMES	3
@@ -350,3 +351,4 @@ Ghoul2 Insert End
 
 //----------------------------------------------
 
+#endif // _CG_PUBLIC_H

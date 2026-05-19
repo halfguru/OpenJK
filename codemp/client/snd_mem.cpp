@@ -83,7 +83,7 @@ void FindNextChunk(char *name)
 
 		if (data_p >= iff_end)
 		{	// didn't find the chunk
-			data_p = nullptr;
+			data_p = NULL;
 			return;
 		}
 
@@ -91,7 +91,7 @@ void FindNextChunk(char *name)
 		iff_chunk_len = GetLittleLong();
 		if (iff_chunk_len < 0)
 		{
-			data_p = nullptr;
+			data_p = NULL;
 			return;
 		}
 		data_p -= 8;
@@ -348,7 +348,7 @@ void R_CheckMP3s( const char *psDir )
 
 		// read it in...
 		//
-		byte *pbData = nullptr;
+		byte *pbData = NULL;
 		int iSize = FS_ReadFile( sFilename, (void **)&pbData);
 
 		if (pbData)
@@ -359,7 +359,7 @@ void R_CheckMP3s( const char *psDir )
 			//
 			qboolean qbTagNeedsUpdating = (/* qbForceRescan || */ !MP3_ReadSpecialTagInfo(pbData, iSize, &pTAG))?qtrue:qfalse;
 
-			if (pTAG == nullptr || qbTagNeedsUpdating || qbForceRescan)
+			if (pTAG == NULL || qbTagNeedsUpdating || qbForceRescan)
 			{
 				Com_Printf(" ( Updating )\n");
 
@@ -372,10 +372,10 @@ void R_CheckMP3s( const char *psDir )
 				//sfx_t SFX = {0};
 				extern sfx_t *S_FindName( const char *name );
 				//
-				static sfx_t *pSFX = nullptr;
+				static sfx_t *pSFX = NULL;
 				const char sReservedSFXEntrynameForMP3[] = "reserved_for_mp3";	// ( strlen() < MAX_QPATH )
 
-				if (pSFX == nullptr)	// once only
+				if (pSFX == NULL)	// once only
 				{
 					pSFX = S_FindName(sReservedSFXEntrynameForMP3);	// always returns, else ERR_FATAL
 				}
@@ -648,11 +648,11 @@ static qboolean S_LoadSound_FileLoadAndNameAdjuster(char *psFilename, byte **pDa
 			else if ( !Q_stricmp( "ESPANOL", s_language->string ) )
 				strncpy( psVoice, "chr_e", 5 );	// same number of letters as "chars"
 			else
-				psVoice = nullptr;
+				psVoice = NULL;
 		}
 		else
 		{
-			psVoice = nullptr;	// use this ptr as a flag as to whether or not we substituted with a foreign version
+			psVoice = NULL;	// use this ptr as a flag as to whether or not we substituted with a foreign version
 		}
 	}
 
@@ -795,7 +795,7 @@ static qboolean S_LoadSound_Actual( sfx_t *sfx )
 					if ((strstr(sfx->sSoundName, "chars")) || (strstr(sfx->sSoundName, "CHARS")))
 						sfx->lipSyncData = (char *)Z_Malloc(16, TAG_SND_RAWDATA, qfalse);
 					else
-						sfx->lipSyncData = nullptr;
+						sfx->lipSyncData = NULL;
 				}
 #endif
 			}
@@ -858,7 +858,7 @@ static qboolean S_LoadSound_Actual( sfx_t *sfx )
 								S_PreProcessLipSync(sfx);
 							}
 							else
-								sfx->lipSyncData = nullptr;
+								sfx->lipSyncData = NULL;
 
 							// Clear Open AL Error state
 							alGetError();
@@ -874,7 +874,7 @@ static qboolean S_LoadSound_Actual( sfx_t *sfx )
 								{
 									sfx->Buffer = Buffer;
 									Z_Free(sfx->pSoundData);
-									sfx->pSoundData = nullptr;
+									sfx->pSoundData = NULL;
 								}
 							}
 						}
@@ -918,7 +918,7 @@ static qboolean S_LoadSound_Actual( sfx_t *sfx )
 
 		sfx->eSoundCompressionMethod = ct_16;
 		sfx->iSoundLengthInSamples	 = info.samples;
-		sfx->pSoundData = nullptr;
+		sfx->pSoundData = NULL;
 		ResampleSfx( sfx, info.rate, info.width, data + info.dataofs );
 
 		// Open AL
@@ -931,7 +931,7 @@ static qboolean S_LoadSound_Actual( sfx_t *sfx )
 				S_PreProcessLipSync(sfx);
 			}
 			else
-				sfx->lipSyncData = nullptr;
+				sfx->lipSyncData = NULL;
 
 			// Clear Open AL Error State
 			alGetError();
@@ -948,7 +948,7 @@ static qboolean S_LoadSound_Actual( sfx_t *sfx )
 					// Store AL Buffer in sfx struct, and release sample data
 					sfx->Buffer = Buffer;
 					Z_Free(sfx->pSoundData);
-					sfx->pSoundData = nullptr;
+					sfx->pSoundData = NULL;
 				}
 			}
 		}

@@ -59,7 +59,7 @@ void NPC_SetGoal( gentity_t *goal, float rating )
 
 	if ( !goal )
 	{
-//		Debug_NPCPrintf( NPC, debugNPCAI, DEBUG_LEVEL_ERROR, "NPC_SetGoal: nullptr goal\n" );
+//		Debug_NPCPrintf( NPC, debugNPCAI, DEBUG_LEVEL_ERROR, "NPC_SetGoal: NULL goal\n" );
 		return;
 	}
 
@@ -90,12 +90,12 @@ void NPC_ClearGoal( void )
 
 	if ( !NPCInfo->lastGoalEntity )
 	{
-		SetGoal( nullptr, 0.0 );
+		SetGoal( NULL, 0.0 );
 		return;
 	}
 
 	goal = NPCInfo->lastGoalEntity;
-	NPCInfo->lastGoalEntity = nullptr;
+	NPCInfo->lastGoalEntity = NULL;
 	if ( goal->inuse && !(goal->s.eFlags & EF_NODRAW) )
 	{
 //		Debug_NPCPrintf( NPC, debugNPCAI, DEBUG_LEVEL_INFO, "NPC_ClearGoal: pop %s\n", goal->classname );
@@ -103,7 +103,7 @@ void NPC_ClearGoal( void )
 		return;
 	}
 
-	SetGoal( nullptr, 0.0 );
+	SetGoal( NULL, 0.0 );
 }
 
 /*
@@ -183,13 +183,13 @@ gentity_t *UpdateGoal( void )
 
 	if ( !NPCInfo->goalEntity )
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	if ( !NPCInfo->goalEntity->inuse )
 	{//Somehow freed it, but didn't clear it
 		NPC_ClearGoal();
-		return nullptr;
+		return NULL;
 	}
 
 	goal = NPCInfo->goalEntity;
@@ -197,7 +197,7 @@ gentity_t *UpdateGoal( void )
 	if ( ReachedGoal( goal ) )
 	{
 		NPC_ReachedGoal();
-		goal = nullptr;//so they don't keep trying to move to it
+		goal = NULL;//so they don't keep trying to move to it
 	}//else if fail, need to tell script so?
 
 	return goal;

@@ -212,7 +212,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 				numLightmaps = MAX(numLightmaps, LittleLong(surf->lightmapNum[j]) + 1);
 			}
 		}
-		buf = nullptr;
+		buf = NULL;
 	}
 	else
 	{
@@ -228,12 +228,12 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 	if (hdr_capable && tr.worldInternalLightmapping)
 	{
 		char filename[MAX_QPATH];
-		byte *externalLightmap = nullptr;
+		byte *externalLightmap = NULL;
 		int lightmapWidth = tr.lightmapSize;
 		int lightmapHeight = tr.lightmapSize;
 		Com_sprintf(filename, sizeof(filename), "maps/%s/lm_%04d.hdr", worldData->baseName, 0);
 		R_LoadHDRImage(filename, &externalLightmap, &lightmapWidth, &lightmapHeight);
-		if (externalLightmap != nullptr)
+		if (externalLightmap != NULL)
 		{
 			tr.worldInternalLightmapping = qfalse;
 			ri.Hunk_FreeTempMemory(externalLightmap);
@@ -317,7 +317,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 		{
 			tr.lightmaps[i] = R_CreateImage(
 				va("_lightmapatlas%d", i),
-				nullptr,
+				NULL,
 				tr.lightmapAtlasSize[0],
 				tr.lightmapAtlasSize[1],
 				IMGTYPE_COLORALPHA,
@@ -328,7 +328,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 			{
 				tr.deluxemaps[i] = R_CreateImage(
 					va("_fatdeluxemap%d", i),
-					nullptr,
+					NULL,
 					tr.lightmapAtlasSize[0],
 					tr.lightmapAtlasSize[1],
 					IMGTYPE_DELUXE,
@@ -354,8 +354,8 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 		// if (tr.worldLightmapping)
 		{
 			char filename[MAX_QPATH];
-			byte *externalLightmap = nullptr;
-			float *hdrL = nullptr;
+			byte *externalLightmap = NULL;
+			float *hdrL = NULL;
 			int lightmapWidth = tr.lightmapSize;
 			int lightmapHeight = tr.lightmapSize;
 			int bppc;
@@ -384,7 +384,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 				{
 					ri.Printf(PRINT_ALL, "Error loading %s: non %dx%d lightmaps\n", filename, tr.lightmapSize, tr.lightmapSize);
 					Z_Free(externalLightmap);
-					externalLightmap = nullptr;
+					externalLightmap = NULL;
 					continue;
 				}
 				else if (newImageSize > imageSize)
@@ -424,7 +424,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 			}
 			else
 			{
-				buf_p = nullptr;
+				buf_p = NULL;
 				foundLightmap = false;
 			}
 
@@ -581,7 +581,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 		else if (r_deluxeMapping->integer)
 		{
 			char filename[MAX_QPATH];
-			byte *externalLightmap = nullptr;
+			byte *externalLightmap = NULL;
 			int lightmapWidth = tr.lightmapSize;
 			int lightmapHeight = tr.lightmapSize;
 
@@ -599,7 +599,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 			{
 				ri.Printf(PRINT_ALL, "Error loading %s: non %dx%d deluxemaps\n", filename, tr.lightmapSize, tr.lightmapSize);
 				Z_Free(externalLightmap);
-				externalLightmap = nullptr;
+				externalLightmap = NULL;
 				continue;
 			}
 
@@ -636,7 +636,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 				{
 					tr.deluxemaps[lightmapnum] = R_CreateImage(
 						va("_fatdeluxemap%d", i),
-						nullptr,
+						NULL,
 						tr.lightmapAtlasSize[0],
 						tr.lightmapAtlasSize[1],
 						IMGTYPE_DELUXE,
@@ -670,7 +670,7 @@ static	void R_LoadLightmaps( world_t *worldData, lump_t *l, lump_t *surfs ) {
 			}
 
 			Z_Free(externalLightmap);
-			externalLightmap = nullptr;
+			externalLightmap = NULL;
 		}
 	}
 
@@ -937,7 +937,7 @@ static void ParseFace( const world_t *worldData, dsurface_t *ds, drawVert_t *ver
 			}
 			color[3] = verts[i].color[j][3] / 255.0f;
 
-			R_ColorShiftLightingFloats( color, cv->verts[i].vertexColors[j], scale, hdrVertColors != nullptr );
+			R_ColorShiftLightingFloats( color, cv->verts[i].vertexColors[j], scale, hdrVertColors != NULL );
 		}
 	}
 
@@ -1086,7 +1086,7 @@ static void ParseMesh ( const world_t *worldData, dsurface_t *ds, drawVert_t *ve
 			}
 			color[3] = verts[i].color[j][3] / 255.0f;
 
-			R_ColorShiftLightingFloats( color, points[i].vertexColors[j], scale, hdrVertColors != nullptr );
+			R_ColorShiftLightingFloats( color, points[i].vertexColors[j], scale, hdrVertColors != NULL );
 		}
 	}
 
@@ -1216,7 +1216,7 @@ static void ParseTriSurf( const world_t *worldData, dsurface_t *ds, drawVert_t *
 			}
 			color[3] = verts[i].color[j][3] / 255.0f;
 
-			R_ColorShiftLightingFloats( color, cv->verts[i].vertexColors[j], scale, hdrVertColors != nullptr );
+			R_ColorShiftLightingFloats( color, cv->verts[i].vertexColors[j], scale, hdrVertColors != NULL );
 		}
 	}
 
@@ -2300,7 +2300,7 @@ static	void R_LoadSurfaces( world_t *worldData, lump_t *surfs, lump_t *verts, lu
 	int			count;
 	int			numFaces, numMeshes, numTriSurfs, numFlares;
 	int			i;
-	float *hdrVertColors = nullptr;
+	float *hdrVertColors = NULL;
 
 	numFaces = 0;
 	numMeshes = 0;
@@ -2347,7 +2347,7 @@ static	void R_LoadSurfaces( world_t *worldData, lump_t *surfs, lump_t *verts, lu
 	}
 
 	// load vertex tangent space
-	packedTangentSpace_t *tangentSpace = nullptr;
+	packedTangentSpace_t *tangentSpace = NULL;
 	char filename[MAX_QPATH];
 	Com_sprintf(filename, sizeof(filename), "maps/%s.tspace", worldData->baseName);
 	int size = ri.FS_ReadFile(filename, (void **)&tangentSpace);
@@ -2466,7 +2466,7 @@ static void R_LoadSubmodels( world_t *worldData, int worldIndex, lump_t *l ) {
 
 		model = R_AllocModel();
 
-		if ( model == nullptr ) {
+		if ( model == NULL ) {
 			ri.Error(ERR_DROP, "R_LoadSubmodels: R_AllocModel() failed");
 		}
 
@@ -2590,7 +2590,7 @@ static	void R_LoadNodesAndLeafs (world_t *worldData, lump_t *nodeLump, lump_t *l
 	}
 
 	// chain decendants
-	R_SetParent (worldData->nodes, nullptr);
+	R_SetParent (worldData->nodes, NULL);
 }
 
 //=============================================================================
@@ -2912,7 +2912,7 @@ void R_LoadLightGridArray( world_t *worldData, lump_t *l ) {
 
 	if ( (unsigned)l->filelen != worldData->numGridArrayElements * sizeof(*worldData->lightGridArray) ) {
 		Com_Printf (S_COLOR_YELLOW  "WARNING: light grid array mismatch\n" );
-		worldData->lightGridData = nullptr;
+		worldData->lightGridData = NULL;
 		return;
 	}
 
@@ -3160,7 +3160,7 @@ void R_LoadEnvironmentJson(const char *baseName)
 		return;
 	}
 
-	tr.numCubemaps = JSON_ArrayGetIndex(environmentArrayJson, bufferEnd, nullptr, 0);
+	tr.numCubemaps = JSON_ArrayGetIndex(environmentArrayJson, bufferEnd, NULL, 0);
 	tr.cubemaps = (cubemap_t *)ri.Hunk_Alloc(tr.numCubemaps * sizeof(*tr.cubemaps), h_low);
 
 	for (i = 0; i < tr.numCubemaps; i++)
@@ -3954,8 +3954,8 @@ static void R_GenerateSurfaceSprites(
 	out->numIndices = out->numSprites * 6;
 	out->fogIndex = fogIndex;
 
-	out->vbo = nullptr;
-	out->ibo = nullptr;
+	out->vbo = NULL;
+	out->ibo = NULL;
 
 	// FIXME: Need a better way to handle this.
 	out->shader = R_CreateShaderFromTextureBundle(va("*ss_%08x\n", hash),
@@ -4017,7 +4017,7 @@ static void R_GenerateSurfaceSprites( const world_t *world, int worldIndex )
 	for (int i = 0; i < tr.numShaders; i++)
 	{
 		const shader_t *shader = tr.shaders[i];
-		if (shader->spriteUbo != 0)
+		if (shader->spriteUbo != NULL)
 			continue;
 
 		numSpriteStages += shader->numSurfaceSpriteStages;

@@ -507,7 +507,7 @@ void CTRLandScape::LoadTerrainDef(const char *td)
 	Com_sprintf(terrainDef, MAX_QPATH, "ext_data/RMG/%s.terrain", td);
 	ri.Printf( PRINT_ALL, "R_Terrain: Loading and parsing terrainDef %s.....\n", td);
 
-	mWaterShader = nullptr;
+	mWaterShader = NULL;
 	mFlatShader  = NULL_HANDLE;
 
 	if(!Com_ParseTextFile(terrainDef, parse))
@@ -845,7 +845,7 @@ CTRLandScape::~CTRLandScape(void)
 	if(mTRPatches)
 	{
 		Z_Free(mTRPatches);
-		mTRPatches = nullptr;
+		mTRPatches = NULL;
 	}
 	if (mSortedPatches)
 	{
@@ -855,7 +855,7 @@ CTRLandScape::~CTRLandScape(void)
 	if(mRenderMap)
 	{
 		Z_Free(mRenderMap);
-		mRenderMap = nullptr;
+		mRenderMap = NULL;
 	}
 }
 
@@ -998,7 +998,7 @@ void RE_InitRendererTerrain( const char *info )
 
 	if ( !info || !info[0] )
 	{
-		ri.Printf( PRINT_ALL, "RE_RegisterTerrain: nullptr name\n" );
+		ri.Printf( PRINT_ALL, "RE_RegisterTerrain: NULL name\n" );
 		return;
 	}
 
@@ -1011,7 +1011,7 @@ void RE_InitRendererTerrain( const char *info )
 void R_TerrainInit(void)
 {
 	tr.landScape.surfaceType = SF_TERRAIN;
-	tr.landScape.landscape = nullptr;
+	tr.landScape.landscape = NULL;
 
 	r_terrainTessellate = ri.Cvar_Get("r_terrainTessellate", "3", CVAR_CHEAT);
 	r_drawTerrain = ri.Cvar_Get("r_drawTerrain", "1", CVAR_CHEAT);
@@ -1032,7 +1032,7 @@ void R_TerrainShutdown(void)
 	{
 		ri.CM_ShutdownTerrain(0);
 		delete ls;
-		tr.landScape.landscape = nullptr;
+		tr.landScape.landscape = NULL;
 	}
 }
 

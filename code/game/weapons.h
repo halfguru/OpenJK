@@ -20,13 +20,14 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // Filename:-	weapons.h
 //
 // Note that this is now included from both server and game modules, so don't include any other header files
 //	within this one that might break stuff...
 
+#ifndef __WEAPONS_H__
+#define __WEAPONS_H__
 
 #include "../qcommon/q_shared.h"
 
@@ -382,3 +383,4 @@ typedef struct ammoData_s
 #define TUSKEN_RIFLE_DAMAGE_HARD	50		// extremely damaging
 
 
+#endif//#ifndef __WEAPONS_H__

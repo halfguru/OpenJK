@@ -231,8 +231,8 @@ void Rancor_Move( qboolean visible )
 							//FIXME: See if the breakable has a targetname, if so see if the thing targeting it is a breakable, if so, etc...
 							while ( sanityCheck < 20 && breakable && breakable->targetname )
 							{
-								gentity_t *breakableNext = nullptr;
-								while ( sanityCheck < 20 && (breakableNext = G_Find( breakableNext, FOFS(target), breakable->targetname )) != nullptr )
+								gentity_t *breakableNext = NULL;
+								while ( sanityCheck < 20 && (breakableNext = G_Find( breakableNext, FOFS(target), breakable->targetname )) != NULL )
 								{
 									if ( breakableNext && G_EntIsBreakable( breakableNext->s.number, NPC ) )
 									{
@@ -326,7 +326,7 @@ void Rancor_DropVictim( gentity_t *self )
 		{
 			self->activator->client->ps.eFlags &= ~EF_HELD_BY_RANCOR;
 		}
-		self->activator->activator = nullptr;
+		self->activator->activator = NULL;
 		if ( self->activator->health <= 0 )
 		{
 			if ( self->activator->s.number )
@@ -365,13 +365,13 @@ void Rancor_DropVictim( gentity_t *self )
 		}
 		if ( self->enemy == self->activator )
 		{
-			self->enemy = nullptr;
+			self->enemy = NULL;
 		}
 		if ( self->activator->s.number == 0 )
 		{//don't attack the player again for a bit
 			TIMER_Set( self, "attackDebounce", Q_irand( 2000, 4000+((2-g_spskill->integer)*2000) ) );
 		}
-		self->activator = nullptr;
+		self->activator = NULL;
 	}
 	self->count = 0;//drop him
 }
@@ -438,7 +438,7 @@ void Rancor_Swing( int boltIndex, qboolean tryGrab )
 			continue;
 		}
 
-		if ( radiusEnts[i]->client == nullptr )
+		if ( radiusEnts[i]->client == NULL )
 		{//must be a client
 			continue;
 		}
@@ -537,7 +537,7 @@ void Rancor_Swing( int boltIndex, qboolean tryGrab )
 				VectorCopy( NPC->client->ps.viewangles, angs );
 				angs[YAW] += Q_flrand( 25, 50 );
 				angs[PITCH] = Q_flrand( -25, -15 );
-				AngleVectors( angs, pushDir, nullptr, nullptr );
+				AngleVectors( angs, pushDir, NULL, NULL );
 				if ( radiusEnts[i]->client->NPC_class != CLASS_RANCOR
 					&& radiusEnts[i]->client->NPC_class != CLASS_ATST
 					&& !(radiusEnts[i]->flags&FL_NO_KNOCKBACK) )
@@ -615,7 +615,7 @@ void Rancor_Smash( void )
 			continue;
 		}
 
-		if ( radiusEnts[i]->client == nullptr )
+		if ( radiusEnts[i]->client == NULL )
 		{//must be a client
 			if ( G_EntIsBreakable( radiusEnts[i]->s.number, NPC ) )
 			{//damage breakables within range, but not as much
@@ -702,7 +702,7 @@ void Rancor_Bite( void )
 			continue;
 		}
 
-		if ( radiusEnts[i]->client == nullptr )
+		if ( radiusEnts[i]->client == NULL )
 		{//must be a client
 			continue;
 		}
@@ -812,7 +812,7 @@ void Rancor_Attack( float distance, qboolean doCharge, qboolean aimAtBlockedEnti
 			else if ( (NPC->spawnflags&SPF_RANCOR_MUTANT) )
 			{//breath attack
 				int breathAnim = BOTH_ATTACK4;
-				gentity_t *checkEnt = nullptr;
+				gentity_t *checkEnt = NULL;
 				vec3_t	center;
 				if ( NPC->enemy && NPC->enemy->inuse )
 				{
@@ -861,7 +861,7 @@ void Rancor_Attack( float distance, qboolean doCharge, qboolean aimAtBlockedEnti
 				NPC_SetAnim( NPC, SETANIM_BOTH, BOTH_MELEE2, SETANIM_FLAG_OVERRIDE | SETANIM_FLAG_HOLD );
 				TIMER_Set( NPC, "attack_dmg", 1250 );
 				vec3_t	fwd, yawAng ={0, NPC->client->ps.viewangles[YAW], 0};
-				AngleVectors( yawAng, fwd, nullptr, nullptr );
+				AngleVectors( yawAng, fwd, NULL, NULL );
 				VectorScale( fwd, distance*1.5f, NPC->client->ps.velocity );
 				NPC->client->ps.velocity[2] = 150;
 				NPC->client->ps.groundEntityNum = ENTITYNUM_NONE;
@@ -883,7 +883,7 @@ void Rancor_Attack( float distance, qboolean doCharge, qboolean aimAtBlockedEnti
 			|| distance >= NPC->maxs[0]+(MIN_DISTANCE*NPC->s.modelScale[0])-64.0f )
 		{//try to grab
 			int grabAnim = BOTH_ATTACK2;
-			gentity_t *checkEnt = nullptr;
+			gentity_t *checkEnt = NULL;
 			vec3_t	center;
 			if ( (!aimAtBlockedEntity||!NPCInfo->blockedEntity) && NPC->enemy && NPC->enemy->inuse )
 			{
@@ -1334,7 +1334,7 @@ qboolean Rancor_AttackBBrush( void )
 		gi.trace( &trace, NPC->currentOrigin, NPC->mins, NPC->maxs, end, NPC->s.number, NPC->clipmask, (EG2_Collision)0, 0 );
 		if ( trace.allsolid || trace.startsolid )
 		{//wtf?
-			NPCInfo->blockedEntity = nullptr;
+			NPCInfo->blockedEntity = NULL;
 			return qfalse;
 		}
 	}
@@ -1378,7 +1378,7 @@ qboolean Rancor_AttackBBrush( void )
 		}
 		else
 		{
-			NPCInfo->blockedEntity = nullptr;
+			NPCInfo->blockedEntity = NULL;
 			return qfalse;
 		}
 	}
@@ -1389,14 +1389,14 @@ void Rancor_FireBreathAttack( void )
 {
 	int		damage	= Q_irand( 10, 15 );
 	trace_t		tr;
-	gentity_t	*traceEnt = nullptr;
+	gentity_t	*traceEnt = NULL;
 	mdxaBone_t	boltMatrix;
 	vec3_t		start, end, dir, traceMins = {-4, -4, -4}, traceMaxs = {4, 4, 4};
 	vec3_t		rancAngles = {0,NPC->client->ps.viewangles[YAW],0};
 
 	gi.G2API_GetBoltMatrix( NPC->ghoul2, NPC->playerModel, NPC->gutBolt,
 			&boltMatrix, rancAngles, NPC->currentOrigin, (cg.time?cg.time:level.time),
-			nullptr, NPC->s.modelScale );
+			NULL, NPC->s.modelScale );
 
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, start );
 	gi.G2API_GiveMeVectorFromMatrix( boltMatrix, NEGATIVE_Z, dir );
@@ -1470,7 +1470,7 @@ void NPC_BSRancor_Default( void )
 		{
 			TIMER_Remove(NPC, "blockedEntityTimeOut");
 			TIMER_Set(NPC, "blockedEntityIgnore", 25000);
-			NPCInfo->blockedEntity = nullptr;
+			NPCInfo->blockedEntity = NULL;
 		}
 	}
 	else
@@ -1562,7 +1562,7 @@ void NPC_BSRancor_Default( void )
 			{//something in our way
 				if ( !NPCInfo->blockedEntity->inuse )
 				{//was destroyed
-					NPCInfo->blockedEntity = nullptr;
+					NPCInfo->blockedEntity = NULL;
 				}
 				else
 				{
@@ -1586,7 +1586,7 @@ void NPC_BSRancor_Default( void )
 							G_SetEnemy( NPC, NPCInfo->blockedEntity );
 							//look again in 2-5 secs
 							TIMER_Set( NPC, "lookForNewEnemy", Q_irand( 2000, 5000 ) );
-							NPCInfo->blockedEntity = nullptr;
+							NPCInfo->blockedEntity = NULL;
 						}
 					}
 				}
@@ -1610,7 +1610,7 @@ void NPC_BSRancor_Default( void )
 					}
 					else
 					{
-						NPC->enemy = nullptr;
+						NPC->enemy = NULL;
 						Rancor_Patrol();
 						NPC_UpdateAngles( qtrue, qtrue );
 						return;
@@ -1620,7 +1620,7 @@ void NPC_BSRancor_Default( void )
 			if ( TIMER_Done( NPC, "lookForNewEnemy" ) )
 			{
 				gentity_t *sav_enemy = NPC->enemy;//FIXME: what about NPC->lastEnemy?
-				NPC->enemy = nullptr;
+				NPC->enemy = NULL;
 				gentity_t *newEnemy = NPC_CheckEnemy( (qboolean)(NPCInfo->confusionTime < level.time), qfalse, qfalse );
 				NPC->enemy = sav_enemy;
 				if ( newEnemy && newEnemy != sav_enemy )

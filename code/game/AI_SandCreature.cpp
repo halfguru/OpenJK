@@ -79,7 +79,7 @@ void NPC_SandCreature_Pain( gentity_t *self, gentity_t *inflictor, gentity_t *ot
 			CGCam_Shake( 1.0f*playerDist/128.0f, self->client->ps.legsAnimTimer );
 		}
 	}
-	self->enemy = self->NPC->goalEntity = nullptr;
+	self->enemy = self->NPC->goalEntity = NULL;
 }
 
 void SandCreature_MoveEffect( void )
@@ -395,7 +395,7 @@ void SandCreature_CheckMovingEnts( void )
 			continue;
 		}
 
-		if ( radiusEnts[i]->client == nullptr )
+		if ( radiusEnts[i]->client == NULL )
 		{//must be a client
 			if ( radiusEnts[i]->s.eType != ET_MISSILE
 				|| radiusEnts[i]->s.weapon != WP_THERMAL )
@@ -517,7 +517,7 @@ void SandCreature_Chase( void )
 {
 	if ( !NPC->enemy->inuse )
 	{//freed
-		NPC->enemy = nullptr;
+		NPC->enemy = NULL;
 		return;
 	}
 
@@ -530,7 +530,7 @@ void SandCreature_Chase( void )
 	{
 		if ( level.time-NPCInfo->enemyLastSeenTime > 10000 )
 		{
-			NPC->enemy = nullptr;
+			NPC->enemy = NULL;
 			return;
 		}
 	}
@@ -541,7 +541,7 @@ void SandCreature_Chase( void )
 			|| (NPC->enemy->client->ps.eFlags&EF_HELD_BY_RANCOR)
 			|| (NPC->enemy->client->ps.eFlags&EF_HELD_BY_WAMPA) )
 		{//was picked up by another monster, forget about him
-			NPC->enemy = nullptr;
+			NPC->enemy = NULL;
 			NPC->svFlags &= ~SVF_LOCKEDENEMY;
 			return;
 		}
@@ -804,7 +804,7 @@ void NPC_BSSandCreature_Default( void )
 			{//can't remove the player, just make him invisible
 				NPC->client->ps.eFlags |= EF_NODRAW;
 			}
-			NPC->activator = NPC->enemy = NPCInfo->goalEntity = nullptr;
+			NPC->activator = NPC->enemy = NPCInfo->goalEntity = NULL;
 		}
 
 		if ( NPC->enemy )

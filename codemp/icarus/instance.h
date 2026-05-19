@@ -34,9 +34,9 @@ class ICARUS_Instance
 {
 public:
 
-	using sequence_l = std::list< CSequence * >;
-	using sequencer_l = std::list< CSequencer * >;
-	using signal_m = std::map < std::string, unsigned char >;
+	typedef std::list< CSequence * >				sequence_l;
+	typedef std::list< CSequencer * >			sequencer_l;
+	typedef std::map < std::string, unsigned char >	signal_m;
 
 	ICARUS_Instance( void );
 	virtual ~ICARUS_Instance( void );

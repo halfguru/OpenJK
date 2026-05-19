@@ -1,3 +1,5 @@
+#ifndef _ALCTYPES_H_
+#define _ALCTYPES_H_
 
 /**
  * OpenAL cross platform audio library
@@ -18,7 +20,6 @@
  *  Boston, MA  02111-1307, USA.
  * Or go to http://www.gnu.org/copyleft/lgpl.html
  */
-#pragma once
 
 
 #ifdef __cplusplus
@@ -120,4 +121,5 @@ typedef int ALCenum;
 }
 #endif
 
+#endif
 

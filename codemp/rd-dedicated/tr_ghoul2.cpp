@@ -602,7 +602,7 @@ char *G2_GetBoneNameFromSkel(CGhoul2Info &ghoul2, int boneNum)
 {
 	if (!ghoul2.mBoneCache)
 	{
-		return nullptr;
+		return NULL;
 	}
 	CBoneCache &boneCache=*ghoul2.mBoneCache;
 	assert(boneCache.mod);
@@ -2234,7 +2234,7 @@ void G2_ProcessGeneratedSurfaceBolts(CGhoul2Info &ghoul2, mdxaBone_v &bonePtr, m
 			// yes - ok, processing time.
 			if (boltNum != -1)
 			{
-				G2_ProcessSurfaceBolt(bonePtr, nullptr, boltNum, ghoul2.mBltlist, &ghoul2.mSlist[i], mod_t);
+				G2_ProcessSurfaceBolt(bonePtr, NULL, boltNum, ghoul2.mBltlist, &ghoul2.mSlist[i], mod_t);
 			}
 		}
 	}
@@ -2745,7 +2745,7 @@ void G2_GetBoltMatrixLow(CGhoul2Info &ghoul2,int boltNum,const vec3_t scale,mdxa
 		}
 		else
 		{
-			strcpy(mName, "nullptr!");
+			strcpy(mName, "NULL!");
 		}
 
 		if (ghoul2.mFileName && ghoul2.mFileName[0])
@@ -3679,7 +3679,7 @@ int BoneParentChildIndex(mdxaHeader_t *mdxa, mdxaSkelOffsets_t *offsets, mdxaSke
 	int i = 0;
 	int matchindex = -1;
 	mdxaSkel_t *bone;
-	const char *match = nullptr;
+	const char *match = NULL;
 
 	while (BoneHierarchyList[i])
 	{
@@ -3778,7 +3778,7 @@ qboolean R_LoadMDXA( model_t *mod, void *buffer, const char *mod_name, qboolean 
 	mdxa = mod->mdxa = (mdxaHeader_t*) //Hunk_Alloc( size );
 										RE_RegisterModels_Malloc(size,
 										#ifdef CREATE_LIMB_HIERARCHY
-											nullptr,	// I think this'll work, can't really test on PC
+											NULL,	// I think this'll work, can't really test on PC
 										#else
 											buffer,
 										#endif
@@ -3880,7 +3880,7 @@ qboolean R_LoadMDXA( model_t *mod, void *buffer, const char *mod_name, qboolean 
 					}
 					else
 					{
-						boneParent = nullptr;
+						boneParent = NULL;
 					}
 
 					if (boneParent)

@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __UI_SHARED_H
+#define __UI_SHARED_H
 
 enum {
 	SSF_JPEG = 0,
@@ -509,3 +510,4 @@ itemDef_t *Menu_GetMatchingItemByNumber(menuDef_t *menu, int index, const char *
 
 extern displayContextDef_t *DC;
 
+#endif

@@ -76,7 +76,7 @@ memoryblock_t *memory;
 //===========================================================================
 void LinkMemoryBlock(memoryblock_t *block)
 {
-	block->prev = nullptr;
+	block->prev = NULL;
 	block->next = memory;
 	if (memory) memory->prev = block;
 	memory = block;
@@ -107,7 +107,7 @@ void *GetMemory(unsigned long size)
 {
 	void *ptr;
 	memoryblock_t *block;
-  assert(botimport.GetMemory); // bk001129 - was nullptr'ed
+  assert(botimport.GetMemory); // bk001129 - was NULL'ed
 	ptr = botimport.GetMemory(size + sizeof(memoryblock_t));
 	block = (memoryblock_t *) ptr;
 	block->id = MEM_ID;
@@ -210,22 +210,22 @@ memoryblock_t *BlockFromPointer(void *ptr, char *str)
 	if (!ptr)
 	{
 #ifdef MEMDEBUG
-		//char *crash = (char *) nullptr;
+		//char *crash = (char *) NULL;
 		//crash[0] = 1;
-		botimport.Print(PRT_FATAL, "%s: nullptr pointer\n", str);
+		botimport.Print(PRT_FATAL, "%s: NULL pointer\n", str);
 #endif // MEMDEBUG
-		return nullptr;
+		return NULL;
 	} //end if
 	block = (memoryblock_t *) ((char *) ptr - sizeof(memoryblock_t));
 	if (block->id != MEM_ID && block->id != HUNK_ID)
 	{
 		botimport.Print(PRT_FATAL, "%s: invalid memory block\n", str);
-		return nullptr;
+		return NULL;
 	} //end if
 	if (block->ptr != ptr)
 	{
 		botimport.Print(PRT_FATAL, "%s: memory block pointer invalid\n", str);
-		return nullptr;
+		return NULL;
 	} //end if
 	return block;
 } //end of the function BlockFromPointer
@@ -353,7 +353,7 @@ void *GetMemory(unsigned long size)
 	unsigned long int *memid;
 
 	ptr = botimport.GetMemory(size + sizeof(qmax_align_t));
-	if (!ptr) return nullptr;
+	if (!ptr) return NULL;
 	memid = (unsigned long int *) ptr;
 	*memid = MEM_ID;
 	return (unsigned long int *) ((char *) ptr + sizeof(qmax_align_t));
@@ -395,7 +395,7 @@ void *GetHunkMemory(unsigned long size)
 	unsigned long int *memid;
 
 	ptr = botimport.HunkAlloc(size + sizeof(qmax_align_t));
-	if (!ptr) return nullptr;
+	if (!ptr) return NULL;
 	memid = (unsigned long int *) ptr;
 	*memid = HUNK_ID;
 	return (unsigned long int *) ((char *) ptr + sizeof(qmax_align_t));

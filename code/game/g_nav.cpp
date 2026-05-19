@@ -51,12 +51,12 @@ NPC_SetMoveGoal
 void NPC_SetMoveGoal( gentity_t *ent, vec3_t point, int radius, qboolean isNavGoal, int combatPoint, gentity_t *targetEnt )
 {
 	//Must be an NPC
-	if ( ent->NPC == nullptr )
+	if ( ent->NPC == NULL )
 	{
 		return;
 	}
 
-	if ( ent->NPC->tempGoal == nullptr )
+	if ( ent->NPC->tempGoal == NULL )
 	{//must still have a goal
 		return;
 	}
@@ -81,7 +81,7 @@ void NPC_SetMoveGoal( gentity_t *ent, vec3_t point, int radius, qboolean isNavGo
 		}
 	}
 
-	ent->NPC->tempGoal->target = nullptr;
+	ent->NPC->tempGoal->target = NULL;
 	ent->NPC->tempGoal->clipmask = ent->clipmask;
 	ent->NPC->tempGoal->svFlags &= ~SVF_NAVGOAL;
 	if ( targetEnt && targetEnt->waypoint >= 0 )
@@ -127,7 +127,7 @@ static float waypoint_testDirection( vec3_t origin, float yaw, float minDist )
 
 	//Get our test direction
 	vec3_t	angles = { 0, yaw, 0 };
-	AngleVectors( angles, trace_dir, nullptr, nullptr );
+	AngleVectors( angles, trace_dir, NULL, NULL );
 
 	//Move ahead
 	VectorMA( origin, minDist, trace_dir, test_pos );
@@ -290,7 +290,7 @@ void SP_waypoint_navgoal( gentity_t *ent )
 		}
 #endif
 	}
-	TAG_Add( ent->targetname, nullptr, ent->s.origin, ent->s.angles, radius, RTF_NAVGOAL );
+	TAG_Add( ent->targetname, NULL, ent->s.origin, ent->s.angles, radius, RTF_NAVGOAL );
 
 	ent->classname = "navgoal";
 

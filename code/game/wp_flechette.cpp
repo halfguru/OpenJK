@@ -68,7 +68,7 @@ static void WP_FlechetteMainFire( gentity_t *ent )
 			angs[YAW]	+= Q_flrand(-1.0f, 1.0f) * FLECHETTE_SPREAD;
 		}
 
-		AngleVectors( angs, fwd, nullptr, nullptr );
+		AngleVectors( angs, fwd, NULL, NULL );
 
 		WP_MissileTargetHint(ent, start, fwd);
 
@@ -159,7 +159,7 @@ void prox_mine_stick( gentity_t *self, gentity_t *other, trace_t *trace )
 	VectorScale( self->maxs, -1, self->mins );
 
 	self->activator = self->owner;
-	self->owner = nullptr;
+	self->owner = NULL;
 
 	WP_Stick( self, trace );
 
@@ -207,7 +207,7 @@ void WP_flechette_alt_blow( gentity_t *ent )
 {
 	EvaluateTrajectory( &ent->s.pos, level.time, ent->currentOrigin ); // Not sure if this is even necessary, but correct origins are cool?
 
-	G_RadiusDamage( ent->currentOrigin, ent->owner, ent->splashDamage, ent->splashRadius, nullptr, MOD_EXPLOSIVE_SPLASH );
+	G_RadiusDamage( ent->currentOrigin, ent->owner, ent->splashDamage, ent->splashRadius, NULL, MOD_EXPLOSIVE_SPLASH );
 	G_PlayEffect( "flechette/alt_blow", ent->currentOrigin );
 
 	G_FreeEntity( ent );
@@ -266,7 +266,7 @@ static void WP_FlechetteAltFire( gentity_t *self )
 
 		dir[PITCH] -= Q_flrand(0.0f, 1.0f) * 4 + 8; // make it fly upwards
 		dir[YAW] += Q_flrand(-1.0f, 1.0f) * 2;
-		AngleVectors( dir, fwd, nullptr, nullptr );
+		AngleVectors( dir, fwd, NULL, NULL );
 
 		WP_CreateFlechetteBouncyThing( start, fwd, self );
 		self->client->sess.missionStats.shotsFired++;

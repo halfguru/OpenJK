@@ -104,7 +104,7 @@ static void WP_BowcasterMainFire( gentity_t *ent )
 			}
 		}
 
-		AngleVectors( angs, dir, nullptr, nullptr );
+		AngleVectors( angs, dir, NULL, NULL );
 
 		missile = CreateMissile( start, dir, vel, 10000, ent );
 

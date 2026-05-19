@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __CG_MEDIA_H_
+#define __CG_MEDIA_H_
 
 #define	NUM_CROSSHAIRS		9
 
@@ -364,3 +365,4 @@ typedef struct {
 
 extern	cgs_t			cgs;
 
+#endif //__CG_MEDIA_H_

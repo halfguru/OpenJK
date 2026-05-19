@@ -503,7 +503,7 @@ void NET_OpenSocks( int port ) {
 	}
 
 	h = gethostbyname( net_socksServer->string );
-	if ( h == nullptr ) {
+	if ( h == NULL ) {
 		Com_Printf( "WARNING: NET_OpenSocks: gethostbyname: %s\n", NET_ErrorString() );
 		return;
 	}
@@ -789,7 +789,7 @@ void NET_GetLocalAddress( void )
 
 	Com_Printf( "Hostname: %s\n", hostInfo->h_name );
 	n = 0;
-	while( ( p = hostInfo->h_aliases[n++] ) != nullptr ) {
+	while( ( p = hostInfo->h_aliases[n++] ) != NULL ) {
 		Com_Printf( "Alias: %s\n", p );
 	}
 
@@ -797,7 +797,7 @@ void NET_GetLocalAddress( void )
 		return;
 	}
 
-	while( ( p = hostInfo->h_addr_list[numIP] ) != nullptr && numIP < MAX_IPS ) {
+	while( ( p = hostInfo->h_addr_list[numIP] ) != NULL && numIP < MAX_IPS ) {
 		ip = ntohl( *(uint32_t *)p );
 		localIP[ numIP ][0] = p[0];
 		localIP[ numIP ][1] = p[1];
@@ -1067,7 +1067,7 @@ void NET_Sleep( int msec ) {
 	timeout.tv_sec = msec/1000;
 	timeout.tv_usec = (msec%1000)*1000;
 
-	retval = select(highestfd + 1, &fdset, nullptr, nullptr, &timeout);
+	retval = select(highestfd + 1, &fdset, NULL, NULL, &timeout);
 
 	if(retval == SOCKET_ERROR)
 		Com_Printf("Warning: select() syscall failed: %s\n", NET_ErrorString());

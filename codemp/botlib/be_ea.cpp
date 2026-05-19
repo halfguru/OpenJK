@@ -507,5 +507,5 @@ int EA_Setup(void)
 void EA_Shutdown(void)
 {
 	FreeMemory(botinputs);
-	botinputs = nullptr;
+	botinputs = NULL;
 } //end of the function EA_Shutdown

@@ -61,7 +61,7 @@ void CG_BuildSolidList( void )
 		{
 			cent = &cg_entities[ cg.snap->entities[ i ].number ];
 
-			if ( cent->gent != nullptr && cent->gent->s.solid )
+			if ( cent->gent != NULL && cent->gent->s.solid )
 			{
 				cg_solidEntities[cg_numSolidEntities] = cent;
 				cg_numSolidEntities++;
@@ -349,8 +349,8 @@ void CG_InterpolatePlayerState( qboolean grabAngles ) {
 
 		if ( !skip )
 		{
-			//nullptr so that it doesn't execute a block of code that must be run from game
-			PM_UpdateViewAngles( out, &cmd, nullptr );
+			//NULL so that it doesn't execute a block of code that must be run from game
+			PM_UpdateViewAngles( out, &cmd, NULL );
 		}
 	}
 
@@ -628,7 +628,7 @@ void CG_PredictPlayerState( void ) {
 
 	// prepare for pmove
 	//FIXME: is this bad???
-	cg_pmove.gent = nullptr;
+	cg_pmove.gent = NULL;
 	cg_pmove.ps = &cg.predicted_player_state;
 	cg_pmove.trace = CG_Trace;
 	cg_pmove.pointcontents = CG_PointContents;
@@ -717,7 +717,7 @@ void CG_PredictPlayerState( void ) {
 			cg_pmove.cmd.buttons = 0;
 			cg_pmove.cmd.upmove = 0;
 		}
-		CG_CheckModifyUCmd( &cg_pmove.cmd, nullptr );
+		CG_CheckModifyUCmd( &cg_pmove.cmd, NULL );
 		//FIXME: prediction on clients in timescale results in jerky positional translation
 		Pmove( &cg_pmove );
 

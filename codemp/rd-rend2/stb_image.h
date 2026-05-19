@@ -81,8 +81,9 @@ Julian Raschke          Gregory Mullen     Baldur Karlsson    github:poppolopopp
 Christian Floisand      Kevin Schmidt                         github:darealshinji
 Blazej Dariusz Roszkowski                                     github:Michaelangel007
 */
-#pragma once
 
+#ifndef STBI_INCLUDE_STB_IMAGE_H
+#define STBI_INCLUDE_STB_IMAGE_H
 
 // DOCUMENTATION
 //
@@ -7317,6 +7318,7 @@ STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user
 	return stbi__is_16_main(&s);
 }
 
+#endif // STB_IMAGE_IMPLEMENTATION
 
 /*
 revision history:

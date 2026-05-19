@@ -170,7 +170,7 @@ shader_t *R_FindShaderByName( const char *name ) {
 	int			hash;
 	shader_t	*sh;
 
-	if ( (name==nullptr) || (name[0] == 0) ) {  // bk001205
+	if ( (name==NULL) || (name[0] == 0) ) {  // bk001205
 		return tr.defaultShader;
 	}
 
@@ -203,22 +203,22 @@ void R_RemapShader(const char *shaderName, const char *newShaderName, const char
 	qhandle_t	h;
 
 	sh = R_FindShaderByName( shaderName );
-	if (sh == nullptr || sh == tr.defaultShader) {
+	if (sh == NULL || sh == tr.defaultShader) {
 		h = RE_RegisterShaderLightMap(shaderName, lightmapsNone, stylesDefault);
 		sh = R_GetShaderByHandle(h);
 	}
-	if (sh == nullptr || sh == tr.defaultShader) {
+	if (sh == NULL || sh == tr.defaultShader) {
 		ri.Printf( PRINT_WARNING, "WARNING: R_RemapShader: shader %s not found\n", shaderName );
 		return;
 	}
 
 	sh2 = R_FindShaderByName( newShaderName );
-	if (sh2 == nullptr || sh2 == tr.defaultShader) {
+	if (sh2 == NULL || sh2 == tr.defaultShader) {
 		h = RE_RegisterShaderLightMap(newShaderName, lightmapsNone, stylesDefault);
 		sh2 = R_GetShaderByHandle(h);
 	}
 
-	if (sh2 == nullptr || sh2 == tr.defaultShader) {
+	if (sh2 == NULL || sh2 == tr.defaultShader) {
 		ri.Printf( PRINT_WARNING, "WARNING: R_RemapShader: new shader %s not found\n", newShaderName );
 		return;
 	}
@@ -232,7 +232,7 @@ void R_RemapShader(const char *shaderName, const char *newShaderName, const char
 			if (sh != sh2) {
 				sh->remappedShader = sh2;
 			} else {
-				sh->remappedShader = nullptr;
+				sh->remappedShader = NULL;
 			}
 		}
 	}
@@ -1348,7 +1348,7 @@ static qboolean ParseStage( shaderStage_t *stage, const char **text )
 				ri.Printf( PRINT_WARNING, "WARNING: missing parameter for 'videoMap' keyword in shader '%s'\n", shader.name );
 				return qfalse;
 			}
-			stage->bundle[0].videoMapHandle = ri.CIN_PlayCinematic( token, 0, 0, 256, 256, (CIN_loop | CIN_silent | CIN_shader), nullptr);
+			stage->bundle[0].videoMapHandle = ri.CIN_PlayCinematic( token, 0, 0, 256, 256, (CIN_loop | CIN_silent | CIN_shader), NULL);
 			if (stage->bundle[0].videoMapHandle != -1) {
 				stage->bundle[0].isVideoMap = true;
 				stage->bundle[0].image = tr.scratchImage[stage->bundle[0].videoMapHandle];
@@ -3281,7 +3281,7 @@ FindShaderInShaderText
 Scans the combined text description of all the shader files for
 the given shader name.
 
-return nullptr if not found
+return NULL if not found
 
 If found, it will return a valid shader
 =====================
@@ -3290,7 +3290,7 @@ static const char *FindShaderInShaderText( const char *shadername ) {
 	char *p = s_shaderText;
 
 	if ( !p ) {
-		return nullptr;
+		return NULL;
 	}
 
 #ifdef USE_STL_FOR_SHADER_LOOKUPS
@@ -3326,7 +3326,7 @@ static const char *FindShaderInShaderText( const char *shadername ) {
 		}
 	}
 
-	return nullptr;
+	return NULL;
 
 #endif
 }
@@ -3376,7 +3376,7 @@ static inline const int *R_FindLightmap( const int *lightmapIndex )
 		return lightmapIndex;
 
 	// does this lightmap already exist?
-	if( *lightmapIndex < tr.numLightmaps && tr.lightmaps[ *lightmapIndex ] != nullptr )
+	if( *lightmapIndex < tr.numLightmaps && tr.lightmaps[ *lightmapIndex ] != NULL )
 		return lightmapIndex;
 
 	// bail if no world dir
@@ -3391,7 +3391,7 @@ static inline const int *R_FindLightmap( const int *lightmapIndex )
 	// attempt to load an external lightmap
 	Com_sprintf( fileName, sizeof(fileName), "%s/" EXTERNAL_LIGHTMAP, tr.worldDir, *lightmapIndex );
 	image = R_FindImageFile( fileName, qfalse, qfalse, (qboolean)(r_ext_compressed_lightmaps->integer != 0), GL_CLAMP );
-	if( image == nullptr )
+	if( image == NULL )
 	{
 		return lightmapsVertex;
 	}

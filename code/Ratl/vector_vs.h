@@ -60,8 +60,8 @@ template<class T>
 class vector_base : public ratl_base
 {
 public:
-    using TStorageTraits = T;
-	using TTValue = typename T::TValue;
+    typedef T TStorageTraits;
+	typedef typename T::TValue TTValue;
     ////////////////////////////////////////////////////////////////////////////////////
 	// Capacity Enum
     ////////////////////////////////////////////////////////////////////////////////////
@@ -736,8 +736,8 @@ template<class T, int ARG_CAPACITY>
 class vector_vs : public vector_base<storage::value_semantics<T,ARG_CAPACITY> >
 {
 public:
-	using TStorageTraits = typename storage::value_semantics<T,ARG_CAPACITY>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::value_semantics<T,ARG_CAPACITY> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	vector_vs() {}
 };
@@ -746,8 +746,8 @@ template<class T, int ARG_CAPACITY>
 class vector_os : public vector_base<storage::object_semantics<T,ARG_CAPACITY> >
 {
 public:
-	using TStorageTraits = typename storage::object_semantics<T,ARG_CAPACITY>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::object_semantics<T,ARG_CAPACITY> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	vector_os() {}
 };
@@ -756,8 +756,8 @@ template<class T, int ARG_CAPACITY, int ARG_MAX_CLASS_SIZE>
 class vector_is : public vector_base<storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE> >
 {
 public:
-	using TStorageTraits = typename storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	static const int MAX_CLASS_SIZE	= ARG_MAX_CLASS_SIZE;
 	vector_is() {}

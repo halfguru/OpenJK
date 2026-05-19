@@ -61,10 +61,10 @@ static void R_LocalFree(void *ptr)
 // Loads a HDR image from file.
 void R_LoadHDRImage( const char *filename, byte **data, int *width, int *height )
 {
-	byte *buf = nullptr;
+	byte *buf = NULL;
 	int x, y, n;
 	int len = ri.FS_ReadFile (filename, (void **)&buf);
-	if ( len <= 0 || buf == nullptr )
+	if ( len <= 0 || buf == NULL )
 	{
 		return;
 	}

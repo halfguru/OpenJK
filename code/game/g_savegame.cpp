@@ -84,7 +84,7 @@ static const save_field_t savefields_gEntity[] =
 	{strFOFS(parms),			F_BOOLPTR},
 	{strFOFS(m_pVehicle),		F_BOOLPTR},
 
-	{nullptr, 0, F_IGNORE}
+	{NULL, 0, F_IGNORE}
 };
 
 static const save_field_t savefields_gNPC[] =
@@ -106,7 +106,7 @@ static const save_field_t savefields_gNPC[] =
 	{strNPCOFS(blockedTargetEntity),F_GENTITY},
 	{strNPCOFS(jumpTarget),			F_GENTITY},
 	{strNPCOFS(watchTarget),		F_GENTITY},
-	{nullptr, 0, F_IGNORE}
+	{NULL, 0, F_IGNORE}
 };
 
 static const save_field_t savefields_LevelLocals[] =
@@ -115,7 +115,7 @@ static const save_field_t savefields_LevelLocals[] =
 	{strLLOFS(alertEvents),		F_ALERTEVENT},
 	{strLLOFS(groups),			F_AIGROUPS},
 	{strLLOFS(knownAnimFileSets),F_ANIMFILESETS},
-	{nullptr, 0, F_IGNORE}
+	{NULL, 0, F_IGNORE}
 };
 
 static const save_field_t savefields_gVHIC[] =
@@ -128,7 +128,7 @@ static const save_field_t savefields_gVHIC[] =
 	//m_ppPassengers	//!ptr array?!
 	{strVHICOFS(m_pVehicleInfo),	F_VEHINFO}, //!another ptr! store name field instead and re-hook on load?
 
-	{nullptr, 0, F_IGNORE}
+	{NULL, 0, F_IGNORE}
 };
 
 static const save_field_t savefields_gClient[] =
@@ -153,7 +153,7 @@ static const save_field_t savefields_gClient[] =
 	{strCLOFS(clientInfo.customExtraSoundDir),F_STRING},
 	{strCLOFS(clientInfo.customJediSoundDir),F_STRING},
 
-	{nullptr, 0, F_IGNORE}
+	{NULL, 0, F_IGNORE}
 };
 
 // TODO FIXME mrwonko: this has no business being a global variable. WTF Raven?
@@ -167,7 +167,7 @@ static int GetStringNum(const char *psString)
 {
 	assert( psString != (char *)0xcdcdcdcd );
 
-	// nullptr ptrs I'll write out as a strlen of -1...
+	// NULL ptrs I'll write out as a strlen of -1...
 	//
 	if (!psString)
 	{
@@ -178,7 +178,7 @@ static int GetStringNum(const char *psString)
 	return strlen(psString) + 1;	// this gives us the chunk length for the reader later
 }
 
-static char *GetStringPtr(int iStrlen, char *psOriginal/*may be nullptr*/)
+static char *GetStringPtr(int iStrlen, char *psOriginal/*may be NULL*/)
 {
 	if (iStrlen != -1)
 	{
@@ -208,7 +208,7 @@ static char *GetStringPtr(int iStrlen, char *psOriginal/*may be nullptr*/)
 		return G_NewString(sString);
 	}
 
-	return nullptr;
+	return NULL;
 }
 //
 //
@@ -224,7 +224,7 @@ static intptr_t GetGEntityNum(gentity_t* ent)
 {
 	assert( ent != (gentity_t *) 0xcdcdcdcd);
 
-	if (ent == nullptr)
+	if (ent == NULL)
 	{
 		return -1;
 	}
@@ -237,7 +237,7 @@ static intptr_t GetGEntityNum(gentity_t* ent)
 
 	if (iReturnIndex < 0 || iReturnIndex >= MAX_GENTITIES)
 	{
-		iReturnIndex = -1;	// will get a nullptr ptr on reload
+		iReturnIndex = -1;	// will get a NULL ptr on reload
 	}
 	return iReturnIndex;
 }
@@ -246,7 +246,7 @@ static gentity_t *GetGEntityPtr(intptr_t iEntNum)
 {
 	if (iEntNum == -1)
 	{
-		return nullptr;
+		return NULL;
 	}
 	assert(iEntNum >= 0);
 	assert(iEntNum < MAX_GENTITIES);
@@ -262,7 +262,7 @@ static intptr_t GetGroupNumber(AIGroupInfo_t *pGroup)
 {
 	assert( pGroup != (AIGroupInfo_t *) 0xcdcdcdcd);
 
-	if (pGroup == nullptr)
+	if (pGroup == NULL)
 	{
 		return -1;
 	}
@@ -270,7 +270,7 @@ static intptr_t GetGroupNumber(AIGroupInfo_t *pGroup)
 	int iReturnIndex = pGroup - level.groups;
 	if (iReturnIndex < 0 || iReturnIndex >= (int)(sizeof(level.groups) / sizeof(level.groups[0])) )
 	{
-		iReturnIndex = -1;	// will get a nullptr ptr on reload
+		iReturnIndex = -1;	// will get a NULL ptr on reload
 	}
 	return iReturnIndex;
 }
@@ -279,7 +279,7 @@ static AIGroupInfo_t *GetGroupPtr(intptr_t iGroupNum)
 {
 	if (iGroupNum == -1)
 	{
-		return nullptr;
+		return NULL;
 	}
 	assert(iGroupNum >= 0);
 	assert(iGroupNum < (int)(sizeof(level.groups) / sizeof(level.groups[0])));
@@ -298,7 +298,7 @@ static intptr_t GetGClientNum(gclient_t *c, gentity_t *ent)
 	//
 	assert(c != (gclient_t *)0xcdcdcdcd);
 
-	if (c == nullptr)
+	if (c == NULL)
 	{
 		return -1;
 	}
@@ -309,7 +309,7 @@ static intptr_t GetGClientNum(gclient_t *c, gentity_t *ent)
 	}
 	else
 	{	// this must be an NPC or weapon_shooter, so mark it as special...
-		return -2;	// yeuch, but distinguishes it from a valid 0 index, or -1 for client==nullptr
+		return -2;	// yeuch, but distinguishes it from a valid 0 index, or -1 for client==NULL
 	}
 }
 
@@ -317,7 +317,7 @@ static gclient_t *GetGClientPtr(intptr_t c)
 {
 	if (c == -1)
 	{
-		return nullptr;
+		return NULL;
 	}
 	if (c == -2)
 	{
@@ -340,7 +340,7 @@ static int GetGItemNum (gitem_t *pItem)
 {
 	assert(pItem != (gitem_t*) 0xcdcdcdcd);
 
-	if (pItem == nullptr)
+	if (pItem == NULL)
 	{
 		return -1;
 	}
@@ -352,7 +352,7 @@ static gitem_t *GetGItemPtr(int iItem)
 {
 	if (iItem == -1)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	assert(iItem >= 0);
@@ -371,7 +371,7 @@ static int GetVehicleInfoNum(vehicleInfo_t *pVehicleInfo)
 {
 	assert(pVehicleInfo != (vehicleInfo_t*) 0xcdcdcdcd);
 
-	if (pVehicleInfo == nullptr)
+	if (pVehicleInfo == NULL)
 	{
 		return -1;
 	}
@@ -383,7 +383,7 @@ static vehicleInfo_t *GetVehicleInfoPtr(int iVehicleIndex)
 {
 	if (iVehicleIndex == -1)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	assert(iVehicleIndex > 0);
@@ -495,7 +495,7 @@ static void EnumerateField(const save_field_t *pField, const byte *pbBase)
 
 	// These are pointers that are always recreated
 	case F_NULL:
-		*(void **)pv = nullptr;
+		*(void **)pv = NULL;
 		break;
 
 	case F_IGNORE:
@@ -554,7 +554,7 @@ static void EnumerateFields(
 }
 
 
-static void EvaluateField(const save_field_t *pField, byte *pbBase, byte *pbOriginalRefData/* may be nullptr*/)
+static void EvaluateField(const save_field_t *pField, byte *pbBase, byte *pbOriginalRefData/* may be NULL*/)
 {
 	void *pv		 = (void *)(pbBase			  + pField->iOffset);
 	void *pvOriginal = (void *)(pbOriginalRefData + pField->iOffset);
@@ -562,7 +562,7 @@ static void EvaluateField(const save_field_t *pField, byte *pbBase, byte *pbOrig
 	switch (pField->eFieldType)
 	{
 	case F_STRING:
-		*(char **)pv = GetStringPtr(*(int *)pv, pbOriginalRefData?*(char**)pvOriginal:nullptr);
+		*(char **)pv = GetStringPtr(*(int *)pv, pbOriginalRefData?*(char**)pvOriginal:NULL);
 		break;
 
 	case F_GENTITY:
@@ -591,7 +591,7 @@ static void EvaluateField(const save_field_t *pField, byte *pbBase, byte *pbOrig
 			char **pO= (char **) pvOriginal;
 			for (int i=0; i<NUM_BSETS; i++, p++, pO++)
 			{
-				*p = GetStringPtr(*(int *)p, pbOriginalRefData?*(char **)pO:nullptr);
+				*p = GetStringPtr(*(int *)p, pbOriginalRefData?*(char **)pO:NULL);
 			}
 		}
 		break;
@@ -639,9 +639,9 @@ static void EvaluateField(const save_field_t *pField, byte *pbBase, byte *pbOrig
 			{
 				for ( int j=0; j<MAX_ANIM_EVENTS; j++ )
 				{
-					pO = pbOriginalRefData ? level.knownAnimFileSets[i].torsoAnimEvents[j].stringData : nullptr;
+					pO = pbOriginalRefData ? level.knownAnimFileSets[i].torsoAnimEvents[j].stringData : NULL;
 					p[i].torsoAnimEvents[j].stringData = GetStringPtr((intptr_t)p[i].torsoAnimEvents[j].stringData, pO);
-					pO = pbOriginalRefData ? level.knownAnimFileSets[i].legsAnimEvents[j].stringData : nullptr;
+					pO = pbOriginalRefData ? level.knownAnimFileSets[i].legsAnimEvents[j].stringData : NULL;
 					p[i].legsAnimEvents[j].stringData = GetStringPtr((intptr_t)p[i].legsAnimEvents[j].stringData, pO);
 				}
 			}
@@ -1077,7 +1077,7 @@ static void ReadGEntities(qboolean qbAutosave)
 			if ( pEnt->s.number )
 			{//not player
 				G_LoadAnimFileSet( *pEnt, *pEnt->NPC_type );
-				G_SetSkin( *pEnt, *pEnt->NPC_type, nullptr );//  it probably wasn't the default skin, do we need this at all?
+				G_SetSkin( *pEnt, *pEnt->NPC_type, NULL );//  it probably wasn't the default skin, do we need this at all?
 			}
 			*/
 		}

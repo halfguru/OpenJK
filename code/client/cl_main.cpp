@@ -86,7 +86,7 @@ clientStatic_t		cls;
 
 // Structure containing functions exported from refresh DLL
 refexport_t	re;
-static void *rendererLib = nullptr;
+static void *rendererLib = NULL;
 
 //RAZFIXME: BAD BAD, maybe? had to move it out of ghoul2_shared.h -> CGhoul2Info_v at the least..
 IGhoul2InfoArray &_TheGhoul2InfoArray( void ) {
@@ -234,7 +234,7 @@ void CL_FreeReliableCommands( void )
 	for ( int i = 0 ; i < MAX_RELIABLE_COMMANDS ; i++ ) {
 		if ( clc.reliableCommands[i] ) {
 			Z_Free( clc.reliableCommands[i] );
-		 	clc.reliableCommands[i] = nullptr;
+		 	clc.reliableCommands[i] = NULL;
 		}
 	}
 }
@@ -256,7 +256,7 @@ void CL_Disconnect( void ) {
 	}
 
 	if (cls.uiStarted)
-		UI_SetActiveMenu( nullptr,nullptr );
+		UI_SetActiveMenu( NULL,NULL );
 
 	SCR_StopCinematic ();
 	S_ClearSoundBuffer();
@@ -775,7 +775,7 @@ void CL_Frame ( int msec,float fractionMsec ) {
 		// if disconnected, bring up the menu
 		if (!CL_CheckPendingCinematic())	// this avoid having the menu flash for one frame before pending cinematics
 		{
-			UI_SetActiveMenu( "mainMenu",nullptr );
+			UI_SetActiveMenu( "mainMenu",NULL );
 		}
 	}
 
@@ -898,9 +898,9 @@ static void CL_ShutdownRef( qboolean restarting ) {
 
 	memset( &re, 0, sizeof( re ) );
 
-	if ( rendererLib != nullptr ) {
+	if ( rendererLib != NULL ) {
 		Sys_UnloadDll (rendererLib);
-		rendererLib = nullptr;
+		rendererLib = NULL;
 	}
 }
 

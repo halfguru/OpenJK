@@ -20,7 +20,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 // server.h
 
@@ -29,6 +28,8 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #include "../game/g_public.h"
 #include "../game/bg_public.h"
 
+#ifndef SERVER_H
+#define SERVER_H
 
 
 //=============================================================================
@@ -364,3 +365,4 @@ public:
 };
 #endif
 
+#endif	// #ifndef SERVER_H

@@ -19,9 +19,10 @@ along with Quake III Arena source code; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
-#pragma once
 
 
+#ifndef TR_LOCAL_H
+#define TR_LOCAL_H
 
 #include "qcommon/q_shared.h"
 #include "qcommon/qfiles.h"
@@ -3917,3 +3918,4 @@ uint32_t RB_CreateSortKey( const DrawItem& item, int stage, int layer );
 void RB_AddDrawItem( Pass *pass, uint32_t sortKey, const DrawItem& drawItem );
 DepthRange RB_GetDepthRange( const trRefEntity_t *re, const shader_t *shader );
 
+#endif //TR_LOCAL_H

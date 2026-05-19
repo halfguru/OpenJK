@@ -581,7 +581,7 @@ CM_LoadMap
 Loads in the map and all submodels
 ==================
 */
-void *gpvCachedMapDiskImage = nullptr;
+void *gpvCachedMapDiskImage = NULL;
 char  gsCachedMapDiskImage[MAX_QPATH];
 qboolean gbUsingCachedMapDataRightNow = qfalse;	// if true, signifies that you can't delete this at the moment!! (used during z_malloc()-fail recovery attempt)
 
@@ -600,7 +600,7 @@ qboolean CM_DeleteCachedMap(qboolean bGuaranteedOkToDelete)
 		if (gpvCachedMapDiskImage)
 		{
 			Z_Free(	gpvCachedMapDiskImage );
-					gpvCachedMapDiskImage = nullptr;
+					gpvCachedMapDiskImage = NULL;
 
 			bActuallyFreedSomething = qtrue;
 		}
@@ -627,7 +627,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 	void			*newBuff = 0;
 
 	if ( !name || !name[0] ) {
-		Com_Error( ERR_DROP, "CM_LoadMap: nullptr name" );
+		Com_Error( ERR_DROP, "CM_LoadMap: NULL name" );
 	}
 
 #ifndef BSPC
@@ -674,7 +674,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 	if (gpvCachedMapDiskImage && &cm == &cmg)	// MP code: this'll only be NZ if we got an ERR_DROP during last map load,
 	{							//	so it's really just a safety measure.
 		Z_Free(	gpvCachedMapDiskImage);
-				gpvCachedMapDiskImage = nullptr;
+				gpvCachedMapDiskImage = NULL;
 	}
 
 #ifndef BSPC
@@ -683,7 +683,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 	//	then keep it long enough to save the renderer re-loading it (if not dedicated server),
 	//	then discard it after that...
 	//
-	buf = nullptr;
+	buf = NULL;
 	fileHandle_t h;
 	const int iBSPLen = FS_FOpenFileRead( name, &h, qfalse );
 	if (h)
@@ -721,7 +721,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 
 	if ( header.version != BSP_VERSION ) {
 		Z_Free(	gpvCachedMapDiskImage);
-				gpvCachedMapDiskImage = nullptr;
+				gpvCachedMapDiskImage = NULL;
 
 		Com_Error (ERR_DROP, "CM_LoadMap: %s has wrong version number (%i should be %i)"
 		, name, header.version, BSP_VERSION );
@@ -768,7 +768,7 @@ static void CM_LoadMap_Actual( const char *name, qboolean clientload, int *check
 		)
 	{
 		Z_Free(	gpvCachedMapDiskImage );
-				gpvCachedMapDiskImage = nullptr;
+				gpvCachedMapDiskImage = NULL;
 	}
 	else
 	{
@@ -872,7 +872,7 @@ cmodel_t	*CM_ClipHandleToModel( clipHandle_t handle, clipMap_t **clipMap ) {
 	}
 	Com_Error( ERR_DROP, "CM_ClipHandleToModel: bad handle %i", handle + MAX_SUBMODELS );
 
-	return nullptr;
+	return NULL;
 }
 
 /*
@@ -1100,8 +1100,8 @@ int CM_ModelContents_Actual( clipHandle_t model, clipMap_t *cm )
 	for ( i = 0; i < cmod->leaf.numLeafSurfaces; i++ )
 	{
 		int surfaceNum = cm->leafsurfaces[cmod->leaf.firstLeafSurface + i];
-		if ( cm->surfaces[surfaceNum] != nullptr )
-		{//HERNH?  How could we have a nullptr surf within our cmod->leaf.numLeafSurfaces?
+		if ( cm->surfaces[surfaceNum] != NULL )
+		{//HERNH?  How could we have a null surf within our cmod->leaf.numLeafSurfaces?
 			contents |= cm->surfaces[surfaceNum]->contents;
 		}
 	}
@@ -1113,7 +1113,7 @@ int CM_ModelContents(  clipHandle_t model, int subBSPIndex )
 {
 	if (subBSPIndex < 0)
 	{
-		return CM_ModelContents_Actual(model, nullptr);
+		return CM_ModelContents_Actual(model, NULL);
 	}
 
 	return CM_ModelContents_Actual(model, &SubBSP[subBSPIndex]);

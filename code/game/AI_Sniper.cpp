@@ -97,7 +97,7 @@ void NPC_Sniper_PlayConfusionSound( gentity_t *self )
 	self->NPC->tempBehavior = BS_DEFAULT;
 
 	//self->NPC->behaviorState = BS_PATROL;
-	G_ClearEnemy( self );//FIXME: or just self->enemy = nullptr;?
+	G_ClearEnemy( self );//FIXME: or just self->enemy = NULL;?
 
 	self->NPC->investigateCount = 0;
 }
@@ -137,7 +137,7 @@ ST_HoldPosition
 static void Sniper_HoldPosition( void )
 {
 	NPC_FreeCombatPoint( NPCInfo->combatPoint, qtrue );
-	NPCInfo->goalEntity = nullptr;
+	NPCInfo->goalEntity = NULL;
 
 	/*if ( TIMER_Done( NPC, "stand" ) )
 	{//FIXME: what if can't shoot from this pos?
@@ -372,7 +372,7 @@ static void Sniper_CheckMoveState( void )
 	}
 
 	//See if we're moving towards a goal, not the enemy
-	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != nullptr ) )
+	if ( ( NPCInfo->goalEntity != NPC->enemy ) && ( NPCInfo->goalEntity != NULL ) )
 	{
 		//Did we make it?
 		if ( STEER::Reached(NPC, NPCInfo->goalEntity, 16, !!FlyingCreature(NPC)) ||
@@ -770,7 +770,7 @@ void NPC_BSSniper_Attack( void )
 			AngleVectors( NPC->client->ps.viewangles, fwd, right, up );
 			CalcMuzzlePoint( NPC, fwd, right, up, muzzle, 0 );
 			VectorMA( muzzle, 8192, fwd, end );
-			gi.trace ( &tr, muzzle, nullptr, nullptr, end, NPC->s.number, MASK_SHOT, G2_RETURNONHIT, 0 );
+			gi.trace ( &tr, muzzle, NULL, NULL, end, NPC->s.number, MASK_SHOT, G2_RETURNONHIT, 0 );
 
 			int hit = tr.entityNum;
 			//can we shoot our target?
@@ -898,7 +898,7 @@ void NPC_BSSniper_Attack( void )
 			WeaponThink( qtrue );
 			if ( ucmd.buttons&(BUTTON_ATTACK|BUTTON_ALT_ATTACK) )
 			{
-				G_SoundOnEnt( NPC, CHAN_WEAPON, "sound/nullptr.wav" );
+				G_SoundOnEnt( NPC, CHAN_WEAPON, "sound/null.wav" );
 			}
 
 			//took a shot, now hide

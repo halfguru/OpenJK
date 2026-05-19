@@ -90,7 +90,7 @@ static void NPC_CheckAttacker( gentity_t *other, int mod )
 	}
 
 	//If we haven't taken a target, just get mad
-	if ( NPC->enemy == nullptr )//was using "other", fixed to NPC
+	if ( NPC->enemy == NULL )//was using "other", fixed to NPC
 	{
 		G_SetEnemy( NPC, other );
 		return;
@@ -394,7 +394,7 @@ gentity_t *G_CheckControlledTurretEnemy(gentity_t *self, gentity_t *enemy, qbool
 				return enemy->activator;
 			}
 		}
-		return nullptr;
+		return NULL;
 	}
 	return enemy;
 }
@@ -410,10 +410,10 @@ void NPC_Pain( gentity_t *self, gentity_t *inflictor, gentity_t *other, const ve
 	team_t otherTeam = TEAM_FREE;
 	int		voiceEvent = -1;
 
-	if ( self->NPC == nullptr )
+	if ( self->NPC == NULL )
 		return;
 
-	if ( other == nullptr )
+	if ( other == NULL )
 		return;
 
 	//or just remove ->pain in player_die?
@@ -626,7 +626,7 @@ void NPC_Touch(gentity_t *self, gentity_t *other, trace_t *trace)
 			if ( keyTaken )
 			{//remove my key
 				gi.G2API_SetSurfaceOnOff( &self->ghoul2[self->playerModel], "l_arm_key", 0x00000002 );
-				self->message = nullptr;
+				self->message = NULL;
 				self->client->ps.eFlags &= ~EF_FORCE_VISIBLE;	//remove sight flag
 				G_Sound( player, G_SoundIndex( "sound/weapons/key_pkup.wav" ) );
 			}

@@ -207,8 +207,8 @@ void CG_SurfaceExplosion( vec3_t origin, vec3_t normal, float radius, float shak
 		dscale = -scale*0.5;
 
 		particle = FX_AddTrail( origin,
-								nullptr,
-								nullptr,
+								NULL,
+								NULL,
 								32.0f,
 								-64.0f,
 								scale,
@@ -219,7 +219,7 @@ void CG_SurfaceExplosion( vec3_t origin, vec3_t normal, float radius, float shak
 								4000.0f,
 								cgs.media.sparkShader,
 								rand() & FXF_BOUNCE);
-		if ( particle == nullptr )
+		if ( particle == NULL )
 			return;
 
 		FXE_Spray( normal, 500, 150, 1.0f, 768 + (rand() & 255), (FXPrimitive *) particle );
@@ -237,7 +237,7 @@ void CG_SurfaceExplosion( vec3_t origin, vec3_t normal, float radius, float shak
 
 		FX_AddSprite(	temp_org,
 						temp_vel,
-						nullptr,
+						NULL,
 						64.0f + (Q_flrand(0.0f, 1.0f) * 32.0f),
 						16.0f,
 						1.0f,
@@ -274,7 +274,7 @@ void CG_SurfaceExplosion( vec3_t origin, vec3_t normal, float radius, float shak
 	if ( smoke )
 	{
 		VectorMA( origin, -8, normal, temp_org );
-//		FX_AddSpawner( temp_org, normal, nullptr, nullptr, 100, Q_flrand(0.0f, 1.0f)*25.0f, 5000.0f, (void *) CG_SmokeSpawn );
+//		FX_AddSpawner( temp_org, normal, NULL, NULL, 100, Q_flrand(0.0f, 1.0f)*25.0f, 5000.0f, (void *) CG_SmokeSpawn );
 
 		//Impact mark
 		//FIXME: Replace mark
@@ -295,7 +295,7 @@ void CG_MiscModelExplosion( vec3_t mins, vec3_t maxs, int size, material_t chunk
 	int		ct = 13;
 	float	r;
 	vec3_t	org, mid, dir;
-	char	*effect = nullptr, *effect2 = nullptr;
+	char	*effect = NULL, *effect2 = NULL;
 
 	VectorAdd( mins, maxs, mid );
 	VectorScale( mid, 0.5f, mid );
@@ -420,7 +420,7 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 	{
 		if ( cgs.sound_precache[customSound] )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgs.sound_precache[customSound] );
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.sound_precache[customSound] );
 		}
 	}
 	// Set up our chunk sound info...breaking sounds are done here so they are done once on breaking..some return instantly because the chunks are done with effects instead of models
@@ -429,21 +429,21 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 	case MAT_GLASS:
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgs.media.glassChunkSound );
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.glassChunkSound );
 		}
 		return;
 		break;
 	case MAT_GRATE1:
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgs.media.grateSound );
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.grateSound );
 		}
 		return;
 		break;
 	case MAT_ELECTRICAL:// (sparks)
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgi_S_RegisterSound (va("sound/ambience/spark%d.wav", Q_irand(1, 6))) );
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgi_S_RegisterSound (va("sound/ambience/spark%d.wav", Q_irand(1, 6))) );
 		}
 		return;
 		break;
@@ -453,7 +453,7 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 	case MAT_WHITE_METAL:  // not quite sure what this stuff is supposed to be...it's for Stu
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgs.media.rockBreakSound );
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.rockBreakSound );
 			bounce = LEBS_ROCK;
 		}
 		speedMod = 0.5f; // rock blows up less
@@ -461,7 +461,7 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 	case MAT_GLASS_METAL:
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgs.media.glassChunkSound ); // FIXME: should probably have a custom sound
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.glassChunkSound ); // FIXME: should probably have a custom sound
 			bounce = LEBS_METAL;
 		}
 		break;
@@ -469,7 +469,7 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 	case MAT_CRATE2:
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgs.media.crateBreakSound[Q_irand(0,1)] );
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.crateBreakSound[Q_irand(0,1)] );
 		}
 		break;
 	case MAT_METAL:
@@ -478,7 +478,7 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 	case MAT_ELEC_METAL:// FIXME: maybe have its own sound?
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgs.media.chunkSound );
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.chunkSound );
 			bounce = LEBS_METAL;
 		}
 		speedMod = 0.8f; // metal blows up a bit more
@@ -487,7 +487,7 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 		/*
 		if ( !customSound )
 		{
-			cgi_S_StartSound( nullptr, owner, CHAN_BODY, cgi_S_RegisterSound( "" ));  FIXME:  needs a sound
+			cgi_S_StartSound( NULL, owner, CHAN_BODY, cgi_S_RegisterSound( "" ));  FIXME:  needs a sound
 		}
 		*/
 		return;
@@ -740,7 +740,7 @@ static void CG_CalcBiLerp( vec3_t verts[4], vec3_t subVerts[4], vec2_t uv[4] )
 	VectorMA( temp,			uv[3][1],			subVerts[3], subVerts[3] );
 }
 // bilinear
-//f(p',q') = (1 - y) ï¿½ {[(1 - x) ï¿½ f(p,q)] + [x ï¿½ f(p,q+1)]} + y ï¿½ {[(1 - x) ï¿½ f(p+1,q)] + [x ï¿½ f(p+1,q+1)]}.
+//f(p',q') = (1 - y) × {[(1 - x) × f(p,q)] + [x × f(p,q+1)]} + y × {[(1 - x) × f(p+1,q)] + [x × f(p+1,q+1)]}.
 
 
 static void CG_CalcHeightWidth( vec3_t verts[4], float *height, float *width )

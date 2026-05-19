@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __OBJECTIVES_H__
+#define __OBJECTIVES_H__
 
 // mission Objectives
 
@@ -358,4 +359,5 @@ stringID_table_t statusTextTable [] =
 #endif// #ifndef G_OBJECTIVES_CPP
 
 
+#endif// #ifndef __OBJECTIVES_H__
 

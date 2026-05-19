@@ -19,10 +19,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 //B_local.h
 //re-added by MCG
+#ifndef __B_LOCAL_H__
+#define __B_LOCAL_H__
 
 #include "g_local.h"
 #include "say.h"
@@ -361,3 +362,4 @@ typedef struct navInfo_s
 
 
 
+#endif

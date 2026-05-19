@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __CM_PUBLIC_H__
+#define __CM_PUBLIC_H__
 
 #include "qfiles.h"
 
@@ -82,3 +83,4 @@ int	CM_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projecti
 // cm_patch.c
 void CM_DrawDebugSurface( void (*drawPoly)(int color, int numPoints, float *points) );
 
+#endif //__CM_PUBLIC_H__

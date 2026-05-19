@@ -73,8 +73,8 @@ template <class T>
 class list_base : public ratl_base
 {
 public:
-	using TStorageTraits = typename T;
-	using TTValue = typename T::TValue;
+	typedef typename T TStorageTraits;
+	typedef typename T::TValue TTValue;
     ////////////////////////////////////////////////////////////////////////////////////
 	// Capacity Enum
     ////////////////////////////////////////////////////////////////////////////////////
@@ -727,8 +727,8 @@ template<class T, int ARG_CAPACITY>
 class list_vs : public list_base<storage::value_semantics_node<T,ARG_CAPACITY,list_node> >
 {
 public:
-	using TStorageTraits = typename storage::value_semantics_node<T,ARG_CAPACITY,list_node>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::value_semantics_node<T,ARG_CAPACITY,list_node> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	list_vs() {}
 };
@@ -737,8 +737,8 @@ template<class T, int ARG_CAPACITY>
 class list_os : public list_base<storage::object_semantics_node<T,ARG_CAPACITY,list_node> >
 {
 public:
-	using TStorageTraits = typename storage::object_semantics_node<T,ARG_CAPACITY,list_node>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::object_semantics_node<T,ARG_CAPACITY,list_node> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	list_os() {}
 };
@@ -747,8 +747,8 @@ template<class T, int ARG_CAPACITY, int ARG_MAX_CLASS_SIZE>
 class list_is : public list_base<storage::virtual_semantics_node<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE,list_node> >
 {
 public:
-	using TStorageTraits = typename storage::virtual_semantics_node<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE,list_node>;
-	using TTValue = typename TStorageTraits::TValue;
+	typedef typename storage::virtual_semantics_node<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE,list_node> TStorageTraits;
+	typedef typename TStorageTraits::TValue TTValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	static const int MAX_CLASS_SIZE	= ARG_MAX_CLASS_SIZE;
 	list_is() {}

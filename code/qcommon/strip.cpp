@@ -104,7 +104,7 @@ protected:
 	char			*Reference;
 
 public:
-					cStringPackage(const char *in, unsigned char initID = 0, char *initDescription = nullptr, char *initReference = nullptr);
+					cStringPackage(const char *in, unsigned char initID = 0, char *initDescription = NULL, char *initReference = NULL);
 	virtual			~cStringPackage(void);
 
 	void			Register(unsigned char newRegistration) { Registration |= newRegistration; }
@@ -134,7 +134,7 @@ private:
 	std::map<std::string, int>	ReferenceTable;
 
 public:
-					cStringPackageSingle(const char *in, unsigned char initID = 0, char *initReference = nullptr);
+					cStringPackageSingle(const char *in, unsigned char initID = 0, char *initReference = NULL);
 					~cStringPackageSingle(void);
 
 	cStringsSingle	*FindString(int index) { return &Strings[index]; }
@@ -436,7 +436,7 @@ void GetLine(char *&Data, int &Size, int &token, char *&data)
 cStrings::cStrings(unsigned int initFlags, char *initReference)
 {
 	Flags = initFlags;
-	Reference = nullptr;
+	Reference = NULL;
 
 	SetReference(initReference);
 }
@@ -469,7 +469,7 @@ void cStrings::Clear(void)
 	if (Reference)
 	{
 		delete Reference;
-		Reference = nullptr;
+		Reference = NULL;
 	}
 }
 
@@ -492,7 +492,7 @@ void cStrings::SetReference(char *newReference)
 	if (Reference)
 	{
 		delete Reference;
-		Reference = nullptr;
+		Reference = NULL;
 	}
 
 	if (!newReference || !newReference[0])
@@ -586,7 +586,7 @@ bool cStrings::Load(char *&Data, int &Size )
 cStringsSingle::cStringsSingle(unsigned int initFlags, char *initReference)
 :cStrings(initFlags, initReference)
 {
-	Text = nullptr;
+	Text = NULL;
 }
 
 cStringsSingle::~cStringsSingle()
@@ -601,7 +601,7 @@ void cStringsSingle::Clear(void)
 	if (Text)
 	{
 		delete Text;
-		Text = nullptr;
+		Text = NULL;
 	}
 }
 
@@ -613,7 +613,7 @@ void cStringsSingle::SetText(const char *newText)
 	if (Text)
 	{
 		delete Text;
-		Text = nullptr;
+		Text = NULL;
 	}
 
 	if (!newText || !newText[0])
@@ -649,63 +649,63 @@ static void FixIllegalChars(char *psText)
 	char *p;
 
 //	strXLS_Speech.Replace(va("%c",0x92),va("%c",0x27));	// "'"
-	while ((p=strchr(psText,0x92))!=nullptr)  // "rich" (and illegal) apostrophe
+	while ((p=strchr(psText,0x92))!=NULL)  // "rich" (and illegal) apostrophe
 	{
 		*p = 0x27;
 	}
 
 //	strXLS_Speech.Replace(va("%c",0x93),"\"");			// smart quotes -> '"'
-	while ((p=strchr(psText,0x93))!=nullptr)  // "rich" (and illegal) apostrophe
+	while ((p=strchr(psText,0x93))!=NULL)  // "rich" (and illegal) apostrophe
 	{
 		*p = '"';
 	}
 
 //	strXLS_Speech.Replace(va("%c",0x94),"\"");			// smart quotes -> '"'
-	while ((p=strchr(psText,0x94))!=nullptr)  // "rich" (and illegal) apostrophe
+	while ((p=strchr(psText,0x94))!=NULL)  // "rich" (and illegal) apostrophe
 	{
 		*p = '"';
 	}
 
 //	strXLS_Speech.Replace(va("%c",0x0B),".");			// full stop
-	while ((p=strchr(psText,0x0B))!=nullptr)  // "rich" (and illegal) apostrophe
+	while ((p=strchr(psText,0x0B))!=NULL)  // "rich" (and illegal) apostrophe
 	{
 		*p = '.';
 	}
 
 //	strXLS_Speech.Replace(va("%c",0x85),"...");			// "..."-char ->  3-char "..."
-	while ((p=strchr(psText,0x85))!=nullptr)  // "rich" (and illegal) apostrophe
+	while ((p=strchr(psText,0x85))!=NULL)  // "rich" (and illegal) apostrophe
 	{
 		*p = '.';	// can't do in-string replace of "." with "...", so just forget it
 	}
 
 //	strXLS_Speech.Replace(va("%c",0x91),va("%c",0x27));	// "'"
-	while ((p=strchr(psText,0x91))!=nullptr)  // "rich" (and illegal) apostrophe
+	while ((p=strchr(psText,0x91))!=NULL)  // "rich" (and illegal) apostrophe
 	{
 		*p = 0x27;
 	}
 
 //	strXLS_Speech.Replace(va("%c",0x96),va("%c",0x2D));	// "-"
-	while ((p=strchr(psText,0x96))!=nullptr)
+	while ((p=strchr(psText,0x96))!=NULL)
 	{
 		*p = 0x2D;
 	}
 
 //	strXLS_Speech.Replace(va("%c",0x97),va("%c",0x2D));	// "-"
-	while ((p=strchr(psText,0x97))!=nullptr)
+	while ((p=strchr(psText,0x97))!=NULL)
 	{
 		*p = 0x2D;
 	}
 
 	// bug fix for picky grammatical errors, replace "?." with "? "
 	//
-	while ((p=strstr(psText,"?."))!=nullptr)
+	while ((p=strstr(psText,"?."))!=NULL)
 	{
 		p[1] = ' ';
 	}
 
 	// StripEd and our print code don't support tabs...
 	//
-	while ((p=strchr(psText,0x09))!=nullptr)
+	while ((p=strchr(psText,0x09))!=NULL)
 	{
 		*p = ' ';
 	}
@@ -719,7 +719,7 @@ static void FixIllegalChars(char *psText)
 
 		for (size_t i=0; i<sizeof(cReplace); i+=2)
 		{
-			while ((p=strchr(psText,cReplace[i]))!=nullptr)
+			while ((p=strchr(psText,cReplace[i]))!=NULL)
 				*p = cReplace[i+1];
 		}
 	}
@@ -773,7 +773,7 @@ cStringPackage::cStringPackage(const char *in, unsigned char initID, char *initD
 	ID = initID;
 	Registration = 0;
 	name = in;
-	Reference = nullptr;
+	Reference = NULL;
 
 	SetReference(initReference);
 }
@@ -783,7 +783,7 @@ cStringPackage::~cStringPackage(void)
 	if (Reference)
 	{
 		delete Reference;
-		Reference = nullptr;
+		Reference = NULL;
 	}
 }
 
@@ -792,7 +792,7 @@ void cStringPackage::SetReference(char *newReference)
 	if (Reference)
 	{
 		delete Reference;
-		Reference = nullptr;
+		Reference = NULL;
 	}
 
 	if (!newReference || !newReference[0])
@@ -898,7 +898,7 @@ cStringsSingle *cStringPackageSingle::FindString(char *ReferenceLookup)
 	index = FindStringID(ReferenceLookup);
 	if (index == -1)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	return FindString(index & SP_STRING);
@@ -1114,7 +1114,7 @@ cStringsSingle *JK2SP_GetString(unsigned short ID)
 	if (i == JK2SP_ListByID.end())
 	{
 		Com_Error(ERR_DROP, "String package not registered for ID %04x", ID);
-		return nullptr;
+		return NULL;
 	}
 
 	sp = (*i).second;
@@ -1134,7 +1134,7 @@ cStringsSingle *JK2SP_GetString(const char *Reference)
 	index = JK2SP_GetStringID(Reference);
 	if (index == -1)
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	return JK2SP_GetString(index);
@@ -1152,7 +1152,7 @@ const char *JK2SP_GetReferenceText(unsigned short ID, const char *&psPackageName
 	if (i == JK2SP_ListByID.end())
 	{
 		assert(0);
-		return nullptr;
+		return NULL;
 	}
 
 	cStringsSingle *string;
@@ -1163,7 +1163,7 @@ const char *JK2SP_GetReferenceText(unsigned short ID, const char *&psPackageName
 	if (!string)
 	{
 		assert(0);
-		return nullptr;
+		return NULL;
 	}
 
 	psPackageName = sp->GetName();

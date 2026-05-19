@@ -589,7 +589,7 @@ void CFxScheduler::AddPrimitiveToEffect( SEffectTemplate *fx, CPrimitiveTemplate
 //
 // Input:
 //	pointer to an id that will be filled in,
-//	file name-- should be nullptr when requesting a copy
+//	file name-- should be NULL when requesting a copy
 //
 // Return:
 //	the id of the added effect template
@@ -675,7 +675,7 @@ SEffectTemplate *CFxScheduler::GetEffectCopy( int fxHandle, int *newHandle )
 	}
 
 	// Copies shouldn't have names, otherwise they could trash our stl map used for getting ID from name
-	SEffectTemplate *copy = GetNewEffectTemplate( newHandle, nullptr );
+	SEffectTemplate *copy = GetNewEffectTemplate( newHandle, NULL );
 
 	if ( copy && *newHandle )
 	{
@@ -707,7 +707,7 @@ CPrimitiveTemplate *CFxScheduler::GetPrimitiveCopy( SEffectTemplate *effectCopy,
 {
 	if ( !effectCopy || !effectCopy->mInUse )
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	for ( int i = 0; i < effectCopy->mPrimitiveCount; i++ )
@@ -720,7 +720,7 @@ CPrimitiveTemplate *CFxScheduler::GetPrimitiveCopy( SEffectTemplate *effectCopy,
 	}
 
 	// bah, no good.
-	return nullptr;
+	return NULL;
 }
 
 //------------------------------------------------------
@@ -903,7 +903,7 @@ void CFxScheduler::PlayEffect( const char *file, int clientID, bool isPortal )
 			{
 				SScheduledEffect		*sfx = mScheduledEffectsPool.Alloc();
 
-				if ( sfx == nullptr )
+				if ( sfx == NULL )
 				{
 					Com_Error (ERR_DROP, "ERROR: Failed to allocate EFX from memory pool.");
 					return;
@@ -1046,7 +1046,7 @@ void CFxScheduler::CreateEffect( CPrimitiveTemplate *fx, int clientID, int delay
 		else
 		{
 			// bolted sounds actually play on the client....
-			theFxHelper.PlaySound( nullptr, clientID, CHAN_WEAPON, fx->mMediaHandles.GetHandle() );
+			theFxHelper.PlaySound( NULL, clientID, CHAN_WEAPON, fx->mMediaHandles.GetHandle() );
 		}
 		break;
 	//---------
@@ -1215,7 +1215,7 @@ void CFxScheduler::PlayEffect( int id, vec3_t origin, vec3_t axis[3], const int 
 			{
 				SScheduledEffect		*sfx = mScheduledEffectsPool.Alloc();
 
-				if ( sfx == nullptr )
+				if ( sfx == NULL )
 				{
 					Com_Error (ERR_DROP, "ERROR: Failed to allocate EFX from memory pool.");
 					return;
@@ -1635,7 +1635,7 @@ void CFxScheduler::CreateEffect( CPrimitiveTemplate *fx, const vec3_t origin, ve
 				}
 			}
 
-			theFxHelper.Trace( &tr, org, nullptr, nullptr, temp, -1, CONTENTS_SOLID | CONTENTS_SHOTCLIP );//MASK_SHOT );
+			theFxHelper.Trace( &tr, org, NULL, NULL, temp, -1, CONTENTS_SOLID | CONTENTS_SHOTCLIP );//MASK_SHOT );
 
 			if ( tr.startsolid || tr.allsolid )
 			{
@@ -1804,14 +1804,14 @@ void CFxScheduler::CreateEffect( CPrimitiveTemplate *fx, const vec3_t origin, ve
 
 			VectorMA(org, 64, ax[0], end);
 
-			theFxHelper.G2Trace(&tr, org, nullptr, nullptr, end, ENTITYNUM_NONE, MASK_PLAYERSOLID);
+			theFxHelper.G2Trace(&tr, org, NULL, NULL, end, ENTITYNUM_NONE, MASK_PLAYERSOLID);
 
 			if (tr.entityNum < ENTITYNUM_WORLD &&
 				g_entities[tr.entityNum].ghoul2.size())
 			{
 				gentity_t *ent = &g_entities[tr.entityNum];
 
-				if ( ent != nullptr )
+				if ( ent != NULL )
 				{
 					vec3_t entOrg, hitDir;
 					float entYaw;

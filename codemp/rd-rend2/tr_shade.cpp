@@ -286,12 +286,12 @@ static void ComputeShaderColors( shaderStage_t *pStage, vec4_t baseColor, vec4_t
    	vertColor[2] =
    	vertColor[3] = 0.0f;
 
-	if ( forceRGBGen != nullptr && *forceRGBGen != CGEN_BAD )
+	if ( forceRGBGen != NULL && *forceRGBGen != CGEN_BAD )
 	{
 		rgbGen = *forceRGBGen;
 	}
 
-	if ( forceAlphaGen != nullptr && *forceAlphaGen != AGEN_IDENTITY )
+	if ( forceAlphaGen != NULL && *forceAlphaGen != AGEN_IDENTITY )
 	{
 		alphaGen = *forceAlphaGen;
 	}
@@ -451,12 +451,12 @@ static void ComputeShaderColors( shaderStage_t *pStage, vec4_t baseColor, vec4_t
 			break;
 	}
 
-	if ( forceAlphaGen != nullptr )
+	if ( forceAlphaGen != NULL )
 	{
 		*forceAlphaGen = alphaGen;
 	}
 
-	if ( forceRGBGen != nullptr )
+	if ( forceRGBGen != NULL )
 	{
 		*forceRGBGen = rgbGen;
 	}
@@ -1525,7 +1525,7 @@ static void RB_IterateStagesGeneric( shaderCommands_t *input, const VertexArrays
 				vertColor[3] = 0.0f;
 			}
 
-			if (backEnd.currentEntity->e.hModel != 0)
+			if (backEnd.currentEntity->e.hModel != NULL)
 			{
 				model_t *model = R_GetModelByHandle(backEnd.currentEntity->e.hModel);
 				if (model->type != MOD_BRUSH)

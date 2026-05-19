@@ -196,7 +196,7 @@ void WP_Explode( gentity_t *self )
 //	VectorCopy( self->currentOrigin, self->s.pos.trBase );
 	if ( !self->client )
 	{
-	AngleVectors( self->s.angles, forwardVec, nullptr, nullptr );
+	AngleVectors( self->s.angles, forwardVec, NULL, NULL );
 	}
 
 	if ( self->fxID > 0 )
@@ -266,7 +266,7 @@ int G_GetHitLocFromTrace( trace_t *trace, int mod )
 		CCollisionRecord &coll = trace->G2CollisionMap[i];
 		if ( (coll.mFlags & G2_FRONTFACE) )
 		{
-			G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &hitLoc, coll.mCollisionPosition, nullptr, nullptr, mod );
+			G_GetHitLocFromSurfName( &g_entities[coll.mEntityNum], gi.G2API_GetSurfaceName( &g_entities[coll.mEntityNum].ghoul2[coll.mModelIndex], coll.mSurfaceIndex ), &hitLoc, coll.mCollisionPosition, NULL, NULL, mod );
 			//we only want the first "entrance wound", so break
 			break;
 		}
@@ -284,7 +284,7 @@ void AddLeanOfs(const gentity_t *const ent, vec3_t point)
 		{
 			vec3_t	right;
 			//add leaning offset
-			AngleVectors(ent->client->ps.viewangles, nullptr, right, nullptr);
+			AngleVectors(ent->client->ps.viewangles, NULL, right, NULL);
 			VectorMA(point, (float)ent->client->ps.leanofs, right, point);
 		}
 	}
@@ -300,7 +300,7 @@ void SubtractLeanOfs(const gentity_t *const ent, vec3_t point)
 		{
 			vec3_t	right;
 			//add leaning offset
-			AngleVectors( ent->client->ps.viewangles, nullptr, right, nullptr );
+			AngleVectors( ent->client->ps.viewangles, NULL, right, NULL );
 			VectorMA( point, ent->client->ps.leanofs*-1, right, point );
 		}
 	}
@@ -498,7 +498,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t forwardVec, vec3_t right, vec
 		break;
 
 	case WP_SABER:
-		if(ent->NPC!=nullptr &&
+		if(ent->NPC!=NULL &&
 			(ent->client->ps.torsoAnim == TORSO_WEAPONREADY2 ||
 			ent->client->ps.torsoAnim == BOTH_ATTACK2))//Sniper pose
 		{
@@ -524,7 +524,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t forwardVec, vec3_t right, vec
 			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel,
 						ent->handLBolt,
 						&boltMatrix, ent->s.angles, ent->s.origin, (cg.time?cg.time:level.time),
-						nullptr, ent->s.modelScale );
+						NULL, ent->s.modelScale );
 		}
 		else
 		{
@@ -532,7 +532,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t forwardVec, vec3_t right, vec
 			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel,
 						ent->handRBolt,
 						&boltMatrix, ent->s.angles, ent->s.origin, (cg.time?cg.time:level.time),
-						nullptr, ent->s.modelScale );
+						NULL, ent->s.modelScale );
 		}
 
 		gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, org );
@@ -580,7 +580,7 @@ void WP_RocketLock( gentity_t *ent, float lockDist )
 
 	AngleVectors( ent->client->ps.viewangles, forwardVec, right, up );
 
-	AngleVectors(ent->client->ps.viewangles, ang, nullptr, nullptr);
+	AngleVectors(ent->client->ps.viewangles, ang, NULL, NULL);
 
 	VectorCopy( ent->client->ps.origin, muzzlePoint );
 	VectorCopy(WP_MuzzlePoint[WP_ROCKET_LAUNCHER], muzzleOffPoint);
@@ -593,7 +593,7 @@ void WP_RocketLock( gentity_t *ent, float lockDist )
 	ang[1] = muzzlePoint[1] + ang[1]*lockDist;
 	ang[2] = muzzlePoint[2] + ang[2]*lockDist;
 
-	gi.trace(&tr, muzzlePoint, nullptr, nullptr, ang, ent->client->ps.clientNum, MASK_PLAYERSOLID, (EG2_Collision)0, 0);
+	gi.trace(&tr, muzzlePoint, NULL, NULL, ang, ent->client->ps.clientNum, MASK_PLAYERSOLID, (EG2_Collision)0, 0);
 
 	if (tr.fraction != 1 && tr.entityNum < ENTITYNUM_NONE && tr.entityNum != ent->client->ps.clientNum)
 	{
@@ -1035,7 +1035,7 @@ void FireVehicleWeapon( gentity_t *ent, qboolean alt_fire )
 							{
 								VectorCopy(pVeh->m_vOrientation, ang);
 							}
-							AngleVectors( ang, fixedDir, nullptr, nullptr );
+							AngleVectors( ang, fixedDir, NULL, NULL );
 							//VectorMA( ent->currentOrigin, 32768, dir, end );
 							VectorMA( ent->currentOrigin, 8192, dir, end );
 							gi.trace( &trace, ent->currentOrigin, vec3_origin, vec3_origin, end, ent->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
@@ -1129,7 +1129,7 @@ void WP_FireScepter( gentity_t *ent, qboolean alt_fire )
 	int			damage = 1;
 	vec3_t		start, end;
 	trace_t		tr;
-	gentity_t	*traceEnt = nullptr, *tent;
+	gentity_t	*traceEnt = NULL, *tent;
 	float		shotRange = 8192;
 	qboolean	render_impact = qtrue;
 
@@ -1139,7 +1139,7 @@ void WP_FireScepter( gentity_t *ent, qboolean alt_fire )
 	WP_MissileTargetHint(ent, start, forwardVec);
 	VectorMA( start, shotRange, forwardVec, end );
 
-	gi.trace( &tr, start, nullptr, nullptr, end, ent->s.number, MASK_SHOT, G2_RETURNONHIT, 10 );
+	gi.trace( &tr, start, NULL, NULL, end, ent->s.number, MASK_SHOT, G2_RETURNONHIT, 10 );
 	traceEnt = &g_entities[tr.entityNum];
 
 	if ( tr.surfaceFlags & SURF_NOIMPACT )
@@ -1188,7 +1188,7 @@ void FireWeapon( gentity_t *ent, qboolean alt_fire )
 //---------------------------------------------------------
 {
 	float alert = 256;
-	Vehicle_t *pVeh = nullptr;
+	Vehicle_t *pVeh = NULL;
 
 	// track shots taken for accuracy tracking.
 	ent->client->ps.persistant[PERS_ACCURACY_SHOTS]++;
@@ -1258,7 +1258,7 @@ void FireWeapon( gentity_t *ent, qboolean alt_fire )
 			{
 				yawOnlyAngles[YAW] = ent->client->ps.legsYaw;
 			}
-			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel, bolt, &boltMatrix, yawOnlyAngles, ent->currentOrigin, (cg.time?cg.time:level.time), nullptr, ent->s.modelScale );
+			gi.G2API_GetBoltMatrix( ent->ghoul2, ent->playerModel, bolt, &boltMatrix, yawOnlyAngles, ent->currentOrigin, (cg.time?cg.time:level.time), NULL, ent->s.modelScale );
 
 			// work the matrix axis stuff into the original axis and origins used.
 			gi.G2API_GiveMeVectorFromMatrix( boltMatrix, ORIGIN, ent->client->renderInfo.muzzlePoint );
@@ -1297,7 +1297,7 @@ void FireWeapon( gentity_t *ent, qboolean alt_fire )
 	}
 	else
 	{
-  		if ( (pVeh = G_IsRidingVehicle( ent )) != nullptr) //riding a vehicle
+  		if ( (pVeh = G_IsRidingVehicle( ent )) != NULL) //riding a vehicle
 		{//use our muzzleDir, can't use viewangles or vehicle m_vOrientation because we may be animated to shoot left or right...
 			if ((ent->s.eFlags&EF_NODRAW))//we're inside it
 			{
@@ -1641,7 +1641,7 @@ void misc_weapon_shooter_aim( gentity_t *self )
 	//update my aim
 	if ( self->target )
 	{
-		gentity_t *targ = G_Find( nullptr, FOFS(targetname), self->target );
+		gentity_t *targ = G_Find( NULL, FOFS(targetname), self->target );
 		if ( targ )
 		{
 			self->enemy = targ;
@@ -1654,7 +1654,7 @@ void misc_weapon_shooter_aim( gentity_t *self )
 		}
 		else
 		{
-			self->enemy = nullptr;
+			self->enemy = NULL;
 		}
 	}
 }
@@ -1686,7 +1686,7 @@ void SP_misc_weapon_shooter( gentity_t *self )
 	else
 	{//just set aim angles
 		VectorCopy( self->s.angles, self->client->ps.viewangles );
-		AngleVectors( self->s.angles, self->client->renderInfo.muzzleDir, nullptr, nullptr );
+		AngleVectors( self->s.angles, self->client->renderInfo.muzzleDir, NULL, NULL );
 	}
 
 	//set up to fire when used

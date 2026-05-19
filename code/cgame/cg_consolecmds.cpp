@@ -138,13 +138,13 @@ void CG_ToggleBinoculars( void )
 			cg_zoomFov = cg_fov.value;
 		}
 
-		cgi_S_StartSound( nullptr, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomStart );
+		cgi_S_StartSound( NULL, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomStart );
 	}
 	else
 	{
 		cg.zoomMode = 0;
 		cg.zoomTime = cg.time;
-		cgi_S_StartSound( nullptr, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomEnd );
+		cgi_S_StartSound( NULL, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomEnd );
 
 		if( cg.weaponSelect == WP_NONE && cg.snap->ps.stats[STAT_WEAPONS] & ( 1 << WP_SABER ) )
 		{
@@ -186,13 +186,13 @@ void CG_ToggleLAGoggles( void )
 			cg_zoomFov = cg_fov.value; // does not zoom!!
 		}
 
-		cgi_S_StartSound( nullptr, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomStart );
+		cgi_S_StartSound( NULL, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomStart );
 	}
 	else
 	{
 		cg.zoomMode = 0;
 		cg.zoomTime = cg.time;
-		cgi_S_StartSound( nullptr, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomEnd );
+		cgi_S_StartSound( NULL, cg.snap->ps.clientNum, CHAN_AUTO, cgs.media.zoomEnd );
 	}
 }
 
@@ -265,7 +265,7 @@ Cmd_Argc() / Cmd_Argv()
 =================
 */
 qboolean CG_ConsoleCommand( void ) {
-	consoleCommand_t	*command = nullptr;
+	consoleCommand_t	*command = NULL;
 
 	command = (consoleCommand_t *)Q_LinearSearch( CG_Argv( 0 ), commands, numCommands, sizeof( commands[0] ), cmdcmp );
 

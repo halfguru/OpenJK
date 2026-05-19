@@ -244,7 +244,7 @@ PFNGLGETQUERYOBJECTUI64VPROC qglGetQueryObjectui64v;
 static qboolean GLimp_HaveExtension(const char *ext)
 {
 	const char *ptr = Q_stristr( glConfigExt.originalExtensionString, ext );
-	if (ptr == nullptr)
+	if (ptr == NULL)
 		return qfalse;
 	ptr += strlen(ext);
 	return (qboolean)((*ptr == ' ') || (*ptr == '\0'));  // verify it's complete string.
@@ -254,7 +254,7 @@ template<typename GLFuncType>
 static qboolean GetGLFunction ( GLFuncType& glFunction, const char *glFunctionString, qboolean errorOnFailure )
 {
 	glFunction = (GLFuncType)GL_GetProcAddress (glFunctionString);
-	if ( glFunction == nullptr )
+	if ( glFunction == NULL )
 	{
 		if ( errorOnFailure )
 		{
@@ -687,6 +687,6 @@ void GLimp_InitExtensions()
 	if ( glRefConfig.debugContext )
 	{
 		qglEnable( GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB );
-		qglDebugMessageCallbackARB(GLimp_OnError, nullptr);
+		qglDebugMessageCallbackARB(GLimp_OnError, NULL);
 	}
 }

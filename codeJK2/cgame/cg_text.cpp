@@ -45,7 +45,7 @@ extern vec4_t textcolor_scroll;
 
 
 // display text in a supplied box, start at top left and going down by however many pixels I feel like internally,
-//	return value is nullptr if all fitted, else char * of next char to continue from that didn't fit.
+//	return value is NULL if all fitted, else char * of next char to continue from that didn't fit.
 //
 // (coords are in the usual 640x480 virtual space)...
 //
@@ -454,7 +454,7 @@ void CG_DrawCaptionText(void)
 		}
 	}
 
-	cgi_R_SetColor( nullptr );
+	cgi_R_SetColor( NULL );
 }
 
 /*
@@ -479,7 +479,7 @@ void CG_ScrollText( const char *str, int iPixelWidth )
 
 	// first, ask the strlen of the final string...
 	//
-	i = cgi_SP_GetStringTextString( str, nullptr, 0 );
+	i = cgi_SP_GetStringTextString( str, NULL, 0 );
 
 	//ensure we found a match
 	if (!i)
@@ -646,7 +646,7 @@ void CG_DrawScrollText(void)
 		}
 	}
 
-	cgi_R_SetColor( nullptr );
+	cgi_R_SetColor( NULL );
 }
 
 

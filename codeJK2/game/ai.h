@@ -19,8 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __AI__
+#define __AI__
 
 //Distance ratings
 enum distance_e
@@ -209,3 +210,4 @@ void AI_GetGroup( gentity_t *self );
 qboolean AI_CheckEnemyCollision( gentity_t *ent, qboolean takeEnemy = qtrue );
 gentity_t *AI_DistributeAttack( gentity_t *attacker, gentity_t *enemy, team_t team, int threshold );
 
+#endif	//__AI__

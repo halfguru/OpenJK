@@ -48,7 +48,7 @@ inline CBlockMember::CBlockMember( void )
 {
 	m_id = -1;
 	m_size = -1;
-	m_data = nullptr;
+	m_data = NULL;
 }
 
 inline CBlockMember::~CBlockMember( void )
@@ -63,10 +63,10 @@ Free
 
 void CBlockMember::Free(IGameInterface* game)
 {
-	if ( m_data != nullptr )
+	if ( m_data != NULL )
 	{
 		game->Free ( m_data );
-		m_data = nullptr;
+		m_data = NULL;
 
 		m_id = m_size = -1;
 	}
@@ -177,8 +177,8 @@ CBlockMember *CBlockMember::Duplicate( CIcarus* icarus )
 {
 	CBlockMember	*newblock = new CBlockMember;
 
-	if ( newblock == nullptr )
-		return nullptr;
+	if ( newblock == NULL )
+		return NULL;
 
 	newblock->SetData( m_data, m_size, icarus );
 	newblock->SetSize( m_size );
@@ -349,7 +349,7 @@ CBlockMember *CBlock::GetMember( int memberNum )
 {
 	if ( memberNum >= GetNumMembers() )
 	{
-		return nullptr;
+		return NULL;
 	}
 	return m_members[ memberNum ];
 }
@@ -364,7 +364,7 @@ void *CBlock::GetMemberData( int memberNum )
 {
 	if ( memberNum >= GetNumMembers() )
 	{
-		return nullptr;
+		return NULL;
 	}
 	return (void *) ((GetMember( memberNum ))->GetData());
 }
@@ -382,8 +382,8 @@ CBlock *CBlock::Duplicate( CIcarus* icarus )
 
 	newblock = new CBlock;
 
-	if ( newblock == nullptr )
-		return nullptr;
+	if ( newblock == NULL )
+		return NULL;
 
 	newblock->Create( m_id );
 
@@ -404,7 +404,7 @@ CBlock *CBlock::Duplicate( CIcarus* icarus )
 ===================================================================================================
 */
 
-const int IBI_HEADER_ID_LENGTH = 4; // Length of s_IBI_HEADER_ID + 1 (for nullptr terminating byte)
+const int IBI_HEADER_ID_LENGTH = 4; // Length of s_IBI_HEADER_ID + 1 (for null terminating byte)
 char* CBlockStream::s_IBI_EXT				= ".IBI";	//(I)nterpreted (B)lock (I)nstructions
 char* CBlockStream::s_IBI_HEADER_ID			= "IBI";
 const float	CBlockStream::s_IBI_VERSION		= 1.57f;
@@ -421,7 +421,7 @@ int CBlockStream::Free( void )
 	//NOTENOTE: It is assumed that the user will free the passed memory block (m_stream) immediately after the run call
 	//			That's why this doesn't free the memory, it only clears its internal pointer
 
-	m_stream = nullptr;
+	m_stream = NULL;
 	m_streamPos = 0;
 
 	return true;
@@ -439,7 +439,7 @@ int CBlockStream::Create( char *filename )
 	COM_StripExtension( filename, m_fileName, sizeof(m_fileName) );
 	COM_DefaultExtension( m_fileName, sizeof(m_fileName), s_IBI_EXT );
 
-	if ( (m_fileHandle = fopen(m_fileName, "wb")) == nullptr )
+	if ( (m_fileHandle = fopen(m_fileName, "wb")) == NULL )
 	{
 		return false;
 	}
@@ -458,10 +458,10 @@ Init
 
 int CBlockStream::Init( void )
 {
-	m_fileHandle = nullptr;
+	m_fileHandle = NULL;
 	memset(m_fileName, 0, sizeof(m_fileName));
 
-	m_stream = nullptr;
+	m_stream = NULL;
 	m_streamPos = 0;
 
 	return true;

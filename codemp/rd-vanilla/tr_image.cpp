@@ -96,7 +96,7 @@ void GL_TextureMode( const char *string ) {
 
 	// change all the existing mipmap texture objects
 					 R_Images_StartIteration();
-	while ( (glt   = R_Images_GetNextIteration()) != nullptr)
+	while ( (glt   = R_Images_GetNextIteration()) != NULL)
 	{
 		if ( glt->mipmap ) {
 			GL_Bind (glt);
@@ -201,7 +201,7 @@ float R_SumOfUsedImages( qboolean bUseFormat )
 	image_t *pImage;
 
 					  R_Images_StartIteration();
-	while ( (pImage = R_Images_GetNextIteration()) != nullptr)
+	while ( (pImage = R_Images_GetNextIteration()) != NULL)
 	{
 		if ( pImage->frameUsed == tr.frameCount- 1 ) {//it has already been advanced for the next frame, so...
 			if (bUseFormat)
@@ -234,7 +234,7 @@ void R_ImageList_f( void ) {
 	ri.Printf( PRINT_ALL,  "\n      -w-- -h-- -mm- -if-- wrap --name-------\n");
 
 	int iNumImages = R_Images_StartIteration();
-	while ( (image = R_Images_GetNextIteration()) != nullptr)
+	while ( (image = R_Images_GetNextIteration()) != NULL)
 	{
 		texels   += image->width*image->height;
 		texBytes += image->width*image->height * R_BytesPerTex (image->internalFormat);
@@ -539,7 +539,7 @@ int R_Images_StartIteration(void)
 image_t *R_Images_GetNextIteration(void)
 {
 	if (itAllocatedImages == AllocatedImages.end())
-		return nullptr;
+		return NULL;
 
 	image_t *pImage = (*itAllocatedImages).second;
 	++itAllocatedImages;
@@ -552,7 +552,7 @@ image_t *R_Images_GetNextIteration(void)
 //
 static void R_Images_DeleteImageContents( image_t *pImage )
 {
-	assert(pImage);	// should never be called with nullptr
+	assert(pImage);	// should never be called with NULL
 	if (pImage)
 	{
 		qglDeleteTextures( 1, &pImage->texnum );
@@ -835,7 +835,7 @@ void R_Images_Clear(void)
 	image_t *pImage;
 	//	int iNumImages =
 					  R_Images_StartIteration();
-	while ( (pImage = R_Images_GetNextIteration()) != nullptr)
+	while ( (pImage = R_Images_GetNextIteration()) != NULL)
 	{
 		R_Images_DeleteImageContents(pImage);
 	}
@@ -848,12 +848,12 @@ void R_Images_Clear(void)
 
 void RE_RegisterImages_Info_f( void )
 {
-	image_t *pImage	= nullptr;
+	image_t *pImage	= NULL;
 	int iImage		= 0;
 	int iTexels		= 0;
 
 	int iNumImages	= R_Images_StartIteration();
-	while ( (pImage	= R_Images_GetNextIteration()) != nullptr)
+	while ( (pImage	= R_Images_GetNextIteration()) != NULL)
 	{
 		ri.Printf( PRINT_ALL, "%d: (%4dx%4dy) \"%s\"",iImage, pImage->width, pImage->height, pImage->imgName);
 		ri.Printf( PRINT_DEVELOPER, S_COLOR_RED ", levused %d",pImage->iLastLevelUsedOn);
@@ -924,7 +924,7 @@ qboolean RE_RegisterImages_LevelLoadEnd(void)
 
 
 
-// returns image_t struct if we already have this, else nullptr. No disk-open performed
+// returns image_t struct if we already have this, else NULL. No disk-open performed
 //	(important for creating default images).
 //
 // This is called by both R_FindImageFile and anything that creates default images...
@@ -932,7 +932,7 @@ qboolean RE_RegisterImages_LevelLoadEnd(void)
 static image_t *R_FindImageFile_NoLoad(const char *name, qboolean mipmap, qboolean allowPicmip, qboolean allowTC, int glWrapClampMode )
 {
 	if (!name) {
-		return nullptr;
+		return NULL;
 	}
 
 	char *pName = GenerateImageMappingName(name);
@@ -964,7 +964,7 @@ static image_t *R_FindImageFile_NoLoad(const char *name, qboolean mipmap, qboole
 		return pImage;
 	}
 
-	return nullptr;
+	return NULL;
 }
 
 
@@ -1077,7 +1077,7 @@ image_t *R_CreateImage( const char *name, const byte *pic, int width, int height
 R_FindImageFile
 
 Finds or loads the given image.
-Returns nullptr if it fails, not a default image.
+Returns NULL if it fails, not a default image.
 ==============
 */
 image_t	*R_FindImageFile( const char *name, qboolean mipmap, qboolean allowPicmip, qboolean allowTC, int glWrapClampMode ) {
@@ -1087,7 +1087,7 @@ image_t	*R_FindImageFile( const char *name, qboolean mipmap, qboolean allowPicmi
 
 	if (!name || ri.Cvar_VariableIntegerValue( "dedicated" ) )	// stop ghoul2 horribleness as regards image loading from server
 	{
-		return nullptr;
+		return NULL;
 	}
 
 	// need to do this here as well as in R_CreateImage, or R_FindImageFile_NoLoad() may complain about
@@ -1106,8 +1106,8 @@ image_t	*R_FindImageFile( const char *name, qboolean mipmap, qboolean allowPicmi
 	// load the pic from disk
 	//
 	R_LoadImage( name, &pic, &width, &height );
-	if ( pic == nullptr ) {                                    // if we dont get a successful load
-		return nullptr;                                        // bail
+	if ( pic == NULL ) {                                    // if we dont get a successful load
+		return NULL;                                        // bail
 	}
 
 
@@ -1116,7 +1116,7 @@ image_t	*R_FindImageFile( const char *name, qboolean mipmap, qboolean allowPicmi
 	if ( (width&(width-1)) || (height&(height-1)) )
 	{
 		ri.Printf( PRINT_ALL, "Refusing to load non-power-2-dims(%d,%d) pic \"%s\"...\n", width,height,name );
-		return nullptr;
+		return NULL;
 	}
 
 	image = R_CreateImage( ( char * ) name, pic, width, height, GL_RGBA, mipmap, allowPicmip, allowTC, glWrapClampMode );
@@ -1362,7 +1362,7 @@ void R_CreateBuiltinImages( void ) {
 		qglEnable( GL_TEXTURE_3D );
 		tr.gammaCorrectLUTImage = 1024 + giTextureBindNum++;
 		qglBindTexture(GL_TEXTURE_3D, tr.gammaCorrectLUTImage);
-		qglTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA8, 64, 64, 64, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+		qglTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA8, 64, 64, 64, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 		qglTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		qglTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		qglTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

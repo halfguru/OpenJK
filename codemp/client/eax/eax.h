@@ -8,6 +8,8 @@
 *                                                                   *
 \*******************************************************************/
 
+#ifndef EAX_H_INCLUDED
+#define EAX_H_INCLUDED
 
 #ifdef __cplusplus
 extern "C" {
@@ -19,7 +21,6 @@ extern "C" {
     /*
      * EAX Unified Interface (using Direct X 7) {4FF53B81-1CE0-11d3-AAB8-00A0C95949D5}
      */
-#pragma once
     DEFINE_GUID(CLSID_EAXDirectSound,
         0x4ff53b81,
         0x1ce0,
@@ -1562,3 +1563,4 @@ typedef struct _EAXRINGMODULATORPROPERTIES
 }
 #endif // __cplusplus
 
+#endif

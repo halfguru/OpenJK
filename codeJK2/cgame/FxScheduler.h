@@ -19,7 +19,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
 #if !defined(FX_UTIL_H_INC)
 	#include "FxUtil.h"
@@ -34,6 +33,8 @@ typedef sstring_t fxString_t;
 
 #include <algorithm>
 
+#ifndef FX_SCHEDULER_H_INC
+#define FX_SCHEDULER_H_INC
 
 #define FX_FILE_PATH	"effects"
 
@@ -643,3 +644,4 @@ public:
 extern CFxScheduler theFxScheduler;
 
 
+#endif // FX_SCHEDULER_H_INC

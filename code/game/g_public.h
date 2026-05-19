@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
-#pragma once
 
+#ifndef __G_PUBLIC_H__
+#define __G_PUBLIC_H__
 // g_public.h -- game module information visible to server
 
 #define	GAME_API_VERSION	10
@@ -440,3 +441,4 @@ typedef struct {
 
 game_export_t *GetGameApi (game_import_t *import);
 
+#endif//#ifndef __G_PUBLIC_H__
