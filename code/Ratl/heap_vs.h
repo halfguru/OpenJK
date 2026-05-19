@@ -60,8 +60,8 @@ template<class T>
 class heap_base : public ratl_base
 {
 public:
-	typedef typename T TStorageTraits;
-	typedef typename T::TValue TTValue;
+	using TStorageTraits = typename T;
+	using TTValue = typename T::TValue;
  	////////////////////////////////////////////////////////////////////////////////////
 	// Capacity Enum
     ////////////////////////////////////////////////////////////////////////////////////
@@ -303,8 +303,8 @@ template<class T, int ARG_CAPACITY>
 class heap_vs : public heap_base<storage::value_semantics<T,ARG_CAPACITY> >
 {
 public:
-	typedef typename storage::value_semantics<T,ARG_CAPACITY> TStorageTraits;
-	typedef typename TStorageTraits::TValue TTValue;
+	using TStorageTraits = typename storage::value_semantics<T,ARG_CAPACITY>;
+	using TTValue = typename TStorageTraits::TValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	heap_vs() {}
 };
@@ -313,8 +313,8 @@ template<class T, int ARG_CAPACITY>
 class heap_os : public heap_base<storage::object_semantics<T,ARG_CAPACITY> >
 {
 public:
-	typedef typename storage::object_semantics<T,ARG_CAPACITY> TStorageTraits;
-	typedef typename TStorageTraits::TValue TTValue;
+	using TStorageTraits = typename storage::object_semantics<T,ARG_CAPACITY>;
+	using TTValue = typename TStorageTraits::TValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	heap_os() {}
 };
@@ -323,8 +323,8 @@ template<class T, int ARG_CAPACITY, int ARG_MAX_CLASS_SIZE>
 class heap_is : public heap_base<storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE> >
 {
 public:
-	typedef typename storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE> TStorageTraits;
-	typedef typename TStorageTraits::TValue TTValue;
+	using TStorageTraits = typename storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE>;
+	using TTValue = typename TStorageTraits::TValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	static const int MAX_CLASS_SIZE	= ARG_MAX_CLASS_SIZE;
 	heap_is() {}

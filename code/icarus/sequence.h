@@ -28,9 +28,9 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 class CSequence
 {
 
-	typedef std::list < CSequence * >	sequence_l;
-//	typedef	map	< int, CSequence *> sequenceID_m;
-	typedef std::list < CBlock * >		block_l;
+	using sequence_l = std::list < CSequence * >;
+//	using sequenceID_m = map	< int, CSequence *>;
+	using block_l = std::list < CBlock * >;
 
 public:
 

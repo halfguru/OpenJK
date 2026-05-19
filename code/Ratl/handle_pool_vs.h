@@ -64,8 +64,8 @@ template <class T>
 class handle_pool_base : public pool_root<T>
 {
 public:
-    typedef T TStorageTraits;
-	typedef typename T::TValue TTValue;
+    using TStorageTraits = T;
+	using TTValue = typename T::TValue;
  	////////////////////////////////////////////////////////////////////////////////////
 	// Capacity Enum
     ////////////////////////////////////////////////////////////////////////////////////
@@ -270,8 +270,8 @@ template<class T, int ARG_CAPACITY>
 class handle_pool_vs : public handle_pool_base<storage::value_semantics<T,ARG_CAPACITY> >
 {
 public:
-	typedef typename storage::value_semantics<T,ARG_CAPACITY> TStorageTraits;
-	typedef typename TStorageTraits::TValue TTValue;
+	using TStorageTraits = typename storage::value_semantics<T,ARG_CAPACITY>;
+	using TTValue = typename TStorageTraits::TValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	handle_pool_vs() {}
 };
@@ -280,8 +280,8 @@ template<class T, int ARG_CAPACITY>
 class handle_pool_os : public handle_pool_base<storage::object_semantics<T,ARG_CAPACITY> >
 {
 public:
-	typedef typename storage::object_semantics<T,ARG_CAPACITY> TStorageTraits;
-	typedef typename TStorageTraits::TValue TTValue;
+	using TStorageTraits = typename storage::object_semantics<T,ARG_CAPACITY>;
+	using TTValue = typename TStorageTraits::TValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	handle_pool_os() {}
 };
@@ -290,8 +290,8 @@ template<class T, int ARG_CAPACITY, int ARG_MAX_CLASS_SIZE>
 class handle_pool_is : public handle_pool_base<storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE> >
 {
 public:
-	typedef typename storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE> TStorageTraits;
-	typedef typename TStorageTraits::TValue TTValue;
+	using TStorageTraits = typename storage::virtual_semantics<T,ARG_CAPACITY,ARG_MAX_CLASS_SIZE>;
+	using TTValue = typename TStorageTraits::TValue;
 	static const int CAPACITY		= ARG_CAPACITY;
 	static const int MAX_CLASS_SIZE	= ARG_MAX_CLASS_SIZE;
 	handle_pool_is() {}

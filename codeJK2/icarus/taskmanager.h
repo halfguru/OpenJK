@@ -83,7 +83,7 @@ class CTaskGroup
 {
 public:
 
-	typedef std::map < int, bool > taskCallback_m;
+	using taskCallback_m = std::map < int, bool >;
 
 	CTaskGroup( void );
 	~CTaskGroup( void );
@@ -117,11 +117,11 @@ public:
 class CTaskManager
 {
 
-	typedef	std::map < int, CTask * >			taskID_m;
-	typedef std::map < std::string, CTaskGroup * >	taskGroupName_m;
-	typedef std::map < int, CTaskGroup * >		taskGroupID_m;
-	typedef std::vector < CTaskGroup * >			taskGroup_v;
-	typedef std::list < CTask *>					tasks_l;
+	using taskID_m = std::map < int, CTask * >;
+	using taskGroupName_m = std::map < std::string, CTaskGroup * >;
+	using taskGroupID_m = std::map < int, CTaskGroup * >;
+	using taskGroup_v = std::vector < CTaskGroup * >;
+	using tasks_l = std::list < CTask *>;
 
 public:
 

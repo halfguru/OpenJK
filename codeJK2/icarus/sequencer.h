@@ -82,9 +82,9 @@ class ICARUS_Instance;
 
 class CSequencer
 {
-	typedef	std::map < int, CSequence * >			sequenceID_m;
-	typedef std::list < CSequence * >				sequence_l;
-	typedef std::map < CTaskGroup *, CSequence * >	taskSequence_m;
+	using sequenceID_m = std::map < int, CSequence * >;
+	using sequence_l = std::list < CSequence * >;
+	using taskSequence_m = std::map < CTaskGroup *, CSequence * >;
 
 public:
 

@@ -123,7 +123,7 @@ protected:
 
 class CBlock
 {
-	typedef std::vector< CBlockMember * >	blockMember_v;
+	using blockMember_v = std::vector< CBlockMember * >;
 
 public:
 
