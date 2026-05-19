@@ -106,7 +106,7 @@ void ResetGoreTag()
 
 GoreTextureCoordinates *FindGoreRecord(int tag)
 {
-	std::map<int,GoreTextureCoordinates>::iterator i=GoreRecords.find(tag);
+	auto i =GoreRecords.find(tag);
 	if (i!=GoreRecords.end())
 	{
 		return &(*i).second;
@@ -130,7 +130,7 @@ static std::map<int,CGoreSet *> GoreSets; // map from uuid to goreset
 
 CGoreSet *FindGoreSet(int goreSetTag)
 {
-	std::map<int,CGoreSet *>::iterator f=GoreSets.find(goreSetTag);
+	auto f =GoreSets.find(goreSetTag);
 	if (f!=GoreSets.end())
 	{
 		return (*f).second;
@@ -148,7 +148,7 @@ CGoreSet *NewGoreSet()
 
 void DeleteGoreSet(int goreSetTag)
 {
-	std::map<int,CGoreSet *>::iterator f=GoreSets.find(goreSetTag);
+	auto f =GoreSets.find(goreSetTag);
 	if (f!=GoreSets.end())
 	{
 		if ( (*f).second->mRefCount == 0 || (*f).second->mRefCount - 1 == 0 )
@@ -939,7 +939,7 @@ void G2_GorePolys( const mdxmSurface_t *surface, CTraceSurface &TS, const mdxmSu
 	}
 
 	int newTag;
-	std::map<std::pair<int,int>,int>::iterator f=GoreTagsTemp.find(std::make_pair(goreModelIndex,TS.surfaceNum));
+	auto f=GoreTagsTemp.find(std::make_pair(goreModelIndex,TS.surfaceNum));
 	if (f==GoreTagsTemp.end()) // need to generate a record
 	{
 		newTag=AllocGoreRecord();

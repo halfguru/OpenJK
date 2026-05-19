@@ -305,7 +305,7 @@ int ICARUS_Instance::AllocateSequences( int numSequences, int *idTable )
 		if ( ( sequence = GetSequence() ) == NULL )
 			return false;
 
-		//Override the given GUID with the real one
+		//override the given GUID with the real one
 		sequence->SetID( idTable[i] );
 	}
 

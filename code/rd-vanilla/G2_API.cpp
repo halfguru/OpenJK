@@ -237,7 +237,7 @@ public:
 
 		// assert(0);
 		int ret=0; //place a breakpoint here
-		std::map<std::string,int>::iterator f=mErrors.find(full);
+		auto f =mErrors.find(full);
 		if (f==mErrors.end())
 		{
 			ret++; // or a breakpoint here for the first occurance

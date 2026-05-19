@@ -5798,7 +5798,7 @@ void UpdateEAXListener()
 					// Get EAX Preset info.
 					if (SUCCEEDED(s_lpEAXManager->GetEnvironmentAttributes(lID, &s_eaxLPCur)))
 					{
-						// Override
+						// override
 						s_eaxLPCur.flAirAbsorptionHF = 0.0f;
 
 						// Set Environment
@@ -5971,7 +5971,7 @@ void UpdateEAXListener()
 						// Retrieve reverb properties from EAX Manager
 						if (s_lpEAXManager->GetEnvironmentAttributes(ReverbData[j].lEnvID, &Reverb)==EM_OK)
 						{
-							// Override Air Absorption HF
+							// override Air Absorption HF
 							Reverb.flAirAbsorptionHF = 0.0f;
 
 							s_eaxSet(&s_FXSlotInfo[i].FXSlotGuid, EAXREVERB_ALLPARAMETERS, NULL, &Reverb, sizeof(EAXREVERBPROPERTIES));

@@ -1663,7 +1663,7 @@ byte CNavigator::CheckedNode(int wayPoint,int ent)
 {
 	assert(wayPoint>=0&&wayPoint<MAX_STORED_WAYPOINTS);
 	assert(ent>=0&&ent<MAX_GENTITIES);
-	std::map<int,byte>::iterator f=CheckedNodes.find(wayPoint*MAX_GENTITIES+ent);
+	auto f =CheckedNodes.find(wayPoint*MAX_GENTITIES+ent);
 	if (f!=CheckedNodes.end())
 	{
 		return (*f).second;
@@ -2667,7 +2667,7 @@ CPriorityQueue::~CPriorityQueue()
 //////////////////////////////////////////////////////////////////
 CEdge* CPriorityQueue::Find(int npNum)
 {
-	for(std::vector<CEdge*>::iterator HeapIter=mHeap.begin(); HeapIter!=mHeap.end(); HeapIter++)
+	for(auto HeapIter =mHeap.begin(); HeapIter!=mHeap.end(); HeapIter++)
 	{
 		if ((*HeapIter)->m_first == npNum)
 		{
@@ -2714,7 +2714,7 @@ void CPriorityQueue::Push(CEdge* theEdge )
 //////////////////////////////////////////////////////////////////
 void CPriorityQueue::Update( CEdge* edge )
 {
-   for(std::vector<CEdge*>::iterator i=mHeap.begin(); i!=mHeap.end(); i++)
+   for(auto i =mHeap.begin(); i!=mHeap.end(); i++)
    {
       if( (*i)->m_first == edge->m_first )
       {  //Found node - resort from this position in the mHeap

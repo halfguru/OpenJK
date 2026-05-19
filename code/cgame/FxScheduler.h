@@ -692,7 +692,7 @@ public:
 	int		NumScheduledFx()	{ return (int)mFxSchedule.size();	}
 	void	Clean(bool bRemoveTemplates = true, int idToPreserve = 0);	// clean out the system
 
-	// FX Override functions
+	// FX override functions
 	SEffectTemplate		*GetEffectCopy( int fxHandle, int *newHandle );
 	SEffectTemplate		*GetEffectCopy( const char *file, int *newHandle );
 

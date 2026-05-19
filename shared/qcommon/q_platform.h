@@ -184,17 +184,9 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 	#define DLL_EXT ".so"
 #endif
 
-#if (defined( _MSC_VER ) && (_MSC_VER < 1900)) || (defined(__GNUC__))
-// VS2013, which for some reason we still support, does not support noexcept
-// GCC GNU has the same problem: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=52869
-#define NOEXCEPT
-#define NOEXCEPT_IF(x)
-#define IS_NOEXCEPT(x) false
-#else
 #define NOEXCEPT noexcept
 #define NOEXCEPT_IF(x) noexcept(x)
 #define IS_NOEXCEPT(x) noexcept(x)
-#endif
 
 #if defined(__GNUC__)
 #define NORETURN __attribute__((noreturn))
@@ -207,8 +199,6 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #define NORETURN /* nothing */
 #define NORETURN_PTR /* nothing */
 #endif
-
-#define OVERRIDE override
 
 #if defined(__cplusplus)
 	#include <cstddef>

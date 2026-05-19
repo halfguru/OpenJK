@@ -657,70 +657,70 @@ public:
     // Overiddables.
 
 	// Get the current Game flavor.
-	int GetFlavor() OVERRIDE;
+	int GetFlavor() override;
 
 	//General
-	int		LoadFile( const char *name, void **buf ) OVERRIDE;
-	void	CenterPrint( const char *format, ... ) OVERRIDE;
-	void	DebugPrint( e_DebugPrintLevel, const char *, ... ) OVERRIDE;
-	unsigned int GetTime( void ) OVERRIDE;							//Gets the current time
+	int		LoadFile( const char *name, void **buf ) override;
+	void	CenterPrint( const char *format, ... ) override;
+	void	DebugPrint( e_DebugPrintLevel, const char *, ... ) override;
+	unsigned int GetTime( void ) override;							//Gets the current time
 	//DWORD	GetTimeScale(void );
-	int 	PlayIcarusSound( int taskID, int entID, const char *name, const char *channel ) OVERRIDE;
-	void	Lerp2Pos( int taskID, int entID, vec3_t origin, vec3_t angles, float duration ) OVERRIDE;
-	void	Lerp2Angles( int taskID, int entID, vec3_t angles, float duration ) OVERRIDE;
-	int		GetTag( int entID, const char *name, int lookup, vec3_t info ) OVERRIDE;
-	void	Set( int taskID, int entID, const char *type_name, const char *data ) OVERRIDE;
-	void	Use( int entID, const char *name ) OVERRIDE;
-	void	Activate( int entID, const char *name ) OVERRIDE;
-	void	Deactivate( int entID, const char *name ) OVERRIDE;
-	void	Kill( int entID, const char *name ) OVERRIDE;
-	void	Remove( int entID, const char *name ) OVERRIDE;
-	float	Random( float min, float max ) OVERRIDE;
-	void	Play( int taskID, int entID, const char *type, const char *name ) OVERRIDE;
+	int 	PlayIcarusSound( int taskID, int entID, const char *name, const char *channel ) override;
+	void	Lerp2Pos( int taskID, int entID, vec3_t origin, vec3_t angles, float duration ) override;
+	void	Lerp2Angles( int taskID, int entID, vec3_t angles, float duration ) override;
+	int		GetTag( int entID, const char *name, int lookup, vec3_t info ) override;
+	void	Set( int taskID, int entID, const char *type_name, const char *data ) override;
+	void	Use( int entID, const char *name ) override;
+	void	Activate( int entID, const char *name ) override;
+	void	Deactivate( int entID, const char *name ) override;
+	void	Kill( int entID, const char *name ) override;
+	void	Remove( int entID, const char *name ) override;
+	float	Random( float min, float max ) override;
+	void	Play( int taskID, int entID, const char *type, const char *name ) override;
 
 	//Camera functions
-	void	CameraPan( vec3_t angles, vec3_t dir, float duration ) OVERRIDE;
-	void	CameraMove( vec3_t origin, float duration ) OVERRIDE;
-	void	CameraZoom( float fov, float duration ) OVERRIDE;
-	void	CameraRoll( float angle, float duration ) OVERRIDE;
-	void	CameraFollow( const char *name, float speed, float initLerp ) OVERRIDE;
-	void	CameraTrack( const char *name, float speed, float initLerp ) OVERRIDE;
-	void	CameraDistance( float dist, float initLerp ) OVERRIDE;
-	void	CameraFade( float sr, float sg, float sb, float sa, float dr, float dg, float db, float da, float duration ) OVERRIDE;
-	void	CameraPath( const char *name ) OVERRIDE;
-	void	CameraEnable( void ) OVERRIDE;
-	void	CameraDisable( void ) OVERRIDE;
-	void	CameraShake( float intensity, int duration ) OVERRIDE;
+	void	CameraPan( vec3_t angles, vec3_t dir, float duration ) override;
+	void	CameraMove( vec3_t origin, float duration ) override;
+	void	CameraZoom( float fov, float duration ) override;
+	void	CameraRoll( float angle, float duration ) override;
+	void	CameraFollow( const char *name, float speed, float initLerp ) override;
+	void	CameraTrack( const char *name, float speed, float initLerp ) override;
+	void	CameraDistance( float dist, float initLerp ) override;
+	void	CameraFade( float sr, float sg, float sb, float sa, float dr, float dg, float db, float da, float duration ) override;
+	void	CameraPath( const char *name ) override;
+	void	CameraEnable( void ) override;
+	void	CameraDisable( void ) override;
+	void	CameraShake( float intensity, int duration ) override;
 
-	int		GetFloat( int entID, const char *name, float *value ) OVERRIDE;
-	int		GetVector( int entID, const char *name, vec3_t value ) OVERRIDE;
-	int		GetString( int entID, const char *name, char **value ) OVERRIDE;
+	int		GetFloat( int entID, const char *name, float *value ) override;
+	int		GetVector( int entID, const char *name, vec3_t value ) override;
+	int		GetString( int entID, const char *name, char **value ) override;
 
-	int		Evaluate( int p1Type, const char *p1, int p2Type, const char *p2, int operatorType ) OVERRIDE;
+	int		Evaluate( int p1Type, const char *p1, int p2Type, const char *p2, int operatorType ) override;
 
-	void	DeclareVariable( int type, const char *name ) OVERRIDE;
-	void	FreeVariable( const char *name ) OVERRIDE;
+	void	DeclareVariable( int type, const char *name ) override;
+	void	FreeVariable( const char *name ) override;
 
 	//Save / Load functions
-	int		LinkGame( int entID, int icarusID ) OVERRIDE;
+	int		LinkGame( int entID, int icarusID ) override;
 
 	ojk::ISavedGame* get_saved_game_file() override;
 
 	// Access functions
-	int		CreateIcarus( int entID) OVERRIDE;
+	int		CreateIcarus( int entID) override;
 			//Polls the engine for the sequencer of the entity matching the name passed
-	int		GetByName( const char *name ) OVERRIDE;
+	int		GetByName( const char *name ) override;
 	// (g_entities[m_ownerID].svFlags&SVF_ICARUS_FREEZE)	// return -1 indicates invalid
-	int		IsFrozen(int entID) OVERRIDE;
-	void	Free(void* data) OVERRIDE;
-	void	*Malloc( int size ) OVERRIDE;
-	float	MaxFloat(void) OVERRIDE;
+	int		IsFrozen(int entID) override;
+	void	Free(void* data) override;
+	void	*Malloc( int size ) override;
+	float	MaxFloat(void) override;
 
 	// Script precache functions.
-	void	PrecacheRoff( const char *name ) OVERRIDE;
-	void	PrecacheScript( const char *name ) OVERRIDE;
-	void	PrecacheSound( const char *name ) OVERRIDE;
-	void	PrecacheFromSet( const char *setname, const char *filename ) OVERRIDE;
+	void	PrecacheRoff( const char *name ) override;
+	void	PrecacheScript( const char *name ) override;
+	void	PrecacheSound( const char *name ) override;
+	void	PrecacheFromSet( const char *setname, const char *filename ) override;
 };
 
 // A Quick accessor function for accessing Quake 3 Interface specific functions.

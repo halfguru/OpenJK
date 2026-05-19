@@ -168,7 +168,7 @@ void Pmove( pmove_t *pmove );
 #define SETANIM_BOTH  (SETANIM_TORSO|SETANIM_LEGS)//3
 
 #define SETANIM_FLAG_NORMAL		0//Only set if timer is 0
-#define SETANIM_FLAG_OVERRIDE	1//Override previous
+#define SETANIM_FLAG_OVERRIDE	1//override previous
 #define SETANIM_FLAG_HOLD		2//Set the new timer
 #define SETANIM_FLAG_RESTART	4//Allow restarting the anim if playing the same one (weapon fires)
 #define SETANIM_FLAG_HOLDLESS	8//Set the new timer
