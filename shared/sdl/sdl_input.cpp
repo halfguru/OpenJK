@@ -19,6 +19,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include <algorithm>
 #include <SDL.h>
 #include "qcommon/qcommon.h"
 #include "qcommon/q_shared.h"
@@ -1009,7 +1010,7 @@ static void IN_JoyMove( void )
 	total = SDL_JoystickNumHats(stick);
 	if (total > 0)
 	{
-		if (total > 4) total = 4;
+		total = std::min(total, 4);
 		for (i = 0; i < total; i++)
 		{
 			((Uint8 *)&hats)[i] = SDL_JoystickGetHat(stick, i);
@@ -1100,7 +1101,7 @@ static void IN_JoyMove( void )
 	{
 		if (in_joystickUseAnalog->integer)
 		{
-			if (total > MAX_JOYSTICK_AXIS) total = MAX_JOYSTICK_AXIS;
+			total = std::min(total, static_cast<int>(MAX_JOYSTICK_AXIS));
 			for (i = 0; i < total; i++)
 			{
 				Sint16 axis = SDL_JoystickGetAxis(stick, i);
@@ -1117,7 +1118,7 @@ static void IN_JoyMove( void )
 		}
 		else
 		{
-			if (total > 16) total = 16;
+			total = std::min(total, 16);
 			for (i = 0; i < total; i++)
 			{
 				Sint16 axis = SDL_JoystickGetAxis(stick, i);
