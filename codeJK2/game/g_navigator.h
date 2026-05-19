@@ -43,8 +43,8 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #define	NAV_HEADER_ID	INT_ID('J','N','V','5')
 #define	NODE_HEADER_ID	INT_ID('N','O','D','E')
 
-typedef std::multimap<int, int> EdgeMultimap;
-typedef std::multimap<int, int>::iterator EdgeMultimapIt;
+using EdgeMultimap = std::multimap<int, int>;
+using EdgeMultimapIt = std::multimap<int, int>::iterator;
 
 
 /*

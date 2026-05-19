@@ -172,7 +172,7 @@ public:
 			item = next();
 		}
 	}
-	// Override the [] operator
+	// override the [] operator
 	T *operator[](const char *key) { return(find(key)); }
 };
 

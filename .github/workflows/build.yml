@@ -109,20 +109,25 @@ jobs:
             sudo dpkg --add-architecture i386
             sudo apt-get -qq update
             sudo apt-get -y install aptitude
-            sudo apt-get -y install gcc-multilib g++-multilib ninja-build
+            sudo apt-get -y install gcc-multilib g++-multilib ninja-build ccache
             sudo apt-get -y install --allow-downgrades libpcre2-8-0:i386 libjpeg-dev:i386 libpng-dev:i386 libcurl4-openssl-dev:i386
             sudo aptitude -y install libglib2.0-dev:i386 libsdl2-dev:i386
           else
             sudo apt-get -qq update
-            sudo apt-get install libjpeg-dev libpng-dev zlib1g-dev libsdl2-dev
+            sudo apt-get install libjpeg-dev libpng-dev zlib1g-dev libsdl2-dev ccache
           fi
           cmake -E make_directory ${{ github.workspace }}/build
+
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ github.job }}-${{ matrix.arch }}-${{ matrix.build_type }}
 
       - name: Configure CMake
         shell: bash
         working-directory: ${{ github.workspace }}/build
         run: |
-          OPTIONS="-DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install"
+          OPTIONS="-DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache"
           if [ "${{ matrix.portable }}" == "Portable" ]; then
             OPTIONS+=" -DUseInternalLibs=ON -DBuildPortableVersion=ON"
           else
@@ -195,14 +200,19 @@ jobs:
 
       - name: Create Build Environment
         run: |
-          brew install sdl2 || true
+          brew install sdl2 ccache || true
           cmake -E make_directory ${{ github.workspace }}/build
+
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ github.job }}-${{ matrix.arch }}-${{ matrix.build_type }}
 
       - name: Configure CMake
         shell: bash
         working-directory: ${{ github.workspace }}/build
         run: |
-          OPTIONS="-DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install"
+          OPTIONS="-DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache"
           if [ "${{ matrix.portable }}" == "Portable" ]; then
             OPTIONS+=" -DUseInternalLibs=ON -DBuildPortableVersion=ON"
           else

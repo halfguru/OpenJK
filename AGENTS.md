@@ -3,7 +3,7 @@
 ## What this is
 
 Community-maintained engine for Jedi Academy (SP + MP) and Jedi Outcast (SP only).  
-C++11 / C, CMake 3.31+, GPLv2. Backwards-compatible with vanilla game + mods.
+C++17 / C, CMake 3.31+, GPLv2. Backwards-compatible with vanilla game + mods.
 
 ## Directory layout
 

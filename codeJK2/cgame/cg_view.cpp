@@ -1775,7 +1775,7 @@ void CG_RunEmplacedWeapon()
 	gentity_t	*player = &g_entities[0],
 				*gun = player->owner;
 
-	// Override the camera when we are locked onto the gun.
+	// override the camera when we are locked onto the gun.
 	if ( player && gun && ( player->s.eFlags & EF_LOCKED_TO_WEAPON ))
 	{
 //		float dist = -1; // default distance behind gun

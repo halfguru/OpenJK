@@ -2881,7 +2881,7 @@ void SP_misc_crystal_crate( gentity_t *ent )
 	ent->contents = CONTENTS_SOLID|CONTENTS_OPAQUE|CONTENTS_BODY|CONTENTS_MONSTERCLIP|CONTENTS_BOTCLIP;//Was CONTENTS_SOLID, but only architecture should be this
 
 	if ( ent->spawnflags & 1 )  // non-solid
-	{	// Override earlier contents flag...
+	{	// override earlier contents flag...
 		//Can only be shot
 		ent->contents = CONTENTS_SHOTCLIP;
 	}
