@@ -438,7 +438,7 @@ static int CL_PrecisionTimerEnd( void *p ) {
 	return r; //return the result
 }
 
-static void CL_RMG_Init( int /* terrainID */, const char * /* terrainInfo */ ) { }
+static void CL_RMG_Init( [[maybe_unused]] int terrainID, [[maybe_unused]] const char *terrainInfo ) { }
 
 static qboolean CGFX_PlayBoltedEffectID( int id, vec3_t org, void *ghoul2, const int boltNum, const int entNum, const int modelNum, int iLooptime, qboolean isRelative ) {
 	if ( !ghoul2 ) return qfalse;
@@ -1693,7 +1693,7 @@ intptr_t CL_CgameSystemCalls( intptr_t *args ) {
 }
 
 // Stub function for old RMG system.
-static void RE_InitRendererTerrain ( const char * /*info*/ ) {}
+static void RE_InitRendererTerrain( [[maybe_unused]] const char *info ) {}
 
 void CL_BindCGame( void ) {
 	static cgameImport_t cgi;
