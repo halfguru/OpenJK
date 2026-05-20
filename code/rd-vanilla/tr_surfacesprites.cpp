@@ -1492,6 +1492,7 @@ void RB_DrawSurfaceSprites( shaderStage_t *stage, shaderCommands_t *input)
 	switch(stage->ss->surfaceSpriteType)
 	{
 	case SURFSPRITE_FLATTENED:
+    [[fallthrough]];
 	case SURFSPRITE_VERTICAL:
 		RB_DrawVerticalSurfaceSprites(stage, input);
 		break;
@@ -1499,6 +1500,7 @@ void RB_DrawSurfaceSprites( shaderStage_t *stage, shaderCommands_t *input)
 		RB_DrawOrientedSurfaceSprites(stage, input);
 		break;
 	case SURFSPRITE_EFFECT:
+    [[fallthrough]];
 	case SURFSPRITE_WEATHERFX:
 		RB_DrawEffectSurfaceSprites(stage, input);
 		break;

@@ -994,6 +994,7 @@ void Rancor_Attack( float distance, qboolean doCharge, qboolean aimAtBlockedEnti
 			}
 			break;
 		case BOTH_ATTACK2:
+    [[fallthrough]];
 		case BOTH_ATTACK10:
 		case BOTH_ATTACK11:
 			//try to grab

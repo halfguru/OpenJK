@@ -1299,12 +1299,16 @@ void R_AddEntitySurfaces (void) {
 		case RT_PORTALSURFACE:
 			break;		// don't draw anything
 		case RT_SPRITE:
+    [[fallthrough]];
 		case RT_ORIENTED_QUAD:
 		case RT_BEAM:
+    [[fallthrough]];
 		case RT_CYLINDER:
 		case RT_LATHE:
+    [[fallthrough]];
 		case RT_CLOUDS:
 		case RT_LINE:
+    [[fallthrough]];
 		case RT_ELECTRICITY:
 		case RT_SABER_GLOW:
 			// self blood sprites, talk balloons, etc should not be drawn in the primary

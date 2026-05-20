@@ -361,8 +361,10 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		break;
 
 	case EV_STEP_4:
+    [[fallthrough]];
 	case EV_STEP_8:
 	case EV_STEP_12:
+    [[fallthrough]];
 	case EV_STEP_16:		// smooth out step up transitions
 		DEBUGNAME("EV_STEP");
 	{
@@ -444,6 +446,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		break;
 
 	case EV_WATER_GURP1:
+    [[fallthrough]];
 	case EV_WATER_GURP2:
 		DEBUGNAME("EV_WATER_GURPx");
 		CG_TryPlayCustomSound(NULL, es->number, CHAN_AUTO, va("*gurp%d.wav",event-EV_WATER_GURP1+1), CS_BASIC );
@@ -792,6 +795,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		break;
 
 	case EV_DEATH1:
+    [[fallthrough]];
 	case EV_DEATH2:
 	case EV_DEATH3:
 		DEBUGNAME("EV_DEATHx");
@@ -892,6 +896,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_ANGER1:	//Say when acquire an enemy when didn't have one before
 	case EV_ANGER2:
+    [[fallthrough]];
 	case EV_ANGER3:
 		DEBUGNAME("EV_ANGERx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*anger%i.wav", event - EV_ANGER1 + 1), CS_COMBAT );
@@ -899,6 +904,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_VICTORY1:	//Say when killed an enemy
 	case EV_VICTORY2:
+    [[fallthrough]];
 	case EV_VICTORY3:
 		DEBUGNAME("EV_VICTORYx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*victory%i.wav", event - EV_VICTORY1 + 1), CS_COMBAT );
@@ -906,6 +912,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_CONFUSE1:	//Say when confused
 	case EV_CONFUSE2:
+    [[fallthrough]];
 	case EV_CONFUSE3:
 		DEBUGNAME("EV_CONFUSEDx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*confuse%i.wav", event - EV_CONFUSE1 + 1), CS_COMBAT );
@@ -913,6 +920,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_PUSHED1:	//Say when pushed
 	case EV_PUSHED2:
+    [[fallthrough]];
 	case EV_PUSHED3:
 		DEBUGNAME("EV_PUSHEDx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*pushed%i.wav", event - EV_PUSHED1 + 1), CS_COMBAT );
@@ -920,6 +928,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_CHOKE1:	//Say when choking
 	case EV_CHOKE2:
+    [[fallthrough]];
 	case EV_CHOKE3:
 		DEBUGNAME("EV_CHOKEx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*choke%i.wav", event - EV_CHOKE1 + 1), CS_COMBAT );
@@ -937,35 +946,43 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	//extra sounds for ST
 	case EV_CHASE1:
+    [[fallthrough]];
 	case EV_CHASE2:
 	case EV_CHASE3:
 		DEBUGNAME("EV_CHASEx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*chase%i.wav", event - EV_CHASE1 + 1), CS_EXTRA );
 		break;
 	case EV_COVER1:
+    [[fallthrough]];
 	case EV_COVER2:
 	case EV_COVER3:
+    [[fallthrough]];
 	case EV_COVER4:
 	case EV_COVER5:
 		DEBUGNAME("EV_COVERx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*cover%i.wav", event - EV_COVER1 + 1), CS_EXTRA );
 		break;
 	case EV_DETECTED1:
+    [[fallthrough]];
 	case EV_DETECTED2:
 	case EV_DETECTED3:
+    [[fallthrough]];
 	case EV_DETECTED4:
 	case EV_DETECTED5:
 		DEBUGNAME("EV_DETECTEDx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*detected%i.wav", event - EV_DETECTED1 + 1), CS_EXTRA );
 		break;
 	case EV_GIVEUP1:
+    [[fallthrough]];
 	case EV_GIVEUP2:
 	case EV_GIVEUP3:
+    [[fallthrough]];
 	case EV_GIVEUP4:
 		DEBUGNAME("EV_GIVEUPx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*giveup%i.wav", event - EV_GIVEUP1 + 1), CS_EXTRA );
 		break;
 	case EV_LOOK1:
+    [[fallthrough]];
 	case EV_LOOK2:
 		DEBUGNAME("EV_LOOKx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*look%i.wav", event - EV_LOOK1 + 1), CS_EXTRA );
@@ -975,31 +992,37 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, "*lost1.wav", CS_EXTRA );
 		break;
 	case EV_OUTFLANK1:
+    [[fallthrough]];
 	case EV_OUTFLANK2:
 		DEBUGNAME("EV_OUTFLANKx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*outflank%i.wav", event - EV_OUTFLANK1 + 1), CS_EXTRA );
 		break;
 	case EV_ESCAPING1:
+    [[fallthrough]];
 	case EV_ESCAPING2:
 	case EV_ESCAPING3:
 		DEBUGNAME("EV_ESCAPINGx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*escaping%i.wav", event - EV_ESCAPING1 + 1), CS_EXTRA );
 		break;
 	case EV_SIGHT1:
+    [[fallthrough]];
 	case EV_SIGHT2:
 	case EV_SIGHT3:
 		DEBUGNAME("EV_SIGHTx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*sight%i.wav", event - EV_SIGHT1 + 1), CS_EXTRA );
 		break;
 	case EV_SOUND1:
+    [[fallthrough]];
 	case EV_SOUND2:
 	case EV_SOUND3:
 		DEBUGNAME("EV_SOUNDx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*sound%i.wav", event - EV_SOUND1 + 1), CS_EXTRA );
 		break;
 	case EV_SUSPICIOUS1:
+    [[fallthrough]];
 	case EV_SUSPICIOUS2:
 	case EV_SUSPICIOUS3:
+    [[fallthrough]];
 	case EV_SUSPICIOUS4:
 	case EV_SUSPICIOUS5:
 		DEBUGNAME("EV_SUSPICIOUSx");
@@ -1007,42 +1030,49 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 		break;
 	//extra sounds for Jedi
 	case EV_COMBAT1:
+    [[fallthrough]];
 	case EV_COMBAT2:
 	case EV_COMBAT3:
 		DEBUGNAME("EV_COMBATx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*combat%i.wav", event - EV_COMBAT1 + 1), CS_JEDI );
 		break;
 	case EV_JDETECTED1:
+    [[fallthrough]];
 	case EV_JDETECTED2:
 	case EV_JDETECTED3:
 		DEBUGNAME("EV_JDETECTEDx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*jdetected%i.wav", event - EV_JDETECTED1 + 1), CS_JEDI );
 		break;
 	case EV_TAUNT1:
+    [[fallthrough]];
 	case EV_TAUNT2:
 	case EV_TAUNT3:
 		DEBUGNAME("EV_TAUNTx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*taunt%i.wav", event - EV_TAUNT1 + 1), CS_JEDI );
 		break;
 	case EV_JCHASE1:
+    [[fallthrough]];
 	case EV_JCHASE2:
 	case EV_JCHASE3:
 		DEBUGNAME("EV_JCHASEx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*jchase%i.wav", event - EV_JCHASE1 + 1), CS_JEDI );
 		break;
 	case EV_JLOST1:
+    [[fallthrough]];
 	case EV_JLOST2:
 	case EV_JLOST3:
 		DEBUGNAME("EV_JLOSTx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*jlost%i.wav", event - EV_JLOST1 + 1), CS_JEDI );
 		break;
 	case EV_DEFLECT1:
+    [[fallthrough]];
 	case EV_DEFLECT2:
 	case EV_DEFLECT3:
 		DEBUGNAME("EV_DEFLECTx");
 		CG_TryPlayCustomSound( NULL, es->number, CHAN_VOICE, va("*deflect%i.wav", event - EV_DEFLECT1 + 1), CS_JEDI );
 		break;
 	case EV_GLOAT1:
+    [[fallthrough]];
 	case EV_GLOAT2:
 	case EV_GLOAT3:
 		DEBUGNAME("EV_GLOATx");

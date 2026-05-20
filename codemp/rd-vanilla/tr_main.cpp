@@ -1224,12 +1224,16 @@ void R_AddEntitySurfaces (void) {
 		case RT_PORTALSURFACE:
 			break;		// don't draw anything
 		case RT_SPRITE:
+    [[fallthrough]];
 		case RT_BEAM:
 		case RT_ORIENTED_QUAD:
+    [[fallthrough]];
 		case RT_ELECTRICITY:
 		case RT_LINE:
+    [[fallthrough]];
 		case RT_ORIENTEDLINE:
 		case RT_CYLINDER:
+    [[fallthrough]];
 		case RT_SABER_GLOW:
 			// self blood sprites, talk balloons, etc should not be drawn in the primary
 			// view.  We can't just do this check for all entities, because md3

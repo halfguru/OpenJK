@@ -61,8 +61,10 @@ void CG_CheckAmmo( void )
 		switch ( i )
 		{
 		case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 		case WP_GRENADE_LAUNCHER:
 		case WP_RAILGUN:
+    [[fallthrough]];
 		case WP_SHOTGUN:
 			total += cg.snap->ps.ammo[i] * 1000;
 			break;

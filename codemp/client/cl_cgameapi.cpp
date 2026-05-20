@@ -1431,20 +1431,28 @@ intptr_t CL_CgameSystemCalls( intptr_t *args ) {
 		return 0;
 #else
 	case CG_FX_REGISTER_EFFECT:
+    [[fallthrough]];
 	case CG_FX_PLAY_EFFECT:
 	case CG_FX_PLAY_ENTITY_EFFECT:
+    [[fallthrough]];
 	case CG_FX_PLAY_EFFECT_ID:
 	case CG_FX_PLAY_PORTAL_EFFECT_ID:
+    [[fallthrough]];
 	case CG_FX_PLAY_ENTITY_EFFECT_ID:
 	case CG_FX_PLAY_BOLTED_EFFECT_ID:
+    [[fallthrough]];
 	case CG_FX_ADD_SCHEDULED_EFFECTS:
 	case CG_FX_INIT_SYSTEM:
+    [[fallthrough]];
 	case CG_FX_FREE_SYSTEM:
 	case CG_FX_ADJUST_TIME:
+    [[fallthrough]];
 	case CG_FX_ADDPOLY:
 	case CG_FX_ADDBEZIER:
+    [[fallthrough]];
 	case CG_FX_ADDPRIMITIVE:
 	case CG_FX_ADDSPRITE:
+    [[fallthrough]];
 	case CG_FX_ADDELECTRICITY:
 		return 0;
 #endif

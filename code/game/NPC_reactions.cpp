@@ -830,6 +830,7 @@ void NPC_Respond( gentity_t *self, int userNum )
 		}
 		break;
 	case CLASS_JEDI:
+    [[fallthrough]];
 	case CLASS_KYLE:
 		if ( !self->enemy )
 		{

@@ -442,6 +442,7 @@ void SCR_DrawScreenField( stereoFrame_t stereoFrame ) {
 			UIVM_SetActiveMenu( UIMENU_MAIN );
 			break;
 		case CA_CONNECTING:
+    [[fallthrough]];
 		case CA_CHALLENGING:
 		case CA_CONNECTED:
 			// connecting clients will only show the connection dialog
@@ -450,6 +451,7 @@ void SCR_DrawScreenField( stereoFrame_t stereoFrame ) {
 			UIVM_DrawConnectScreen( qfalse );
 			break;
 		case CA_LOADING:
+    [[fallthrough]];
 		case CA_PRIMED:
 			// draw the game information screen and loading progress
 			CL_CGameRendering( stereoFrame );

@@ -343,21 +343,28 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 		{
 		//standard weapons
 		case MOD_BRYAR:
+    [[fallthrough]];
 		case MOD_BRYAR_ALT:
 		case MOD_BLASTER:
+    [[fallthrough]];
 		case MOD_BLASTER_ALT:
 		case MOD_DISRUPTOR:
+    [[fallthrough]];
 		case MOD_SNIPER:
 		case MOD_BOWCASTER:
+    [[fallthrough]];
 		case MOD_BOWCASTER_ALT:
 		case MOD_ROCKET:
+    [[fallthrough]];
 		case MOD_ROCKET_ALT:
 		case MOD_CONC:
+    [[fallthrough]];
 		case MOD_CONC_ALT:
 			return qtrue;
 			break;
 		//non-alt standard
 		case MOD_REPEATER:
+    [[fallthrough]];
 		case MOD_DEMP2:
 		case MOD_FLECHETTE:
 			return qtrue;
@@ -368,6 +375,7 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 			break;
 		//atst
 		case MOD_ENERGY:
+    [[fallthrough]];
 		case MOD_EXPLOSIVE:
 			if ( weapon == WP_ATST_MAIN || weapon == WP_ATST_SIDE )
 			{
@@ -381,16 +389,20 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 		switch( weapon )
 		{
 		case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 		case WP_BLASTER_PISTOL:
 		case WP_BLASTER:
+    [[fallthrough]];
 		case WP_DISRUPTOR:
 		case WP_BOWCASTER:
+    [[fallthrough]];
 		case WP_ROCKET_LAUNCHER:
 		case WP_CONCUSSION:
 			return qtrue;
 			break;
 		//non-alt standard
 		case WP_REPEATER:
+    [[fallthrough]];
 		case WP_DEMP2:
 		case WP_FLECHETTE:
 			if ( !alt_fire )
@@ -404,6 +416,7 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 			break;
 		//atst
 		case WP_ATST_MAIN:
+    [[fallthrough]];
 		case WP_ATST_SIDE:
 			return qtrue;
 			break;
@@ -469,6 +482,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t forwardVec, vec3_t right, vec
 	switch( ent->s.weapon )
 	{
 	case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 	case WP_BLASTER_PISTOL:
 		ViewHeightFix(ent);
 		muzzlePoint[2] += ent->client->ps.viewheight;//By eyes
@@ -478,6 +492,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t forwardVec, vec3_t right, vec
 		break;
 
 	case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 	case WP_CONCUSSION:
 	case WP_THERMAL:
 		ViewHeightFix(ent);
@@ -1390,6 +1405,7 @@ void FireWeapon( gentity_t *ent, qboolean alt_fire )
 		break;
 
 	case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 	case WP_BLASTER_PISTOL:
 		WP_FireBryarPistol( ent, alt_fire );
 		break;

@@ -943,10 +943,13 @@ qboolean G_ClassHasBadBones( int NPC_class )
 	switch ( NPC_class )
 	{
 	case CLASS_WAMPA:
+    [[fallthrough]];
 	case CLASS_ROCKETTROOPER:
 	case CLASS_SABER_DROID:
+    [[fallthrough]];
 	case CLASS_HAZARD_TROOPER:
 	case CLASS_ASSASSIN_DROID:
+    [[fallthrough]];
 	case CLASS_RANCOR:
 		return qtrue;
 	}
@@ -1031,6 +1034,7 @@ void G_BoneOrientationsForClass( int NPC_class, const char *boneName, Eorientati
 		//*oFwd = testAxes[2];
 		break;
 	case CLASS_ROCKETTROOPER:
+    [[fallthrough]];
 	case CLASS_HAZARD_TROOPER:
 		//Root is:
 		//*oUp = POSITIVE_Z;

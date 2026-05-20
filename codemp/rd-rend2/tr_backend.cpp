@@ -2513,6 +2513,7 @@ static void RB_UpdateGhoul2Constants(gpuFrame_t *frame, const trRefdef_t *refdef
 		switch (model->type)
 		{
 		case MOD_MDXM:
+    [[fallthrough]];
 		case MOD_BAD:
 		{
 			// Transform Bones and upload them

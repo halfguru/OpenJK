@@ -313,13 +313,16 @@ void CG_MiscModelExplosion( vec3_t mins, vec3_t maxs, int size, material_t chunk
 		ct = 5;
 		break;
 	case MAT_ELECTRICAL:
+    [[fallthrough]];
 	case MAT_ELEC_METAL:
 		effect = "chunks/sparkexplode";
 		ct = 5;
 		break;
 	case MAT_METAL:
+    [[fallthrough]];
 	case MAT_METAL2:
 	case MAT_METAL3:
+    [[fallthrough]];
 	case MAT_CRATE1:
 	case MAT_CRATE2:
 		effect = "chunks/metalexplode";
@@ -335,6 +338,7 @@ void CG_MiscModelExplosion( vec3_t mins, vec3_t maxs, int size, material_t chunk
 		break;
 	case MAT_WHITE_METAL: //not sure what this crap is really supposed to be..
 	case MAT_DRK_STONE:
+    [[fallthrough]];
 	case MAT_LT_STONE:
 	case MAT_GREY_STONE:
 		switch( size )
@@ -433,8 +437,10 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 		return;
 		break;
 	case MAT_DRK_STONE:
+    [[fallthrough]];
 	case MAT_LT_STONE:
 	case MAT_GREY_STONE:
+    [[fallthrough]];
 	case MAT_WHITE_METAL:  // not quite sure what this stuff is supposed to be...it's for Stu
 		cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.rockBreakSound );
 		bounce = LEBS_ROCK;
@@ -445,12 +451,15 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 		bounce = LEBS_METAL;
 		break;
 	case MAT_CRATE1:
+    [[fallthrough]];
 	case MAT_CRATE2:
 		cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.crateBreakSound[Q_irand(0,1)] );
 		break;
 	case MAT_METAL:
+    [[fallthrough]];
 	case MAT_METAL2:
 	case MAT_METAL3:
+    [[fallthrough]];
 	case MAT_ELEC_METAL:// FIXME: maybe have its own sound?
 		cgi_S_StartSound( NULL, owner, CHAN_BODY, cgs.media.chunkSound );
 		bounce = LEBS_METAL;
@@ -508,6 +517,7 @@ void CG_Chunks( int owner, vec3_t origin, const vec3_t normal, const vec3_t mins
 				chunkModel = cgs.media.chunkModels[CHUNK_CRATE2][Q_irand(0, 3)];
 				break;
 			case MAT_ELEC_METAL:
+    [[fallthrough]];
 			case MAT_GLASS_METAL:
 			case MAT_METAL://grey
 				chunkModel = cgs.media.chunkModels[CHUNK_METAL1][Q_irand(0, 3)];

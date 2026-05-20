@@ -1324,6 +1324,7 @@ Ghoul2 Insert End
 
 #ifdef JK2_MODE
 	case CG_SP_GETSTRINGTEXTSTRING:
+    [[fallthrough]];
 	case CG_SP_GETSTRINGTEXT:
 		const char* text;
 

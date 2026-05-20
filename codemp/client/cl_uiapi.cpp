@@ -1166,6 +1166,7 @@ intptr_t CL_UISystemCalls( intptr_t *args ) {
 		return CL_G2API_InitGhoul2Model((void **)VMA(1), (const char *)VMA(2), args[3], (qhandle_t) args[4], (qhandle_t) args[5], args[6], args[7]);
 
 	case UI_G2_COLLISIONDETECT:
+    [[fallthrough]];
 	case UI_G2_COLLISIONDETECTCACHE:
 		return 0; //not supported for ui
 

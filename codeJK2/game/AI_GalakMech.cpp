@@ -199,21 +199,25 @@ void GM_Dying( gentity_t *self )
 				}
 				break;
 			case 3:
+    [[fallthrough]];
 			case 4:
 				newBolt = gi.G2API_AddBolt( &self->ghoul2[self->playerModel], "*hip_fr" );
 				GM_CreateExplosion( self, newBolt );
 				break;
 			case 5:
+    [[fallthrough]];
 			case 6:
 				newBolt = gi.G2API_AddBolt( &self->ghoul2[self->playerModel], "*shldr_l" );
 				GM_CreateExplosion( self, newBolt );
 				break;
 			case 7:
+    [[fallthrough]];
 			case 8:
 				newBolt = gi.G2API_AddBolt( &self->ghoul2[self->playerModel], "*uchest_r" );
 				GM_CreateExplosion( self, newBolt );
 				break;
 			case 9:
+    [[fallthrough]];
 			case 10:
 				GM_CreateExplosion( self, self->headBolt );
 				break;
@@ -934,16 +938,19 @@ void NPC_BSGM_Attack( void )
 				switch( NPCInfo->enemyCheckDebounceTime )
 				{
 				case 0:
+    [[fallthrough]];
 				case 1:
 				case 2:
 					speech = EV_CHASE1 + NPCInfo->enemyCheckDebounceTime;
 					break;
 				case 3:
+    [[fallthrough]];
 				case 4:
 				case 5:
 					speech = EV_COVER1 + NPCInfo->enemyCheckDebounceTime-3;
 					break;
 				case 6:
+    [[fallthrough]];
 				case 7:
 					speech = EV_ESCAPING1 + NPCInfo->enemyCheckDebounceTime-6;
 					break;

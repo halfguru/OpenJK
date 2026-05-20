@@ -1254,6 +1254,7 @@ void ClientEvents( gentity_t *ent, int oldEventSequence ) {
 
 		switch ( event ) {
 		case EV_FALL_MEDIUM:
+    [[fallthrough]];
 		case EV_FALL_FAR://these come from bg_pmove, PM_CrashLand
 			if ( ent->s.eType != ET_PLAYER ) {
 				break;		// not in the player model
@@ -1478,10 +1479,12 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 			switch ( ent->client->ps.legsAnim )
 			{
 			case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 			case BOTH_CARTWHEEL_LEFT:
 				ucmd->rightmove = -127;
 				break;
 			case BOTH_ARIAL_RIGHT:
+    [[fallthrough]];
 			case BOTH_CARTWHEEL_RIGHT:
 				ucmd->rightmove = 127;
 				break;
@@ -1636,13 +1639,17 @@ static int NPC_GetRunSpeed( gentity_t *ent )
 	{
 	case CLASS_PROBE:	// droid cases here to shut-up compiler
 	case CLASS_GONK:
+    [[fallthrough]];
 	case CLASS_R2D2:
 	case CLASS_R5D2:
+    [[fallthrough]];
 	case CLASS_MARK1:
 	case CLASS_MARK2:
+    [[fallthrough]];
 	case CLASS_PROTOCOL:
 	case CLASS_ATST: // hmm, not really your average droid
 	case CLASS_MOUSE:
+    [[fallthrough]];
 	case CLASS_SEEKER:
 	case CLASS_REMOTE:
 		runSpeed = ent->NPC->stats.runSpeed;
@@ -1877,8 +1884,10 @@ void G_CheckClientIdle( gentity_t *ent, usercmd_t *ucmd )
 			switch ( ent->client->ps.legsAnim )
 			{
 			case BOTH_STAND1IDLE1:
+    [[fallthrough]];
 			case BOTH_STAND2IDLE1:
 			case BOTH_STAND2IDLE2:
+    [[fallthrough]];
 			case BOTH_STAND3IDLE1:
 			case BOTH_STAND4IDLE1:
 				ent->client->ps.legsAnimTimer = 0;
@@ -1887,8 +1896,10 @@ void G_CheckClientIdle( gentity_t *ent, usercmd_t *ucmd )
 			switch ( ent->client->ps.torsoAnim )
 			{
 			case BOTH_STAND1IDLE1:
+    [[fallthrough]];
 			case BOTH_STAND2IDLE1:
 			case BOTH_STAND2IDLE2:
+    [[fallthrough]];
 			case BOTH_STAND3IDLE1:
 			case BOTH_STAND4IDLE1:
 				ent->client->ps.torsoAnimTimer = 0;

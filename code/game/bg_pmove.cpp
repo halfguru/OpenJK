@@ -838,8 +838,10 @@ qboolean PM_InReboundJump( int anim )
 	switch ( anim )
 	{
 	case BOTH_FORCEWALLREBOUND_FORWARD:
+    [[fallthrough]];
 	case BOTH_FORCEWALLREBOUND_LEFT:
 	case BOTH_FORCEWALLREBOUND_BACK:
+    [[fallthrough]];
 	case BOTH_FORCEWALLREBOUND_RIGHT:
 		return qtrue;
 		break;
@@ -852,8 +854,10 @@ qboolean PM_InReboundHold( int anim )
 	switch ( anim )
 	{
 	case BOTH_FORCEWALLHOLD_FORWARD:
+    [[fallthrough]];
 	case BOTH_FORCEWALLHOLD_LEFT:
 	case BOTH_FORCEWALLHOLD_BACK:
+    [[fallthrough]];
 	case BOTH_FORCEWALLHOLD_RIGHT:
 		return qtrue;
 		break;
@@ -866,8 +870,10 @@ qboolean PM_InReboundRelease( int anim )
 	switch ( anim )
 	{
 	case BOTH_FORCEWALLRELEASE_FORWARD:
+    [[fallthrough]];
 	case BOTH_FORCEWALLRELEASE_LEFT:
 	case BOTH_FORCEWALLRELEASE_BACK:
+    [[fallthrough]];
 	case BOTH_FORCEWALLRELEASE_RIGHT:
 		return qtrue;
 		break;
@@ -880,8 +886,10 @@ qboolean PM_InBackFlip( int anim )
 	switch ( anim )
 	{
 	case BOTH_FLIP_BACK1:
+    [[fallthrough]];
 	case BOTH_FLIP_BACK2:
 	case BOTH_FLIP_BACK3:
+    [[fallthrough]];
 	case BOTH_ALORA_FLIP_B:
 		return qtrue;
 		break;
@@ -894,39 +902,55 @@ qboolean PM_InSpecialJump( int anim )
 	switch ( anim )
 	{
 	case BOTH_WALL_RUN_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_RIGHT_STOP:
 	case BOTH_WALL_RUN_RIGHT_FLIP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT:
 	case BOTH_WALL_RUN_LEFT_STOP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT_FLIP:
 	case BOTH_WALL_FLIP_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_LEFT:
 	case BOTH_WALL_FLIP_BACK1:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_LEFT:
 	case BOTH_BUTTERFLY_RIGHT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_FL1:
 	case BOTH_BUTTERFLY_FR1:
+    [[fallthrough]];
 	case BOTH_FJSS_TR_BL:
 	case BOTH_FJSS_TL_BR:
+    [[fallthrough]];
 	case BOTH_FORCELEAP2_T__B_:
 	case BOTH_JUMPFLIPSLASHDOWN1://#
 	case BOTH_JUMPFLIPSTABDOWN://#
 	case BOTH_JUMPATTACK6:
+    [[fallthrough]];
 	case BOTH_JUMPATTACK7:
 	case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 	case BOTH_ARIAL_RIGHT:
 	case BOTH_ARIAL_F1:
+    [[fallthrough]];
 	case BOTH_CARTWHEEL_LEFT:
 	case BOTH_CARTWHEEL_RIGHT:
 
+    [[fallthrough]];
 	case BOTH_FORCELONGLEAP_START:
 	case BOTH_FORCELONGLEAP_ATTACK:
+    [[fallthrough]];
 	case BOTH_FORCEWALLRUNFLIP_START:
 	case BOTH_FORCEWALLRUNFLIP_END:
+    [[fallthrough]];
 	case BOTH_FORCEWALLRUNFLIP_ALT:
 	case BOTH_FLIP_ATTACK7:
+    [[fallthrough]];
 	case BOTH_FLIP_HOLD7:
 	case BOTH_FLIP_LAND:
+    [[fallthrough]];
 	case BOTH_A7_SOULCAL:
 		return qtrue;
 	}
@@ -3630,6 +3654,7 @@ int PM_GetLandingAnim( void )
 	switch ( anim )
 	{
 	case BOTH_FORCEJUMPLEFT1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIRLEFT1:
 		anim = BOTH_FORCELANDLEFT1;
 		if ( !g_allowBunnyhopping->integer ) {
@@ -3639,6 +3664,7 @@ int PM_GetLandingAnim( void )
 		}
 		break;
 	case BOTH_FORCEJUMPRIGHT1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIRRIGHT1:
 		anim = BOTH_FORCELANDRIGHT1;
 		if ( !g_allowBunnyhopping->integer ) {
@@ -3648,6 +3674,7 @@ int PM_GetLandingAnim( void )
 		}
 		break;
 	case BOTH_FORCEJUMP1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIR1:
 		if ( !g_allowBunnyhopping->integer ) {
 			//stick landings some
@@ -3657,6 +3684,7 @@ int PM_GetLandingAnim( void )
 		anim = BOTH_FORCELAND1;
 		break;
 	case BOTH_FORCEJUMPBACK1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIRBACK1:
 		if ( !g_allowBunnyhopping->integer ) {
 			//stick landings some
@@ -3666,6 +3694,7 @@ int PM_GetLandingAnim( void )
 		anim = BOTH_FORCELANDBACK1;
 		break;
 	case BOTH_JUMPLEFT1:
+    [[fallthrough]];
 	case BOTH_INAIRLEFT1:
 		anim = BOTH_LANDLEFT1;
 		if ( !g_allowBunnyhopping->integer ) {
@@ -3675,6 +3704,7 @@ int PM_GetLandingAnim( void )
 		}
 		break;
 	case BOTH_JUMPRIGHT1:
+    [[fallthrough]];
 	case BOTH_INAIRRIGHT1:
 		anim = BOTH_LANDRIGHT1;
 		if ( !g_allowBunnyhopping->integer ) {
@@ -3684,6 +3714,7 @@ int PM_GetLandingAnim( void )
 		}
 		break;
 	case BOTH_JUMP1:
+    [[fallthrough]];
 	case BOTH_INAIR1:
 		anim = BOTH_LAND1;
 		if ( !g_allowBunnyhopping->integer ) {
@@ -3693,6 +3724,7 @@ int PM_GetLandingAnim( void )
 		}
 		break;
 	case BOTH_JUMPBACK1:
+    [[fallthrough]];
 	case BOTH_INAIRBACK1:
 		anim = BOTH_LANDBACK1;
 		if ( !g_allowBunnyhopping->integer ) {
@@ -3702,46 +3734,65 @@ int PM_GetLandingAnim( void )
 		}
 		break;
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	case BOTH_BUTTERFLY_FL1:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_FR1:
 	case BOTH_FJSS_TR_BL:
+    [[fallthrough]];
 	case BOTH_FJSS_TL_BR:
 	case BOTH_LUNGE2_B__T_:
+    [[fallthrough]];
 	case BOTH_FORCELEAP2_T__B_:
 	case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 	case BOTH_ARIAL_RIGHT:
 	case BOTH_ARIAL_F1:
+    [[fallthrough]];
 	case BOTH_CARTWHEEL_LEFT:
 	case BOTH_CARTWHEEL_RIGHT:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSLASHDOWN1://#
 	case BOTH_JUMPFLIPSTABDOWN://#
 	case BOTH_JUMPATTACK6:
+    [[fallthrough]];
 	case BOTH_JUMPATTACK7:
 	case BOTH_A7_KICK_F:
+    [[fallthrough]];
 	case BOTH_A7_KICK_B:
 	case BOTH_A7_KICK_R:
+    [[fallthrough]];
 	case BOTH_A7_KICK_L:
 	case BOTH_A7_KICK_S:
+    [[fallthrough]];
 	case BOTH_A7_KICK_BF:
 	case BOTH_A7_KICK_RL:
+    [[fallthrough]];
 	case BOTH_A7_KICK_F_AIR:
 	case BOTH_A7_KICK_B_AIR:
+    [[fallthrough]];
 	case BOTH_A7_KICK_R_AIR:
 	case BOTH_A7_KICK_L_AIR:
+    [[fallthrough]];
 	case BOTH_STABDOWN:
 	case BOTH_STABDOWN_STAFF:
+    [[fallthrough]];
 	case BOTH_STABDOWN_DUAL:
 	case BOTH_A6_SABERPROTECT:
+    [[fallthrough]];
 	case BOTH_A7_SOULCAL:
 	case BOTH_A1_SPECIAL:
+    [[fallthrough]];
 	case BOTH_A2_SPECIAL:
 	case BOTH_A3_SPECIAL:
+    [[fallthrough]];
 	case BOTH_PULL_IMPALE_STAB:
 	case BOTH_PULL_IMPALE_SWING:
 		anim = -1;
 		break;
 	case BOTH_FORCELONGLEAP_START:
+    [[fallthrough]];
 	case BOTH_FORCELONGLEAP_ATTACK:
 		return BOTH_FORCELONGLEAP_LAND;
 		break;
@@ -5884,6 +5935,7 @@ qboolean PM_ForceAnim( int anim )
 	case BOTH_MINDTRICK2:		//# Use off-hand to do distraction
 	case BOTH_FORCELIGHTNING:	//# Use off-hand to do lightning
 	case BOTH_FORCELIGHTNING_START:
+    [[fallthrough]];
 	case BOTH_FORCELIGHTNING_HOLD:	//# Use off-hand to do lightning
 	case BOTH_FORCELIGHTNING_RELEASE:	//# Use off-hand to do lightning
 	case BOTH_FORCEHEAL_START:	//# Healing meditation pose start
@@ -5894,18 +5946,25 @@ qboolean PM_ForceAnim( int anim )
 	case BOTH_FORCEGRIP_RELEASE:		//# temp force-grip anim (actually re-using push)
 	//case BOTH_FORCEGRIP3:		//# force-gripping
 	case BOTH_FORCE_RAGE:
+    [[fallthrough]];
 	case BOTH_FORCE_2HANDEDLIGHTNING:
 	case BOTH_FORCE_2HANDEDLIGHTNING_START:
+    [[fallthrough]];
 	case BOTH_FORCE_2HANDEDLIGHTNING_HOLD:
 	case BOTH_FORCE_2HANDEDLIGHTNING_RELEASE:
+    [[fallthrough]];
 	case BOTH_FORCE_DRAIN:
 	case BOTH_FORCE_DRAIN_START:
+    [[fallthrough]];
 	case BOTH_FORCE_DRAIN_HOLD:
 	case BOTH_FORCE_DRAIN_RELEASE:
+    [[fallthrough]];
 	case BOTH_FORCE_ABSORB:
 	case BOTH_FORCE_ABSORB_START:
+    [[fallthrough]];
 	case BOTH_FORCE_ABSORB_END:
 	case BOTH_FORCE_PROTECT:
+    [[fallthrough]];
 	case BOTH_FORCE_PROTECT_FAST:
 		return qtrue;
 		break;
@@ -5927,20 +5986,28 @@ qboolean PM_InForceGetUp( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_FORCE_GETUP_F1:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_F2:
 	case BOTH_FORCE_GETUP_B1:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B2:
 	case BOTH_FORCE_GETUP_B3:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B4:
 	case BOTH_FORCE_GETUP_B5:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B6:
 	case BOTH_GETUP_BROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_F:
 	case BOTH_GETUP_BROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_R:
 	case BOTH_GETUP_FROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_F:
 	case BOTH_GETUP_FROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_R:
 		if ( ps->legsAnimTimer )
 		{
@@ -5956,18 +6023,25 @@ qboolean PM_InGetUp( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_GETUP1:
+    [[fallthrough]];
 	case BOTH_GETUP2:
 	case BOTH_GETUP3:
+    [[fallthrough]];
 	case BOTH_GETUP4:
 	case BOTH_GETUP5:
+    [[fallthrough]];
 	case BOTH_GETUP_CROUCH_F1:
 	case BOTH_GETUP_CROUCH_B1:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_B:
 	case BOTH_GETUP_BROLL_F:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_L:
 	case BOTH_GETUP_BROLL_R:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_B:
 	case BOTH_GETUP_FROLL_F:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_L:
 	case BOTH_GETUP_FROLL_R:
 		if ( ps->legsAnimTimer )
@@ -5988,18 +6062,25 @@ qboolean PM_InGetUpNoRoll( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_GETUP1:
+    [[fallthrough]];
 	case BOTH_GETUP2:
 	case BOTH_GETUP3:
+    [[fallthrough]];
 	case BOTH_GETUP4:
 	case BOTH_GETUP5:
+    [[fallthrough]];
 	case BOTH_GETUP_CROUCH_F1:
 	case BOTH_GETUP_CROUCH_B1:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_F1:
 	case BOTH_FORCE_GETUP_F2:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B1:
 	case BOTH_FORCE_GETUP_B2:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B3:
 	case BOTH_FORCE_GETUP_B4:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B5:
 	case BOTH_FORCE_GETUP_B6:
 		if ( ps->legsAnimTimer )
@@ -6016,8 +6097,10 @@ qboolean PM_InKnockDown( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_KNOCKDOWN1:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN2:
 	case BOTH_KNOCKDOWN3:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN4:
 	case BOTH_KNOCKDOWN5:
 	//special anims:
@@ -6055,8 +6138,10 @@ qboolean PM_InKnockDownNoGetup( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_KNOCKDOWN1:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN2:
 	case BOTH_KNOCKDOWN3:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN4:
 	case BOTH_KNOCKDOWN5:
 	//special anims:
@@ -6091,10 +6176,13 @@ qboolean PM_InKnockDownOnGround( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_KNOCKDOWN1:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN2:
 	case BOTH_KNOCKDOWN3:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN4:
 	case BOTH_KNOCKDOWN5:
+    [[fallthrough]];
 	case BOTH_RELEASED:
 		//if ( PM_AnimLength( g_entities[ps->clientNum].client->clientInfo.animFileIndex, (animNumber_t)ps->legsAnim ) - ps->legsAnimTimer > 300 )
 		{//at end of fall down anim
@@ -6102,18 +6190,25 @@ qboolean PM_InKnockDownOnGround( playerState_t *ps )
 		}
 		break;
 	case BOTH_GETUP1:
+    [[fallthrough]];
 	case BOTH_GETUP2:
 	case BOTH_GETUP3:
+    [[fallthrough]];
 	case BOTH_GETUP4:
 	case BOTH_GETUP5:
+    [[fallthrough]];
 	case BOTH_GETUP_CROUCH_F1:
 	case BOTH_GETUP_CROUCH_B1:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_F1:
 	case BOTH_FORCE_GETUP_F2:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B1:
 	case BOTH_FORCE_GETUP_B2:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B3:
 	case BOTH_FORCE_GETUP_B4:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B5:
 	case BOTH_FORCE_GETUP_B6:
 		if ( PM_AnimLength( g_entities[ps->clientNum].client->clientInfo.animFileIndex, (animNumber_t)ps->legsAnim ) - ps->legsAnimTimer < 500 )
@@ -6122,12 +6217,16 @@ qboolean PM_InKnockDownOnGround( playerState_t *ps )
 		}
 		break;
 	case BOTH_GETUP_BROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_F:
 	case BOTH_GETUP_BROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_R:
 	case BOTH_GETUP_FROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_F:
 	case BOTH_GETUP_FROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_R:
 		if ( PM_AnimLength( g_entities[ps->clientNum].client->clientInfo.animFileIndex, (animNumber_t)ps->legsAnim ) - ps->legsAnimTimer < 500 )
 		{//at beginning of getup anim
@@ -6165,13 +6264,16 @@ qboolean PM_CrouchGetup( float crouchheight )
 	switch ( pm->ps->legsAnim )
 	{
 	case BOTH_KNOCKDOWN1:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN2:
 	case BOTH_KNOCKDOWN4:
+    [[fallthrough]];
 	case BOTH_RELEASED:
 	case BOTH_PLAYER_PA_3_FLY:
 		anim = BOTH_GETUP_CROUCH_B1;
 		break;
 	case BOTH_KNOCKDOWN3:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN5:
 	case BOTH_LK_DL_ST_T_SB_1_L:
 		anim = BOTH_GETUP_CROUCH_F1;
@@ -6441,6 +6543,7 @@ qboolean PM_GettingUpFromKnockDown( float standheight, float crouchheight )
 						}
 						break;
 					case BOTH_KNOCKDOWN2:
+    [[fallthrough]];
 					case BOTH_PLAYER_PA_3_FLY:
 						if ( (pm->ps->clientNum&&pm->ps->forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_0) || ((pm->ps->clientNum < MAX_CLIENTS||PM_ControlledByPlayer())&&pm->cmd.upmove>0&&pm->ps->forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_0) )//FORCE_LEVEL_1) )FORCE_LEVEL_1) )
 						{
@@ -6464,6 +6567,7 @@ qboolean PM_GettingUpFromKnockDown( float standheight, float crouchheight )
 						}
 						break;
 					case BOTH_KNOCKDOWN4:
+    [[fallthrough]];
 					case BOTH_RELEASED:
 						if ( (pm->ps->clientNum&&pm->ps->forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_0) || ((pm->ps->clientNum < MAX_CLIENTS||PM_ControlledByPlayer())&&pm->cmd.upmove>0&&pm->ps->forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_0) )//FORCE_LEVEL_1) )FORCE_LEVEL_1) )
 						{
@@ -6476,6 +6580,7 @@ qboolean PM_GettingUpFromKnockDown( float standheight, float crouchheight )
 						}
 						break;
 					case BOTH_KNOCKDOWN5:
+    [[fallthrough]];
 					case BOTH_LK_DL_ST_T_SB_1_L:
 						if ( (pm->ps->clientNum&&pm->ps->forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_0) || ((pm->ps->clientNum < MAX_CLIENTS||PM_ControlledByPlayer())&&pm->cmd.upmove>0&&pm->ps->forcePowerLevel[FP_LEVITATION] > FORCE_LEVEL_0) )//FORCE_LEVEL_1) )FORCE_LEVEL_1) )
 						{
@@ -6684,16 +6789,22 @@ qboolean PM_InRollIgnoreTimer( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_ROLL_F:
+    [[fallthrough]];
 	case BOTH_ROLL_B:
 	case BOTH_ROLL_R:
+    [[fallthrough]];
 	case BOTH_ROLL_L:
 	case BOTH_GETUP_BROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_F:
 	case BOTH_GETUP_BROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_R:
 	case BOTH_GETUP_FROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_F:
 	case BOTH_GETUP_FROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_R:
 		return qtrue;
 	}
@@ -6728,8 +6839,10 @@ qboolean PM_CrouchAnim( int anim )
 	case BOTH_ROLL_STAB:
 	//???
 	case BOTH_STAND_TO_KNEEL:
+    [[fallthrough]];
 	case BOTH_KNEEL_TO_STAND:
 	case BOTH_TURNCROUCH1:
+    [[fallthrough]];
 	case BOTH_CROUCH4:
 	case BOTH_KNEES2:			//# Tavion on her knees looking down
 	case BOTH_KNEES2TO1:			//# Transition of KNEES2 to KNEES1
@@ -6773,10 +6886,13 @@ qboolean PM_DodgeHoldAnim( int anim )
 	switch ( anim )
 	{
 	case BOTH_DODGE_HOLD_FL:
+    [[fallthrough]];
 	case BOTH_DODGE_HOLD_FR:
 	case BOTH_DODGE_HOLD_BL:
+    [[fallthrough]];
 	case BOTH_DODGE_HOLD_BR:
 	case BOTH_DODGE_HOLD_L:
+    [[fallthrough]];
 	case BOTH_DODGE_HOLD_R:
 		return qtrue;
 		break;
@@ -6883,40 +6999,56 @@ qboolean PM_FlippingAnim( int anim )
 	case BOTH_FLIP_L:			//# Flip left
 	case BOTH_FLIP_R:			//# Flip right
 	case BOTH_ALORA_FLIP_1:
+    [[fallthrough]];
 	case BOTH_ALORA_FLIP_2:
 	case BOTH_ALORA_FLIP_3:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_RIGHT_FLIP:
 	case BOTH_WALL_RUN_LEFT_FLIP:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_RIGHT:
 	case BOTH_WALL_FLIP_LEFT:
+    [[fallthrough]];
 	case BOTH_FLIP_BACK1:
 	case BOTH_FLIP_BACK2:
+    [[fallthrough]];
 	case BOTH_FLIP_BACK3:
 	case BOTH_WALL_FLIP_BACK1:
+    [[fallthrough]];
 	case BOTH_ALORA_FLIP_B:
 	//Not really flips, but...
 	case BOTH_WALL_RUN_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT:
 	case BOTH_WALL_RUN_RIGHT_STOP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT_STOP:
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	case BOTH_BUTTERFLY_FL1:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_FR1:
 	//
 	case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 	case BOTH_ARIAL_RIGHT:
 	case BOTH_ARIAL_F1:
+    [[fallthrough]];
 	case BOTH_CARTWHEEL_LEFT:
 	case BOTH_CARTWHEEL_RIGHT:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSLASHDOWN1:
 	case BOTH_JUMPFLIPSTABDOWN:
+    [[fallthrough]];
 	case BOTH_JUMPATTACK6:
 	case BOTH_JUMPATTACK7:
 	//JKA
 	case BOTH_FORCEWALLRUNFLIP_END:
+    [[fallthrough]];
 	case BOTH_FORCEWALLRUNFLIP_ALT:
 	case BOTH_FLIP_ATTACK7:
+    [[fallthrough]];
 	case BOTH_A7_SOULCAL:
 		return qtrue;
 		break;
@@ -6950,12 +7082,16 @@ qboolean PM_RunningAnim( int anim )
 	switch ( anim )
 	{
 	case BOTH_RUN1:
+    [[fallthrough]];
 	case BOTH_RUN2:
 	case BOTH_RUN4:
+    [[fallthrough]];
 	case BOTH_RUN_STAFF:
 	case BOTH_RUN_DUAL:
+    [[fallthrough]];
 	case BOTH_RUNBACK1:
 	case BOTH_RUNBACK2:
+    [[fallthrough]];
 	case BOTH_RUNBACK_STAFF:
 	case BOTH_RUN1START:			//# Start into full run1
 	case BOTH_RUN1STOP:			//# Stop from full run1
@@ -6976,12 +7112,16 @@ qboolean PM_RollingAnim( int anim )
 	case BOTH_ROLL_L:			//# Roll left
 	case BOTH_ROLL_R:			//# Roll right
 	case BOTH_GETUP_BROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_F:
 	case BOTH_GETUP_BROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_BROLL_R:
 	case BOTH_GETUP_FROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_F:
 	case BOTH_GETUP_FROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_R:
 		return qtrue;
 		break;
@@ -7008,10 +7148,13 @@ qboolean PM_LeapingSaberAnim( int anim )
 	{
 	//level 7
 	case BOTH_T7_BR_TL:
+    [[fallthrough]];
 	case BOTH_T7__L_BR:
 	case BOTH_T7__L__R:
+    [[fallthrough]];
 	case BOTH_T7_BL_BR:
 	case BOTH_T7_BL__R:
+    [[fallthrough]];
 	case BOTH_T7_BL_TR:
 		return qtrue;
 		break;
@@ -7025,101 +7168,145 @@ qboolean PM_SpinningSaberAnim( int anim )
 	{
 	//level 1 - FIXME: level 1 will have *no* spins
 	case BOTH_T1_BR_BL:
+    [[fallthrough]];
 	case BOTH_T1__R__L:
 	case BOTH_T1__R_BL:
+    [[fallthrough]];
 	case BOTH_T1_TR_BL:
 	case BOTH_T1_BR_TL:
+    [[fallthrough]];
 	case BOTH_T1_BR__L:
 	case BOTH_T1_TL_BR:
+    [[fallthrough]];
 	case BOTH_T1__L_BR:
 	case BOTH_T1__L__R:
+    [[fallthrough]];
 	case BOTH_T1_BL_BR:
 	case BOTH_T1_BL__R:
+    [[fallthrough]];
 	case BOTH_T1_BL_TR:
 	//level 2
 	case BOTH_T2_BR__L:
+    [[fallthrough]];
 	case BOTH_T2_BR_BL:
 	case BOTH_T2__R_BL:
+    [[fallthrough]];
 	case BOTH_T2__L_BR:
 	case BOTH_T2_BL_BR:
+    [[fallthrough]];
 	case BOTH_T2_BL__R:
 	//level 3
 	case BOTH_T3_BR__L:
+    [[fallthrough]];
 	case BOTH_T3_BR_BL:
 	case BOTH_T3__R_BL:
+    [[fallthrough]];
 	case BOTH_T3__L_BR:
 	case BOTH_T3_BL_BR:
+    [[fallthrough]];
 	case BOTH_T3_BL__R:
 	//level 4
 	case BOTH_T4_BR__L:
+    [[fallthrough]];
 	case BOTH_T4_BR_BL:
 	case BOTH_T4__R_BL:
+    [[fallthrough]];
 	case BOTH_T4__L_BR:
 	case BOTH_T4_BL_BR:
+    [[fallthrough]];
 	case BOTH_T4_BL__R:
 	//level 5
 	case BOTH_T5_BR_BL:
+    [[fallthrough]];
 	case BOTH_T5__R__L:
 	case BOTH_T5__R_BL:
+    [[fallthrough]];
 	case BOTH_T5_TR_BL:
 	case BOTH_T5_BR_TL:
+    [[fallthrough]];
 	case BOTH_T5_BR__L:
 	case BOTH_T5_TL_BR:
+    [[fallthrough]];
 	case BOTH_T5__L_BR:
 	case BOTH_T5__L__R:
+    [[fallthrough]];
 	case BOTH_T5_BL_BR:
 	case BOTH_T5_BL__R:
+    [[fallthrough]];
 	case BOTH_T5_BL_TR:
 	//level 6
 	case BOTH_T6_BR_TL:
+    [[fallthrough]];
 	case BOTH_T6__R_TL:
 	case BOTH_T6__R__L:
+    [[fallthrough]];
 	case BOTH_T6__R_BL:
 	case BOTH_T6_TR_TL:
+    [[fallthrough]];
 	case BOTH_T6_TR__L:
 	case BOTH_T6_TR_BL:
+    [[fallthrough]];
 	case BOTH_T6_T__TL:
 	case BOTH_T6_T__BL:
+    [[fallthrough]];
 	case BOTH_T6_TL_BR:
 	case BOTH_T6__L_BR:
+    [[fallthrough]];
 	case BOTH_T6__L__R:
 	case BOTH_T6_TL__R:
+    [[fallthrough]];
 	case BOTH_T6_TL_TR:
 	case BOTH_T6__L_TR:
+    [[fallthrough]];
 	case BOTH_T6__L_T_:
 	case BOTH_T6_BL_T_:
+    [[fallthrough]];
 	case BOTH_T6_BR__L:
 	case BOTH_T6_BR_BL:
+    [[fallthrough]];
 	case BOTH_T6_BL_BR:
 	case BOTH_T6_BL__R:
+    [[fallthrough]];
 	case BOTH_T6_BL_TR:
 	//level 7
 	case BOTH_T7_BR_TL:
+    [[fallthrough]];
 	case BOTH_T7_BR__L:
 	case BOTH_T7_BR_BL:
+    [[fallthrough]];
 	case BOTH_T7__R__L:
 	case BOTH_T7__R_BL:
+    [[fallthrough]];
 	case BOTH_T7_TR__L:
 	case BOTH_T7_T___R:
+    [[fallthrough]];
 	case BOTH_T7_TL_BR:
 	case BOTH_T7__L_BR:
+    [[fallthrough]];
 	case BOTH_T7__L__R:
 	case BOTH_T7_BL_BR:
+    [[fallthrough]];
 	case BOTH_T7_BL__R:
 	case BOTH_T7_BL_TR:
+    [[fallthrough]];
 	case BOTH_T7_TL_TR:
 	case BOTH_T7_T__BR:
+    [[fallthrough]];
 	case BOTH_T7__L_TR:
 	case BOTH_V7_BL_S7:
 	//special
 	//case BOTH_A2_STABBACK1:
 	case BOTH_ATTACK_BACK:
+    [[fallthrough]];
 	case BOTH_CROUCHATTACKBACK1:
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	case BOTH_FJSS_TR_BL:
+    [[fallthrough]];
 	case BOTH_FJSS_TL_BR:
 	case BOTH_JUMPFLIPSLASHDOWN1:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSTABDOWN:
 		return qtrue;
 		break;
@@ -7341,64 +7528,94 @@ qboolean PM_InSlopeAnim( int anim )
 	case LEGS_RIGHTUP4:			//# On a slope with RIGHT foot 16 higher than left
 	case LEGS_RIGHTUP5:			//# On a slope with RIGHT foot 20 higher than left
 	case LEGS_S1_LUP1:
+    [[fallthrough]];
 	case LEGS_S1_LUP2:
 	case LEGS_S1_LUP3:
+    [[fallthrough]];
 	case LEGS_S1_LUP4:
 	case LEGS_S1_LUP5:
+    [[fallthrough]];
 	case LEGS_S1_RUP1:
 	case LEGS_S1_RUP2:
+    [[fallthrough]];
 	case LEGS_S1_RUP3:
 	case LEGS_S1_RUP4:
+    [[fallthrough]];
 	case LEGS_S1_RUP5:
 	case LEGS_S3_LUP1:
+    [[fallthrough]];
 	case LEGS_S3_LUP2:
 	case LEGS_S3_LUP3:
+    [[fallthrough]];
 	case LEGS_S3_LUP4:
 	case LEGS_S3_LUP5:
+    [[fallthrough]];
 	case LEGS_S3_RUP1:
 	case LEGS_S3_RUP2:
+    [[fallthrough]];
 	case LEGS_S3_RUP3:
 	case LEGS_S3_RUP4:
+    [[fallthrough]];
 	case LEGS_S3_RUP5:
 	case LEGS_S4_LUP1:
+    [[fallthrough]];
 	case LEGS_S4_LUP2:
 	case LEGS_S4_LUP3:
+    [[fallthrough]];
 	case LEGS_S4_LUP4:
 	case LEGS_S4_LUP5:
+    [[fallthrough]];
 	case LEGS_S4_RUP1:
 	case LEGS_S4_RUP2:
+    [[fallthrough]];
 	case LEGS_S4_RUP3:
 	case LEGS_S4_RUP4:
+    [[fallthrough]];
 	case LEGS_S4_RUP5:
 	case LEGS_S5_LUP1:
+    [[fallthrough]];
 	case LEGS_S5_LUP2:
 	case LEGS_S5_LUP3:
+    [[fallthrough]];
 	case LEGS_S5_LUP4:
 	case LEGS_S5_LUP5:
+    [[fallthrough]];
 	case LEGS_S5_RUP1:
 	case LEGS_S5_RUP2:
+    [[fallthrough]];
 	case LEGS_S5_RUP3:
 	case LEGS_S5_RUP4:
+    [[fallthrough]];
 	case LEGS_S5_RUP5:
 	case LEGS_S6_LUP1:
+    [[fallthrough]];
 	case LEGS_S6_LUP2:
 	case LEGS_S6_LUP3:
+    [[fallthrough]];
 	case LEGS_S6_LUP4:
 	case LEGS_S6_LUP5:
+    [[fallthrough]];
 	case LEGS_S6_RUP1:
 	case LEGS_S6_RUP2:
+    [[fallthrough]];
 	case LEGS_S6_RUP3:
 	case LEGS_S6_RUP4:
+    [[fallthrough]];
 	case LEGS_S6_RUP5:
 	case LEGS_S7_LUP1:
+    [[fallthrough]];
 	case LEGS_S7_LUP2:
 	case LEGS_S7_LUP3:
+    [[fallthrough]];
 	case LEGS_S7_LUP4:
 	case LEGS_S7_LUP5:
+    [[fallthrough]];
 	case LEGS_S7_RUP1:
 	case LEGS_S7_RUP2:
+    [[fallthrough]];
 	case LEGS_S7_RUP3:
 	case LEGS_S7_RUP4:
+    [[fallthrough]];
 	case LEGS_S7_RUP5:
 		return qtrue;
 		break;
@@ -7427,10 +7644,13 @@ qboolean PM_SaberDrawPutawayAnim( int anim )
 	switch ( anim )
 	{
 	case BOTH_STAND1TO2:
+    [[fallthrough]];
 	case BOTH_STAND2TO1:
 	case BOTH_S1_S7:
+    [[fallthrough]];
 	case BOTH_S7_S1:
 	case BOTH_S1_S6:
+    [[fallthrough]];
 	case BOTH_S6_S1:
 		return qtrue;
 		break;
@@ -7519,23 +7739,31 @@ qboolean PM_AdjustStandAnimForSlope( void )
 		switch ( legsAnim )
 		{
 		case BOTH_STAND1:
+    [[fallthrough]];
 		case LEGS_S1_LUP1:
 		case LEGS_S1_LUP2:
+    [[fallthrough]];
 		case LEGS_S1_LUP3:
 		case LEGS_S1_LUP4:
+    [[fallthrough]];
 		case LEGS_S1_LUP5:
 		case LEGS_S1_RUP1:
+    [[fallthrough]];
 		case LEGS_S1_RUP2:
 		case LEGS_S1_RUP3:
+    [[fallthrough]];
 		case LEGS_S1_RUP4:
 		case LEGS_S1_RUP5:
 			destAnim = LEGS_S1_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_STAND2:
+    [[fallthrough]];
 		case BOTH_SABERFAST_STANCE:
 		case BOTH_SABERSLOW_STANCE:
+    [[fallthrough]];
 		case BOTH_CROUCH1IDLE:
 		case BOTH_CROUCH1:
+    [[fallthrough]];
 		case LEGS_LEFTUP1:			//# On a slope with left foot 4 higher than right
 		case LEGS_LEFTUP2:			//# On a slope with left foot 8 higher than right
 		case LEGS_LEFTUP3:			//# On a slope with left foot 12 higher than right
@@ -7549,66 +7777,91 @@ qboolean PM_AdjustStandAnimForSlope( void )
 			//fine
 			break;
 		case BOTH_STAND3:
+    [[fallthrough]];
 		case LEGS_S3_LUP1:
 		case LEGS_S3_LUP2:
+    [[fallthrough]];
 		case LEGS_S3_LUP3:
 		case LEGS_S3_LUP4:
+    [[fallthrough]];
 		case LEGS_S3_LUP5:
 		case LEGS_S3_RUP1:
+    [[fallthrough]];
 		case LEGS_S3_RUP2:
 		case LEGS_S3_RUP3:
+    [[fallthrough]];
 		case LEGS_S3_RUP4:
 		case LEGS_S3_RUP5:
 			destAnim = LEGS_S3_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_STAND4:
+    [[fallthrough]];
 		case LEGS_S4_LUP1:
 		case LEGS_S4_LUP2:
+    [[fallthrough]];
 		case LEGS_S4_LUP3:
 		case LEGS_S4_LUP4:
+    [[fallthrough]];
 		case LEGS_S4_LUP5:
 		case LEGS_S4_RUP1:
+    [[fallthrough]];
 		case LEGS_S4_RUP2:
 		case LEGS_S4_RUP3:
+    [[fallthrough]];
 		case LEGS_S4_RUP4:
 		case LEGS_S4_RUP5:
 			destAnim = LEGS_S4_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_STAND5:
+    [[fallthrough]];
 		case LEGS_S5_LUP1:
 		case LEGS_S5_LUP2:
+    [[fallthrough]];
 		case LEGS_S5_LUP3:
 		case LEGS_S5_LUP4:
+    [[fallthrough]];
 		case LEGS_S5_LUP5:
 		case LEGS_S5_RUP1:
+    [[fallthrough]];
 		case LEGS_S5_RUP2:
 		case LEGS_S5_RUP3:
+    [[fallthrough]];
 		case LEGS_S5_RUP4:
 		case LEGS_S5_RUP5:
 			destAnim = LEGS_S5_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_SABERDUAL_STANCE:
+    [[fallthrough]];
 		case LEGS_S6_LUP1:
 		case LEGS_S6_LUP2:
+    [[fallthrough]];
 		case LEGS_S6_LUP3:
 		case LEGS_S6_LUP4:
+    [[fallthrough]];
 		case LEGS_S6_LUP5:
 		case LEGS_S6_RUP1:
+    [[fallthrough]];
 		case LEGS_S6_RUP2:
 		case LEGS_S6_RUP3:
+    [[fallthrough]];
 		case LEGS_S6_RUP4:
 		case LEGS_S6_RUP5:
 			destAnim = LEGS_S6_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_SABERSTAFF_STANCE:
+    [[fallthrough]];
 		case LEGS_S7_LUP1:
 		case LEGS_S7_LUP2:
+    [[fallthrough]];
 		case LEGS_S7_LUP3:
 		case LEGS_S7_LUP4:
+    [[fallthrough]];
 		case LEGS_S7_LUP5:
 		case LEGS_S7_RUP1:
+    [[fallthrough]];
 		case LEGS_S7_RUP2:
 		case LEGS_S7_RUP3:
+    [[fallthrough]];
 		case LEGS_S7_RUP4:
 		case LEGS_S7_RUP5:
 			destAnim = LEGS_S7_LUP1 + (destAnim-LEGS_LEFTUP1);
@@ -7710,8 +7963,10 @@ qboolean PM_AdjustStandAnimForSlope( void )
 				}
 				break;
 			case BOTH_STAND2:
+    [[fallthrough]];
 			case BOTH_SABERFAST_STANCE:
 			case BOTH_SABERSLOW_STANCE:
+    [[fallthrough]];
 			case BOTH_CROUCH1IDLE:
 				if ( destAnim >= LEGS_LEFTUP1 && destAnim <= LEGS_LEFTUP5 )
 				{//going into left side up
@@ -8250,6 +8505,7 @@ static void PM_Footsteps( void )
 						switch ( pm->ps->saberAnimLevel )
 						{
 						case SS_FAST:
+    [[fallthrough]];
 						case SS_TAVION:
 							legsAnim = BOTH_SABERFAST_STANCE;
 							break;
@@ -8263,6 +8519,7 @@ static void PM_Footsteps( void )
 							legsAnim = BOTH_SABERSTAFF_STANCE;
 							break;
 						case SS_NONE:
+    [[fallthrough]];
 						case SS_MEDIUM:
 						case SS_DESANN:
 						default:
@@ -9099,6 +9356,7 @@ int PM_ReadyPoseForSaberAnimLevel( void )
 		anim = BOTH_SABERSTAFF_STANCE;
 		break;
 	case SS_FAST:
+    [[fallthrough]];
 	case SS_TAVION:
 		anim = BOTH_SABERFAST_STANCE;
 		break;
@@ -9106,6 +9364,7 @@ int PM_ReadyPoseForSaberAnimLevel( void )
 		anim = BOTH_SABERSLOW_STANCE;
 		break;
 	case SS_NONE:
+    [[fallthrough]];
 	case SS_MEDIUM:
 	case SS_DESANN:
 	default:
@@ -9428,18 +9687,25 @@ void PM_SetSaberMove(saberMoveName_t newMove)
 		switch ( pm->ps->legsAnim )
 		{
 		case BOTH_WALK1:
+    [[fallthrough]];
 		case BOTH_WALK2:
 		case BOTH_WALK_STAFF:
+    [[fallthrough]];
 		case BOTH_WALK_DUAL:
 		case BOTH_WALKBACK1:
+    [[fallthrough]];
 		case BOTH_WALKBACK2:
 		case BOTH_WALKBACK_STAFF:
+    [[fallthrough]];
 		case BOTH_WALKBACK_DUAL:
 		case BOTH_RUN1:
+    [[fallthrough]];
 		case BOTH_RUN2:
 		case BOTH_RUN_STAFF:
+    [[fallthrough]];
 		case BOTH_RUN_DUAL:
 		case BOTH_RUNBACK1:
+    [[fallthrough]];
 		case BOTH_RUNBACK2:
 		case BOTH_RUNBACK_STAFF:
 			anim = pm->ps->legsAnim;
@@ -9547,15 +9813,18 @@ void PM_SetSaberMove(saberMoveName_t newMove)
 						switch ( pm->ps->saberAnimLevel )
 						{
 						case SS_DESANN:
+    [[fallthrough]];
 						case SS_STRONG:
 							WP_SaberSwingSound( pm->gent, 0, SWING_STRONG );
 							break;
 						case SS_MEDIUM:
+    [[fallthrough]];
 						case SS_DUAL:
 						case SS_STAFF:
 							WP_SaberSwingSound( pm->gent, 0, SWING_MEDIUM );
 							break;
 						case SS_TAVION:
+    [[fallthrough]];
 						case SS_FAST:
 							WP_SaberSwingSound( pm->gent, 0, SWING_FAST );
 							break;
@@ -9602,6 +9871,7 @@ void PM_SetSaberMove(saberMoveName_t newMove)
 		switch ( newMove )
 		{//make sure the saber is on!
 		case LS_A_LUNGE:
+    [[fallthrough]];
 		case LS_ROLL_STAB:
 			if ( PM_InSecondaryStyle() )
 			{//staff as medium or dual as fast
@@ -9620,12 +9890,16 @@ void PM_SetSaberMove(saberMoveName_t newMove)
 			}
 			break;
 		case LS_SPINATTACK_ALORA:
+    [[fallthrough]];
 		case LS_SPINATTACK_DUAL:
 		case LS_SPINATTACK:
+    [[fallthrough]];
 		case LS_A1_SPECIAL:
 		case LS_A2_SPECIAL:
+    [[fallthrough]];
 		case LS_A3_SPECIAL:
 		case LS_DUAL_SPIN_PROTECT:
+    [[fallthrough]];
 		case LS_STAFF_SOULCAL:
 			//FIXME: probably more...
 			pm->ps->SaberActivate();
@@ -10450,8 +10724,10 @@ qboolean PM_InSaberLockOld( int anim )
 	switch ( anim )
 	{
 	case BOTH_BF2LOCK:
+    [[fallthrough]];
 	case BOTH_BF1LOCK:
 	case BOTH_CWCIRCLELOCK:
+    [[fallthrough]];
 	case BOTH_CCWCIRCLELOCK:
 		return qtrue;
 	}
@@ -10481,10 +10757,13 @@ qboolean PM_InSaberLock( int anim )
 	case BOTH_LK_ST_S_S_L_1:		//lock if I'm using staff vs. a single
 	case BOTH_LK_ST_S_T_L_1:		//lock if I'm using staff vs. a single
 	case BOTH_LK_S_S_S_L_2:
+    [[fallthrough]];
 	case BOTH_LK_S_S_T_L_2:
 	case BOTH_LK_DL_DL_S_L_2:
+    [[fallthrough]];
 	case BOTH_LK_DL_DL_T_L_2:
 	case BOTH_LK_ST_ST_S_L_2:
+    [[fallthrough]];
 	case BOTH_LK_ST_ST_T_L_2:
 		return qtrue;
 		break;
@@ -11169,12 +11448,16 @@ qboolean PM_CheckUpsideDownAttack( void )
 	switch( pm->ps->legsAnim )
 	{
 	case BOTH_WALL_RUN_RIGHT_FLIP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT_FLIP:
 	case BOTH_WALL_FLIP_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_LEFT:
 	case BOTH_FLIP_BACK1:
+    [[fallthrough]];
 	case BOTH_FLIP_BACK2:
 	case BOTH_FLIP_BACK3:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_BACK1:
 	case BOTH_ALORA_FLIP_B:
 	//JKA
@@ -11278,22 +11561,27 @@ void PM_SaberDroidWeapon( void )
 				pm->ps->weaponTime = pm->ps->legsAnimTimer;
 				break;
 			case BLOCKED_UPPER_RIGHT:
+    [[fallthrough]];
 			case BLOCKED_UPPER_RIGHT_PROJ:
 			case BLOCKED_LOWER_RIGHT:
+    [[fallthrough]];
 			case BLOCKED_LOWER_RIGHT_PROJ:
 				PM_SetAnim( pm, SETANIM_BOTH, BOTH_P1_S1_TR, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 				pm->ps->legsAnimTimer += Q_irand( 200, 1000 );
 				pm->ps->weaponTime = pm->ps->legsAnimTimer;
 				break;
 			case BLOCKED_UPPER_LEFT:
+    [[fallthrough]];
 			case BLOCKED_UPPER_LEFT_PROJ:
 			case BLOCKED_LOWER_LEFT:
+    [[fallthrough]];
 			case BLOCKED_LOWER_LEFT_PROJ:
 				PM_SetAnim( pm, SETANIM_BOTH, BOTH_P1_S1_TL, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 				pm->ps->legsAnimTimer += Q_irand( 200, 1000 );
 				pm->ps->weaponTime = pm->ps->legsAnimTimer;
 				break;
 			case BLOCKED_TOP:
+    [[fallthrough]];
 			case BLOCKED_TOP_PROJ:
 				PM_SetAnim( pm, SETANIM_BOTH, BOTH_P1_S1_T_, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD );
 				pm->ps->legsAnimTimer += Q_irand( 200, 1000 );
@@ -12297,18 +12585,25 @@ void PM_WeaponLightsaber(void)
 			switch ( pm->ps->legsAnim )
 			{
 			case BOTH_WALK1:
+    [[fallthrough]];
 			case BOTH_WALK2:
 			case BOTH_WALK_STAFF:
+    [[fallthrough]];
 			case BOTH_WALK_DUAL:
 			case BOTH_WALKBACK1:
+    [[fallthrough]];
 			case BOTH_WALKBACK2:
 			case BOTH_WALKBACK_STAFF:
+    [[fallthrough]];
 			case BOTH_WALKBACK_DUAL:
 			case BOTH_RUN1:
+    [[fallthrough]];
 			case BOTH_RUN2:
 			case BOTH_RUN_STAFF:
+    [[fallthrough]];
 			case BOTH_RUN_DUAL:
 			case BOTH_RUNBACK1:
+    [[fallthrough]];
 			case BOTH_RUNBACK2:
 			case BOTH_RUNBACK_STAFF:
 				PM_SetAnim(pm,SETANIM_TORSO,pm->ps->legsAnim,SETANIM_FLAG_NORMAL);
@@ -12412,6 +12707,7 @@ void PM_WeaponLightsaber(void)
 			switch ( pm->ps->saberAnimLevel )
 			{
 			case SS_FAST:
+    [[fallthrough]];
 			case SS_TAVION:
 				PM_SetSaberMove( LS_A1_SPECIAL );
 				break;
@@ -12419,6 +12715,7 @@ void PM_WeaponLightsaber(void)
 				PM_SetSaberMove( LS_A2_SPECIAL );
 				break;
 			case SS_STRONG:
+    [[fallthrough]];
 			case SS_DESANN:
 				PM_SetSaberMove( LS_A3_SPECIAL );
 				break;
@@ -12745,18 +13042,25 @@ void PM_WeaponLightsaber(void)
 				switch ( pm->ps->legsAnim )
 				{
 				case BOTH_WALK1:
+    [[fallthrough]];
 				case BOTH_WALK2:
 				case BOTH_WALK_STAFF:
+    [[fallthrough]];
 				case BOTH_WALK_DUAL:
 				case BOTH_WALKBACK1:
+    [[fallthrough]];
 				case BOTH_WALKBACK2:
 				case BOTH_WALKBACK_STAFF:
+    [[fallthrough]];
 				case BOTH_WALKBACK_DUAL:
 				case BOTH_RUN1:
+    [[fallthrough]];
 				case BOTH_RUN2:
 				case BOTH_RUN_STAFF:
+    [[fallthrough]];
 				case BOTH_RUN_DUAL:
 				case BOTH_RUNBACK1:
+    [[fallthrough]];
 				case BOTH_RUNBACK2:
 				case BOTH_RUNBACK_STAFF:
 					anim = pm->ps->legsAnim;
@@ -12902,6 +13206,7 @@ static bool PM_DoChargedWeapons( void )
 	{
 	//------------------
 	case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 	case WP_BLASTER_PISTOL:
 
 		// alt-fire charges the weapon
@@ -13470,6 +13775,7 @@ static void PM_Weapon( void )
 			switch(pm->ps->weapon)
 			{
 			case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 			case WP_BLASTER_PISTOL:
 				if ( pm->gent
 					&& pm->gent->weaponModel[1] > 0 )
@@ -13880,6 +14186,7 @@ static void PM_Weapon( void )
 				break;
 
 			case WP_TRIP_MINE:
+    [[fallthrough]];
 			case WP_DET_PACK:
 				PM_SetAnim(pm,SETANIM_TORSO,BOTH_ATTACK11,SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_RESTART|SETANIM_FLAG_HOLD);
 				break;
@@ -14601,8 +14908,10 @@ qboolean PM_WeaponOkOnVehicle( int weapon )
 	switch ( weapon )
 	{
 	case WP_NONE:
+    [[fallthrough]];
 	case WP_SABER:
 	case WP_BLASTER:
+    [[fallthrough]];
 	case WP_THERMAL:
 		return qtrue;
 		break;

@@ -417,6 +417,7 @@ void EvaluateTrajectory( const trajectory_t *tr, int atTime, vec3_t result ) {
 
 	switch( tr->trType ) {
 	case TR_STATIONARY:
+    [[fallthrough]];
 	case TR_INTERPOLATE:
 		VectorCopy( tr->trBase, result );
 		break;
@@ -482,6 +483,7 @@ void EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t result 
 
 	switch( tr->trType ) {
 	case TR_STATIONARY:
+    [[fallthrough]];
 	case TR_INTERPOLATE:
 		VectorClear( result );
 		break;

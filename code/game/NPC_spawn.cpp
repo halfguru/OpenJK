@@ -79,8 +79,10 @@ painFunc_t NPC_PainFunc( gentity_t *ent )
 		{
 		// troopers get special pain
 		case CLASS_SABOTEUR:
+    [[fallthrough]];
 		case CLASS_STORMTROOPER:
 		case CLASS_SWAMPTROOPER:
+    [[fallthrough]];
 		case CLASS_NOGHRI:
 			func = painF_NPC_ST_Pain;
 			break;
@@ -115,10 +117,13 @@ painFunc_t NPC_PainFunc( gentity_t *ent )
 
 		// all other droids, did I miss any?
 		case CLASS_GONK:
+    [[fallthrough]];
 		case CLASS_R2D2:
 		case CLASS_R5D2:
+    [[fallthrough]];
 		case CLASS_MOUSE:
 		case CLASS_PROTOCOL:
+    [[fallthrough]];
 		case CLASS_INTERROGATOR:
 			func = painF_NPC_Droid_Pain;
 			break;
@@ -178,41 +183,58 @@ void G_ClassSetDontFlee( gentity_t *self )
 	switch ( self->client->NPC_class )
 	{
 	case CLASS_ATST:
+    [[fallthrough]];
 	case CLASS_CLAW:
 	case CLASS_DESANN:
+    [[fallthrough]];
 	case CLASS_FISH:
 	case CLASS_FLIER2:
+    [[fallthrough]];
 	case CLASS_GALAK:
 	case CLASS_GLIDER:
+    [[fallthrough]];
 	case CLASS_RANCOR:
 	case CLASS_SAND_CREATURE:
+    [[fallthrough]];
 	case CLASS_INTERROGATOR:		// droid
 	case CLASS_JAN:
+    [[fallthrough]];
 	case CLASS_JEDI:
 	case CLASS_KYLE:
+    [[fallthrough]];
 	case CLASS_LANDO:
 	case CLASS_LIZARD:
+    [[fallthrough]];
 	case CLASS_LUKE:
 	case CLASS_MARK1:			// droid
 	case CLASS_MARK2:			// droid
 	case CLASS_GALAKMECH:		// droid
 	case CLASS_MONMOTHA:
+    [[fallthrough]];
 	case CLASS_MORGANKATARN:
 	case CLASS_MURJJ:
+    [[fallthrough]];
 	case CLASS_PROBE:			// droid
 	case CLASS_REBORN:
+    [[fallthrough]];
 	case CLASS_REELO:
 	case CLASS_REMOTE:
+    [[fallthrough]];
 	case CLASS_SEEKER:			// droid
 	case CLASS_SENTRY:
+    [[fallthrough]];
 	case CLASS_SHADOWTROOPER:
 	case CLASS_SWAMP:
+    [[fallthrough]];
 	case CLASS_TAVION:
 	case CLASS_ALORA:
+    [[fallthrough]];
 	case CLASS_BOBAFETT:
 	case CLASS_SABER_DROID:
+    [[fallthrough]];
 	case CLASS_ASSASSIN_DROID:
 	case CLASS_PLAYER:
+    [[fallthrough]];
 	case CLASS_VEHICLE:
 		self->NPC->scriptFlags |= SCF_DONT_FLEE;
 		break;
@@ -457,16 +479,21 @@ void NPC_SetMiscDefaultData( gentity_t *ent )
 			{
 			case WP_BRYAR_PISTOL://FIXME: new weapon: imp blaster pistol
 			case WP_BLASTER_PISTOL:
+    [[fallthrough]];
 			case WP_DISRUPTOR:
 			case WP_BOWCASTER:
+    [[fallthrough]];
 			case WP_REPEATER:
 			case WP_DEMP2:
+    [[fallthrough]];
 			case WP_FLECHETTE:
 			case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 			case WP_CONCUSSION:
 			default:
 				break;
 			case WP_THERMAL:
+    [[fallthrough]];
 			case WP_BLASTER:
 				//FIXME: health in NPCs.cfg, and not all blaster users are stormtroopers
 				//ent->health = 25;

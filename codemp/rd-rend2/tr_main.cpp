@@ -1867,12 +1867,16 @@ static void R_AddEntitySurface(const trRefdef_t *refdef, trRefEntity_t *ent, int
 	case RT_PORTALSURFACE:
 		break;		// don't draw anything
 	case RT_SPRITE:
+    [[fallthrough]];
 	case RT_BEAM:
 	case RT_ORIENTED_QUAD:
+    [[fallthrough]];
 	case RT_ELECTRICITY:
 	case RT_LINE:
+    [[fallthrough]];
 	case RT_ORIENTEDLINE:
 	case RT_CYLINDER:
+    [[fallthrough]];
 	case RT_SABER_GLOW:
 		// self blood sprites, talk balloons, etc should not be drawn in the primary
 		// view.  We can't just do this check for all entities, because md3
@@ -2286,6 +2290,7 @@ void R_SetupPshadowMaps(trRefdef_t *refdef)
 			switch (model->type)
 			{
 				case MOD_MDXM:
+    [[fallthrough]];
 				case MOD_BAD:
 				{
 					if (ent->e.ghoul2 && G2API_HaveWeGhoul2Models(*((CGhoul2Info_v *)ent->e.ghoul2)))
@@ -2569,12 +2574,16 @@ qboolean R_AddPortalView(const trRefdef_t *refdef)
 		case RT_PORTALSURFACE:
 			break;		// don't draw anything
 		case RT_SPRITE:
+    [[fallthrough]];
 		case RT_BEAM:
 		case RT_ORIENTED_QUAD:
+    [[fallthrough]];
 		case RT_ELECTRICITY:
 		case RT_LINE:
+    [[fallthrough]];
 		case RT_ORIENTEDLINE:
 		case RT_CYLINDER:
+    [[fallthrough]];
 		case RT_SABER_GLOW:
 			break;
 
@@ -2611,8 +2620,10 @@ qboolean R_AddPortalView(const trRefdef_t *refdef)
 				}
 				break;
 				case MOD_MESH:
+    [[fallthrough]];
 				case MOD_MDR:
 				case MOD_IQM:
+    [[fallthrough]];
 				case MOD_MDXM:
 				case MOD_BAD:
 				default:

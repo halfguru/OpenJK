@@ -90,6 +90,7 @@ void LAN_ResetPings(int source) {
 			count = MAX_OTHER_SERVERS;
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			servers = &cls.globalServers[0];
 			count = MAX_GLOBAL_SERVERS;
@@ -124,6 +125,7 @@ int LAN_AddServer(int source, const char *name, const char *address) {
 			servers = &cls.localServers[0];
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			max = MAX_GLOBAL_SERVERS;
 			count = &cls.numglobalservers;
@@ -194,6 +196,7 @@ void LAN_RemoveServer(int source, const char *addr) {
 			servers = &cls.localServers[0];
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			count = &cls.numglobalservers;
 			servers = &cls.globalServers[0];
@@ -232,6 +235,7 @@ int LAN_GetServerCount( int source ) {
 			return cls.numlocalservers;
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			return cls.numglobalservers;
 			break;
@@ -256,6 +260,7 @@ void LAN_GetServerAddressString( int source, int n, char *buf, int buflen ) {
 			}
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			if (n >= 0 && n < MAX_GLOBAL_SERVERS) {
 				Q_strncpyz(buf, NET_AdrToString( &cls.globalServers[n].adr) , buflen );
@@ -288,6 +293,7 @@ void LAN_GetServerInfo( int source, int n, char *buf, int buflen ) {
 			}
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			if (n >= 0 && n < MAX_GLOBAL_SERVERS) {
 				server = &cls.globalServers[n];
@@ -342,6 +348,7 @@ int LAN_GetServerPing( int source, int n ) {
 			}
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			if (n >= 0 && n < MAX_GLOBAL_SERVERS) {
 				server = &cls.globalServers[n];
@@ -372,6 +379,7 @@ static serverInfo_t *LAN_GetServerPtr( int source, int n ) {
 			}
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			if (n >= 0 && n < MAX_GLOBAL_SERVERS) {
 				return &cls.globalServers[n];
@@ -505,6 +513,7 @@ void LAN_MarkServerVisible(int source, int n, qboolean visible ) {
 				server = &cls.localServers[0];
 				break;
 			case AS_MPLAYER:
+    [[fallthrough]];
 			case AS_GLOBAL :
 				server = &cls.globalServers[0];
 				count = MAX_GLOBAL_SERVERS;
@@ -527,6 +536,7 @@ void LAN_MarkServerVisible(int source, int n, qboolean visible ) {
 				}
 				break;
 			case AS_MPLAYER:
+    [[fallthrough]];
 			case AS_GLOBAL :
 				if (n >= 0 && n < MAX_GLOBAL_SERVERS) {
 					cls.globalServers[n].visible = visible;
@@ -555,6 +565,7 @@ int LAN_ServerIsVisible(int source, int n ) {
 			}
 			break;
 		case AS_MPLAYER:
+    [[fallthrough]];
 		case AS_GLOBAL :
 			if (n >= 0 && n < MAX_GLOBAL_SERVERS) {
 				return cls.globalServers[n].visible;

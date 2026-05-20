@@ -670,16 +670,22 @@ int CG_MapTorsoToWeaponFrame( const clientInfo_t *ci, int frame, int animNum, in
 	switch( animNum )
 	{
 	case TORSO_WEAPONREADY1:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY2:
 	case TORSO_WEAPONREADY3:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY4:
 	case TORSO_WEAPONREADY5:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY6:
 	case TORSO_WEAPONREADY7:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY8:
 	case TORSO_WEAPONREADY9:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY10:
 	case TORSO_WEAPONREADY11:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY12:
 		ret = 0;
 		break;
@@ -707,8 +713,10 @@ int CG_MapTorsoToWeaponFrame( const clientInfo_t *ci, int frame, int animNum, in
 		break;
 
 	case BOTH_ATTACK1:
+    [[fallthrough]];
 	case BOTH_ATTACK2:
 	case BOTH_ATTACK3:
+    [[fallthrough]];
 	case BOTH_ATTACK4:
 		if ( frame >= animations[animNum].firstFrame && frame < animations[animNum].firstFrame + 6 )
 		{
@@ -2636,8 +2644,10 @@ void CG_FireWeapon( centity_t *cent, qboolean alt_fire )
 			switch( ent->weapon )
 			{
 			case WP_THERMAL:
+    [[fallthrough]];
 			case WP_DET_PACK:
 			case WP_TRIP_MINE:
+    [[fallthrough]];
 			case WP_ROCKET_LAUNCHER:
 			case WP_FLECHETTE:
 				// these weapon fires don't overcharge
@@ -2657,8 +2667,10 @@ void CG_FireWeapon( centity_t *cent, qboolean alt_fire )
 			switch( ent->weapon )
 			{
 			case WP_THERMAL:
+    [[fallthrough]];
 			case WP_DET_PACK:
 			case WP_TRIP_MINE:
+    [[fallthrough]];
 			case WP_ROCKET_LAUNCHER:
 				// these weapon fires don't overcharge
 				break;

@@ -3088,6 +3088,7 @@ void CL_ServerInfoPacket( const netadr_t *from, msg_t *msg ) {
 			switch (from->type)
 			{
 				case NA_BROADCAST:
+    [[fallthrough]];
 				case NA_IP:
 					type = 1;
 					break;

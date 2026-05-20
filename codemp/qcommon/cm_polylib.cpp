@@ -126,6 +126,7 @@ winding_t *BaseWindingForPlane (vec3_t normal, float dist)
 	switch (x)
 	{
 	case 0:
+    [[fallthrough]];
 	case 1:
 		vup[2] = 1;
 		break;

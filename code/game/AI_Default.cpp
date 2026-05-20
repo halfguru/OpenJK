@@ -543,8 +543,10 @@ void NPC_BSPointShoot (qboolean shoot)
 	switch( NPC->client->ps.weapon )
 	{
 	case WP_NONE:
+    [[fallthrough]];
 	case WP_MELEE:
 	case WP_TUSKEN_STAFF:
+    [[fallthrough]];
 	case WP_SABER:
 		//don't do any pitch change if not holding a firing weapon
 		break;

@@ -457,27 +457,38 @@ qboolean PM_InSpecialJump( int anim )
 	switch ( anim )
 	{
 	case BOTH_WALL_RUN_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_RIGHT_STOP:
 	case BOTH_WALL_RUN_RIGHT_FLIP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT:
 	case BOTH_WALL_RUN_LEFT_STOP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT_FLIP:
 	case BOTH_WALL_FLIP_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_LEFT:
 	case BOTH_FLIP_BACK1:
+    [[fallthrough]];
 	case BOTH_FLIP_BACK2:
 	case BOTH_FLIP_BACK3:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_BACK1:
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	case BOTH_FJSS_TR_BL:
+    [[fallthrough]];
 	case BOTH_FJSS_TL_BR:
 	case BOTH_FORCELEAP2_T__B_:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSLASHDOWN1://#
 	case BOTH_JUMPFLIPSTABDOWN://#
 	case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 	case BOTH_ARIAL_RIGHT:
 	case BOTH_ARIAL_F1:
+    [[fallthrough]];
 	case BOTH_CARTWHEEL_LEFT:
 	case BOTH_CARTWHEEL_RIGHT:
 		return qtrue;
@@ -2300,48 +2311,62 @@ int PM_GetLandingAnim( void )
 	switch ( anim )
 	{
 	case BOTH_FORCEJUMPLEFT1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIRLEFT1:
 		anim = BOTH_FORCELANDLEFT1;
 		break;
 	case BOTH_FORCEJUMPRIGHT1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIRRIGHT1:
 		anim = BOTH_FORCELANDRIGHT1;
 		break;
 	case BOTH_FORCEJUMP1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIR1:
 		anim = BOTH_FORCELAND1;
 		break;
 	case BOTH_FORCEJUMPBACK1:
+    [[fallthrough]];
 	case BOTH_FORCEINAIRBACK1:
 		anim = BOTH_FORCELANDBACK1;
 		break;
 	case BOTH_JUMPLEFT1:
+    [[fallthrough]];
 	case BOTH_INAIRLEFT1:
 		anim = BOTH_LANDLEFT1;
 		break;
 	case BOTH_JUMPRIGHT1:
+    [[fallthrough]];
 	case BOTH_INAIRRIGHT1:
 		anim = BOTH_LANDRIGHT1;
 		break;
 	case BOTH_JUMP1:
+    [[fallthrough]];
 	case BOTH_INAIR1:
 		anim = BOTH_LAND1;
 		break;
 	case BOTH_JUMPBACK1:
+    [[fallthrough]];
 	case BOTH_INAIRBACK1:
 		anim = BOTH_LANDBACK1;
 		break;
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	case BOTH_FJSS_TR_BL:
+    [[fallthrough]];
 	case BOTH_FJSS_TL_BR:
 	case BOTH_LUNGE2_B__T_:
+    [[fallthrough]];
 	case BOTH_FORCELEAP2_T__B_:
 	case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 	case BOTH_ARIAL_RIGHT:
 	case BOTH_ARIAL_F1:
+    [[fallthrough]];
 	case BOTH_CARTWHEEL_LEFT:
 	case BOTH_CARTWHEEL_RIGHT:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSLASHDOWN1://#
 	case BOTH_JUMPFLIPSTABDOWN://#
 		anim = -1;
@@ -3627,6 +3652,7 @@ qboolean PM_ForceAnim( int anim )
 	case BOTH_MINDTRICK2:		//# Use off-hand to do distraction
 	case BOTH_FORCELIGHTNING:	//# Use off-hand to do lightning
 	case BOTH_FORCELIGHTNING_START:
+    [[fallthrough]];
 	case BOTH_FORCELIGHTNING_HOLD:	//# Use off-hand to do lightning
 	case BOTH_FORCELIGHTNING_RELEASE:	//# Use off-hand to do lightning
 	case BOTH_FORCEHEAL_START:	//# Healing meditation pose start
@@ -3656,12 +3682,16 @@ qboolean PM_InForceGetUp( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_FORCE_GETUP_F1:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_F2:
 	case BOTH_FORCE_GETUP_B1:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B2:
 	case BOTH_FORCE_GETUP_B3:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B4:
 	case BOTH_FORCE_GETUP_B5:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B6:
 		if ( ps->legsAnimTimer )
 		{
@@ -3677,10 +3707,13 @@ qboolean PM_InGetUp( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_GETUP1:
+    [[fallthrough]];
 	case BOTH_GETUP2:
 	case BOTH_GETUP3:
+    [[fallthrough]];
 	case BOTH_GETUP4:
 	case BOTH_GETUP5:
+    [[fallthrough]];
 	case BOTH_GETUP_CROUCH_F1:
 	case BOTH_GETUP_CROUCH_B1:
 		if ( ps->legsAnimTimer )
@@ -3701,8 +3734,10 @@ qboolean PM_InKnockDown( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_KNOCKDOWN1:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN2:
 	case BOTH_KNOCKDOWN3:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN4:
 	case BOTH_KNOCKDOWN5:
 		return qtrue;
@@ -3718,8 +3753,10 @@ qboolean PM_InKnockDownOnGround( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_KNOCKDOWN1:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN2:
 	case BOTH_KNOCKDOWN3:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN4:
 	case BOTH_KNOCKDOWN5:
 		//if ( PM_AnimLength( g_entities[ps->clientNum].client->clientInfo.animFileIndex, (animNumber_t)ps->legsAnim ) - ps->legsAnimTimer > 300 )
@@ -3728,18 +3765,25 @@ qboolean PM_InKnockDownOnGround( playerState_t *ps )
 		}
 		break;
 	case BOTH_GETUP1:
+    [[fallthrough]];
 	case BOTH_GETUP2:
 	case BOTH_GETUP3:
+    [[fallthrough]];
 	case BOTH_GETUP4:
 	case BOTH_GETUP5:
+    [[fallthrough]];
 	case BOTH_GETUP_CROUCH_F1:
 	case BOTH_GETUP_CROUCH_B1:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_F1:
 	case BOTH_FORCE_GETUP_F2:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B1:
 	case BOTH_FORCE_GETUP_B2:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B3:
 	case BOTH_FORCE_GETUP_B4:
+    [[fallthrough]];
 	case BOTH_FORCE_GETUP_B5:
 	case BOTH_FORCE_GETUP_B6:
 		if ( PM_AnimLength( g_entities[ps->clientNum].client->clientInfo.animFileIndex, (animNumber_t)ps->legsAnim ) - ps->legsAnimTimer < 500 )
@@ -3759,11 +3803,13 @@ qboolean PM_CrouchGetup( float crouchheight )
 	switch ( pm->ps->legsAnim )
 	{
 	case BOTH_KNOCKDOWN1:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN2:
 	case BOTH_KNOCKDOWN4:
 		anim = BOTH_GETUP_CROUCH_B1;
 		break;
 	case BOTH_KNOCKDOWN3:
+    [[fallthrough]];
 	case BOTH_KNOCKDOWN5:
 		anim = BOTH_GETUP_CROUCH_F1;
 		break;
@@ -3927,8 +3973,10 @@ qboolean PM_InRoll( playerState_t *ps )
 	switch ( ps->legsAnim )
 	{
 	case BOTH_ROLL_F:
+    [[fallthrough]];
 	case BOTH_ROLL_B:
 	case BOTH_ROLL_R:
+    [[fallthrough]];
 	case BOTH_ROLL_L:
 		if ( ps->legsAnimTimer )
 		{
@@ -4081,26 +4129,36 @@ qboolean PM_FlippingAnim( int anim )
 	case BOTH_FLIP_L:			//# Flip left
 	case BOTH_FLIP_R:			//# Flip right
 	case BOTH_WALL_RUN_RIGHT_FLIP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT_FLIP:
 	case BOTH_WALL_FLIP_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_LEFT:
 	case BOTH_FLIP_BACK1:
+    [[fallthrough]];
 	case BOTH_FLIP_BACK2:
 	case BOTH_FLIP_BACK3:
+    [[fallthrough]];
 	case BOTH_WALL_FLIP_BACK1:
 	//Not really flips, but...
 	case BOTH_WALL_RUN_RIGHT:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT:
 	case BOTH_WALL_RUN_RIGHT_STOP:
+    [[fallthrough]];
 	case BOTH_WALL_RUN_LEFT_STOP:
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	//
 	case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 	case BOTH_ARIAL_RIGHT:
 	case BOTH_ARIAL_F1:
+    [[fallthrough]];
 	case BOTH_CARTWHEEL_LEFT:
 	case BOTH_CARTWHEEL_RIGHT:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSLASHDOWN1:
 	case BOTH_JUMPFLIPSTABDOWN:
 		return qtrue;
@@ -4134,8 +4192,10 @@ qboolean PM_RunningAnim( int anim )
 	switch ( anim )
 	{
 	case BOTH_RUN1:
+    [[fallthrough]];
 	case BOTH_RUN2:
 	case BOTH_RUNBACK1:
+    [[fallthrough]];
 	case BOTH_RUNBACK2:
 	case BOTH_WALKTORUN1:		//# transition from walk to run
 	case BOTH_RUN1START:			//# Start into full run1
@@ -4187,60 +4247,85 @@ qboolean PM_SpinningSaberAnim( int anim )
 	{
 	//level 1 - FIXME: level 1 will have *no* spins
 	case BOTH_T1_BR_BL:
+    [[fallthrough]];
 	case BOTH_T1__R__L:
 	case BOTH_T1__R_BL:
+    [[fallthrough]];
 	case BOTH_T1_TR_BL:
 	case BOTH_T1_BR_TL:
+    [[fallthrough]];
 	case BOTH_T1_BR__L:
 	case BOTH_T1_TL_BR:
+    [[fallthrough]];
 	case BOTH_T1__L_BR:
 	case BOTH_T1__L__R:
+    [[fallthrough]];
 	case BOTH_T1_BL_BR:
 	case BOTH_T1_BL__R:
+    [[fallthrough]];
 	case BOTH_T1_BL_TR:
 	//level 2
 	case BOTH_T2_BR__L:
+    [[fallthrough]];
 	case BOTH_T2_BR_BL:
 	case BOTH_T2__R_BL:
+    [[fallthrough]];
 	case BOTH_T2__L_BR:
 	case BOTH_T2_BL_BR:
+    [[fallthrough]];
 	case BOTH_T2_BL__R:
 	//level 3
 	case BOTH_T3_BR__L:
+    [[fallthrough]];
 	case BOTH_T3_BR_BL:
 	case BOTH_T3__R_BL:
+    [[fallthrough]];
 	case BOTH_T3__L_BR:
 	case BOTH_T3_BL_BR:
+    [[fallthrough]];
 	case BOTH_T3_BL__R:
 	//level 4
 	case BOTH_T4_BR__L:
+    [[fallthrough]];
 	case BOTH_T4_BR_BL:
 	case BOTH_T4__R_BL:
+    [[fallthrough]];
 	case BOTH_T4__L_BR:
 	case BOTH_T4_BL_BR:
+    [[fallthrough]];
 	case BOTH_T4_BL__R:
 	//level 5
 	case BOTH_T5_BR_BL:
+    [[fallthrough]];
 	case BOTH_T5__R__L:
 	case BOTH_T5__R_BL:
+    [[fallthrough]];
 	case BOTH_T5_TR_BL:
 	case BOTH_T5_BR_TL:
+    [[fallthrough]];
 	case BOTH_T5_BR__L:
 	case BOTH_T5_TL_BR:
+    [[fallthrough]];
 	case BOTH_T5__L_BR:
 	case BOTH_T5__L__R:
+    [[fallthrough]];
 	case BOTH_T5_BL_BR:
 	case BOTH_T5_BL__R:
+    [[fallthrough]];
 	case BOTH_T5_BL_TR:
 	//special
 	//case BOTH_A2_STABBACK1:
 	case BOTH_ATTACK_BACK:
+    [[fallthrough]];
 	case BOTH_CROUCHATTACKBACK1:
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	case BOTH_FJSS_TR_BL:
+    [[fallthrough]];
 	case BOTH_FJSS_TL_BR:
 	case BOTH_JUMPFLIPSLASHDOWN1:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSTABDOWN:
 		return qtrue;
 		break;
@@ -4462,44 +4547,64 @@ qboolean PM_InSlopeAnim( int anim )
 	case LEGS_RIGHTUP4:			//# On a slope with RIGHT foot 16 higher than left
 	case LEGS_RIGHTUP5:			//# On a slope with RIGHT foot 20 higher than left
 	case LEGS_S1_LUP1:
+    [[fallthrough]];
 	case LEGS_S1_LUP2:
 	case LEGS_S1_LUP3:
+    [[fallthrough]];
 	case LEGS_S1_LUP4:
 	case LEGS_S1_LUP5:
+    [[fallthrough]];
 	case LEGS_S1_RUP1:
 	case LEGS_S1_RUP2:
+    [[fallthrough]];
 	case LEGS_S1_RUP3:
 	case LEGS_S1_RUP4:
+    [[fallthrough]];
 	case LEGS_S1_RUP5:
 	case LEGS_S3_LUP1:
+    [[fallthrough]];
 	case LEGS_S3_LUP2:
 	case LEGS_S3_LUP3:
+    [[fallthrough]];
 	case LEGS_S3_LUP4:
 	case LEGS_S3_LUP5:
+    [[fallthrough]];
 	case LEGS_S3_RUP1:
 	case LEGS_S3_RUP2:
+    [[fallthrough]];
 	case LEGS_S3_RUP3:
 	case LEGS_S3_RUP4:
+    [[fallthrough]];
 	case LEGS_S3_RUP5:
 	case LEGS_S4_LUP1:
+    [[fallthrough]];
 	case LEGS_S4_LUP2:
 	case LEGS_S4_LUP3:
+    [[fallthrough]];
 	case LEGS_S4_LUP4:
 	case LEGS_S4_LUP5:
+    [[fallthrough]];
 	case LEGS_S4_RUP1:
 	case LEGS_S4_RUP2:
+    [[fallthrough]];
 	case LEGS_S4_RUP3:
 	case LEGS_S4_RUP4:
+    [[fallthrough]];
 	case LEGS_S4_RUP5:
 	case LEGS_S5_LUP1:
+    [[fallthrough]];
 	case LEGS_S5_LUP2:
 	case LEGS_S5_LUP3:
+    [[fallthrough]];
 	case LEGS_S5_LUP4:
 	case LEGS_S5_LUP5:
+    [[fallthrough]];
 	case LEGS_S5_RUP1:
 	case LEGS_S5_RUP2:
+    [[fallthrough]];
 	case LEGS_S5_RUP3:
 	case LEGS_S5_RUP4:
+    [[fallthrough]];
 	case LEGS_S5_RUP5:
 		return qtrue;
 		break;
@@ -4587,23 +4692,31 @@ qboolean PM_AdjustStandAnimForSlope( void )
 		switch ( legsAnim )
 		{
 		case BOTH_STAND1:
+    [[fallthrough]];
 		case LEGS_S1_LUP1:
 		case LEGS_S1_LUP2:
+    [[fallthrough]];
 		case LEGS_S1_LUP3:
 		case LEGS_S1_LUP4:
+    [[fallthrough]];
 		case LEGS_S1_LUP5:
 		case LEGS_S1_RUP1:
+    [[fallthrough]];
 		case LEGS_S1_RUP2:
 		case LEGS_S1_RUP3:
+    [[fallthrough]];
 		case LEGS_S1_RUP4:
 		case LEGS_S1_RUP5:
 			destAnim = LEGS_S1_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_STAND2:
+    [[fallthrough]];
 		case BOTH_SABERFAST_STANCE:
 		case BOTH_SABERSLOW_STANCE:
+    [[fallthrough]];
 		case BOTH_CROUCH1IDLE:
 		case BOTH_CROUCH1:
+    [[fallthrough]];
 		case LEGS_LEFTUP1:			//# On a slope with left foot 4 higher than right
 		case LEGS_LEFTUP2:			//# On a slope with left foot 8 higher than right
 		case LEGS_LEFTUP3:			//# On a slope with left foot 12 higher than right
@@ -4617,40 +4730,55 @@ qboolean PM_AdjustStandAnimForSlope( void )
 			//fine
 			break;
 		case BOTH_STAND3:
+    [[fallthrough]];
 		case LEGS_S3_LUP1:
 		case LEGS_S3_LUP2:
+    [[fallthrough]];
 		case LEGS_S3_LUP3:
 		case LEGS_S3_LUP4:
+    [[fallthrough]];
 		case LEGS_S3_LUP5:
 		case LEGS_S3_RUP1:
+    [[fallthrough]];
 		case LEGS_S3_RUP2:
 		case LEGS_S3_RUP3:
+    [[fallthrough]];
 		case LEGS_S3_RUP4:
 		case LEGS_S3_RUP5:
 			destAnim = LEGS_S3_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_STAND4:
+    [[fallthrough]];
 		case LEGS_S4_LUP1:
 		case LEGS_S4_LUP2:
+    [[fallthrough]];
 		case LEGS_S4_LUP3:
 		case LEGS_S4_LUP4:
+    [[fallthrough]];
 		case LEGS_S4_LUP5:
 		case LEGS_S4_RUP1:
+    [[fallthrough]];
 		case LEGS_S4_RUP2:
 		case LEGS_S4_RUP3:
+    [[fallthrough]];
 		case LEGS_S4_RUP4:
 		case LEGS_S4_RUP5:
 			destAnim = LEGS_S4_LUP1 + (destAnim-LEGS_LEFTUP1);
 			break;
 		case BOTH_STAND5:
+    [[fallthrough]];
 		case LEGS_S5_LUP1:
 		case LEGS_S5_LUP2:
+    [[fallthrough]];
 		case LEGS_S5_LUP3:
 		case LEGS_S5_LUP4:
+    [[fallthrough]];
 		case LEGS_S5_LUP5:
 		case LEGS_S5_RUP1:
+    [[fallthrough]];
 		case LEGS_S5_RUP2:
 		case LEGS_S5_RUP3:
+    [[fallthrough]];
 		case LEGS_S5_RUP4:
 		case LEGS_S5_RUP5:
 			destAnim = LEGS_S5_LUP1 + (destAnim-LEGS_LEFTUP1);
@@ -4748,8 +4876,10 @@ qboolean PM_AdjustStandAnimForSlope( void )
 				}
 				break;
 			case BOTH_STAND2:
+    [[fallthrough]];
 			case BOTH_SABERFAST_STANCE:
 			case BOTH_SABERSLOW_STANCE:
+    [[fallthrough]];
 			case BOTH_CROUCH1IDLE:
 				if ( destAnim >= LEGS_LEFTUP1 && destAnim <= LEGS_LEFTUP5 )
 				{//going into left side up
@@ -5094,6 +5224,7 @@ static void PM_Footsteps( void )
 					switch ( pm->ps->saberAnimLevel )
 					{
 					case FORCE_LEVEL_1:
+    [[fallthrough]];
 					case FORCE_LEVEL_5:
 						legsAnim = BOTH_SABERFAST_STANCE;
 						break;
@@ -5101,6 +5232,7 @@ static void PM_Footsteps( void )
 						legsAnim = BOTH_SABERSLOW_STANCE;
 						break;
 					case FORCE_LEVEL_0:
+    [[fallthrough]];
 					case FORCE_LEVEL_2:
 					case FORCE_LEVEL_4:
 					default:
@@ -5740,6 +5872,7 @@ void PM_SetSaberMove(short newMove)
 		switch ( pm->ps->saberAnimLevel )
 		{
 		case FORCE_LEVEL_1:
+    [[fallthrough]];
 		case FORCE_LEVEL_5:
 			anim = BOTH_SABERFAST_STANCE;
 			break;
@@ -5747,6 +5880,7 @@ void PM_SetSaberMove(short newMove)
 			anim = BOTH_SABERSLOW_STANCE;
 			break;
 		case FORCE_LEVEL_0:
+    [[fallthrough]];
 		case FORCE_LEVEL_2:
 		case FORCE_LEVEL_4:
 		default:
@@ -5836,6 +5970,7 @@ void PM_SetSaberMove(short newMove)
 						switch ( pm->ps->saberAnimLevel )
 						{
 						case FORCE_LEVEL_4:
+    [[fallthrough]];
 						case FORCE_LEVEL_3:
 							G_SoundOnEnt( pm->gent, CHAN_WEAPON, va( "sound/weapons/saber/saberhup%d.wav", Q_irand( 7, 9 ) ) );
 							break;
@@ -5843,6 +5978,7 @@ void PM_SetSaberMove(short newMove)
 							G_SoundOnEnt( pm->gent, CHAN_WEAPON, va( "sound/weapons/saber/saberhup%d.wav", Q_irand( 4, 6 ) ) );
 							break;
 						case FORCE_LEVEL_5:
+    [[fallthrough]];
 						case FORCE_LEVEL_1:
 							G_SoundOnEnt( pm->gent, CHAN_WEAPON, va( "sound/weapons/saber/saberhup%d.wav", Q_irand( 1, 3 ) ) );
 							break;
@@ -8080,6 +8216,7 @@ static void PM_Weapon( void )
 			switch(pm->ps->weapon)
 			{
 			case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 			case WP_BLASTER_PISTOL:
 				PM_SetAnim(pm,SETANIM_TORSO,TORSO_WEAPONIDLE2,SETANIM_FLAG_NORMAL);
 				break;

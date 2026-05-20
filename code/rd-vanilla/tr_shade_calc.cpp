@@ -582,12 +582,16 @@ void RB_DeformTessGeometry( void ) {
 			Autosprite2Deform();
 			break;
 		case DEFORM_TEXT0:
+    [[fallthrough]];
 		case DEFORM_TEXT1:
 		case DEFORM_TEXT2:
+    [[fallthrough]];
 		case DEFORM_TEXT3:
 		case DEFORM_TEXT4:
+    [[fallthrough]];
 		case DEFORM_TEXT5:
 		case DEFORM_TEXT6:
+    [[fallthrough]];
 		case DEFORM_TEXT7:
 //			DeformText( backEnd.refdef.text[ds->deformation - DEFORM_TEXT0] );
 			DeformText( "Raven Software" );

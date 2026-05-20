@@ -403,6 +403,7 @@ static void Howler_Attack( float enemyDist, qboolean howl )
 	switch ( NPC->client->ps.legsAnim )
 	{
 	case BOTH_ATTACK1:
+    [[fallthrough]];
 	case BOTH_MELEE1:
 		if ( NPC->client->ps.legsAnimTimer > 650//more than 13 frames left
 			&& PM_AnimLength( NPC->client->clientInfo.animFileIndex, (animNumber_t)NPC->client->ps.legsAnim ) - NPC->client->ps.legsAnimTimer >= 800 )//at least 16 frames into anim
@@ -411,6 +412,7 @@ static void Howler_Attack( float enemyDist, qboolean howl )
 		}
 		break;
 	case BOTH_ATTACK2:
+    [[fallthrough]];
 	case BOTH_MELEE2:
 		if ( NPC->client->ps.legsAnimTimer > 350//more than 7 frames left
 			&& PM_AnimLength( NPC->client->clientInfo.animFileIndex, (animNumber_t)NPC->client->ps.legsAnim ) - NPC->client->ps.legsAnimTimer >= 550 )//at least 11 frames into anim

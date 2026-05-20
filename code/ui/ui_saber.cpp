@@ -593,6 +593,7 @@ void UI_SaberDrawBlade( itemDef_t *item, char *saberName, int saberModel, saberT
 		switch ( saberType )
 		{
 		case SABER_SINGLE:
+    [[fallthrough]];
 		case SABER_DAGGER:
 		case SABER_LANCE:
 			break;

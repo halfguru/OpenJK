@@ -697,18 +697,25 @@ qboolean G_CanPickUpWeapons( gentity_t *other )
 	switch ( other->client->NPC_class )
 	{
 	case CLASS_ATST:
+    [[fallthrough]];
 	case CLASS_GONK:
 	case CLASS_MARK1:
+    [[fallthrough]];
 	case CLASS_MARK2:
 	case CLASS_MOUSE:
+    [[fallthrough]];
 	case CLASS_PROBE:
 	case CLASS_PROTOCOL:
+    [[fallthrough]];
 	case CLASS_R2D2:
 	case CLASS_R5D2:
+    [[fallthrough]];
 	case CLASS_SEEKER:
 	case CLASS_REMOTE:
+    [[fallthrough]];
 	case CLASS_RANCOR:
 	case CLASS_WAMPA:
+    [[fallthrough]];
 	case CLASS_JAWA: //FIXME: in some cases it's okay?
 	case CLASS_UGNAUGHT: //FIXME: in some cases it's okay?
 	case CLASS_SENTRY:

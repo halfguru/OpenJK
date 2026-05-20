@@ -875,6 +875,7 @@ qboolean AI_RefreshGroup( AIGroupInfo_t *group )
 			group->morale -= 5;
 			break;
 		case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 		case WP_BLASTER_PISTOL:
 			group->morale += 3;
 			break;

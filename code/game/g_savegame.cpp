@@ -649,6 +649,7 @@ static void EvaluateField(const save_field_t *pField, byte *pbBase, byte *pbOrig
 		break;
 //	// These fields are patched in when their relevant owners are loaded
 	case F_BOOLPTR:
+    [[fallthrough]];
 	case F_NULL:
 		break;
 

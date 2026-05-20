@@ -2115,6 +2115,7 @@ Ghoul2 Insert End
 		CG_Error( "Bad entity type: %i\n", cent->currentState.eType );
 		break;
 	case ET_INVISIBLE:
+    [[fallthrough]];
 	case ET_PUSH_TRIGGER:
 	case ET_TELEPORT_TRIGGER:
 		break;

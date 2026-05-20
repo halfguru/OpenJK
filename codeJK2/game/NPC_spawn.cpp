@@ -110,6 +110,7 @@ painFunc_t NPC_PainFunc( gentity_t *ent )
 		{
 		// troopers get special pain
 		case CLASS_STORMTROOPER:
+    [[fallthrough]];
 		case CLASS_SWAMPTROOPER:
 			func = painF_NPC_ST_Pain;
 			break;
@@ -132,10 +133,13 @@ painFunc_t NPC_PainFunc( gentity_t *ent )
 
 		// all other droids, did I miss any?
 		case CLASS_GONK:
+    [[fallthrough]];
 		case CLASS_R2D2:
 		case CLASS_R5D2:
+    [[fallthrough]];
 		case CLASS_MOUSE:
 		case CLASS_PROTOCOL:
+    [[fallthrough]];
 		case CLASS_INTERROGATOR:
 			func = painF_NPC_Droid_Pain;
 			break;
@@ -233,15 +237,19 @@ void NPC_SetMiscDefaultData( gentity_t *ent )
 			{
 			case WP_BRYAR_PISTOL://FIXME: new weapon: imp blaster pistol
 			case WP_BLASTER_PISTOL:
+    [[fallthrough]];
 			case WP_DISRUPTOR:
 			case WP_BOWCASTER:
+    [[fallthrough]];
 			case WP_REPEATER:
 			case WP_DEMP2:
+    [[fallthrough]];
 			case WP_FLECHETTE:
 			case WP_ROCKET_LAUNCHER:
 			default:
 				break;
 			case WP_THERMAL:
+    [[fallthrough]];
 			case WP_BLASTER:
 				//FIXME: health in NPCs.cfg, and not all blaster users are stormtroopers
 				//ent->health = 25;
@@ -631,8 +639,10 @@ void NPC_SetWeapons( gentity_t *ent )
 	switch ( ent->client->playerTeam )
 	{
 	case TEAM_KLINGON:
+    [[fallthrough]];
 	case TEAM_MALON:
 	case TEAM_HIROGEN:
+    [[fallthrough]];
 	case TEAM_IMPERIAL:
 		ent->client->playerTeam = TEAM_SCAVENGERS;
 		break;
@@ -697,6 +707,7 @@ void NPC_SpawnEffect (gentity_t *ent)
 		break;
 
 	case TEAM_PARASITE:
+    [[fallthrough]];
 	case TEAM_BOTS:
 	default:
 		break;

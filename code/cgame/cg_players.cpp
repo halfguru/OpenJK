@@ -1293,6 +1293,7 @@ static void CG_PlayerAnimEvents( int animFileIndex, qboolean torso, int oldFrame
 				switch ( animEvents[i].eventType )
 				{
 				case AEV_SOUNDCHAN:
+    [[fallthrough]];
 				case AEV_SOUND:
 					// Determine probability of playing sound
 					if (!animEvents[i].eventData[AED_SOUND_PROBABILITY])	// 100%
@@ -3649,6 +3650,7 @@ static void _PlayerFootStep( const vec3_t origin,
 			effectID = cgs.effects.footstepSnow;
 			break;
 		case MATERIAL_SHORTGRASS:
+    [[fallthrough]];
 		case MATERIAL_LONGGRASS:
 			if ( footStepType == FOOTSTEP_HEAVY_R || footStepType == FOOTSTEP_HEAVY_L) {
 				soundType = FOOTSTEP_GRASSRUN;
@@ -3679,8 +3681,10 @@ static void _PlayerFootStep( const vec3_t origin,
 			effectID = cgs.effects.footstepGravel;
 			break;
 		case MATERIAL_CARPET:
+    [[fallthrough]];
 		case MATERIAL_FABRIC:
 		case MATERIAL_CANVAS:
+    [[fallthrough]];
 		case MATERIAL_RUBBER:
 		case MATERIAL_PLASTIC:
 			if ( footStepType == FOOTSTEP_HEAVY_R || footStepType == FOOTSTEP_HEAVY_L) {
@@ -3690,6 +3694,7 @@ static void _PlayerFootStep( const vec3_t origin,
 			}
 			break;
 		case MATERIAL_SOLIDWOOD:
+    [[fallthrough]];
 		case MATERIAL_HOLLOWWOOD:
 			if ( footStepType == FOOTSTEP_HEAVY_R || footStepType == FOOTSTEP_HEAVY_L) {
 				soundType = FOOTSTEP_WOODRUN;
@@ -3701,19 +3706,26 @@ static void _PlayerFootStep( const vec3_t origin,
 		default:
 		//fall through
 		case MATERIAL_GLASS:
+    [[fallthrough]];
 		case MATERIAL_WATER:
 		case MATERIAL_FLESH:
+    [[fallthrough]];
 		case MATERIAL_BPGLASS:
 		case MATERIAL_DRYLEAVES:
+    [[fallthrough]];
 		case MATERIAL_GREENLEAVES:
 		case MATERIAL_TILES:
+    [[fallthrough]];
 		case MATERIAL_PLASTER:
 		case MATERIAL_SHATTERGLASS:
+    [[fallthrough]];
 		case MATERIAL_ARMOR:
 		case MATERIAL_COMPUTER:
 
+    [[fallthrough]];
 		case MATERIAL_CONCRETE:
 		case MATERIAL_ROCK:
+    [[fallthrough]];
 		case MATERIAL_ICE:
 		case MATERIAL_MARBLE:
 			if ( footStepType == FOOTSTEP_HEAVY_R || footStepType == FOOTSTEP_HEAVY_L) {
@@ -4460,6 +4472,7 @@ qboolean CG_PlayerCanSeeCent( centity_t *cent )
 		range = 2048.0f;
 		break;
 	case FORCE_LEVEL_3:
+    [[fallthrough]];
 	case FORCE_LEVEL_4:
 	case FORCE_LEVEL_5:
 		//dot = 0.4f;
@@ -6133,6 +6146,7 @@ Ghoul2 Insert End
 		switch ( cent->gent->client->ps.saber[saberNum].type )
 		{
 		case SABER_SINGLE:
+    [[fallthrough]];
 		case SABER_DAGGER:
 		case SABER_LANCE:
 			break;

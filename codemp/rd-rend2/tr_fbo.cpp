@@ -143,12 +143,16 @@ void FBO_CreateBuffer(FBO_t *fbo, int format, int index, int multisample)
 	switch(format)
 	{
 		case GL_RGB:
+    [[fallthrough]];
 		case GL_RGBA:
 		case GL_RGB8:
+    [[fallthrough]];
 		case GL_RGBA8:
 		case GL_RGB16F:
+    [[fallthrough]];
 		case GL_RGBA16F:
 		case GL_RGB32F:
+    [[fallthrough]];
 		case GL_RGBA32F:
 			fbo->colorFormat = format;
 			pRenderBuffer = &fbo->colorBuffers[index];
@@ -156,8 +160,10 @@ void FBO_CreateBuffer(FBO_t *fbo, int format, int index, int multisample)
 			break;
 
 		case GL_DEPTH_COMPONENT:
+    [[fallthrough]];
 		case GL_DEPTH_COMPONENT16:
 		case GL_DEPTH_COMPONENT24:
+    [[fallthrough]];
 		case GL_DEPTH_COMPONENT32:
 			fbo->depthFormat = format;
 			pRenderBuffer = &fbo->depthBuffer;
@@ -165,8 +171,10 @@ void FBO_CreateBuffer(FBO_t *fbo, int format, int index, int multisample)
 			break;
 
 		case GL_STENCIL_INDEX:
+    [[fallthrough]];
 		case GL_STENCIL_INDEX1:
 		case GL_STENCIL_INDEX4:
+    [[fallthrough]];
 		case GL_STENCIL_INDEX8:
 		case GL_STENCIL_INDEX16:
 			fbo->stencilFormat = format;
@@ -175,6 +183,7 @@ void FBO_CreateBuffer(FBO_t *fbo, int format, int index, int multisample)
 			break;
 
 		case GL_DEPTH_STENCIL:
+    [[fallthrough]];
 		case GL_DEPTH24_STENCIL8:
 			fbo->packedDepthStencilFormat = format;
 			pRenderBuffer = &fbo->packedDepthStencilBuffer;

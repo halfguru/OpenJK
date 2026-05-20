@@ -58,6 +58,7 @@ void G_MissileBounceEffect( gentity_t *ent, vec3_t org, vec3_t dir, qboolean hit
 		}
 		break;
 	case WP_BLASTER:
+    [[fallthrough]];
 	case WP_BRYAR_PISTOL:
 	case WP_BLASTER_PISTOL:
 		G_PlayEffect( "blaster/deflect", ent->currentOrigin, dir );
@@ -81,6 +82,7 @@ void G_MissileReflectEffect( gentity_t *ent, vec3_t org, vec3_t dir )
 		G_PlayEffect( "bowcaster/deflect", ent->currentOrigin, dir );
 		break;
 	case WP_BLASTER:
+    [[fallthrough]];
 	case WP_BRYAR_PISTOL:
 	case WP_BLASTER_PISTOL:
 	default:

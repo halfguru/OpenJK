@@ -53,12 +53,15 @@ static void CacheChunkEffects( material_t material )
 		G_EffectIndex( "chunks/metalexplode" );
 		break;
 	case MAT_ELECTRICAL:
+    [[fallthrough]];
 	case MAT_ELEC_METAL:
 		G_EffectIndex( "chunks/sparkexplode" );
 		break;
 	case MAT_METAL:
+    [[fallthrough]];
 	case MAT_METAL2:
 	case MAT_METAL3:
+    [[fallthrough]];
 	case MAT_CRATE1:
 	case MAT_CRATE2:
 		G_EffectIndex( "chunks/metalexplode" );
@@ -67,8 +70,10 @@ static void CacheChunkEffects( material_t material )
 		G_EffectIndex( "chunks/grateexplode" );
 		break;
 	case MAT_DRK_STONE:
+    [[fallthrough]];
 	case MAT_LT_STONE:
 	case MAT_GREY_STONE:
+    [[fallthrough]];
 	case MAT_WHITE_METAL: // what is this crap really supposed to be??
 		G_EffectIndex( "chunks/rockbreaklg" );
 		G_EffectIndex( "chunks/rockbreakmed" );

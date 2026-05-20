@@ -1530,8 +1530,10 @@ void NPC_BehaviorSet_Trooper( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		Trooper_Think(NPC);

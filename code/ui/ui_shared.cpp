@@ -4406,10 +4406,13 @@ qboolean ItemParse_cvar( itemDef_t *item)
 		switch ( item->type )
 		{
 			case ITEM_TYPE_EDITFIELD:
+    [[fallthrough]];
 			case ITEM_TYPE_NUMERICFIELD:
 			case ITEM_TYPE_YESNO:
+    [[fallthrough]];
 			case ITEM_TYPE_BIND:
 			case ITEM_TYPE_SLIDER:
+    [[fallthrough]];
 			case ITEM_TYPE_TEXT:
 			case ITEM_TYPE_TEXTSCROLL:
 				editPtr = (editFieldDef_t*)item->typeData;
@@ -7235,6 +7238,7 @@ void Item_Model_Paint(itemDef_t *item)
 			switch( modelPtr->g2anim )
 			{
 			case BOTH_FORCEWALLREBOUND_FORWARD:
+    [[fallthrough]];
 			case BOTH_FORCEJUMP1:
 				ItemParse_model_g2anim_go( item, animTable[BOTH_FORCEINAIR1].name );
 				uiInfo.moveAnimTime = DC->g2hilev_SetAnim(&item->ghoul2[0], "model_root", modelPtr->g2anim, qtrue);
@@ -8348,6 +8352,7 @@ static qboolean Item_Paint(itemDef_t *item, qboolean bDraw)
 			break;
 
 		case ITEM_TYPE_TEXT:
+    [[fallthrough]];
 		case ITEM_TYPE_BUTTON:
 			Item_Text_Paint(item);
 			break;
@@ -8356,6 +8361,7 @@ static qboolean Item_Paint(itemDef_t *item, qboolean bDraw)
 		case ITEM_TYPE_CHECKBOX:
 			break;
 		case ITEM_TYPE_EDITFIELD:
+    [[fallthrough]];
 		case ITEM_TYPE_NUMERICFIELD:
 			Item_TextField_Paint(item);
 			break;
@@ -10666,6 +10672,7 @@ void Item_StartCapture(itemDef_t *item, int key)
 	switch (item->type)
 	{
 		case ITEM_TYPE_EDITFIELD:
+    [[fallthrough]];
 		case ITEM_TYPE_NUMERICFIELD:
 
 		case ITEM_TYPE_LISTBOX:
@@ -11059,6 +11066,7 @@ qboolean Item_HandleKey(itemDef_t *item, int key, qboolean down)
 			return qfalse;
 			break;
 		case ITEM_TYPE_EDITFIELD:
+    [[fallthrough]];
 		case ITEM_TYPE_NUMERICFIELD:
 			//return Item_TextField_HandleKey(item, key);
 			return qfalse;
@@ -11320,6 +11328,7 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down)
 			}
 			break;
 		case A_KP_8:
+    [[fallthrough]];
 		case A_CURSOR_UP:
 			Menu_SetPrevCursorItem(menu);
 			break;
@@ -11334,12 +11343,14 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down)
 			}
 			break;
 		case A_TAB:
+    [[fallthrough]];
 		case A_KP_2:
 		case A_CURSOR_DOWN:
 			Menu_SetNextCursorItem(menu);
 			break;
 
 		case A_MOUSE1:
+    [[fallthrough]];
 		case A_MOUSE2:
 			if (item)
 			{
@@ -11416,29 +11427,41 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down)
 			break;
 
 		case A_JOY0:
+    [[fallthrough]];
 		case A_JOY1:
 		case A_JOY2:
+    [[fallthrough]];
 		case A_JOY3:
 		case A_JOY4:
+    [[fallthrough]];
 		case A_AUX0:
 		case A_AUX1:
+    [[fallthrough]];
 		case A_AUX2:
 		case A_AUX3:
+    [[fallthrough]];
 		case A_AUX4:
 		case A_AUX5:
+    [[fallthrough]];
 		case A_AUX6:
 		case A_AUX7:
+    [[fallthrough]];
 		case A_AUX8:
 		case A_AUX9:
+    [[fallthrough]];
 		case A_AUX10:
 		case A_AUX11:
+    [[fallthrough]];
 		case A_AUX12:
 		case A_AUX13:
+    [[fallthrough]];
 		case A_AUX14:
 		case A_AUX15:
+    [[fallthrough]];
 		case A_AUX16:
 			break;
 		case A_KP_ENTER:
+    [[fallthrough]];
 		case A_ENTER:
 			if (item)
 			{

@@ -1172,6 +1172,7 @@ void AAS_InitReachabilityAreas(void)
 		{
 			//trace areas from start to end
 			case TRAVEL_BARRIERJUMP:
+    [[fallthrough]];
 			case TRAVEL_WATERJUMP:
 				VectorCopy(reach->start, end);
 				end[2] = reach->end[2];

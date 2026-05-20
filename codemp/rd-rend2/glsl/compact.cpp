@@ -20,6 +20,7 @@ bool ShouldEscape( char c )
 	switch ( c )
 	{
 	case '\\':
+    [[fallthrough]];
 	case '"':
 		return true;
 	default:

@@ -846,12 +846,16 @@ static void Q3_SetStatusText(const char *StatusTextEnum)
 	switch (statusTextID)
 	{
 	case STAT_INSUBORDINATION:
+    [[fallthrough]];
 	case STAT_YOUCAUSEDDEATHOFTEAMMATE:
 	case STAT_DIDNTPROTECTTECH:
+    [[fallthrough]];
 	case STAT_DIDNTPROTECT7OF9:
 	case STAT_NOTSTEALTHYENOUGH:
+    [[fallthrough]];
 	case STAT_STEALTHTACTICSNECESSARY:
 	case STAT_WATCHYOURSTEP:
+    [[fallthrough]];
 	case STAT_JUDGEMENTMUCHDESIRED:
 		statusTextIndex = statusTextID;
 		break;
@@ -6954,16 +6958,19 @@ void Q3_DismemberLimb( int entID, char *hitLocName )
 		G_GetBoltPosition( self, self->kneeLBolt, point );
 		break;
 	case HL_ARM_RT:
+    [[fallthrough]];
 	case HL_CHEST_RT:
 	case HL_BACK_LT:
 		G_GetBoltPosition( self, self->elbowRBolt, point );
 		break;
 	case HL_ARM_LT:
+    [[fallthrough]];
 	case HL_CHEST_LT:
 	case HL_BACK_RT:
 		G_GetBoltPosition( self, self->elbowLBolt, point );
 		break;
 	case HL_WAIST:
+    [[fallthrough]];
 	case HL_BACK:
 	case HL_CHEST:
 		VectorCopy( self->client->renderInfo.torsoPoint, point );
@@ -6978,10 +6985,13 @@ void Q3_DismemberLimb( int entID, char *hitLocName )
 		VectorCopy( self->client->renderInfo.headPoint, point );
 		break;
 	case HL_GENERIC1:
+    [[fallthrough]];
 	case HL_GENERIC2:
 	case HL_GENERIC3:
+    [[fallthrough]];
 	case HL_GENERIC4:
 	case HL_GENERIC5:
+    [[fallthrough]];
 	case HL_GENERIC6:
 		VectorCopy( self->currentOrigin, point );
 		break;
@@ -7779,6 +7789,7 @@ void CQuake3GameInterface::RunScript( const gentity_t *pEntity, const char *strS
 
 		// We loaded the script and registered it, so run it!
 		case SCRIPT_REGISTERED:
+    [[fallthrough]];
 		case SCRIPT_ALREADYREGISTERED:
 			assert( pBuf );
 			assert( iLength );
@@ -8470,6 +8481,7 @@ void	CQuake3GameInterface::Set( int taskID, int entID, const char *type_name, co
 		break;
 
 	case SET_ICARUS_FREEZE:
+    [[fallthrough]];
 	case SET_ICARUS_UNFREEZE:
 		Q3_SetICARUSFreeze( entID, (char *) data, (qboolean)(toSet==SET_ICARUS_FREEZE) );
 		break;
@@ -8674,37 +8686,52 @@ void	CQuake3GameInterface::Set( int taskID, int entID, const char *type_name, co
 		break;
 
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		Q3_SetParm( entID, (toSet-SET_PARM1), (char *) data );
 		break;
 
 	case SET_SPAWNSCRIPT:
+    [[fallthrough]];
 	case SET_USESCRIPT:
 	case SET_AWAKESCRIPT:
+    [[fallthrough]];
 	case SET_ANGERSCRIPT:
 	case SET_ATTACKSCRIPT:
+    [[fallthrough]];
 	case SET_VICTORYSCRIPT:
 	case SET_PAINSCRIPT:
+    [[fallthrough]];
 	case SET_FLEESCRIPT:
 	case SET_DEATHSCRIPT:
+    [[fallthrough]];
 	case SET_DELAYEDSCRIPT:
 	case SET_BLOCKEDSCRIPT:
+    [[fallthrough]];
 	case SET_FFIRESCRIPT:
 	case SET_FFDEATHSCRIPT:
+    [[fallthrough]];
 	case SET_MINDTRICKSCRIPT:
 		if( !Q3_SetBehaviorSet(entID, toSet, (char *) data) )
 			DebugPrint( WL_ERROR, "SetBehaviorSet: Invalid bSet %s\n", type_name );
@@ -9008,14 +9035,19 @@ void	CQuake3GameInterface::Set( int taskID, int entID, const char *type_name, co
 		break;
 
 	case SET_FACEEYESCLOSED:
+    [[fallthrough]];
 	case SET_FACEEYESOPENED:
 	case SET_FACEAUX:
+    [[fallthrough]];
 	case SET_FACEBLINK:
 	case SET_FACEBLINKFROWN:
+    [[fallthrough]];
 	case SET_FACEFROWN:
 	case SET_FACESMILE:
+    [[fallthrough]];
 	case SET_FACEGLAD:
 	case SET_FACEHAPPY:
+    [[fallthrough]];
 	case SET_FACESHOCKED:
 	case SET_FACENORMAL:
 		float_data = atof((char *) data);
@@ -9426,26 +9458,35 @@ extern void LockDoors(gentity_t *const ent);
 		break;
 
 	case SET_FORCE_HEAL_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_JUMP_LEVEL:
 	case SET_FORCE_SPEED_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_PUSH_LEVEL:
 	case SET_FORCE_PULL_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_MINDTRICK_LEVEL:
 	case SET_FORCE_GRIP_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_LIGHTNING_LEVEL:
 	case SET_SABER_THROW:
+    [[fallthrough]];
 	case SET_SABER_DEFENSE:
 	case SET_SABER_OFFENSE:
+    [[fallthrough]];
 	case SET_FORCE_RAGE_LEVEL:
 	case SET_FORCE_PROTECT_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_ABSORB_LEVEL:
 	case SET_FORCE_DRAIN_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_SIGHT_LEVEL:
 		int_data = atoi((char *) data);
 		Q3_SetForcePowerLevel( entID, (toSet-SET_FORCE_HEAL_LEVEL), int_data );
 		break;
 
 	case SET_SABER1:
+    [[fallthrough]];
 	case SET_SABER2:
 		WP_SetSaber( &g_entities[entID], toSet-SET_SABER1, (char *)data );
 		break;
@@ -9465,10 +9506,12 @@ extern void LockDoors(gentity_t *const ent);
 		break;
 
 	case SET_SABER1_COLOR1:
+    [[fallthrough]];
 	case SET_SABER1_COLOR2:
 		WP_SaberSetColor( &g_entities[entID], 0, toSet-SET_SABER1_COLOR1, (char *)data );
 		break;
 	case SET_SABER2_COLOR1:
+    [[fallthrough]];
 	case SET_SABER2_COLOR2:
 		WP_SaberSetColor( &g_entities[entID], 1, toSet-SET_SABER2_COLOR1, (char *)data );
 		break;
@@ -9881,20 +9924,28 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 	switch ( toGet )
 	{
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		if (ent->parms == NULL)
 		{
@@ -10019,6 +10070,7 @@ int		CQuake3GameInterface::GetFloat( int entID, const char *name, float *value )
 		break;
 
 	case SET_FACEEYESCLOSED:
+    [[fallthrough]];
 	case SET_FACEEYESOPENED:
 	case SET_FACEAUX:		//## %f="0.0" # Set face to Aux expression for number of seconds
 	case SET_FACEBLINK:		//## %f="0.0" # Set face to Blink expression for number of seconds
@@ -10518,20 +10570,28 @@ int		CQuake3GameInterface::GetVector( int entID, const char *name, vec3_t value 
 	switch ( toGet )
 	{
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		sscanf( ent->parms->parm[toGet - SET_PARM1], "%f %f %f", &value[0], &value[1], &value[2] );
 		break;
@@ -10594,20 +10654,28 @@ int		CQuake3GameInterface::GetString( int entID, const char *name, char **value 
 		break;
 
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		if ( ent->parms )
 		{
@@ -10893,6 +10961,7 @@ int		CQuake3GameInterface::Evaluate( int p1Type, const char *p1, int p2Type, con
 		break;
 
 	case TK_STRING:
+    [[fallthrough]];
 	case TK_IDENTIFIER:
 		c1 = (char *) p1;
 		c2 = (char *) p2;
@@ -10930,6 +10999,7 @@ int		CQuake3GameInterface::Evaluate( int p1Type, const char *p1, int p2Type, con
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			return (int) !Q_stricmp( c1, c2 );	//NOTENOTE: The script uses proper string comparison logic (ex. ( a == a ) == true )
 			break;
@@ -10963,6 +11033,7 @@ int		CQuake3GameInterface::Evaluate( int p1Type, const char *p1, int p2Type, con
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			DebugPrint( WL_ERROR, "Evaluate string comparisons of type GREATER THAN cannot be performed!");
 			return false;
@@ -10997,6 +11068,7 @@ int		CQuake3GameInterface::Evaluate( int p1Type, const char *p1, int p2Type, con
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			DebugPrint( WL_ERROR, "Evaluate string comparisons of type LESS THAN cannot be performed!");
 			return false;
@@ -11030,6 +11102,7 @@ int		CQuake3GameInterface::Evaluate( int p1Type, const char *p1, int p2Type, con
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			return (int) Q_stricmp( c1, c2 );
 			break;
@@ -11063,6 +11136,7 @@ int		CQuake3GameInterface::Evaluate( int p1Type, const char *p1, int p2Type, con
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			DebugPrint( WL_ERROR, "Evaluate string comparisons of type GREATER THAN OR EQUAL TO cannot be performed!");
 			return false;
@@ -11097,6 +11171,7 @@ int		CQuake3GameInterface::Evaluate( int p1Type, const char *p1, int p2Type, con
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			DebugPrint( WL_ERROR, "Evaluate string comparisons of type LESS THAN OR EQUAL TO cannot be performed!");
 			return false;
@@ -11331,20 +11406,28 @@ void	CQuake3GameInterface::PrecacheFromSet( const char *setname, const char *fil
 	switch ( GetIDForString( setTable, setname ) )
 	{
 		case SET_SPAWNSCRIPT:
+    [[fallthrough]];
 		case SET_USESCRIPT:
 		case SET_AWAKESCRIPT:
+    [[fallthrough]];
 		case SET_ANGERSCRIPT:
 		case SET_ATTACKSCRIPT:
+    [[fallthrough]];
 		case SET_VICTORYSCRIPT:
 		case SET_LOSTENEMYSCRIPT:
+    [[fallthrough]];
 		case SET_PAINSCRIPT:
 		case SET_FLEESCRIPT:
+    [[fallthrough]];
 		case SET_DEATHSCRIPT:
 		case SET_DELAYEDSCRIPT:
+    [[fallthrough]];
 		case SET_BLOCKEDSCRIPT:
 		case SET_FFIRESCRIPT:
+    [[fallthrough]];
 		case SET_FFDEATHSCRIPT:
 		case SET_MINDTRICKSCRIPT:
+    [[fallthrough]];
 		case SET_CINEMATIC_SKIPSCRIPT:
 			PrecacheScript(filename);
 			break;
@@ -11376,6 +11459,7 @@ void	CQuake3GameInterface::PrecacheFromSet( const char *setname, const char *fil
 			break;
 
 		case SET_ADDRHANDBOLT_MODEL:
+    [[fallthrough]];
 		case SET_ADDLHANDBOLT_MODEL:
 			{
 				gi.G2API_PrecacheGhoul2Model( filename );

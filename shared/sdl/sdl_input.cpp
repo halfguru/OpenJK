@@ -328,12 +328,15 @@ static fakeAscii_t IN_TranslateSDLToJKKey( SDL_Keysym *keysym, qboolean down ) {
 			case SDLK_PAUSE:        key = A_PAUSE;         break;
 
 			case SDLK_LSHIFT:
+    [[fallthrough]];
 			case SDLK_RSHIFT:       key = A_SHIFT;         break;
 
 			case SDLK_LCTRL:
+    [[fallthrough]];
 			case SDLK_RCTRL:        key = A_CTRL;          break;
 
 			case SDLK_RALT:
+    [[fallthrough]];
 			case SDLK_LALT:         key = A_ALT;           break;
 
 			case SDLK_KP_5:         key = A_KP_5;          break;
@@ -884,6 +887,7 @@ static void IN_ProcessEvents( void )
 				break;
 
 			case SDL_MOUSEBUTTONDOWN:
+    [[fallthrough]];
 			case SDL_MOUSEBUTTONUP:
 				{
 					unsigned short b;
@@ -923,6 +927,7 @@ static void IN_ProcessEvents( void )
 				{
 					case SDL_WINDOWEVENT_MINIMIZED:    Cvar_SetValue( "com_minimized", 1 ); break;
 					case SDL_WINDOWEVENT_RESTORED:
+    [[fallthrough]];
 					case SDL_WINDOWEVENT_MAXIMIZED:    Cvar_SetValue( "com_minimized", 0 ); break;
 					case SDL_WINDOWEVENT_FOCUS_LOST:
 					{

@@ -97,8 +97,10 @@ void R_DlightBmodel( bmodel_t *bmodel, trRefEntity_t *ent ) {
 		switch(*surf->data)
 		{
 			case SF_FACE:
+    [[fallthrough]];
 			case SF_GRID:
 			case SF_TRIANGLES:
+    [[fallthrough]];
 			case SF_VBO_MESH:
 				((srfBspSurface_t *)surf->data)->dlightBits = mask;
 				break;

@@ -1418,51 +1418,71 @@ qboolean NPC_CanSurrender( void )
 		switch ( NPC->client->NPC_class )
 		{
 		case CLASS_ATST:
+    [[fallthrough]];
 		case CLASS_CLAW:
 		case CLASS_DESANN:
+    [[fallthrough]];
 		case CLASS_FISH:
 		case CLASS_FLIER2:
+    [[fallthrough]];
 		case CLASS_GALAK:
 		case CLASS_GLIDER:
+    [[fallthrough]];
 		case CLASS_GONK:				// droid
 		case CLASS_HOWLER:
+    [[fallthrough]];
 		case CLASS_RANCOR:
 		case CLASS_SAND_CREATURE:
+    [[fallthrough]];
 		case CLASS_WAMPA:
 		case CLASS_INTERROGATOR:		// droid
 		case CLASS_JAN:
+    [[fallthrough]];
 		case CLASS_JEDI:
 		case CLASS_KYLE:
+    [[fallthrough]];
 		case CLASS_LANDO:
 		case CLASS_LIZARD:
+    [[fallthrough]];
 		case CLASS_LUKE:
 		case CLASS_MARK1:			// droid
 		case CLASS_MARK2:			// droid
 		case CLASS_GALAKMECH:		// droid
 		case CLASS_MINEMONSTER:
+    [[fallthrough]];
 		case CLASS_MONMOTHA:
 		case CLASS_MORGANKATARN:
+    [[fallthrough]];
 		case CLASS_MOUSE:			// droid
 		case CLASS_MURJJ:
+    [[fallthrough]];
 		case CLASS_PROBE:			// droid
 		case CLASS_PROTOCOL:			// droid
 		case CLASS_R2D2:				// droid
 		case CLASS_R5D2:				// droid
 		case CLASS_REBORN:
+    [[fallthrough]];
 		case CLASS_REELO:
 		case CLASS_REMOTE:
+    [[fallthrough]];
 		case CLASS_SEEKER:			// droid
 		case CLASS_SENTRY:
+    [[fallthrough]];
 		case CLASS_SHADOWTROOPER:
 		case CLASS_SWAMP:
+    [[fallthrough]];
 		case CLASS_TAVION:
 		case CLASS_ALORA:
+    [[fallthrough]];
 		case CLASS_TUSKEN:
 		case CLASS_BOBAFETT:
+    [[fallthrough]];
 		case CLASS_ROCKETTROOPER:
 		case CLASS_SABER_DROID:
+    [[fallthrough]];
 		case CLASS_ASSASSIN_DROID:
 		case CLASS_HAZARD_TROOPER:
+    [[fallthrough]];
 		case CLASS_PLAYER:
 		case CLASS_VEHICLE:
 			return qfalse;
