@@ -1,0 +1,8 @@
+# Third-party libraries
+lib/
+
+# Generated files
+build/
+
+# Test files (may have their own style)
+tests/

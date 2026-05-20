@@ -1,0 +1,99 @@
+name: lint
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - "**.cpp"
+      - "**.h"
+      - ".clang-format"
+      - ".clang-tidy"
+      - ".github/workflows/lint.yml"
+
+jobs:
+  clang-format:
+    name: clang-format
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+
+      - name: Check formatting
+        run: |
+          # Find all C/C++ files, excluding lib/ and build/
+          FILES=$(find . -name "*.cpp" -o -name "*.h" -o -name "*.c" \
+            | grep -v "^./lib/" \
+            | grep -v "^./build/" \
+            | grep -v "^./tests/")
+
+          # Run clang-format in dry-run mode
+          UNFORMATTED=""
+          for f in $FILES; do
+            if ! clang-format --dry-run --Werror "$f" 2>/dev/null; then
+              UNFORMATTED="$UNFORMATTED $f"
+            fi
+          done
+
+          if [ -n "$UNFORMATTED" ]; then
+            echo "The following files need formatting:"
+            for f in $UNFORMATTED; do
+              echo "  $f"
+            done
+            echo ""
+            echo "Run: clang-format -i <file>"
+            exit 1
+          else
+            echo "All files are properly formatted."
+          fi
+
+  clang-tidy:
+    name: clang-tidy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install clang-tidy
+        run: sudo apt-get update && sudo apt-get install -y clang-tidy
+
+      - name: Configure CMake with compile commands
+        run: cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBuildJK2SPEngine=ON -DBuildJK2SPGame=ON
+
+      - name: Run clang-tidy on changed files
+        run: |
+          # Get changed files in this PR (or all files if not a PR)
+          if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
+            FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} HEAD \
+              | grep -E '\.(cpp|h|c)$' \
+              | grep -v "^lib/" \
+              | grep -v "^build/" \
+              | grep -v "^tests/" || true)
+          else
+            FILES=$(find . -name "*.cpp" -o -name "*.c" \
+              | grep -v "^./lib/" \
+              | grep -v "^./build/" \
+              | grep -v "^./tests/" \
+              | head -20)
+          fi
+
+          if [ -z "$FILES" ]; then
+            echo "No C/C++ files to check."
+            exit 0
+          fi
+
+          ERRORS=0
+          for f in $FILES; do
+            if [ -f "$f" ]; then
+              echo "Checking $f..."
+              clang-tidy "$f" -p build --quiet 2>&1 | head -20 || ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "clang-tidy found issues in $ERRORS files."
+            exit 1
+          else
+            echo "No issues found."
+          fi
