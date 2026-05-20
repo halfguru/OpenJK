@@ -2171,8 +2171,10 @@ qboolean Jedi_DodgeEvasion( gentity_t *self, gentity_t *shooter, trace_t *tr, in
 		break;
 
 	case HL_FOOT_RT:
+    [[fallthrough]];
 	case HL_FOOT_LT:
 	case HL_LEG_RT:
+    [[fallthrough]];
 	case HL_LEG_LT:
 	case HL_WAIST:
 		if ( !self->s.number )
@@ -2229,14 +2231,17 @@ qboolean Jedi_DodgeEvasion( gentity_t *self, gentity_t *shooter, trace_t *tr, in
 		dodgeAnim = BOTH_DODGE_BR;
 		break;
 	case HL_BACK:
+    [[fallthrough]];
 	case HL_CHEST:
 		dodgeAnim = Q_irand( BOTH_DODGE_FL, BOTH_DODGE_R );
 		break;
 	case HL_ARM_RT:
+    [[fallthrough]];
 	case HL_HAND_RT:
 		dodgeAnim = BOTH_DODGE_L;
 		break;
 	case HL_ARM_LT:
+    [[fallthrough]];
 	case HL_HAND_LT:
 		dodgeAnim = BOTH_DODGE_R;
 		break;
@@ -2852,38 +2857,55 @@ qboolean Jedi_InNoAIAnim( gentity_t *self )
 	switch ( self->client->ps.legsAnim )
 	{
 	case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_RIGHT:
 	case BOTH_BUTTERFLY_FL1:
+    [[fallthrough]];
 	case BOTH_BUTTERFLY_FR1:
 	case BOTH_FLIP_F:
+    [[fallthrough]];
 	case BOTH_FLIP_B:
 	case BOTH_FLIP_L:
+    [[fallthrough]];
 	case BOTH_FLIP_R:
 	case BOTH_DODGE_FL:
+    [[fallthrough]];
 	case BOTH_DODGE_FR:
 	case BOTH_DODGE_BL:
+    [[fallthrough]];
 	case BOTH_DODGE_BR:
 	case BOTH_DODGE_L:
+    [[fallthrough]];
 	case BOTH_DODGE_R:
 	case BOTH_DODGE_HOLD_FL:
+    [[fallthrough]];
 	case BOTH_DODGE_HOLD_FR:
 	case BOTH_DODGE_HOLD_BL:
+    [[fallthrough]];
 	case BOTH_DODGE_HOLD_BR:
 	case BOTH_DODGE_HOLD_L:
+    [[fallthrough]];
 	case BOTH_DODGE_HOLD_R:
 	case BOTH_FORCEWALLRUNFLIP_START:
+    [[fallthrough]];
 	case BOTH_JUMPATTACK6:
 	case BOTH_JUMPATTACK7:
+    [[fallthrough]];
 	case BOTH_JUMPFLIPSLASHDOWN1:
 	case BOTH_JUMPFLIPSTABDOWN:
+    [[fallthrough]];
 	case BOTH_FORCELEAP2_T__B_:
 	case BOTH_ROLL_STAB:
+    [[fallthrough]];
 	case BOTH_SPINATTACK6:
 	case BOTH_SPINATTACK7:
+    [[fallthrough]];
 	case BOTH_PULL_IMPALE_STAB:
 	case BOTH_PULL_IMPALE_SWING:
+    [[fallthrough]];
 	case BOTH_A6_FB:
 	case BOTH_A6_LR:
+    [[fallthrough]];
 	case BOTH_A7_HILT:
 		return qtrue;
 		break;
@@ -4324,8 +4346,10 @@ static void Jedi_EvasionSaber( vec3_t enemy_movedir, float enemy_dist, vec3_t en
 			switch( whichDefense )
 			{
 			case 0:
+    [[fallthrough]];
 			case 1:
 			case 2:
+    [[fallthrough]];
 			case 3:
 				//use jedi force push? or kick?
 				//FIXME: try to do this if health low or enemy back to a cliff?
@@ -4343,12 +4367,16 @@ static void Jedi_EvasionSaber( vec3_t enemy_movedir, float enemy_dist, vec3_t en
 				}
 				break;
 			case 4:
+    [[fallthrough]];
 			case 5:
 			case 6:
+    [[fallthrough]];
 			case 7:
 			case 8:
+    [[fallthrough]];
 			case 9:
 			case 10:
+    [[fallthrough]];
 			case 11:
 			case 12:
 				//try to parry the blow
@@ -4995,14 +5023,19 @@ static void Jedi_CombatTimersUpdate( int enemy_dist )
 				}
 				break;
 			case WP_BLASTER:
+    [[fallthrough]];
 			case WP_BRYAR_PISTOL:
 			case WP_BLASTER_PISTOL:
+    [[fallthrough]];
 			case WP_DISRUPTOR:
 			case WP_BOWCASTER:
+    [[fallthrough]];
 			case WP_REPEATER:
 			case WP_DEMP2:
+    [[fallthrough]];
 			case WP_FLECHETTE:
 			case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 			case WP_CONCUSSION:
 				//if he has a blaster, move in when:
 				//They're not shooting at me
@@ -7450,8 +7483,10 @@ qboolean Jedi_InSpecialMove( void )
 								switch ( Q_irand( 0, 7+g_spskill->integer ) )//on easy: no lightning
 								{
 								case 0:
+    [[fallthrough]];
 								case 1:
 								case 2:
+    [[fallthrough]];
 								case 3:
 									ForceThrow( NPC, qfalse, qfalse );
 									NPC->client->ps.weaponTime = Q_irand( 1000, 3000 )+(2-g_spskill->integer)*1000;
@@ -7462,6 +7497,7 @@ qboolean Jedi_InSpecialMove( void )
 									}
 									break;
 								case 4:
+    [[fallthrough]];
 								case 5:
 									ForceDrain2( NPC );
 									NPC->client->ps.weaponTime = Q_irand( 3000, 6000 )+(2-g_spskill->integer)*2000;
@@ -7473,6 +7509,7 @@ qboolean Jedi_InSpecialMove( void )
 									}
 									break;
 								case 6:
+    [[fallthrough]];
 								case 7:
 									if ( NPC->enemy && InFOV( NPC->enemy->currentOrigin, NPC->currentOrigin, NPC->client->ps.viewangles, 20, 30 ) )
 									{
@@ -7486,6 +7523,7 @@ qboolean Jedi_InSpecialMove( void )
 									}
 									break;
 								case 8:
+    [[fallthrough]];
 								case 9:
 								default:
 									ForceLightning( NPC );

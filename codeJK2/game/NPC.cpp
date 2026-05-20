@@ -269,15 +269,20 @@ int BodyRemovalPadTime( gentity_t *ent )
 	switch( ent->client->NPC_class )
 	{
 	case CLASS_MOUSE:
+    [[fallthrough]];
 	case CLASS_GONK:
 	case CLASS_R2D2:
+    [[fallthrough]];
 	case CLASS_R5D2:
 	//case CLASS_PROTOCOL:
 	case CLASS_MARK1:
+    [[fallthrough]];
 	case CLASS_MARK2:
 	case CLASS_PROBE:
+    [[fallthrough]];
 	case CLASS_SEEKER:
 	case CLASS_REMOTE:
+    [[fallthrough]];
 	case CLASS_SENTRY:
 	case CLASS_INTERROGATOR:
 		time = 0;
@@ -318,16 +323,21 @@ static void NPC_RemoveBodyEffect(void)
 	switch(NPC->client->NPC_class)
 	{
 	case CLASS_PROBE:
+    [[fallthrough]];
 	case CLASS_SEEKER:
 	case CLASS_REMOTE:
+    [[fallthrough]];
 	case CLASS_SENTRY:
 	case CLASS_GONK:
+    [[fallthrough]];
 	case CLASS_R2D2:
 	case CLASS_R5D2:
 	//case CLASS_PROTOCOL:
 	case CLASS_MARK1:
+    [[fallthrough]];
 	case CLASS_MARK2:
 	case CLASS_INTERROGATOR:
+    [[fallthrough]];
 	case CLASS_ATST: // yeah, this is a little weird, but for now I'm listing all droids
 	//	VectorCopy( NPC->currentOrigin, org );
 	//	org[2] -= 16;
@@ -1271,8 +1281,10 @@ void NPC_BehaviorSet_Interrogator( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSInterrogator_Default();
@@ -1297,8 +1309,10 @@ void NPC_BehaviorSet_ImperialProbe( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSImperialProbe_Default();
@@ -1322,8 +1336,10 @@ void NPC_BehaviorSet_Seeker( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSSeeker_Default();
@@ -1346,8 +1362,10 @@ void NPC_BehaviorSet_Remote( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSRemote_Default();
@@ -1370,8 +1388,10 @@ void NPC_BehaviorSet_Sentry( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSSentry_Default();
@@ -1392,8 +1412,10 @@ void NPC_BehaviorSet_Grenadier( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSGrenadier_Default();
@@ -1414,8 +1436,10 @@ void NPC_BehaviorSet_Sniper( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSSniper_Default();
@@ -1437,8 +1461,10 @@ void NPC_BehaviorSet_Stormtrooper( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSST_Default();
@@ -1469,8 +1495,10 @@ void NPC_BehaviorSet_Jedi( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSJedi_Default();
@@ -1496,6 +1524,7 @@ void NPC_BehaviorSet_Droid( int bState )
 	switch( bState )
 	{
 	case BS_DEFAULT:
+    [[fallthrough]];
 	case BS_STAND_GUARD:
 	case BS_PATROL:
 		NPC_BSDroid_Default();
@@ -1516,6 +1545,7 @@ void NPC_BehaviorSet_Mark1( int bState )
 	switch( bState )
 	{
 	case BS_DEFAULT:
+    [[fallthrough]];
 	case BS_STAND_GUARD:
 	case BS_PATROL:
 		NPC_BSMark1_Default();
@@ -1536,8 +1566,10 @@ void NPC_BehaviorSet_Mark2( int bState )
 	switch( bState )
 	{
 	case BS_DEFAULT:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 		NPC_BSMark2_Default();
 		break;
@@ -1557,8 +1589,10 @@ void NPC_BehaviorSet_ATST( int bState )
 	switch( bState )
 	{
 	case BS_DEFAULT:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 		NPC_BSATST_Default();
 		break;
@@ -1578,8 +1612,10 @@ void NPC_BehaviorSet_MineMonster( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSMineMonster_Default();
@@ -1600,8 +1636,10 @@ void NPC_BehaviorSet_Howler( int bState )
 	switch( bState )
 	{
 	case BS_STAND_GUARD:
+    [[fallthrough]];
 	case BS_PATROL:
 	case BS_STAND_AND_SHOOT:
+    [[fallthrough]];
 	case BS_HUNT_AND_KILL:
 	case BS_DEFAULT:
 		NPC_BSHowler_Default();

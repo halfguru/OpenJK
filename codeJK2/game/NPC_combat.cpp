@@ -192,44 +192,56 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 			attDelay -= Q_irand( 500, 1500 );
 			break;
 		case CLASS_JAN:
+    [[fallthrough]];
 		case CLASS_LANDO:
 		case CLASS_PRISONER:
+    [[fallthrough]];
 		case CLASS_REBEL:
 			attDelay -= Q_irand( 500, 1500 );
 			break;
 		case CLASS_GALAKMECH:
+    [[fallthrough]];
 		case CLASS_ATST:
 			attDelay -= Q_irand( 1000, 2000 );
 			break;
 		case CLASS_REELO:
+    [[fallthrough]];
 		case CLASS_UGNAUGHT:
 			return;
 			break;
 		case CLASS_MINEMONSTER:
+    [[fallthrough]];
 		case CLASS_MURJJ:
 			return;
 			break;
 		case CLASS_INTERROGATOR:
+    [[fallthrough]];
 		case CLASS_PROBE:
 		case CLASS_MARK1:
+    [[fallthrough]];
 		case CLASS_MARK2:
 		case CLASS_SENTRY:
 			return;
 			break;
 		case CLASS_REMOTE:
+    [[fallthrough]];
 		case CLASS_SEEKER:
 			return;
 			break;
 		/*
 		case CLASS_GRAN:
+    [[fallthrough]];
 		case CLASS_RODIAN:
 		case CLASS_WEEQUAY:
 			break;
 		case CLASS_JEDI:
+    [[fallthrough]];
 		case CLASS_SHADOWTROOPER:
 		case CLASS_TAVION:
+    [[fallthrough]];
 		case CLASS_REBORN:
 		case CLASS_LUKE:
+    [[fallthrough]];
 		case CLASS_DESANN:
 			break;
 		*/
@@ -240,6 +252,7 @@ void G_AttackDelay( gentity_t *self, gentity_t *enemy )
 		switch ( self->s.weapon )
 		{
 		case WP_NONE:
+    [[fallthrough]];
 		case WP_SABER:
 			return;
 			break;
@@ -743,6 +756,7 @@ void ChangeWeapon( gentity_t *ent, int newWeapon )
 		break;
 
 	case WP_ATST_MAIN:
+    [[fallthrough]];
 	case WP_ATST_SIDE:
 		ent->NPC->aiFlags &= ~NPCAI_BURST_WEAPON;
 	//	ent->NPC->burstSpacing = 1000;//attackdebounce
@@ -2345,8 +2359,10 @@ float IdealDistance ( gentity_t *self )
 		break;
 
 	case WP_SABER:
+    [[fallthrough]];
 	case WP_BRYAR_PISTOL:
 	case WP_BLASTER_PISTOL:
+    [[fallthrough]];
 	case WP_BLASTER:
 	default:
 		break;

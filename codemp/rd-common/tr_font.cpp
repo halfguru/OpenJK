@@ -593,6 +593,7 @@ static int Thai_IsAccentChar( unsigned int uiCode )
 	switch (uiCode)
 	{
 		case 209:
+    [[fallthrough]];
 		case 212:	case 213:	case 214:	case 215:	case 216:	case 217:	case 218:
 		case 231:	case 232:	case 233:	case 234:	case 235:	case 236:	case 237:	case 238:
 		return true;
@@ -824,8 +825,10 @@ qboolean Language_IsAsian(void)
 	switch ( GetLanguageEnum() )
 	{
 		case eKorean:
+    [[fallthrough]];
 		case eTaiwanese:
 		case eJapanese:
+    [[fallthrough]];
 		case eChinese:
 		case eThai:	// this is asian, but the query is normally used for scaling
 			return qtrue;
@@ -842,8 +845,10 @@ qboolean Language_UsesSpaces(void)
 	switch ( GetLanguageEnum() )
 	{
 		case eTaiwanese:
+    [[fallthrough]];
 		case eJapanese:
 		case eChinese:
+    [[fallthrough]];
 		case eThai:
 			return qfalse;
 		default:
@@ -1122,6 +1127,7 @@ void CFontInfo::UpdateAsianIfNeeded( bool bForceReEval /* = false */ )
 					case eKorean:	m_AsianGlyph.horizAdvance	= iCappedHeight - 1;break;	// korean has a small amount of space at the edge of the glyph
 
 					case eTaiwanese:
+    [[fallthrough]];
 					case eJapanese:
 					case eChinese:	m_AsianGlyph.horizAdvance	= iCappedHeight + 3;	// need to force some spacing for these
 //					case eThai:	// this is done dynamically elsewhere, since Thai glyphs are variable width
@@ -1240,6 +1246,7 @@ const glyphInfo_t *CFontInfo::GetLetter(const unsigned int uiLetter, int *piShad
 					break;
 
 					case eJapanese:
+    [[fallthrough]];
 					case eChinese:
 					{
 						m_AsianGlyph.s  = (float)(((1024 / m_iAsianGlyphsAcross) * ( iColumn    ))  ) / 1024.0f;

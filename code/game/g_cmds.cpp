@@ -1087,6 +1087,7 @@ void G_SetTauntAnim( gentity_t *ent, int taunt )
 				switch ( ent->client->ps.saberAnimLevel )
 				{
 				case SS_FAST:
+    [[fallthrough]];
 				case SS_TAVION:
 					if ( ent->client->ps.saber[1].Active() )
 					{//turn off second saber
@@ -1100,6 +1101,7 @@ void G_SetTauntAnim( gentity_t *ent, int taunt )
 					anim = BOTH_GESTURE1;
 					break;
 				case SS_MEDIUM:
+    [[fallthrough]];
 				case SS_STRONG:
 				case SS_DESANN:
 					anim = BOTH_ENGAGETAUNT;
@@ -1195,6 +1197,7 @@ void G_SetTauntAnim( gentity_t *ent, int taunt )
 					switch ( ent->client->ps.saberAnimLevel )
 					{
 					case SS_FAST:
+    [[fallthrough]];
 					case SS_TAVION:
 						anim = BOTH_SHOWOFF_FAST;
 						break;
@@ -1202,6 +1205,7 @@ void G_SetTauntAnim( gentity_t *ent, int taunt )
 						anim = BOTH_SHOWOFF_MEDIUM;
 						break;
 					case SS_STRONG:
+    [[fallthrough]];
 					case SS_DESANN:
 						anim = BOTH_SHOWOFF_STRONG;
 						break;
@@ -1232,6 +1236,7 @@ void G_SetTauntAnim( gentity_t *ent, int taunt )
 					switch ( ent->client->ps.saberAnimLevel )
 					{
 					case SS_FAST:
+    [[fallthrough]];
 					case SS_TAVION:
 						anim = BOTH_VICTORY_FAST;
 						break;
@@ -1239,6 +1244,7 @@ void G_SetTauntAnim( gentity_t *ent, int taunt )
 						anim = BOTH_VICTORY_MEDIUM;
 						break;
 					case SS_STRONG:
+    [[fallthrough]];
 					case SS_DESANN:
 						ent->client->ps.SaberActivate();
 						anim = BOTH_VICTORY_STRONG;

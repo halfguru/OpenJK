@@ -976,22 +976,26 @@ qboolean PM_AdjustAngleForWallJump( gentity_t *ent, usercmd_t *ucmd, qboolean do
 		switch ( ent->client->ps.legsAnim )
 		{
 		case BOTH_FORCEWALLREBOUND_RIGHT:
+    [[fallthrough]];
 		case BOTH_FORCEWALLHOLD_RIGHT:
 			AngleVectors( fwdAngles, NULL, checkDir, NULL );
 			yawAdjust = -90;
 			break;
 		case BOTH_FORCEWALLREBOUND_LEFT:
+    [[fallthrough]];
 		case BOTH_FORCEWALLHOLD_LEFT:
 			AngleVectors( fwdAngles, NULL, checkDir, NULL );
 			VectorScale( checkDir, -1, checkDir );
 			yawAdjust = 90;
 			break;
 		case BOTH_FORCEWALLREBOUND_FORWARD:
+    [[fallthrough]];
 		case BOTH_FORCEWALLHOLD_FORWARD:
 			AngleVectors( fwdAngles, checkDir, NULL, NULL );
 			yawAdjust = 180;
 			break;
 		case BOTH_FORCEWALLREBOUND_BACK:
+    [[fallthrough]];
 		case BOTH_FORCEWALLHOLD_BACK:
 			AngleVectors( fwdAngles, checkDir, NULL, NULL );
 			VectorScale( checkDir, -1, checkDir );

@@ -1773,6 +1773,7 @@ void ClientEvents( gentity_t *ent, int oldEventSequence ) {
 
 		switch ( event ) {
 		case EV_FALL_MEDIUM:
+    [[fallthrough]];
 		case EV_FALL_FAR://these come from bg_pmove, PM_CrashLand
 			if ( ent->s.eType != ET_PLAYER ) {
 				break;		// not in the player model
@@ -2164,18 +2165,22 @@ qboolean G_CheckRollSafety( gentity_t *self, int anim, float testDist )
 	switch ( anim )
 	{
 	case BOTH_GETUP_BROLL_R:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_R:
 		VectorMA( self->currentOrigin, testDist, right, testPos );
 		break;
 	case BOTH_GETUP_BROLL_L:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_L:
 		VectorMA( self->currentOrigin, -testDist, right, testPos );
 		break;
 	case BOTH_GETUP_BROLL_F:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_F:
 		VectorMA( self->currentOrigin, testDist, forward, testPos );
 		break;
 	case BOTH_GETUP_BROLL_B:
+    [[fallthrough]];
 	case BOTH_GETUP_FROLL_B:
 		VectorMA( self->currentOrigin, -testDist, forward, testPos );
 		break;
@@ -3246,6 +3251,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				}
 				break;
 			case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 			case BOTH_ARIAL_RIGHT:
 				if ( elapsedTime >= 200 && elapsedTime <= 600 )
 				{//lead leg
@@ -3281,6 +3287,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				}
 				break;
 			case BOTH_CARTWHEEL_LEFT:
+    [[fallthrough]];
 			case BOTH_CARTWHEEL_RIGHT:
 				if ( elapsedTime >= 200 && elapsedTime <= 600 )
 				{//lead leg
@@ -3348,6 +3355,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				}
 				break;
 			case BOTH_BUTTERFLY_FL1:
+    [[fallthrough]];
 			case BOTH_BUTTERFLY_FR1:
 				if ( elapsedTime >= 950 && elapsedTime <= 1300 )
 				{//lead leg
@@ -3383,6 +3391,7 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				}
 				break;
 			case BOTH_BUTTERFLY_LEFT:
+    [[fallthrough]];
 			case BOTH_BUTTERFLY_RIGHT:
 				if ( (elapsedTime >= 100 && elapsedTime <= 450)
 					|| (elapsedTime >= 1100 && elapsedTime <= 1350) )
@@ -3419,8 +3428,10 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				}
 				break;
 			case BOTH_GETUP_BROLL_B:
+    [[fallthrough]];
 			case BOTH_GETUP_BROLL_F:
 			case BOTH_GETUP_FROLL_B:
+    [[fallthrough]];
 			case BOTH_GETUP_FROLL_F:
 				kickPush = Q_flrand( 150.0f, 250.0f );//Q_flrand( 75.0f, 125.0f );
 				if ( elapsedTime >= 250 && remainingTime >= 250 )
@@ -3996,10 +4007,12 @@ qboolean G_CheckClampUcmd( gentity_t *ent, usercmd_t *ucmd )
 				switch ( ent->client->ps.legsAnim )
 				{
 				case BOTH_ARIAL_LEFT:
+    [[fallthrough]];
 				case BOTH_CARTWHEEL_LEFT:
 					ucmd->rightmove = -127;
 					break;
 				case BOTH_ARIAL_RIGHT:
+    [[fallthrough]];
 				case BOTH_CARTWHEEL_RIGHT:
 					ucmd->rightmove = 127;
 					break;
@@ -4188,13 +4201,17 @@ static int NPC_GetRunSpeed( gentity_t *ent )
 	{
 	case CLASS_PROBE:	// droid cases here to shut-up compiler
 	case CLASS_GONK:
+    [[fallthrough]];
 	case CLASS_R2D2:
 	case CLASS_R5D2:
+    [[fallthrough]];
 	case CLASS_MARK1:
 	case CLASS_MARK2:
+    [[fallthrough]];
 	case CLASS_PROTOCOL:
 	case CLASS_ATST: // hmm, not really your average droid
 	case CLASS_MOUSE:
+    [[fallthrough]];
 	case CLASS_SEEKER:
 	case CLASS_REMOTE:
 		runSpeed = ent->NPC->stats.runSpeed;
@@ -4309,8 +4326,10 @@ void G_CheckClientIdle( gentity_t *ent, usercmd_t *ucmd )
 			switch ( ent->client->ps.legsAnim )
 			{
 			case BOTH_STAND1IDLE1:
+    [[fallthrough]];
 			case BOTH_STAND2IDLE1:
 			case BOTH_STAND2IDLE2:
+    [[fallthrough]];
 			case BOTH_STAND3IDLE1:
 			case BOTH_STAND5IDLE1:
 				ent->client->ps.legsAnimTimer = 0;
@@ -4319,8 +4338,10 @@ void G_CheckClientIdle( gentity_t *ent, usercmd_t *ucmd )
 			switch ( ent->client->ps.torsoAnim )
 			{
 			case BOTH_STAND1IDLE1:
+    [[fallthrough]];
 			case BOTH_STAND2IDLE1:
 			case BOTH_STAND2IDLE2:
+    [[fallthrough]];
 			case BOTH_STAND3IDLE1:
 			case BOTH_STAND5IDLE1:
 				ent->client->ps.torsoAnimTimer = 0;
@@ -4567,6 +4588,7 @@ void	ClientAlterSpeed(gentity_t *ent, usercmd_t *ucmd, qboolean	controlledByPlay
 					client->ps.speed *= 0.75f;
 					break;
 				case SS_MEDIUM:
+    [[fallthrough]];
 				case SS_DUAL:
 				case SS_STAFF:
 					client->ps.speed *= 0.60f;
@@ -4598,6 +4620,7 @@ void	ClientAlterSpeed(gentity_t *ent, usercmd_t *ucmd, qboolean	controlledByPlay
 				switch( client->ps.saberAnimLevel )
 				{
 				case SS_MEDIUM:
+    [[fallthrough]];
 				case SS_DUAL:
 				case SS_STAFF:
 					client->ps.speed *= 0.85f;

@@ -3730,6 +3730,7 @@ static void R_CalcVertexLightDirs( world_t *worldData )
 		switch(bspSurf->surfaceType)
 		{
 			case SF_FACE:
+    [[fallthrough]];
 			case SF_GRID:
 			case SF_TRIANGLES:
 				for(i = 0; i < bspSurf->numVerts; i++)
@@ -4112,6 +4113,7 @@ static void R_GenerateSurfaceSprites( const world_t *world, int worldIndex )
 		switch ( bspSurf->surfaceType )
 		{
 			case SF_FACE:
+    [[fallthrough]];
 			case SF_GRID:
 			case SF_TRIANGLES:
 			{

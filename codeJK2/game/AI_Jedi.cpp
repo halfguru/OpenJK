@@ -1260,8 +1260,10 @@ qboolean Jedi_DodgeEvasion( gentity_t *self, gentity_t *shooter, trace_t *tr, in
 		break;
 
 	case HL_FOOT_RT:
+    [[fallthrough]];
 	case HL_FOOT_LT:
 	case HL_LEG_RT:
+    [[fallthrough]];
 	case HL_LEG_LT:
 	case HL_WAIST:
 		if ( !self->s.number )
@@ -1298,14 +1300,17 @@ qboolean Jedi_DodgeEvasion( gentity_t *self, gentity_t *shooter, trace_t *tr, in
 		dodgeAnim = BOTH_DODGE_BR;
 		break;
 	case HL_BACK:
+    [[fallthrough]];
 	case HL_CHEST:
 		dodgeAnim = Q_irand( BOTH_DODGE_FL, BOTH_DODGE_R );
 		break;
 	case HL_ARM_RT:
+    [[fallthrough]];
 	case HL_HAND_RT:
 		dodgeAnim = BOTH_DODGE_L;
 		break;
 	case HL_ARM_LT:
+    [[fallthrough]];
 	case HL_HAND_LT:
 		dodgeAnim = BOTH_DODGE_R;
 		break;
@@ -2756,8 +2761,10 @@ static void Jedi_EvasionSaber( vec3_t enemy_movedir, float enemy_dist, vec3_t en
 			switch( whichDefense )
 			{
 			case 0:
+    [[fallthrough]];
 			case 1:
 			case 2:
+    [[fallthrough]];
 			case 3:
 				//use jedi force push?
 				//FIXME: try to do this if health low or enemy back to a cliff?
@@ -2767,12 +2774,16 @@ static void Jedi_EvasionSaber( vec3_t enemy_movedir, float enemy_dist, vec3_t en
 				}
 				break;
 			case 4:
+    [[fallthrough]];
 			case 5:
 			case 6:
+    [[fallthrough]];
 			case 7:
 			case 8:
+    [[fallthrough]];
 			case 9:
 			case 10:
+    [[fallthrough]];
 			case 11:
 			case 12:
 				//try to parry the blow
@@ -3247,12 +3258,16 @@ static void Jedi_CombatTimersUpdate( int enemy_dist )
 				}
 				break;
 			case WP_BLASTER:
+    [[fallthrough]];
 			case WP_BRYAR_PISTOL:
 			case WP_DISRUPTOR:
+    [[fallthrough]];
 			case WP_BOWCASTER:
 			case WP_REPEATER:
+    [[fallthrough]];
 			case WP_DEMP2:
 			case WP_FLECHETTE:
+    [[fallthrough]];
 			case WP_ROCKET_LAUNCHER:
 				//if he has a blaster, move in when:
 				//They're not shooting at me

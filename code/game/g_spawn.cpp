@@ -1012,20 +1012,28 @@ void G_ParseField( const char *key, const char *value, gentity_t *ent ) {
 				((float *)(b+f->ofs))[2] = 0;
 				break;
 			case F_PARM1:
+    [[fallthrough]];
 			case F_PARM2:
 			case F_PARM3:
+    [[fallthrough]];
 			case F_PARM4:
 			case F_PARM5:
+    [[fallthrough]];
 			case F_PARM6:
 			case F_PARM7:
+    [[fallthrough]];
 			case F_PARM8:
 			case F_PARM9:
+    [[fallthrough]];
 			case F_PARM10:
 			case F_PARM11:
+    [[fallthrough]];
 			case F_PARM12:
 			case F_PARM13:
+    [[fallthrough]];
 			case F_PARM14:
 			case F_PARM15:
+    [[fallthrough]];
 			case F_PARM16:
 				Q3_SetParm( ent->s.number, (f->type - F_PARM1), (char *) value );
 				break;

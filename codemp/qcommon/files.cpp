@@ -1837,6 +1837,7 @@ int FS_Seek( fileHandle_t f, long offset, int origin ) {
 				//fallthrough
 
 			case FS_SEEK_END:
+    [[fallthrough]];
 			case FS_SEEK_CUR:
 				while( remainder > PK3_SEEK_BUFFER_SIZE ) {
 					FS_Read( buffer, PK3_SEEK_BUFFER_SIZE, f );

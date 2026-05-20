@@ -301,6 +301,7 @@ static qboolean Music_ParseMusic(CGenericParser2 &Parser, MusicData_t *MusicData
 						break;
 
 					case eBGRNDTRACK_BOSS:
+    [[fallthrough]];
 					case eBGRNDTRACK_DEATH:
 
 						MUSIC_PARSE_ERROR( va("\"%s\" has %s transitions defined, this is not allowed!\n",psMusicName,psMusicNameKey) );
@@ -799,8 +800,10 @@ const char *Music_GetFileNameForState( MusicState_e eMusicState)
 	switch (eMusicState)
 	{
 		case eBGRNDTRACK_EXPLORE:
+    [[fallthrough]];
 		case eBGRNDTRACK_ACTION:
 		case eBGRNDTRACK_BOSS:
+    [[fallthrough]];
 		case eBGRNDTRACK_DEATH:
 
 			pMusicFile = Music_GetBaseMusicFile( eMusicState );
@@ -811,8 +814,10 @@ const char *Music_GetFileNameForState( MusicState_e eMusicState)
 			break;
 
 		case eBGRNDTRACK_ACTIONTRANS0:
+    [[fallthrough]];
 		case eBGRNDTRACK_ACTIONTRANS1:
 		case eBGRNDTRACK_ACTIONTRANS2:
+    [[fallthrough]];
 		case eBGRNDTRACK_ACTIONTRANS3:
 
 			pMusicFile = Music_GetBaseMusicFile( eBGRNDTRACK_ACTION );
@@ -827,8 +832,10 @@ const char *Music_GetFileNameForState( MusicState_e eMusicState)
 			break;
 
 		case eBGRNDTRACK_EXPLORETRANS0:
+    [[fallthrough]];
 		case eBGRNDTRACK_EXPLORETRANS1:
 		case eBGRNDTRACK_EXPLORETRANS2:
+    [[fallthrough]];
 		case eBGRNDTRACK_EXPLORETRANS3:
 
 			pMusicFile = Music_GetBaseMusicFile( eBGRNDTRACK_EXPLORE );

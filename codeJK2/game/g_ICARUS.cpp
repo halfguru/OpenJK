@@ -483,20 +483,28 @@ void ICARUS_InterrogateScript( const char *filename )
 				switch ( setID )
 				{
 				case SET_SPAWNSCRIPT:
+    [[fallthrough]];
 				case SET_USESCRIPT:
 				case SET_AWAKESCRIPT:
+    [[fallthrough]];
 				case SET_ANGERSCRIPT:
 				case SET_ATTACKSCRIPT:
+    [[fallthrough]];
 				case SET_VICTORYSCRIPT:
 				case SET_LOSTENEMYSCRIPT:
+    [[fallthrough]];
 				case SET_PAINSCRIPT:
 				case SET_FLEESCRIPT:
+    [[fallthrough]];
 				case SET_DEATHSCRIPT:
 				case SET_DELAYEDSCRIPT:
+    [[fallthrough]];
 				case SET_BLOCKEDSCRIPT:
 				case SET_FFIRESCRIPT:
+    [[fallthrough]];
 				case SET_FFDEATHSCRIPT:
 				case SET_MINDTRICKSCRIPT:
+    [[fallthrough]];
 				case SET_CINEMATIC_SKIPSCRIPT:
 					//Recursively obtain all embedded scripts
 					ICARUS_InterrogateScript( sVal2 );
@@ -527,6 +535,7 @@ extern	cvar_t	*com_buildScript;
 					}
 					break;
 				case SET_ADDRHANDBOLT_MODEL:
+    [[fallthrough]];
 				case SET_ADDLHANDBOLT_MODEL:
 					{
 						gi.G2API_PrecacheGhoul2Model( sVal2 );

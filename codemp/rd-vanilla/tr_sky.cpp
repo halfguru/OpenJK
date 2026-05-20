@@ -531,8 +531,10 @@ static void FillCloudBox( const shader_t *shader, int stage )
 			switch( i )
 			{
 			case 0:
+    [[fallthrough]];
 			case 1:
 			case 2:
+    [[fallthrough]];
 			case 3:
 				MIN_T = -1;
 				break;

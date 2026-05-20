@@ -241,15 +241,19 @@ static void ComputeTexMods( shaderStage_t *pStage, int bundleNum, float *outMatr
 		switch ( bundle->texMods[tm].type )
 		{
 		case TMOD_NONE:
+    [[fallthrough]];
 		case TMOD_TURBULENT:
 		default:
 			break;
 
 		case TMOD_ENTITY_TRANSLATE:
+    [[fallthrough]];
 		case TMOD_SCROLL:
 		case TMOD_SCALE:
+    [[fallthrough]];
 		case TMOD_STRETCH:
 		case TMOD_TRANSFORM:
+    [[fallthrough]];
 		case TMOD_ROTATE:
 			outMatrix[0] = matrix[0] * currentmatrix[0] + matrix[2] * currentmatrix[1];
 			outMatrix[1] = matrix[1] * currentmatrix[0] + matrix[3] * currentmatrix[1];
@@ -304,6 +308,7 @@ static void ComputeShaderColors( shaderStage_t *pStage, vec4_t baseColor, vec4_t
 			baseColor[2] = tr.identityLight;
 			break;
 		case CGEN_EXACT_VERTEX:
+    [[fallthrough]];
 		case CGEN_EXACT_VERTEX_LIT:
 			baseColor[0] =
 			baseColor[1] =
@@ -364,6 +369,7 @@ static void ComputeShaderColors( shaderStage_t *pStage, vec4_t baseColor, vec4_t
 			baseColor[2] = RB_CalcWaveColorSingle( &pStage->rgbWave );
 			break;
 		case CGEN_ENTITY:
+    [[fallthrough]];
 		case CGEN_LIGHTING_DIFFUSE_ENTITY:
 			if (backEnd.currentEntity)
 			{
@@ -392,6 +398,7 @@ static void ComputeShaderColors( shaderStage_t *pStage, vec4_t baseColor, vec4_t
 			VectorScale4 (styleColors[pStage->lightmapStyle], 1.0f / 255.0f, baseColor);
 			break;
 		case CGEN_IDENTITY:
+    [[fallthrough]];
 		case CGEN_LIGHTING_DIFFUSE:
 		case CGEN_BAD:
 			break;
@@ -441,6 +448,7 @@ static void ComputeShaderColors( shaderStage_t *pStage, vec4_t baseColor, vec4_t
 			vertColor[3] = -1.0f;
 			break;
 		case AGEN_IDENTITY:
+    [[fallthrough]];
 		case AGEN_LIGHTING_SPECULAR:
 		case AGEN_PORTAL:
 			// Done entirely in vertex program
@@ -1533,8 +1541,10 @@ static void RB_IterateStagesGeneric( shaderCommands_t *input, const VertexArrays
 					switch (forceRGBGen)
 					{
 					case CGEN_EXACT_VERTEX:
+    [[fallthrough]];
 					case CGEN_EXACT_VERTEX_LIT:
 					case CGEN_VERTEX:
+    [[fallthrough]];
 					case CGEN_VERTEX_LIT:
 						baseColor[0] =
 							baseColor[1] =

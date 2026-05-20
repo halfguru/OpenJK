@@ -2592,6 +2592,7 @@ shaderProgram_t *GLSL_GetGenericShaderProgram(int stage)
 	switch (pStage->alphaGen)
 	{
 		case AGEN_LIGHTING_SPECULAR:
+    [[fallthrough]];
 		case AGEN_PORTAL:
 			shaderAttribs |= GENERICDEF_USE_RGBAGEN;
 			break;

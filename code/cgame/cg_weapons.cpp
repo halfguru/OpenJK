@@ -382,6 +382,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 	case WP_BLASTER_PISTOL: // enemy version
 	case WP_JAWA:
 		cgs.effects.bryarShotEffect			= theFxScheduler.RegisterEffect( "bryar/shot" );
@@ -561,6 +562,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_MELEE:
+    [[fallthrough]];
 	case WP_TUSKEN_STAFF:
 		//TEMP
 		theFxScheduler.RegisterEffect( "melee/punch_impact" );
@@ -760,8 +762,10 @@ int CG_MapTorsoToWeaponFrame( const clientInfo_t *ci, int frame, int animNum, in
 	switch( animNum )
 	{
 	case TORSO_WEAPONREADY1:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY2:
 	case TORSO_WEAPONREADY3:
+    [[fallthrough]];
 	case TORSO_WEAPONREADY4:
 	case TORSO_WEAPONREADY10:
 		ret = 0;
@@ -790,8 +794,10 @@ int CG_MapTorsoToWeaponFrame( const clientInfo_t *ci, int frame, int animNum, in
 		break;
 
 	case BOTH_ATTACK1:
+    [[fallthrough]];
 	case BOTH_ATTACK2:
 	case BOTH_ATTACK3:
+    [[fallthrough]];
 	case BOTH_ATTACK4:
 		if ( frame >= animations[animNum].firstFrame && frame < animations[animNum].firstFrame + 6 )
 		{
@@ -2792,8 +2798,10 @@ void CG_FireWeapon( centity_t *cent, qboolean alt_fire )
 			switch( ent->weapon )
 			{
 			case WP_THERMAL:
+    [[fallthrough]];
 			case WP_DET_PACK:
 			case WP_TRIP_MINE:
+    [[fallthrough]];
 			case WP_ROCKET_LAUNCHER:
 			case WP_FLECHETTE:
 				// these weapon fires don't overcharge
@@ -2813,8 +2821,10 @@ void CG_FireWeapon( centity_t *cent, qboolean alt_fire )
 			switch( ent->weapon )
 			{
 			case WP_THERMAL:
+    [[fallthrough]];
 			case WP_DET_PACK:
 			case WP_TRIP_MINE:
+    [[fallthrough]];
 			case WP_ROCKET_LAUNCHER:
 				// these weapon fires don't overcharge
 				break;
@@ -2920,6 +2930,7 @@ void CG_MissileHitWall( centity_t *cent, int weapon, vec3_t origin, vec3_t dir, 
 	switch( weapon )
 	{
 	case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 	case WP_BLASTER_PISTOL:
 	case WP_JAWA:
 		if ( altFire )
@@ -3064,6 +3075,7 @@ void CG_MissileHitPlayer( centity_t *cent, int weapon, vec3_t origin, vec3_t dir
 	switch( weapon )
 	{
 	case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 	case WP_BLASTER_PISTOL:
 	case WP_JAWA:
 		if ( altFire )

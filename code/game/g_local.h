@@ -433,8 +433,8 @@ void	G_UseTargets2 (gentity_t *ent, gentity_t *activator, const char *string);
 void	G_SetMovedir ( vec3_t angles, vec3_t movedir);
 
 void	G_InitGentity( gentity_t *e, qboolean bFreeG2 );
-gentity_t	*G_Spawn (void);
-gentity_t *G_TempEntity( const vec3_t origin, int event );
+[[nodiscard]] gentity_t	*G_Spawn (void);
+[[nodiscard]] gentity_t *G_TempEntity( const vec3_t origin, int event );
 void	G_Sound( gentity_t *ent, int soundIndex );
 void	G_FreeEntity( gentity_t *e );
 

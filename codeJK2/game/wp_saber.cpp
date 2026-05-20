@@ -896,23 +896,30 @@ qboolean WP_SaberApplyDamage( gentity_t *ent, float baseDamage, int baseDFlags, 
 							switch( hitLoc[i] )
 							{
 							case HL_FOOT_RT:
+    [[fallthrough]];
 							case HL_FOOT_LT:
 							case HL_LEG_RT:
+    [[fallthrough]];
 							case HL_LEG_LT:
 								ent->client->sess.missionStats.legAttacksCnt++;
 								break;
 							case HL_WAIST:
+    [[fallthrough]];
 							case HL_BACK_RT:
 							case HL_BACK_LT:
+    [[fallthrough]];
 							case HL_BACK:
 							case HL_CHEST_RT:
+    [[fallthrough]];
 							case HL_CHEST_LT:
 							case HL_CHEST:
 								ent->client->sess.missionStats.torsoAttacksCnt++;
 								break;
 							case HL_ARM_RT:
+    [[fallthrough]];
 							case HL_ARM_LT:
 							case HL_HAND_RT:
+    [[fallthrough]];
 							case HL_HAND_LT:
 								ent->client->sess.missionStats.armAttacksCnt++;
 								break;
@@ -4794,6 +4801,7 @@ void WP_SaberBlock( gentity_t *saber, vec3_t hitloc, qboolean missileBlock )
 				playerent->client->ps.saberBlocked = BLOCKED_UPPER_RIGHT;
 				break;
 			case 1:
+    [[fallthrough]];
 			case 2:
 				playerent->client->ps.saberBlocked = BLOCKED_LOWER_RIGHT;
 				break;
@@ -6743,14 +6751,19 @@ void ForceTelepathy( gentity_t *self )
 		case CLASS_ATST://much too big to grip!
 		//no droids either
 		case CLASS_PROBE:
+    [[fallthrough]];
 		case CLASS_GONK:
 		case CLASS_R2D2:
+    [[fallthrough]];
 		case CLASS_R5D2:
 		case CLASS_MARK1:
+    [[fallthrough]];
 		case CLASS_MARK2:
 		case CLASS_MOUSE:
+    [[fallthrough]];
 		case CLASS_SEEKER:
 		case CLASS_REMOTE:
+    [[fallthrough]];
 		case CLASS_PROTOCOL:
 			break;
 		default:
@@ -6977,18 +6990,23 @@ void ForceGrip( gentity_t *self )
 			return;
 		//no droids either...?
 		case CLASS_GONK:
+    [[fallthrough]];
 		case CLASS_R2D2:
 		case CLASS_R5D2:
+    [[fallthrough]];
 		case CLASS_MARK1:
 		case CLASS_MARK2:
+    [[fallthrough]];
 		case CLASS_MOUSE://?
 		case CLASS_PROTOCOL:
 			//*sigh*... in JK3, you'll be able to grab and move *anything*...
 			return;
 			break;
 		case CLASS_PROBE:
+    [[fallthrough]];
 		case CLASS_SEEKER:
 		case CLASS_REMOTE:
+    [[fallthrough]];
 		case CLASS_SENTRY:
 		case CLASS_INTERROGATOR:
 			//*sigh*... in JK3, you'll be able to grab and move *anything*...
@@ -7000,8 +7018,10 @@ void ForceGrip( gentity_t *self )
 			return;
 			break;
 		case CLASS_REBORN:
+    [[fallthrough]];
 		case CLASS_SHADOWTROOPER:
 		case CLASS_TAVION:
+    [[fallthrough]];
 		case CLASS_JEDI:
 		case CLASS_LUKE:
 			if ( traceEnt->NPC && traceEnt->NPC->rank > RANK_CIVILIAN && self->client->ps.forcePowerLevel[FP_GRIP] < FORCE_LEVEL_2 )

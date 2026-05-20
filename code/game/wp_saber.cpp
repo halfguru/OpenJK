@@ -1569,23 +1569,30 @@ qboolean WP_SaberApplyDamage( gentity_t *ent, float baseDamage, int baseDFlags,
 							switch( hitLoc[i] )
 							{
 							case HL_FOOT_RT:
+    [[fallthrough]];
 							case HL_FOOT_LT:
 							case HL_LEG_RT:
+    [[fallthrough]];
 							case HL_LEG_LT:
 								ent->client->sess.missionStats.legAttacksCnt++;
 								break;
 							case HL_WAIST:
+    [[fallthrough]];
 							case HL_BACK_RT:
 							case HL_BACK_LT:
+    [[fallthrough]];
 							case HL_BACK:
 							case HL_CHEST_RT:
+    [[fallthrough]];
 							case HL_CHEST_LT:
 							case HL_CHEST:
 								ent->client->sess.missionStats.torsoAttacksCnt++;
 								break;
 							case HL_ARM_RT:
+    [[fallthrough]];
 							case HL_ARM_LT:
 							case HL_HAND_RT:
+    [[fallthrough]];
 							case HL_HAND_LT:
 								ent->client->sess.missionStats.armAttacksCnt++;
 								break;
@@ -4734,6 +4741,7 @@ void WP_SaberDamageTrace( gentity_t *ent, int saberNum, int bladeNum )
 						baseDamage = 5.0f;
 						break;
 					case FORCE_LEVEL_0:
+    [[fallthrough]];
 					case FORCE_LEVEL_1:
 						baseDamage = 2.5f;
 						break;
@@ -8825,10 +8833,13 @@ qboolean WP_ForceThrowable( gentity_t *ent, gentity_t *forwardEnt, gentity_t *se
 		switch ( ent->s.weapon )
 		{//only missiles with mass are force-pushable
 		case WP_SABER:
+    [[fallthrough]];
 		case WP_FLECHETTE:
 		case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 		case WP_CONCUSSION:
 		case WP_THERMAL:
+    [[fallthrough]];
 		case WP_TRIP_MINE:
 		case WP_DET_PACK:
 			break;
@@ -10362,16 +10373,22 @@ void ForceTelepathy( gentity_t *self )
 		case CLASS_ATST://much too big to grip!
 		//no droids either
 		case CLASS_PROBE:
+    [[fallthrough]];
 		case CLASS_GONK:
 		case CLASS_R2D2:
+    [[fallthrough]];
 		case CLASS_R5D2:
 		case CLASS_MARK1:
+    [[fallthrough]];
 		case CLASS_MARK2:
 		case CLASS_MOUSE:
+    [[fallthrough]];
 		case CLASS_SEEKER:
 		case CLASS_REMOTE:
+    [[fallthrough]];
 		case CLASS_PROTOCOL:
 		case CLASS_ASSASSIN_DROID:
+    [[fallthrough]];
 		case CLASS_SABER_DROID:
 		case CLASS_BOBAFETT:
 			break;
@@ -10685,10 +10702,13 @@ void ForceGrip( gentity_t *self )
 			break;
 		//no droids either...?
 		case CLASS_GONK:
+    [[fallthrough]];
 		case CLASS_R2D2:
 		case CLASS_R5D2:
+    [[fallthrough]];
 		case CLASS_MARK1:
 		case CLASS_MARK2:
+    [[fallthrough]];
 		case CLASS_MOUSE://?
 		case CLASS_PROTOCOL:
 			//*sigh*... in JK3, you'll be able to grab and move *anything*...
@@ -10696,13 +10716,16 @@ void ForceGrip( gentity_t *self )
 			break;
 		//not even combat droids?  (No animation for being gripped...)
 		case CLASS_SABER_DROID:
+    [[fallthrough]];
 		case CLASS_ASSASSIN_DROID:
 			//*sigh*... in JK3, you'll be able to grab and move *anything*...
 			return;
 			break;
 		case CLASS_PROBE:
+    [[fallthrough]];
 		case CLASS_SEEKER:
 		case CLASS_REMOTE:
+    [[fallthrough]];
 		case CLASS_SENTRY:
 		case CLASS_INTERROGATOR:
 			//*sigh*... in JK3, you'll be able to grab and move *anything*...
@@ -10710,6 +10733,7 @@ void ForceGrip( gentity_t *self )
 			break;
 		case CLASS_DESANN://Desann cannot be gripped, he just pushes you back instantly
 		case CLASS_KYLE:
+    [[fallthrough]];
 		case CLASS_TAVION:
 		case CLASS_LUKE:
 			Jedi_PlayDeflectSound( traceEnt );
@@ -10717,8 +10741,10 @@ void ForceGrip( gentity_t *self )
 			return;
 			break;
 		case CLASS_REBORN:
+    [[fallthrough]];
 		case CLASS_SHADOWTROOPER:
 		case CLASS_ALORA:
+    [[fallthrough]];
 		case CLASS_JEDI:
 			if ( traceEnt->NPC && traceEnt->NPC->rank > RANK_CIVILIAN && self->client->ps.forcePowerLevel[FP_GRIP] < FORCE_LEVEL_2 )
 			{
@@ -11452,25 +11478,32 @@ qboolean ForceDrain2( gentity_t *self )
 			break;
 		//no droids either
 		case CLASS_GONK:
+    [[fallthrough]];
 		case CLASS_R2D2:
 		case CLASS_R5D2:
+    [[fallthrough]];
 		case CLASS_MARK1:
 		case CLASS_MARK2:
+    [[fallthrough]];
 		case CLASS_MOUSE:
 		case CLASS_PROTOCOL:
+    [[fallthrough]];
 		case CLASS_SABER_DROID:
 		case CLASS_ASSASSIN_DROID:
 			return qfalse;
 			break;
 		case CLASS_PROBE:
+    [[fallthrough]];
 		case CLASS_SEEKER:
 		case CLASS_REMOTE:
+    [[fallthrough]];
 		case CLASS_SENTRY:
 		case CLASS_INTERROGATOR:
 			return qfalse;
 			break;
 		case CLASS_DESANN://Desann cannot be gripped, he just pushes you back instantly
 		case CLASS_KYLE:
+    [[fallthrough]];
 		case CLASS_TAVION:
 		case CLASS_LUKE:
 			Jedi_PlayDeflectSound( traceEnt );
@@ -11478,6 +11511,7 @@ qboolean ForceDrain2( gentity_t *self )
 			return qtrue;
 			break;
 		case CLASS_REBORN:
+    [[fallthrough]];
 		case CLASS_SHADOWTROOPER:
 		//case CLASS_ALORA:
 		case CLASS_JEDI:
@@ -11610,16 +11644,20 @@ qboolean FP_ForceDrainableEnt( gentity_t *victim )
 	case CLASS_MARK2:			// droid
 	case CLASS_GALAKMECH:		// droid
 	case CLASS_MINEMONSTER:
+    [[fallthrough]];
 	case CLASS_MOUSE:			// droid
 	case CLASS_PROBE:			// droid
 	case CLASS_PROTOCOL:			// droid
 	case CLASS_R2D2:				// droid
 	case CLASS_R5D2:				// droid
 	case CLASS_REMOTE:
+    [[fallthrough]];
 	case CLASS_SEEKER:			// droid
 	case CLASS_SENTRY:
+    [[fallthrough]];
 	case CLASS_SABER_DROID:
 	case CLASS_ASSASSIN_DROID:
+    [[fallthrough]];
 	case CLASS_VEHICLE:
 		return qfalse;
 	default:
@@ -11641,12 +11679,16 @@ qboolean FP_ForceDrainGrippableEnt( gentity_t *victim )
 	switch ( victim->client->NPC_class )
 	{
 	case CLASS_RANCOR:
+    [[fallthrough]];
 	case CLASS_SAND_CREATURE:
 	case CLASS_WAMPA:
+    [[fallthrough]];
 	case CLASS_LIZARD:
 	case CLASS_MINEMONSTER:
+    [[fallthrough]];
 	case CLASS_MURJJ:
 	case CLASS_SWAMP:
+    [[fallthrough]];
 	case CLASS_ROCKETTROOPER:
 	case CLASS_HAZARD_TROOPER:
 		return qfalse;
@@ -12914,10 +12956,13 @@ qboolean WP_ForcePowerUsable( gentity_t *self, forcePowers_t forcePower, int ove
 					switch ( forcePower )
 					{
 					case FP_PUSH:
+    [[fallthrough]];
 					case FP_PULL:
 					case FP_TELEPATHY:
+    [[fallthrough]];
 					case FP_GRIP:
 					case FP_LIGHTNING:
+    [[fallthrough]];
 					case FP_DRAIN:
 						return qfalse;
 					default:
@@ -12941,10 +12986,13 @@ qboolean WP_ForcePowerUsable( gentity_t *self, forcePowers_t forcePower, int ove
 				switch ( forcePower )
 				{
 				case FP_PUSH:
+    [[fallthrough]];
 				case FP_PULL:
 				case FP_TELEPATHY:
+    [[fallthrough]];
 				case FP_GRIP:
 				case FP_LIGHTNING:
+    [[fallthrough]];
 				case FP_DRAIN:
 					return qfalse;
 				default:

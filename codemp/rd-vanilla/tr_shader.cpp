@@ -2608,6 +2608,7 @@ static void FixRenderCommandList( int newShader ) {
 					break;
 					}
 				case RC_DRAW_BUFFER:
+    [[fallthrough]];
 				case RC_WORLD_EFFECTS:
 				case RC_AUTO_MAP:
 					{

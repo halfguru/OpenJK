@@ -811,12 +811,16 @@ static void Q3_SetStatusText(const char *StatusTextEnum)
 	switch (statusTextID)
 	{
 	case STAT_INSUBORDINATION:
+    [[fallthrough]];
 	case STAT_YOUCAUSEDDEATHOFTEAMMATE:
 	case STAT_DIDNTPROTECTTECH:
+    [[fallthrough]];
 	case STAT_DIDNTPROTECT7OF9:
 	case STAT_NOTSTEALTHYENOUGH:
+    [[fallthrough]];
 	case STAT_STEALTHTACTICSNECESSARY:
 	case STAT_WATCHYOURSTEP:
+    [[fallthrough]];
 	case STAT_JUDGEMENTMUCHDESIRED:
 		statusTextIndex = statusTextID;
 		break;
@@ -6765,6 +6769,7 @@ static void Q3_Set( int taskID, int entID, const char *type_name, const char *da
 		break;
 
 	case SET_ICARUS_FREEZE:
+    [[fallthrough]];
 	case SET_ICARUS_UNFREEZE:
 		Q3_SetICARUSFreeze( entID, (char *) data, (qboolean)(toSet == SET_ICARUS_FREEZE) );
 		break;
@@ -6964,37 +6969,52 @@ static void Q3_Set( int taskID, int entID, const char *type_name, const char *da
 		break;
 
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		Q3_SetParm( entID, (toSet-SET_PARM1), (char *) data );
 		break;
 
 	case SET_SPAWNSCRIPT:
+    [[fallthrough]];
 	case SET_USESCRIPT:
 	case SET_AWAKESCRIPT:
+    [[fallthrough]];
 	case SET_ANGERSCRIPT:
 	case SET_ATTACKSCRIPT:
+    [[fallthrough]];
 	case SET_VICTORYSCRIPT:
 	case SET_PAINSCRIPT:
+    [[fallthrough]];
 	case SET_FLEESCRIPT:
 	case SET_DEATHSCRIPT:
+    [[fallthrough]];
 	case SET_DELAYEDSCRIPT:
 	case SET_BLOCKEDSCRIPT:
+    [[fallthrough]];
 	case SET_FFIRESCRIPT:
 	case SET_FFDEATHSCRIPT:
+    [[fallthrough]];
 	case SET_MINDTRICKSCRIPT:
 		if( !Q3_SetBehaviorSet(entID, toSet, (char *) data) )
 			Q3_DebugPrint( WL_ERROR, "Q3_SetBehaviorSet: Invalid bSet %s\n", type_name );
@@ -7291,10 +7311,13 @@ static void Q3_Set( int taskID, int entID, const char *type_name, const char *da
 		break;
 
 	case SET_FACEEYESCLOSED:
+    [[fallthrough]];
 	case SET_FACEEYESOPENED:
 	case SET_FACEAUX:
+    [[fallthrough]];
 	case SET_FACEBLINK:
 	case SET_FACEBLINKFROWN:
+    [[fallthrough]];
 	case SET_FACEFROWN:
 	case SET_FACENORMAL:
 		float_data = atof((char *) data);
@@ -7634,14 +7657,19 @@ extern void LockDoors(gentity_t *const ent);
 		break;
 
 	case SET_FORCE_HEAL_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_JUMP_LEVEL:
 	case SET_FORCE_SPEED_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_PUSH_LEVEL:
 	case SET_FORCE_PULL_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_MINDTRICK_LEVEL:
 	case SET_FORCE_GRIP_LEVEL:
+    [[fallthrough]];
 	case SET_FORCE_LIGHTNING_LEVEL:
 	case SET_SABER_THROW:
+    [[fallthrough]];
 	case SET_SABER_DEFENSE:
 	case SET_SABER_OFFENSE:
 		int_data = atoi((char *) data);
@@ -7916,20 +7944,28 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 	switch ( toGet )
 	{
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		if (ent->parms == NULL)
 		{
@@ -8054,6 +8090,7 @@ static int Q3_GetFloat( int entID, int type, const char *name, float *value )
 		break;
 
 	case SET_FACEEYESCLOSED:
+    [[fallthrough]];
 	case SET_FACEEYESOPENED:
 	case SET_FACEAUX:		//## %f="0.0" # Set face to Aux expression for number of seconds
 	case SET_FACEBLINK:		//## %f="0.0" # Set face to Blink expression for number of seconds
@@ -8536,20 +8573,28 @@ static int Q3_GetVector( int entID, int type, const char *name, vec3_t value )
 	switch ( toGet )
 	{
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		sscanf( ent->parms->parm[toGet - SET_PARM1], "%f %f %f", &value[0], &value[1], &value[2] );
 		break;
@@ -8623,20 +8668,28 @@ static int Q3_GetString( int entID, int type, const char *name, char **value )
 		break;
 
 	case SET_PARM1:
+    [[fallthrough]];
 	case SET_PARM2:
 	case SET_PARM3:
+    [[fallthrough]];
 	case SET_PARM4:
 	case SET_PARM5:
+    [[fallthrough]];
 	case SET_PARM6:
 	case SET_PARM7:
+    [[fallthrough]];
 	case SET_PARM8:
 	case SET_PARM9:
+    [[fallthrough]];
 	case SET_PARM10:
 	case SET_PARM11:
+    [[fallthrough]];
 	case SET_PARM12:
 	case SET_PARM13:
+    [[fallthrough]];
 	case SET_PARM14:
 	case SET_PARM15:
+    [[fallthrough]];
 	case SET_PARM16:
 		if ( ent->parms )
 		{
@@ -8930,6 +8983,7 @@ static int Q3_Evaluate( int p1Type, const char *p1, int p2Type, const char *p2, 
 		break;
 
 	case TK_STRING:
+    [[fallthrough]];
 	case TK_IDENTIFIER:
 		c1 = (char *) p1;
 		c2 = (char *) p2;
@@ -8968,6 +9022,7 @@ static int Q3_Evaluate( int p1Type, const char *p1, int p2Type, const char *p2, 
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			return (int) !Q_stricmp( c1, c2 );	//NOTENOTE: The script uses proper string comparison logic (ex. ( a == a ) == true )
 			break;
@@ -9001,6 +9056,7 @@ static int Q3_Evaluate( int p1Type, const char *p1, int p2Type, const char *p2, 
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			Q3_DebugPrint( WL_ERROR, "Q3_Evaluate string comparisons of type GREATER THAN cannot be performed!");
 			return false;
@@ -9035,6 +9091,7 @@ static int Q3_Evaluate( int p1Type, const char *p1, int p2Type, const char *p2, 
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			Q3_DebugPrint( WL_ERROR, "Q3_Evaluate string comparisons of type LESS THAN cannot be performed!");
 			return false;
@@ -9068,6 +9125,7 @@ static int Q3_Evaluate( int p1Type, const char *p1, int p2Type, const char *p2, 
 			break;
 
 		case TK_STRING:
+    [[fallthrough]];
 		case TK_IDENTIFIER:
 			return (int) Q_stricmp( c1, c2 );
 			break;

@@ -261,19 +261,25 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 		{
 		//standard weapons
 		case MOD_BRYAR:
+    [[fallthrough]];
 		case MOD_BRYAR_ALT:
 		case MOD_BLASTER:
+    [[fallthrough]];
 		case MOD_BLASTER_ALT:
 		case MOD_DISRUPTOR:
+    [[fallthrough]];
 		case MOD_SNIPER:
 		case MOD_BOWCASTER:
+    [[fallthrough]];
 		case MOD_BOWCASTER_ALT:
 		case MOD_ROCKET:
+    [[fallthrough]];
 		case MOD_ROCKET_ALT:
 			return qtrue;
 			break;
 		//non-alt standard
 		case MOD_REPEATER:
+    [[fallthrough]];
 		case MOD_DEMP2:
 		case MOD_FLECHETTE:
 			return qtrue;
@@ -284,6 +290,7 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 			break;
 		//atst
 		case MOD_ENERGY:
+    [[fallthrough]];
 		case MOD_EXPLOSIVE:
 			if ( weapon == WP_ATST_MAIN || weapon == WP_ATST_SIDE )
 			{
@@ -297,14 +304,17 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 		switch( weapon )
 		{
 		case WP_BRYAR_PISTOL:
+    [[fallthrough]];
 		case WP_BLASTER:
 		case WP_DISRUPTOR:
+    [[fallthrough]];
 		case WP_BOWCASTER:
 		case WP_ROCKET_LAUNCHER:
 			return qtrue;
 			break;
 		//non-alt standard
 		case WP_REPEATER:
+    [[fallthrough]];
 		case WP_DEMP2:
 		case WP_FLECHETTE:
 			if ( !alt_fire )
@@ -318,6 +328,7 @@ qboolean W_AccuracyLoggableWeapon( int weapon, qboolean alt_fire, int mod )
 			break;
 		//atst
 		case WP_ATST_MAIN:
+    [[fallthrough]];
 		case WP_ATST_SIDE:
 			return qtrue;
 			break;
@@ -391,6 +402,7 @@ void CalcMuzzlePoint( gentity_t *const ent, vec3_t wpFwd, vec3_t right, vec3_t w
 		break;
 
 	case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 	case WP_THERMAL:
 		ViewHeightFix(ent);
 		muzzlePoint[2] += ent->client->ps.viewheight;//By eyes

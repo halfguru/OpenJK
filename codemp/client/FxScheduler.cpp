@@ -1217,20 +1217,26 @@ void CFxScheduler::CreateEffect( CPrimitiveTemplate *fx, const vec3_t origin, ma
 		switch( fx->mType )
 		{
 		case Particle:
+    [[fallthrough]];
 		case Line:
 		case Tail:
+    [[fallthrough]];
 		case Electricity:
 		case Cylinder:
+    [[fallthrough]];
 		case Emitter:
 		case OrientedParticle:
+    [[fallthrough]];
 		case Light:
 			flags |= FX_RELATIVE;
 			break;
 		case Decal:
+    [[fallthrough]];
 		case FxRunner:
 		case ScreenFlash:
 			//not supported yet
 		case Sound:
+    [[fallthrough]];
 		case CameraShake:
 			//does not work bolted
 			break;

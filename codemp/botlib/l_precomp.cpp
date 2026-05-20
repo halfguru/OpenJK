@@ -1905,6 +1905,7 @@ int PC_EvaluateTokens(source_t *source, token_t *tokens, signed long int *intval
 				switch(t->subtype)
 				{
 					case P_LOGIC_NOT:
+    [[fallthrough]];
 					case P_BIN_NOT:
 					{
 						if (lastwasvalue)
@@ -1916,6 +1917,7 @@ int PC_EvaluateTokens(source_t *source, token_t *tokens, signed long int *intval
 						break;
 					} //end case
 					case P_INC:
+    [[fallthrough]];
 					case P_DEC:
 					{
 						SourceError(source, "++ or -- used in #if/#elif");
@@ -1931,27 +1933,36 @@ int PC_EvaluateTokens(source_t *source, token_t *tokens, signed long int *intval
 					} //end case
 
 					case P_MUL:
+    [[fallthrough]];
 					case P_DIV:
 					case P_MOD:
+    [[fallthrough]];
 					case P_ADD:
 
 					case P_LOGIC_AND:
+    [[fallthrough]];
 					case P_LOGIC_OR:
 					case P_LOGIC_GEQ:
+    [[fallthrough]];
 					case P_LOGIC_LEQ:
 					case P_LOGIC_EQ:
+    [[fallthrough]];
 					case P_LOGIC_UNEQ:
 
 					case P_LOGIC_GREATER:
+    [[fallthrough]];
 					case P_LOGIC_LESS:
 
 					case P_RSHIFT:
+    [[fallthrough]];
 					case P_LSHIFT:
 
 					case P_BIN_AND:
+    [[fallthrough]];
 					case P_BIN_OR:
 					case P_BIN_XOR:
 
+    [[fallthrough]];
 					case P_COLON:
 					case P_QUESTIONMARK:
 					{

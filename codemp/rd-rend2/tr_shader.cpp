@@ -2934,22 +2934,29 @@ static void ComputeVertexAttribs(void)
 					break;
 
 				case DEFORM_WAVE:
+    [[fallthrough]];
 				case DEFORM_NORMALS:
 				case DEFORM_TEXT0:
+    [[fallthrough]];
 				case DEFORM_TEXT1:
 				case DEFORM_TEXT2:
+    [[fallthrough]];
 				case DEFORM_TEXT3:
 				case DEFORM_TEXT4:
+    [[fallthrough]];
 				case DEFORM_TEXT5:
 				case DEFORM_TEXT6:
+    [[fallthrough]];
 				case DEFORM_TEXT7:
 					shader.vertexAttribs |= ATTR_NORMAL;
 					break;
 
 				default:
 				case DEFORM_NONE:
+    [[fallthrough]];
 				case DEFORM_MOVE:
 				case DEFORM_PROJECTION_SHADOW:
+    [[fallthrough]];
 				case DEFORM_AUTOSPRITE2:
 					break;
 			}
@@ -2979,6 +2986,7 @@ static void ComputeVertexAttribs(void)
 			switch (pStage->glslShaderIndex & LIGHTDEF_LIGHTTYPE_MASK)
 			{
 				case LIGHTDEF_USE_LIGHTMAP:
+    [[fallthrough]];
 				case LIGHTDEF_USE_LIGHT_VERTEX:
 					shader.vertexAttribs |= ATTR_LIGHTDIRECTION;
 					break;
@@ -3000,8 +3008,10 @@ static void ComputeVertexAttribs(void)
 					shader.vertexAttribs |= ATTR_TEXCOORD0;
 					break;
 				case TCGEN_LIGHTMAP:
+    [[fallthrough]];
 				case TCGEN_LIGHTMAP1:
 				case TCGEN_LIGHTMAP2:
+    [[fallthrough]];
 				case TCGEN_LIGHTMAP3:
 					shader.vertexAttribs |= (ATTR_TEXCOORD1 | ATTR_TEXCOORD2 |
 											 ATTR_TEXCOORD3 | ATTR_TEXCOORD4);
@@ -3018,14 +3028,17 @@ static void ComputeVertexAttribs(void)
 		switch(pStage->rgbGen)
 		{
 			case CGEN_EXACT_VERTEX:
+    [[fallthrough]];
 			case CGEN_VERTEX:
 			case CGEN_EXACT_VERTEX_LIT:
+    [[fallthrough]];
 			case CGEN_VERTEX_LIT:
 			case CGEN_ONE_MINUS_VERTEX:
 				shader.vertexAttribs |= ATTR_COLOR;
 				break;
 
 			case CGEN_LIGHTING_DIFFUSE:
+    [[fallthrough]];
 			case CGEN_LIGHTING_DIFFUSE_ENTITY:
 				shader.vertexAttribs |= ATTR_NORMAL;
 				break;
@@ -3041,6 +3054,7 @@ static void ComputeVertexAttribs(void)
 				break;
 
 			case AGEN_VERTEX:
+    [[fallthrough]];
 			case AGEN_ONE_MINUS_VERTEX:
 				shader.vertexAttribs |= ATTR_COLOR;
 				break;
@@ -3270,10 +3284,13 @@ static qboolean CollapseStagesToGLSL(void)
 			switch(pStage->bundle[0].tcGen)
 			{
 				case TCGEN_TEXTURE:
+    [[fallthrough]];
 				case TCGEN_LIGHTMAP:
 				case TCGEN_LIGHTMAP1:
+    [[fallthrough]];
 				case TCGEN_LIGHTMAP2:
 				case TCGEN_LIGHTMAP3:
+    [[fallthrough]];
 				case TCGEN_ENVIRONMENT_MAPPED:
 				case TCGEN_VECTOR:
 					break;
@@ -3285,6 +3302,7 @@ static qboolean CollapseStagesToGLSL(void)
 			switch(pStage->alphaGen)
 			{
 				case AGEN_PORTAL:
+    [[fallthrough]];
 				case AGEN_LIGHTING_SPECULAR:
 					skip = qtrue;
 					break;
@@ -3574,6 +3592,7 @@ static void FixRenderCommandList( int newShader ) {
 					break;
 					}
 				case RC_ROTATE_PIC:
+    [[fallthrough]];
 				case RC_ROTATE_PIC2:
 					{
 						const rotatePicCommand_t *sp_cmd = (const rotatePicCommand_t *)curCmd;
@@ -4417,6 +4436,7 @@ shader_t *R_FindShader( const char *name, const int *lightmapIndexes, const byte
 	Com_Memcpy (shader.styles, styles, sizeof (shader.styles));
 	switch (lightmapIndexes[0]) {
 	case LIGHTMAP_2D:
+    [[fallthrough]];
 	case LIGHTMAP_WHITEIMAGE:
 	{
 		shader.isHDRLit = qfalse;

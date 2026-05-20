@@ -1451,8 +1451,10 @@ static void ST_CheckFireState( void )
 				switch ( NPC->s.weapon )
 				{
 				case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 				case WP_FLECHETTE:
 				case WP_THERMAL:
+    [[fallthrough]];
 				case WP_TRIP_MINE:
 				case WP_DET_PACK:
 					distThreshold = 65536/*256*256*/;
@@ -1481,8 +1483,10 @@ static void ST_CheckFireState( void )
 					switch ( NPC->s.weapon )
 					{
 					case WP_ROCKET_LAUNCHER:
+    [[fallthrough]];
 					case WP_FLECHETTE:
 					case WP_THERMAL:
+    [[fallthrough]];
 					case WP_TRIP_MINE:
 					case WP_DET_PACK:
 						distThreshold = 262144/*512*512*/;

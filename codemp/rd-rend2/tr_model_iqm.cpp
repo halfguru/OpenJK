@@ -227,6 +227,7 @@ qboolean R_LoadIQM( model_t *mod, void *buffer, int filesize, const char *mod_na
 
 		switch( vertexarray->format ) {
 		case IQM_BYTE:
+    [[fallthrough]];
 		case IQM_UBYTE:
 			// 1 byte, no swapping necessary
 			if( IQM_CheckRange( header, vertexarray->offset,
@@ -235,6 +236,7 @@ qboolean R_LoadIQM( model_t *mod, void *buffer, int filesize, const char *mod_na
 			}
 			break;
 		case IQM_INT:
+    [[fallthrough]];
 		case IQM_UINT:
 		case IQM_FLOAT:
 			// 4-byte swap
@@ -255,6 +257,7 @@ qboolean R_LoadIQM( model_t *mod, void *buffer, int filesize, const char *mod_na
 
 		switch( vertexarray->type ) {
 		case IQM_POSITION:
+    [[fallthrough]];
 		case IQM_NORMAL:
 			if( vertexarray->format != IQM_FLOAT ||
 			    vertexarray->size != 3 ) {

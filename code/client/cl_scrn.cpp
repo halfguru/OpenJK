@@ -432,12 +432,14 @@ void SCR_DrawScreenField( stereoFrame_t stereoFrame ) {
 			UI_SetActiveMenu( "mainMenu", NULL );
 			break;
 		case CA_CONNECTING:
+    [[fallthrough]];
 		case CA_CHALLENGING:
 		case CA_CONNECTED:
 			// connecting clients will only show the connection dialog
 			UI_DrawConnect( clc.servername, cls.updateInfoString );
 			break;
 		case CA_LOADING:
+    [[fallthrough]];
 		case CA_PRIMED:
 			// draw the game information screen and loading progress
 			CL_CGameRendering( stereoFrame );

@@ -2915,10 +2915,10 @@ void	RE_SetRangedFog ( float range );
 void		RE_BeginRegistration( glconfig_t *glconfig );
 void		RE_LoadWorldMap( const char *mapname );
 void		RE_SetWorldVisData( const byte *vis );
-qhandle_t	RE_RegisterServerModel( const char *name );
-qhandle_t	RE_RegisterModel( const char *name );
-qhandle_t	RE_RegisterServerSkin( const char *name );
-qhandle_t	RE_RegisterSkin( const char *name );
+[[nodiscard]] qhandle_t	RE_RegisterServerModel( const char *name );
+[[nodiscard]] qhandle_t	RE_RegisterModel( const char *name );
+[[nodiscard]] qhandle_t	RE_RegisterServerSkin( const char *name );
+[[nodiscard]] qhandle_t	RE_RegisterSkin( const char *name );
 void		RE_Shutdown(qboolean destroyWindow, qboolean restarting);
 world_t		*R_LoadBSP(const char *name, int *bspIndex = nullptr);
 
@@ -3727,8 +3727,8 @@ void R_AddDecals( void );
 image_t	*R_FindImageFile( const char *name, imgType_t type, int flags );
 void R_LoadPackedMaterialImage(shaderStage_t *stage, const char *packedImageName, int flags);
 image_t *R_BuildSDRSpecGlossImage(shaderStage_t *stage, const char *specImageName, int flags);
-qhandle_t RE_RegisterShader( const char *name );
-qhandle_t RE_RegisterShaderNoMip( const char *name );
+[[nodiscard]] qhandle_t RE_RegisterShader( const char *name );
+[[nodiscard]] qhandle_t RE_RegisterShaderNoMip( const char *name );
 const char		*RE_ShaderNameFromIndex(int index);
 image_t *R_CreateImage( const char *name, byte *pic, int width, int height, imgType_t type, int flags, int internalFormat );
 

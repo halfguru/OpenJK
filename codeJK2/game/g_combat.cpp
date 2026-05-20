@@ -599,6 +599,7 @@ void DeathFX( gentity_t *ent )
 		break;
 
 	case CLASS_SEEKER:
+    [[fallthrough]];
 	case CLASS_REMOTE:
 		G_PlayEffect( "env/small_explode", ent->currentOrigin );
 		break;
@@ -1169,11 +1170,13 @@ qboolean G_GetHitLocFromSurfName( gentity_t *ent, const char *surfName, int *hit
 						aoa = 0.25f;
 						break;
 					case HL_CHEST_RT:
+    [[fallthrough]];
 					case HL_ARM_RT:
 					case HL_BACK_LT:
 						tagName = "*torso_cap_r_arm";
 						break;
 					case HL_CHEST_LT:
+    [[fallthrough]];
 					case HL_ARM_LT:
 					case HL_BACK_RT:
 						tagName = "*torso_cap_l_arm";
@@ -1189,8 +1192,10 @@ qboolean G_GetHitLocFromSurfName( gentity_t *ent, const char *surfName, int *hit
 						aoa = 0.25f;
 						break;
 					case HL_CHEST:
+    [[fallthrough]];
 					case HL_BACK:
 					case HL_FOOT_RT:
+    [[fallthrough]];
 					case HL_FOOT_LT:
 					default:
 						//no dismemberment possible with these, so no checks needed
@@ -1474,6 +1479,7 @@ int G_PickPainAnim( gentity_t *self, vec3_t point, int damage, int hitLoc = HL_N
 		//PAIN2 = long, left shoulder
 		break;
 	case HL_WAIST:
+    [[fallthrough]];
 	case HL_CHEST:
 		if ( !Q_irand( 0, 3 ) )
 		{
@@ -1497,11 +1503,13 @@ int G_PickPainAnim( gentity_t *self, vec3_t point, int damage, int hitLoc = HL_N
 		//PAIN19 = med crotch
 		break;
 	case HL_ARM_RT:
+    [[fallthrough]];
 	case HL_HAND_RT:
 		return BOTH_PAIN9;
 		//PAIN9 = twitch right arm
 		break;
 	case HL_ARM_LT:
+    [[fallthrough]];
 	case HL_HAND_LT:
 		return BOTH_PAIN10;
 		//PAIN10 = twitch left arm
@@ -1728,6 +1736,7 @@ qboolean G_LimbLost( gentity_t *ent, int hitLoc )
 		}
 		//NOTE: falls through
 	case HL_ARM_LT:
+    [[fallthrough]];
 	case HL_CHEST_LT:
 	case HL_BACK_RT:
 		//NOTE: hand falls through
@@ -1747,6 +1756,7 @@ qboolean G_LimbLost( gentity_t *ent, int hitLoc )
 		}
 		//NOTE: falls through
 	case HL_ARM_RT:
+    [[fallthrough]];
 	case HL_CHEST_RT:
 	case HL_BACK_LT:
 		//NOTE: hand falls through
@@ -2090,6 +2100,7 @@ static qboolean G_Dismemberable( gentity_t *self, int hitLoc )
 			switch ( hitLoc )
 			{
 			case HL_LEG_RT:
+    [[fallthrough]];
 			case HL_LEG_LT:
 				dismemberProb = self->client->dismemberProbLegs;
 				break;
@@ -2097,14 +2108,18 @@ static qboolean G_Dismemberable( gentity_t *self, int hitLoc )
 				dismemberProb = self->client->dismemberProbWaist;
 				break;
 			case HL_BACK_RT:
+    [[fallthrough]];
 			case HL_BACK_LT:
 			case HL_CHEST_RT:
+    [[fallthrough]];
 			case HL_CHEST_LT:
 			case HL_ARM_RT:
+    [[fallthrough]];
 			case HL_ARM_LT:
 				dismemberProb = self->client->dismemberProbArms;
 				break;
 			case HL_HAND_RT:
+    [[fallthrough]];
 			case HL_HAND_LT:
 				dismemberProb = self->client->dismemberProbHands;
 				break;
@@ -2222,6 +2237,7 @@ extern cvar_t	*g_iscensored;
 				}
 				break;
 			case HL_CHEST_RT:
+    [[fallthrough]];
 			case HL_ARM_RT:
 			case HL_BACK_RT:
 				if ( g_dismemberment->integer )
@@ -2240,6 +2256,7 @@ extern cvar_t	*g_iscensored;
 				}
 				break;
 			case HL_CHEST_LT:
+    [[fallthrough]];
 			case HL_ARM_LT:
 			case HL_BACK_LT:
 				if ( g_dismemberment->integer &&
@@ -2307,8 +2324,10 @@ extern cvar_t	*g_iscensored;
 				}
 				break;
 			case HL_FOOT_RT:
+    [[fallthrough]];
 			case HL_FOOT_LT:
 			case HL_CHEST:
+    [[fallthrough]];
 			case HL_BACK:
 			default:
 				break;
@@ -2845,16 +2864,22 @@ static int G_PickDeathAnim( gentity_t *self, vec3_t point, int damage, int mod, 
 	{
 	case BOTH_DEATH1:		//# First Death anim
 	case BOTH_DEAD1:
+    [[fallthrough]];
 	case BOTH_DEATH2:			//# Second Death anim
 	case BOTH_DEAD2:
+    [[fallthrough]];
 	case BOTH_DEATH8:			//#
 	case BOTH_DEAD8:
+    [[fallthrough]];
 	case BOTH_DEATH13:			//#
 	case BOTH_DEAD13:
+    [[fallthrough]];
 	case BOTH_DEATH14:			//#
 	case BOTH_DEAD14:
+    [[fallthrough]];
 	case BOTH_DEATH16:			//#
 	case BOTH_DEAD16:
+    [[fallthrough]];
 	case BOTH_DEADBACKWARD1:		//# First thrown backward death finished pose
 	case BOTH_DEADBACKWARD2:		//# Second thrown backward death finished pose
 		return -2;
@@ -2875,8 +2900,10 @@ static int G_PickDeathAnim( gentity_t *self, vec3_t point, int damage, int mod, 
 		*/
 	case BOTH_DEATH10:			//#
 	case BOTH_DEAD10:
+    [[fallthrough]];
 	case BOTH_DEATH15:			//#
 	case BOTH_DEAD15:
+    [[fallthrough]];
 	case BOTH_DEADFORWARD1:		//# First thrown forward death finished pose
 	case BOTH_DEADFORWARD2:		//# Second thrown forward death finished pose
 		return -2;
@@ -3054,8 +3081,10 @@ static int G_PickDeathAnim( gentity_t *self, vec3_t point, int damage, int mod, 
 				}
 				break;
 			case HL_HAND_RT:
+    [[fallthrough]];
 			case HL_CHEST_RT:
 			case HL_ARM_RT:
+    [[fallthrough]];
 			case HL_BACK_LT:
 				if ( (damage <= self->max_health*0.25&&Q_irand(0,1)) || (fabs(thrown)<200&&!Q_irand(0,2)) || !Q_irand( 0, 10 ) )
 				{
@@ -3105,8 +3134,10 @@ static int G_PickDeathAnim( gentity_t *self, vec3_t point, int damage, int mod, 
 				}
 				break;
 			case HL_CHEST_LT:
+    [[fallthrough]];
 			case HL_ARM_LT:
 			case HL_HAND_LT:
+    [[fallthrough]];
 			case HL_BACK_RT:
 				if ( (damage <= self->max_health*0.25&&Q_irand(0,1)) || (fabs(thrown)<200&&!Q_irand(0,2)) || !Q_irand(0, 10) )
 				{
@@ -3156,6 +3187,7 @@ static int G_PickDeathAnim( gentity_t *self, vec3_t point, int damage, int mod, 
 				}
 				break;
 			case HL_CHEST:
+    [[fallthrough]];
 			case HL_WAIST:
 				if ( (damage <= self->max_health*0.25&&Q_irand(0,1)) || thrown > -50 )
 				{
@@ -3872,11 +3904,13 @@ extern void RunEmplacedWeapon( gentity_t *ent, usercmd_t **ucmd );
 								switch ( Q_irand( 0, 7 ) )
 								{
 								case 0:
+    [[fallthrough]];
 								case 1:
 								case 2:
 									anim = BOTH_DEATH4;
 									break;
 								case 3:
+    [[fallthrough]];
 								case 4:
 								case 5:
 									anim = BOTH_DEATH5;
@@ -3921,18 +3955,22 @@ extern void RunEmplacedWeapon( gentity_t *ent, usercmd_t **ucmd );
 								switch ( Q_irand( 0, 7 ) )
 								{
 								case 0:
+    [[fallthrough]];
 								case 1:
 									anim = BOTH_DEATH1;
 									break;
 								case 2:
+    [[fallthrough]];
 								case 3:
 									anim = BOTH_DEATH2;
 									break;
 								case 4:
+    [[fallthrough]];
 								case 5:
 									anim = BOTH_DEATH22;
 									break;
 								case 6:
+    [[fallthrough]];
 								case 7:
 									anim = BOTH_DEATH23;
 									break;
@@ -4679,38 +4717,47 @@ void G_TrackWeaponUsage( gentity_t *self, gentity_t *inflictor, int add, int mod
 			weapon = WP_SABER;
 			break;
 		case MOD_BRYAR:
+    [[fallthrough]];
 		case MOD_BRYAR_ALT:
 			weapon = WP_BRYAR_PISTOL;
 			break;
 		case MOD_BLASTER:
+    [[fallthrough]];
 		case MOD_BLASTER_ALT:
 			weapon = WP_BLASTER;
 			break;
 		case MOD_DISRUPTOR:
+    [[fallthrough]];
 		case MOD_SNIPER:
 			weapon = WP_DISRUPTOR;
 			break;
 		case MOD_BOWCASTER:
+    [[fallthrough]];
 		case MOD_BOWCASTER_ALT:
 			weapon = WP_BOWCASTER;
 			break;
 		case MOD_REPEATER:
+    [[fallthrough]];
 		case MOD_REPEATER_ALT:
 			weapon = WP_REPEATER;
 			break;
 		case MOD_DEMP2:
+    [[fallthrough]];
 		case MOD_DEMP2_ALT:
 			weapon = WP_DEMP2;
 			break;
 		case MOD_FLECHETTE:
+    [[fallthrough]];
 		case MOD_FLECHETTE_ALT:
 			weapon = WP_FLECHETTE;
 			break;
 		case MOD_ROCKET:
+    [[fallthrough]];
 		case MOD_ROCKET_ALT:
 			weapon = WP_ROCKET_LAUNCHER;
 			break;
 		case MOD_THERMAL:
+    [[fallthrough]];
 		case MOD_THERMAL_ALT:
 			weapon = WP_THERMAL;
 			break;
@@ -4718,6 +4765,7 @@ void G_TrackWeaponUsage( gentity_t *self, gentity_t *inflictor, int add, int mod
 			weapon = WP_DET_PACK;
 			break;
 		case MOD_LASERTRIP:
+    [[fallthrough]];
 		case MOD_LASERTRIP_ALT:
 			weapon = WP_TRIP_MINE;
 			break;

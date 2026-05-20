@@ -19,6 +19,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include <algorithm>
 #include <SDL.h>
 #include "qcommon/qcommon.h"
 #include "qcommon/q_shared.h"
@@ -327,12 +328,15 @@ static fakeAscii_t IN_TranslateSDLToJKKey( SDL_Keysym *keysym, qboolean down ) {
 			case SDLK_PAUSE:        key = A_PAUSE;         break;
 
 			case SDLK_LSHIFT:
+    [[fallthrough]];
 			case SDLK_RSHIFT:       key = A_SHIFT;         break;
 
 			case SDLK_LCTRL:
+    [[fallthrough]];
 			case SDLK_RCTRL:        key = A_CTRL;          break;
 
 			case SDLK_RALT:
+    [[fallthrough]];
 			case SDLK_LALT:         key = A_ALT;           break;
 
 			case SDLK_KP_5:         key = A_KP_5;          break;
@@ -883,6 +887,7 @@ static void IN_ProcessEvents( void )
 				break;
 
 			case SDL_MOUSEBUTTONDOWN:
+    [[fallthrough]];
 			case SDL_MOUSEBUTTONUP:
 				{
 					unsigned short b;
@@ -922,6 +927,7 @@ static void IN_ProcessEvents( void )
 				{
 					case SDL_WINDOWEVENT_MINIMIZED:    Cvar_SetValue( "com_minimized", 1 ); break;
 					case SDL_WINDOWEVENT_RESTORED:
+    [[fallthrough]];
 					case SDL_WINDOWEVENT_MAXIMIZED:    Cvar_SetValue( "com_minimized", 0 ); break;
 					case SDL_WINDOWEVENT_FOCUS_LOST:
 					{
@@ -1009,7 +1015,7 @@ static void IN_JoyMove( void )
 	total = SDL_JoystickNumHats(stick);
 	if (total > 0)
 	{
-		if (total > 4) total = 4;
+		total = std::min(total, 4);
 		for (i = 0; i < total; i++)
 		{
 			((Uint8 *)&hats)[i] = SDL_JoystickGetHat(stick, i);
@@ -1100,7 +1106,7 @@ static void IN_JoyMove( void )
 	{
 		if (in_joystickUseAnalog->integer)
 		{
-			if (total > MAX_JOYSTICK_AXIS) total = MAX_JOYSTICK_AXIS;
+			total = std::min(total, static_cast<int>(MAX_JOYSTICK_AXIS));
 			for (i = 0; i < total; i++)
 			{
 				Sint16 axis = SDL_JoystickGetAxis(stick, i);
@@ -1117,7 +1123,7 @@ static void IN_JoyMove( void )
 		}
 		else
 		{
-			if (total > 16) total = 16;
+			total = std::min(total, 16);
 			for (i = 0; i < total; i++)
 			{
 				Sint16 axis = SDL_JoystickGetAxis(stick, i);

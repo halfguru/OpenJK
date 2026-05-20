@@ -150,11 +150,13 @@ void FX_BryarAltHitWall( vec3_t origin, vec3_t normal, int power )
 	switch( power )
 	{
 	case 4:
+    [[fallthrough]];
 	case 5:
 		theFxScheduler.PlayEffect( cgs.effects.bryarWallImpactEffect3, origin, normal );
 		break;
 
 	case 2:
+    [[fallthrough]];
 	case 3:
 		theFxScheduler.PlayEffect( cgs.effects.bryarWallImpactEffect2, origin, normal );
 		break;
